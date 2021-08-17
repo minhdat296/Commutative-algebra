@@ -1,0 +1,132 @@
+\documentclass[a4paper, 12pt]{book}
+
+\usepackage{minitoc}
+\setcounter{tocdepth}{5}
+\setcounter{minitocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{mathpazo}
+%\usepackage{euler}
+\usepackage{eucal}
+\usepackage{bbm}
+\usepackage{csquotes}
+\usepackage[nottoc]{tocbibind}
+\usepackage{appendix}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage[
+    left = \flqq{},% 
+    right = \frqq{},% 
+    leftsub = \flq{},% 
+    rightsub = \frq{} %
+]{dirtytalk}
+
+\usepackage{imakeidx}
+\makeindex
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=teal,
+        filecolor=pink,      
+        urlcolor=teal,
+        citecolor=magenta
+    }
+\usepackage{comment}
+
+% You would set the PDF title, author, etc. with package options or
+% \hypersetup.
+
+\usepackage[backend=biber, style=alphabetic, sorting=nty]{biblatex}
+    \addbibresource{bibliography.bib}
+
+\raggedbottom
+
+\usepackage{mathrsfs}
+\usepackage{mathtools} 
+\mathtoolsset{showonlyrefs} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\renewcommand\qedsymbol{$\blacksquare$}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage[version=3]{mhchem}
+\parskip=0.1in
+\usepackage[margin=25mm]{geometry}
+
+\usepackage{listings, lstautogobble}
+\lstset{
+	language=matlab,
+	basicstyle=\scriptsize\ttfamily,
+	commentstyle=\ttfamily\itshape\color{gray},
+	stringstyle=\ttfamily,
+	showstringspaces=false,
+	breaklines=true,
+	frameround=ffff,
+	frame=single,
+	rulecolor=\color{black},
+	autogobble=true
+}
+
+\usepackage{todonotes,tocloft,xpatch,hyperref}
+
+% This is based on classicthesis chapter definition
+\let\oldsec=\section
+\renewcommand*{\section}{\secdef{\Sec}{\SecS}}
+\newcommand\SecS[1]{\oldsec*{#1}}%
+\newcommand\Sec[2][]{\oldsec[\texorpdfstring{#1}{#1}]{#2}}%
+
+\newcounter{istodo}[section]
+
+% http://tex.stackexchange.com/a/61267/11984
+\makeatletter
+%\xapptocmd{\Sec}{\addtocontents{tdo}{\protect\todoline{\thesection}{#1}{}}}{}{}
+\newcommand{\todoline}[1]{\@ifnextchar\Endoftdo{}{\@todoline{#1}}}
+\newcommand{\@todoline}[3]{%
+	\@ifnextchar\todoline{}
+	{\contentsline{section}{\numberline{#1}#2}{#3}{}{}}%
+}
+\let\l@todo\l@subsection
+\newcommand{\Endoftdo}{}
+
+\AtEndDocument{\addtocontents{tdo}{\string\Endoftdo}}
+\makeatother
+
+\usepackage{lipsum}
+
+%   Reduce the margin of the summary:
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+%   Generate the environment for the abstract:
+\newcommand\summaryname{Abstract}
+\newenvironment{abstract}%
+    {\small\begin{center}%
+    \bfseries{\summaryname} \end{center}}
+
+\newtheorem{theorem}{Theorem}[section]
+    \numberwithin{theorem}{subsection}
+\newtheorem{proposition}{Proposition}[section]
+    \numberwithin{proposition}{subsection}
+\newtheorem{lemma}{Lemma}[section]
+    \numberwithin{lemma}{subsection}
+\newtheorem{claim}{Claim}[section]
+    \numberwithin{claim}{subsection}
+
+\theoremstyle{definition}
+    \newtheorem{definition}{Definition}[section]
+        \numberwithin{definition}{subsection}
+
+\theoremstyle{remark}
+    \newtheorem{remark}{Remark}[section]
+        \numberwithin{remark}{subsection}
+    \newtheorem{example}{Example}[section]
+        \numberwithin{example}{subsection}    
+    \newtheorem{convention}{Convention}[section]
+        \numberwithin{convention}{subsection}
+    \newtheorem{corollary}{Corollary}[section]
+        \numberwithin{corollary}{subsection}

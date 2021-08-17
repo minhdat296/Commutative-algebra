@@ -1,0 +1,37 @@
+\chapter{Singularities}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{The \texorpdfstring{$\Proj$}{}-construction and blowups; resolution of curves}
+        \subsection{\texorpdfstring{$\Proj$}{} of graded rings}
+        
+        \subsection{Blowups}
+        
+        \subsection{Application to resolving singular curves}
+    
+    \section{Smoothing out regular rings}
+        \subsection{Singular ideals}
+            \begin{definition}[Singular loci and singular ideals] \label{def: singular_loci}
+                The \textbf{singular locus} of a homomorphism of commutative rings $\varphi: R \to S$, denoted by $\frakS_{S/R}$ or $\frakS_{\varphi}$, is the following subset of $\Spec S$:
+                    $$\frakS_{S/R} := \{\q \in \Spec S \mid \text{$\varphi$ is not smooth at $\q$}\}$$
+                The ideal associated to a singular locus is the \textbf{singular ideal}: in our case, the $S$-ideal $I(\frakS_{S/R})$ is the singular ideal associated to the ring map $\varphi: R \to S$.
+            \end{definition}
+            \begin{remark}[Unpacking the definition]
+                Definition \ref{def: singular_loci} is one of those definitions that are deceptively clean and simple. It asserts not much more than the fact that the singular locus of a ring map (or rather, of the corresponding morphism of affine schemes) is just the set of points/primes at which the map is not smooth. But it is precisely this reliance on smoothness (or lack thereof) that makes this definition so hard to work with. Smoothness, at its core, is a cohomological property: a ring map that is of finite presentation is smooth if and only if the associated (na\"ive) cotangent complex is quasi-isomorphic to a finitely generated projective module placed in degree $0$ \cite[\href{https://stacks.math.columbia.edu/tag/00T2}{Tag 00T2}]{stacks}. Thus, in checking if a ring map has a non-empty singular locus, one will need to make peace with having to examine this clunky cohomological property.  
+            \end{remark}
+            
+            \begin{proposition}[Singular loci are radical ideals]
+                Let $\varphi: R \to S$ be a fixed homomorphism of commutative rings. Then, the singular ideal $I(\frakS_{S/R})$ is a radical ideal of $S$.
+            \end{proposition}
+                \begin{proof}
+                    By proposition \ref{prop: radical_properties}, radical ideals are precisely equal to the intersection of all primes containing it, i.e. an ideal $\a$ of $S$ is radical if and only if:
+                        $$\a = \bigcap_{\p \in V(\a)} \p$$
+                    so let us check if the singular ideal associated to a ring map satisfies this characterisation. 
+                \end{proof}
+
+    \section{Resolutions of singular surfaces}
+    
+    \section{Resolutions of singular varieties in higher dimensions}

@@ -1,0 +1,127 @@
+\chapter{Motives}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{Weil cohomology theories}
+        \subsection{Fantastic cohomology theories and where to find them}
+            \subsubsection{Some intersection theory}
+                \begin{remark}[Categories of smooth projective schemes] \label{remark: categories_of_smooth_projective_schemes}
+                    Fix a ground field $k$. 
+                    
+                    Inspired by Serre's GAGA Theorem - which relates smooth projective varieties over $\Spec \bbC$ to (compact) complex analytic manifolds - we shall try to set up the so-called Weil cohomology theories so that they would behave well over smooth projective (algebraic) schemes over fields such as $k$ (not that we would object to these cohomology theories working over more general schemes, but one should also be reasonable with one's expectations). For that, we shall need to first see if smooth projective algebraic schemes form a category (otherwise, what even is the point ?); also, notice how even with two additional adjectives, the class smooth projective algebraic schemes still includes a lot of important examples, notable among which are elliptic curves and higher dimensional abelian varieties.
+                    
+                    Thankfully, we do have a category of smooth projective algebraic schemes over any given base field $k$, which we denote by $\Sch_{/\Spec k}^{\smooth, \proj}$. To see why this is the case, recall firstly that thanks to the universal property of the $\Proj$-construction, a projective schemes $X$ is nothing but an $\N$-filtration of schemes (i.e. a diagram:
+                        $$X: \N \to \Sch$$
+                    of shape $\N$ whose transition maps are \href{https://stacks.math.columbia.edu/tag/01L1}{\underline{monomorphism of schemes}}; note in particular, that any immersion, closed or open, is a monomorphism \cite[\href{https://stacks.math.columbia.edu/tag/01L7}{Tag 01L7}]{stacks}); by abstract nonsense, $X$ is thus simply a functor that preserves monomorphisms, as every arrow in $\N$ is a monomorphism.  
+                \end{remark}
+                
+                \begin{definition}[Algebraic cycles] \label{def: algebraic_cycles}
+                    Let $S$ be a Noetherian base scheme and let $f: X \to S$ be an $S$-scheme of finite type. Recall also that Noetherian schemes form a full subcategory of $\Sch$; let us denote it by $\Sch^{\Noeth}$. 
+                        \begin{enumerate}
+                            \item \textbf{(Relative cycles):} 
+                            \item \textbf{(The Chow functors):} A \textbf{presheaf of $d$-dimensional relative cycles} over $f: X \to S$ (or a \textbf{$d$-dimensional Chow functor} over $f: X \to S$) shall be a functor:
+                                $$\Chow_{X/S}(d, -): \Sch_{/S}^{\Noeth} \to \Sets$$
+                            that associates to Noetherian $S$-schemes $g: T \to S$ the set $\Chow_{X/S}(d, T)$ of $d$-dimensional relative cycles on the $T$-scheme $X \x_{f, S, g} T \to T$.
+                        \end{enumerate}
+                \end{definition}
+                
+            \subsubsection{Weil cohomology theories}    
+                \begin{definition}[Weil cohomology theories] \label{def: weil_cohomology_theories}
+                    Let $k$ be an arbitrary base field, and let $F$ be a field of characteristic $0$, which will serve as a so-called \say{field of coefficients}. A \textbf{Weil cohomology theory} over $k$ is thus a contravariant functor:
+                        $$\H^*: \Sch_{/\Spec k}^{\smooth, \proj, \op} \to [\Z, {}_F\Vect]$$
+                    from the category of smooth projective algebraic schemes over $\Spec k$ into the category of $\Z$-graded $F$-vector spaces (which are just diagrams of shape $\Z$ of $F$-vector spaces) that satisfies the following axioms:
+                        \begin{enumerate}
+                            \item \textbf{(Finiteness):} Given a smooth projective algebraic scheme $X$ over $\Spec k$, we shall want all the vector spaces in the diagram:
+                                $$
+                                    \H^*(X) =
+                                    \left(
+                                        \begin{tikzcd}
+                                        	\cdots & {\H^{-1}(X)} & {\H^0(X)} & {\H^1(X)} & \cdots
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow[from=1-3, to=1-4]
+                                        	\arrow[from=1-4, to=1-5]
+                                        	\arrow[from=1-1, to=1-2]
+                                        \end{tikzcd}
+                                    \right)
+                                $$
+                            to be \textit{finite-dimensional}. Additionally, we would like to require that:
+                                $$
+                                    \dim_F \H^i(X) = 
+                                    \begin{cases}
+                                        \text{$n_i \not = 0$ if $0 \leq i \leq 2\dim X$}
+                                        \\
+                                        \text{$0$ otherwise}
+                                    \end{cases}
+                                $$
+                            \item \textbf{(Poincar\'e Duality):} This is to say that there is an isomorphism, called the \textbf{trace map}:
+                                $$\int_X(-): \H^{2 \dim X}(X) \cong F$$
+                            and that for each $i \in \Z$, there exists a non-degenerate bilinear pairing:
+                                $$\<\cdot \mid \cdot\>: \H^i(X) \x \H^{2\dim X - i}(X) \to \H^{2 \dim X}(X)$$
+                            which establishes an isomorphism between $\H^i(X) \x \H^{2\dim X - i}(X)$ and $F$ via the trace map $\int_X$. 
+                            \item \textbf{(K\"unneth Formula/Monoidality):} For all $i \in \Z$, we have:
+                                $$\H^i(X \x_{\Spec k} Y) \cong \H^i(X) \tensor_F \H^i(Y)$$
+                            \item \textbf{(Algebraic cycles):}
+                        \end{enumerate}
+                \end{definition}
+                \begin{remark}[Why these axioms ?] \label{remark: motivation_for_motives}
+                    For the most part, the axioms laid out in definition \ref{def: weil_cohomology_theories} are there because we want Weil cohomology theories to behave how we have come to expect reasonable \say{geometric} cohomology theories to. In particular, we want for (smooth and projective) schemes cohomology theories that act more or less like singular cohomology or the classical de Rham cohomology for manifolds. In fact, most famous examples of Weil cohomology theories were conceived in the images of singular and de Rham cohomologies: \'etale cohomology (cf. chapter \ref{chapter: etale_cohomology_1}) is supposed to be the topological cohomology theory that works for schemes - especially those in positive characteristics - and crystalline cohomology exists so that we might have a \say{differential geometry} of schemes (cf. chapter \ref{chapter: crystals}). 
+                \end{remark}
+                \begin{remark}[What about the Lefschetz Conditions ?] \label{remark: lefschetz_axioms}
+                    
+                \end{remark}
+                \begin{example}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Over characteristic $0$):} 
+                            \begin{enumerate}
+                                \item \textbf{(Betti cohomology):}
+                                \item \textbf{(de Rham cohomology):}
+                                \item \textbf{(A counter-example: Zariski cohomology):}
+                            \end{enumerate}
+                        \item \textbf{(Over positive characteristics):}
+                            \begin{enumerate}
+                                \item \textbf{($\ell$-adic cohomology):}
+                                \item \textbf{(Crystalline cohomology):}
+                            \end{enumerate}
+                    \end{enumerate}
+                \end{example}
+        
+        \subsection{Motives}
+    
+    \section{Complex Hodge theory}
+        \subsection{Hodge structures}
+            \subsubsection{Pure Hodge structures on compact complex analytic manifolds}
+                \begin{theorem}[Grothendieck's algebraic de Rham cohomology] \label{theorem: de_rham_cohomology}
+                    Let $X$ be a smooth scheme over $\Spec \bbC$ and let $X^{\an}$ denote the analytic manifold whose underlying set is $X(\bbC)$. Then, one has the following comparison quasi-isomorphism between algebraic and complex-analytic de Rham cohomologies:
+                        $$H^*_{\dR}(X) \cong_{\qis} H^*_{\dR}(X^{\an})$$
+                \end{theorem}
+            
+            \subsubsection{Mixed Hodge structures}
+        
+        \subsection{Periods}
+        
+        \subsection{Moduli of Hodge structures and complex Shimura varieties}
+        
+    \section{Motivic \texorpdfstring{$p$}{}-adic Hodge theory}
+        \subsection{The Ax-Tate-Sen Theorem}
+        
+        \subsection{Period rings and period sheaves}
+    
+        \subsection{The Hodge-Tate Decomposition and the \'etale-de Rham comparison}
+            \subsubsection{The Hodge-Tate Decomposition via perfectoid spaces}
+                \paragraph{The case for abelian schemes with good reductions}
+                    \begin{convention}
+                        From this point on, fix a prime $p$ along with a $p$-adic number field $K/\Q_p$. Also, fix a completion $C$ of an algebraic closure of $K$. Lastly, let $A_{/K^{\circ}}$ be an abelian scheme over $\Spec K^{\circ}$ with generic fibre $A_{/K}$.
+                    \end{convention}
+                
+                \paragraph{The general case}
+            
+            \subsubsection{The \'etale-de Rham comparison}
+        
+        \subsection{The \'etale-crystalline comparison}
+        
+        \subsection{Perfectoid Shimura varieties}
+        

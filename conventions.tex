@@ -1,0 +1,111 @@
+\chapter{Reading guides}
+    \begin{enumerate}
+        \item \textbf{(Fonts):}
+            \begin{enumerate}
+                \item $\mathsf{mathsf}$ will usually be reserved for denoting categories and types with names. 
+                \item $\mathcal{MATHCAL}$ will be used for denoting generic categories. For instance, we might fix an arbitrary category $\C$, or some abelian category $\calA$. 
+                \item $\mathbf{mathbf}$ is commonly used to denote special functions, functors, and other assignments that are particularly worth paying attention to. Examples include but not limited to the $p^{th}$ power Frobenius $\Frob$, the prime spectrum of commutative rings $\Spec$, and the Galois group $\Gal$.
+                \item $\mathbb{MATHBB}$ will almost always be reserved for writing sets of special numbers. For example, $\N$ is the set of natural numbers, $\Z$ is the set of integers, $\Q$ is that of rational numbers, and so on. 
+            \end{enumerate}
+        \item \textbf{(Category theory):} 
+            \begin{enumerate}
+                \item \textbf{(Fundamentals):} We assume basic understand of categories along with fundamental categorical concepts such as universal properties, (co)limits, and adjunctions. 
+                \item \textbf{(Homs):} Hom-spaces in a given category $\C$ will be denoted by $\C(-, -)$.
+                \item \textbf{(Slices and coslices):} Let $c$ be an object of a category $\C$. Then, the slice of $\C$ over $c$ will be denoted by $\C_{/c}$, and the coslice of $\C$ under $c$ is denoted by ${}^{c/}\C$. 
+                \item \textbf{(Topos theory):} Sheaf topoi are ubiquitous in algebraic geometry (and hence, commutative algebra). Therefore, we will refrain from giving actual expositions on them. Readers who are not too familiar with sheaf topoi are encouraged to consult \cite{sga4}, or if they are feeling brave, \cite{elephant1} and \cite{elephant2}. 
+                \item \textbf{(Stacks):} We shall also be conversing in the language of stacks, $2$-categories, and general enriched categories. Useful references are \cite{vistoli_descent}, \cite{leinster_higher_categories}, and \cite{kelly_enriched_categories}.
+                \item \textbf{(Monoidal categories):} For information on monoidal categories, we refer the readers to \cite{EGNO}.
+                \item \textbf{(Regarding names of categories):} There is the following general rule that we shall apply to our naming of categories: a category with objects of type $\mathsf{X}$ specified by adjectives $\mathrm{a_1, a_2, ...}$ and extra conditions $\mathrm{c_1, c_2, ...}$ will be denoted by $\mathsf{X}^{\mathrm{a_1, a_2, ...}}_{\mathrm{c_1, c_2, ...}}$. For example, the category of locally ringed spaces over a base space $(X, \calO_X)$ will be denoted by $\Spc^{\ringed, \loc}_{/(X, \calO_X)}$, and the \'etale site of commutative rings is written $\Cring^{\op}_{\et}$. 
+                \\
+                Functors also have an associated notational convention. Often, the operation performed by the functor will be written at the top left corner: for instance, the process of sheafification with respect to a coverage $J$ will be denoted by ${}^{\sh}(-)_J$.
+                \item \textbf{(Notations for categorical operations)} 
+                    \begin{enumerate}
+                        \item To avoid confusion, a limit over a diagram of shape $I$ (should it exist, of course) will be denoted by \say{$\underset{I}{\lim}$}, whereas a colimit will be written \say{$\underset{I}{\colim}$}. Furthermore, when discussing higher limits and colimits (and related operations such as (co)ends and right/left Kan extensions), we shall write write the categorical level as a supercript or a subscript \textit{on the left} or \textit{at the centre} when necessary; the placement of the sub/superscripts will depend on the situation. For instance, a $2$-limit shall be denote by:
+                            $$\text{${}^2\lim$ or $\underset{2}{\lim}$}$$
+                        and a $2$-product shall be denote by:
+                            $$\text{$\x^2$ or ${}^2\x$}$$
+                        \item Let $F: \C \to \D$ be a functor, and let $\S$ be a fixed \say{target} category. Then, left-Kan extensions of functors $X: \D \to \S$ along $F: \C \to \D$ shall be denoted either by $F_! X$ or $\underset{F: \C \to \D}{\LKE} X$; as for right-Kan extensions of functors $Y: \C \to \S$, they will be denoted by $F_* Y$ $\underset{F: \C \to \D}{\RKE} Y$. The diagram to keep in mind is the following adjoint triple:
+                            $$
+                                \begin{tikzcd}
+                                	{[\C, \S]} && {[\D, \S]}
+                                	\arrow[""{name=0, anchor=center, inner sep=0}, "{F^*}"{description}, from=1-3, to=1-1]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{F_*}"', shift right=3, from=1-1, to=1-3]
+                                	\arrow[""{name=2, anchor=center, inner sep=0}, "{F_!}", shift left=4, from=1-1, to=1-3]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=2, to=0]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+                                \end{tikzcd}
+                            $$
+                    \end{enumerate}
+            \end{enumerate}
+        \item \textbf{(Set theory):} In what follows let us state some notions from set theory, which sadly can not be brushed aside, and discuss their consequences. Since this is not a book on logic nor on foundations, we shall not provide any proofs.
+            \begin{enumerate}
+                \item \textbf{(Cardinals and ordinals):}
+                    \begin{definition}[Limit cardinals] \label{def: limit_cardinal}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Regular cardinals):} A cardinal $\kappa$ is \textbf{regular} if and only if for any set of ordinals $\{\lambda_a \mid \forall a \in \alpha: \lambda_a < \kappa\}$ indexed by an ordinal $\alpha$, one has:
+                            $$\sum_{a \in \alpha} \lambda_a < \kappa$$ 
+                            \item \textbf{(Limit cardinals):} A \textbf{limit cardinal} is one which is not the successor of any other cardinal. More explicitly, we have the notions of \textbf{weak} and \textbf{strong} limit cardinals, which are:
+                                \begin{enumerate}
+                                    \item cardinals $\kappa$ such that:
+                                        $$\forall \lambda < \kappa: \operatorname{succ} (\sup \lambda) < \kappa$$
+                                    and respectively,
+                                    \item cardinals $\kappa$ such that:
+                                        $$\forall \lambda < \kappa: 2^{\lambda} < \kappa$$
+                                \end{enumerate}
+                            \item \textbf{(Inaccessible cardinals):} A cardinal is \textbf{inaccessible} if and only if it is both a regular cardinal and a strong limit cardinal.
+                        \end{enumerate}
+                    \end{definition}
+                    \begin{example}
+                        \noindent
+                        \begin{enumerate}
+                            \item The first countable infinite cardinal $\aleph_0$ is inaccessible, since it is larger than any finite sum of natural numbers (which makes it regular), and also because any natural number power of $2$ is also a natural number (which implies that these power must be smaller than $\aleph_0$, and thus $\aleph_0$ must be a strong limit cardinal).
+                            \item Interestingly, $0$ and $1$ are both inaccesible as cardinals.
+                        \end{enumerate}
+                    \end{example}
+                \item \textbf{(Grothendieck universes):} We shall state some 
+                    \begin{definition}[Grothendieck universes] \label{def: grothendieck_universes} \index{Grothendieck universes}
+                        Following \cite[Expos\'e I, Section 0]{sga4}, a so-called \textbf{Grothendieck universe} is a non-empty set $\bbU$ enjoying the following properties:
+                            \begin{enumerate}
+                                \item $\varnothing \in \bbU$.
+                                \item If $X \in \bbU$ and if $x \in X$, then $x \in \bbU$.
+                                \item If for some set $I$, one has:
+                                    $$\forall i \in I: X_i \in \bbU$$
+                                then:
+                                    $$\bigcup_{i \in I} X_i \in \bbU$$
+                                \item For all $X \in \bbU$, the power set $\calP(X)$ is an element of $\bbU$.
+                            \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{definition}[The von Neumann Hierachy] \label{def: von_neumann_hierachy}
+                        \textbf{The von Neumann Hierachy} is the tower of sets:
+                            $$\scrV_0 \subset \scrV_1 \subset ...$$
+                        index by the filtered category of ordinals:
+                            \begin{enumerate}
+                                \item $\scrV_0 = \varnothing$. 
+                                \item For all ordinals $\alpha$, we have:
+                                    $$\scrV_{\alpha} = \bigcup_{\beta < \alpha} \calP(\scrV_{\beta})$$
+                            \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{theorem}[Universe enlargement and inaccessible cardinals] \label{theorem: universe_enlargement}
+                        A cardinal number $\kappa$ is inaccesible if and only if the $\kappa^{th}$-level $\scrV_{\kappa}$ in the von Neumann Hierachy is a Grothendieck universe. 
+                    \end{theorem}
+                    \begin{corollary}
+                        Through this theorem, one sees that Grothendieck universes are more or less inaccessible (i.e. \say{large}) cardinals. Additionally, and arguably more importantly, the theorem tells us that by traveling upwards along the von Neumann Hierachy, one can enlarge Grothendieck universes.
+                    \end{corollary}
+            \end{enumerate}
+        \item \textbf{(Higher category theory, higher topos theory, and higher algebra):} 
+            \begin{enumerate}
+                \item \textbf{(General remarks):} We assume no prior exposure to these disciplines, although we shall not write down a careful treatment of the theory either, due to there being many fantastic references out there, due to category theory not being the main focus of the book, and most importantly, thanks to the fact that at least syntactically, the theories of $(\infty, n)$-categories and that of $\infty$-topoi are remarkably similar to that of $n$-categories and that of Grothendieck topoi. Our main references will consist of \cite{riehl_from_scratch} for the basics of $(\infty, 1)$-category theory (i.e. a homotopical version of $1$-category theory), \cite{HTT} for $\infty$-topos theory (a homotopical version of the theory of sheaf topoi), along with \cite{HA} for the theory of $(\infty, 1)$-monoidal categories and $(\infty, n)$-categories, and alongside, higher algebra (all three form a homotopical analogue of the theory of enriched categories). One thing to note is that sometimes, we might use the terminology \say{higher category theory} in reference to $(\infty, n)$-category theory, while at other times, we might be alluding to $(n, r)$-categories. Context should help in many cases, although we shall try to be as clear as possible. That is, we will refrain from calling, say, $(\infty, 2)$-categories \say{$2$-categories} (which is an abuse of terminology that can be found in \cite{GR1}, although this practice is justified in that book, as everything there is derived). Also, most of the time, we shall refer to $(\infty, 1)$-categories simply as \say{$\infty$-categories}, just like how $1$-categories are just \say{categories}.
+                \item \textbf{(On higher topoi):} Most of the time, we shall refer to higher topoi merely as \say{$\infty$-topoi}, as we are only interested in $(\infty, 1)$-topoi (the theory of $2$-topoi - and hence, of $(\infty, 2)$ - has not been well-developed anyway). Also, all of our $\infty$-topoi shall implicitly be understood as topoi of sheaves of $\infty$-groupoids (i.e. as $\infty$-Grothendieck topoi), as the theory of $\infty$-elementary topoi has not been well-developed too. There shal, however, be occasions on which the term \say{$(\infty, 1)$-topoi} should be enlightening, such as when $n$-truncations are involved; an $(n, 1)$-topos is a topos of sheaves of $n$-groupoids, and given any $(\infty, 1)$-topos $\E$, one can truncate it to obtain some $(n, 1)$-topos $\tau_{\leq} \E$ spanned by $n$-truncated objects of $\E$. 
+                \item \textbf{(Notations for $\infty$-categorical operations):} We shall be a bit sloppy and think of $(\infty, n)$-(co)limits and other $(\infty, n)$-(co)universal operations as homotopical ones (perhaps with non-trivial coherence natural transformations), since they are at the very least, syntactically so. As is the case with higher-dimensional limits, $(\infty, n)$-(co)limits shall be specified by notations such as:
+                    $$\text{${}^{(\infty, 1)}\lim$ or $\underset{(\infty, 1)}{\lim}$}$$
+                or:
+                    $$\text{$\x^{(\infty, n)}$ or ${}^{(\infty, n)\x}$}$$
+            \end{enumerate}
+        \item \textbf{(Algebra):} We will not start from scratch, seeing how this is meant to be a dictionary of sort, and is not written in any pedagogical order whatsoever. That is to say, generalities on rings and modules such as basic structural theorems will be taken for granted.
+        \item \textbf{(Number theory):} Basic theorems such as Fermat's Little Theorem will be considered common knowledge.
+        \item \textbf{The set of natural numbers $\N$ is taken to contain zero inside of it.}
+        \item \underline{Underlined text} will usually be hyperlinked to explanations or brief surveys of concepts. They should not be considered as proper citations.
+    \end{enumerate}

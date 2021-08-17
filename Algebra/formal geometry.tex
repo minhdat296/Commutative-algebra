@@ -1,0 +1,489 @@
+\chapter{Lie theory and formal geometry} \label{chapter: formal_geometry}
+    \begin{abstract}
+        So, what is \say{formal geometry} ? Well, within the context of this book, the term shall mean the study of objects of the category $[\Spec k]^{\laft, \defm}$ of prestacks on ${}^{k/}\Comm\Alg^{\op}$ that are locally almost of finite type and admit deformations - which we note to be a full subcategory of $[\Spec k]^{\laft}$ of prestacks that are locally of finite type on ${}^{k/}\Comm\Alg^{\op}$ - along with nil-isomorphisms between them. As we shall see, this category is a rather natural seting in which one may consider the following geometrically-motivated phenomena:
+            \begin{enumerate}
+                \item Quotients by equivalence relations induced by actions of internal groupoids.
+                \item An algebro-geometric analogue of the Lie Group-Lie Algebra Correspondence, which particularly, is a correspondence between groups over a give base prestack $\calX$ and Lie algebras internal to the symmetric monoidal category $\Ind\Coh(\calX)$ of ind-coherent sheaves on $\calX$. 
+                \item Universal enveloping algebras of Lie algebras and Lie algebroids, and other differential-geometric entities such as Hodge filtrations/de Rham resolutions.
+                \item D-modules and the Riemann-Hilbert Correspondence. 
+            \end{enumerate}
+        As for its \textit{raison d'\^etre}, this chapter exists so that the subject of de Rham cohomology of schemes - both in characteristic $0$ and characteristic $p$ - can be established and discussed (cf. section \ref{section: de_rham_cohomology}). We realise that in doing so we are leaning more towards geometry rather than algebra, but then again, excluding the topic would be a crime, especially after having brought up smoothness in chapter \ref{chapter: smoothness}.
+    \end{abstract}
+    
+    \minitoc
+    
+    \begin{convention}[Everything is derived!] \label{conv: formal_geometry_everything_is_derived}
+        \noindent
+        \begin{itemize}
+            \item From now on until the end of the chapter, everything will be assumed to be derived. In particular, this means that we shall defer to convention \ref{conv: algebraic_stacks_notations} rather than convention \ref{conv: derived_algebraic_stacks_notations}.
+            \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
+            
+            Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
+            \item A subcategory of $\Cat$ this is of particular interest is $(\Cat^{\dg, \cont})^2$ (or simply $\Cat^{\dg, \cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\Cat^{\dg, \cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $(\Cat^{\dg, \cont})^1$ to put emphasis on the disregard of $2$-morphisms.
+        \end{itemize} 
+    \end{convention}
+    
+    \section{Representations of Lie algebras in characteristic zero}
+        \begin{convention}
+            From now until the end of the section let us fix a base field $k$ of characteristic $0$.
+        \end{convention}
+    
+        \subsection{Lie algebras in symmetric monoidal categories and their enveloping algebras}
+            \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_and_coalgebras}
+                Let $(\O, \tensor, 1)$ be a monoidal category. 
+                    \begin{enumerate}
+                        \item A(n) (associative and unital) algebra $A$ internal to $\O$ is a monoid object of $\O$, i.e. one equipped with a so-called multiplication:
+                            $$\nabla: A \tensor A \to A$$
+                        and unit:
+                            $$\eta: 1 \to A$$
+                        satisfying the following commutative diagrams:
+                            $$
+                                \begin{tikzcd}
+                                	{A \tensor A \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\id_A \tensor \nabla}"', from=1-1, to=2-1]
+                                	\arrow["{\nabla}", from=2-1, to=2-2]
+                                	\arrow["{\nabla \tensor \id_A}", from=1-1, to=1-2]
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{1 \tensor A} & {A \tensor A} \\
+                                	{A \tensor A} & {A}
+                                	\arrow["{\nabla}", from=1-2, to=2-2]
+                                	\arrow["{\nabla}"', from=2-1, to=2-2]
+                                	\arrow["{\id_A \tensor \eta}"', from=1-1, to=2-1]
+                                	\arrow["{\eta \tensor \id_A}", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        \item A (coassociative and counital) coalgebra internal to $\O$ is then a comonoid object of $\O$, or in other words, an monoid object in $\O^{\op}$. Typically, the so-called multiplication and counit maps on a coalgebra will be denoted by $\Delta$ and $\e$.
+                    \end{enumerate}
+                Algebras, and coalgebras internal to a monoidal category $\O$ form full subcategories, which we will denote, respectively, by $\Mon(\O)$ and $\co\Mon(\O)$.
+            \end{definition}
+            \begin{example}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Rings and algebras over them)} All rings are associative and unital algebra in the (symmetric monoidal) category of abelian groups. More generally, for any given base ring $R$ (not necessarily commutative), associative and unital left/right/two-sided $R$-algebras are monoids in the (monoidal) category of left/right/two-sided $R$-modules.
+                    \item \textbf{(Lie algebras and their universal enveloping algebras)} Lie algebras, despite their names, are not algebras in the sense of definition \ref{def: algebras_and_coalgebras}, as their Lie brackets are not associative (see definition \ref{def: lie_algebras} for more details). Their univeral enveloping algebras (cf. definition \ref{def: enveloping_algebras} and theorem \ref{theorem: universal_enveloping_algebras_universal_property}), on the other hand, are associative and unital algebras. In fact, they are coassociative and counital coalgebras too (cf. remark \ref{remark: universal_enveloping_algebras_are_bialgebras}). 
+                \end{enumerate}
+            \end{example}
+        
+            Let us now take a closer look at how universal enveloping algebras are bialgebras. To do so, however, we will need to have a good understanding of these algebras behave. 
+            \begin{definition}[Lie algebras] \label{def: lie_algebras}
+                Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category with braiding isomorphisms:
+                    $$\tau_{x, y}: x \tensor y \cong y \tensor x$$
+                A Lie algebra internal to is then an object $\g \in \O$ equipped with a so-called Lie bracket:
+                    $$[-,-]: \g \tensor \g \to \g$$
+                subject to two requirements:
+                    \begin{enumerate}
+                        \item \textbf{(Skew-symmetry)}
+                            $$[-,-] + [-,-] \circ \tau_{\g, \g} = 0$$
+                        \item \textbf{(The Jacobi identity)}
+                            $$
+                                \begin{aligned}
+                                    & \left[-, [-,-]\right]
+                                    \\
+                                    + & \left[-, [-,-]\right] \circ \left(\id_{\g} \tensor \tau_{\g, \g}\right) \circ \left(\tau_{\g, \g} \tensor \id_{\g}\right)
+                                    \\
+                                    + & \left[-, [-,-]\right] \circ \left(\tau_{\g, \g} \tensor \id_{\g}\right) \circ \left(\id_{\g} \tensor \tau_{\g, \g}\right)
+                                    \\
+                                    = & \: 0
+                                \end{aligned}
+                            $$
+                    \end{enumerate}
+                Lie algebras internal to a symmetric monoidal $k$-linear category $\O$ form a full subcategory which we shall denote by $\Lie\Alg(\O)$. Its objects are the Lie algebra objects of $\g$, and its morphisms are arrows in $\O$ that intertwine with Lie brackets, i.e. they are arrows $\phi: \g \to \h$ such that:
+                    $$[-,-]_{\h} \circ (\phi \tensor \phi) = \phi \circ [-,-]_{\g}$$
+                or equivalently, such that diagrams of the following form commute in $\O$:
+                    $$
+                        \begin{tikzcd}
+                        	{\g \tensor \g} & {\g} \\
+                        	{\h \tensor \h} & {\h}
+                        	\arrow["{\phi}", from=1-2, to=2-2]
+                        	\arrow["{\phi \tensor \phi}"', from=1-1, to=2-1]
+                        	\arrow["{[-,-]_{\h}}", from=2-1, to=2-2]
+                        	\arrow["{[-,-]_{\g}}", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            
+            \begin{definition}[Enveloping algebras] \label{def: enveloping_algebras}
+                Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category.
+                    \begin{enumerate}
+                        \item \textbf{(The Lie functor)} The Lie functor is the one that assigns to each associative and unital algebra $A$ internal to $\O$ a Lie algebra $\frakLie(A)$ whose underlying object is just $A$, and whose Lie bracket is given by:
+                            $$[-,-]_{\frakLie(A)} := \nabla_A - \nabla_A \circ \tau_{A,A}$$
+                        \item \textbf{(Enveloping algebras)} Fix a Lie algebra object $\g$ of $\O$. Then, an enveloping algebra of a Lie algebra $\g$ internal to $\O$ is just a Lie algebra homomorphism:
+                            $$e: \g \to \frakLie(A)$$
+                        for some $A \in \Mon(\O)$. These enveloping algebras form a category, whose objects are Lie algebra homomorphisms as described above, and whose morphisms are commutative triangles in $\Lie\Alg(\O)$ as follows:
+                            $$
+                                \begin{tikzcd}
+                                	& {\g} \\
+                                	{\frakLie(A)} && {\frakLie(A')}
+                                	\arrow[from=2-1, to=2-3]
+                                	\arrow["{e}"', from=1-2, to=2-1]
+                                	\arrow["{e'}", from=1-2, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        which we note to be induced by algebra homomorphisms $A \to A'$. We will denote the category of enveloping algebras of $\g$ by $\Env(\g)$. 
+                        \\
+                        The universal enveloping algebra of $\g$ (denoted by $\U(\g)$), if it exists, then its Lie algebra will be the initial object of $\Env(\g)$. 
+                    \end{enumerate}
+            \end{definition}
+            
+            \begin{theorem}[Existence and uniqueness of universal enveloping algebras] \label{theorem: universal_enveloping_algebras_universal_property}
+                 Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category. Then:
+                    \begin{enumerate}
+                        \item \textbf{(Existence and uniqueness)} There is the following ($\O$-enriched) adjunction if $\O$ has all countable coproducts:
+                            $$
+                                \begin{tikzcd}
+                                	{(\U \ladjoint \frakLie): \Mon(\O)} & {\Lie\Alg(\O)}
+                                	\arrow["{\frakLie}"{name=0, swap}, from=1-1, to=1-2, shift right=2]
+                                	\arrow["{\U}"{name=1, swap}, from=1-2, to=1-1, shift right=2]
+                                	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                                \end{tikzcd}
+                            $$
+                        wherein $\U$ is the functor sending each Lie algebra in $\O$ to its universal enveloping algebra.
+                        \item \textbf{(Explicit construction)} If $\O$ also has all cokernels then we can explicitly characterise the universal enveloping algebra of a Lie algebra $\left(\g, [-,-]_{\g}\right)$ as the following quotient of the (Lie algebra canonically associated to) the tensor algebra $T(\g)$:
+                            $$\frakLie\left(\U(\g)\right) \cong \coker \bigg(\left([-,-]_{\frakLie T(\g)} - \left(\nabla_{T(\g)} - \nabla_{T(\g)} \circ \tau_{T(\g), T(\g)}\right)\right): T(\g) \tensor T(\g) \to T(\g)\bigg)$$
+                    \end{enumerate}
+            \end{theorem}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item We will be using Freyd's Adjoint Functor Theorem \cite[Theorem V.6.2]{maclane} to prove this assertion, and to that end, let us first note that the category $\Mon(\O)$ is complete and locally small (this can be proven in the exact same way that one might prove that algebraic categories such as $\Ab$ or $\Ring$ are complete and locally small). Next, we will try to show that the functor $\frakLie$ satisfies the \href{https://ncatlab.org/nlab/show/solution+set+condition}{\underline{solution set condition}}, which we can do by finding a small indexing set $I$ such that for all enveloping algebras $\g \to \frakLie(A)$ of $\g$, there exists a family of algebras $A_i$ indexed by $i \in I$ and factorisations:
+                            $$
+                                \begin{tikzcd}
+                                	& {\g} \\
+                                	{\frakLie(A_i)} && {\frakLie(A)}
+                                	\arrow[from=2-1, to=2-3, dashed]
+                                	\arrow["{}"', from=1-2, to=2-1]
+                                	\arrow["{}", from=1-2, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        (we actually do not need to worry about the size of $I$, since we have already fixed a sufficiently large Grothendieck universe). To that end, note that because $\O$ has all countable coproducts, one can always construct tensor algebras, whose universal property implies that there is the following adjunction:
+                            $$
+                                \begin{tikzcd}
+                                	{(T \ladjoint \oblv): \Mon(\O)} & {\O}
+                                	\arrow["{\oblv}"{name=0, swap}, from=1-1, to=1-2, shift right=2]
+                                	\arrow["{T}"{name=1, swap}, from=1-2, to=1-1, shift right=2]
+                                	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                                \end{tikzcd}
+                            $$
+                        In particular, this means that for each $A \in \Mon(\O)$ and each Lie algebra $\g$, there is a canonical morphism from $T(\g)$ into $A$. At the same time, note that because tensor algebras are constructed as coproducts of tensor powers, one has canonical inclusions of the tensor powers $\g^{\tensor n}$ into $T(\g)$. Thus, there are commutative diagrams in $\O$ as follows for each $A \in \Mon(\O)$ and each $n \in \N$:
+                            $$
+                                \begin{tikzcd}
+                                	{\g^{\tensor n}} \\
+                                	& {T(\g)} & {A}
+                                	\arrow[from=1-1, to=2-2]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow[from=1-1, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        Thus, for each associative and unital algebra $A$, there is a universal morphism in $\Env(\g)$ as follows:
+                            $$
+                                \begin{tikzcd}
+                                	& {\g} \\
+                                	{\frakLie\left(T(\g)\right)} && {\frakLie(A)}
+                                	\arrow[from=2-1, to=2-3]
+                                	\arrow[from=1-2, to=2-1]
+                                	\arrow[from=1-2, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        proving the existence of a small index set $I$ (the singleton in this instance) and a family of objects $\{A_i\}_{i \in I}$ of $\Mon(\O)$ such that there are factorisations as below for all $i \in I$:
+                            $$
+                                \begin{tikzcd}
+                                	& {\g} \\
+                                	{\frakLie(A_i)} && {\frakLie(A)}
+                                	\arrow[from=2-1, to=2-3, dashed]
+                                	\arrow["{}"', from=1-2, to=2-1]
+                                	\arrow["{}", from=1-2, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        (for the sake of clarity, let us note that here, we take $A_i = T(\g)$ for all $i \in I$). Lastly, note that the category $\Mon(\O)$ is complete and locally small. Thus, all the conditions in Freyd's Adjoint Functor Theorem are satisfied, and therefore, $\frakLie$ is a right-adjoint. This of course means that we can construct a functor:
+                            $$\U: \Lie\Alg(\O) \to \Mon(\O)$$
+                        to be left-adjoint to $\frakLie$. Then, as a consequence of the universal property of adjoint pairs, the category of enveloping algebras of $\g$ must have $\frakLie\left(\U(\g)\right)$ as an initial object, which by definition is the so-called universal enveloping algebra of $\g$.
+                        \item This is trivial if we note that taking the quotient of $T(\g)$ by the equivalence relation generated by the image of $[-,-]_{\frakLie T(\g)} - \left(\nabla_{T(\g)} - \nabla_{T(\g)} \circ \tau_{T(\g), T(\g)}\right)$ (which incidentally, also canonically endows $T(\g)$ with a Lie bracket) is just to ensure that the canonical map:
+                            $$\g \to (\frakLie \circ \U \circ \frakLie \circ T)(\g)$$
+                        is a Lie algebra homomorphism for every $\g$.
+                    \end{enumerate}
+                \end{proof}
+            \begin{corollary}
+                $\frakLie$ is left-exact and $\U$ is right-exact. In particular, we have:
+                    $$\U\left(\g \sqcup \g'\right) \cong \U(\g) \tensor \U(\g')$$
+                for any pair $\g, \g'$ of Lie algebras. 
+            \end{corollary}
+                \begin{proof}
+                    These are general properties of adjoint functors.
+                \end{proof}
+            \begin{remark}
+                The adjunction as presented in the preceding theorem can be understood as fitting into the following (non-commutative) diagram:
+                    $$
+                        \begin{tikzcd}
+                        	{\Mon(\O)} & {} & {\O} \\
+                        	& {\Lie\Alg(\O)}
+                        	\arrow["{\oblv}"{name=0, swap}, from=1-1, to=1-3, shift right=2]
+                        	\arrow["{T}"{name=1, swap}, from=1-3, to=1-1, shift right=2]
+                        	\arrow["{L}"{name=2, swap}, from=2-2, to=1-3, shift right=5]
+                        	\arrow[""{name=3, inner sep=0}, from=1-3, to=2-2, shift left=1]
+                        	\arrow["{\U}"{name=4, swap}, from=2-2, to=1-1, shift left=1]
+                        	\arrow["{\frakLie}"{name=5, swap}, from=1-1, to=2-2, shift right=5]
+                        	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                        	\arrow["\dashv"{rotate=61}, from=5, to=4, phantom]
+                        	\arrow["\dashv"{rotate=129}, from=2, to=3, phantom]
+                        \end{tikzcd}
+                    $$
+            \end{remark}
+            \begin{remark}[Universal enveloping algebras are bialgebras] \label{remark: universal_enveloping_algebras_are_bialgebras}
+                Let $k$ be a ring and let $\g$ be a Lie algebra internal to some $k$-linear symmetric monoidal category $(\V, \tensor, 1, \tau)$. Then, its universal enveloping algebra $\U(\g)$ is a cocommutative bialgebra internal to $\V$, which is commutative if and only if $\g$ is abelian. 
+                
+                This becomes trivial if we let the comultiplication be given by:
+                    $$\Delta_{\U(\g)} := \id_{\U(\g)} \tensor \e + \e \tensor \id_{\U(\g)}$$
+                and the counit be:
+                    $$\e_{\U(\g)} := 0$$
+            \end{remark}
+                
+            \begin{lemma}[Embedding of Lie algebras into their universal enveloping algebras]
+                Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear \textbf{abelian} category. Also, suppose that $\g$ is a (faithfully ?) flat Lie algebra object internal to $\O$, i.e. that the functor $\g \tensor -$ is (faithfully ?) flat. Then, there is a canonical monomorphism embedding $\g$ itno $\frakLie \U(\g)$
+            \end{lemma}
+                \begin{proof}
+                    \todo{Currently I'm not certain that this statement is entirely correct.}
+                \end{proof}
+            
+            \begin{example}[The abelian case]
+                If $\g$ is an abelian Lie algebra (i.e. one whose Lie bracket is just the zero morphism), then as a direct consequence of the definition of symmetric algebras and of theorem 1.1.1, we have the following isomorphism of associative and unital algebras:
+                    $$\U(\g) \cong \Sym(\g)$$
+            \end{example}
+            \begin{example}[The Poincar\'e-Birkhoff-Witt Theorem]
+                Let $k$ be a commutative and unital $\Q$-algebra, let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category with all countable coproducts and cokernels, and let $\g$ be a Lie algebra object of $\O$ that is (faithfully ?) flat (i.e. one such that the functor $\g \tensor -$ is left-exact). Then, there is the following isomorphism of cocommutative $\N$-graded $k$-bialgebras:
+                    $$\U(\g) \cong \Sym(\g)$$
+                In other words, one can understand representations of such a Lie algebra $\g$ via representations of the symmetric algebra $\Sym(\g)$, which in turn are just representations of symmetric groups.
+            \end{example}
+            \begin{example}[A counter-example]
+                Let $k$ be a field of characteristic $0$ and consider the symmetric monoidal category of finite-dimensional $k$-vector spaces. Then clearly, $\O$ does not have all countable coproducts (for example, the vector space $k^{\oplus \aleph_0}$, which is a coproduct indexed by the countable infinite cardinal $\aleph_0$, is not an object as it is infinite-dimensional), and thus not all Lie $k$-algebras have a universal enveloping algebra.
+            \end{example}
+            \begin{example}[Open problem]
+                It is not known if the functor:
+                    $$\U: \frakLie(\O) \to \Lie\Alg(\O)$$
+                is faithful, and even if that is not the case in general, we also do not have a good understanding of which extra assumptions to impose on our ambient symmetric monoidal linear category $\O$ so that in such a setting, $\U$ might be faithful. 
+            \end{example}
+            
+            \begin{lemma}[Tannaka duality] \label{lemma: tannaka_duality}
+                Let $\O$ be a closed symmetric monoidal category that is locally small (such as the symmetric monoidal category of vector spaces over a field), so that it may be enriched over itself via its internal homs (which exist thanks to the monoidal closure assumption), and let $A$ be a monoid object of $\O$. If we denote the category of $\O$-representations on $A$ by:
+                    $$\Rep_{\O}(A) := \O\Cat(\bfB A^{\op}, \O)$$
+                then the algebra $\End_{\O\Cat(\Rep_{\O}(A), \O)}(F)$ of $\O$-natural endomorphisms on the canonical forgetful functor $F: \Rep_{\O}(A) \to \O$ is isomorphic to $A$.
+            \end{lemma}
+                \begin{proof}
+                    Apply the $\O$-enriched Yoneda's lemma:
+                        $$
+                            \begin{aligned}
+                                \End_{\O\Cat(\Rep_{\O}(A), \O)}(F) & \cong \O\Cat(\Rep_{\O}(A), \O)(F, F)
+                                \\
+                                & \cong \Psh_{\O}\left(\Psh_{\O}(\bfB A)\right)\bigg(\Psh_{\O}(\bfB A)(*, -), \Psh_{\O}(\bfB A)(*, -)\bigg)
+                                \\
+                                & \cong \Psh_{\O}(\bfB A)(*, *)
+                                \\
+                                & \cong \Rep_{\O}(A)(*, *)
+                                \\
+                                & \cong \End_{\O}(A)
+                                \\
+                                & \cong A
+                            \end{aligned}
+                        $$
+                \end{proof}
+            \begin{theorem}
+                If $k$ is a ring, $\O$ is a \textit{locally small} \textit{closed} symmetric monoidal $k$-linear category with all coproducts and cokernels, and $\g$ is a (faithfully ?) flat Lie algebra object of $\O$, then there is an equivalence of abelian monoidal $k$-linear categories as follows:
+                    $$\Rep_{\O}(\g) \cong {}_{\U(\g)}\Mod$$
+                wherein $\Rep_{\O}(\g)$, the category of representations of $\g$ on $\O$, is the category whose objects are Lie algebra homomorphisms from $\g$ to $\frakgl(V)$ (with $\frakgl(V)$ the canonical Lie algebra associated to the associative and unital endomorphism algebra $\End_{\O}(V)$), and morphisms are commutative triangles in $\Lie\Alg(\O)$ of the form:
+                    $$
+                        \begin{tikzcd}
+                        	& {\g} \\
+                        	{\frakgl(V)} && {\frakgl(V')}
+                        	\arrow[from=2-1, to=2-3]
+                        	\arrow[from=1-2, to=2-1]
+                        	\arrow[from=1-2, to=2-3]
+                        \end{tikzcd}
+                    $$
+                Also, note that ${}_{\U(\g)}\Mod$ is \href{https://ncatlab.org/nlab/show/module+over+a+monoid}{\underline{well-defined}} as the category of $\U(\g)$-left-equivariant objects of $\O$, and it exhibits all properties that one might expect of a module category.
+            \end{theorem}
+                \begin{proof}
+                    Before we prove this claim, let us first note that because $\O$ has all countable coproducts and cokernels, all Lie algebras possess universal enveloping algebras. With that out of the way, let us note that by Tannaka duality (cf. lemma \ref{lemma: tannaka_duality}), each left-$\U(\g)$-module is actually just a $\U(\g)$-representation. Thus, to show that:
+                        $$\Rep_{\O}(\g) \cong {}_{\U(\g)}\Mod$$
+                    it will suffice to show that:
+                        $$\Rep_{\O}(\g) \cong \Rep_{\O}\left(\U(\g)\right)$$
+                    (this might seem like a round-about method, but without Tannaka duality, guaranteeing that the equivalence is actually between abelian monoidal $k$-linear categories instead of just between ordinary categories will be difficult). In turn, one can do this via showing that there is the following equivalence of categories of Lie algebra representations:
+                        $$\Rep_{\O}(\g) \cong \Rep_{\O}\left(\frakLie \U(\g)\right)$$
+                    thanks to the uniqueness of the universal enveloping algebra. Then, we can simply apply lemma 1.1.1, which states that $\g$ is a subobject of $\frakLie \U(\g)$, and consider commutative diagrams as follows in $\Lie\Alg(\O)$:
+                        $$
+                            \begin{tikzcd}
+                            	{\g} \\
+                            	& {\frakgl(V)} \\
+                            	{\frakLie \U(\g)}
+                            	\arrow[from=1-1, to=2-2]
+                            	\arrow[from=3-1, to=2-2]
+                            	\arrow[from=1-1, to=3-1, tail]
+                            \end{tikzcd}
+                        $$
+                    to show that for each representation of $\g$ on $V \in \O$, there is a representation of $\frakLie \U(\g)$ on $V$ as well, and vice versa.
+                \end{proof}
+                
+        \subsection{Lie operads and Koszul duality}
+            \subsubsection{A bit about algebras over operads}
+                \begin{definition}[Symmetric sequences] \label{def: symmetric_sequences}
+                    Let $(\O, \tensor, \1)$ be a \textit{symmetric} monoidal category (typically taken to be $\Grp$) and let $\Sigma$ be an $\N$-graded monoid internal to $\O$ (i.e. a functor $\N \to \Mon(\O)$ or equivalently, a monoid internal to the functor category $[\N, \O]$, which inherits the symmetric monoidal structure of $\O$); $\Sigma$ is typically taken to be the graded monoid of symmetric groups, i.e. $\Sigma = \{S_n\}_{n \in \N}$. The naturally symmetric monoidal category of \textbf{$\Sigma$-symmetric $\O$-sequence} is thus simply the functor category $\O^{\Sigma} := [\bfB \Sigma, \O]$.
+                \end{definition}
+            
+                \begin{convention}[Operads ?] \label{conv: symmetric_sequences_as_operads}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Operads):} For the purposes of this subsection and section \ref{section: lie_algebras_and_formal_groups}, we shall think of \textbf{$\Sigma$-symmetric operads} in a given symmetric monoidal category $\O$ (for some $\N$-graded monoid $\Sigma$ internal to $\O$) as monoids in the symmetric monoidal category $\O^{\Sigma}$ of $\Sigma$-symmetric $\O$-sequences. For a more careful treatment, we refer the reader to section \ref{section: algebras_and_modules_over_operads} and particularly, subsection \ref{subsection: operads} therein. The category of $\Sigma$-symmetric operads shall be denoted by $\Opd(\O^{\Sigma})$ (it is actually just $\Mon(\O^{\Sigma})$, but we thought the notation could be a bit suggestive).
+                        \item \textbf{(Regarding unitality):} Technically speaking, operads need not be unital, which is to say, for each given symmetric monoidal category $\O$ and a fixed $\N$-graded monoid $\Sigma$ therein, one can define $\Opd(\O^{\Sigma})$ to simply be $\Assoc\Alg(\O^{\Sigma})$. We will, however, only work with unital associative operads.
+                    \end{enumerate}
+                \end{convention}
+                \begin{convention}
+                    From now on, let us always take $\Sigma$ as the graded monoid of symmetric groups. Due to this specification of $\Sigma$, we shall only write $\Opd(\O)$ for the category of $\Sigma$-symmetric $\O$-operads (where, of course, $\O$ is a symmetric monoidal category).
+                \end{convention}
+                
+                \begin{proposition}[Universal property of symmetric operads] \label{prop: symmetirc_operads_universal_property}
+                    Let $(\O, \tensor, \1)$ be a symmetric monoidal category. Then, 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+            \subsubsection{Koszul Duality}
+        
+    \section{Formal groups and their Lie algebras} \label{section: lie_algebras_and_formal_groups}
+    
+    \section{D-modules in characteristic zero}
+        \begin{convention}
+            Until the end of this section, we shall be working over a field of characteristic $0$ ($k = \Q$ is a case of particular interest).
+        \end{convention}
+    
+        \subsection{The de Rham prestack, the crystalline site, and the categories of left and right-crystals}
+            \subsubsection{The de Rham prestack}
+                \begin{remark}[Reduced affine schemes] \label{remark: reduced_affine_schemes}
+                    \noindent
+                    \begin{itemize}
+                        \item Reduced objects of ${}^{k/}\Comm\Alg$ are nothing but commutative $k$-algebras whose connected components have vanishing nilradicals, i.e. they have no non-zero nilpotent elements, and because ring homomorphisms preserve $0$, a homomorphism:
+                            $$\varphi: R \to S$$
+                        between two reduced commutative $k$-algebras $R$ and $S$ will be nothing more than an ordinary algebra homomorphism. As a consequence, reduced $k$-algebras form a full subcategory of ${}^{k/}\Comm\Alg$; we shall denote it by ${}^{k/}\Comm\Alg^{\red}$; note that $k$ itself, by virtue of being a field of characteristic $0$, is trivially reduced as an algebra over itself, and hence is still the initial object of ${}^{k/}\Comm\Alg^{\red}$. 
+                        \item Now, because there is a uniquely determined nilradical inside each commutative ring, and because the canonical fully faithful embedding:
+                            $${}^{k/}\Comm\Alg^{\red} \hookrightarrow {}^{k/}\Comm\Alg$$
+                        trivially preserves all (small) limits that exist in ${}^{k/}\Comm\Alg^{\red}$, there shall exist a left-adjoint:
+                            $$(-)_{\dR}|_{{}^{k/}\Comm\Alg}: {}^{k/}\Comm\Alg \to {}^{k/}\Comm\Alg^{\red}$$
+                        that associates to each commutative $k$-algebra $R$ its quotient by its nilradical ${}^{\red}R := R/\Nil(R)$ (the notation will make more sense once we reach remark \ref{remark: de_rham_prestacks_functoriality}): note that this is the correct left-adjoint because it preserves small colimits (as quotients by nilradicals are colimits themselves). 
+                        \item The category of prestacks over ${}^{k/}\Comm\Alg^{\red}$ shall be denoted by $[\Spec k]^{\red}$. 
+                    \end{itemize}
+                \end{remark}
+            
+                \begin{definition}[The de Rham prestack] \label{def: de_rham_prestack}
+                    We can associate to any prestack $\calY$ on ${}^{k/}\Comm\Alg^{\op}$ a prestack $\calY_{\dR}$ (also on ${}^{k/}\Comm\Alg^{\op}$), called \textbf{the de Rham prestack attached to $\calY$}, that is defined object-wise by the following formula:
+                        $$\calY_{\dR}(R) \cong \calY({}^{\red}R)$$
+                    where ${}^{\red}R$ is the classical commutative ring isomorphic to the quotient of the underlying classical commutative ring of $R$ by its nilradical. Note that this formula gives us a canonical arrow:
+                        $$\calY \to \calY_{\dR}$$
+                    coming from the canonical quotient map $R \to {}^{\red}R$. Sometimes de Rham prestacks might also go by the name \say{\textbf{de Rham spaces}}.
+                \end{definition}
+                \begin{remark}[Functoriality of de Rham prestacks] \label{remark: de_rham_prestacks_functoriality}
+                    Consider a morphism:
+                        $$\calX \to \calY$$
+                    between prestacks on ${}^{k/}\Comm\Alg$. It is not hard to show, via evaluation at quotients by nilradicals, that such a morphism induced a morphism of de Rham spaces:
+                        $$\calX_{\dR} \to \calY_{\dR}$$
+                    which tells us that there is a so-called \textbf{de Rham space functor}:
+                        $$(-)_{\dR}: [\Spec k]^{\red} \to [\Spec k]$$
+                    that attaches de Rham spaces to prestacks. Furthermore, the canonical embedding ${}^{k/}\Comm\Alg^{\red} \hookrightarrow {}^{k/}\Comm\Alg$ admits a left-adjoint (cf. remark \ref{remark: reduced_affine_schemes}), the induced embedding of affine scheme categories:
+                        $$\Sch^{\aff, \red}_{/\Spec k} \hookrightarrow \Sch^{\aff}_{/\Spec k}$$
+                    should admit a right-adjoint:
+                        $$(-)_{\dR}|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff}_{/\Spec k} \hookrightarrow \Sch^{\aff, \red}_{/\Spec k}$$
+                    (still given by quotients by nilradicals) and hence the canonically induced pullback between prestack categories $(-)_{\dR}|_{\Sch^{\aff}_{/\Spec k}}^*: [\Spec k] \to [\Spec k]^{\red}$ must admit a \textit{right}-adjoint:
+                        $$[\Spec k]^{\red} \to [\Spec k]$$
+                    i.e. the right-Kan extension along the canonical embedding $\Sch^{\aff, \red}_{/\Spec k} \hookrightarrow \Sch^{\aff}_{/\Spec k}$. By the universal property of right-Kan extensions, and because there is a canonical morphism $\calY \to \calY_{\dR}$ for every prestack $\calY$, we thus have that the right-Kan extension $[\Spec k]^{\red} \to [\Spec k]$ along $(-)_{\dR}|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff}_{/\Spec k} \hookrightarrow \Sch^{\aff, \red}_{/\Spec k}$ is nothing but the de Rham space functor:
+                        $$(-)_{\dR}: [\Spec k]^{\red} \to [\Spec k]$$
+                \end{remark}
+                
+                \begin{proposition}[Gluing affine de Rham spaces] \label{prop: gluing_affine_de_rham_spaces}
+                    The de Rham space functor:
+                        $$(-)_{\dR}: [\Spec k]^{\red} \to [\Spec k]$$
+                    can be viewed as the left-Kan extension of the affine de Rham space functor:
+                        $$(-)_{\dR}|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff}_{/\Spec k} \to [\Spec k]$$
+                    along the Yoneda embedding $\Sch^{\aff, \red}_{/\Spec k} \hookrightarrow [\Spec k]^{\red}$. 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{definition}[Infinitesimal closeness] \label{def: infinitesimally_closed_points}
+                    Let $\calY$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$. The \href{https://ncatlab.org/nlab/show/kernel+pair}{\underline{kernel pair}} of the canonical arrow:
+                        $$\calY \to \calY_{\dR}$$
+                    (cf. definition \ref{def: de_rham_prestack}) induces the following span:
+                        $$
+                            \begin{tikzcd}
+                            	{} & {\calY \x_{\calY_{\dR}} \calY} & \calY \\
+                            	& \calY
+                            	\arrow["{\pr_2}"', from=1-2, to=2-2]
+                            	\arrow["{\pr_1}", from=1-2, to=1-3]
+                            \end{tikzcd}
+                        $$
+                    which can be easily shown to be a binary relation on $\calY$ (using the fact that the Yoneda embedding is left-exact). This relation shall be known as \textbf{the relation of infinitesimal closeness} on $\calY$, and shall be abbreviated by ${}^{\inf}\calY$, i.e.:
+                        $${}^{\inf}\calY \cong \calY \x_{\calY_{\dR}} \calY$$
+                    For all commutative rings $R$, we shall say that two $R$-points $x, y \in {}^{\inf}\calY(R)$ are \textbf{infinitesimally close}. 
+                \end{definition}
+                \begin{remark}[The congruence of infinitesimal closeness] \label{remark: infinitesimal_closeness}
+                    In fact, the binary relation of being infinitesimally close is actually an equivalence relation, meaning that one can form quotients of prestacks by it. To see why the relation ${}^{\inf}\calY$ on some give prestack $\calY \in [\Spec k]$ is an equivalence relation, simply note that the internal category:
+                        $$
+                            \begin{tikzcd}
+                            	{} & {{}^{\inf}\calY} & \calY \\
+                            	& \calY
+                            	\arrow["{\pr_2}"', from=1-2, to=2-2]
+                            	\arrow["{\pr_1}", from=1-2, to=1-3]
+                            \end{tikzcd}
+                        $$
+                    can be endowed with a groupoid structure via the following map on the object of arrows ${}^{\inf}\calY$:
+                        $$i_{{}^{\inf}\calY}: {}^{\inf}\calY \to {}^{\inf}\calY$$
+                    
+                \end{remark}
+                \begin{remark}[\v{C}ech nerves associated to de Rham spaces] \label{remark: cech_nerves_of_de_rham_spaces}
+                    As $[\Spec k]$ is a category with all pullbacks, and because there is a canonical morphism:
+                        $$\calY \to \calY_{\dR}$$
+                    for every prestack $\calY \in [\Spec k]$, we can form the \v{C}ech nerve (cf. definition \ref{def: hypercovers} and remark \ref{remark: hypercovers_alt_def}) $\calY^{\bullet}_{/\calY_{\dR}}$ of $\calY_{\dR}$. 
+                \end{remark}
+                
+                \begin{proposition}[The locally almost of finite type case] \label{prop: laft_de_rham_spaces}
+                    If $\calY$ is a prestack that is locally almost of finite type then so is its associated de Rham prestack.  
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+            \subsubsection{Left and right-crystals}
+                \begin{definition}[Left-crystals] \label{def: left_crystals}
+                    The dg-category of \textbf{left-crystals} on a given prestack $\calY \in [\Spec k]$, denoted by ${}^l\Crys(\calY)$ is precisely the symmetric monoidal $k$-linear stable $\infty$-category $\QCoh(\calY_{\dR})$ of quasi-coherent modules on the de Rham prestack $\calY_{\dR}$. In notations, that is:
+                        $${}^l\Crys(\calY) \cong \QCoh(\calY_{\dR})$$
+                \end{definition}
+                
+                \begin{remark}[Universal property of left-crystals] \label{remark: universal_property_left_crystals}
+                    Let $\calY$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$. Then, via an application of proposition \ref{prop: qcoh_universal_property}, one can characterise the category of left-crystals on $\calY$ in the following universal manner:
+                        $${}^l\Crys(\calY) \cong \underset{\Spec R \in \left(\Sch^{\aff}_{/\calY_{\dR}}\right)^{\op}}{\lim} \QCoh(\Spec R)$$
+                    This allows us to view left-crystals on a given prestack $\calY$ as coming from the following composition of functors:
+                        $$
+                            \begin{tikzcd}
+                            	& {\Cat^{\stab, \tensor}} \\
+                            	{[\Spec k]^{\red} } & {[\Spec k]}
+                            	\arrow["{(-)_{\dR}}", from=2-1, to=2-2]
+                            	\arrow["{\QCoh^*}"', from=2-2, to=1-2]
+                            	\arrow["{{}^{l}\Crys}", from=2-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{remark}
+                
+                \begin{definition}[Right-crystals] \label{def: right_crystals}
+                    Over any prestack $\calY$ that is locally almost of finite type, one can define a dg-category of right-crystal: this is the category of ind-coherent sheaves on the de Rham space $\calY_{\dR}$ (which is well-defined because the de Rham space attached to a prestack locally almost of finite type is also locally almost of finite type; cf proposition \ref{prop: laft_de_rham_spaces}). 
+                \end{definition}
+                \begin{remark}[Universal property of right-crystals] \label{remark: universal_property_right_crystals}
+                    Thanks to proposition \ref{prop: *_pushforwards_of_ind_coherent_sheaves}, we know that there is actually 
+                \end{remark}
+        
+        \subsection{t-structures on categories of crystals}
+        
+        \subsection{Connections and D-modules}
+        
+    \section{The Riemann-Hilbert Correspondence}

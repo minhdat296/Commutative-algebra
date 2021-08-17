@@ -1,0 +1,120 @@
+\subsubsection{A host of concrete examples}
+    The following list of problems is taken from \href{https://mathoverflow.net/questions/59071/what-elementary-problems-can-you-solve-with-schemes}{\underline{this MO thread}} as well as \href{http://math.stanford.edu/~vakil/725/funprobs.pdf}{\underline{these notes}}  by Ravi Vakil. Detailed citations will be provided where it is possible to do so.
+    
+    \paragraph{Powers of coprime ideals}
+        \begin{proposition}
+            Let $A$ be a commutative ring and let $I, J$ be ideals of $A$ that are coprime to one another. Then, for all natural numbers $m, n$, the ideals $I^m$ and $J^n$ are also coprime to one another. 
+        \end{proposition}
+            \begin{proof}
+                
+            \end{proof}
+            
+    \paragraph{Non-finiteness of power series algebras as modules over polynomial rings}
+        \begin{proposition}
+            Let $k$ be some fixed field. Then, the power series ring $k[[x]]$ is not finitely generated as an algebra over $k[x]$. 
+        \end{proposition}
+            \begin{proof}
+                Suppose to the contrary that $k[[x]]$, which we note to be a local ring with unique maximal ideal $(x)$, is indeed finitely generated over $k[x]$. 
+            \end{proof}
+    
+    \paragraph{The Cayley-Hamilton theorem}
+    
+    \paragraph{Places of bad reduction on smooth projective varieties over \texorpdfstring{$\Q$}{}}
+        \begin{definition}[Models]
+            Let $R$ be a discrete valutation ring with fraction field $K$ and let $X$ be an algebraic scheme over some field $K$. Then, a model for $X$ over a $R$ is a flat algebraic $R$-scheme $\bbX$ whose pullback along the canonical arrow $\Spec K \to \Spec R$ is (isomorphic to) $X$. One can also impose adjectives such as \say{smooth}, \say{\'etale}, or \say{fppf} onto models of algebraic schemes, as long as morphisms characterised by these adjectives are flat and of finite type.
+        \end{definition}
+    
+        \begin{definition}[Good/bad reductions]
+            Let $X$ be an algebraic scheme over the field of fractions $K$ of a discrete valuation ring $R$, and let $\varpi \in R$ be a uniformiser (i.e. a generator of the unique maximal ideal of $R$). 
+            \begin{enumerate}
+                \item \textbf{(Good/bad reductions):} A reduction modulo $\varpi$ (or in other terminologies, at place $\varpi$) of a model $\bbX \to \Spec R$ of $X$ is just the pullback along the canonical morphism $\Spec R/\varpi \to \Spec R$ of $\bbX \to \Spec R$. It is called good if it is smooth or better (for instance, \'etale fibres can be considered \say{good} reductions). Otherwise, it is called bad.
+                \\
+                One thing to note is that smooth models and better ones \textit{a priori} have good reductions, since smoothness (and say, \'etale-ness) is preserved under arbitrary base changes.
+                \item \textbf{(Places of reduction):} An algebraic $K$-scheme $X$ is said to have a place $\varpi$ of good reduction if and only if there exist an $R$-model $\bbX \to \Spec R$ of $X$ whose reduction modulo $\varpi$ is good. One might also phrase things geometrically and say that $X$ has good reduction at the closed point $\Spec R/\varpi$.
+                \\
+                $X$ is said to have a place $\varpi$ of bad reduction if and only if there does not exist an $R$-model $\bbX \to \Spec R$ of $X$ whose reduction modulo $\varpi$ is good (or equivalently, if and only if the reduction modulo $\varpi$ of all $R$-models of $X$ are bad).
+            \end{enumerate}
+        \end{definition}
+        \begin{example}[Reduction modulo $p$ of curves over $\Q$]
+            Let $p$ be a prime, and note that $\Z_{(p)}$ is a discrete valuation ring by virtue of being a local PID that is not a field; its unique maximal ideal is $(p)$ (and hence one can take $p$ to be a uniformiser), as every element that is not equivalent to $0$ modulo $p$ has already been made to be invertible in $\Z_{(p)}$. Let $X$ be a smooth projective curve over $\Spec \Q$, and let $\bbX_{(p)} \to \Spec \Z_{(p)}$ be a model of $X$ (note that due to the Fundamental Theorem of Arithmetic, $\Z_{(p)}$ is has $\Q$ as its field of fractions). Then, a reduction modulo $p$ of $X$ is nothing but a fibre product $\bbX_{(p)} \x_{\Spec \Z_{(p)}} \Spec \F_p$. 
+        \end{example}
+        \begin{remark}[Locality of reduction]
+            It is worth noting that a curve $X \to \Spec K$ having good reduction at a place $\varpi$ is a local phenomenon. That is to say, a curve may have good reductions at all places $\varpi$ (for instance, there might be curves over $\Q$ such that all of their $\Z_{(p)}$ possess good modulo $p$ reductions), but the equation defining said curve may be singular in some manner after reduction modulo $\varpi$. 
+        \end{remark}
+        
+        \begin{lemma}[Existence of smooth models]
+            Let $X$ be a smooth projective variety over $\Spec \Q$. Then, there exist flat and proper $\Z_{(p)}$-models $\bbX_{(p)}$ for all primes $p$.
+            \todo{Check if correct.}
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+        
+        \begin{theorem}[Shimura '55]
+            Let $X$ be a smooth projective variety over $\Spec \Q$. Then $X$ has finitely many places of bad reduction. That is to say, there are only finitely many primes/places $p$ at which the reduction modulo $p$ of a $\Z_{(p)}$-model of $X$ is bad.
+        \end{theorem}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{example}
+            \noindent
+            \begin{enumerate}
+                \item \textbf{(A cubic curve with places of bad reduction):} Consider the cubic curve given by the polynomial equation $x^3 - y^2  - 2 = 0$ (or in other words, consider the variety $X := \Spec \frac{\Q[x, y]}{(x^3 - y^2)}$), which we note to be smooth over $\Q$. Let $\bbX_{(p)}$ be a model over $\Spec \Z_{(p)}$ of $X$. Then, reductions modulo $p$ of $\bbX_{(p)}$ will remain smooth (i.e. good) at all places except at $p = 2$, because:
+                    $$x^3 - y^2 - 2 \equiv x^3 - y^2 \pmod{2}$$
+                meaning that the reduction modulo $2$ of $\bbX_{(2)}$ has a cusp at the origin, and at $p = 3$, since:
+                    $$x^3 - y^2 - 2 \equiv (x - 2)^3 - y^2 \pmod{3}$$
+                meaning that the reduction modulo $3$ of $\bbX_{(3)}$ has a cusp at $(x, y) = (2, 0)$.
+                \item \textbf{(Reductions of $p$-adic elliptic curves \cite[Example 5.2]{silverman_elliptic_curves}):} Let $p \geq 5$ be a prime and let $E_1, E_2$ be elliptic curves over $\Q_p$ that are given by the equations:
+                    $$x^3 + px^2 - y^2 + 1 = 0$$
+                and:
+                    $$x^3 - y^2 + p = 0$$
+                We know from the previous example that the second curve is cuspidal at place $p$, so let us focus our attention on the first curve. Reducing modulo $p$ gives a curve determined by the following equation:
+                    $$x^3 - y^2 + 1 = 0$$
+                which we note to be smooth, and thus the place $p$ is of good reduction. The assumption that our prime $p$ is larger than or equal to $5$ is crucial for $p$ to be a place of good reduction for $E_1$, because when $p = 2$ or $p = 3$, the equation of the curve obtained after reduction modulo $p$ will be:
+                    $$\text{$x^3 - (y + 1)^2 = 0$ or $(x - 1)^3 - y^2 = 0$}$$
+                and both are cuspidal.
+                \\
+                Over $\Q_p(\sqrt[6]{p})$, however, the curve $E_2$ does have good reduction at $p$: by setting $x = \sqrt[3]{p} s$ and $y = \sqrt[2]{p} t$, one gets the following equivalent equation defining the curve $E_2$:
+                    $$ps^3 - pt^2 + p = 0$$
+                which becomes the trivial equation $0 = 0$ after reduction modulo $p$. 
+                \item \textbf{(Reduction of smooth projective $p$-adic surfaces):} Let $p$ be an arbitrary prime, let $K$ be a $p$-adic field (i.e. a finite extension of $\Q_p$), and let $X$ be a conic bundle over $\P^1_K$ with four degenrate fibres. First of all, note that $X$ is a smooth projective variety over $\Spec K$ whose $\ell$-adic cohomologies (with $\ell$ any prime distinct from $p$) are all unramified (cf. definition \ref{def: ramification_indices}). Second of all, by being a conic bundle, $X$ is $\overline{K}$-birational to $\P^1_K$. 
+                \item \textbf{(Reduction of abelian varieties):} Let $A$ be an abelian variety over $\Spec \Q$ and let $p, \ell$ be distinct primes. Then, by \cite{conradbrinon}, theorem 1.1.1, there exists a $\Z_{(p)}$-model of $A$ with good reduction at $p$ if and only if the $\ell$-adic \'etale cohomologies of $A$ are all unramified at $p$. A special case of this phenomenon is theorem 7.1 of \cite{silverman_elliptic_curves}, which gives a criterion by N\'eron-Ogg-Shafarevich for when elliptic curves admits good reduction at $p$;  
+            \end{enumerate}
+        \end{example}
+    
+    \paragraph{Torsion subgroup of elliptic curves over \texorpdfstring{$\Q$}{}}
+        \begin{remark}[A short review of torsion]
+            
+        \end{remark}
+        
+        \begin{theorem}[Mazur]
+            Let $E$ be an elliptic curve over $\Spec \Q$ (which we recall to be a smooth projective curve of genus $1$). Then, the torsion subgroup of $E(\Q)$ is either isomorphic to $\Z/n\Z$, with $n \in \{1, 2, ..., 10, 12\}$, or $\Z/2n\Z \x \Z/2\Z$, with $n \in \{1, 2, 3, 4\}$. 
+        \end{theorem}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[A special case due to Mazur and Tate]
+            An elliptic curve over $\Spec \Q$ does not have a $\Q$-rational point of order $13$.
+        \end{corollary}
+    
+    \paragraph{Classification of real conics}
+    
+    \paragraph{Chevalley's constructible set theorem}
+        \begin{theorem}[Chevalley's theorem on constructible sets]
+            
+        \end{theorem}
+        
+        \begin{proposition}[An application of Chevalley's theorem]
+            Let $k$ be an algebraically closed field of characteristic zero and let $P(k)$ be a first-order logical statement about $k$. Let $F$ be a field of prime characteristic. Then, the statement $P(F)$ (which is understood to be the same as it was about $k$, but with $k$ replaced with $F$) holds if and only if $\chara F$ is sufficiently large. 
+        \end{proposition}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{remark}
+            Intuitively, this result should hold because in large enough prime characteristics, despite there existing torsion, said torsion would actually be negligible since one might never have to venture to the land of numbers that might even be remotely as large as the characteristic of one's underlying field.
+        \end{remark}
+        \begin{example}
+            Lie's theorem on solvable Lie algebras over algebraically closed fields of characteristic $0$ still holds in prime characteristics $p$, provided that the dimension of the representations are strictly less than $p$, which effectively means that it holds in sufficiently large prime characteristics. 
+        \end{example}
+    
+    \paragraph{Duality of abelian varieties}

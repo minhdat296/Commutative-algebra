@@ -1,0 +1,1206 @@
+\chapter{Smoothness} \label{chapter: smoothness}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{Regularity}
+        \subsection{Zariski (co)tangent spaces}
+            \begin{definition}[Zariski cotangent spaces] \label{def: zariski_tangent_spaces} \index{Zariski cotangent space}
+                Throughout, assume that we are working over some base commuative ring $k$. 
+                \begin{enumerate}
+                    \item \textbf{(Cotagent space of a local ring:} Let $(R, \m)$ be a local $k$-algebra. The \textbf{Zariski cotangent space of $R$ at $\m$} (or more meaningfully, of $\Spec R$ at the closed point $\m$), denoted by $T^{\vee}_{\m}\Spec R$, is the $R$-module $\m/\m^2$. We shall later show that this is a vector space over the residue field $\kappa_{\m}$ of the local ring $(R, \m)$ in proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}.   
+                    \item \textbf{(Cotangent space at a point of a scheme):} The \textbf{Zariski cotangent space of a scheme $X$ at a point $x \in |X|$}, denoted by $T^{\vee}_xX$ is the Zariski cotangent space at the unique closed point of $\Spec \calO_{X, x}$ (note that the stalk $\calO_{X, x}$ is a local ring as schemes are locally ringed spaces).
+                \end{enumerate}
+            \end{definition}
+            \begin{remark}[\say{\textit{Please sir, a universal property ...}}]
+                Let us preface this by saying that the above definition of Zariski cotangent spaces in explicit terms of the maximal ideals at points of schemes has its merits. First of all, because the cotangent space $T^{\vee}_xX$ at a point $x$ in the underlying topological space of some given scheme $X$ is defined to be $\m_x/\m_x^2$ (with $\m_x$ the unique maximal ideal of the stalk $\calO_{X, x}$ at $x$ of the structure sheaf of $X$), one can see that the definition is reasonably intutive: elements of the cotangent space at a given point are just linear \say{functions} that vanish at said point. Also, this definition allows for relatively easy calculations of dimensions of cotangent spaces, which come in handy should one ever need to establish regularity of schemes (see example \ref{example: regular_schemes}), or other stronger characteristics such as smoothness and \'etaleness. With all this being said, the above formulation also has one rather hard-to-ignore flaw: it is not obviously universal and therefore can not be easily made to work over more general spaces like derived schemes (remember, the the whole purpose of cotangent spaces and so on is deformation theory, which is most naturally established in derived algebraic geometry). Thus, we shall be needing a different definition of cotangent spaces, one whereby cotangent spaces shall enjoy a universal property. Before we can state such a definition, however, we will need a few preliminary lemmas.
+            \end{remark}
+            
+            \begin{lemma}[Vector space structure on sets of dual-number-points] \label{lemma: vector_space_structure_on_dual_number_points}
+                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, the set $\Spec R(\kappa[\e]/(\e)^2)$ of $\Spec \kappa[\e]/(\e)^2$-points of $\Spec R$ has the structure of a $\kappa$-vector space. 
+            \end{lemma}
+                \begin{proof}
+                    See corollary \ref{coro: naive_cotangent_complex_of_separated_schemes_and_closed_subschemes}.
+                \end{proof}
+            
+            \begin{lemma}[Dual numbers are cotangent vectors] \label{lemma: dual_numbers_are_cotangent_vectors} \index{Dual numbers}
+                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, one has the following isomorphism of $\kappa$-vector spaces (for a proof of why $T^{\vee}_{\m}\Spec R$ has the structure of a $\kappa$-vector space, we refer the reader to proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}; note that the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} does not depend on \ref{lemma: dual_numbers_are_cotangent_vectors}):
+                    $$\Spec R(\kappa[\e]/(\e)^2) \cong \Omega^1_{R/k} \tensor_R \kappa$$
+                In other words, building onto the establishment in lemma \ref{lemma: vector_space_structure_on_dual_number_points} whereby $\Spec R(\kappa[\e]/(\e)^2)$ is known to be a $\kappa$-vector space, we are giving an explicit description of said vector space structure here.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            \begin{theorem}[Zariski cotangent spaces of local rings: reprised] \label{theorem: cotangent_spaces_of_local_rings} \index{Dual numbers} \index{Zariski cotangent space}
+                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, there is the following isomorphism of $\kappa$-vector spaces (for a proof of why $T^{\vee}_{\m}\Spec R$ has the structure of a $\kappa$-vector space, we refer the reader to proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}; note that the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} does not depend on theorem \ref{theorem: cotangent_spaces_of_local_rings}):
+                    $$T^{\vee}_{\m}\Spec R \cong \Spec R(\kappa[\e]/(\e)^2)$$
+                with $\e$ transcendental over $\kappa$.
+            \end{theorem}
+                \begin{proof}
+                    First of all, the assertion is well-phrased, as the set $\Spec R(\kappa[\e]/(\e)^2)$ is a $\kappa$-vector space (cf. lemma \ref{lemma: vector_space_structure_on_dual_number_points}). 
+                \end{proof}
+            \begin{definition}[A universal definition of cotangent spaces] \label{def: zariski_tangent_spaces_alt_def} \index{Dual numbers} \index{Zariski cotangent space}
+                Let $k$ be a base commutative ring, let $\calX$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$ covered by the Zariski sieve:
+                    $$\{\Spec R_{\alpha} \to \calX\}_{\alpha \in A}$$
+                (cf. definition \ref{def: geometric_stacks}), and recall that for all commutative $k$-algebras $R$, $\Spec R$-valued points \say{$x \in \calX(R)$} are actually arrows:
+                    $$x: \pt \to \calX(R)$$
+                (where $\pt$ is the terminal singleton category with the identity as the only morphism) and not legitimate elements of $\calX(R)$ in general, as $\calX(k)$ is not guaranteed to be a set. 
+                    \begin{enumerate}
+                        \item \textbf{(Cotangent spaces):}
+                            \begin{enumerate}
+                                \item \textbf{(Points of a prestack):} A point of a prestack is just a point of one (or more!) of the affine schemes that cover it. Explicitly, if a point $x \in |\Spec R_{\alpha}|$ (corresponding to the prime ideal $\p_x$ of $R_{\alpha}$) has residue field $\kappa_x$, then the following commutative diagram helps us realise $x$ as a point of $\calX$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\Spec (R_{\alpha})_{\p_x}} & {\Spec R_{\alpha}} \\
+                                        	{\Spec \kappa_x} & \calX
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow["x", from=2-1, to=2-2]
+                                        	\arrow[from=2-1, to=1-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=2-1, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                In particular, note that such a point $x$ is trivially a $\Spec \kappa_x$-valued point, and hence can be identified with an arrow:
+                                    $$x: \pt \to \calX(\kappa_x)$$
+                                We will often abuse notation and write $x \in \calX$ when referring to a point $x$ of a prestack $\calX$. 
+                                \item \textbf{(Cotangent spaces of prestacks):} The cotangent space at a point $x \in \calX$ is the following pullback:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{T^{\vee}_x\calX} & {\calX(\kappa_x[\e]/(\e)^2)} \\
+                                        	{*} & {\calX(\kappa_x)}
+                                        	\arrow["x", from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                whererein the arrow $\calX(\kappa_x[\e]/(\e)^2) \to \calX(\kappa_x)$ comes from the canonical quotient map $\kappa_x[\e]/(\e)^2 \to \kappa_x$.
+                            \end{enumerate}
+                        \item \textbf{(Cotangent bundles):} The \textbf{cotangent bundle} of our given prestack $\calX$ is another prestack $T^{\vee}\calX$ given by the following formula:
+                            $$T^{\vee}\calX(\kappa_x) \cong \calX(\kappa_x[\e]/(\e)^2)$$
+                        for all points $x \in \calX$. It is not hard to see, via definition \ref{def: zariski_tangent_spaces_alt_def}, that $T^{\vee}\calX$ is necessarily a prestack over $\calX$, and furthermore, that the Zariski cotangent spaces at any point $x \in \calX$ is given by the following pullback of prestacks, thanks to the fact that limits of prestacks are computed object-wise (cf. remark \ref{remark: weak_2_yoneda}):
+                            $$
+                                \begin{tikzcd}
+                                	{\underline{T^{\vee}_x\calX}} & {T^{\vee}\calX} \\
+                                	{\Spec \kappa_x} & \calX
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        (here, $\underline{T^{\vee}_x\calX}$ is the constant presheaf assigning to every commutative ring underlying set of the vector space $T^{\vee}_x\calX$).
+                    \end{enumerate}
+            \end{definition}
+            \begin{remark}[A sanity check]
+                If the prestack that we are trying to consider tangent spaces of is $\Spec R$ for some local ring $(R, \m)$ with residue field $\kappa$, then according to definition \ref{def: zariski_tangent_spaces_alt_def}, the cotangent space $T^{\vee}_{\m}\Spec R$ at $\m$ will be the following pullback:
+                    $$
+                        \begin{tikzcd}
+                        	{T^{\vee}_{\m}\Spec R} & {\Spec R(\kappa[\e]/(\e)^2)} \\
+                        	\pt & {\Spec R(\kappa)}
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow["\m", from=2-1, to=2-2]
+                        	\arrow[dashed, from=1-1, to=2-1]
+                        	\arrow[dashed, from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                Now, note that even if $R$ is an integral domain, the residue field $\kappa$ of $R$ (i.e. the residue field at the unique closed point $\m \in |\Spec R|$) can not be the same as the field of fractions $\Frac R$ of $R$ (i.e. the residue field at the generic point $(0) \in |\Spec R|$), as the two fields being isomorphic would imply the absurdity $R/\m \cong \Frac R$ (simply consider what happens when we send elements of $\m$ to $R/\m$ and to $\Frac R$, respectively, to see why this isomorphism is nonsensical). This means that the set $\Spec R(\kappa)$ of $\Spec \kappa$-points of $\Spec R$ consists merely of one point, that being the unique closed point $\m \in |\Spec R|$; in other words, the arrow:
+                    $$\m: \pt \to \Spec R(\kappa)$$
+                ought to be an isomorphism. Thus:
+                    $$T^{\vee}_{\m}\Spec R \cong \Spec R(\kappa[\e]/(\e)^2)$$
+                as claimed by lemma \ref{theorem: cotangent_spaces_of_local_rings}, so everything checks out.
+            \end{remark}
+            \begin{remark}[How to calculate Zariski cotangent spaces] \index{Zariski cotangent space!How to calculate}
+                Let $k$ be an arbitrary commutative ring and let $(R, \m)$ be a local $k$-algebra with residue field $\kappa$. Then, by combining lemma \ref{lemma: dual_numbers_are_cotangent_vectors} and theorem \ref{theorem: cotangent_spaces_of_local_rings}, we get:
+                    $$T^{\vee}_{\m}\Spec R \cong \Omega^1_{R/k} \tensor_R \kappa$$
+                More generally, the Zariski cotangent space at a point $x$ of a prestack $\calX$ on ${}^{k/}\Comm\Alg^{\op}$ with a Zariski atlas is given by:
+                    $$T^{\vee}_x\calX \cong \Omega^1_{\calX/\Spec k, x} \tensor_{\calO_{\calX, x}} \kappa_x$$
+            \end{remark}
+            
+            \begin{lemma}[Krull's Principal Ideal Theorem] \label{lemma: krull_principal_ideal_theorem} \index{Krull's \textit{Hauptidealsatz}}
+                \textit{Auch \say{Der Hauptidealsatz von Krull} genannt}.
+                \begin{enumerate}
+                    \item \textbf{(A local \textit{d\'evissage}):} This is also known as \say{Krull's Principal Ideal Theorem for Cotangent Spaces} \cite[Exercise 12.1.B]{risingsea}, or as we shall refer to it, Krull's Local \textit{Hauptidealsatz}.
+                    
+                    Let $(R, \m)$ be a local Noetherian ring and suppose that $\m$ is generated by a set $\{f_{\alpha}\}_{\alpha \in A}$ of mutually $R$-linearly independent elements of $R$. Then, for all elements $f \in \m$, the dimension of the Zariski cotangent space $T^{\vee}_{\m}\Spec (R/(f))_{\m}$ of the local ring $(R/(f))_{\m}$ is either the same as that of the Zariski cotangent space $T^{\vee}_{\m}\Spec R$ of the local ring $R$, or one less; equality occurs when $f$ is not a zero-divisor.  
+                    \item \textbf{(The full global version):} 
+                    Let $R$ be a commutative Noetherian ring and let $f$ be an arbitrary element therein. Then, the smallest prime ideal of $R$ containing $f$ has codimension at most $1$; equality occurs if and only if $f$ is not a zero-divisor.
+                \end{enumerate}
+            \end{lemma}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(The Local \textit{Hauptidealsatz}):} First of all, for all elements $f \in R$, the affine scheme $\Spec R/(f)$ can be identified with a closed affine subscheme of $\Spec R$. Furthermore, if $\m$ contains $f$, then the unique closed point $\m$ of $\Spec R$ should be inside of the closed affine subscheme $\Spec R/(f)$. Now, due to the Third Isomorphism Theorem, $\m/(f)$ had better be a maximal ideal of $R/(f)$, as:
+                            $$\frac{R/(f)}{\m/(f)} \cong R/\m$$
+                        which implies that by localising $R/(f)$ at the maximal ideal $\m/(f)$ (which is \textit{a priori} prime), one gets the affine open subscheme $\Spec (R/(f))_{\m/(f)}$ of $\Spec R/(f)$ with unique closed point $\m(R/(f))_{\m/(f)}$ coinciding with the closed point of $\Spec R$ given by $\m$. Thus, there are reasons to suspect that the dimension of the Zariski cotangent space of the local ring $\left( (R/(f))_{\m/(f)}, (\m/(f))(R/(f))_{\m/(f)}\right)$ has some sort of relationship with that of the original local ring $(R, \m)$.
+                        
+                        Let us abbreviate $(\m/(f))(R/(f))_{\m/(f)}$ by $\m_f$. 
+                        \item \textbf{(The Global \textit{Hauptidealsatz}):}
+                    \end{enumerate}
+                \end{proof}
+            
+            \begin{proposition}[Zariski (co)tangent spaces are vector spaces] \label{prop: Zariski_tangent_spaces_are_vector_spaces} \index{Zariski cotangent space}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{\textbf{((Co)tangent spaces of local rings):}} The Zariski (co)tangent space of any local ring $(R, \m)$ is a vector space over its residue field $\kappa_{\m}$. Should $R$ also be Noetherian, the dimension of the Zariski (co)tangent space of a local Noetherian ring $(R, \m)$ will also be equal to the number of generators of its unique maximal ideal $\m$ and bounded below by the Krull dimension of $R$; in notations, this reads:
+                        $$
+                            \begin{aligned}
+                                \dim_{\Krull} R & \leq {}_R\rank \m
+                                \\
+                                & = \dim_{\kappa} T^{\vee}_{\m} \Spec R
+                                \\
+                                & = \dim_{\kappa} T_{\m} \Spec R
+                            \end{aligned}
+                        $$
+                    \item \textbf{((Co)tangent spaces of prestacks):} The Zariski (co)tangent space at a point $x$ of a prestack $\calX$ on $\Cring^{\op}$ \textit{with a Zariski atlas} is a \href{https://ncatlab.org/nlab/show/2-vector+space}{\underline{$2$-vector space}} internal to the category $\Vect_{\kappa_x}$ of vector spaces over the residue field $\kappa_x$ at $x$. In the event that $\calX$ is a presheaf, the (co)tangent space at $x$ will simply be a vector space over $\kappa_x$ in the usual sense, and again, if $\calX$ is noetherian (i.e. it can be covered by a finite number of affine schemes), then:
+                        $$
+                            \begin{aligned}
+                                \dim_x \calX & \leq {}_{\calO_{\calX, x}}\rank \m_x
+                                \\
+                                & = \dim_{\kappa_x} T^{\vee}_x \calX
+                                \\
+                                & = \dim_{\kappa_x} T_x \calX
+                            \end{aligned}
+                        $$
+                    wherein the dimension $\dim_x \calX$ of a prestack $\calX$ at a point $x$ therein is defined to be the \textit{infimum} of the Krull dimensions of the affine schemes containing $x$ in its Zariski covering sieve, which are just the Krull dimensions of the corresponding commutative rings:
+                        $$\dim_x \calX := \inf \left\{ \dim_{\Krull} R \mid \left(R \in \U_{/\calX}\right) \wedge (x \in \Spec R) \right\}$$
+                \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{\textbf{((Co)tangent spaces of local rings):}} 
+                            \begin{enumerate}
+                                \item Essentially, we will need to demonstrate how $\m/\m^2 \cong T^{\vee}_{\m}\Spec R$ is annihilated by $\m$, and hence can be endowed with a $\kappa$-vector space structure (as $\m/\m^2$ must then be a module over $R/\m$, which \textit{is} $\kappa$). To that end, consider the action of $\m$ on $\m/\m^2$ via (left-)multiplication:
+                                    $$\m \x \m/\m^2 \to \m/\m^2: (a, v) \mapsto av$$
+                                and note that $av$ is trivially an element of $\m^2$ (whose underlying set is $\{x \in R \mid \exists (a, b) \in \m \oplus \m: x = ab\}$). And because $\m^2 = (0)$ in $\m/\m^2$, the above is enough to show that $\m$ annihilates $\m/\m^2$, and hence the latter is a vector space over $\kappa$. 
+                                
+                                \textbf{Zariski tangent spaces} can then be define to be the dual vector spaces of Zariski cotangent spaces. Obviously, if the Zariski cotangent space of some given local ring is finite-dimensional over the residue field, then its dimension and that of the Zariski tangent space must be equal.
+                                
+                                \todo{Refer to Krull's principal ideal theorem}
+                                \item As for the matter of the dimension of Zariski cotangent space being bounded below by the Krull dimension, let us firstly point out (mostly for the sake of our own sanity) that every ideal in a Noetherian ring is necessarily finitely generated (because otherwise, we might be in situations with infinite ascending chains of ideals such as $0 \subset (x_0) \subset (x_0, x_1) \subset ... \subset (x_0, x_1, ..., x_n) \subset ...$). The Noetherian hypothesis also ensures that the Krull dimension is finite, and so the dimension of the Zariski cotangent space can have a chance of being bounded below by this quantity (since we are not logicians, we are going to stay clear away from the matter of comparing Krull dimensions and dimension of Zariski cotangent spaces that are infinite cardinals).
+                                
+                                Now, to prove that this is actually the case, firstly note how the Krull dimension of a local ring $(R, \m)$ is precisely the number of generators of its unique maximal ideal $\m$, as associated to said maximal ideal is the following \textit{finite} chain of ideals of $R$ generated by the generators $x_0, x_1, ..., x_{{}_R\rank \m}$ of $\m$:
+                                    $$0 \subset (x_0) \subset (x_0, x_1) \subset ... \subset (x_0, x_1, ..., x_{{}_R\rank \m - 1}) = \m$$
+                                and because these generators are $R$-linear independent from one another, its length (which, by construction, is equal to ${}_R\rank \m$) is precisely the length of $\m$, which bounds the Krull dimension of $R$, which by definition, is the supremum of the lengths of the chains of prime ideals of $R$ (note that the ideals $(x_0), (x_0, x_1)$, etc. are not necessarily prime):
+                                    $$\dim_{\Krull} R \leq _R\length \m = {}_R\rank \m$$
+                                Combining this with what we have shown above, and we will get the following very important inequality:
+                                    $$\dim_{\Krull} R \leq \dim_{\kappa} T^{\vee}_{\m} \Spec R$$
+                                Equality occurs if and only if $R$ is a regular local ring (cf. definition \ref{def: regularity}).
+                            \end{enumerate}
+                        \item \textbf{\textbf{((Co)tangent spaces of prestacks covered by atlases):}} 
+                            \begin{enumerate}
+                                \item \textbf{(The case of general prestacks):}
+                                \item \textbf{(Restricting to presheaves):}
+                            \end{enumerate}
+                    \end{enumerate}
+                \end{proof}
+            \begin{remark}[Removing the Noetherian hypothesis]
+                One thing to note is that the dimension of the Zariski cotangent space being equal to the number of generators of $\m$ does not depend on whether or not the local ring $(R, \m)$ is Noetherian, as one can very well have equalities of infinite cardinals. A hiccup in the non-Noetherian case, though, is that the dimension of the Zariski tangent space $T_{\m}\Spec R$ - defined to be the dual vector space of $T^{\vee}_{\m}\Spec R$ - might not be equal to that of the Zariski cotangent space, as infinite-dimensional vector spaces are not necessarily isomorphic to their duals. Ultimately, though, we are not concerned with non-Noetherian cases, as the property of smoothness - which we use dimensions of Zariski cotangent spaces to verify - implies Noetherian-ness: smooth morphisms are required to be of finite presentation, after all (cf. definitions \ref{def: standard_smoothness} and \ref{def: cohomological_smoothness}).
+            \end{remark}
+                
+            \begin{example}[Lie algebras of group schemes]
+                Let $G$ be a group scheme over some base commutative ring $k$ (i.e. a group object in $\Sch_{/\Spec k}$) and let $e \in G$ be the point of $G$ that is the multiplicative identity. The \textbf{Lie algebra of $G$} is thus defined to be the tangent space $T_eG$ \say{at the identity}. Note that even though the above definition of Lie algebras does not appeal to smoothness, the property of smooth is still necessary for a reasonably well-behaved theory of algebraic Lie groups and Lie algebras. Algebraic groups, after all, are smooth. We shall discuss Lie algebras and algebraic Lie groups in a bit more details in subsubsection \ref{subsubsection: algebraic_groups} once we have developed some more machineries.
+            \end{example}
+            
+            We refer readers that wish to see an example of Zariski (co)tangent spaces being used in the detection of singularities to example \ref{example: regular_schemes}. There, we describe a scheme which is geometrically regular but nevertheless not smooth.
+            
+        \subsection{Regularity}
+            \subsubsection{Defining regularity}
+                \begin{definition}[Regularity] \label{def: regularity} \index{Regularity} \index{Regularity!geometric}
+                    Assume that we are working over some base commutative ring $k$.
+                    \begin{enumerate}
+                        \item \textbf{(Regular and geometrically ring maps):} 
+                            \begin{enumerate}
+                                \item \textbf{(Regular Noetherian rings):}
+                                    \begin{enumerate}
+                                        \item \textbf{(Regular Noetherian rings):} A Noetherian local $k$-algebra $(R, \m)$ is called \textbf{regular} if and only if its Krull dimension is equal to that of its Zariski (co)tangent space, viewed as a $\kappa_{\m}$-vector space (see proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for an explanation). Note that the Noetherian hypothesis is absolutely necessary, as one needs to ensure first and foremost that the Krull dimension of $R$ is finite.
+                                        
+                                        A \textit{locally Noetherian} $k$-algebra $R$ is \textbf{regular} if it is \textbf{everywhere locally regular}. That is, its localisation at primes $R_{\p}$ are all regular local rings.
+                                        \item \textbf{(Geometrically regular Noetherian rings):} In the event that $k$ is a field, we say that a locally Noetherian $k$-algebra $R$ is \textbf{geometrically regular at a prime ideal $\p$} if and only if for all finite extensions $k'/k$, the pushout $R_{\p} \tensor_k k'$ is regular over $k'$. If this is the case at all primes $\p \in |\Spec R|$, then we shall say that $R$ is \textbf{geometrically regular} over $k$. 
+                                    \end{enumerate}
+                                \item \textbf{(Regular ring maps):} A homomorphism of commutative $k$-algebras:
+                                    $$R \to \Lambda$$
+                                is said to be \textbf{relatively regular at a prime ideal $\p \in |\Spec R|$} (or simply \textbf{regular at $\p \in |\Spec R|$}) if and only if it is \textit{flat} and the pushout $\Lambda \tensor_R \kappa_{\p}$ is geometrically regular over $\kappa_{\p}$ (and hence necessarily locally Noetherian).
+                                
+                                A homomorphism of commutative $k$-algebras that is regular at all prime ideals of the domain is usually simply referred to as being \textbf{regular}. For emphasis, one might say that the homomorphism is \textbf{everywhere regular}.
+                            \end{enumerate}
+                        \item \textbf{(Regular and geometrically regular prestacks):} Let $\calX$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$ covered by the following Zariski sieve of locally Noetherian affine schemes:
+                            $$\{\Spec R_{\alpha} \to \calX\}_{\alpha \in A}$$
+                            \begin{enumerate}
+                                \item \textbf{(Regularity):} Let $x$ be a point in $\calX$ (see definition \ref{def: zariski_tangent_spaces_alt_def} for the notion of points of prestacks covered by atlases) and suppose that $|\Spec R_{\alpha}|$ (or an open subscheme thereof) is an open neighbourhood of $x$ (and note that $x$ should thus correspond to a prime ideal $\p_x$ of $R_{\alpha}$). Then, $\calX$ is said to be \textbf{locally regular at $x$} if and only if the the local ring $(R_{\alpha})_{\p_x}$ (equivalently, the stalk $\calO_{\calX, x}$) is a regular local ring. Should this be the case for all points $x \in \calX$, or equivalently, should all the $k$-algebras $R_{\alpha}$ be regular Noetherian rings (i.e. if $\calX$ is \textbf{everywhere locally regular}), then $\calX$ will simply be called \textbf{regular}. 
+                                \item \textbf{(Geometric regularity):} In the event that $k$ is a field, consider firstly the following pullback square:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\calX'} & \calX \\
+                                        	{\Spec k'} & {\Spec k}
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                wherein $k'/k$ is some finite extension of fields. We then say that $\calX$ is \textbf{geometrically locally regular at $x$} if $\calX'$ is so at all points $x' \in \calX'$ (i.e. at all the \say{primes in $\calX'$} lying above $x$), and if this is true for all points $x \in \calX$, we will say that $\calX$ is \textbf{geometrically regular}.
+                            \end{enumerate}
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}
+                    Because trivial extensions are finite, geometric regularity implies regularity.
+                \end{remark}
+                
+                \begin{proposition}[Two equivalent definitions of geometric regularity] \label{two_equivalent_defs_geometric_regularity} \index{Regularity!geometric}
+                    Let $R$ be a Noetherian \textit{local} algebra over some base field $k$. The following are logically equivalent statements:
+                        \begin{enumerate}
+                            \item $R$ is geometrically regular over $k$, in the sense of definition \ref{def: regularity}.
+                            \item For all \textit{purely inseparable} and \textit{finite} field extensions $k'/k$, the pushout $R \tensor_k k'$ is regular over $k'$. 
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        Clearly \textbf{1} implies \textbf{2}, so let us focus on the other direction. In this case, let us assume that $\chara k = p$ for some prime $p$, since the only purely inseparable extension in characteristic $0$ is the trivial one. Also, note that thanks to the fact that we are concerned with finite extensions here, we can assume, without loss of generality, that $k'/k$ is a simply extension, say of the form $k(\alpha^{\frac1q}) \cong \frac{k[t]}{(t^q - \alpha)}$ for some $\alpha \in k$ and $p$-power $q$. Now, consider the following diagram whose upper row is the evident short exact sequences:
+                            $$
+                                \begin{tikzcd}
+                                	0 & \m & R & \kappa & 0 \\
+                                	& {\m \tensor_k k(\alpha^{\frac1q})} & {R \tensor_k k(\alpha^{\frac1q})} & {\kappa \tensor_k k(\alpha^{\frac1q})} & 0
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=1-3]
+                                	\arrow[from=1-3, to=1-4]
+                                	\arrow[from=1-4, to=1-5]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow[from=2-3, to=2-4]
+                                	\arrow[from=2-4, to=2-5]
+                                	\arrow[from=1-4, to=2-4]
+                                	\arrow[from=1-3, to=2-3]
+                                	\arrow[from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        This is where the hypothesis whereby $(R, \m)$ is a \textit{regular} local $k$-algebra comes in: because every element of $R \setminus \m$ is invertible \cite[\href{https://stacks.math.columbia.edu/tag/00E9}{Tag 00E9}]{stacks}, it stands to reason that:
+                            $$\m \tensor_k k(\alpha^{\frac1q}) \cong \m(\alpha^{\frac1q}) \cong \m$$
+                        and as a consequence of this, that:
+                            $$\kappa \tensor_k k(\alpha^{\frac1q}) \cong \kappa(\alpha^{\frac1q})$$
+                        Furthermore, we get from these observations and the flatness of $R$ as a regular local $k$-algebra, that $(R \tensor_k k(\alpha^{\frac1q}), \m)$ is a local $k$-algebra with residue field $\kappa(\alpha^{\frac1q})$ (i.e. the bottom row of the diagram from above is also a short exact sequence). This makes checking whether or not the dimension of the Zariski cotangent space of $R \tensor_k k(\alpha^{\frac1q})$ is the same as its Krull dimension a meaningful task. Now, because the unique maximal ideal of $R \tensor_k k(\alpha^{\frac1q})$ is actually just $\m$, its Zariski cotangent space is $\m/\m^2$, which is the same as that of $(R, \m)$, so it remains to calculate the Krull dimension of $R \tensor_k k(\alpha^{\frac1q})$. Here, the assumption that $(R, \m)$ is a local $k$-algebra is going to save us: we know that:
+                            $$\dim_{\Krull} R \cong {}_R\rank \m$$
+                        for all \textit{Noetherian} local rings (see the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for a detailed explanation), and because the unique maximal ideal of the local $k$-algebra is the same as that of $R$ (both being $\m$), their Krull dimensions had better agree as well. This implies that the dimension of the Zariski cotangent space of $R \tensor_k k(\alpha^{\frac1q})$, through being equal to that of $R$, it the same as the Krull dimension of $R \tensor_k k(\alpha^{\frac1q})$, which proves that $R \tensor_k k(\alpha^{\frac1q})$ is a local $k$-algebra, as claimed. 
+                    \end{proof}
+                
+                \begin{example}[Number theory strikes again!] \label{example: regular_schemes}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(A local example):} Let $p$ be some arbitrary prime, let $K$ be a non-archimedean local field, let $L/K$ be a finite extension, and let $\scrO_K$ and $\scrO_L$ denote the respective rings of integers (for simplicity - and honestly, without loss of generality - the reader may assume that $K$ is either $\Q_p$ or $\F_p(\!(t)\!)$). 
+                        \item \textbf{(A global example):} \cite[\href{https://stacks.math.columbia.edu/tag/038Y}{Tag 038Y}]{stacks} Let $p$ be a prime, let $k$ be a global field of characteristic $p$ (say, $k = \F_p(t)$), and let $k'/k$ be a finite extension. Next, consider the $k$-scheme:
+                            $$X \cong \Spec k[y]/(y^2)$$
+                        and note, as a preliminary, that $k[y]/(y^2)$ is a Noetherian local ring of Krull dimension $1$: its only prime ideal, hence automatically maximal, is $(y)$ (this is a sanity check for whether or not it makes sense to even check geometric regularity on fibres over finite extensions of the base field). Its pullback along the embedding of $k$ into $k'$ is nothing but:
+                            $$X' \cong \Spec \left(k[y]/(y^2) \tensor_k k'\right) \cong \Spec k'[y]/(y^2)$$
+                        First of all, what are the primes lying above the point $(y) \in |\Spec k[y]/(y^2)|$ ? Well, there is only one, that being $(y) \in |\Spec k'[y]/(y^2)|$, as $k'$ is a field just as $k$ is; this, incidentally, also shows that $k'[y]/(y^2)$ is a Noetherian local ring of Krull dimension $1$. Also, note that the residue field at $(y)$ of $X'$ is actually just $k'$:
+                            $$\frac{k'[y]/(y^2)}{(y)} \cong k'$$
+                        Next, consider the Zariski cotangent space of $X'$ at $(y)$; by definition, it is the $k'$-vector space $(y)/(y^2)$, and because $(y^2) = (y)^2 = (0)$ in $k'[y]/(y^2)$, it is actually just $(y)$. The $k'$-dimension of this Zariski cotangent space is thus $1$, equal to the Krull dimension of $\calO_{X', (y)}$ (note that this stalk is just $k'[y]/(y^2)$ because $k'[y]/(y^2)$ is a local ring):
+                            $$\dim_{\Krull} \calO_{X', (y)} = \dim_{\Krull} k'[y]/(y^2) = \dim_{k'} T^{\vee}_{(y)} X' = 1$$
+                        and therefore the fibre $X'$ is regular by definition. Lastly, because the underlying topological space of $X$ has merely a point, and because there is only one point of $|X'|$ lying above it, we can conclude the $X$ is a geometrically regular scheme over $\Spec k$. 
+                        
+                        The reader might (rightfully) wonder why the $\mathsf{<censored>}$ we had to specify that $k/k'$ is finite, as it seems like we only relied on the fact that $k'$ is a field like $k$, and to that we say: had $k'/k$ been of infinite degree ($k'$ might be $\F_p(t^{\frac{1}{p^{\infty}}}) \cong \underset{n \in \N}{\colim} \F_p(t^{\frac{1}{p^n}})$), there might exist infinite ascending chains of ideals of $k'[y]/(y^2)$ (such as the chain:
+                            $$0 \subset (x - t) \subset (x - t, x^p - t) \subset ... \subset (x - t, x^p - t, ..., x^{p^n} - t) \subset ...$$
+                        when $k \cong \F_p(t^{\frac{1}{p^{\infty}}})$). The Noetherian hypothesis, which is necessary for regularity as it guarantees that the Krull dimension will stay finite, will therefore be violated. 
+                        
+                        What about the assumption that $k$ has to be a global field of characteristic $p$ ? Well, the characteristic $p$ hypothesis is actually not too important: it is mostly for convenience because we would like to eventually how our example is one of a scheme which is geometrically regular but not smooth (see below). Globality is also not too important in general (one might very well let $k$ be $\Q_p$ or $\F_p(\!(t)\!)$), but it's nice to now that the above analysis need not be restricted to the local case, as global fields tend to be tricky. The assumption is necessary (or at the very least, convenient), however, for establishing the fact that there are pathological schemes out there that, while being geometrically regular, are not smooth. As we shall see below, the existence of singularities of $X'$ rely on the fact that $\F_p(t^{\frac{1}{p^{\infty}}})[y]/(y^2)$ has $\left((x^p - t)y^2\right)$ as an ideal, something that would not be possible had we been working with, say $k' \cong \F_p(\!(t^{\frac{1}{p^{\infty}}})\!)$ instead, since ideals thereof are necessarily of the form $(t^{\frac{a}{p^n}})$ for certain natural numbers $a$ and $n$. 
+                        
+                        One other interesting feature that examples of this kinda display is that whenever $k'/k$ is a \href{https://stacks.math.columbia.edu/tag/09HD}{\underline{purely inseparable extension}} (we can take $k' = \F_p(t^{\frac1p})$ for example), what we have is a scheme that is everywhere regular, but nevertheless has a singularity (see definition \ref{def: standard_smoothness} and \ref{prop: smooth_iff_standard_smooth} for the Jacobian Criterion for smoothness of schemes, and definition \ref{def: singular_loci} for the notion of singularities). Consider, as an example, the following isomorphism coming from the Chinese Remainder Theorem:
+                            $$k'[y]/(y^2) \cong k[x, y]/\left( (x^p - t) y^2 \right)$$
+                        The Jacobian of the polynomial $(x^p - t)y^2$ is:
+                            $$
+                                \begin{aligned}
+                                    \Jac\left((x^p - t)y^2\right) & = \left( \del_x (x^p - t)y^2, \del_y (x^p - t)y^2\right)^T
+                                    \\
+                                    & = \left( px^{p-1}, 2y \right)^T
+                                    \\
+                                    & = \left( 0, 2y\right)^T
+                                \end{aligned}
+                            $$
+                        which tells us that whenever $p > 2$ things go terribly wrong at points of the form $(x, 0)$, and when $p = 2$, there are singularities \textit{everywhere} (good grief!). Hence $X'$ is singular at all primes containing $((x^p - 1)y^2)$ (note that we can apply the Jacobian Criterion at all such primes, because the fact that $k'/k$ is a finite extension implies that these primes must all be finitely generated). 
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}[The Jacobian Criterion for Regularity] \label{prop: jacobian_criterion_for_regularity}
+                    Let $k$ be a field and let $R := \frac{k[x_1, ..., x_N]}{(f_1, ..., f_n)}$ be a $k$-algebra of finite presentation (which we note to be Noetherian, and hence locally Noetherian, \textit{a priori}). Also, let $\p$ be a prime ideal of $R$ (i.e. a prime of $k[x_1, ..., x_N]$ which contains $(f_1, ..., f_n)$), and let us denote the height/codimension of the ideal $(f_1, ..., f_n)$ by $c$, i.e.:
+                        $$c := \inf_{\p \in |\Spec R|} \height \p$$
+                    Then:
+                        \begin{enumerate}
+                            \item The Noetherian local ring $(R_{\p}, \p)$ is regular if and only if the rank of the Jacobian:
+                                $$
+                                    \Jac(f_1, ..., f_n) = \left(\nabla f_1, ..., \nabla f_n\right)^T = 
+                                            \begin{pmatrix}
+                                                \del_{x_1} f_1 & ... & \del_{x_n} f_1
+                                                \\
+                                                \vdots & \ddots & \vdots
+                                                \\
+                                                \del_{x_1} f_n & ... & \del_{x_n} f_n
+                                            \end{pmatrix}
+                                        = (\del_{x_j} f_i)_{1 \leq i, j \leq n}
+                                $$
+                            is \textit{at most $c$} when reduced modulo $\p$ (i.e. we are referring to the Jacobian attached to the ring $R \tensor_k \kappa_{\p}$, where $\kappa_{\p}$ is the residue field at $\p$ of $R$). 
+                            \item In the event that $k$ is of some prime characteristic $p$ and $\kappa_{\p}$ is separable over $k$, we also have the characterisation whereby $(R_{\p}, \p)$ is a regular local ring if and only if the rank of the Jacobian attached to $R \tensor_k \kappa_{\p}$ is exactly $c$. 
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[How to find singular loci of regular rings]
+                    
+                \end{corollary}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{example}[Some unusual regular rings] \label{example: regular_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item Let $k$ be a field of some prime characteristic $p$ and let $t$ be transcendental over $k$. Then, the local $k$-algebra $k[\![t]\!]$ is geometrically regular over $k$. 
+                        \item More generally, any discrete valuation ring is a regular local ring of Krull dimension $1$ \cite[\href{https://stacks.math.columbia.edu/tag/00PD}{Tag 00PD}]{stacks}.  
+                        \item Let $k$ be any field. Then $k[\![x, y]\!]$ is a regular local $k$-algebra of Krull dimension $2$. 
+                        \item Let $(R, \m)$ be a regular local ring (which is necessarily Noetherian). Then, so is the polynomial ring $R[x]$: its Krull dimension is one greater than that of $R$ (this follows directly from proposition \ref{prop: dimensions_of_polynomial_rings}).
+                    \end{enumerate}
+                \end{example}
+                
+            \subsubsection{Properties of regular rings}
+            
+            \subsubsection{Homological connections to dimension theory}
+                \paragraph{Projective dimensions}
+                
+                \paragraph{Global dimensions; the Auslander-Buchsbaum Formula}
+                
+                \paragraph{Stably free modules}
+    
+    \section{Smoothness}
+        \subsection{The cotangent complex formalism}
+            \subsubsection{K\"ahler differentials, reprised}
+                \begin{definition}[(Pre)derivations and Leibniz algebras] \label{def: derivations}
+                    Let $k$ be a ring (which need not be commutative) and let $(\O, \tensor, 1)$ be a $k$-linear monoidal category. 
+                        \begin{enumerate}
+                            \item \textbf{(Prederivations):} A \textbf{left/right/two-sided-prederivation} on an (not necessarily associative, commutative, nor unital) algebra $\left(\g, \nabla\right)$ internal to $\O$ is an endomorphism:
+                                $$D: \g \to \g$$
+                            thereon that turns the triple $\left(\g, \nabla, D\right)$ into an \textbf{additive left/right/two-sided-Leibniz algebra}. That is to say, we require the following diagram to commute in $\O$:
+                                $$
+                                    \begin{tikzcd}
+                                    	{\g \tensor \g} & {\g} \\
+                                    	{\g \tensor \g} & {\g}
+                                    	\arrow["{D}", from=1-2, to=2-2]
+                                    	\arrow["{\nabla}", from=2-1, to=2-2]
+                                    	\arrow["{\nabla}", from=1-1, to=1-2]
+                                    	\arrow["{D \tensor \id_{\g} + \id_{\g} \tensor D}"', from=1-1, to=2-1]
+                                    \end{tikzcd}
+                                $$
+                            \item \textbf{(Derivations):} If $\g$ also happens to be a unital algebra (with unit map $\eta: 1 \to \g$), then we require that the following diagram commutes:
+                                $$
+                                    \begin{tikzcd}
+                                    	{1} & {\g} \\
+                                    	& {\g}
+                                    	\arrow["{D}", from=1-2, to=2-2]
+                                    	\arrow["{\eta}", from=1-1, to=1-2]
+                                    	\arrow["{0}"', from=1-1, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                            whererin $0$ is understood to be the additive identity in the $k$-module $\O(1, \g)$. In this situation, we call the quadruple $(\g, \nabla, D, \eta)$ a \textbf{linear Leibniz algebra}, and specifically, the prederivation $D$ will be referred to simply as a \textbf{derivation}.
+                        \end{enumerate}
+                \end{definition}
+                \begin{remark}
+                    If there exists a notion of elements inside objects of $\O$ (should $\O$ be the linear monoidal category of modules over a ring, for example), then the information that the diagrams in definition \ref{def: derivations} carry can also be understood as the following statement:
+                        $$\forall x, y \in \g: D \nabla(x \tensor y) = \nabla(Dx \tensor y) + \nabla(x \tensor Dy)$$
+                    and again, if $\g$ is unital, then:
+                        $$\forall a \in 1: D(a) = 0$$
+                    which are just conditions imposed upon derivations in more familiar definitions (see, for instance, \cite[\href{https://stacks.math.columbia.edu/tag/00RN}{Tag 00RN}]{stacks}). 
+                \end{remark}
+                
+                \begin{proposition}[Categories of Leibniz algebras] \label{prop: leibniz_algebra_categories}
+                    Let $k$ be a ring and let $(\O, \tensor, 1)$ be a monoidal $k$-linear category. Additive and linear Leibniz algebras internal to $\O$ form subcategories of $\Alg(\O)$, which we shall repsectively denote by $\Alg^{\Leib}(\O)$ and $\Assoc\Alg^{\Leib}(\O)$. Furthermore, one has the following diagram of \textit{fully faithful} embeddings of categories:
+                        $$
+                            \begin{tikzcd}
+                            	{\Alg(\O)} & {\Assoc\Alg(\O)} \\
+                            	{\Alg^{\Leib}(\O)} & {\Assoc\Alg^{\Leib}(\O)}
+                            	\arrow[hook', from=2-1, to=1-1]
+                            	\arrow[hook', from=2-2, to=1-2]
+                            	\arrow[hook, from=2-1, to=2-2]
+                            	\arrow[hook, from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Additive Leibniz algebras):} Let $(\g, \nabla, D)$ and $(\g', \nabla', D')$ be two additive Leibniz algebras. Then, let us declare that a morphism of additive Leibniz algebras internal to $\O$ is an algebra homomorphism $\phi: \g \to \g'$ (i.e. a morphism satisfying $\phi \circ \nabla = \nabla\ \circ (\phi \tensor \phi)$) such that:
+                                $$\phi \circ D = D' \circ \phi$$
+                            It will suffice to show that the following diagram commutes:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g' \tensor \g'} & {\g'} \\
+                                    	& {\g' \tensor \g'} & {\g'} \\
+                                    	{\g \tensor \g} & {\g} \\
+                                    	{\g \tensor \g} & {\g}
+                                    	\arrow["{\phi \tensor \phi}", from=3-1, to=1-2]
+                                    	\arrow["{\phi}", from=3-2, to=1-3]
+                                    	\arrow["{\phi}", from=4-2, to=2-3]
+                                    	\arrow["{D'}", from=1-3, to=2-3]
+                                    	\arrow["{\nabla'}", from=1-2, to=1-3]
+                                    	\arrow["{D' \tensor \id_{\g'} + \id_{\g'} \tensor D'}"', from=1-2, to=2-2]
+                                    	\arrow["{\nabla'}", from=2-2, to=2-3]
+                                    	\arrow["{D}", from=3-2, to=4-2]
+                                    	\arrow["{D \tensor \id_{\g} + \id_{\g} \tensor D}"', from=3-1, to=4-1]
+                                    	\arrow["{\nabla}"', from=4-1, to=4-2]
+                                    	\arrow["{\nabla}"', from=3-1, to=3-2]
+                                    	\arrow["{\phi \tensor \phi}", from=4-1, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                            if we are simply trying to show that additive Leibniz algebras form a full subcategory of $\O$. To that end, consider the following:
+                                $$
+                                    \begin{aligned}
+                                        \phi \circ D \circ \nabla & = \phi \circ \nabla \circ \left(D \tensor \id_{\g} + \id_{\g} \tensor D\right)
+                                        \\
+                                        & = \nabla' \circ (\phi \tensor \phi) \circ \left(D \tensor \id_{\g} + \id_{\g} \tensor D\right)
+                                        \\
+                                        & = \nabla' \circ \left((\phi \circ D) \tensor \phi + \phi \tensor (\phi \circ D)\right)
+                                        \\
+                                        & = \nabla' \circ \left((D' \circ \phi) \tensor \phi + \phi \tensor (D' \circ \phi)\right)
+                                        \\
+                                        & = \nabla' \circ \left(D' \tensor \id_{\g'} + \id_{\g'} \tensor D'\right) \circ (\phi \tensor \phi)
+                                        \\
+                                        & = D' \circ \nabla' \circ (\phi \tensor \phi)
+                                    \end{aligned}
+                                $$
+                            \item \textbf{(Linear Leibniz algebras):} Because linear Leibniz algebras are additive Leibniz algebras that also happen to be unital, it will be enough to prove that the following diagram, wherein $\eta$ and $\eta'$ are the units and $\phi$ is once again just some algebra homomorphism (note that every algebra homomorphism respects units \textit{a priori}), commutes:
+                                $$
+                                    \begin{tikzcd}
+                                    	&& {1} & {\g'} \\
+                                    	{1} & {\g} && {\g'} \\
+                                    	& {\g}
+                                    	\arrow["{\phi}", from=2-2, to=1-4]
+                                    	\arrow["{\phi}", from=3-2, to=2-4]
+                                    	\arrow["{\eta}" description, from=2-1, to=2-2]
+                                    	\arrow["{D}", from=2-2, to=3-2]
+                                    	\arrow["{D'}", from=1-4, to=2-4]
+                                    	\arrow["{\eta'}" description, from=1-3, to=1-4]
+                                    	\arrow[Rightarrow, from=2-1, to=1-3, no head]
+                                    	\arrow["{0}"', from=2-1, to=3-2]
+                                    	\arrow["{0}"', from=1-3, to=2-4]
+                                    \end{tikzcd}
+                                $$
+                            To that end, consider the following:
+                                $$
+                                    \begin{aligned}
+                                        D' \circ \phi \circ \eta & = D' \circ \eta'
+                                        \\
+                                        & = D' \circ 0
+                                        \\
+                                        & = 0
+                                        \\
+                                        & = \phi \circ 0
+                                        \\
+                                        & = \phi \circ D \circ \eta
+                                    \end{aligned}
+                                $$
+                            By matching the terms in these equations with composition of arrows in the preceding two diagrams, we can see that the diagrams indeed commute.
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{example}[Examples of derivations and Leibniz algebras] \label{example: derivations}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(The adjoint representation):} Let $k$ be a ring and let $\left(\g, [-,-]\right)$ be a Lie algebra internal to the braided symmetric monoidal $k$-linear category ${}_k\Mod_k$ of two-sided $k$-modules. Then, notice that for all $x \in \g$, the adjoint operator $\ad(x) := [x,-]$ is a left-derivation and thus turns every triple $\left(\g, [-,-], \ad(x)\right)$ into an additive left-Leibniz algebra.
+                        \item \textbf{(K\"ahler differentials and a \textit{raison d'\^etre}):} Let $A$ be a \textit{commutative} ring. Then, the linear Leibniz algebras on monoid objects $B$ of the $A$-linear symmetric monoidal category ${}_A\Mod$ are just modules of K\"ahler differentials on $B$ over $A$ (note the plurality of "modules"; we will prove that there is a universal one in theorem \ref{theorem: kahler_differential_universal_property}). This might seem a bit strange, because usually, one would think of modules of K\"ahler differentials as mere modules instead of algebras equipped with a derivation. However, if we would recall that the module of K\"ahler differentials $\Omega^1_{B/A}$ defined with respect to some ring map $\phi: A \to B$ and some $A$-linear derivation $d$ on $B$ is just the one generated by the symbols $db$, which are subjected to the following relations:
+                            $$\forall a \in A: d\left(\phi(a)\right) = 0$$
+                            $$\forall (b, b') \in B \x B: d(b + b') = db + db'$$
+                            $$\forall (b, b') \in B \x B: d(bb') = db \cdot b' + b \cdot db'$$
+                        (see \cite[\href{https://stacks.math.columbia.edu/tag/00RM}{Tag 00RM}]{stacks} for more details), then we would see that every module of K\"ahler differentials $\Omega^1_{B/A}$ comes equipped with an $A$-linear map satisfying the above specifications from $B$:
+                            $$d: B \to \Omega^1_{B/A}$$
+                        By simply evaluating the formal symbols $db$ at elements of $B$, one would recover the notion of derivations as endomorphisms. Thus, commutative linear Leibniz algebras are the same thing as modules of K\"ahler differentials. 
+                        
+                        We shall package these observations neatly into the content of theorem \ref{theorem: kahler_differential_universal_property}. 
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{theorem}[Modules of K\"ahler differentials are free linear Leibniz algebras] \label{theorem: kahler_differential_universal_property}
+                    Let $k$ be a ring and let $(\O, \tensor, 1)$ be a two-sided $k$-linear monoidal category (i.e. a category enriched over the symmetric monoidal category ${}_k\Mod_k$ of two-sided $k$-modules). First of all, note that the category $\Comm\Alg(\O)$ of commutative monoids therein (which happens to be equivalent to that of associative monoids since $\O$ is two-sided linear) has the monoidal unit $1$ as an initial object (which in particular, implies that every commutative algebra object $B$ of $\O$ comes equipped with a canonical homomorphism $1 \to B$). Then, (two-sided) $k$-linear K\"ahler differentials arise naturally from the following forgetful-free adjunction:
+                        $$
+                            \begin{tikzcd}
+                            	{\Assoc\Alg^{\Leib}(\O)} & {\Comm\Alg(\O)}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "U"', shift right=2, hook, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Omega^1}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                    wherein:
+                        \begin{enumerate}
+                            \item $U$ is the obvious forgetful functor, which also happens to be the fully faithful embedding, and
+                            \item $\Omega^1$ is the functor associating to commutative algebras $B$ the canonical derivation:
+                                $$d: B \to I/I^2$$
+                            wherein $I$ is the kernel of the codiagonal/multiplication $\mu_B: B \tensor B \to B$. 
+                        \end{enumerate}
+                \end{theorem}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Unit):} 
+                            \item \textbf{(Counit):} 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Universal property of K\"ahler differentials] \label{coro: kahler_differential_universal_property}
+                    Let $\O$ be the linear symmetric monoidal category ${}_A\Mod$ of modules over some commutative ring $A$. Commutative algebras therein are just commutative $A$-algebras, and so for each such algebra:
+                        $$\phi: A \to B$$
+                    one gets a module of K\"ahler differential:
+                        $$d: B \to \Omega^1_{B/A}$$
+                    satisfying:
+                        $$\forall a \in A: d\left(\phi(a)\right) = 0$$
+                        $$\forall (b, b') \in B \x B: d(b + b') = db + db'$$
+                        $$\forall (b, b') \in B \x B: d(bb') = db \cdot b' + b \cdot db'$$
+                    Then, by general properties of adjoint functors, one can show that the above canonical choice of module of K\"ahler differentials given by the functor $\Omega^1: {}^{A/}\Comm\Alg \to {}^{A/}\Assoc\Alg^{\Leib}$ is actually universal, in the sense that it is initial in the category of all $A$-module homormophisms:
+                        $$\delta: B \to M$$
+                    satisfying:
+                        $$\forall a \in A: \delta\left(\phi(a)\right) = 0$$
+                        $$\forall (b, b') \in B \x B: \delta(b + b') = \delta b + \delta b'$$
+                        $$\forall (b, b') \in B \x B: \delta(bb') = \delta b \cdot b' + b \cdot \delta b'$$
+                    In other words, given any $A$-linear derivation $\delta: B \to M$ on $B$, there is the following unique factorisation:
+                        $$
+                            \begin{tikzcd}
+                            	 & B \\
+                            	{\Omega^1_{B/A}} && M
+                            	\arrow["\delta", from=1-2, to=2-3]
+                            	\arrow["d"', from=1-2, to=2-1]
+                            	\arrow[dashed, from=2-1, to=2-3]
+                            \end{tikzcd}
+                        $$
+                \end{corollary}
+                
+            \subsubsection{Properties of modules of K\"ahler differentials}
+                \begin{remark}[K\"ahler differentials and colimits] \label{remark: differentials_and_colimits}
+                    This could be viewed as a corollary to theorem \ref{theorem: kahler_differential_universal_property}. 
+                    
+                    Let $R$ be a base commutative ring and let $\{S_i\}_{i \in I}$ be a diagram of $R$-algebras $S_i$. Then, due to $\Omega^1_{-/R}$ being a left-adjoint (which means, in particular, that it would preserve colimits \textit{a priori}), one has the following identity:
+                        $$\Omega^1_{\underset{i \in I}{\colim} S_i/R} \cong \underset{i \in I}{\colim} \Omega^1_{S_i/R}$$
+                \end{remark}
+                \begin{example}[K\"ahler differentials and localisations] \label{example: kahler_differentials_and_localisations}
+                    An example of a colimit of an infinite diagram of modules of K\"ahler differentials is how these modules interact with localisations of commutative rings. Let $S$ be a (possibly infinite) commutative ring let $\q \in |\Spec S|$ be a prime ideal thereof, and let $R \to S$ be a ring map. Then:
+                        $$\Omega^1_{S_{\q}/R} \cong (\Omega^1_{S/R})_{\q}$$
+                    Note that this exhibits the commutativity of $\Omega^1_{-/R}$ with an \textit{infinite} colimit because:
+                        $$S_{\q} \cong \underset{y \in S \setminus \q}{\colim} S[1/y]$$
+                \end{example}
+                Let us examine how K\"ahler differentials interact with colimits a bit closer through the following proposition, wherein we rely on the fact that finite colimits can be constructed out of finite coproducts and epimorphisms.
+                \begin{proposition}[K\"ahler differentials and finite colimits] \label{prop: differentials_and_finite_colimits}
+                    Let $R$ be a base commutative ring. 
+                        \begin{enumerate}
+                            \item \textbf{(Module of differentials of a surjection):} If $R \to S$ is a surjective ring homomorphism, then:
+                                $$\Omega^1_{S/R} \cong 0$$
+                            \item \textbf{(Module of differentials and base change):} Consider a pushout diagram of commutative rings such as the following one:
+                                $$
+                                    \begin{tikzcd}
+                                    	{S'} & {R'} \\
+                                    	S & R
+                                    	\arrow[from=2-2, to=2-1]
+                                    	\arrow[from=2-1, to=1-1]
+                                    	\arrow[from=2-2, to=1-2]
+                                    	\arrow[from=1-2, to=1-1]
+                                    	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                            Then:
+                                $$\Omega^1_{S'/R} \cong \Omega^1_{S/R} \oplus \Omega^1_{R'/R}$$
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Module of differentials of a surjection):} 
+                                \begin{enumerate}
+                                    \item First of all, we claim that $\Omega^1_{R/R} \cong 0$. To see why this is the case, recall firstly that $R$ is the initial object of ${}^{R/}\Comm\Alg$, the category of internal commutative and unital algebras in ${}_R\Mod$. The universal property of the initial object as the colimit of the empty diagram as well as the fact that $\Omega^1_{-/R}$ is a left-adjoint, then jointly imply that $\Omega^1_{R/R}$ must be initial in ${}_R\Mod$. Lastly, recall that $0$ is intial in ${}_R\Mod$: this implies that $\Omega^1_{R/R} \cong 0$. Note that this is a special case of $\Omega^1_{S/R} \cong 0$ whenever $R \to S$ is surjective, because the zero object $0 \in {}_R\Mod$ is also terminal (and also because ${}_R\Mod$ is an abelian category).
+                                    \item By remark \ref{remark: differentials_and_colimits}, there exists a surjective $R$-module homomorphism:
+                                        $$\Omega^1_{R/R} \to \Omega^1_{S/R}$$
+                                    and because $\Omega^1_{R/R} \cong 0$, we can thus deduce that:
+                                        $$\Omega^1_{S/R} \cong 0$$
+                                    from the universal property of the zero object $0$ in ${}_R\Mod$ as the limit of the empty diagram.
+                                \end{enumerate}
+                            \item \textbf{(Module of differentials and base change):} This is completely trivial.
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{lemma}[Surjections between modules of differentials] \label{lemma: surjections_between_modules_of_differentials}
+                    Consider the following commutative diagram in $\Cring$:
+                        $$
+                            \begin{tikzcd}
+                            	{S'} & {R'} \\
+                            	S & R
+                            	\arrow[from=2-1, to=1-1]
+                            	\arrow[from=2-2, to=1-2]
+                            	\arrow[from=1-2, to=1-1]
+                            	\arrow[from=2-2, to=2-1]
+                            \end{tikzcd}
+                        $$
+                    Should the arrow $S \to S'$ be surjective, then the naturally induced $S$-module homomorphism $\Omega^1_{S/R} \to \Omega^1_{S'/R'}$ shall also be surjective.
+                \end{lemma}
+                    \begin{proof}
+                        First of all, the $S$-module homomorphism $\Omega^1_{S/R} \to \Omega^1_{S'/R'}$ is well-defined as it comes from evaluating the natural transformation $\Omega^1_{-/R} \to \Omega^1_{-/R'}$ along the arrow $S \to S'$ in the following manner:
+                            $$
+                                \begin{tikzcd}
+                                	& {} & {\Omega^1_{S'/R'}} & 0 \\
+                                	{\Omega^1_{S'/R}} & {\Omega^1_{R'/R}} \\
+                                	{\Omega^1_{S/R}} & 0
+                                	\arrow[from=3-2, to=2-2]
+                                	\arrow[from=3-2, to=3-1]
+                                	\arrow[from=3-1, to=2-1]
+                                	\arrow[from=2-2, to=2-1]
+                                	\arrow[from=1-4, to=1-3]
+                                	\arrow[from=2-1, to=1-3]
+                                	\arrow[from=2-2, to=1-4]
+                                \end{tikzcd}
+                            $$
+                        Next, note that the $S$-module homomorphism $\Omega^1_{S/R} \to \Omega^1_{S'/R}$ is trivially surjective via an application of proposition \ref{prop: differentials_and_finite_colimits}.
+                    \end{proof}
+                    
+                \begin{proposition}[The canonical exact sequence] \label{prop: canonical_exact_sequence_of_differentials}
+                    For $A \to B \to C$ a composition of ring maps, there exists a canonically associated right-exact sequence of $C$-modules:
+                        $$C \tensor_B \Omega^1_{B/A} \to \Omega^1_{C/A} \to \Omega^1_{C/B} \to 0$$
+                \end{proposition}
+                    \begin{proof}
+                        First of all, the morphisms $A \to B \to C$ gives rise to a natural transformations:
+                            $$\Omega^1_{-/A} \to \Omega^1_{-/B} \to \Omega^1_{-/C}$$
+                        In particular, this tells us that there are the following canonically defined commutative diagrams:
+                            $$\Omega^1_{B/A} \to \Omega^1_{B/B}$$
+                            $$\Omega^1_{C/A} \to \Omega^1_{C/B} \to \Omega^1_{C/C}$$
+                        Second of all, recall that we know by proposition \ref{prop: differentials_and_finite_colimits} that:
+                            $$\Omega^1_{B/B} \cong 0$$
+                            $$\Omega^1_{C/C} \cong 0$$
+                        Thus, there exists the following canonical commutative diagram of $C$-modules:
+                            $$
+                                \begin{tikzcd}
+                                	{C \tensor_B \Omega^1_{B/A}} & {\Omega^1_{C/A}} & 0 \\
+                                	0 & {\Omega^1_{C/B}} & 0
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow["{!}", from=1-2, to=1-3]
+                                	\arrow[from=1-3, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        wherein:
+                            \begin{itemize}
+                                \item the horizontal arrows exist as a consequence of $C \tensor_B -: {}_B\Mod \to {}_C\Mod$ being a left-adjoint
+                                \item $!: \Omega^1_{C/A} \to 0$ is the canonical terminal arrow, and
+                                \item the arrows $0 \to \Omega^1_{C/B}$ and $\Omega^1_{C/B} \to 0$ are actually $C \tensor_B \Omega^1_{B/B} \to \Omega^1_{C/B}$ and $\Omega^1_{C/B} \to \Omega^1_{C/C}$, respectively.
+                            \end{itemize}
+                        An application of lemma \ref{lemma: surjections_between_modules_of_differentials} to the square:
+                            $$
+                                \begin{tikzcd}
+                                	C & B \\
+                                	C & A
+                                	\arrow["{\id_C}", from=2-1, to=1-1]
+                                	\arrow[from=2-2, to=1-2]
+                                	\arrow[from=1-2, to=1-1]
+                                	\arrow[from=2-2, to=2-1]
+                                \end{tikzcd}
+                            $$
+                        (note that the identity morphism $\id_C: C \to C$ is trivially surjective) then helps us show the surjectivity of the map $\Omega^1_{C/A} \to \Omega^1_{C/B}$. This concludes the proof.
+                    \end{proof}
+                    
+            \subsubsection{Cotangent complexes}
+                \begin{convention}[Simplicial objects]
+                    Let $\C$ be an arbitrary category. Then, the category of so-called \textbf{simplicial objects} of $\C$ is nothing but the functor category $\C^{\simp^{\op}}$, where $\simp$ is the category of finite simplicies. As $\simp$ is an $\infty$-category in a natural way, so is $\C^{\simp^{\op}}$.
+                \end{convention}
+                
+                \begin{remark}[The Dold-Kan Correspondence]
+                    We will be assuming familiarity with the Dold-Kan Correspondence. In essence, it asserts that for $\calA$ any stable $\infty$-category (cf. definition \ref{def: stable_infinity_categories}), there exists an equivalence of stable $\infty$-categories between the category of simplicial objects of $\calA$ and that of projective resolutions/connective objects in $\calA$:
+                        $$\calA^{\simp^{\op}} \cong {}^{\leq 0}\calA$$
+                    For more details, see \cite{nlab:dold-kan_correspondence} and \cite[Subsection 1.2.3]{HA} (and in particular, \cite[Theorem 1.2.3.7]{HA}).
+                \end{remark}
+                
+                Let $R$ be a base commutative ring and let $P \to S$ be a surjective $R$-algebra homomorphism. We know by proposition \ref{prop: canonical_exact_sequence_of_differentials}, that there exists the following long exact sequence of $S$-modules:
+                    $$S \tensor_P \Omega^1_{P/R} \to \Omega^1_{S/R} \to \Omega^1_{S/P} \to 0$$
+                and because $P \to S$ is surjective (which implies - via proposition \ref{prop: differentials_and_finite_colimits} - that $\Omega^1_{S/P} \cong 0$), the sequence reduces down to the :
+                    $$S \tensor_P \Omega^1_{P/R} \to \Omega^1_{S/R} \to 0$$
+                Now, suppose that we wish to 
+            
+                \begin{definition}[Cotangent complexes] \label{def: cotangent_complexes} \index{Cotangent complex} \index{Conormal module}
+                    Let $R$ be a base commutative ring and let $S$ be a simplicial $R$-algebra (which we shall view, through the lens of the Dold-Kan Correspondence, as a commutative and unital algebra internal to the stable $\infty$-category ${}_R^{\leq 0}\Mod$); let $... P_1 \to P_0 \to S$ be a projective resolution of $S$ where the $P_i$'s are commutative $R$-algebras also. 
+                    \begin{enumerate}
+                        \item \textbf{(Cotangent complexes):} The \textbf{relative cotangent complex} over $R$ associated to $S$ is thus the application of the left-derived functor $\L\Omega^1_{-/R}: {}^{\leq 0}({}^{R/}\Comm\Alg) \to {}^{\leq 0}({}^{R/}\Assoc\Alg^{\Leib})$ to the object $S \in {}^{\leq 0}({}^{R/}\Comm\Alg)$. It is commonly denoted by $\bfL_{S/R}$.
+                        \item \textbf{(Na\"ive cotangent complexes):}
+                    \end{enumerate}
+                \end{definition}
+                \begin{theorem}[Computing na\"ive cotangent complex] \label{theorem: computing_naive_cotangent_complexes}
+                    \noindent
+                    \begin{enumerate}
+                        \item Let $R$ be a base commutative ring and let $P \to S$ be a surjective $R$-algebra homomorphism with kernel $J$. Then:
+                            $$\calN^{\vee}_{S/R} \cong J/J^2$$
+                        which is to say that:
+                            $$H_1(\NL_{S/R}) \cong J/J^2$$
+                        \item If $P \to S$ has, in addition, a section (i.e a right-inverse), then:
+                            $$H_2(\NL_{S/R}) \cong 0$$
+                        Furthermore, the resulting short exact sequence:
+                            $$0 \to \calN^{\vee}_{S/R} \to S \tensor_P \Omega^1_{P/R} \to \Omega^1_{S/R} \to 0$$
+                        splits.
+                        \item Let $A$ be a base commutative ring and consider the codiagonal/multiplication $\nabla_{B/A}: B \tensor_A B \to B$: this map is surjective and admits the canonical map $B \to B \tensor_A B$ as a section, so the na\"ive cotangent complex $\NL_{B/A}$ will take the on the form of the following splitting short exact sequence:
+                            $$0 \to \calI_{B/A}/\calI_{B/A}^2 \to B \tensor_{B \tensor_A B} \Omega^1_{(B \tensor_A B)/A} \to \Omega^1_{B/A} \to 0$$
+                        where $\calI_{B/A}$ denotes the kernel $\ker \nabla_{B/A}$. Then, one can actually characterise $\Omega^1_{B/A}$ as $\calI_{B/A}/\calI_{B/A}^2$ via an isomorphism of $B$-modules:
+                            $$\Omega^1_{B/A} \cong \calI_{B/A}/\calI_{B/A}^2$$
+                    \end{enumerate}
+                \end{theorem}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item 
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Na\"ive cotangent complex of separated schemes and of closed subschemes] \label{coro: naive_cotangent_complex_of_separated_schemes_and_closed_subschemes}
+                    \noindent
+                    \begin{itemize}
+                        \item \textbf{(Differentials on separated schemes):} A separated (relative) scheme $X \to S$ is one that is closed inside its diagonal $X \x_S X$ (i.e. the diagonal map $\Delta_{X/S}: X \to X \x_S X$ is a closed immersion). This means that there exists a quasi-coherent ideal sheaf $\calI_{X/S} \subset \calO_{X \x_S X}$ such that:
+                        $$\Spec_{X \x_S X/S} \calO_{X \x_S X}/\calI_{X/S} \cong X$$
+                        or concretely, that the codiagonal:
+                            $$\nabla_{X/S}: \calO_X \tensor_{\calO_S} \calO_X \to \calO_X$$
+                        has $\Delta^*_{X/S} \calI_{X/S}$ as its kernel (note that we have $\Delta^*_{X/S} \calO_{X \x_S X} \cong \calO_X \tensor_{\calO_S} \calO_X$ by some general topos theory; we shall leave this verification up to the reader). We can then apply theorem \ref{theorem: computing_the_naive_cotangent_complex} to obtain the following definition of the sheaf of (relative) K\"ahler differentials on $X$:
+                            $$\Omega^1_{X/S} \cong \Delta^*_{X/S}(\calI_{X/S}/\calI_{X/S}^2)$$
+                        It is not hard to see that $\Omega^1_{X/S}$ is necessarily quasi-coherent.
+                        \item \textbf{(Differentials on closed subschemes):}
+                            \begin{itemize}
+                                \item \textbf{(Differentials on general closed subschemes):} By arguing similarly, one sees that for:
+                                    $$j: Z \hookrightarrow X$$
+                                a closed immersion of schemes, there exists a canonically defined associated (quasi-coherent) sheaf of differentials $\Omega^1_{Z/X}$, which is given by:
+                                    $$\Omega^1_{Z/X} \cong j^*(\calI_{Z/X}/\calI_{Z/X}^2)$$
+                                This, in fact, is a generalisation of the first case.
+                                \item \textbf{(Zariski cotangent spaces):} One very interesting subcase that we will examine in closer details (later in paragraph \ref{subsubsection: cotangent_spaces}) is that of closed points $x: \Spec \kappa_x \to X$. For now, however, note that the na\"ive cotangent complex at $x \in |X|$ has the form:
+                                    $$\m_x/\m_x^2 \to \kappa_x \tensor_{\calO_{Z, z}} \Omega^1_{X, x} \to \Omega^1_{\kappa_x/\calO_{X, x}} \to 0$$
+                                Because there exists a canonical surjective ring homomorphism $\calO_{X, x} \to \kappa_x$, we have:
+                                    $$\Omega^1_{\kappa_x/\calO_{X, x}} \cong 0$$
+                            \end{itemize}
+                    \end{itemize}
+                \end{corollary}
+                    
+            \subsubsection{Cotangent spaces} \label{subsubsection: cotangent_spaces}
+    
+        \subsection{Smoothness}
+            Smoothness is a notion that, while being intuitively simple (or at least seemingly so), is extremely subtle and furthermore, has far-reaching consequences. Morally, one should imagine a smooth scheme (or for that matter, a smooth variety) as an algebro-geometric object that behaves as much like a smooth manifold as possible. For instance, there ought to be no singularities, as well as no funny business of dimension-hopping between tangent spaces at different points. Smooth varieties should also admit some sort of de Rham cohomology (see section \ref{section: de_rham_cohomology}) that returns results agreeing with those given by \'etale cohomology (which is somehow the \say{right} notion of singular comology for schemes). But what if one is looking for something a bit more technical ? Well, first of all, we are going to restrict ourselves to cases where a so-called \say{smooth} morphism is of finite presentation, which is because our first line of attack is going to be through Jacobian matrices: should these be of full rank, our schemes shall be \say{smooth}, and since Jacobians are only well-defined for functions between finite-dimensional spaces, \say{smooth} morphisms had better be of finite presentation in the first place (otherwise, there might be infinitely many components in our Jacobians). This, however, turns out to be a na\"ive attempt at tackling algebro-geometric smoothness, which is not to imply that one is unable to write down a meaningful definition of what it means for a scheme to be smooth, but instead, that such a definition is entirely impractical (this was pushed, for instance, by Michael Artin): the Jacobian criterion, or even the alternative definition involving the cotangent complex, while concrete, is just not easy to check at all, and worse, does not generalise well to more exotic settings such as those of derived schemes or perfectoid spaces. Due to this, we will start with what is called \say{formal smoothness}. A formally smooth morphism, roughly speaking, shall be one with all the qualitative properties that one would expect from a smooth morphism. We will subsequently introduce finiteness to the picture to obtain morphisms that are smooth in the technical sense. 
+        
+            \subsubsection{Formally smooth morphisms}
+                \begin{definition}[Formal smoothness] \label{def: formall_smoothness} \index{Smoothness! formal}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Formally smooth ring map):} A homomorphism of commutative rings:
+                            $$\varphi: R \to S$$
+                        is \textbf{formally smooth} if and only if for all $S$-algebras $B$ and nilpotent ideal $J$ thereof, the canonical map induced by the ring map $B \to B/J$:
+                            $$\Spec S(B) \to \Spec R(B/J)$$
+                        is surjective.
+                        \item \textbf{(Formally smooth prestacks):} A morphism:
+                            $$f: \calX \to \calY$$
+                        of prestacks is said to be \textbf{formally smooth} if and only if it is represented by a formally smooth morphism of affine schemes.
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}
+                    Note that the so-called \say{canonical map} induced by $B \to B/J$ always exists; simply consider the following commutative diagram:
+                        $$
+                            \begin{tikzcd}
+                            	{X(B)} & {X(B/J)} \\
+                            	{Y(B)} & {Y(B/J)}
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[dashed, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                \end{remark}
+                
+                \begin{proposition}[Formal smoothness is stable under base changes and compositions] \label{prop: compositions_and_base_changes_of_formally_smooth_morphisms}
+                    \noindent
+                    \begin{enumerate}
+                        \item Let:
+                            $$
+                                \begin{tikzcd}
+                                	A & B & C
+                                	\arrow["\varphi", from=1-1, to=1-2]
+                                	\arrow["\psi", from=1-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        be a composition of formally smooth ring homomorphisms. The composite map $A \to C$ is thus also formally smooth.
+                        \item Let $\varphi: R \to S$ be a formally smooth ring map and $\psi: R \to R'$ be an arbitrary homomorphism of commutative rings. Then, the pushout $S \tensor_{\varphi, R, \psi} R'$ is formally smooth over $R'$ as well.
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{lemma}[Splitting of the canonical short exact sequence] \label{lemma: canonical_short_exact_sequence_splits}
+                    Let $\varphi: R \to S$ be a ring map and let $\pi: P \to S$ be a surjective homomorphism of $R$-algebras from a polynomial $R$-algebra $P$; additionally, write $J := \ker \pi$. Then, $\varphi: R \to S$ is smooth if and only if the canonically defined right-exact sequence:
+                        $$J/J^2 \to \Omega^1_{P/R} \tensor_P S \to \Omega^1_{S/R} \to 0$$
+                    is actually a short exact sequence that splits.
+                \end{lemma}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{proposition}
+                    
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{proposition}[Formal smoothness is a local property] \label{prop: formal_smoothness_is_local}
+                    Let $\varphi: R \to S$ be a homomorphism between two commutative rings and let $\q$ be some prime ideal of $S$ (read: point of $|\Spec S|$). Then, $\varphi$ is formally smooth if and only if the induced maps $\varphi_{\q}: R \to S_{\q}$ are all formally smooth. 
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item Suppose first of all that $\varphi_{\q}: R \to S_{\q}$ is a formally smooth ring map for any prime $\q \in |\Spec S|$.  
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{proposition}[Formally smooth + finite type + local = flat] \label{prop: formally_smooth_finite_type_local_morphisms_are_flat}
+                    Let $(R, \m)$ be a local ring, let $S$ be a finitely presented $R$-algebra, and consider a local homomorphism $(R, \m) \to (S_{\q}, \q)$. Then, should $R \to S_{\q}$ be formally smooth, it shall also be flat. 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+        
+            \subsubsection{Smooth morphisms}
+                \begin{definition}[Standard smoothness] \label{def: standard_smoothness} \index{Smoothness! standard}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Standard smooth ring maps):} A map of commutative rings:
+                            $$\varphi: R \to S$$
+                        is called \textbf{standard smooth} if and only if it is of \textit{finite presentation} (i.e. there exists natural numbers $N, n$ such that:
+                            $$S \cong R[x_1, ..., x_N]/(f_1, ..., f_n)$$
+                        for some finite subset $\{f_i\}_{1 \leq i \leq n}$ of $R[x_1, ..., x_n]$) and the Jacobian of the vector-valued function $(f_1, ..., f_n)$ (mind the abuse of notation):
+                            $$\Jac(f_1, ..., f_n) = \left(\nabla f_1, ..., \nabla f_n\right)^T = 
+                                \begin{pmatrix}
+                                    \del_{x_1} f_1 & ... & \del_{x_n} f_1
+                                    \\
+                                    \vdots & \ddots & \vdots
+                                    \\
+                                    \del_{x_1} f_n & ... & \del_{x_n} f_n
+                                \end{pmatrix}
+                            = (\del_{x_j} f_i)_{1 \leq i, j \leq n}$$
+                        is \textit{full-rank} (i.e. of rank $n$ in this particular instance); alternatively, by basic module theory, one can require the determinant of the Jacobian to be \textit{invertible} in $S$.  
+                        \item \textbf{(Standard smooth prestacks):} A morphism:
+                            $$f: \calX \to \calY$$
+                        of prestacks is said to be \textbf{standard smooth} if and only if it is represented by a standard smooth morphism of affine schemes.
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}[Unpacking the definition] \label{remark: standard_smoothness}
+                    Definition \ref{def: standard_smoothness} paints a rather conrete and down-to-earth picture depicting what it means for a ring map to supposedly be \say{smooth}. Essentially, what it is trying to say is that given a ring map of finite presentation:
+                        $$\varphi: R \to S$$
+                    with:
+                        $$S \cong R[x_1, ..., x_N]/(f_1, ..., f_n)$$
+                    then should the Jacobian - an $R$-linear operator on $S$ viewed as a finitely presented $R$-module - be of full rank, the aforementioned ring map $\varphi$ is going to be somehow \say{smooth} (the quotation marks are here because as it turns out, standard smooth morphisms are only cohomologically smooth - i.e. smooth in the \say{right} algebro-geometric way - if the associated universal module of K\"ahler differential is free; cf. proposition \ref{prop: smooth_iff_standard_smooth}). In other words, definition \ref{def: standard_smoothness} is nothing but an analogue of the Inverse Function Theorem from calculus. 
+                \end{remark}
+                \begin{remark}[Locality of (standard) smoothness]
+                    One very important bit of information that can be inferred from definition \ref{def: standard_smoothness} is that standard smoothness (and as we shall see later on, cohomological smoothness as well) is a Zariski-local property: one checks whether or not some given scheme over a base commutative ring is standard smooth by checking if the affine patches covering it are so. 
+                \end{remark}
+                
+                \begin{definition}[Cohomological smoothness] \label{def: cohomological_smoothness} \index{Smoothness! cohomological}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Cohomologically smooth ring maps):} A homomorphism between commutative rings:
+                            $$\varphi: R \to S$$
+                        is called \textbf{cohomologically smooth} if and only if it is of finite presentation and its associated (na\"ive) cotangent complex is quasi-isomorphic to a finitely generated projective $S$-module placed in degree $0$.
+                        \item \textbf{(Cohomologically smooth prestacks):} A morphism:
+                            $$f: \calX \to \calY$$
+                        of prestacks is said to be \textbf{cohomologically smooth} if and only if it is represented by a cohomologically smooth morphism of affine schemes.
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}[Cotangent complex: na\"ive or nay ?]
+                    Definition \ref{def: cohomological_smoothness} made reference to na\"ive cotangent complexes associated to ring maps, and how those of ring maps that are of finite presentation being quasi-isomorphic to certain complexes of modules concentrated in degree $0$ implies cohomological smoothness. On the surface this might seem like a rather sensible characterisation of smoothness, but dive a little deeper and one shall find one glaring problem: the na\"ive cotangent complex is incredibly awkward to work with. There is, however, a silver lining, which is that na\"ive cotangent complexes are actually nothing but $(-1)$-truncated cotangent complexes. Thus, we can simply remove the word \say{na\"ive} from definition \ref{def: cohomological_smoothness}. 
+                \end{remark}
+                
+                \begin{proposition}[Cohomological smoothness is the same as standard smoothness] \label{prop: smooth_iff_standard_smooth}
+                    A ring map $\varphi: R \to S$ of finite presentation is smooth if and only if it is standard smooth.
+                \end{proposition}
+                    \begin{proof}
+                    
+                    \end{proof} 
+                \begin{convention}
+                    Thanks to proposition \ref{prop: smooth_iff_standard_smooth}, it makes sense from this point on for us to do away with the specifications and refer to both standard smooth morphisms and cohomologically smooth ones as simply being \say{smooth}.
+                \end{convention}
+                    
+                \begin{proposition}[Smoothness implies almost-finiteness of cotangent complex] \label{prop: smoothness_implies_almost_finiteness_of_cotangent_complex}
+                    The cotangent complex associated to any smooth ring map $\varphi: R \to S$ is almost of finite type, and because the cotangent complex associated to any smooth ring map is quasi-isomorphic to a projective module placed in degree $0$, this is actually just asserting that the associated module of K\"ahler differentials $\Omega^1_{S/R}$ is a finitely generated projective module.
+                \end{proposition}
+                    \begin{proof}
+                    
+                    \end{proof}
+                \begin{corollary}[Relative dimensions of smooth maps]
+                    The relative dimension of a smooth ring map is the number of generators of its associated cotangent complex, which according to proposition \ref{prop: smoothness_implies_almost_finiteness_of_cotangent_complex}, had better be finite.
+                \end{corollary}
+                \begin{example}
+                    A smooth ring map of the form:
+                        $$\varphi: R \to R[x_1, ..., x_N]/(f_1, ..., f_n)$$
+                    has relative dimension $N - n$. 
+                \end{example}
+                
+                \begin{proposition}[Smooth maps are finitely presented formally smooth maps] \label{prop: smooth_iff_formally_smooth_and_of_finite_presentation}
+                    A ring map of finite presentation is smooth if and only if it is formally smooth.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{proposition}[Smoothness is a local property] \label{prop: smoothness_is_local}
+                    Let $\varphi: R \to S$ be a ring map of finite presentation and let $\q$ be some prime ideal of $S$ (read: point of $|\Spec S|$). Then, $\varphi$ is smooth if and only if the induced maps $\varphi_{\q}: R \to S_{\q}$ are all smooth. 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Fibre-wise smoothness] \label{corollary: fibrewise_smoothness}
+                    Let $X$ be a scheme over some base scheme $S$. Then, the structure morphism $X \to S$ is smooth if and only if all of its fibres are so, i.e. for all $s \in |S|$, the fibre $X_s \cong X \x_S \Spec \kappa_s$ is smooth over the residue field $\kappa_s$. In practice, this means that to check for smoothness, one can simply pullback to over a point and apply fibre-wise results on smoothness (such as proposition \ref{prop: dimensions_of_smoothn_morphisms_over_fields}).
+                \end{corollary}
+                    
+                \begin{proposition}[Smoothness is stable under base changes and compositions] \label{prop: compositions_and_base_changes_of_smooth_morphisms}
+                    \noindent
+                    \begin{enumerate}
+                        \item Let:
+                            $$
+                                \begin{tikzcd}
+                                	A & B & C
+                                	\arrow["\varphi", from=1-1, to=1-2]
+                                	\arrow["\psi", from=1-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        be a composition of smooth ring homomorphisms, and suppose that $\varphi$ is of relative dimension $r$, and $\psi$ is of relative dimension $s$. Given these hypotheses, the relative dimension of $\psi \circ \varphi$ is $r + s$.
+                        \item Let $\varphi: R \to S$ be a smooth ring map of relative dimension $d$ and $\psi: R \to R'$ be an arbitrary homomorphism of commutative rings. Then, the pushout $S \tensor_{\varphi, R, \psi} R'$ is smooth over $R'$, and of relative dimension $d$ as well. 
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item According to definition \ref{def: standard_smoothness} and proposition \ref{prop: smooth_iff_standard_smooth}, we can write $B$ as a commutative $A$-algebra of the form $\frac{A[x_1, ..., x_N]}{(f_1, ..., f_n)}$ for some pair $N, n$ of natural numbers, and subsequently, $C$ as a commutative $B$-algebra (which should be viewed as an $\frac{A[x_1, ..., x_N]}{(f_1, ..., f_n)}$-algebra) of the form $\frac{\frac{A[x_1, ..., x_N]}{(f_1, ..., f_n)}[y_1, ..., y_M]}{(g_1, ..., g_m)} \cong \frac{A[x_1, ..., x_N, y_1, ..., y_M]}{(f_1, ..., f_n, g_1, ..., g_m)}$ for another pair $M, m$ of natural numbers. Notice that:
+                                $$N - n = r, M - m = s$$
+                            (also, recall that smooth morphisms are \textit{a priori} of finite presentation, which would imply that $n \leq N$ and $m \leq M$, so the above expressions are well-defined - we do not want negative dimensions, after all). It is then rather easy to see that the relative dimension of $\psi \circ \varphi$ had better be equal to $r + s$.
+                            \item Suppose that for some pair of natural numbers $n, N$, we have:
+                                $$S \cong \frac{R[x_1, ..., x_N]}{(f_1, ..., f_n)}$$
+                            Then, by the fact that colimits commute, we have:
+                                $$S \tensor_{\varphi, R, \psi} R' \cong \frac{R[x_1, ..., x_N]}{(f_1, ..., f_n)} \tensor_{\varphi, R, \psi} R' \cong \frac{R'[x_1, ..., x_N]}{(f_1, ..., f_n)}$$
+                            which tells us that the pushout $S \tensor_{\varphi, R, \psi} R'$ is smooth as a commutative $R'$-algebra, and that it is of relative dimension $d = N - n$, much like $S$ is as an $R$-algebra.
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Compositions and base changes of \'etale morphisms] \label{coro: compositions_and_base_changes_of_etale_morphisms}
+                    Compositions of \'etale morphisms (see definition \ref{def: etale_morphisms} for the notion of \'etale-ness) are \'etale themselves, as these are smooth and of relative dimension $0$. Likewise, base changes of \'etale morphisms are also \'etale.
+                \end{corollary}
+                \begin{remark}[Preservation of smoothness and \'etale-ness of non-affine schemes]
+                    As smoothness (and hence \'etale-ness) is a local notion (cf. proposition \ref{prop: smoothness_is_local}), proposition \ref{prop: compositions_and_base_changes_of_smooth_morphisms} and corollary \ref{coro: compositions_and_base_changes_of_etale_morphisms} generalise in a rather obvious manner to cases where one's schemes might not be affine. Namely:
+                        \begin{enumerate}
+                            \item should:
+                                $$
+                                    \begin{tikzcd}
+                                        	X & Y & Z
+                                        	\arrow["\varphi", from=1-1, to=1-2]
+                                        	\arrow["\psi", from=1-2, to=1-3]
+                                        \end{tikzcd}
+                                $$
+                            be any pair of composable smooth (or \'etale) morphisms of schemes, wherein $\varphi$ is of relative dimension $r$ and $\psi$ is of relative dimension $s$, then their composition $\psi \circ \varphi$ will be smooth and of relative dimension $r + s$, and
+                            \item given any pullback square of schemes as follows:
+                                $$
+                                    \begin{tikzcd}
+                                    	{Y'} & Y \\
+                                    	{X'} & X
+                                    	\arrow["\psi", from=2-1, to=2-2]
+                                    	\arrow["\varphi", from=1-2, to=2-2]
+                                    	\arrow[from=1-1, to=1-2]
+                                    	\arrow[from=1-1, to=2-1]
+                                    	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                            wherein $\varphi: Y \to X$ is smooth of relative dimension $d$ and $\psi: X' \to X$ is arbitrary, the canonical projection $Y \x_{\varphi, X, \psi} X' \to X'$ is also smooth and of relative dimension $d$ (when $d = 0$, one obtains the stability of \'etale-ness of under base changes).
+                        \end{enumerate}
+                \end{remark}
+                
+                \begin{proposition}[Relative and pure dimensions of smooth maps over fields] \label{prop: dimensions_of_smoothn_morphisms_over_fields}
+                    Let $k$ be a field and let:
+                        $$\pi: X \to \Spec k$$
+                    be a scheme that is smooth over $\Spec k$. Then, the following are equivalent:
+                        \begin{enumerate}
+                            \item $\pi: X \to \Spec k$ is of relative dimension $d$. 
+                            \item The Krull dimension of $X$ is $d$. 
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        Because smoothness, as a property of schemes, is Zariski-local, let us assume that $X$ is affine. Note that this is not at the detriment of generality. 
+                        \begin{enumerate}
+                            \item To start, let us assume \textbf{1}. Specifically, let us assume that for some pair of natural numbers $n, N$ such that $d = N - n$, we have:
+                                $$X \cong \Spec \frac{k[x_1, ..., x_N]}{(f_1, ...,f_n)}$$
+                            Then, it is simply a matter of finding the Krull dimension $\frac{k[x_1, ..., x_N]}{(f_1, ...,f_n)}$. By the Third Isomorphism Theorem, prime ideals of $\frac{k[x_1, ..., x_N]}{(f_1, ...,f_n)}$ are in bijective correspondence with those of $k[x_1, ..., x_n]$ that contain the ideal $(f_1, ..., f_n)$; the Krull dimension of $\frac{k[x_1, ..., x_N]}{(f_1, ...,f_n)}$ is thus, by definition, the supremum of the heights of such prime ideals. 
+                            \item Let:
+                                $$X \cong \Spec \frac{k[x_1, ..., x_N]}{(f_1, ..., f_n)}$$
+                            and suppose that:
+                                $$\dim_{\Krull} X = d$$
+                            
+                        \end{enumerate}
+                    \end{proof}
+        
+        \subsection{Syntomicity and the art of building examples}
+            \begin{proposition}[Smooth maps are syntomic] \label{prop: smooth_maps_are_syntomic}
+                Smooth ring maps are syntomic (which in particular, implies that they are flat).
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+        
+        \subsection{Algebraic groups} \label{subsubsection: algebraic_groups}
+            \subsubsection{General properties of group schemes}
+                \begin{definition}[Algebraic groups] \label{def: algebraic_groups} \index{Algebraic groups}
+                    Let $S$ be a base scheme.
+                    \begin{enumerate}
+                        \item A \textbf{group scheme over $S$} is a group object in the cartesian closed category $\Sch_{/S}$ of schemes over $S$. 
+                        \item In the event that $S$ is isomorphic to the spectrum of some field $k$, a group scheme $G$ over $\Spec k$ will be called a \textbf{(locally) algebraic group scheme} if and only if it is (locally) of finite type over $\Spec k$ (i.e. if and only if it is (locally) algebraic as a scheme over $\Spec k$).
+                        \item An abstract group $S$-scheme:
+                            $$\pi: G \to S$$
+                        is called \textbf{geometrically (locally) algebraic} if and only if over each point:
+                            $$s: \Spec \kappa_s \to S$$
+                        with corresponding residue field $\kappa_s$, and for each field extension $K_s/\kappa_s$ corrsponding to a morphism:
+                            $$i: \Spec K_s \to \Spec \kappa_s$$
+                        of affine schemes, the canonical projection:
+                            $$\pr_2: \left(G \x_{\pi, S, s} \Spec \kappa_s\right) \x_{\pr_2, \Spec \kappa_s, i} \Spec K_s \to \Spec K_s$$
+                        is (locally) of finite type.
+                    \end{enumerate}
+                \end{definition}
+                \begin{example}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(General linear groups)} Traditionally, one thinks of general linear groups as groups of automorphisms of vector spaces of a given (not necessarily finite) dimension; so for instance, $\GL_n(\R)$ is the group of all automorphisms of $n$-dimensional real vector spaces, i.e. its elements are $n \x n$ invertible matrices with real coefficients. However, there is another way. By squinting a bit, we can see that for each natural number $n$, the presheaf:
+                            $$\GL_n: (\Cring^{\op})^{\op} \to \Sets$$
+                        is represented by the affine scheme $\Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]$, since an $n \x n$ matrix has $n^2$ free entries, which are only subjected to the requirement that the determinant (which can be viewed as a polynomial in the $n^2$ variables $x_{11}, ..., x_{nn}$) is invertible (hence the localisation at $\det$); incidentally, this also ensures that $\GL_n$ is a Zariski sheaf (cf. remark \ref{remark: affine_schemes_are_zariski_sheaves}), and hence an affine scheme (cf. definition \ref{def: zariski_topoi}). It remains to check whether or not $\GL_n$ is a group object. We claim that $\GL_n$, as it ought to be, is a group, and that its structure is determined by the following multiplication:
+                            $$
+                                \begin{aligned}
+                                    \GL_n & \leftarrow \GL_n \x \GL_n
+                                    \\
+                                    \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] & \leftarrow \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] \x \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]
+                                    \\
+                                    \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] & \to \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] \tensor_{\Z} \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]
+                                    \\
+                                    x_{ij} & \mapsto \sum_{k=1}^n x_{ik} \tensor x_{kj}
+                                \end{aligned}
+                            $$
+                        It is not hard to see that $\GL_n$ is a scheme of finite type, and hence it is an algebraic group, per definition \ref{def: algebraic_groups}.
+                        
+                        When $n = 1$, we recover the multiplicative group scheme $\G_m$ that appears, for instance, in example \ref{example: projective_spaces}.
+                        \item \textbf{(Special linear groups):} Via the above discussion surrounding $\GL_n$, let us define $\SL_n$ to be the Zariski-closed subgroup scheme represented by the affine scheme $\Spec \frac{\Z\left[\{x_{ij}\}_{1 \leq i,j \leq n}, \frac{1}{\det}\right]}{(\det - 1)}$: indeed, special linear groups are, by definition, subgroups of generali linear groups consisting of matrices of determinant $1$. As we shall see, this means two things: that $\SL_n$ is an algebraic group, and as a consequence of this, that $\SL_n$ is smooth over fields. 
+                        \item \textbf{(Roots of unity):} Let:
+                            $$\mu_n: (\Cring^{\op})^{\op} \to \Sets$$
+                        be the presheaf on $\Cring^{\op}$ that is represented by the affine scheme $\Spec \Z[z]/(z^n - 1)$. Its group structure is given by:
+                            $$
+                                \begin{aligned}
+                                    \mu_n & \leftarrow \mu_n \x \mu_n
+                                    \\
+                                    \Spec \Spec \Z[z]/(z^n - 1) & \leftarrow \Spec \Z[z]/(z^n - 1) \x \Spec \Z[z]/(z^n - 1)
+                                    \\
+                                    \Z[z]/(z^n - 1) & \to \Z[z]/(z^n - 1) \tensor_{\Z} \Z[z]/(z^n - 1)
+                                    \\
+                                    \zeta & \mapsto \zeta \tensor \zeta
+                                \end{aligned}
+                            $$
+                        and because it is of finite type, it is also algebraic, just like $\GL_n$ and $\SL_n$. When $n = p^r$, one gets the group $\mu_{p^r}$ of $p^r$-th roots. 
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}[The conormal sheaf associated to the identity] \label{prop: conormal_sheaf_of_the_identity}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(The identity is a closed immersion):} Let $S$ be a base scheme and let $G$ be a group scheme over $S$. Then, $G$ is separated (respectively quasi-separated) if and only if the identity:
+                            $$e: S \to G$$
+                        is a closed immersion (respectively quasi-compact). 
+                        \item \textbf{(The conormal sheaf associated to the identity):} Since this is good a place as any to state the definition of the conormal sheaf associated to a closed immersion of schemes, let us write it out first.
+                        
+                        Let $X$ be a scheme and let $\calI$ be a $\calO_X$-ideal. Then, the \textbf{conormal sheaf} or \textbf{conormal module} associated to the canonical closed immersion:
+                            $$\Spec \calO_X/\calI \hookrightarrow X$$
+                        is just the quasi-coherent $\calO_X$-module $\calI/\calI^2$, which we note to actually be a quasi-coherent $\calO_Z$-module (see proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for a proof instruction). We shall denote this by $\calN^{\vee}_{Z/X}$.
+                        
+                        As the identity:
+                            $$e: S \to G$$
+                        of a separated group scheme:
+                            $$\pi: G \to S$$
+                        is a closed immersion, its conormal module $\calN^{\vee}_{S/G}$ is well-defined. Furthermore, one has:
+                            $$\Omega^1_{G/S} \cong \pi^* \calN^{\vee}_{S/G} \cong \pi^* e^* \Omega^1_{G/S}$$
+                        In particular, should $S$ be the spectrum of a field (i.e. if one can recognise the identity $e$ has a rational point of $G$), then $\Omega^1_{G/S}$ is free as an $\calO_G$-module.   
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(The identity is a closed immersion):}
+                            \item \textbf{(The conormal sheaf associated to the identity):}
+                        \end{enumerate}
+                    \end{proof}
+                    
+            \subsubsection{Properties of group schemes over a field}
+                
+            \subsubsection{Properties of algebraic groups}
+                \begin{theorem}[Cartier's Smoothness Theorem] \label{theorem: algebraic_groups_over_characteristic_0_are_smooth} \index{Algebraic groups! are smooth over characteristic $0$}
+                    Let $k$ be a ground field of characteristic $0$. Then, any locally algebraic group over $\Spec k$ is smooth.
+                \end{theorem}
+                    \begin{proof}
+                        Firstly, because smoothness is a local property (cf. definition \ref{def: standard_smoothness}), we can assume that $G$ is affine. This, in particular, implies that $G$ is of finite type instead of being merely \textit{locally} of finite type. Now, we will attempt to show that $G$ is of finite presentation, instead of being merely of finite type, and formally smooth. 
+                    \end{proof}
+                    
+                Algebraic groups over positive characteristics $p$ are, however, not so nice. Consider, for instance, the algebraic group $(\mu_p)_{/k}$ of $p^{th}$ roots of unity over some field $k$ of characteristic $p$ that is \textit{not} perfect. This algebraic group is represented by the affine scheme $\Spec \frac{k[x]}{(x^p - 1)}$; the associated Jacobian is thus visibly singular, and $(\mu_p)_{/k}$ is therefore not smooth. Due to this pathology, we will need to figure out the necessary and sufficient conditions for algebraic groups to be smooth over positive characteristics.
+                \begin{theorem}[Cartier's Smoothness Theorem over positive characteristics] \label{theorem: smoothness_of_algebraic_groups_over_characteristic_p} \index{Algebraic groups! are smooth over characteristic $p$}
+                    Let $k$ be a \textit{perfect} ground field of some prime characteristic $p$ and let $G$ be a \textit{reduced} locally algebraic group scheme over $\Spec k$. Then, $G$ is smooth over $\Spec k$.
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Algebraic groups over algebraically closed fields are smooth]
+                    In particular, reduced group schemes over algebraically closed ground fields are always smooth (note how schemes are \textit{a priori} reduced in characteristic $0$).
+                \end{corollary}
+                \begin{remark}
+                    Every assumption in theorem \ref{theorem: smoothness_of_algebraic_groups_over_characteristic_p} is crucial. If $k$ is a \textit{non-perfect} field of characteristic $p$ and $a \in k$ is not a $p^{th}$ power, then for instance, the closed subgroup scheme $\Spec \frac{k[x, y]}{(x^p + ay^p)}$ of the additive group scheme $\Spec k[x, y]$ is reduced but not smooth.
+                \end{remark}
+                
+                Algebraic groups over positive characteristics are not wholefully pathological, though. Their geometries are somewhat intuitive.
+                \begin{proposition}[Algebraic groups are equidimensional] \label{prop: algebraic_groups_are_locally_equidimensional} \index{Algebraic groups! are equidimensional}
+                    Let $k$ be an arbitrary field and let $G$ be a locally algebraic group over $\Spec k$. Then, $G$ is locally equidimensional, in the sense that:
+                        $$\forall g \in G: \dim G = \dim_g G$$
+                    where $\dim_g G := \inf\{\dim U \in \T^{\open}_{\Zar}(G) \mid U \ni g\}$; in particular, if $g \in |G|$ is a closed point, then:
+                        $$\dim G = \dim \calO_{G, g}$$
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}
+                    Integral algebraic groups (such as group varieties) are equidimensional, in the sense that even over the their generic fibre, say $\eta$, one has:
+                        $$\dim G = \dim \calO_{G, \eta}$$
+                \end{corollary}
+                
+                \begin{proposition}[Algebraic groups are quasi-projective] \label{prop: algebraic_groups_are_quasi_projective} \index{Algebraic groups! are quasi-projective}
+                    Let $k$ be an \textit{arbitrary} ground field and let $G$ be an algebraic group over $\Spec k$. Then, $G$ is quasi-projective as a scheme over $\Spec k$.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{proposition}
+                    If $k$ is an algebraically closed ground field (which we shall allow to be of arbitrary characteristic), then for $G$ a locally algebraic group over $\Spec k$ and $g_1, ..., g_n \in G(k)$ a finite number of $k$-rational points thereof, there exists an affine open subscheme $U$ of $G$ that contains the points $g_1, ..., g_n$; this is to say, there exist an affine open subscheme $U$ of $G$ such that all the following liftings exist:
+                        $$
+                            \begin{tikzcd}
+                            	& U \\
+                            	{\Spec k} & G
+                            	\arrow[hook, from=1-2, to=2-2]
+                            	\arrow["{g_i}", from=2-1, to=2-2]
+                            	\arrow["{g_i|_U}", dashed, from=2-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{proposition}
+                    \begin{proof}
+                        Without loss of generality, we may assume that $G$ is connected, or atleast, that the points $g_1, ..., g_n$ are all on the same connected component of $G$.   
+                    \end{proof}
+            
+    \section{de Rham cohomology in characteristic \texorpdfstring{$0$}{}} \label{section: de_rham_cohomology}

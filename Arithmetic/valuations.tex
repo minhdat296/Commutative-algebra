@@ -1,0 +1,336 @@
+\chapter{Non-archimedean analytic geometry} \label{chapter: valuations} 
+    \begin{abstract}
+        Let's do some analysis!
+    \end{abstract}
+    
+    \minitoc
+    
+    
+    
+    \section{Adic spaces}
+        \subsection{Analysis with valuations}
+            \subsubsection{Valuation rings}
+                \begin{definition}[Valuation rings] \label{def: valuation_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Domination):} Let $K$ be a field, let $(B, \m_B)$ be \textit{local} subrings of $K$, and let $(A, \m_A)$ be a \textit{local} subring of $B$. Within such a setup, we say that \textbf{$B$ dominates $A$} if and only if:
+                            $$\m_A = \m_B \cap A$$
+                        Note that within every field, local subrings form a (possibly empty and possibly uncountable) poset of dominations, which can be roughly depicted by the following tower:
+                            $$
+                                \begin{tikzcd}
+                                	K \\
+                                	\vdots \\
+                                	{(B, \m)} \\
+                                	{(B_1, \m_1)} \\
+                                	\vdots \\
+                                	{(B_n, \m_n)} \\
+                                	\vdots
+                                	\arrow[no head, from=5-1, to=4-1]
+                                	\arrow[no head, from=6-1, to=5-1]
+                                	\arrow[no head, from=7-1, to=6-1]
+                                	\arrow[no head, from=3-1, to=2-1]
+                                	\arrow[no head, from=2-1, to=1-1]
+                                	\arrow[no head, from=4-1, to=3-1]
+                                \end{tikzcd}
+                            $$
+                        Observe that for all fixed local subring $(B, \m)$ and any local subring $(B_n, \m_n)$ dominated by $(B, \m)$, it is inductively true that:
+                            $$\m_n = \m \cap \bigcap_{j \leq n} B_j$$
+                        \item \textbf{(Valuation rings):} A local integral domain $(\scrV, \m)$ is called a \textbf{valuation ring} if and only if it is maximal among the poset of dominations between local subrings of its field of fractions (should such a maximal element even exist). Note that there is no mention of uniqueness nor universality of valuation rings as a maximal local subring of its field of fractions.
+                        \item \textbf{(Centering):} A valuation ring $(\scrV, \m)$ is \textbf{centered} if and only if there are \textit{proper} subrings $B$ of its field of fractions containing $(\scrV, \m)$. In cruder terms, a valuation ring is centered if one can manage to \say{squeeze} rings in between it and its field of fractions.
+                    \end{enumerate}
+                \end{definition}
+                
+                Alright, we will admit it: it is entirely unclear how valuation rings as deifned in definition \ref{def: valuation_rings} might have anything to do with valuations (i.e. \say{generalised absolute values}) whatsoever. Worry not, as these notions are intimately related, as their names suggest. However, establishing this link is not so much of a trivial process, which we shall subdivide into a few steps.
+                
+                Let us start with the existence and uniqueness of valuation rings within fields. 
+                \begin{lemma}[Existence and uniqueness of valuation rings] \label{lemma: valuation_rings_existence_and_uniqueness}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Existence):} Let $K$ be a field and let $(A, \m_A)$ be a local subring. Then, there exists a valuation ring $(\scrV, \m)$ with fraction field $K$ that dominates $(A, \m_A)$.
+                        \item \textbf{(Uniqueness):} Let $(\scrV, \m)$ be a valuation ring with field of fractions $K$. Then, given any $x \in K$, then:
+                            $$\forall x \in K: (x \in \scrV) \vee (x^{-1} \in \scrV)$$
+                        Conversely, given any local subring $(A, \m)$ of a field $K$ such that:
+                            $$\forall x \in K: (x \in A) \vee (x^{-1} \in A)$$
+                        then such a local subring is a valuation ring. This is to say, that the uniqueness of valuation rings within their field of fractions is up to the above condition.
+                    \end{enumerate}
+                \end{lemma}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Existence):} Suppose for the sake of deriving a contradiction, that there exists a field $K$ whose poset of local subrings is non-empty and without maximal elements, and not that by definition, this is the same as suppose that our field $K$ does not contain a local subring that is a valuation ring (such a valuation ring, should it exist, would always dominate other local subrings of $K$; cf. definition \ref{def: valuation_rings}). Now, when we view the poset of local subrings of $K$ as a diagram category, we shall see that the morphisms therein are nothing but monomorphisms of commutative rings (which are local \textit{a priori}). Because of this, the union taken over this diagram (i.e. the filtered colimit of local subrings of $K$) must also be a local subring of $K$, owing to the fact that finite limits commute with filtered colimits. But hold on a minute, we have just built $K$ to not contain a maximal local strict subring, so now, it shall suffice to show that the above union of local subrings of $K$ is not $K$ itself.
+                            \item \textbf{(Uniqueness):}
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{example}[Some obvious valuation rings] \label{example: valuation_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{($p$-adic integers):}
+                        \item \textbf{($p$-torsion-free rings):}
+                        \item \textbf{(Related: Pr\"ufer domains):}
+                        \item \textbf{(Fields):} Fields are trivially valuation rings. 
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}[Colimits of valuation rings] \label{prop: colimits_of_valuation_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item A filtered colimit of valuation ring is itself a valuation ring.
+                        \item Localisations and quotients of valuation rings at primes are again valuation rings. 
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{proposition}[Extensions of valuation rings] \label{prop: extensions of valuation rings}
+                    Let $(\scrV', \m_{\scrV'})$ be a valuation with fraction field $K'$, and let $K$ be an arbitrary subfield of $K'$. Then, the valuation ring $(\scrV', \m_{\scrV'})$ extends down to a (necessarily unqiue) valuation ring $(\scrV, \m_{\scrV})$ of $K$, which is given by:
+                        $$\scrV = \scrV' \cap K$$
+                \end{proposition}
+            
+            \subsubsection{Value groups}
+                \begin{definition}[Valuations] \label{def: valuations}
+                    Let $\scrV$ be a valuation ring with field of fractions $K$. Then, a \textbf{valuation} on $K$ is an \textit{injective} group homomorphism:
+                        $$\nu: K^{\x} \to \Gamma$$
+                    into a \textit{totally ordered} abelian group $(\Gamma, \leq)$ (like $\Z$ or $\R$, for instance) such that:
+                        $$\nu(x + y) \geq \min(\nu(x), \nu(y))$$
+                    for all $x, y \in K^{\x}$. So-called \textbf{discrete valuations} are those taking values in $\Z$. 
+                \end{definition}
+                
+                \begin{lemma}[Valuations attached to valuation rings]
+                    Attached to every valuation ring is a valuation, which needs not be unique ($\Q$ for instance, has many associated valuations). 
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{theorem}[\textcolor{red}{\underline{IMPORTANT}} Principality and locality of valuation rings] \label{theorem: principality_and_locality_of_valuation rings}
+                    A commutative ring $\scrV$ is a valuation ring if and only if it is a local domain wherein every finitely generated ideal is principal.
+                \end{theorem}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item  
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                    
+            \subsubsection{Valuative spectra}
+                \begin{definition}[Valuative spectra] \label{def: valuative_spectra}
+                    The \textbf{valuative spectrum} of a commutative ring $A$, denoted by $\Spv A$ is the set of all equivalence classes of (continuous) valuations on $A$. We should note that by \say{valuations}, we actually mean the corresponding ultranorms, but these are uniquely determined via some fixed choice of exponentiation anyway.
+                \end{definition}
+                
+                \begin{proposition}[The adic topology] \label{prop: the_adic_topology}
+                    Fix a commutative ring $A$. Then, we can equip $\Spv A$ with a so-called \textbf{adic topology} generated by open subsets of the form:
+                        $$D_{\Spv A}(f/g) := \{\nu: \Spv A \mid \left(\nu(f) \leq \nu(g)\right) \wedge (\nu(g) \not = 0)\}$$
+                    Note that the \say{quotient} $f/g$ is purely symbolic.
+                \end{proposition}
+                    \begin{proof}
+                        To prove that a certain collection of subsets form a topology, we shall need to verify that the empty set and the whole space are open, that arbitrary unions are open, and that finite intersections are open.
+                            \begin{enumerate}
+                                \item \textbf{(Empty set and whole space are open):} 
+                                    \begin{enumerate}
+                                        \item \textbf{(Whole space):} Any subset of $\Spv A$ that is of the form $D_{\Spv A}(0/g)$ is the same as the whole space, since:
+                                            $$0 = \nu(0) \leq \nu(g)$$
+                                        for all $g \in A$ such that $\nu(g) \not = 0$. Thus, the whole space $\Spv A$ is open. 
+                                        \item \textbf{(Empty set):} The empty set is the complement of the whole space, which tells us that:
+                                            $$
+                                                \begin{aligned}
+                                                    & \nu' \in \varnothing 
+                                                    \\
+                                                    \iff & \nu' \in \Spv A \setminus \Spv A
+                                                    \\
+                                                    \iff & \neg \bigvee_{g \in A} \left(\nu' \in D_{\Spv A}(0/g)\right)
+                                                    \\
+                                                    \iff & \bigwedge_{g \in A} \neg \left(\nu' \in D_{\Spv A}(0/g)\right)
+                                                    \\
+                                                    \iff & \bigwedge_{f \in A} \left(\nu' \in D_{\Spv A}(f/0)\right)
+                                                    \\
+                                                    \iff & \nu' \in \bigcap_{f \in A} D_{\Spv A}(f/0)
+                                                    \\
+                                                    \iff & \nu' \in \bigcap_{f \in A} \varnothing
+                                                    \\
+                                                    \iff & \nu' \in \varnothing
+                                                \end{aligned}
+                                            $$
+                                        Hence, the empty set is also open.
+                                    \end{enumerate}
+                                \item \textbf{(Unions are open):} Let $\calF$ and $\calG$ be two \textit{arbitrary} subsets of $A$ and consider the following:
+                                    $$
+                                        \begin{aligned}
+                                            & \nu' \in \bigcup_{f \in \calF} \bigcup_{g \in \calG} D_{\Spv A}(f/g)
+                                            \\
+                                            \iff & \bigvee_{f \in \calF} \bigvee_{g \in \calG} (\nu' \in D_{\Spv A}(f/g))
+                                            \\
+                                            \iff & \bigvee_{f \in \calF} \bigvee_{g \in \calG} \left((\nu'(f) \leq \nu'(g)) \wedge (\nu'(g) \not = 0)\right)
+                                            \\
+                                            \iff & \bigvee_{f \in \calF} \bigvee_{g \in \calG} \left(\neg(\nu'(f) \geq \nu'(g)) \wedge \neg(\nu'(g) = 0)\right)
+                                            \\
+                                            \iff & \bigvee_{f \in \calF} \bigvee_{g \in \calG} \neg \left((\nu'(f) \geq \nu'(g)) \vee (\nu'(g) = 0)\right)
+                                            \\
+                                            \iff & \neg \bigwedge_{f \in \calF} \bigwedge_{g \in \calG} \left((\nu'(f) \geq \nu'(g)) \vee (\nu'(g) = 0)\right)
+                                        \end{aligned}
+                                    $$
+                                \item \textbf{(Finite intersections are open):}
+                            \end{enumerate}
+                    \end{proof}
+                \begin{remark}[Comparison with the Zariski topology] \label{remark: adic_vs_zariski}
+                    
+                \end{remark}
+        
+        \subsection{Adic spaces}
+            \subsubsection{Huber rings}
+                \begin{definition}[Huber rings] \label{def: huber_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Adic rings):} To avoid terminology confusions that might arise from the somewhat liberal use of the word \say{adic} in various differing contexts, let us declare that an \textbf{adic ring} is a commutative ring $A$ that carries an $\a$-adic topology, for some ideal $\a \subset A$. The archetypal examples are $\Z_p$ and $\F_p[\![t]\!]$ (for some prime $p$); these are complete with respect to the obvious $p$-adic and $t$-adic topologies respectively.
+                        \item \textbf{(Huber rings):} A topological commutative ring $A$ is said to be a \textbf{Huber ring} if and only if there exists a \textit{finitely generated} $A$-ideal $\a$ along with an $\a$-adic open subring $A_0 \subset A$. The ring $A_0$ is called the \textbf{subring of definition} and the $A_0$-ideal $\a$ is called the \textbf{ideal of definition}.
+                        \item \textbf{(Tate rings):} A so-called \textbf{Tate ring} is a Huber ring with a topologically nilpotent unit, commonly called a \textbf{pseudo-uniformiser}. 
+                    \end{enumerate}
+                \end{definition}
+                
+                \begin{convention}[Adic completions of rings] \label{conv: adic_completion_of_rings}
+                    When necessary, we shall denote the $\a$-adic completion of a commutative ring $A$ by $(A, \a)^{\wedge}$. 
+                \end{convention}
+                
+                \begin{definition}[Power-bounded elements] \label{def: power_bounded_elements}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Power-boundedness):} 
+                            \begin{enumerate}
+                                \item \textbf{(Boundedness):} A subset $S$ of a topological ring $R$ is said to be bounded if and only if for all open neighbourhoods $U \ni 0$, there exists another open neighbourhood $V \ni 0$ such that:
+                                    $$VS \subseteq U$$
+                                where $VS = \{v s \mid (v \in V) \wedge (s \in S)\}$. Note that per this definition, the ideal of definition of any adic ring (or for that matter, any finite power thereof) is trivially bounded. 
+                                \item \textbf{(Power-bounded elements):} An element $x$ of a topological ring $R$ is said to be power-bounded if and only if the sequence $\{x^n\}_{n \in \N}$ is bounded as a subset of $R$.
+                                \item \textbf{(Uniform Huber rings):} Any Huber ring whose subset of power-bounded elements is bounded is known as being \textbf{uniform}.
+                            \end{enumerate}
+                        \item \textbf{(Linear topologies):} 
+                            \begin{itemize}
+                                \item Let $R$ be a topological ring. If its subset of power-bounded elements $R^{\circ}$ is a subring instead of simply being a subset (such as the case of $\Z_p \subset \Q_p$), then we shall say that $R$ is \textbf{linearly topologised}. 
+                                \item Every adic ring is trivially linearly topologised (in fact some older literatures refer to adic rings as \say{linearly topologised rings}). Furthermore, if $(A, \a)$ is an $\a$-adic ring then every subset $S$ of the subring $A^{\circ}$ of power-bounded elements is bounded, since:
+                                    $$\a^n S \subseteq \a^n$$
+                                and $\a^n$ is a neighbourhood of $0$ for every $n \in \N$. 
+                            \end{itemize}
+                    \end{enumerate}
+                \end{definition}
+                
+                \begin{example} \label{example: huber_rings}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(A few more adic rings and some basic properties):} Fix a prime $p$.
+                            \begin{itemize}
+                                \item The ring $\Z_p[\![T]\!]$ is complete with respect to the $(p, T)$-adic topology, and hence \textit{a fortiori} $(p, T)$-adic. 
+                                \item For all fields $k$, the power series ring $k[\![x_1, ..., x_n]\!]$ is complete with respect to the $(x_1, ..., x_n)$-adic topology.
+                                \item If $E/\Q_p$ is a finite extension, then the ring of integers $E^{\circ}$ is $p$-adically complete. 
+                                \item Every ring that is adic with respect to a \textit{finitely generated ideal} could be turned into a Huber ring if we were to take the subring of definition to be the whole ring, and the ideal of definition to be the ideal of definition of that adic ring. In fact, any commutative ring, if viewed as being $0$-adically complete, is a Huber ring. This fact will become useful when we wish to speak of Zariski-closed subsets of adic spectra.
+                                \item Let $A$ be any commutative ring and let $\a$ be an arbitrary $A$-ideal. Then, any quotient of the form $A/\a^n$ is $\a$-adic. In fact, they correspond to quasi-compact subsets $|\Spec A/\a^n|$ of $|\Spf (A, \a)^{\wedge}|$ (recall how there is a canonical descending filtration $|\Spf (A, \a)^{\wedge}| \cong |\Spec A/\a| \supseteq |\Spec A/\a^2| \supseteq ...$).
+                                
+                                For instance, $\F_p$ is a $p$-adic ring (even though it is a field, we shall not refer to it as a $p$-adic field, as that terminology is reserved for finite extensions of $\Q_p$) whose $p$-adic completion is also $\F_p$. Another example is $k[T]/T^n$, for any field $k$: it is $T$-adic and its $T$-adic completion is also itself, as it is the case with $\F_p$. 
+                                
+                                In fact, \textit{all adic rings are complete with respect to their associated adic topologies}, thanks to the fact that completions, by virtue of being filtered limits, commute with quotients and localisations at finitely many variables, which are finite colimits. This is an algebraic version of the fact that every compact metric space is complete.  
+                                \item Finite tensor products of adic rings are also adic rings. In particular, if $(A, \a)$ and $(B, \b)$ are adic algebras over some base commutative ring $k$, then the tensor product $A \tensor_k B$ is an $(\a + \b)$-adic ring: for instance, $\Z_p \tensor_{\Z} \Z[\![T]\!]$ is $(p, T)$-adic (in fact, this tensor product is $\Z_p[\![T]\!]$). More generally, if $M$ is an $(A, \a)$-adic module and $N$ is a $(B, \b)$-adic module, for $(A, \a), (B, \b)$ adic $k$-algebras, then the tensor product $M \tensor_k N$ will be $(\a + \b)$-adic; this follows from the fact that every module admits a presentation and again, the fact that filtered limits commute with finite colimits. 
+                                
+                                Sometimes we might write $M \hat{\tensor}_k N$ to emphasise the adic completeness, although this is unnecessary in the algebraic context (it is necessary, however, for say, general locally convex vector spaces). 
+                            \end{itemize}
+                        \item \textbf{(Non-trivial Huber rings from adic rings):}
+                            \begin{itemize}
+                                \item If $B$ is a \textit{perfect} $\F_q$-domain (for some power $q$ of a prime $p$) with field of fractions $K$, then we have the following natural characterisation of the ring of $p$-typical Witt vectors over $K$ (which we note to be trivially perfect as an $\F_q$-algebra):
+                                    $$(\W(B)_{(p)})^{\wedge} \cong \W(K)$$
+                                which implies, in particular, that $\W(K)$ is a Huber ring in the trivial manner. We refer the reader to \cite[Proposition 5.2]{shimomoto2014witt} for a proof. 
+                                \item \textbf{(Counter-examples):} Constructing non-trivial Huber rings out of adic rings turns out to be somewhat non-trivial (\textit{badum tsss!}). For instance, $\Q_p[\![T]\!]$ will not be a Huber ring when the subring of definition is $\Z_p[\![t]\!]$ and ideal of definition $(p, T)$, as $\Z_p[\![t]\!]$ is not open in $\Q_p[\![T]\!]$ (one can use the Gauss norm induced by the $p$-adic valuation on $\Q_p$ to show that this is the case). A similar analysis applies to rings such as $\F_p(\!(x)\!)[\![y]\!]$: indeed, $\F_p[\![x, y]\!]$ is a closed subring. 
+                                \item \textbf{(A non-uniform Huber ring):} Consider the ring $\Q_p[T]/T^2$ equipped with the $(p, T)$-adic topology. \todo{Finish the example}
+                            \end{itemize}
+                        \item \textbf{(Tate rings):} 
+                            \begin{itemize}
+                                \item For more or less trivial reasons, all complete non-archimedean fields are Tate rings where the subring of definition is the subring of power-bounded elements. This means that fields such as $\Q_p$ or $\F_p(\!(t)\!)$ are Tate.
+                                \item Let $(K, |\cdot|)$ be a complete non-archimedean field, let $\varpi \in K^{\circ \circ}$ be a pseudo-uniformiser, and let $T_1, ..., T_n$ be finitely many variables which are transcendental over $K$. Then, the ring $K\<T_1, ..., T_n\>$ of convergent power series in these $n$ variables and with coefficients in $K$ is a Tate ring. Its subring of definition is the subring $K^{\circ}\<T_1, ..., T_n\>$ consisting of convergent power series with power-bounded coefficients (with respect to $|\cdot|$ of course), and via the Gauss norm:
+                                    $$\left\|\sum_{k = -\infty}^{+\infty} \left(a_k \prod_{j = 1}^n T_j^{d_{j, k}}\right)\right\| = \sup_{k \in \Z} |a_k|$$
+                                this subring is complete with respect to the adic topology induced by the ideal $(\varpi, T_1, ..., T_n)$; in fact:
+                                    $$K^{\circ}\<T_1, ..., T_n\> \cong K^{\circ}[\![T_1, ..., T_n]\!]$$
+                                (also, it is clear that the pseudo-uniformiser of $K\<T_1, ..., T_n\>$ is $\varpi$).
+                                
+                                By performing a similar analysis as above, we can also see that the usual power series ring $(K[\![T_1, ..., T_n]\!], \|\cdot\|)$, where $\|\cdot\|$ is the Gauss norm, is also Tate. Its subring of definition is also $K^{\circ}[\![T_1, ..., T_n]\!]$ (which is complete with respect to the $(\varpi, T_1, ..., T_n)$-topology), and its pseudo-uniformiser is also $\varpi$.         
+                            \end{itemize}
+                        \item \textbf{(Huber rings that are not Tate):} Equip an arbitrary \textit{non-zero} commutative ring $R$ with the trivial (\textit{a priori} discrete) valuation. Then, even though $R[\![t]\!]$ is Huber, it is not Tate, as there exist no non-zero pseudo-uniformiser in non-zero discrete rings.  
+                    \end{enumerate}
+                \end{example}
+                \begin{remark}[A canonical norm for complete Tate rings] \label{remark: canonical_norm_for_tate_rings}
+                    The norm that we shall define is a bit \textit{ad hoc}, so we will need to motivate its definition a bit first.
+                    \begin{enumerate}
+                        \item Let $R$ be any commutative ring, let $f$ be a a non-zero-divisor, and consider the adic completion $(R, (f))^{\wedge}$. It is then not hard to see that $\left((R, (f))^{\wedge}[1/f], (R, (f))^{\wedge}\right)$ is the data of a Huber ring. In fact, $f$ is topologically nilpotent and this data hence defines a Tate ring. 
+                        \item Let $(A, (A_0, \a), \varpi)$ be the data of a \textit{complete} Tate ring. Then, we can put the following canonical \textit{continuous} valuation onto $A$ to turn it into a commutative Banach ring:
+                            $$\nu: A \to \R: x \mapsto \sup\{n \in \N \mid \varpi^n x \in A_0\}$$
+                    
+                    \end{enumerate}
+                \end{remark}
+                
+                \begin{proposition}[A criteria for Huber rings] \label{prop: huber_criteria}
+                    A topological ring is Huber if and and only if it has an open and bounded subring. 
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item If $A$ is a Huber ring with $(A_0, \a)$ the adic subring of definition, then the implication is easy, as $(A_0, \a)$ is \textit{a priori} bounded (cf. definition \ref{def: power_bounded_elements}), and it is open by definition. 
+                            \item Conversely, suppose that $A$ has an open and bounded subring $A_0$. 
+                                \begin{enumerate}
+                                    \item \textbf{(Step 1: Open and bounded imply linearly topologised):}
+                                    \item \textbf{(Step 2: Open and linearly topologised imply adic):}
+                                \end{enumerate}
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[A uniformity criterion] \label{coro: uniformity_criterion}
+                    A Huber ring is uniform (cf. definition \ref{def: power_bounded_elements}) if and only if it admits its subset of power-bounded elements as a ring of definition (i.e. it is linearly topologised). 
+                \end{corollary}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+            \subsubsection{Adic spectra}
+                \begin{definition}[\textcolor{red}{\underline{IMPORTANT}} Adic spectra] \label{def: adic_spectra}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Huber pairs):} A Huber pair is a pair $(A, A^+)$ consisting of a Huber ring $A$ and an integrally closed subring $A^+ \subseteq A$, called the \textbf{ring of integral elements} of $A$.
+                        \item \textbf{(Adic spectra):} The \textbf{adic spectrum} of a Huber pair $(A, A^+)$, denoted by $\Spa (A, A^+)$, is the set of equivalence classes of continuous valuations on $\nu: A \to \Gamma \cup \{0\}$ such that for all $f \in A^+$, we are guaranteed that:
+                            $$\nu(f) \leq 1$$
+                        (with $1$ denoting the unit of the multiplicative totally ordered abelian group $(\Gamma, \leq)$). More generally, one might define the adic spectrum of any pair $(A, \Sigma)$ (which we shall call \textbf{pre-Huber pairs}) where $\Sigma$ is merely some subset of $A$ such that $\nu(f) \leq 1$ for all $f \in \Sigma$. 
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}[Functoriality (or the lack thereof)] \label{remark: adic_spectrum_functoriality}
+                    Let $A$ be a Huber ring and let $\Sigma' \supseteq \Sigma$ be subsets of $A$. Then:
+                        $$\Spa(A, \Sigma) \subseteq \Spa(A, \Sigma')$$
+                    since for all ultranorms $\nu$ on $A$ such that:
+                        $$\nu(g) \leq 1$$
+                    for all $g \in \Sigma'$, it must be true as a consequence of $\Sigma$ being a subset of $\Sigma'$ (and hence every element of $\Sigma$ being inside $\Sigma'$) that:
+                        $$\nu(f) \leq 1$$
+                    for all $f \in \Sigma$. 
+                \end{remark}
+        
+        \subsection{Morphisms of adic spaces}
+            \subsubsection{Morphisms of finite type and (quasi-)finite morphisms}
+                \begin{definition}[A gazillion finite types] \label{def: finite_type_morphisms_between_adic_spaces} \index{Morphism between adic spaces! of weak finite type} \index{Morphism between adic spaces! of integrally weak finite type} \index{Morphism between adic spaces! of finite type} \index{Morphism between adic spaces! of finite presentation}
+                    Let $f: X \to Y$ be an adic morphism of adic spaces. We have the following hierachy of morphisms of finite type:
+                        \begin{enumerate}
+                            \item \textbf{(Weak finite types):} The given morphism $f: X \to Y$ is said to be \textbf{locally of weak finite type} if for all $x \in |X|$, there exists an affinoid open neighbourhood $U \ni x$ around $x$ along with an affinoid open subspace $V \subseteq Y$ such that $f(U)$ immerses into $V$ (which exists thanks to the adic assumption on $f$) and such that the corresponding comorphism of Huber rings:
+                                $$f^{\sharp}: \calO_Y(V) \to \calO_X(U)$$
+                            is \textit{topologically of finite type} (cf. \cite[\href{https://stacks.math.columbia.edu/tag/0ANS}{Tag 0ANS}]{stacks}) (note that because $f(U)$ immerses into $V$, we have that $f^{-1}(V) \cong U$ and hence $f_*\calO_X(V) \cong \calO_X(U)$). 
+                            \item \textbf{(Integrally weak finite types):} If $f: X \to Y$ is already \textit{locally of weak finite type} then it is furthermore \textbf{locally of integrally weak finite type} if for any choice of integral structure subsheaves $\calO_X^+$ and $\calO_Y^+$, and for all $x \in |X|$ and all affinoid open neighbourhood $U \ni x$ and all affinoid open subspace $V \subseteq Y$ into which $f(U)$ immerses itself, there exists a \textit{finite} set $E$ which contains the image of $\calO_Y^+(V)$ under $f^{\sharp}: \calO_Y(V) \to \calO_X(U)$. 
+                            \item \textbf{(Finite types and integrally finite types):} 
+                                \begin{enumerate}
+                                    \item If $f: X \to Y$ is already locally of (integrally) \textit{weak} finite type then it is \textbf{locally of (integrally) finite type} if for all $x \in |X|$, there exists an affinoid open neighbourhood $U \ni x$ around $x$ along with an affinoid open subspace $V \subseteq Y$ such that $f(U)$ immerses into $V$ and such that the corresponding comorphism of integral subrings:
+                                        $$f^{\sharp +}: \calO_Y^+(V) \to \calO_X^+(U)$$
+                                    is topologically of finite type. Because morphisms locally of (integrally) finite types are \textit{a priori} locally of \textit{weak} finite type, the last statement is equivalent to us saying that the morphism of Huber pairs:
+                                        $$(f^{\sharp}, f^{\sharp +}): \left(\calO_Y(V), \calO_Y^+(V)\right) \to \left(\calO_X(U), \calO_X^+(U)\right)$$
+                                    is topologically of finite type. Also, note that the comorphism is well-defined at the level of integral structure subsheaves $\calO_Y^+, \calO_X^+$ because any choice of integral structure subpresheaf of a given structure sheaf of an adic space is \textit{a priori} a sheaf (in other words, Huber subpairs of sheaf Huber pairs are sheafy themselves). 
+                                    \item Suppose now that $f: X \to Y$ is \textit{locally} of (integrally) finite type. Then, it is \textbf{(integrally) of finite type} if and only if it is \textit{quasi-compact} in addition.
+                                \end{enumerate}
+                            \item \textbf{(Finite presentations):} A morphism of (integrally) finite type is \textbf{(integrally) finite presentation} if the corresponding comorphism of Huber pairs is topologically of finite presentation.
+                        \end{enumerate}
+                \end{definition}
+            
+            \subsubsection{Separatedness and properness}
+            
+            \subsubsection{Ramification, smoothness, and \'etaleness}
+            
+            \subsubsection{Dimension theory for adic spaces}
+            
+    \section{Non-archimedean GAGA theorems}
+                

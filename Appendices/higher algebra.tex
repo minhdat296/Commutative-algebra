@@ -1,0 +1,516 @@
+\chapter{Homological and homotopical algebra}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{Homological algebra in stable \texorpdfstring{$\infty$}{}-categories} \label{section: homological_algebra}
+        \subsection{Triangulated and stable \texorpdfstring{$\infty$}{}-categories}
+            \subsubsection{Triangles and stability}
+                \begin{definition}[Stable $\infty$-categories] \label{def: stable_infinity_categories} \index{$\infty$-categories! stable}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Triangles):} Let $\C$ be an $\infty$-category with zero objects $0$ (i.e. let $\C$ be a so-called \textbf{pointed category}). A \textbf{triangle} in $\C$ is just a commutative square of the form:
+                            $$
+                                \begin{tikzcd}
+                                	x & y \\
+                                	0 & z
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        If it is in addition a pullback square (i.e. the limit of a diagram $[1] \x [1] \to \C$), then it will be commonly referred to as a \textbf{fibre sequence}; the dual notion (i.e. a colimit of a diagram $[1] \x [1] \to \C$) is that of \textbf{cofibre sequences}; one speaks also of \textbf{(co)fibres} of morphisms, which are nothing more than pullbacks/pushouts along the canonical morphism from/to the zero object $0$ to the domain of said morphisms (e.g. in the situation above, should the square be a pullback square then it will be a fibre of $y \to z$). Thanks to the universal property of zero objects, one can image triangles in $\C$ as diagrams of shape $[1] \x [1]$.
+                        \item \textbf{(Stable $\infty$-categories):} An $\infty$-category $\C$ is \textbf{stable} if and only if:
+                            \begin{enumerate}
+                                \item it is pointed,
+                                \item all morphisms in $\C$ admit fibres and cofibres, and
+                                \item a triangle in $\C$ is a fibre sequence if and only if it is also a cofibre sequence.
+                            \end{enumerate}
+                    \end{enumerate}
+                \end{definition}
+                \begin{example}
+                    \noindent
+                    \begin{itemize}
+                        \item The $\infty$-category of spectra (sequences of topological spaces indexed by $\N$ along with loopings and suspensions) is stable.
+                        \item As we shall eventually see, the derived category of an abelian category is stable as an $\infty$-category.
+                    \end{itemize}
+                \end{example}
+                
+                \begin{definition}[Triangulated $\infty$-categories] \label{def: triangulated_infinity_categories} \index{$\infty$-categories! triangulated}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Distinguished triangles):} Within a pointed $\infty$-category, we define \textbf{distinguished triangles} to be a cofibre sequence (cf. definition \ref{def: stable_infinity_categories}):
+                            $$
+                                \begin{tikzcd}
+                                	x & y \\
+                                	0 & z
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                \end{tikzcd}
+                            $$
+                        which admits an extension by another cofibre sequence $y \to z \to \suspension x$ into:
+                            $$
+                                \begin{tikzcd}
+                                	x & y & 0 \\
+                                	0 & z & {\suspension x}
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow[from=1-2, to=1-3]
+                                	\arrow[from=1-3, to=2-3]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        Note that by the universal property of zero objects, giving an extension in the above fashion the same as giving a right-exact functor (called a \textbf{suspension functor}):
+                            $$\suspension: \C^{[1] \x [1]} \to \C^{[2] \x [1]}$$
+                        that pastes onto a triangle:
+                            $$
+                                \begin{tikzcd}
+                                	x & y \\
+                                	0 & z
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        a so-called right-extension via pushing out along the canonical map $y \to 0$:
+                            $$
+                                \begin{tikzcd}
+                                	x & y & 0 \\
+                                	0 & z & w
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-2, to=1-3]
+                                	\arrow[from=1-3, to=2-3]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Triangulated categories):} A pointed $\infty$-category admitting all cofibre sequences will naturally have all distinguish triangles, and thus shall be called \textbf{triangulated}.
+                    \end{enumerate}
+                \end{definition}
+                \begin{remark}[Elementary properties of triangulated $\infty$-categories] \label{remark: elementary_properties_of_triangulated_categories} \index{$\infty$-categories! triangulated! properties} \index{$\infty$-categories! stable! properties}
+                    \noindent
+                    \begin{enumerate}
+                        \item Clearly, stable $\infty$-categories are triangulated.
+                        \item It is not hard to see how the opposite of a stable $\infty$-category is necessarily stable too. The opposite of a triangulated $\infty$-category is not necessary triangulated; this happens if and only if the $\infty$-category is stable.
+                        \item 
+                            \begin{enumerate}
+                                \item Full subcategories of triangulated $\infty$-categories that are stable under taking cofibre sequences are triangulated themselves; these subcategories are known as \textbf{stable $\infty$-subcategories}. So-called \textbf{Serre $\infty$-subcategories} - stable subcategories of abelian $\infty$-categories (which are \textit{a priori} stable) - are special cases of these stable $\infty$-categories. These Serre $\infty$-subcategories are themselves special cases of (left-)exact reflective localisations of stable $\infty$-categories, which are stable $\infty$-categories whose associated fully faithful embeddings into their ambient stbale $\infty$-categories admit (left-)exact left-adjoints.
+                                \item Let $\C$ be a stable $\infty$-category and let $\C_0$ be a triangulated full $\infty$-subcategory. $\C_0$ is thus also stable.
+                            \end{enumerate}
+                        \item If $K$ is a simplicial set and $\C$ is any stable $\infty$-category, then the functor category $\C^K$ is also stable.
+                    \end{enumerate}
+                \end{remark}
+                
+                \begin{proposition}[Stability criteria for pointed $\infty$-categories] \label{prop: stability_criteria_for_pointed_infinity_categories} \index{$\infty$-categories! stable! criteria}
+                    A pointed $\infty$-category $\C$ is stable if and only if the following equivalent criteria are satisfied:
+                        \begin{enumerate}
+                            \item $\C$ is finitely complete and finitely cocomplete.
+                            \item Finite pushouts and pullbakcs in $\C$ coincide (i.e. $\C$ admits all finite fibred biproducts).
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Proof of equivalence):} 
+                                \begin{enumerate}
+                                    \item Assume that $\C$ is finitely complete and finitely cocomplete. This implies that pushouts and pullbacks exist in $\C$, and hence $\C$ admits all cofibre and fibre sequences. It thus remains to show that cofibres and fibres in $\C$ are the same; one can then make use of the universal property of zero objects and base change to show the existence of finite fibred biproducts. However, note that again thanks to the universal property of zero objects, the following triangle is simultaneously a fibre sequence:
+                                        $$
+                                            \begin{tikzcd}
+                                            	0 & x \\
+                                            	0 & x
+                                            	\arrow[from=1-1, to=2-1]
+                                            	\arrow[from=1-2, to=2-2]
+                                            	\arrow[from=2-1, to=2-2]
+                                            	\arrow[from=1-1, to=1-2]
+                                            	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                            \end{tikzcd}
+                                        $$
+                                    and the following a cofibre sequence:
+                                        $$
+                                            \begin{tikzcd}
+                                            	x & 0 \\
+                                            	x & 0
+                                            	\arrow[from=1-2, to=2-2]
+                                            	\arrow[from=2-1, to=2-2]
+                                            	\arrow[from=1-1, to=2-1]
+                                            	\arrow[from=1-1, to=1-2]
+                                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                            \end{tikzcd}
+                                        $$
+                                    for all objects $x$ of $\C$; one can them simply base change to see how cofibre and fibre sequences must coincide.
+                                    \item Conversely, assume that all finite pushouts and pullbacks in $\C$ coincide. This in particular tells us that cofibre sequences and fibre sequences are the same, and also, that one can build monos and epis using the zero object $0$ using biproducts of the following form:
+                                        $$
+                                            \begin{tikzcd}
+                                            	x & 0 \\
+                                            	y & z
+                                            	\arrow[from=1-2, to=2-2]
+                                            	\arrow[two heads, from=2-1, to=2-2]
+                                            	\arrow[tail, from=1-1, to=2-1]
+                                            	\arrow[from=1-1, to=1-2]
+                                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                            	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                            \end{tikzcd}
+                                        $$
+                                \end{enumerate}
+                            \item \textbf{(Proof of stability):} By definition \ref{def: stable_infinity_categories}, pointed $\infty$-categories that satisfy the second criterion are stable. Conversely, suppose that our pointed $\infty$-category $\C$ is stable. Then, one can simply make use of the universal property of zero objects and base change (co)fibre sequences to show that all finite pullbacks and all finite pushouts must exist in $\C$. 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{convention}
+                    Often, finite biproducts in stable $\infty$-categories shall be denoted by $\oplus$, especially when the category is abelian.
+                \end{convention}  
+                
+                \begin{proposition}[Accessible stable $\infty$-category] \label{prop: accessible_stable_infinity_categories} \index{$\infty$-categories! stable! accessible} \index{$\infty$-categories! stable! ind-completions}
+                    Let $\kappa$ be a regular cardinal and let $\C$ be a $\kappa$-small stable $\infty$-category. Then, its $\kappa$-ind-completion is stable as well.
+                \end{proposition}
+                    \begin{proof}
+                        This is an easy consequence of the fact that filtered colimits preserve finite coproducts, and that $\C$ embeds fully faithfully into $\Ind_{\kappa}(\C)$ as a subcategory closed under finite limits and colimits. 
+                    \end{proof}
+                \begin{remark} \index{$\infty$-categories! stable! accessible} \index{$\infty$-categories! stable! pro-completions}
+                    If we were to replace $\Ind_{\kappa}(\C)$ in proposition \ref{prop: accessible_stable_infinity_categories} by $\Pro_{\kappa}(\C)$, we would also get a stable $\infty$-category through an application of the following equivalence of categories and remark \ref{remark: elementary_properties_of_triangulated_categories}:
+                        $$\Pro_{\kappa}(\C) \cong \Ind_{\kappa}(\C^{\op})^{\op}$$
+                \end{remark}
+                
+                \begin{proposition}[Homotopy category of triangulated categories] \label{prop: homotopy_category_of_triangulated_categories} \index{$\infty$-categories! stable! homotopy categories}
+                    Let $\C$ be a triangulated $\infty$-category (or better, a stable $\infty$-category) and suppose that the suspension functor thereon:
+                        $$\suspension: \C^{[1] \x [1]} \to \C^{[2] \x [1]}$$
+                    is fully faithful. Then, the homotopy category $h\C$ can also be endowed with the structure of a triangulated category (however this time with all trivial higher morphisms).
+                \end{proposition}
+                    \begin{proof}
+                        This is straightforward from the universal property of homotopy categories. 
+                    \end{proof}
+                    
+            \subsubsection{Exact functors}
+                \begin{remark}[Functors between stable $\infty$-categories] \label{remark: functors_between_stable_infinity_categories} \index{$\infty$-categories! stable! limits} \index{$\infty$-categories! stable! exact functors}
+                    \noindent
+                    \begin{enumerate}
+                        \item It is a straight-forward consequence of proposition \ref{prop: stability_criteria_for_pointed_infinity_categories} that a functor (i.e. one that preserves finite limits and finite colimits):
+                            $$F: \C \to \D$$
+                        between two stable $\infty$-categories is exact if and only if it preserves distinguished triangles.
+                        \item Exact functors between them from a stable $\infty$-category $\C$ to another $\D$ span a full $\infty$-subcategory of the functor category ${}^{\infty}\Cat(\C, \D)$.
+                        \item Stable $\infty$-categories and exact functors between them form a \textit{locally non-full} $(\infty, 2)$-subcategory of ${}^{\infty}\Cat$, which shall be denoted by ${}^{\infty}\Cat^{\stab}$. 
+                    \end{enumerate}
+                \end{remark}
+                
+                \begin{proposition}[(Co)limits of stable $\infty$-categories] \label{prop: (co)limits_of_stable_infinity_categories} \index{$\infty$-categories! stable! limits} \index{$\infty$-categories! stable! colimits}
+                    Let $\kappa$ be a regular cardinal. Then, the $(\infty, 1)$-category ${}^{\infty}\Cat^{< \kappa, \stab}$ of $\kappa$-small stable $\infty$-categories is complete and closed under $\kappa$-small limits. Additionally, it admits all $\kappa$-small filtered and is closed under these colimits. 
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+    
+        \subsection{t-structures and their sweet little hearts}
+            \subsubsection{t-structures}
+                \begin{remark}[Suspensions and loops] \label{remark: suspensions_and_loops}
+                    Let $\C$ be a triangulated $\infty$-category and let:
+                        $$\suspension: \C^{[1] \x [1]} \to \C^{[2] \x [1]}$$
+                    be the suspension functor on $\C$. By definition \ref{def: triangulated_infinity_categories}, it is the functor which extends a triangle:
+                        $$
+                            \begin{tikzcd}
+                            	x & y \\
+                            	0 & z
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[from=2-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    via the construction of the pushout of $y \to z$ along $y \to 0$:
+                        $$
+                            \begin{tikzcd}
+                            	x & y & 0 \\
+                            	0 & z & w
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow[from=1-2, to=1-3]
+                            	\arrow[from=1-3, to=2-3]
+                            	\arrow[from=2-2, to=2-3]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                            \end{tikzcd}
+                        $$
+                    Now, thanks to the universal property of pushouts, we can instead view the suspension functor as the functor:
+                        $$\suspension: \C^{[1] \x [1]} \to \C$$
+                    that sends triangles $x \to y \to z$ to the suspension $\suspension x$ of its first vertex $x$ (note that this version is still right-exact, and this is crucial fact). Then, by some abstract nonsense (see \cite[Section 3]{nlab:infinity-1-limit} for instance), $\suspension$ ought to fit into the following adjoint triple:
+                        $$
+                            \begin{tikzcd}
+                            	{\C^{[1] \x [1]}} && {\C^{[1] \x [1]}}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "\loopspace"', shift right=5, from=1-1, to=1-3]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "\suspension", shift left=5, from=1-1, to=1-3]
+                            	\arrow[""{name=2, anchor=center, inner sep=0}, "\const"{description}, hook', from=1-3, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=2]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=2, to=0]
+                            \end{tikzcd}
+                        $$
+                    Here, we take $\const: \C \to \C^{[1] \x [1]}$ to be the functor given by:
+                        $$
+                            x \mapsto 
+                            \begin{tikzcd}
+                            	x & x \\
+                            	0 & x
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow["\cong", from=1-1, to=1-2]
+                            	\arrow["\cong", from=1-2, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    and $\loopspace: \C^{[1] \x [1]} \to \C$ (called the \textbf{loop space functor}) to be the one determined by:
+                        $$
+                            \begin{tikzcd}
+                            	{\loopspace z} & x & 0 \\
+                            	0 & y & z
+                            	\arrow[from=1-2, to=1-3]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[from=1-3, to=2-3]
+                            	\arrow[from=2-2, to=2-3]
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    One thing to note is that $\loopspace$ actually only exists if $\C$ is stable, not just when it is merely triangulated, as triangulated $\infty$-categories are not assumed to have any sort of limits aside from initial objects. Another is that by the composability of adjoint pairs, we have the following induced adjunction:
+                        $$
+                            \begin{tikzcd}
+                            	{\C^{[1] \x [1]}} && {\C^{[1] \x [1]}}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{\loopspace \circ \const}"', shift right=2, from=1-1, to=1-3]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\const \circ \suspension}", shift left=2, from=1-1, to=1-3]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                \end{remark}
+            
+                \begin{definition}[t-structures] \label{def: t_structures} \index{$\infty$-categories! stable! t-structures} \index{$\infty$-categories! stable! t-structures! hearts} \index{Short exact sequences}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(t-structures):} The \textbf{t-structure} on a \textit{stable} $\infty$-category $\C$ is a pair of \textit{isomorphism-stable} full subcategories $\C_{\leq 0}$ and $\C_{\geq 0}$ containing the zero object $0$ such that:
+                            \begin{enumerate}
+                                \item \textbf{(Orthogonality):} For all $x \in \C_{\geq 0}$ and all $y \in \C_{\leq 0}$, the space $\C(x, \loopspace y)$ is contractible (i.e. homotopic to $0$). 
+                                
+                                Objects $y \in \C_{\leq 0}$ such that $\C(x, \loopspace y)$ is contractible for all $x \in \C_{> 0}$ span a full $\infty$-subcategory of $\C_{\leq 0}$, which we shall denote by $\C_{< 0}$. By applying the adjoint triple $(\suspension \ladjoint \const \ladjoint \loopspace)$ (cf. remark \ref{remark: suspensions_and_loops}), we can see that objects $x \in \C_{\geq 0}$ such that the space $\C(\suspension x, y)$ is contractible for all $y \in \C_{< 0}$ similarly span a full subcategory of $\C_{\geq 0}$, which is written $\C_{> 0}$. 
+                                
+                                By the definition of stable $\infty$-subcategories (cf. remark \ref{remark: elementary_properties_of_triangulated_categories}), $\C_{\leq 0}$ and $\C_{< 0}$ are stable $\infty$-subcategories of $\C$, but $\C_{\geq 0}$ and $\C_{> 0}$ are not. 
+                                \item \textbf{(Translational retro-invariance):} If a right-extension:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x & y & 0 \\
+                                        	0 & z & w
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow[from=1-3, to=2-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                of a cofibre sequence is an object of $\C_{\geq 0}^{[2] \x [1]}$, then the cofibre sequence:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x & y \\
+                                        	0 & z
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                itself is an object of $\C_{\geq 0}^{[1] \x [1]}$ (actually, this extends to all right-extensions of triangles, because they all factor through cofibre sequences thanks to the universal property of colimits). 
+                                
+                                Dually, if the left-extension of a fibre sequence:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\loopspace z} & x & 0 \\
+                                        	0 & y & z
+                                        	\arrow[from=1-3, to=2-3]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                is an object of $\C_{\leq 0}^{[2] \x [1]}$, then that fibre sequence itself:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x & 0 \\
+                                        	y & z
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                is an object of $\C_{\leq 0}^{[1] \x [1]}$. This also applies to triangles which may not be fibre sequences. 
+                                \item \textbf{(Torsion):} For all objects $x \in \C$, there exists a (co)fibre sequence in $\C^{[1] \x [1]}$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{x'} & 0 \\
+                                        	x & {x''}
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                wherein $x' \in \C_{\geq 0}$, whose left and right-extensions are both zero:
+                                    $$
+                                        \begin{tikzcd}
+                                        	0 & {x'} & 0 \\
+                                        	0 & x & {x''} \\
+                                        	& 0 & 0
+                                        	\arrow[from=1-3, to=2-3]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                                        	\arrow[from=2-2, to=3-2]
+                                        	\arrow[from=3-2, to=3-3]
+                                        	\arrow[from=2-3, to=3-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=3-3, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                (note how this implies that the mapping spaces $\C(x, \loopspace x'')$ and $\C(\suspension x', x)$ are contractible, and hence $x' \in \C_{\geq 0}$ and $x'' \in \C_{< 0}$); in other words, $(\C_{\geq 0}, \C_{\leq 0})$ is a $t$-structure if $(\C_{> 0}, \C_{< 0})$ is a (homotopical) \href{https://ncatlab.org/joyalscatlab/published/Factorisation+systems}{\underline{factorisation system}}, and in fact, an epi-mono factorisation system thanks to the universal property of zero objects. Such a sequence is known as a \textbf{short exact sequence}. 
+                                
+                                Also, note that in the situation above, we have the following right and left-extensions:
+                                    $$
+                                        \begin{tikzcd}
+                                        	0 & {x'} & 0 \\
+                                        	0 & x & {x''}
+                                        	\arrow[from=1-3, to=2-3]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                    $$
+                                        \begin{tikzcd}
+                                        	{x'} & 0 \\
+                                        	x & {x''} \\
+                                        	0 & 0
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        	\arrow[from=2-2, to=3-2]
+                                        	\arrow[from=2-1, to=3-1]
+                                        	\arrow[from=3-1, to=3-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-1, to=3-2]
+                                        \end{tikzcd}
+                                    $$
+                            \end{enumerate}
+                        \item \textbf{(Hearts of t-structures):} It is not hard to see that within a stable $\infty$-category $\C$ equipped with some choice of t-structure $(\C_{\geq 0}, \C_{\leq 0})$, short exact sequences would form an \textit{isomorphism-stable} full $\infty$-subcategory of $\C^{[1] \x [1]}$, which we shall call the \textbf{heart} of its t-structure. One can imagine this to be the $\infty$-category of objects concentrated in (co)homological degree $0$, although strictly speaking this is not always true. 
+                    \end{enumerate}
+                    Note how we are indexing \textit{homologically}.
+                \end{definition}
+                \begin{example}[Chain complexes]
+                    Let $R$ be any commutative ring. Then, the category of chain complexes of $R$-modules, when viewed as a stable $\infty$-category, possesses a t-structure, which is precisely spanned by the classical short exact sequences of $R$-modules. Slightly more generally, one may replace ${}_R\Mod$ by any abelian category.
+                \end{example}
+                
+                \begin{proposition}[t-structures and localisations] \label{prop: t_structures_and_localisations}
+                    Let $\C$ be a stable $\infty$-category and let $(\C_{\geq 0}, \C_{\leq 0})$ be a t-structure thereon with corresponding canonical fully faithful exact embeddings $\iota_{\geq 0}$ and $\iota_{\leq 0}$. Then, there exists the following composable adjunctions exhibiting $\C_{\leq 0}$ and $\C_{\geq 0}$ as a reflective and a coreflective $\infty$-subcategory of $\C$ respectively:
+                        $$
+                            \begin{tikzcd}
+                            	{\C_{\leq 0}} & \C & {\C_{\geq 0}}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{\iota_{\leq 0}}"', shift right=2, hook, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\tau_{\leq 0}}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow[""{name=2, anchor=center, inner sep=0}, "{\tau_{\geq 0}}"', shift right=2, from=1-2, to=1-3]
+                            	\arrow[""{name=3, anchor=center, inner sep=0}, "{\iota_{\geq 0}}"', shift right=2, hook', from=1-3, to=1-2]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
+                            \end{tikzcd}
+                        $$
+                    We call the functors $\tau_{\geq 0}$ and $\tau_{\leq 0}$ the \textbf{$\geq 0$-truncation} and the \textbf{$\leq 0$-truncation} respectively.
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{($(\iota_{\geq 0} \ladjoint \tau_{\geq 0})$):}    
+                            \item \textbf{($(\tau_{\leq 0} \ladjoint \iota_{\leq 0})$):} 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Cooking up short exact sequences using truncations] \label{coro: short_exact_sequences_and_truncations}
+                    Suppose that $x$ is an object of a stable $\infty$-category $\C$, and let $(\C_{\geq 0}, \C_{\leq 0})$ be a t-structure thereon. Then, the heart of this t-structure can be given by:
+                        $$
+                            \begin{aligned}
+                                \C^{\heart} & \cong \iota_{\leq 0} \circ \tau_{\geq 0} \C_{\leq 0}
+                                \\
+                                & \cong \iota_{\geq 0} \circ \tau_{\leq 0} \C_{\geq 0} 
+                                \\
+                                & \cong \tau_{\geq 0} \circ \iota_{\geq 0} \circ \tau_{\leq 0} \circ \iota_{\leq 0} \C 
+                                \\
+                                & \cong \tau_{\leq 0} \circ \iota_{\leq 0} \circ \tau_{\geq 0} \circ \iota_{\geq 0} \C
+                            \end{aligned}
+                        $$
+                    In other words, the composite adjunction $(\tau_{\leq 0} \circ \iota_{\geq 0} \ladjoint \tau_{\geq 0} \circ \iota_{\leq 0})$ is an adjoint equivalence over $\C^{\heart}$. 
+                \end{corollary}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{theorem}[\textcolor{red}{\underline{IMPORTANT}} Hearts are abelian] \label{theorem: hearts_are_abelian} \index{$\infty$-categories! stable! t-structures! hearts}
+                    The heart of the t-structure of a stable $\infty$-category is an abelian $\infty$-category.
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+            \subsubsection{Serre subcategories}
+        
+            \subsubsection{Constructibility and perverse sheaves}
+            
+        \subsection{Derived categories}
+            \subsubsection{dg-categories as linear stable \texorpdfstring{$\infty$}{}-categories}
+            
+            \subsubsection{Derived categories}
+            
+            \subsubsection{Grothendieck categories}
+    
+    \section{Operads; algebras and modules over operads} \label{section: algebras_and_modules_over_operads}
+        \subsection{Operads} \label{subsection: operads}
+        
+        \subsection{Algebras and monoids over operads}
+        
+        \subsection{Modules over algebras and modules over monoids}
+    
+    \section{Little cubes and factorisability}
+    
+    \section{Functorial calculus}
+    
+    \section{Algebra with \texorpdfstring{$\E_k$}{}-rings}

@@ -1,0 +1,641 @@
+\chapter{Arithmetic differential geometry} \label{chapter: crystals}
+    \begin{abstract}
+        In this chapter, we introduce firstly the notion of divided power algebras over general commutative rings (also know in French circles, especially to those influenced by Pierre Berthelot, as PD-algebras, with \say{PD} standing for \say{puissances-divis\'ees}), which shall subsequently be employed in discussions regarding topics, notable among which is crystalline cohomology, a sort of analogue of the theory of vector bundles with flat connections in prime characteristics. These machineries play fundamental roles in the construction of crystalline cohomology, as well as in the theory of complete intersections. 
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{Divided power algebras}
+        \subsection{Divided power rings}
+            \subsubsection{Divided powers}
+                \begin{definition}[Divided powers]
+                    Let $R$ be a commutative ring and fix some $R$-ideal $I$. Then, a PD-structure on $R$ is give by a family of maps $\{\gamma_n: I \to I\}_{n \in \N}$ satisfying the following properties, for all $m \in \N$, $x, y \in I$, and $a \in R$
+                        \begin{enumerate}
+                            \item \textbf{(Raising to the zeroth power):} $\gamma_0(x) = 1$.
+                            \item \textbf{(Raising to the first power):} $\gamma_1(x) = x$.
+                            \item \textbf{(Addition of exponents):} $\gamma_m(x)\gamma_n(x) = \frac{(m + n)!}{m!n!} \gamma_{m + n}(x)$.
+                            \item \textbf{(Multiplication of exponents):} $(\gamma_n \circ \gamma_m)(x) = \frac{(mn)!}{(m!)^n n!} \gamma_{mn}(x)$
+                            \item \textbf{(Powers of multiples):} $\gamma_n(ax) = a^n\gamma_n(x)$.
+                            \item \textbf{(Binomial expansion):} $\gamma_n(x + y) = \sum_{i=0}^n \gamma_i(x)\gamma_{n - i}(y)$
+                        \end{enumerate}
+                    A ring $R$ equipped with PD-structure $\left(I, \gamma := \{\gamma_n\}_{n \in \N}\right)$ is called a PD-ring. 
+                \end{definition}
+                \begin{remark}[Well-definiteness of PD-structures]
+                    Note that all of the expressions are well-defined, since the fractions $\frac{(m + n)!}{m!n!}$ and $\frac{(mn)!}{(m!)^n n!}$ are in fact integers: to show that they are indeed integers, note, respectively, that:
+                        $$\frac{(m + n)!}{m!n!} = \binom{m + n}{n} = \binom{m + n}{m}$$
+                    (which implies that $(m + n)!$ is divisible by $m!n!$) and that:
+                        $$\frac{(mn)!}{(m!)^n n!} = \binom{mn}{n}$$
+                \end{remark}
+                
+                \begin{proposition}[Properties of PD-structures]
+                    Let $(A, I, \gamma)$ be a triple consisting of a $\Z$-torsion-free ring $R$, an ideal $I$ of said ring, and a collection $\gamma := \{\gamma_n\}_{n \in \N}$ of endofunctions $\gamma_n: I \to I$. Then, we have the following for all $x \in I$ and all $n \in \N$:
+                        \begin{enumerate}
+                            \item If $(I, \gamma)$ is a PD-structure then $n! \gamma_n(x) = x^n$.
+                            \item $(I, \gamma)$ is unique as a PD-structure on $R$.
+                            \item $(I, \gamma)$ is a PD-structure if and only if $n! \gamma_n(x) = x^n$. 
+                            \item $(I, \gamma)$ is a PD-structure on $R$ if and only if there exists a set of generators $x_{\alpha}$ of $I$ such that $x_{\alpha}^n \in n! I$. 
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item Clearly:
+                                $$0! \gamma_0(x) = 1 = x^0$$
+                                $$1! \gamma_1(x) = x = x^1$$
+                            and these form our inductive base case. Then, assume that $k! \gamma_k(x) = x^k$ for some $k \in \N$ (which we can do thanks to the established base case and the assumption that $R$ is $\Z$-torsion-free) and note that by the definition of PD-structures, we have the following:
+                                $$x^{k + 1} = x^k \cdot x = k!\gamma_k(x) \cdot 1!\gamma_1(x) = k!\frac{(k + 1)!}{k! 1!} \gamma_{k + 1}(x) = (k + 1)!\gamma_{k + 1}(x)$$
+                            Thus, we have completed the inductive step, and hence have shown that $n!\gamma_n(x) = x^n$ for all $x \in I$ and all $n \in \N$.
+                            \item Suppose that to a fixed $R$-ideal $I$, one can associate two distinct PD-structures $\gamma := \{\gamma_n\}_{n \in \N}$ and $\theta := \{\theta_n\}_{n \in \N}$. Then, according to \textbf{1}, one has the following for all $x \in I$ and all $n \in \N$:
+                                $$x^n = n!\gamma_n(x) = n!\theta_n(x)$$
+                            which implies that $\gamma_n = \theta_n$ for all $n \in \N$, since $R$ is $\Z$-torsion-free.
+                            \item We have already shown in \textbf{1} that $(I, \gamma)$ being a PD-structure implies that $x^n = n!\gamma_n(x)$ for all $n \in \N$ and all $x \in I$. Thus, it suffices to demonstrate that if $x^n = n!\gamma_n(x)$ for all $n \in \N$ and all $x \in I$ then $\gamma := \{\gamma_n\}_{n \in \N}$ is a PD-structure. Let us do this by checking the axioms defining PD-structures one by one.
+                                \begin{enumerate}
+                                    \item \textbf{(Raising to the zeroth power):} $1 = x^0 = 0! \gamma_0(x)$.
+                                    \item \textbf{(Raising to the first power):} $x = x^1 = 1! \gamma_1(x)$.
+                                    \item \textbf{(Addition of exponents):} Note that we have the following for all $m, n \in \N$ and all $x \in I$:
+                                        $$m!\gamma_m(x) \cdot n!\gamma_n(x) = x^m \cdot x^n = x^{m + n} = (m + n)!\gamma_{m + n}(x)$$
+                                    and as established above, the fraction $\frac{(m + n)!}{m!n!}$ is actually an integer for all $m, n \in \N$, and thus this implies that:
+                                        $$\gamma_m(x)\gamma_n(x) = \frac{(m + n)!}{m!n!}\gamma_{m + n}(x)$$
+                                    \item \textbf{(Multiplication of exponents):} Consider the following:
+                                        $$
+                                            \begin{aligned}
+                                                \frac{(mn)!}{(m!)^n n!}\gamma_{mn}(x) & = \frac{1}{(m!)^n n!} x^{mn}
+                                                \\
+                                                & = \frac{1}{(m!)^n n!} \left((-)^n \circ (-)^m\right)(x)
+                                                \\
+                                                & = \left(\frac{1}{n!}(-)^n \circ \frac{1}{m!}(-)^m\right)(x)
+                                                \\
+                                                & = (\gamma_n \circ \gamma_n)(x)
+                                            \end{aligned}
+                                        $$
+                                    Again, note that everything is well-defined here, since $\frac{(mn)!}{(m!)^n n!}$ is actually an integer.
+                                    \item \textbf{(Powers of multiples):} This is rather straightforward:
+                                        $$(ax)^n = a^n x^n = a^n n! \gamma(ax) = n!\gamma(ax)$$
+                                    \item \textbf{(Binomial expansion):} Let $x, y$ be elements of $I$ and consider the following for all powers $n \in \N$:
+                                        $$
+                                            \begin{aligned}
+                                                n!\gamma_n(x + y) & = (x + y)^n
+                                                \\
+                                                & = \sum_{i=0}^n \binom{n}{i} x^i y^{n - i}
+                                                \\
+                                                & = \sum_{i=0}^n \frac{n!}{(n - i)! i!} x^i y^{n - i}
+                                                \\
+                                                & = n!\sum_{i=0}^n \gamma_i(x)\gamma_{n - i}(y)
+                                            \end{aligned}
+                                        $$
+                                    Thus:
+                                        $$\gamma_n(x + y) = \sum_{i=0}^n \gamma_i(x)\gamma_{n - i}(y)$$
+                                    for all $n \in \N$ and all $x, y \in I$. 
+                                \end{enumerate}
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{example}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(The trivial PD-structure):} On the zero ideal of any (not even necessary commutative) ring, there exists an obviously trivial PD-structure given by the zero morphism in the abelian category of rings. 
+                        \item \textbf{(Divided power structures on $\Z_{(p)}$-algebras):} Let $p$ be a prime and let $R$ be a $\Z_{(p)}$-algebra, i.e. a commutative ring in which all integers not divisible by $p$ are declared to be invertible, and consider the ideal $I := pR$. One can then endow this ideal with a PD-structure $\gamma = \{\gamma_n\}_{n \in \N}$ whose components $\gamma_n$ are given by:
+                            $$\forall x \in I: \forall n \in \N: \gamma_n(x) := \frac{1}{n!}x^n$$
+                        (which we note, first and foremost, to be well-defined, since every integer not divisible by $p$ is invertible in $R$, and in the event that $n$ is divisible by $p$, the fraction $\frac{x^n}{n!} = \frac{(pa)^n}{n!}$ would still be an integer; one may show this, for instance, by using the fact that within the prime factorisation of $n!$, the exponent of $p$ is $\sum_{r=1}^{+\infty} \left\lfloor \frac{n}{p^r} \right\rfloor$); we leave the verification of the axioms defining Pd-structures to the readers (alternatively, one can simply notice that for all $x \in I$ and all $n \in \N$, one has that $x^n = n!\gamma_n(x)$, which we know implies that $\gamma$ is a PD-structure on $I$).
+                        \item \textbf{(Divided power structures on $\Q$-algebras):} Given any $\Q$-algebra $R$ and any $R$-ideal $I$, there is an obvious PD-structure $\gamma := \{\gamma_n\}_{n \in \N}$ on $I$ given by:
+                            $$\gamma_n(x) := \frac{1}{n!} x^n$$
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}
+                    Let $R$ be a ring and let $(I, \gamma), (J, \delta)$ be a PD-structures on $R$-ideals $I$ and $J$. Then:
+                        \begin{enumerate}
+                            \item The PD-structures $\gamma$ and $\delta$ agree on $IJ$. In other words, one has a (unique) PD-structure $(IJ, \theta)$ given by:
+                                $$(IJ, \theta) = (IJ, \gamma) = (IJ, \delta)$$
+                            \item If $\gamma$ and $\delta$ agree on $I \cap J$ then they coincide with the restriction of a (unique) PD-structure $\e$ on $I + J$ down onto $I \cap J$.
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        For the sake of reference, let us recall first of all that for any commutative ring $R$ and all $R$-ideals $I$ and $J$, we have the following definitions:
+                            $$IJ := \left\{\sum_{1 \leq i, j \leq N} x_iy_j \: \bigg| \: x \in I, y \in y, N \in \N \right\}$$
+                            $$I + J := \{x + y \mid x \in I, y \in J\}$$
+                            $$I \cap J := \{x \in R \mid (x \in I) \wedge (x \in J)\}$$
+                        \begin{enumerate}
+                            \item Let $x$ and $y$, respectively, be two arbitrary elements of $I$ and $J$ and consider the following, wherein $n$ is an arbitrary natural number:
+                                $$\delta_n(xy) = x^n\delta_n(y) = n!\gamma_n(x) \frac{1}{n!}y^n = \gamma_n(x)y^n = \gamma_n(xy)$$
+                            This shows that $\delta$ and $\gamma$ coincide on products of elements of $I$ and $J$. Now, because elements of $IJ$ are finite sums of such products, let us simply consider a sum of two such products:
+                                $$\delta_n(xy + x'y') = \sum_{i = 0}^n \delta_i(xy)\delta_{n - i}(x'y') = \sum_{i = 0}^n \gamma_i(xy)\gamma_{n - i}(x'y') = \gamma_n(xy + x'y')$$
+                            Thus, $\delta$ and $\gamma$ indeed coincide on finite sums of products of $I$ and of $J$, i.e. on all elements of $IJ$. In other words, they coincide on $IJ$. One can then let $\theta$ be the restriction of $\delta$ (or equivalently, of $\gamma$) down onto $IJ$ (which we note to be a sub-ideal of both $I$ and $J$), and it is necessarily unique by virtue of being a PD-structure.
+                            \item Assume firstly that $\gamma$ and $\delta$ conincide with the restriction of a PD-structure $\e$ on $I + J$ down onto $I \cap J$. 
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{proposition}[$p$-powers in PD-rings] \label{prop: p_powers_in_PD_rings}
+                    Let $p$ be a prime and let $(R, I , \gamma)$ be a PD-ring. Also, assume that $p$ is nilpotent in $R/I$. Then, the ideal $I$ is locally nilpotent if and only if $p$ is nilpotent in $R$. 
+                \end{proposition}
+                    \begin{proof}
+                        Before we start proving the proposition, let us remind ourselves with the fact that an element $x \in R$ is nilpotent in $R/I$ if and only if there exists a natural number $N$ such that $x^N \in I$. 
+                        \begin{enumerate}
+                            \item Suppose first of all, that the ideal $I$ is locally nilpotent, i.e. that for all elements $x \in I$, there exists a natural number $N_x$ such that $x^{N_x} = 0$. Then, we can use the fact that $\gamma$ is a PD-structure on $I$ if and only if $x^n = n!\gamma_n(x)$ for all $x \in I$ and all $n \in \N$; in combination with the local nilpotency hypothesis, this implies that for all $x \in I$, there exists $N_x \in \N$ such that:
+                                $$0 = x^{N_x} = N_x!\gamma_{N_x}(x)$$
+                            \item
+                        \end{enumerate}
+                    \end{proof}
+                    
+            \subsubsection{Categories of divided power algebras over a ring}
+                \begin{definition}[PD-homomorphisms] \label{def: PD_homomorphisms}
+                    Let $(A, I , \gamma)$ and $(B, J, \delta)$ be two PD-rings and let $\phi: A \to B$ be a ring homomorphism. Then, $\phi$ is a homomorphism of PD-rings if and only if $\phi(I) \subseteq J$ and or all natural numbers $n$, one has the following commutative diagrams:
+                        $$
+                            \begin{tikzcd}
+                            	{I} & {I} \\
+                            	{J} & {J}
+                            	\arrow["{\phi}"', from=1-1, to=2-1]
+                            	\arrow["{\phi}", from=1-2, to=2-2]
+                            	\arrow["{\delta}", from=2-1, to=2-2]
+                            	\arrow["{\gamma}", from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                    Often, given a PD-homomorphism $\phi: (A, I, \gamma) \to (B, J, \delta)$, one says that $B$ is a PD-algebra over $A$. 
+                \end{definition}
+                \begin{remark}[Categories PD-algebras]
+                    Via this definition of PD-homomorphism, for each $\Z_{(p)}$-algebra $A$ (we are consider $\Z_{(p)}$-algebras first because they have been shown to come equipped with canonical PD-sturctures), one gets directly the category of PD-algebras over $A$, denoted by ${}^{A/}\Comm\Alg^{\pd}$. It is a subcategory of ${}^{A/}\Comm\Alg$ that is \textbf{not full}, as not all homomorphisms of (commutative) $A$-algebras are PD-homomorphisms. Note that $\Q$-algebras are $\Z_{(p)}$-algebra (as $\Q \cong \Z_{(p)}[1/p]$), and so categories of PD-algebras over $\Q$-algebras exist in a similar fashion.
+                    \\
+                    Note that it is not the case that only PD-algebras over $\Z_{(p)}$ (for some prime $p$) form categories. However, if the base PD-ring is not a $\Z_{(p)}$-algebra, then there need not exist a terminal PD-ring (and as a consequence, no \say{absolute} category of PD-rings like ${}^{\Z_{(p)}/}\Comm\Alg$ or ${}^{\Q/}\Comm\Alg$), as there is no canonical way to associate PD-structures to ideals of general commutative rings.  
+                \end{remark}
+                
+                \begin{proposition}[(Co)completeness of PD-algebra categories]
+                    Let $p$ be a prime. For any $\Z_{(p)}$-algebra $A$, the category of PD-algebras over $A$ is both complete and cocomplete. Moreover, limits of PD-$A$-algebras agree with those of their underlying commutative $A$-algebras; the colimits, however, need not coincide with those of the same shape but taken in ${}^{A/}\Comm\Alg$. 
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Completeness):} Because limits can be built out of products and equalisers (see \cite{maclane}, theorem V.2.1), it will suffice to show that ${}^{A/}\Comm\Alg^{\pd}$ has all products and all equalisers.
+                            \\
+                            First, let us show that ${}^{A/}\Comm\Alg^{\pd}$ has all products, and to that end, let:
+                                $$\left\{\left(B^{(i)}, \b^{(i)}, \gamma^{(i)}\right)\right\}_{i \in I}$$
+                            be a small discrete diagram of PD-algebras over $A$ (understood to be equipped with the canonical PD-structure on $\Z_{(p)}$-algebras). Now, consider the ideal $\prod_{i \in I} \b^{(i)}$ of the ring $\prod_{i \in I} B^{(i)}$, and note that because addition and multiplication on products of rings are determined component-wise, there is a natural PD-structure given by:
+                                $$\prod_{i \in I} \gamma^{(i)} = \left\{\prod_{i \in I} \gamma_n^{(i)}\right\}_{n \in \N}$$
+                            Thus, the category ${}^{A/}\Comm\Alg^{\pd}$ has arbitrary products. 
+                            \\
+                            Now, let us prove that ${}^{A/}\Comm\Alg^{\pd}$ has all equalisers, which we can do by checking if any diagram consisting of a pair of parallel PD-homomorphisms of PD-$A$-algebras $\phi, \psi: B \toto C$ has a limit that is also a PD-$A$-algebra.  
+                            \item \textbf{(Cocompleteness):}
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Free PD-algebras] \label{coro: free_PD_algebras}
+                    Let $p$ be a prime and let $A$ be any $\Z_{(p)}$-algebra. 
+                        \begin{enumerate}
+                            \item The forgetful functor:
+                                $$\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$$
+                            does not preserve colimits in general (finite or otherwise). 
+                            \item However, $\oblv$ does admit a left-adjoint.
+                        \end{enumerate}
+                \end{corollary}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item Let $I$ be the shape of some diagram of PD-algebras over $A$ (again, understood to be equipped with the canonical PD-structure on $\Z_{(p)}$-algebras). As shown above, the colimit taken in ${}^{A/}\Comm\Alg^{\pd}$ over $I$ need not coincide with that taken in ${}^{A/}\Comm\Alg$, and thus the forgetful functor from ${}^{A/}\Comm\Alg^{\pd}$ to ${}^{A/}\Comm\Alg$ need not preserve colimits in general. The rest follows directly. 
+                            \item Because limits of PD-algebras are just limits of the underlying commutative algebras, the forgetful functor:
+                                $$\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$$
+                            must preserve limits, and because ${}^{A/}\Comm\Alg^{\pd}$ is locally small (by virtue of being a subcategory of the locally small category ${}^{A/}\Comm\Alg$), complete, and cocomplete (which implies that ${}^{A/}\Comm\Alg^{\pd}$ is presentable), it therefore admits a left-adjoint by the Special Adjoint Functor Theorem \cite[Theorem V.8.2]{maclane}: in essence, we have a well-defined notion of free PD-algebras over a given base commutative ring.   
+                        \end{enumerate}
+                    \end{proof}
+                    
+                \begin{definition}[PD-envelopes] \label{def: PD_envelopes}
+                    Let $p$ be a prime and fix a $\Z_{(p)}$-algebra. Then, the construction of free PD-$A$-algebras that is left-adjoint to the forgetful functor $\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$ (cf. corollary \ref{coro: free_PD_algebras}) shall be called the \textbf{PD-enveloping functor} over $A$; we denote it by:
+                        $${}^{\pd}(-): {}^{A/}\Comm\Alg \to {}^{A/}\Comm\Alg^{\pd}$$
+                    or ${}^{\pd}(-)_A$ when the base ring $A$ needs emphasis.
+                \end{definition}
+            
+            \subsubsection{Induced divided power structures}
+                \begin{definition}[Induced PD-structures]
+                    Let $(A, I, \gamma)$ be a PD-ring and let $B$ be an $A$-algebra. Then, we say that the PD-structure $\gamma$ extends to a PD-structure $\overline{\gamma}$ on the ideal $IB$ of $B$ if there exists a homomorphism of PD-rings from $(A, I, \gamma)$ to $(B, IB, \overline{\gamma})$. Sometimes, we might refer to PD-structures such as $\overline{\gamma}$ above as induced PD-stuctures. 
+                \end{definition}
+                
+                \begin{proposition}[Existence and uniqueness of induced PD-structures] \label{prop: induced_PD_structures_existence_and_uniqueness}
+                    Let $(A, I, \gamma)$ be a PD-ring and let $B$ be an $A$-algebra. Then, $\gamma$ extends to a PD-structure if at least one of the following conditions is satisfied:
+                        \begin{enumerate}
+                            \item $IB = 0$.
+                            \item $I$ is a principal ideal.
+                            \item $B$ is flat as an $A$-module.
+                        \end{enumerate}
+                    Furthermore, if $\gamma$ does indeed extend to a PD-structure on $IB$, then said induced PD-structure will be unique.
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Existence):} 
+                                \noindent
+                                \begin{enumerate}
+                                    \item We have already seen that the zero ideal of any ring possesses a canonical PD-structure, so if $IB = 0$ then $\gamma$ trivially extends to a (unique) PD-structure on $IB$.
+                                    \item Now, suppose that $I$ is a principal ideal, say, generated by some element $a \in A$. Suppose also, that $B$ is given by the ring homomorphism $\phi: A \to B$.
+                                    \item Consider the following short exact sequence of $A$-modules:
+                                        $$0 \to I \to A \to A/I \to 0$$
+                                    Applying the functor $- \tensor_A B$ then gives the following commutative diagram of short sequences of $B$-modules, which we note to both be exact due to the assumption that $B$ is flat over $A$ (and less significantly, due to the fact that the left-adjoint $- \tensor_A B$ preserves finite colimits):
+                                        $$
+                                            \begin{tikzcd}
+                                            	{0} & {I \tensor_A B} & {B} & {A/I \tensor_A B} & {0} \\
+                                            	{0} & {IB} & {B} & {B/I} & {0}
+                                            	\arrow["{\cong}", from=1-2, to=2-2]
+                                            	\arrow[Rightarrow, from=1-3, to=2-3, no head]
+                                            	\arrow["{\cong}", from=1-4, to=2-4]
+                                            	\arrow[from=1-2, to=1-3]
+                                            	\arrow[from=1-3, to=1-4]
+                                            	\arrow[from=2-2, to=2-3]
+                                            	\arrow[from=2-3, to=2-4]
+                                            	\arrow[from=2-4, to=2-5]
+                                            	\arrow[from=1-4, to=1-5]
+                                            	\arrow[from=1-1, to=1-2]
+                                            	\arrow[from=2-1, to=2-2]
+                                            \end{tikzcd}
+                                        $$
+                                    
+                                \end{enumerate}
+                            \item \textbf{(Uniqueness):} Assume that at least one of the conditions guaranteeing that an induced PD-structure $\overline{\gamma}$ exists is satisfied, and suppose to the contrary that there exist two distinct induced PD-structures on $IB$, say $\overline{\gamma}$ and $\tilde{\gamma}$.
+                        \end{enumerate}
+                    \end{proof}
+                    
+        \subsection{Crystalline sites}
+            \subsubsection{PD-thickenings}
+                \begin{definition}[PD-thickenings] \label{def: PD_thickenings}
+                    Let $p$ be a prime number, let $(A, I, \gamma)$ be a PD-algebra over $\Z_{(p)}$, and let $C$ be an $A$-algebra such that $IC = 0$ and such that $p$ is nilpotent in $C$ (for why we require these two conditions, refer to propositions \ref{prop: p_powers_in_PD_rings} and \ref{prop: induced_PD_structures_existence_and_uniqueness}). 
+                        \begin{enumerate}
+                            \item \textbf{(PD-thickenings):} Within the above context, we say that a \textbf{PD-thickening} over $(A, I, \gamma)$ of $C$ is a PD-homomorphism:
+                                $$\phi: (A, I, \gamma) \to (B, J, \delta)$$
+                            over $\Z_{(p)}$ (cf. definition \ref{def: PD_homomorphisms}) that fits into a commutative pentagon in ${}^{\Z_{(p)}/}\Comm\Alg$ as follows:
+                                $$
+                                    \begin{tikzcd}
+                                    	A && B \\
+                                    	{A/I} && {B/J} \\
+                                    	& C
+                                    	\arrow[two heads, from=1-1, to=2-1]
+                                    	\arrow[two heads, from=1-3, to=2-3]
+                                    	\arrow["\phi", from=1-1, to=1-3]
+                                    	\arrow[from=2-1, to=3-2]
+                                    	\arrow[from=3-2, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            where $A \to A/I$ and $B \to B/J$ are the canonical quotient maps (note that the composition:
+                                $$A \to A/I \to C$$
+                            exists precisely because $IC = 0$, and the map:
+                                $$B/J \to C$$
+                            exists because $p$ is nilpotent in $C$). 
+                            \item \textbf{(PD-thickening homomorphisms):} A \textbf{homomorphism between two PD-thickenings}:
+                                $$\phi: (A, I, \gamma) \to (B, J, \delta)$$
+                            and:
+                                $$\phi': (A, I, \gamma) \to (B', J', \delta')$$
+                            of $C$ over $(A, I, \gamma)$ is nothing more than a mapping of commutative pentagons in ${}^{\Z_{(p)}/}\Comm\Alg$ of the following form:
+                                $$
+                                    \begin{tikzcd}
+                                    	&& A &&&& {B'} \\
+                                    	&& {A/I} && C && {B'/J'} \\
+                                    	A &&&& B \\
+                                    	{A/I} && C && {B/J}
+                                    	\arrow[two heads, from=3-1, to=4-1]
+                                    	\arrow[two heads, from=3-5, to=4-5]
+                                    	\arrow["\phi", from=3-1, to=3-5]
+                                    	\arrow[from=4-1, to=4-3]
+                                    	\arrow[from=4-3, to=4-5]
+                                    	\arrow["{\phi'}", from=1-3, to=1-7]
+                                    	\arrow["\cong", from=3-1, to=1-3]
+                                    	\arrow["\cong", from=4-1, to=2-3]
+                                    	\arrow["\psi", from=3-5, to=1-7]
+                                    	\arrow[two heads, from=1-7, to=2-7]
+                                    	\arrow[two heads, from=1-3, to=2-3]
+                                    	\arrow[from=4-5, to=2-7]
+                                    	\arrow[from=2-3, to=2-5]
+                                    	\arrow[from=2-5, to=2-7]
+                                    	\arrow["\cong", from=4-3, to=2-5]
+                                    \end{tikzcd}
+                                $$
+                            wherein $\psi: (B, J, \delta) \to (B', J', \delta')$ is a PD-homomorphism.
+                        \end{enumerate}
+                \end{definition}
+            
+            \subsubsection{Crystalline sites}
+                \begin{definition}[Crystalline affine schemes] \label{def: crystalline_affine_schemes}
+                    Using the notion of homomorphisms of PD-thickenings given in definition \ref{def: PD_thickenings}, we can define so-called \say{categories of crystalline affine schemes}. Specifically, the category of $C$-crystalline affine schemes over $\Spec A$, denote by:
+                        $$\Sch(C)^{\aff, \crys, \gros}_{/\Spec A}$$
+                    is dual to the category of PD-thickenings of $C$ over $(A, I, \gamma)$ and homomorphisms between them, which is denoted by:
+                        $${}^{(A, I, \gamma)/}\Comm\Alg(C)^{\crys, \gros}$$
+                    or simply:
+                        $${}^{A/}\Comm\Alg(C)^{\crys, \gros}$$
+                    when the PD-structure on $A$ is fixed.
+                \end{definition}
+                \begin{remark}[Big and small categories of crystalline affine schemes] \label{remark: big_and_small_categories_of_crystalline_affine_schemes}
+                    
+                \end{remark}
+        
+        \subsection{Differential-graded divided power algebras}
+            \subsubsection{Divided power polynomial algebras}
+            
+            \subsubsection{Tate resolutions}
+            
+        \subsection{Applications to complete intersections}
+            \subsubsection{Local complete intersections}
+            
+            \subsubsection{Smooth ring maps and diagonals}
+            
+            \subsubsection{Freeness of the conormal bundle}
+        
+    \section{Crystalline cohomology and arithmetic D-modules}
+        \subsection{Arithmetic jets}
+            \subsubsection{Arithmetic derivations}
+                \paragraph{Delta-rings}
+                    \begin{definition}[$p$-derivations] \label{def: p_derivations}
+                        \noindent
+                        \begin{enumerate}
+                            \item A set-map $\delta_p: B \to B$ is called an \textbf{absolute $p$-derivation} if for all $b, b' \in B$ and all $a \in \Z$, we have:
+                                $$\delta_p(a) = 0$$
+                                $$\delta_p(b + b') = \delta_p(b) + \delta_p(b') + \left(-\frac1p\sum_{i=0}^{p-1} \binom{p}{i} b^ib'^{p-i}\right)$$
+                                $$\delta_p(bb') = b^p\delta_p(b') + \delta_p(b)b'^p + p\delta_p(b)\delta_p(b')$$
+                            Note that in order for the binomial coefficients $\binom{p}{i} = \frac{p!}{i! (p - i)!}$ (or even $\frac1p \binom{p}{i} = \frac{(p - 1)!}{i! (p - i)!}$ for that matter) to always be well-defined, we will usually want to require $B$ to be a commutative algebra over $\Z_{(p)}$ instead of simply being any commutative ring. 
+                            \item Let $A$ be a $\Z_{(p)}$-algebra and suppose that $B$ is an $A$-algebra. Then, a \textbf{$p$-derivation on $B$ with coefficients in $A$} is a set-map:
+                                $$\delta_p: B \to B$$
+                            satisfying
+                                $$\delta_p(a) = 0$$
+                                $$\delta_p(b + b') = \delta_p(b) + \delta_p(b') + \left(-\frac1p\sum_{i=0}^{p-1} \binom{p}{i} b^ib'^{p-i}\right)$$
+                                $$\delta_p(bb') = b^p\delta_p(b') + \delta_p(b)b'^p + p\delta_p(b)\delta_p(b')$$
+                            for all $a \in A$ and $b, b' \in B$.
+                        \end{enumerate}
+                    \end{definition}
+                    \begin{convention}
+                        For the sake of convenience, let us from now on say that $p$-derivations satisfy $p$-linearity and the $p$-Leibniz rule.
+                    \end{convention}
+                    
+                    \begin{proposition}[$p$-derivations and Frobenius lifts] \label{prop: p_derivations_and_frobenius_lifts}
+                        This is \cite[Remark 2.2]{bhatt_scholze_prisms}.
+                        
+                        If $\delta_p: B \to B$ is a $p$-derivation, then the endomorphism:
+                            $$\phi^p: B \to B: b \mapsto b^p + p\delta_p(b)$$
+                        will be a Frobenius lift on $B$. Conversely, if we have any Frobenius lift $\phi^p: B \to B$, and if the ring $B$ is $p$-torsion-free (i.e. $p$ is not a zero-divisor in $B$), then we will get a $p$-derivation $\delta_p$ on $B$:
+                            $$\delta_p: B \to B: b \mapsto \frac{\phi^p(b) - b^p}{p}$$
+                        We say that the $p$-derivation $\delta_p$ and the lift of Frobenius $\phi^p$ are attached to one another.
+                    \end{proposition}
+                        \begin{proof}
+                            Firstly, suppose that $\delta_p$ is a $p$-derivation on $B$. Reducing modulo $p$ the map:
+                                $$\phi^p: B \to B: b \mapsto b^p + p\delta_p(b)$$
+                            clearly gives the $p^{th}$-power Frobenius, and so $\phi^p$ is a Frobenius lift. 
+                            \\
+                            Conversely, suppose that $\phi^p: B \to B$ is a Frobenius lift, and that $B$ is $p$-torsion-free. Then, it is simply a matter of manually checking the axioms defining a $p$-derivation $\delta_p$ on $B$. Note that we require $B$ to be $p$-torsion-free so that the expression for $\delta_p$ would be well-defined in $B$.
+                        \end{proof}
+                    \begin{example}[Examples of $p$-derivations] \label{example: p_derivations}
+                        \noindent
+                        \begin{enumerate}
+                            \item A prototypical example of a $p$-derivation is the Fermat quoient $\del_p$ on $\Z$. This is the set-map given by:
+                                $$\del_p z := \frac{z - z^p}{p}$$
+                            for all $z \in \Z$. We can see that it is attached to the Frobenius lift:
+                                $$\phi^p(z) := z^p + p \frac{z - z^p}{p} = z$$
+                            i.e. $\phi^p = \id_{\Z}$. Note that $\del_p z$ is indeed an integer for any $z \in \Z$, as Fermat's little theorem tells us that:
+                                $$z^p \equiv z \pmod{p}$$
+                            \item One could also extend the definition of the Fermat quotient to any $p$-torsion-free commutative ring $A$ (and especially, any $\Q$-algebra $A$; note that $\Q = \Z_{(p)}[1/p]$), which we will denote by $\del_{p,A}$. For any element $a \in A$, we have:
+                                $$\del_{p,A}a = \frac{a - a^p}{p}$$
+                            and the lift of Frobenius is $\id_A$.
+                        \end{enumerate}
+                    \end{example}
+                        
+                    \begin{proposition}
+                        Let $\delta_p$ be a $p$-derivation on some ring $B$, and let $I$ be an ideal of $B$ such that:
+                            $$\delta_p(I) \subseteq I$$
+                        Then $\delta_p(I^n) \subseteq I^n$ for all $n \in \N$. 
+                    \end{proposition}
+                        \begin{proof}
+                            This is an immediate consequence of the definition of $p$-derivations.
+                        \end{proof}
+                        
+                    \begin{definition}[$\delta$-rings] \label{def: delta_rings}
+                        This is \cite[Definition 2.1]{bhatt_scholze_prisms}.
+                        \begin{enumerate}
+                            \item A ring equipped with a $p$-derivation is called a \textbf{$\delta$-ring}, or when $p$ is not fixed, a $\delta_p$-ring. A morphism of $\delta$-rings is a homomorphism $B \to B'$ of rings that commute with the $p$-derivations $\delta_p$ and $\delta'_p$ on them, i.e. one gets the following commutative diagram in $\Sets$:
+                                $$
+                                    \begin{tikzcd}
+                                        B' \arrow[r, "\delta_p'"]         & B'          \\
+                                        B \arrow[u] \arrow[r, "\delta_p"] & B \arrow[u]
+                                    \end{tikzcd}
+                                $$
+                            \item Relatively, one could define \textbf{$A$-$\delta$-algebras} as ring homomorphisms $A \to B$, with $A$ a $\Z_{(p)}$-algebra, equipped with $p$-derivations $\delta_p: B \to B$ on $B$ with coefficients in $A$. In other words, $A$-$\delta$-algebras are commutative diagrams in $\Sets$ as follows:
+                                $$
+                                    \begin{tikzcd}
+                                        B \arrow[r, "\delta_p"]               & B           \\
+                                        A \arrow[u] \arrow[r, "{\del_{p,A}}"] & A \arrow[u]
+                                    \end{tikzcd}
+                                $$
+                            A morphism of $A$-$\delta$-algebras are commutative diagrams in $\Sets$ of the following form:
+                                $$
+                                    \begin{tikzcd}
+                                        B' \arrow[r, "\delta_p'"]         & B'          \\
+                                        B \arrow[u] \arrow[r, "\delta_p"] & B \arrow[u] \\
+                                        A \arrow[u] \arrow[r, "\del_{p, A}"]             & A \arrow[u]
+                                    \end{tikzcd}
+                                $$
+                            \item $\delta$-rings form a category, which we will denote by $\delta\Cring$, or when the prime $p$ is not clear from the context, $\delta_p\Cring$, whose objects are $p$-derivations:
+                                $$\delta_p: B \to B$$
+                            and whose morphisms are commutative diagrams in $\Sets$:
+                                $$
+                                    \begin{tikzcd}
+                                        B' \arrow[r, "\delta_p'"]         & B'          \\
+                                        B \arrow[u] \arrow[r, "\delta_p"] & B \arrow[u]
+                                    \end{tikzcd}
+                                $$
+                        \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{remark}[Arithmetic and algebraic derivations] \label{remark: arithmetic_and_algebraic_derivations}
+                        \noindent
+                        \begin{enumerate}
+                            \item Note that when $\chara B \not = p$, $p$-derivations are not derivations in the usual sense. In characteristic $p$, we could use Fermat's little theorem to see that:
+                            $$\delta_p(b + b') = \delta_p(b) + \delta_p(b')$$
+                            $$\delta_p(bb') = b^p\delta_p(b') + \delta_p(b)b'^p \equiv b\delta_p(b') + \delta_p(b)b' \pmod{p}$$
+                            The first equation also implies that $\delta_p$ is $\Z$-linear in characteristic $p$. Thus, when $\chara B = p$, $p$-derivations are actually derivations, or $\Z$-derivations for that matter, in the usual sense.
+                            \item More generally, if $B$ is an $A$-algebra (for some commutative $\Q$-algebra $A$), then $p$-derivations on $B$ with coefficients in $A$ are derivations in the usual sense if and only if $\chara B = p$.
+                            \item More functorially, we recognise that a $\delta_p$-ring $B$ in characteristic $p$ is simply an $\F_p$-algebra, and so $p$-derivations on $\F_p$-algebras are just derivations in the usual sense. Furthermore, this is not just a $\Z$-derivation, but an $\F_p$-derivation. Relatively, a $p$-derivation $\delta_p$ on $B$ with coefficients in some $\Z\left[\frac1p\right] \tensor_{\Z} \F_p$-algebra $A$ is just an $A$-derivation in the usual sense. Note furthermore that $\Z\left[\frac1p\right] \tensor_{\Z} \F_p \cong \F_p[\frac1p]$. This is due to the fact that the free functor:
+                                $$\Z[-]: \Sets \to \Cring$$
+                            as the left-adjoint of the forgetful functor $\Cring \to \Sets$, commutes with colimits, $-\tensor_{\Z} \F_p$ in this instance; that is to say, we have the following natural isomorphisms:
+                                $$\Z[-] \tensor_{\Z} \F_p \cong (\F_p \tensor_{\Z} \Z)[-] \cong \F_p[-]$$
+                        \end{enumerate}
+                    \end{remark}
+                    \begin{example}[$p$-derivations that are (not) actually derivations] \label{example: p_derivations_and_derivations}
+                        \noindent
+                        \begin{enumerate}
+                            \item Consider the algebra $B := \F_p[t]$, with $t \not \in p\Z$. There, $\del_{p, \F_p}$ is defined by:
+                                $$\del_{p, \F_p}a = 0$$
+                                $$\del_{p, \F_p}(af + a'f') = a\del_{p, \F_p}f + a'\del_{p, \F_p}f'$$
+                                $$\del_{p, \F_p}(ff') = f\del_{p, \F_p}f' + (\del_{p, \F_p}f) f'$$
+                            for all $a, a' \in A$ and $f, f' \in \F_p[t]$.
+                            \item $p$-derivations on neither $\Z_p$ nor $\Q_p$ are actual derivations, as these rings are of characteristic $0$ 
+                        \end{enumerate}
+                    \end{example}
+                     
+                    \begin{proposition}[Properties of $\delta\Cring$] \label{prop: (co)limits_of_delta_rings}
+                        Let $p$ be any prime number. The following statements come from example 2.6 and remark 2.7 in \cite{bhatt_scholze_prisms}.
+                        \begin{enumerate}
+                            \item $\delta_p\Cring$ has $(\Z, \del_p)$ as the initial object, with $\del_p$ the Fermat quotient. Due to this, one could define the coslice category ${}^{(A, \del_{p,A})/}\delta_p\Comm\Alg$ for any $\Z_{(p)}$-algebra $A$. 
+                            \item The category $\delta_p\Cring$ is both complete and cocomplete. Furthermore, said (co)limits commute with the forgetful functor:
+                                $$\oblv_p: \delta_p\Cring \to \Cring$$
+                            \item The forgetful functor:
+                                $$\oblv_p: \delta_p\Cring \to \Cring$$
+                            has both left and right-adjoints. The left-adjoint is of course the free construction, and the right-adjoint is the Witt vector functor $\W$; the latter point implies that rings of Witt vectors are naturally $\delta$-rings.
+                        \end{enumerate}
+                    \end{proposition}
+                    
+                \paragraph{Arithmetic Leibniz algebras}
+                    \begin{definition}[$p$-(pre)derivations and $p$-Leibniz algebras] \label{def: arithmetic_leibniz_algebras}
+                        Let $k$ be a \textbf{$p$-torsion-free} ring and let $(\V, \tensor, 1)$ be a monoidal $k$-linear category. 
+                            \begin{enumerate}
+                                \item A left/right-$p$-prederivation on an (not necessarily commutative and unital) algebra $\left(\g, \nabla\right)$ internal to $\V$ is a morphism of objects in $\V$:
+                                    $$\delta: \g \to \g$$
+                                that turns the triple $\left(\g, \nabla, \delta\right)$ into an \textbf{$p$-additive} left/right-$p$-Leibniz algebra. That is to say, we require the following diagram to commute in $\V$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\g \tensor \g} & {\g} \\
+                                        	{\g \tensor \g} & {\g}
+                                        	\arrow["{\delta}", from=1-2, to=2-2]
+                                        	\arrow["{\nabla}", from=2-1, to=2-2]
+                                        	\arrow["{\nabla}", from=1-1, to=1-2]
+                                        	\arrow["{\delta \tensor \Frob_{\g} + \Frob_{\g} \tensor \delta + p \cdot \delta \tensor \delta}"', from=1-1, to=2-1]
+                                        \end{tikzcd}
+                                    $$
+                                wherein $\Frob_{\g}$ is the usual $p^{th}$-power map.
+                                \item If $\g$ also happens to be a unital algebra (with unit map $\eta: 1 \to \g$), then we require that the following diagram commutes:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{1} & {\g} \\
+                                        	& {\g}
+                                        	\arrow["{\delta}", from=1-2, to=2-2]
+                                        	\arrow["{\eta}", from=1-1, to=1-2]
+                                        	\arrow["{0}"', from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                whererin $0$ is understood to be the additive identity in the $k$-module $\V(1, \g)$. In this situation, we call the quadruple $(\g, \nabla, \delta, \eta)$ a \textbf{$p$-linear} $p$-Leibniz algebra, and specifically, the $p$-prederivation $D$ will be referred to simply as a $p$-derivation.
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{example}
+                        Let us keep notations as in definition \ref{def: arithmetic_leibniz_algebras}.
+                        \begin{enumerate}
+                            \item \textbf{($\delta$-rings)} If we take $k$ to be commutative and $\V$ to be the category of $k$-modules, then we can see that $p$-linear $p$-Leibniz algebras internal to $\Mod_k$ are just $\delta$-rings (cf. definition \ref{def: delta_rings}).  
+                            \item \textbf{($p$-Lie algebras)} A $p$-Lie algebra is just a (non-unital and non-associative) $p$-additive $p$-Leibniz algebra internal to a braided symmetric monoidal $k$-linear category whose multiplication is a Lie bracket.
+                        \end{enumerate}
+                    \end{example}
+                    
+                    \begin{claim}[$p$-Leibniz algebras form categories]
+                        Let $k$ be a $p$-torsion-free ring and let $(\V, \tensor, 1)$ be a monoidal $k$-linear category. Then, $p$-additive $p$-Leibniz algebras internal to $\V$ form a subcategory that admits that of $p$-linear $p$-Leibniz algebras as a subcategory of its own. We shall denote these two categories, repsectively, by $\delta_p\Alg(\V)$ and $\delta_p\Assoc\Alg(\V)$.
+                    \end{claim}
+                        \begin{proof}
+                            Let $(\g, \nabla, \delta)$ and $(\g', \nabla', \delta')$ be two $p$-additive $p$-Leibniz algebras. Then, let us declare that a morphism of $p$-Leibniz algebras internal to $\V$ is an algebra homomorphism $\phi: \g \to \g'$ (i.e. a morphism satisfying $\phi \circ \nabla = \nabla\ \circ (\phi \tensor \phi)$) such that:
+                                $$\phi \circ \delta = \delta' \circ \phi$$
+                            Then, it will suffice to show that the following diagram commutes:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g' \tensor \g'} & {\g'} \\
+                                    	& {\g' \tensor \g'} & {\g'} \\
+                                    	{\g \tensor \g} & {\g} \\
+                                    	{\g \tensor \g} & {\g}
+                                    	\arrow["{\phi \tensor \phi}", from=3-1, to=1-2]
+                                    	\arrow["{\phi}", from=3-2, to=1-3]
+                                    	\arrow["{\phi}", from=4-2, to=2-3]
+                                    	\arrow["{\delta'}", from=1-3, to=2-3]
+                                    	\arrow["{\nabla'}", from=1-2, to=1-3]
+                                    	\arrow["{\delta' \tensor \Frob_{\g'} + \Frob_{\g'} \tensor \delta' + p \cdot \delta' \tensor \delta'}"', from=1-2, to=2-2]
+                                    	\arrow["{\nabla'}", from=2-2, to=2-3]
+                                    	\arrow["{\delta}", from=3-2, to=4-2]
+                                    	\arrow["{\delta \tensor \Frob_{\g} + \Frob_{\g} \tensor \delta + p \cdot \delta \tensor \delta}"', from=3-1, to=4-1]
+                                    	\arrow["{\nabla}"', from=4-1, to=4-2]
+                                    	\arrow["{\nabla}"', from=3-1, to=3-2]
+                                    	\arrow["{\phi \tensor \phi}", from=4-1, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                            if we are simply trying to show that additive Leibniz algebras form a subcategory of $\V$. For the second assertion, we will, in addition, need to prove that the following diagram, wherein $\eta$ and $\eta'$ are the unit maps, commutes:
+                                $$
+                                    \begin{tikzcd}
+                                    	&& {1} & {\g'} \\
+                                    	{1} & {\g} && {\g'} \\
+                                    	& {\g}
+                                    	\arrow["{\phi}", from=2-2, to=1-4]
+                                    	\arrow["{\phi}", from=3-2, to=2-4]
+                                    	\arrow["{\eta}" description, from=2-1, to=2-2]
+                                    	\arrow["{\delta}", from=2-2, to=3-2]
+                                    	\arrow["{\delta'}", from=1-4, to=2-4]
+                                    	\arrow["{\eta'}" description, from=1-3, to=1-4]
+                                    	\arrow[Rightarrow, from=2-1, to=1-3, no head]
+                                    	\arrow["{0}"', from=2-1, to=3-2]
+                                    	\arrow["{0}"', from=1-3, to=2-4]
+                                    \end{tikzcd}
+                                $$
+                            To these ends, consider the following:
+                                $$
+                                    \begin{aligned}
+                                        \phi \circ \delta \circ \nabla & = \phi \circ \nabla \circ \left(\delta \tensor \Frob_{\g} + \Frob_{\g} \tensor \delta + p \cdot \delta \tensor \delta\right)
+                                        \\
+                                        & = \nabla' \circ (\phi \tensor \phi) \circ \left(\delta \tensor \Frob_{\g} + \Frob_{\g} \tensor \delta + p \cdot \delta \tensor \delta\right)
+                                        \\
+                                        & = \nabla' \circ \left((\phi \circ \delta) \tensor \phi + \phi \tensor (\phi \circ \delta) + p \cdot (\phi \circ \delta) \tensor (\phi \circ \delta)\right)
+                                        \\
+                                        & = \nabla' \circ \left((\delta' \circ \phi) \tensor \phi + \phi \tensor (\delta' \circ \phi) + p \cdot (\delta' \circ \phi) \tensor (\delta' \circ \phi)\right)
+                                        \\
+                                        & = \nabla' \circ \left(\delta' \tensor \Frob_{\g'} + \Frob_{\g'} \tensor \delta' + p \cdot \delta' \tensor \delta'\right) \circ (\phi \tensor \phi)
+                                        \\
+                                        & = \delta' \circ \nabla' \circ (\phi \tensor \phi)
+                                    \end{aligned}
+                                $$
+                            and in the unital case, also the following:
+                                $$
+                                    \begin{aligned}
+                                        \delta' \circ \phi \circ \eta & = \delta' \circ \eta'
+                                        \\
+                                        & = \delta' \circ 0
+                                        \\
+                                        & = 0
+                                        \\
+                                        & = \phi \circ 0
+                                        \\
+                                        & = \phi \circ \delta \circ \eta
+                                    \end{aligned}
+                                $$
+                            By matching the terms in these equations with composition of arrows in the preceding two diagrams, we can see that the diagrams indeed commute.
+                        \end{proof}
+                
+                    \begin{proposition}[Properties of categories of Leibniz algebras]
+                        Let $k$ be a $p$-torsion-free ring and let $(\V, \tensor, 1)$ be a monoidal $k$-linear category. Also, we shall be writing $\delta_p\Assoc\Alg(\V)$ for the category of associative (and unital) $p$-linear $p$-Leibniz algebras internal to $\V$. 
+                            \begin{enumerate}
+                                \item $\delta_p\Assoc\Alg(\V)$ has $(k, \del_p)$ as the initial object, with $\del_p$ the Fermat quotient. Due to this, one could define the coslice category $\delta_p\Assoc\Alg(\V)_A$ for any $k$-algebra $A$. Then, obviously, $(A, \del_{p,A})$ is initial as an object of $\delta_p\Assoc\Alg(\V)_A$.
+                                \item The category $\delta_p\Assoc\Alg(\V)$ is both complete and cocomplete. Furthermore, said (co)limits commute with the forgetful functor:
+                                    $$U_p: \delta_p\Assoc\Alg(\V) \to \Assoc\Alg(\V)$$
+                                \item The forgetful functor:
+                                    $$U_p: \delta_p\Assoc\Alg(\V) \to \Assoc\Alg(\V)$$
+                                has a left-adjoint, namely the free construction.
+                            \end{enumerate}
+                    \end{proposition}
+    
+        \subsection{Plethory, \texorpdfstring{$\Lambda$}{}-structures, and Witt vectors}
+            The purpose of this subsection is two-fold:
+                \begin{enumerate}
+                    \item First of all, we would like to be able to understand the notion of Witt vectors via various universal properties instead of via the (frankly) \textit{ad hoc} formulas that have traditionally been used to define rings of ($p$-typical) Witt vectors. This is not to say that the traditional approach is \say{wrong} in any way: many important results have been proven using the classical notion of $p$-typical Witt vectors. However, rings of Witt vectors are rather pathological objects, at least to commutative algebraists. The only known \say{nice} case are Witt vectors over perfect domains of positive characteristics: if $B$ is a \textit{perfect} $\F_q$-domain (for some power $q$ of a prime $p$) with field of fractions $K$, then we have the following natural characterisation of the ring of $p$-typical Witt vectors over $K$ (which we note to be trivially perfect as an $\F_q$-algebra):
+                        $$(\W(B)_{(p)})^{\wedge} \cong \W(K)$$
+                    In particular, $\W(B)_{(p)}$ is an unramified extension of $\W(\F_q)$; we refer the reader to \cite[Proposition 5.2]{shimomoto2014witt} for a proof. Beyond this, all we know is that these are horrible objects. For instance, the ring $\W(\F_p[x])$ is not even Noetherian. 
+                    \item Second of all, there is the de Rham-Witt complex to be understood (cf. subsection \ref{subsection: de_rham_witt_complex}). Its cohomology is crystalline cohomology in a very natural way, so obviously, we care very much about it. Allegedly, it is a certain quotient of the de Rham complex associated to a smooth affine scheme over a perfect base of characteristic $p$, but why on Earth one would think to consider such a construction is not at all evident. 
+                \end{enumerate}
+        
+            \begin{convention}[Rings and algebras] \label{conv: commutative_rings_noncommutative_algebras}
+                \noindent
+                \begin{itemize}
+                    \item All rings shall still be assumed to be commutative.
+                    \item However, algebras over rings will not be taken to be commutative, although we will still be working with associative and unital algebras. Given a base commutative ring $k$, let us denote the category of left/right/two-sided algebras over $k$ by ${}_k\Assoc\Alg, \Assoc\Alg_k$, and ${}_k\Assoc\Alg_k$. 
+                    \item \say{Bialgebras} are not to be confused with \say{two-sided algebras}. The former refers to objects in monoidal categories that are simultaneously monoids and comonoids, whereas the latter refers to commutative monoids internal to monoidal categories (note how we made no assumption on the symmetry of monoidal structures here). 
+                \end{itemize}
+            \end{convention}
+            
+            \subsubsection{Plethories}
+                \begin{definition}[Plethories] \label{def: plethories}
+                    Fix a base commutative ring $k$. 
+                \end{definition}
+                
+            \subsubsection{A reconstruction theorem}
+            
+            \subsubsection{Amplification}
+    
+        \subsection{The de Rham-Witt complex} \label{subsection: de_rham_witt_complex}
+        
+        \subsection{The Hard Lefschetz Condition for crystalline cohomology}
+        
+    \section{Arithmetic D-modules and rigid cohomology}
+        \subsection{Isocrystals and arithmetic D-modules}
+            \subsubsection{Isocrystals}
+            
+            \subsubsection{Arithmetic D-modules}
+        
+        \subsection{Rigid cohomology}
