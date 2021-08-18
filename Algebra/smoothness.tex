@@ -5,376 +5,7 @@
     
     \minitoc
     
-    \section{Regularity}
-        \subsection{Zariski (co)tangent spaces}
-            \begin{definition}[Zariski cotangent spaces] \label{def: zariski_tangent_spaces} \index{Zariski cotangent space}
-                Throughout, assume that we are working over some base commuative ring $k$. 
-                \begin{enumerate}
-                    \item \textbf{(Cotagent space of a local ring:} Let $(R, \m)$ be a local $k$-algebra. The \textbf{Zariski cotangent space of $R$ at $\m$} (or more meaningfully, of $\Spec R$ at the closed point $\m$), denoted by $T^{\vee}_{\m}\Spec R$, is the $R$-module $\m/\m^2$. We shall later show that this is a vector space over the residue field $\kappa_{\m}$ of the local ring $(R, \m)$ in proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}.   
-                    \item \textbf{(Cotangent space at a point of a scheme):} The \textbf{Zariski cotangent space of a scheme $X$ at a point $x \in |X|$}, denoted by $T^{\vee}_xX$ is the Zariski cotangent space at the unique closed point of $\Spec \calO_{X, x}$ (note that the stalk $\calO_{X, x}$ is a local ring as schemes are locally ringed spaces).
-                \end{enumerate}
-            \end{definition}
-            \begin{remark}[\say{\textit{Please sir, a universal property ...}}]
-                Let us preface this by saying that the above definition of Zariski cotangent spaces in explicit terms of the maximal ideals at points of schemes has its merits. First of all, because the cotangent space $T^{\vee}_xX$ at a point $x$ in the underlying topological space of some given scheme $X$ is defined to be $\m_x/\m_x^2$ (with $\m_x$ the unique maximal ideal of the stalk $\calO_{X, x}$ at $x$ of the structure sheaf of $X$), one can see that the definition is reasonably intutive: elements of the cotangent space at a given point are just linear \say{functions} that vanish at said point. Also, this definition allows for relatively easy calculations of dimensions of cotangent spaces, which come in handy should one ever need to establish regularity of schemes (see example \ref{example: regular_schemes}), or other stronger characteristics such as smoothness and \'etaleness. With all this being said, the above formulation also has one rather hard-to-ignore flaw: it is not obviously universal and therefore can not be easily made to work over more general spaces like derived schemes (remember, the the whole purpose of cotangent spaces and so on is deformation theory, which is most naturally established in derived algebraic geometry). Thus, we shall be needing a different definition of cotangent spaces, one whereby cotangent spaces shall enjoy a universal property. Before we can state such a definition, however, we will need a few preliminary lemmas.
-            \end{remark}
-            
-            \begin{lemma}[Vector space structure on sets of dual-number-points] \label{lemma: vector_space_structure_on_dual_number_points}
-                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, the set $\Spec R(\kappa[\e]/(\e)^2)$ of $\Spec \kappa[\e]/(\e)^2$-points of $\Spec R$ has the structure of a $\kappa$-vector space. 
-            \end{lemma}
-                \begin{proof}
-                    See corollary \ref{coro: naive_cotangent_complex_of_separated_schemes_and_closed_subschemes}.
-                \end{proof}
-            
-            \begin{lemma}[Dual numbers are cotangent vectors] \label{lemma: dual_numbers_are_cotangent_vectors} \index{Dual numbers}
-                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, one has the following isomorphism of $\kappa$-vector spaces (for a proof of why $T^{\vee}_{\m}\Spec R$ has the structure of a $\kappa$-vector space, we refer the reader to proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}; note that the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} does not depend on \ref{lemma: dual_numbers_are_cotangent_vectors}):
-                    $$\Spec R(\kappa[\e]/(\e)^2) \cong \Omega^1_{R/k} \tensor_R \kappa$$
-                In other words, building onto the establishment in lemma \ref{lemma: vector_space_structure_on_dual_number_points} whereby $\Spec R(\kappa[\e]/(\e)^2)$ is known to be a $\kappa$-vector space, we are giving an explicit description of said vector space structure here.
-            \end{lemma}
-                \begin{proof}
-                    
-                \end{proof}
-            
-            \begin{theorem}[Zariski cotangent spaces of local rings: reprised] \label{theorem: cotangent_spaces_of_local_rings} \index{Dual numbers} \index{Zariski cotangent space}
-                Let $k$ be a base commutative ring and let $(R, \m)$ be a local commutative $k$-algebra with residue field $\kappa$. Then, there is the following isomorphism of $\kappa$-vector spaces (for a proof of why $T^{\vee}_{\m}\Spec R$ has the structure of a $\kappa$-vector space, we refer the reader to proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces}; note that the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} does not depend on theorem \ref{theorem: cotangent_spaces_of_local_rings}):
-                    $$T^{\vee}_{\m}\Spec R \cong \Spec R(\kappa[\e]/(\e)^2)$$
-                with $\e$ transcendental over $\kappa$.
-            \end{theorem}
-                \begin{proof}
-                    First of all, the assertion is well-phrased, as the set $\Spec R(\kappa[\e]/(\e)^2)$ is a $\kappa$-vector space (cf. lemma \ref{lemma: vector_space_structure_on_dual_number_points}). 
-                \end{proof}
-            \begin{definition}[A universal definition of cotangent spaces] \label{def: zariski_tangent_spaces_alt_def} \index{Dual numbers} \index{Zariski cotangent space}
-                Let $k$ be a base commutative ring, let $\calX$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$ covered by the Zariski sieve:
-                    $$\{\Spec R_{\alpha} \to \calX\}_{\alpha \in A}$$
-                (cf. definition \ref{def: geometric_stacks}), and recall that for all commutative $k$-algebras $R$, $\Spec R$-valued points \say{$x \in \calX(R)$} are actually arrows:
-                    $$x: \pt \to \calX(R)$$
-                (where $\pt$ is the terminal singleton category with the identity as the only morphism) and not legitimate elements of $\calX(R)$ in general, as $\calX(k)$ is not guaranteed to be a set. 
-                    \begin{enumerate}
-                        \item \textbf{(Cotangent spaces):}
-                            \begin{enumerate}
-                                \item \textbf{(Points of a prestack):} A point of a prestack is just a point of one (or more!) of the affine schemes that cover it. Explicitly, if a point $x \in |\Spec R_{\alpha}|$ (corresponding to the prime ideal $\p_x$ of $R_{\alpha}$) has residue field $\kappa_x$, then the following commutative diagram helps us realise $x$ as a point of $\calX$:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{\Spec (R_{\alpha})_{\p_x}} & {\Spec R_{\alpha}} \\
-                                        	{\Spec \kappa_x} & \calX
-                                        	\arrow[from=1-2, to=2-2]
-                                        	\arrow["x", from=2-1, to=2-2]
-                                        	\arrow[from=2-1, to=1-1]
-                                        	\arrow[from=1-1, to=1-2]
-                                        	\arrow[from=2-1, to=1-2]
-                                        \end{tikzcd}
-                                    $$
-                                In particular, note that such a point $x$ is trivially a $\Spec \kappa_x$-valued point, and hence can be identified with an arrow:
-                                    $$x: \pt \to \calX(\kappa_x)$$
-                                We will often abuse notation and write $x \in \calX$ when referring to a point $x$ of a prestack $\calX$. 
-                                \item \textbf{(Cotangent spaces of prestacks):} The cotangent space at a point $x \in \calX$ is the following pullback:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{T^{\vee}_x\calX} & {\calX(\kappa_x[\e]/(\e)^2)} \\
-                                        	{*} & {\calX(\kappa_x)}
-                                        	\arrow["x", from=2-1, to=2-2]
-                                        	\arrow[from=1-1, to=2-1]
-                                        	\arrow[from=1-1, to=1-2]
-                                        	\arrow[from=1-2, to=2-2]
-                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                                        \end{tikzcd}
-                                    $$
-                                whererein the arrow $\calX(\kappa_x[\e]/(\e)^2) \to \calX(\kappa_x)$ comes from the canonical quotient map $\kappa_x[\e]/(\e)^2 \to \kappa_x$.
-                            \end{enumerate}
-                        \item \textbf{(Cotangent bundles):} The \textbf{cotangent bundle} of our given prestack $\calX$ is another prestack $T^{\vee}\calX$ given by the following formula:
-                            $$T^{\vee}\calX(\kappa_x) \cong \calX(\kappa_x[\e]/(\e)^2)$$
-                        for all points $x \in \calX$. It is not hard to see, via definition \ref{def: zariski_tangent_spaces_alt_def}, that $T^{\vee}\calX$ is necessarily a prestack over $\calX$, and furthermore, that the Zariski cotangent spaces at any point $x \in \calX$ is given by the following pullback of prestacks, thanks to the fact that limits of prestacks are computed object-wise (cf. remark \ref{remark: weak_2_yoneda}):
-                            $$
-                                \begin{tikzcd}
-                                	{\underline{T^{\vee}_x\calX}} & {T^{\vee}\calX} \\
-                                	{\Spec \kappa_x} & \calX
-                                	\arrow[from=1-2, to=2-2]
-                                	\arrow[from=2-1, to=2-2]
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        (here, $\underline{T^{\vee}_x\calX}$ is the constant presheaf assigning to every commutative ring underlying set of the vector space $T^{\vee}_x\calX$).
-                    \end{enumerate}
-            \end{definition}
-            \begin{remark}[A sanity check]
-                If the prestack that we are trying to consider tangent spaces of is $\Spec R$ for some local ring $(R, \m)$ with residue field $\kappa$, then according to definition \ref{def: zariski_tangent_spaces_alt_def}, the cotangent space $T^{\vee}_{\m}\Spec R$ at $\m$ will be the following pullback:
-                    $$
-                        \begin{tikzcd}
-                        	{T^{\vee}_{\m}\Spec R} & {\Spec R(\kappa[\e]/(\e)^2)} \\
-                        	\pt & {\Spec R(\kappa)}
-                        	\arrow[from=1-2, to=2-2]
-                        	\arrow["\m", from=2-1, to=2-2]
-                        	\arrow[dashed, from=1-1, to=2-1]
-                        	\arrow[dashed, from=1-1, to=1-2]
-                        \end{tikzcd}
-                    $$
-                Now, note that even if $R$ is an integral domain, the residue field $\kappa$ of $R$ (i.e. the residue field at the unique closed point $\m \in |\Spec R|$) can not be the same as the field of fractions $\Frac R$ of $R$ (i.e. the residue field at the generic point $(0) \in |\Spec R|$), as the two fields being isomorphic would imply the absurdity $R/\m \cong \Frac R$ (simply consider what happens when we send elements of $\m$ to $R/\m$ and to $\Frac R$, respectively, to see why this isomorphism is nonsensical). This means that the set $\Spec R(\kappa)$ of $\Spec \kappa$-points of $\Spec R$ consists merely of one point, that being the unique closed point $\m \in |\Spec R|$; in other words, the arrow:
-                    $$\m: \pt \to \Spec R(\kappa)$$
-                ought to be an isomorphism. Thus:
-                    $$T^{\vee}_{\m}\Spec R \cong \Spec R(\kappa[\e]/(\e)^2)$$
-                as claimed by lemma \ref{theorem: cotangent_spaces_of_local_rings}, so everything checks out.
-            \end{remark}
-            \begin{remark}[How to calculate Zariski cotangent spaces] \index{Zariski cotangent space!How to calculate}
-                Let $k$ be an arbitrary commutative ring and let $(R, \m)$ be a local $k$-algebra with residue field $\kappa$. Then, by combining lemma \ref{lemma: dual_numbers_are_cotangent_vectors} and theorem \ref{theorem: cotangent_spaces_of_local_rings}, we get:
-                    $$T^{\vee}_{\m}\Spec R \cong \Omega^1_{R/k} \tensor_R \kappa$$
-                More generally, the Zariski cotangent space at a point $x$ of a prestack $\calX$ on ${}^{k/}\Comm\Alg^{\op}$ with a Zariski atlas is given by:
-                    $$T^{\vee}_x\calX \cong \Omega^1_{\calX/\Spec k, x} \tensor_{\calO_{\calX, x}} \kappa_x$$
-            \end{remark}
-            
-            \begin{lemma}[Krull's Principal Ideal Theorem] \label{lemma: krull_principal_ideal_theorem} \index{Krull's \textit{Hauptidealsatz}}
-                \textit{Auch \say{Der Hauptidealsatz von Krull} genannt}.
-                \begin{enumerate}
-                    \item \textbf{(A local \textit{d\'evissage}):} This is also known as \say{Krull's Principal Ideal Theorem for Cotangent Spaces} \cite[Exercise 12.1.B]{risingsea}, or as we shall refer to it, Krull's Local \textit{Hauptidealsatz}.
-                    
-                    Let $(R, \m)$ be a local Noetherian ring and suppose that $\m$ is generated by a set $\{f_{\alpha}\}_{\alpha \in A}$ of mutually $R$-linearly independent elements of $R$. Then, for all elements $f \in \m$, the dimension of the Zariski cotangent space $T^{\vee}_{\m}\Spec (R/(f))_{\m}$ of the local ring $(R/(f))_{\m}$ is either the same as that of the Zariski cotangent space $T^{\vee}_{\m}\Spec R$ of the local ring $R$, or one less; equality occurs when $f$ is not a zero-divisor.  
-                    \item \textbf{(The full global version):} 
-                    Let $R$ be a commutative Noetherian ring and let $f$ be an arbitrary element therein. Then, the smallest prime ideal of $R$ containing $f$ has codimension at most $1$; equality occurs if and only if $f$ is not a zero-divisor.
-                \end{enumerate}
-            \end{lemma}
-                \begin{proof}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(The Local \textit{Hauptidealsatz}):} First of all, for all elements $f \in R$, the affine scheme $\Spec R/(f)$ can be identified with a closed affine subscheme of $\Spec R$. Furthermore, if $\m$ contains $f$, then the unique closed point $\m$ of $\Spec R$ should be inside of the closed affine subscheme $\Spec R/(f)$. Now, due to the Third Isomorphism Theorem, $\m/(f)$ had better be a maximal ideal of $R/(f)$, as:
-                            $$\frac{R/(f)}{\m/(f)} \cong R/\m$$
-                        which implies that by localising $R/(f)$ at the maximal ideal $\m/(f)$ (which is \textit{a priori} prime), one gets the affine open subscheme $\Spec (R/(f))_{\m/(f)}$ of $\Spec R/(f)$ with unique closed point $\m(R/(f))_{\m/(f)}$ coinciding with the closed point of $\Spec R$ given by $\m$. Thus, there are reasons to suspect that the dimension of the Zariski cotangent space of the local ring $\left( (R/(f))_{\m/(f)}, (\m/(f))(R/(f))_{\m/(f)}\right)$ has some sort of relationship with that of the original local ring $(R, \m)$.
-                        
-                        Let us abbreviate $(\m/(f))(R/(f))_{\m/(f)}$ by $\m_f$. 
-                        \item \textbf{(The Global \textit{Hauptidealsatz}):}
-                    \end{enumerate}
-                \end{proof}
-            
-            \begin{proposition}[Zariski (co)tangent spaces are vector spaces] \label{prop: Zariski_tangent_spaces_are_vector_spaces} \index{Zariski cotangent space}
-                \noindent
-                \begin{enumerate}
-                    \item \textbf{\textbf{((Co)tangent spaces of local rings):}} The Zariski (co)tangent space of any local ring $(R, \m)$ is a vector space over its residue field $\kappa_{\m}$. Should $R$ also be Noetherian, the dimension of the Zariski (co)tangent space of a local Noetherian ring $(R, \m)$ will also be equal to the number of generators of its unique maximal ideal $\m$ and bounded below by the Krull dimension of $R$; in notations, this reads:
-                        $$
-                            \begin{aligned}
-                                \dim_{\Krull} R & \leq {}_R\rank \m
-                                \\
-                                & = \dim_{\kappa} T^{\vee}_{\m} \Spec R
-                                \\
-                                & = \dim_{\kappa} T_{\m} \Spec R
-                            \end{aligned}
-                        $$
-                    \item \textbf{((Co)tangent spaces of prestacks):} The Zariski (co)tangent space at a point $x$ of a prestack $\calX$ on $\Cring^{\op}$ \textit{with a Zariski atlas} is a \href{https://ncatlab.org/nlab/show/2-vector+space}{\underline{$2$-vector space}} internal to the category $\Vect_{\kappa_x}$ of vector spaces over the residue field $\kappa_x$ at $x$. In the event that $\calX$ is a presheaf, the (co)tangent space at $x$ will simply be a vector space over $\kappa_x$ in the usual sense, and again, if $\calX$ is noetherian (i.e. it can be covered by a finite number of affine schemes), then:
-                        $$
-                            \begin{aligned}
-                                \dim_x \calX & \leq {}_{\calO_{\calX, x}}\rank \m_x
-                                \\
-                                & = \dim_{\kappa_x} T^{\vee}_x \calX
-                                \\
-                                & = \dim_{\kappa_x} T_x \calX
-                            \end{aligned}
-                        $$
-                    wherein the dimension $\dim_x \calX$ of a prestack $\calX$ at a point $x$ therein is defined to be the \textit{infimum} of the Krull dimensions of the affine schemes containing $x$ in its Zariski covering sieve, which are just the Krull dimensions of the corresponding commutative rings:
-                        $$\dim_x \calX := \inf \left\{ \dim_{\Krull} R \mid \left(R \in \U_{/\calX}\right) \wedge (x \in \Spec R) \right\}$$
-                \end{enumerate}
-            \end{proposition}
-                \begin{proof}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{\textbf{((Co)tangent spaces of local rings):}} 
-                            \begin{enumerate}
-                                \item Essentially, we will need to demonstrate how $\m/\m^2 \cong T^{\vee}_{\m}\Spec R$ is annihilated by $\m$, and hence can be endowed with a $\kappa$-vector space structure (as $\m/\m^2$ must then be a module over $R/\m$, which \textit{is} $\kappa$). To that end, consider the action of $\m$ on $\m/\m^2$ via (left-)multiplication:
-                                    $$\m \x \m/\m^2 \to \m/\m^2: (a, v) \mapsto av$$
-                                and note that $av$ is trivially an element of $\m^2$ (whose underlying set is $\{x \in R \mid \exists (a, b) \in \m \oplus \m: x = ab\}$). And because $\m^2 = (0)$ in $\m/\m^2$, the above is enough to show that $\m$ annihilates $\m/\m^2$, and hence the latter is a vector space over $\kappa$. 
-                                
-                                \textbf{Zariski tangent spaces} can then be define to be the dual vector spaces of Zariski cotangent spaces. Obviously, if the Zariski cotangent space of some given local ring is finite-dimensional over the residue field, then its dimension and that of the Zariski tangent space must be equal.
-                                
-                                \todo{Refer to Krull's principal ideal theorem}
-                                \item As for the matter of the dimension of Zariski cotangent space being bounded below by the Krull dimension, let us firstly point out (mostly for the sake of our own sanity) that every ideal in a Noetherian ring is necessarily finitely generated (because otherwise, we might be in situations with infinite ascending chains of ideals such as $0 \subset (x_0) \subset (x_0, x_1) \subset ... \subset (x_0, x_1, ..., x_n) \subset ...$). The Noetherian hypothesis also ensures that the Krull dimension is finite, and so the dimension of the Zariski cotangent space can have a chance of being bounded below by this quantity (since we are not logicians, we are going to stay clear away from the matter of comparing Krull dimensions and dimension of Zariski cotangent spaces that are infinite cardinals).
-                                
-                                Now, to prove that this is actually the case, firstly note how the Krull dimension of a local ring $(R, \m)$ is precisely the number of generators of its unique maximal ideal $\m$, as associated to said maximal ideal is the following \textit{finite} chain of ideals of $R$ generated by the generators $x_0, x_1, ..., x_{{}_R\rank \m}$ of $\m$:
-                                    $$0 \subset (x_0) \subset (x_0, x_1) \subset ... \subset (x_0, x_1, ..., x_{{}_R\rank \m - 1}) = \m$$
-                                and because these generators are $R$-linear independent from one another, its length (which, by construction, is equal to ${}_R\rank \m$) is precisely the length of $\m$, which bounds the Krull dimension of $R$, which by definition, is the supremum of the lengths of the chains of prime ideals of $R$ (note that the ideals $(x_0), (x_0, x_1)$, etc. are not necessarily prime):
-                                    $$\dim_{\Krull} R \leq _R\length \m = {}_R\rank \m$$
-                                Combining this with what we have shown above, and we will get the following very important inequality:
-                                    $$\dim_{\Krull} R \leq \dim_{\kappa} T^{\vee}_{\m} \Spec R$$
-                                Equality occurs if and only if $R$ is a regular local ring (cf. definition \ref{def: regularity}).
-                            \end{enumerate}
-                        \item \textbf{\textbf{((Co)tangent spaces of prestacks covered by atlases):}} 
-                            \begin{enumerate}
-                                \item \textbf{(The case of general prestacks):}
-                                \item \textbf{(Restricting to presheaves):}
-                            \end{enumerate}
-                    \end{enumerate}
-                \end{proof}
-            \begin{remark}[Removing the Noetherian hypothesis]
-                One thing to note is that the dimension of the Zariski cotangent space being equal to the number of generators of $\m$ does not depend on whether or not the local ring $(R, \m)$ is Noetherian, as one can very well have equalities of infinite cardinals. A hiccup in the non-Noetherian case, though, is that the dimension of the Zariski tangent space $T_{\m}\Spec R$ - defined to be the dual vector space of $T^{\vee}_{\m}\Spec R$ - might not be equal to that of the Zariski cotangent space, as infinite-dimensional vector spaces are not necessarily isomorphic to their duals. Ultimately, though, we are not concerned with non-Noetherian cases, as the property of smoothness - which we use dimensions of Zariski cotangent spaces to verify - implies Noetherian-ness: smooth morphisms are required to be of finite presentation, after all (cf. definitions \ref{def: standard_smoothness} and \ref{def: cohomological_smoothness}).
-            \end{remark}
-                
-            \begin{example}[Lie algebras of group schemes]
-                Let $G$ be a group scheme over some base commutative ring $k$ (i.e. a group object in $\Sch_{/\Spec k}$) and let $e \in G$ be the point of $G$ that is the multiplicative identity. The \textbf{Lie algebra of $G$} is thus defined to be the tangent space $T_eG$ \say{at the identity}. Note that even though the above definition of Lie algebras does not appeal to smoothness, the property of smooth is still necessary for a reasonably well-behaved theory of algebraic Lie groups and Lie algebras. Algebraic groups, after all, are smooth. We shall discuss Lie algebras and algebraic Lie groups in a bit more details in subsubsection \ref{subsubsection: algebraic_groups} once we have developed some more machineries.
-            \end{example}
-            
-            We refer readers that wish to see an example of Zariski (co)tangent spaces being used in the detection of singularities to example \ref{example: regular_schemes}. There, we describe a scheme which is geometrically regular but nevertheless not smooth.
-            
-        \subsection{Regularity}
-            \subsubsection{Defining regularity}
-                \begin{definition}[Regularity] \label{def: regularity} \index{Regularity} \index{Regularity!geometric}
-                    Assume that we are working over some base commutative ring $k$.
-                    \begin{enumerate}
-                        \item \textbf{(Regular and geometrically ring maps):} 
-                            \begin{enumerate}
-                                \item \textbf{(Regular Noetherian rings):}
-                                    \begin{enumerate}
-                                        \item \textbf{(Regular Noetherian rings):} A Noetherian local $k$-algebra $(R, \m)$ is called \textbf{regular} if and only if its Krull dimension is equal to that of its Zariski (co)tangent space, viewed as a $\kappa_{\m}$-vector space (see proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for an explanation). Note that the Noetherian hypothesis is absolutely necessary, as one needs to ensure first and foremost that the Krull dimension of $R$ is finite.
-                                        
-                                        A \textit{locally Noetherian} $k$-algebra $R$ is \textbf{regular} if it is \textbf{everywhere locally regular}. That is, its localisation at primes $R_{\p}$ are all regular local rings.
-                                        \item \textbf{(Geometrically regular Noetherian rings):} In the event that $k$ is a field, we say that a locally Noetherian $k$-algebra $R$ is \textbf{geometrically regular at a prime ideal $\p$} if and only if for all finite extensions $k'/k$, the pushout $R_{\p} \tensor_k k'$ is regular over $k'$. If this is the case at all primes $\p \in |\Spec R|$, then we shall say that $R$ is \textbf{geometrically regular} over $k$. 
-                                    \end{enumerate}
-                                \item \textbf{(Regular ring maps):} A homomorphism of commutative $k$-algebras:
-                                    $$R \to \Lambda$$
-                                is said to be \textbf{relatively regular at a prime ideal $\p \in |\Spec R|$} (or simply \textbf{regular at $\p \in |\Spec R|$}) if and only if it is \textit{flat} and the pushout $\Lambda \tensor_R \kappa_{\p}$ is geometrically regular over $\kappa_{\p}$ (and hence necessarily locally Noetherian).
-                                
-                                A homomorphism of commutative $k$-algebras that is regular at all prime ideals of the domain is usually simply referred to as being \textbf{regular}. For emphasis, one might say that the homomorphism is \textbf{everywhere regular}.
-                            \end{enumerate}
-                        \item \textbf{(Regular and geometrically regular prestacks):} Let $\calX$ be a prestack on ${}^{k/}\Comm\Alg^{\op}$ covered by the following Zariski sieve of locally Noetherian affine schemes:
-                            $$\{\Spec R_{\alpha} \to \calX\}_{\alpha \in A}$$
-                            \begin{enumerate}
-                                \item \textbf{(Regularity):} Let $x$ be a point in $\calX$ (see definition \ref{def: zariski_tangent_spaces_alt_def} for the notion of points of prestacks covered by atlases) and suppose that $|\Spec R_{\alpha}|$ (or an open subscheme thereof) is an open neighbourhood of $x$ (and note that $x$ should thus correspond to a prime ideal $\p_x$ of $R_{\alpha}$). Then, $\calX$ is said to be \textbf{locally regular at $x$} if and only if the the local ring $(R_{\alpha})_{\p_x}$ (equivalently, the stalk $\calO_{\calX, x}$) is a regular local ring. Should this be the case for all points $x \in \calX$, or equivalently, should all the $k$-algebras $R_{\alpha}$ be regular Noetherian rings (i.e. if $\calX$ is \textbf{everywhere locally regular}), then $\calX$ will simply be called \textbf{regular}. 
-                                \item \textbf{(Geometric regularity):} In the event that $k$ is a field, consider firstly the following pullback square:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{\calX'} & \calX \\
-                                        	{\Spec k'} & {\Spec k}
-                                        	\arrow[from=1-1, to=2-1]
-                                        	\arrow[from=2-1, to=2-2]
-                                        	\arrow[from=1-1, to=1-2]
-                                        	\arrow[from=1-2, to=2-2]
-                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                                        \end{tikzcd}
-                                    $$
-                                wherein $k'/k$ is some finite extension of fields. We then say that $\calX$ is \textbf{geometrically locally regular at $x$} if $\calX'$ is so at all points $x' \in \calX'$ (i.e. at all the \say{primes in $\calX'$} lying above $x$), and if this is true for all points $x \in \calX$, we will say that $\calX$ is \textbf{geometrically regular}.
-                            \end{enumerate}
-                    \end{enumerate}
-                \end{definition}
-                \begin{remark}
-                    Because trivial extensions are finite, geometric regularity implies regularity.
-                \end{remark}
-                
-                \begin{proposition}[Two equivalent definitions of geometric regularity] \label{two_equivalent_defs_geometric_regularity} \index{Regularity!geometric}
-                    Let $R$ be a Noetherian \textit{local} algebra over some base field $k$. The following are logically equivalent statements:
-                        \begin{enumerate}
-                            \item $R$ is geometrically regular over $k$, in the sense of definition \ref{def: regularity}.
-                            \item For all \textit{purely inseparable} and \textit{finite} field extensions $k'/k$, the pushout $R \tensor_k k'$ is regular over $k'$. 
-                        \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
-                        Clearly \textbf{1} implies \textbf{2}, so let us focus on the other direction. In this case, let us assume that $\chara k = p$ for some prime $p$, since the only purely inseparable extension in characteristic $0$ is the trivial one. Also, note that thanks to the fact that we are concerned with finite extensions here, we can assume, without loss of generality, that $k'/k$ is a simply extension, say of the form $k(\alpha^{\frac1q}) \cong \frac{k[t]}{(t^q - \alpha)}$ for some $\alpha \in k$ and $p$-power $q$. Now, consider the following diagram whose upper row is the evident short exact sequences:
-                            $$
-                                \begin{tikzcd}
-                                	0 & \m & R & \kappa & 0 \\
-                                	& {\m \tensor_k k(\alpha^{\frac1q})} & {R \tensor_k k(\alpha^{\frac1q})} & {\kappa \tensor_k k(\alpha^{\frac1q})} & 0
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow[from=1-2, to=1-3]
-                                	\arrow[from=1-3, to=1-4]
-                                	\arrow[from=1-4, to=1-5]
-                                	\arrow[from=2-2, to=2-3]
-                                	\arrow[from=2-3, to=2-4]
-                                	\arrow[from=2-4, to=2-5]
-                                	\arrow[from=1-4, to=2-4]
-                                	\arrow[from=1-3, to=2-3]
-                                	\arrow[from=1-2, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        This is where the hypothesis whereby $(R, \m)$ is a \textit{regular} local $k$-algebra comes in: because every element of $R \setminus \m$ is invertible \cite[\href{https://stacks.math.columbia.edu/tag/00E9}{Tag 00E9}]{stacks}, it stands to reason that:
-                            $$\m \tensor_k k(\alpha^{\frac1q}) \cong \m(\alpha^{\frac1q}) \cong \m$$
-                        and as a consequence of this, that:
-                            $$\kappa \tensor_k k(\alpha^{\frac1q}) \cong \kappa(\alpha^{\frac1q})$$
-                        Furthermore, we get from these observations and the flatness of $R$ as a regular local $k$-algebra, that $(R \tensor_k k(\alpha^{\frac1q}), \m)$ is a local $k$-algebra with residue field $\kappa(\alpha^{\frac1q})$ (i.e. the bottom row of the diagram from above is also a short exact sequence). This makes checking whether or not the dimension of the Zariski cotangent space of $R \tensor_k k(\alpha^{\frac1q})$ is the same as its Krull dimension a meaningful task. Now, because the unique maximal ideal of $R \tensor_k k(\alpha^{\frac1q})$ is actually just $\m$, its Zariski cotangent space is $\m/\m^2$, which is the same as that of $(R, \m)$, so it remains to calculate the Krull dimension of $R \tensor_k k(\alpha^{\frac1q})$. Here, the assumption that $(R, \m)$ is a local $k$-algebra is going to save us: we know that:
-                            $$\dim_{\Krull} R \cong {}_R\rank \m$$
-                        for all \textit{Noetherian} local rings (see the proof of proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for a detailed explanation), and because the unique maximal ideal of the local $k$-algebra is the same as that of $R$ (both being $\m$), their Krull dimensions had better agree as well. This implies that the dimension of the Zariski cotangent space of $R \tensor_k k(\alpha^{\frac1q})$, through being equal to that of $R$, it the same as the Krull dimension of $R \tensor_k k(\alpha^{\frac1q})$, which proves that $R \tensor_k k(\alpha^{\frac1q})$ is a local $k$-algebra, as claimed. 
-                    \end{proof}
-                
-                \begin{example}[Number theory strikes again!] \label{example: regular_schemes}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(A local example):} Let $p$ be some arbitrary prime, let $K$ be a non-archimedean local field, let $L/K$ be a finite extension, and let $\scrO_K$ and $\scrO_L$ denote the respective rings of integers (for simplicity - and honestly, without loss of generality - the reader may assume that $K$ is either $\Q_p$ or $\F_p(\!(t)\!)$). 
-                        \item \textbf{(A global example):} \cite[\href{https://stacks.math.columbia.edu/tag/038Y}{Tag 038Y}]{stacks} Let $p$ be a prime, let $k$ be a global field of characteristic $p$ (say, $k = \F_p(t)$), and let $k'/k$ be a finite extension. Next, consider the $k$-scheme:
-                            $$X \cong \Spec k[y]/(y^2)$$
-                        and note, as a preliminary, that $k[y]/(y^2)$ is a Noetherian local ring of Krull dimension $1$: its only prime ideal, hence automatically maximal, is $(y)$ (this is a sanity check for whether or not it makes sense to even check geometric regularity on fibres over finite extensions of the base field). Its pullback along the embedding of $k$ into $k'$ is nothing but:
-                            $$X' \cong \Spec \left(k[y]/(y^2) \tensor_k k'\right) \cong \Spec k'[y]/(y^2)$$
-                        First of all, what are the primes lying above the point $(y) \in |\Spec k[y]/(y^2)|$ ? Well, there is only one, that being $(y) \in |\Spec k'[y]/(y^2)|$, as $k'$ is a field just as $k$ is; this, incidentally, also shows that $k'[y]/(y^2)$ is a Noetherian local ring of Krull dimension $1$. Also, note that the residue field at $(y)$ of $X'$ is actually just $k'$:
-                            $$\frac{k'[y]/(y^2)}{(y)} \cong k'$$
-                        Next, consider the Zariski cotangent space of $X'$ at $(y)$; by definition, it is the $k'$-vector space $(y)/(y^2)$, and because $(y^2) = (y)^2 = (0)$ in $k'[y]/(y^2)$, it is actually just $(y)$. The $k'$-dimension of this Zariski cotangent space is thus $1$, equal to the Krull dimension of $\calO_{X', (y)}$ (note that this stalk is just $k'[y]/(y^2)$ because $k'[y]/(y^2)$ is a local ring):
-                            $$\dim_{\Krull} \calO_{X', (y)} = \dim_{\Krull} k'[y]/(y^2) = \dim_{k'} T^{\vee}_{(y)} X' = 1$$
-                        and therefore the fibre $X'$ is regular by definition. Lastly, because the underlying topological space of $X$ has merely a point, and because there is only one point of $|X'|$ lying above it, we can conclude the $X$ is a geometrically regular scheme over $\Spec k$. 
-                        
-                        The reader might (rightfully) wonder why the $\mathsf{<censored>}$ we had to specify that $k/k'$ is finite, as it seems like we only relied on the fact that $k'$ is a field like $k$, and to that we say: had $k'/k$ been of infinite degree ($k'$ might be $\F_p(t^{\frac{1}{p^{\infty}}}) \cong \underset{n \in \N}{\colim} \F_p(t^{\frac{1}{p^n}})$), there might exist infinite ascending chains of ideals of $k'[y]/(y^2)$ (such as the chain:
-                            $$0 \subset (x - t) \subset (x - t, x^p - t) \subset ... \subset (x - t, x^p - t, ..., x^{p^n} - t) \subset ...$$
-                        when $k \cong \F_p(t^{\frac{1}{p^{\infty}}})$). The Noetherian hypothesis, which is necessary for regularity as it guarantees that the Krull dimension will stay finite, will therefore be violated. 
-                        
-                        What about the assumption that $k$ has to be a global field of characteristic $p$ ? Well, the characteristic $p$ hypothesis is actually not too important: it is mostly for convenience because we would like to eventually how our example is one of a scheme which is geometrically regular but not smooth (see below). Globality is also not too important in general (one might very well let $k$ be $\Q_p$ or $\F_p(\!(t)\!)$), but it's nice to now that the above analysis need not be restricted to the local case, as global fields tend to be tricky. The assumption is necessary (or at the very least, convenient), however, for establishing the fact that there are pathological schemes out there that, while being geometrically regular, are not smooth. As we shall see below, the existence of singularities of $X'$ rely on the fact that $\F_p(t^{\frac{1}{p^{\infty}}})[y]/(y^2)$ has $\left((x^p - t)y^2\right)$ as an ideal, something that would not be possible had we been working with, say $k' \cong \F_p(\!(t^{\frac{1}{p^{\infty}}})\!)$ instead, since ideals thereof are necessarily of the form $(t^{\frac{a}{p^n}})$ for certain natural numbers $a$ and $n$. 
-                        
-                        One other interesting feature that examples of this kinda display is that whenever $k'/k$ is a \href{https://stacks.math.columbia.edu/tag/09HD}{\underline{purely inseparable extension}} (we can take $k' = \F_p(t^{\frac1p})$ for example), what we have is a scheme that is everywhere regular, but nevertheless has a singularity (see definition \ref{def: standard_smoothness} and \ref{prop: smooth_iff_standard_smooth} for the Jacobian Criterion for smoothness of schemes, and definition \ref{def: singular_loci} for the notion of singularities). Consider, as an example, the following isomorphism coming from the Chinese Remainder Theorem:
-                            $$k'[y]/(y^2) \cong k[x, y]/\left( (x^p - t) y^2 \right)$$
-                        The Jacobian of the polynomial $(x^p - t)y^2$ is:
-                            $$
-                                \begin{aligned}
-                                    \Jac\left((x^p - t)y^2\right) & = \left( \del_x (x^p - t)y^2, \del_y (x^p - t)y^2\right)^T
-                                    \\
-                                    & = \left( px^{p-1}, 2y \right)^T
-                                    \\
-                                    & = \left( 0, 2y\right)^T
-                                \end{aligned}
-                            $$
-                        which tells us that whenever $p > 2$ things go terribly wrong at points of the form $(x, 0)$, and when $p = 2$, there are singularities \textit{everywhere} (good grief!). Hence $X'$ is singular at all primes containing $((x^p - 1)y^2)$ (note that we can apply the Jacobian Criterion at all such primes, because the fact that $k'/k$ is a finite extension implies that these primes must all be finitely generated). 
-                    \end{enumerate}
-                \end{example}
-                
-                \begin{proposition}[The Jacobian Criterion for Regularity] \label{prop: jacobian_criterion_for_regularity}
-                    Let $k$ be a field and let $R := \frac{k[x_1, ..., x_N]}{(f_1, ..., f_n)}$ be a $k$-algebra of finite presentation (which we note to be Noetherian, and hence locally Noetherian, \textit{a priori}). Also, let $\p$ be a prime ideal of $R$ (i.e. a prime of $k[x_1, ..., x_N]$ which contains $(f_1, ..., f_n)$), and let us denote the height/codimension of the ideal $(f_1, ..., f_n)$ by $c$, i.e.:
-                        $$c := \inf_{\p \in |\Spec R|} \height \p$$
-                    Then:
-                        \begin{enumerate}
-                            \item The Noetherian local ring $(R_{\p}, \p)$ is regular if and only if the rank of the Jacobian:
-                                $$
-                                    \Jac(f_1, ..., f_n) = \left(\nabla f_1, ..., \nabla f_n\right)^T = 
-                                            \begin{pmatrix}
-                                                \del_{x_1} f_1 & ... & \del_{x_n} f_1
-                                                \\
-                                                \vdots & \ddots & \vdots
-                                                \\
-                                                \del_{x_1} f_n & ... & \del_{x_n} f_n
-                                            \end{pmatrix}
-                                        = (\del_{x_j} f_i)_{1 \leq i, j \leq n}
-                                $$
-                            is \textit{at most $c$} when reduced modulo $\p$ (i.e. we are referring to the Jacobian attached to the ring $R \tensor_k \kappa_{\p}$, where $\kappa_{\p}$ is the residue field at $\p$ of $R$). 
-                            \item In the event that $k$ is of some prime characteristic $p$ and $\kappa_{\p}$ is separable over $k$, we also have the characterisation whereby $(R_{\p}, \p)$ is a regular local ring if and only if the rank of the Jacobian attached to $R \tensor_k \kappa_{\p}$ is exactly $c$. 
-                        \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}[How to find singular loci of regular rings]
-                    
-                \end{corollary}
-                    \begin{proof}
-                        
-                    \end{proof}
-                    
-                \begin{example}[Some unusual regular rings] \label{example: regular_rings}
-                    \noindent
-                    \begin{enumerate}
-                        \item Let $k$ be a field of some prime characteristic $p$ and let $t$ be transcendental over $k$. Then, the local $k$-algebra $k[\![t]\!]$ is geometrically regular over $k$. 
-                        \item More generally, any discrete valuation ring is a regular local ring of Krull dimension $1$ \cite[\href{https://stacks.math.columbia.edu/tag/00PD}{Tag 00PD}]{stacks}.  
-                        \item Let $k$ be any field. Then $k[\![x, y]\!]$ is a regular local $k$-algebra of Krull dimension $2$. 
-                        \item Let $(R, \m)$ be a regular local ring (which is necessarily Noetherian). Then, so is the polynomial ring $R[x]$: its Krull dimension is one greater than that of $R$ (this follows directly from proposition \ref{prop: dimensions_of_polynomial_rings}).
-                    \end{enumerate}
-                \end{example}
-                
-            \subsubsection{Properties of regular rings}
-            
-            \subsubsection{Homological connections to dimension theory}
-                \paragraph{Projective dimensions}
-                
-                \paragraph{Global dimensions; the Auslander-Buchsbaum Formula}
-                
-                \paragraph{Stably free modules}
-    
-    \section{Smoothness}
+    \section{Differentials and smoothness}
         \subsection{The cotangent complex formalism}
             \subsubsection{K\"ahler differentials, reprised} \label{subsubsection: kahler_differentials}
                 \begin{definition}[(Pre)derivations and Leibniz algebras] \label{def: derivations}
@@ -742,12 +373,12 @@
                     Recovering the usual K\"ahler differential functor $\Omega^1_{-/R}$ is easy: it is simply the $0$-truncation of $\L\Omega^1_{-/R}$. One might could even make a case for the adjunction $\L\Omega^1_{-/R} \ladjoint \R\oblv$ being more fundamental and natural than the adjunction $\Omega^1_{-/R} \ladjoint \oblv$ from theorem \ref{theorem: kahler_differentials_universal_property}.
                 \end{remark}
             
-                \begin{definition}[Cotangent complexes] \label{def: cotangent_complexes} \index{Cotangent complex} \index{Conormal module}
+                \begin{definition}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Cotangent complexes] \label{def: cotangent_complexes} \index{Cotangent complex} \index{Conormal module}
                     Let $R$ be a base commutative ring and let $S$ be a simplicial $R$-algebra (which we shall view, through the lens of the Dold-Kan Correspondence, as a commutative monoids internal to the stable $\infty$-category ${}_R^{\leq 0}\Mod$); let $... \to P_1 \to P_0 \to S$ be a projective resolution of $S$ where the $P_i$'s are commutative $R$-algebras also. 
                     \begin{enumerate}
                         \item \textbf{(Cotangent complexes):} The \textbf{relative cotangent complex} over $R$ associated to $S$ is thus the application of the left-derived functor:
                             $$\L\Omega^1_{-/R}: {}^{\leq0, R/}\Comm\Alg \to {}^{\leq0, R/}\Comm\Leib\Alg$$
-                        to the object $S \in {}^{\leq0, R/}\Comm\Alg$. It is commonly denoted by $\bfL_{S/R}$.
+                        to the object $S \in {}^{\leq 0, R/}\Comm\Alg$. It is commonly denoted by $\bfL_{S/R}$.
                         \item \textbf{(Na\"ive cotangent complexes):} 
                             \begin{enumerate}
                                 \item \textbf{(Na\"ive cotangent complexes):}  The \textbf{na\"ive cotangent complex} over $R$ associated to $S$ just the $(-1)$-truncation of the cotangent complex $\bfL_{S/R}$. It is usually denoted by $\NL_{S/R}$.
@@ -838,28 +469,74 @@
                         $$f^*\bfL_{\calY/\calZ} \to \bfL_{\calX/\calZ} \to \bfL_{\calX/\calY} \to (f^*\bfL_{\calY/\calZ})[1]$$
                 \end{corollary}
                 
-                Now, let us look into how you, our dear reader, might actually be able to compute some na\"ive cotangent complexes for yourself, and thereby discern geometric interpretations of these algebraic beasts.
-                \begin{theorem}[Computing na\"ive cotangent complexes] \label{theorem: computing_naive_cotangent_complexes}
+            \subsubsection{Cotangent spaces} \label{subsubsection: cotangent_spaces}
+                Now, let us look into how you, our dear reader, might actually be able to compute some na\"ive cotangent complexes for yourself, and thereby discern geometric interpretations of these algebraic beasts. As preparation, however, we will need to concern ourselves with (yet another) reprisal of the theory of K\"ahler differentials; this time, in the style of \cite[Sections 7.3 and 7.4]{HA}.
+                
+                \begin{definition}[The square-zero extension functor: existence] \label{def: the_square_zero_extension_functor_existence}
+                    Let $\calA$ be a symmetric monoidal stable $\infty$-category (cf. definition \ref{def: stable_infinity_categories}) and let:
+                        $$\oblv: \Comm\Alg(\calA) \to \calA$$
+                    be the forgetful functor that forgets the multiplication on commutative $\calA$-algebras. One can then show, using a very routine and formal argument, that this forgetful functor preserves limits and (small) filtered colimits, and because $\calA$ is \textit{a priori} presentable, it therefore admits a left-adjoint, which we shall denote by:
+                        $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
+                \end{definition}
+                \begin{proposition}[The square-zero extension functor: explicit description] \label{prop: the_square_zero_extension_functor_explicit_description}
+                    Let $(\calA, \tensor, \1)$ be a \textit{closed} symmetric monoidal stable $\infty$-category and let:
+                        $$\oblv: \Comm\Alg(\calA) \to \calA$$
+                    be the forgetful functor that forgets the multiplication on commutative $\calA$-algebras. Its left-adjoint:
+                        $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
+                    is thus given by:
+                        $$\g \mapsto \1 \oplus \g$$
+                \end{proposition}
+                    \begin{proof}
+                        First of all, we need to show that the object $\1 \oplus \g$, for any $\g \in \calA^{\leq 0}$, can be endowed with the structure of a commutative monoid. This is rather routine, however, so we will leave it up to our dear readers (simply check the relevant commutative diagrams defining a commutative monoid internal to a symmetric monoidal category). One thing we will note, however, that thanks to finite direct sums being the same as finite biproducts in abelian categories, there necessarily exists a canonical unit map $\1 \to \1 \oplus \g$; also, the monoidal closure assumption on $(\calA, \tensor, \1)$ guarantees that for all $M \in \calA$, the functor $M \tensor -$ is a left-adjoint and thus preserves colimits.
+                        
+                        Next, we can use the fact $\calA$ and $\Comm\Alg(\calA)$ are presentable categories (cf. definition \ref{def: presentable_infinity_categories}), in conjunction with the fact that $\1 \oplus \g$ is a coproduct (so in particular, a colimit) to show the functor $\1 \oplus -: \calA \to \Comm\Alg(\calA)$ must preserve colimits in $\calA$ without fail. From this, we can deduce that the functor $\1 \oplus -$ (i.e. $\Split\SqZ$) admits a right-adjoint.
+                        
+                        It now remains to show that the right-adjoint of $\1 \oplus -: \calA \to \Comm\Alg(\calA)$ is indeed the canonical forgetful functor $\oblv: \Comm\Alg(\calA) \to \calA$ omitting the algebra structures and returning the underlying object. For this, simply note that there exists the following unit and counit componenets:
+                            $$\eta_{\g}: \g \to ( \oblv \circ (\1 \oplus -) )(\g)$$
+                            $$\e_A: ( (\1 \oplus -) \circ \oblv )(A) \to A$$
+                        for all $\g \in \calA$ and $A \in \Comm\Alg(\calA)$; from the existence of these maps, we obtain the unit-counit pair that defines $\1 \oplus -$ as the left-adjoint of $\oblv$. This concludeds the proof that $\Split\SqZ(\g)$ is given by $\1 \oplus \g$ for all $\g \in \calA$.
+                    \end{proof}
+                \begin{corollary}[Internal abelian groups] \label{coro: internal_abelian_groups}
+                    It is not hard to deduce from the proof of proposition \ref{prop: the_square_zero_extension_functor_explicit_description} that for $(\calA, \tensor, \1)$ any closed symmetric monoidal stable $\infty$-category, the essential image of the split square-zero extension functor:
+                        $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
+                    is equivalent to the category $\Comm\Mon( {}^{\1/}\Comm\Alg(\calA)_{/\1} )$ of commutative (additive) monoids internal to the double-slice ${}^{\1/}\Comm\Alg(\calA)_{/\1}$ (which is actually equivalent to $\Comm\Alg(\calA)_{/\1}$, since every unital algebra $A$, by definition, comes equipped with a map $\1 \to A$). In other words, one might think of objects of $\calA$ as abelian groups internal to $\Comm\Alg(\calA)_{/\1}$.
+                \end{corollary}
+                    \begin{proof}
+                        This is simply a matter of restricting the codomain category $\Comm\Alg(\calA)$ until the counit $\e: \Split\SqZ \circ \oblv \to \id$ of the adjunction $\Split\SqZ \ladjoint \oblv$ becomes a natural isomorphism (and also, using the fact that finite direct sums are finite biproducts).
+                    \end{proof}
+                
+                \begin{theorem}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Computing na\"ive cotangent complexes] \label{theorem: computing_naive_cotangent_complexes}
                     \noindent
                     \begin{enumerate}
-                        \item Let $R$ be a base commutative ring and let $P \to S$ be a surjective map between $0$-connective (i.e. \say{underived}) $R$-algebras, with kernel $J$. Then:
+                        \item Let $R$ be a base commutative ring and let $P \to S$ be a surjective map between $R$-algebras (viewed as a $(-1)$-truncated projective resolution), with kernel $J$. Then, the conormal module takes on the following form:
                             $$H_1(\NL_{S/R}) \cong J/J^2$$
                         which is to say that the conormal module $\calN^{\vee}_{S/R}$ is given by $J/J^2$.
                         \item If $P \to S$ has, in addition, a section (i.e a right-inverse), then:
                             $$H_2(\NL_{S/R}) \cong 0$$
-                        Furthermore, the resulting short exact sequence:
-                            $$0 \to \calN^{\vee}_{S/R} \to S \tensor_P \bfL_{P/R} \to \bfL_{S/R} \to 0$$
+                        Furthermore, the resulting short exact sequence $\bfL_{S/R}^{\geq -1}$, i.e.:
+                            $$0 \to \calN^{\vee}_{S/R} \to S \tensor_P \Omega^1_{P/R} \to \Omega^1_{S/R} \to 0$$
                         splits.
-                        \item Let $A$ be a $0$-connective commutative ring, let $B$ be a $0$-connective $A$-algebra, and consider the codiagonal/multiplication $\nabla_{B/A}: B \tensor_A B \to B$: this map is surjective and admits the canonical map $B \to B \tensor_A B$ as a section, so the na\"ive cotangent complex $\NL_{B/A}$ will take the on the form of the following splitting short exact sequence:
-                            $$0 \to \calI_{B/A}/\calI_{B/A}^2 \to B \tensor_{B \tensor_A B} \bfL_{(B \tensor_A B)/A} \to \bfL_{B/A} \to 0$$
-                        where $\calI_{B/A}$ denotes the kernel $\ker \nabla_{B/A}$. Then, one can actually characterise $\bfL_{B/A}$ as $\calI_{B/A}/\calI_{B/A}^2$ via an isomorphism of $B$-modules:
-                            $$\bfL_{B/A} \cong \calI_{B/A}/\calI_{B/A}^2$$
+                        \item Let $A$ be a $0$-connective commutative ring, let $B$ be a $0$-connective $A$-algebra, and consider the codiagonal/multiplication $\nabla_{B/A}: B \tensor_A B \to B$: this map is surjective and admits the canonical map $B \to B \tensor_A B$ as a section, so the na\"ive cotangent complex $\NL_{B/A}$ will take the on the form of the following splitting short exact sequence $\bfL_{B/A}^{\geq -1}$, i.e.:
+                            $$0 \to \calI_{B/A}/\calI_{B/A}^2 \to B \tensor_{B \tensor_A B} \Omega^1_{(B \tensor_A B)/A} \to \Omega^1_{B/A} \to 0$$
+                        where $\calI_{B/A}$ denotes the kernel $\ker \nabla_{B/A}$. Then, one can actually characterise $\Omega^1_{B/A}$ as $\calI_{B/A}/\calI_{B/A}^2$ via an isomorphism of $B$-modules:
+                            $$\Omega^1_{B/A} \cong \calI_{B/A}/\calI_{B/A}^2$$
                     \end{enumerate}
                 \end{theorem}
                     \begin{proof}
                         \noindent
                         \begin{enumerate}
-                            \item 
+                            \item We will be presenting an argument based on the idea that cotangent complexes are, in some sense, local entities. Specifically, we will be demonstrating that after localisation, the first homology of a given cotangent complex is nothing but the Zariski cotangent space (cf. definition \ref{def: zariski_tangent_spaces}) of the resulting local ring.
+                                \begin{enumerate}
+                                    \item \textbf{(Specialising to the local case):} Thanks to remark \ref{remark: cotangent_complexes_and_colimits} (for more details, see example \ref{example: cotangent_complexes_and_localisations}), we can localise the cotangent complex $\bfL_{S/R}$ at any point $\q \in |\Spec S|$ via:
+                                        $$\bfL_{S_{\q}/R} \cong (\bfL_{S/R})_{\q}$$
+                                    The resulting na\"ive cotangent complex thus takes on the form:
+                                        $$\calN^{\vee}_{S_{\q}/R} \to S_{\q} \tensor_{P_{\q}} \Omega^1_{P_{\q}/R} \to \Omega^1_{S_{\q}/R} \to 0$$
+                                    Note that the localisation $P_{\q}$ makes sense because $S \cong P/J$, which implies that $\Spec S$ is nothing but a closed affine subscheme of $\Spec P$, and $|\Spec P|$ must thus contain $\q$ as a point; see definition \ref{def: zariski_closed} and proposition \ref{prop: zariski_closed_well_definiteness}. Now, we shall aim to show that:
+                                        $$\calN^{\vee}_{S_{\q}/R} \cong \q/\q^2$$
+                                    (and note that $\q/\q^2$ is nothing but the Zariski cotangent space of the local ring $(S_{\q}, \q)$).
+                                    \item \textbf{(Proof of the local case):}
+                                    \item \textbf{(Local-global compatibility):}
+                                \end{enumerate}
                             \item 
                             \item 
                         \end{enumerate}
@@ -888,8 +565,6 @@
                             \end{itemize}
                     \end{itemize}
                 \end{corollary}
-                    
-            \subsubsection{Cotangent spaces} \label{subsubsection: cotangent_spaces}
     
         \subsection{Smoothness}
             Smoothness is a notion that, while being intuitively simple (or at least seemingly so), is extremely subtle and furthermore, has far-reaching consequences. Morally, one should imagine a smooth scheme (or for that matter, a smooth variety) as an algebro-geometric object that behaves as much like a smooth manifold as possible. For instance, there ought to be no singularities, as well as no funny business of dimension-hopping between tangent spaces at different points. Smooth varieties should also admit some sort of de Rham cohomology (see section \ref{section: de_rham_cohomology}) that returns results agreeing with those given by \'etale cohomology (which is somehow the \say{right} notion of singular comology for schemes). But what if one is looking for something a bit more technical ? Well, first of all, we are going to restrict ourselves to cases where a so-called \say{smooth} morphism is of finite presentation, which is because our first line of attack is going to be through Jacobian matrices: should these be of full rank, our schemes shall be \say{smooth}, and since Jacobians are only well-defined for functions between finite-dimensional spaces, \say{smooth} morphisms had better be of finite presentation in the first place (otherwise, there might be infinitely many components in our Jacobians). This, however, turns out to be a na\"ive attempt at tackling algebro-geometric smoothness, which is not to imply that one is unable to write down a meaningful definition of what it means for a scheme to be smooth, but instead, that such a definition is entirely impractical (this was pushed, for instance, by Michael Artin): the Jacobian criterion, or even the alternative definition involving the cotangent complex, while concrete, is just not easy to check at all, and worse, does not generalise well to more exotic settings such as those of derived schemes or perfectoid spaces. Due to this, we will start with what is called \say{formal smoothness}. A formally smooth morphism, roughly speaking, shall be one with all the qualitative properties that one would expect from a smooth morphism. We will subsequently introduce finiteness to the picture to obtain morphisms that are smooth in the technical sense. 
