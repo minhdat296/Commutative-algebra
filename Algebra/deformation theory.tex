@@ -110,12 +110,50 @@
             \end{itemize}
         \end{convention}
     
-        \subsection{The cotangent complexes formalism}
+        \subsection{(Pro-)cotangent complexes}
+            \subsubsection{(Pro-)cotangent spaces}
+            
+            \subsubsection{(Pro-)cotangent complexes}
         
         \subsection{Admittance of deformations}
+            \subsubsection{Differential cohesiveness}
+        
+            \subsubsection{Spaces admitting deformations}
+                \begin{definition}[Prestacks admitting deformations] \label{def: prestacks_admitting_deformations}
+                    Let $k$ be an arbitrary base commutative ring. A prestack $\calX$ on ${}^{k/}\Comm\Alg^{\op}$ is said to \textbf{admit deformations} if it satisfies the following conditions:
+                        \begin{itemize}
+                            \item \textbf{(Convergence):} $\calX$ is convergent, i.e. for all affine schemes $S$ over $\Spec k$, one has:
+                                $$\calX(S) \cong \underset{n \in \N}{\lim} \calX({}^{\leq n}S)$$
+                            \item \textbf{(Admittance of a cotangent complex):} $\calX$ must admit a pro-cotangent complex. Should said pro-cotangetn complex be an actual cotangent complex, then we will say that $\calX$ \textbf{admits corepresentable deformations}.
+                            \item \textbf{(Cohesiveness):} $\calX$ has to be differentially cohesive.
+                        \end{itemize}
+                \end{definition}
+            
+            \subsubsection{Consequences of admitting deformations}
             
     \section{Ind-schemes and inf-schemes}
         \subsection{Ind-schemes}
+            This subsection will, for the most part, rather straightforward and formal, owing to the fact that ind-schemes are defined rather simply.
+            
+            We start first of all with that simple definition of ind-schemes.
+            \begin{definition}[Ind-schemes] \label{def: ind-schemes}
+                Let $k$ be an arbitrary base commutative ring and let $\kappa$ be a regular cardinal\footnote{Which we will never mention again beyond this definition}. The category of ind-schemes over $\Spec k$ is thus the $\kappa$-ind-completion $\Ind_{\kappa}({}^{< \infty}\Sch_{/\Spec k})$ of the category ${}^{< \infty}\Sch_{/\Spec k}$ of convergent schemes over $\Spec k$.
+            \end{definition}
+            
+            \begin{proposition}[Ind-schemes satisfy fppf descent] \label{prop: ind_schemes_satisfy_fppf_descent}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Homotopical finiteness):} Let $\calX$ be an ind-scheme. Then, for all $n$-coconnective affine schemes $S$, the $\infty$-groupoid $\calX(S)$ will be $n$-truncated.
+                    \item \textbf{(Satisfaction of fppf descent):} Ind-schemes are sheaves in the fppf topology.
+                \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Homotopical finiteness):} We shall be proving this by induction. First of all, note that the base case $n = 0$ holds trivially. Then, assume that for $n$ natural number and $S_n$ an $n$-coconnective affine scheme, the $\infty$-groupoid $\calX(S_n)$ is $n$-coconnective; we now want to demonstrate that for $S_{n + 1}$ that is $(n + 1)$-coconnective, $\calX(S_{n + 1})$ is $(n + 1)$-truncated. 
+                        \item \textbf{(Satisfaction of fppf descent):}
+                    \end{enumerate}
+                \end{proof}
         
         \subsection{Inf-schemes}
         
