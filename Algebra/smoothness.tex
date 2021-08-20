@@ -150,7 +150,7 @@
                     \end{enumerate}
                 \end{example}
                 \begin{remark}[Commutative Leibniz algebras] \label{remark: commutative_leibniz_algebras}
-                    Let $k$ be a ring and let $(\O, \tensor, 1)$ be a monoidal $k$-linear category. Then inside $\Assoc\Leib\Alg(\O)$, there lies a full subcategory $\Comm\Alg(\calO)$ spanned by Leibniz algebras whose underlying algebra object is associative, unital, and furthermore, commutative.
+                    Let $k$ be a ring and let $(\O, \tensor, 1)$ be a monoidal $k$-linear category. Then inside $\Assoc\Leib\Alg(\O)$, there lies a full subcategory $\Comm\Alg(\O)$ spanned by Leibniz algebras whose underlying algebra object is associative, unital, and furthermore, commutative.
                 \end{remark}
                 
                 We shall now state our main theorem, which establishes the existence and accompanying universal property of K\"ahler differentials \textit{internally}.
@@ -168,8 +168,8 @@
                         \begin{enumerate}
                             \item $\oblv$ is the obvious forgetful functor, which also happens to be the obvious fully faithful embedding, and
                             \item $\Omega^1$ is the functor associating to commutative algebras $B$ the canonical derivation:
-                                $$d: B \to I/I^2$$
-                            wherein $I$ is the kernel of the codiagonal/multiplication $\mu_B: B \tensor B \to B$, which exists thanks to the assumption that $\calA$ is pre-abelian.
+                                $$d: B \to \calI_{B/A}/\calI_{B/A}^2$$
+                            wherein $\calI_{B/A}$ is the kernel of the codiagonal/multiplication $\nabla_{B/A}: B \tensor B \to B$, which exists thanks to the assumption that $\calA$ is pre-abelian.
                         \end{enumerate}
                 \end{theorem}
                     \begin{proof}
@@ -499,11 +499,56 @@
                 \begin{corollary}[Internal abelian groups] \label{coro: internal_abelian_groups}
                     It is not hard to deduce from the proof of proposition \ref{prop: the_square_zero_extension_functor_explicit_description} that for $(\calA, \tensor, \1)$ any closed symmetric monoidal stable $\infty$-category, the essential image of the split square-zero extension functor:
                         $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
-                    is equivalent to the category $\Comm\Mon( {}^{\1/}\Comm\Alg(\calA)_{/\1} )$ of commutative (additive) monoids internal to the double-slice ${}^{\1/}\Comm\Alg(\calA)_{/\1}$ (which is actually equivalent to $\Comm\Alg(\calA)_{/\1}$, since every unital algebra $A$, by definition, comes equipped with a map $\1 \to A$). In other words, one might think of objects of $\calA$ as abelian groups internal to $\Comm\Alg(\calA)_{/\1}$.
+                    is equivalent to the category $\Comm\Mon( {}^{\1/}\Comm\Alg(\calA)_{/\1} )$ of commutative (additive) monoids internal to the double-slice ${}^{\1/}\Comm\Alg(\calA)_{/\1}$ (which is actually equivalent to $\Comm\Alg(\calA)_{/\1}$, since every unital algebra $A$, by definition, comes equipped with a unit map $\1 \to A$). In other words, one might think of objects of $\calA$ as abelian groups internal to $\Comm\Alg(\calA)_{/\1}$; this also means that $\Split\SqZ$ embeds $\calA$ fully faithfully into $\Comm\Alg(\calA)_{/\1}$.
                 \end{corollary}
                     \begin{proof}
                         This is simply a matter of restricting the codomain category $\Comm\Alg(\calA)$ until the counit $\e: \Split\SqZ \circ \oblv \to \id$ of the adjunction $\Split\SqZ \ladjoint \oblv$ becomes a natural isomorphism (and also, using the fact that finite direct sums are finite biproducts).
                     \end{proof}
+                \begin{remark}[$\Split\SqZ$ preserves limits and colimits] \label{remark: square_zero_extension_functor_preserves_(co)limits}
+                    It is not hard to see that for any closed symmetric monoidal stable $\infty$-category $\calA$, the corresponding evident functor of split square-zero extensions:
+                        $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
+                    preserves both limits and colimits.
+                \end{remark}
+                
+                \begin{lemma}[Cotangent bundles] \label{lemma: cotangent_bundles} \index{Cotangent bundle}
+                    Let $(\calA, \tensor, \1)$ be a \textit{closed} symmetric monoidal stable $\infty$-category and let:
+                        $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
+                    be the corresponding evident functor of split square-zero extensions.
+                        \begin{enumerate}
+                            \item \textbf{(Existence and uniqueness):} This functor admits a left-adjoint of its own, which we shall denote by $\T^{\vee}$ and refer to as the \textbf{cotangent bundle functor}.
+                            \item \textbf{(Explicit description):} One obtains via corollary \ref{coro: internal_abelian_groups} the following localisation of $\Comm\Alg(\calA)_{/\1}$:
+                                $$
+                                    \begin{tikzcd}
+                                    	\calA & {\Comm\Alg(\calA)_{/\1}}
+                                    	\arrow[""{name=0, anchor=center, inner sep=0}, "\Split\SqZ_{/\1}"', shift right=2, hook, from=1-1, to=1-2]
+                                    	\arrow[""{name=1, anchor=center, inner sep=0}, "{\T^{\vee}_{/\1}}"', shift right=2, from=1-2, to=1-1]
+                                    	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                                    \end{tikzcd}
+                                $$
+                            Then, one can show that the essential image of $\T^{\vee}_{/\1}$ inside $\calA$ is equivalent to the subcategory $\Comm\Leib\Alg(\calA)$ spanned by commutative Leibniz algebras (cf. proposition \ref{prop: leibniz_algebra_categories}) therein.
+                        \end{enumerate}
+                \end{lemma}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Existence and uniqueness):} Because both $\calA$ and $\Comm\Alg(\calA)$ are \textit{a priori} presentable and because $\Split\SqZ$ preserves all limit and colimits, the left-adjoint $\T^{\vee}$ exists naturally by the Special Adjoint Functor Theorem for presentable $\infty$-categories.
+                            \item \textbf{(Explicit description):} Because $\Split\SqZ_{/\1}$ is already fully faithful, (which in particular, implies that the counit of the adjunction $\Split\SqZ_{/\1} \ladjoint \T^{\vee}_{/\1}$ is a natural isomorphism) and because we have an isomorphism of simplicial sets:
+                                $$\calA(\T^{\vee}_{/\1}(S), N) \cong \Comm\Alg(\calA)_{/\1}(S, \1 \oplus N)$$
+                            for all $S \in \Comm\Alg(\calA)_{/\1}$ and $N \in \calA$, it will suffice to show that any arrow $\varphi \in \Comm\Alg(\calA)_{/\1}(S, \1 \oplus N)$ induces a derivation (cf. definition \ref{def: derivations}) on $\1 \oplus N$ (it is \textit{very important} to consider $\varphi$ as an arrow in the slice category $\Comm\Alg(\calA)_{/\1}$ instead of in $\Comm\Alg(\calA)$). We shall do this by checking that we actually have all the relevant commutative diagrams, as in definition \ref{def: derivations}. To that end, 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{remark}[Cotangent bundles and K\"ahler differentials] \label{remark: cotangent_bundles_and_kahler_differentials}
+                    Recall, from theorem \ref{theorem: kahler_differentials_universal_property}, that K\"ahler differentials taking values in some symmetric monoidal stable $\infty$-category $(\calA, \tensor, \1)$ arise through an adjunction:
+                        $$
+                            \begin{tikzcd}
+                            	{\Comm\Leib\Alg(\calA)} & {\Comm\Alg(\calA)}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "\oblv"', shift right=2, hook, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Omega^1_{-/\1}}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                    wherein the canonical forgetful functor $\oblv: \Comm\Leib\Alg(\calA) \to \Comm\Alg(\calA)$ is fully faithful (cf. proposition \ref{prop: leibniz_algebra_categories}). When $(\calA, \tensor, \1)$ is furthermore monoidally closed, we get additionally by lemma \ref{lemma: cotangent_bundles} that $\Comm\Leib\Alg(\calA)$ is equivalent to the essential image of the cotangent bundle functor $\T^{\vee}_{/\1}: \Comm\Alg(\calA)_{/\1} \to \calA$. 
+                \end{remark}
                 
                 \begin{theorem}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Computing na\"ive cotangent complexes] \label{theorem: computing_naive_cotangent_complexes}
                     \noindent
@@ -534,11 +579,11 @@
                                     Note that the localisation $P_{\q}$ makes sense because $S \cong P/J$, which implies that $\Spec S$ is nothing but a closed affine subscheme of $\Spec P$, and $|\Spec P|$ must thus contain $\q$ as a point; see definition \ref{def: zariski_closed} and proposition \ref{prop: zariski_closed_well_definiteness}. Now, we shall aim to show that:
                                         $$\calN^{\vee}_{S_{\q}/R} \cong \q/\q^2$$
                                     (and note that $\q/\q^2$ is nothing but the Zariski cotangent space of the local ring $(S_{\q}, \q)$).
-                                    \item \textbf{(Proof of the local case):}
+                                    \item \textbf{(Proof of the local case):} 
                                     \item \textbf{(Local-global compatibility):}
                                 \end{enumerate}
                             \item 
-                            \item 
+                            \item This is a straightforward consequence of theorem \ref{theorem: kahler_differentials_universal_property}.
                         \end{enumerate}
                     \end{proof}
                 \begin{corollary}[Na\"ive cotangent complex of separated schemes and of closed subschemes] \label{coro: naive_cotangent_complex_of_separated_schemes_and_closed_subschemes}
@@ -558,7 +603,7 @@
                                 a closed immersion of schemes, there exists a canonically defined associated (quasi-coherent) sheaf of differentials $\Omega^1_{Z/X}$, which is given by:
                                     $$\Omega^1_{Z/X} \cong j^*(\calI_{Z/X}/\calI_{Z/X}^2)$$
                                 This, in fact, is a generalisation of the first case.
-                                \item \textbf{(Zariski cotangent spaces):} One very interesting subcase that we will examine in closer details (later in paragraph \ref{subsubsection: cotangent_spaces}) is that of closed points $x: \Spec \kappa_x \to X$. For now, however, note that the na\"ive cotangent complex at $x \in |X|$ has the form:
+                                \item \textbf{(Zariski cotangent spaces):} One very interesting subcase that we will examine in closer details later is that of closed points $x: \Spec \kappa_x \to X$. For now, however, note that the na\"ive cotangent complex at $x \in |X|$ has the form:
                                     $$\m_x/\m_x^2 \to \kappa_x \tensor_{\calO_{Z, z}} \Omega^1_{X, x} \to \Omega^1_{\kappa_x/\calO_{X, x}} \to 0$$
                                 Because there exists a canonical surjective ring homomorphism $\calO_{X, x} \to \kappa_x$, we have:
                                     $$\Omega^1_{\kappa_x/\calO_{X, x}} \cong 0$$
@@ -747,7 +792,7 @@
                     \begin{proof}
                         
                     \end{proof}
-                \begin{corollary}[Fibre-wise smoothness] \label{corollary: fibrewise_smoothness}
+                \begin{corollary}[Fibre-wise smoothness] \label{coro: fibrewise_smoothness}
                     Let $X$ be a scheme over some base scheme $S$. Then, the structure morphism $X \to S$ is smooth if and only if all of its fibres are so, i.e. for all $s \in |S|$, the fibre $X_s \cong X \x_S \Spec \kappa_s$ is smooth over the residue field $\kappa_s$. In practice, this means that to check for smoothness, one can simply pullback to over a point and apply fibre-wise results on smoothness (such as proposition \ref{prop: dimensions_of_smoothn_morphisms_over_fields}).
                 \end{corollary}
                     
