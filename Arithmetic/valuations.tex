@@ -1,6 +1,6 @@
 \chapter{Non-archimedean analytic geometry} \label{chapter: valuations} 
     \begin{abstract}
-        Let's do some analysis!
+        Let's do some functional analysis!
     \end{abstract}
     
     \minitoc
@@ -179,7 +179,7 @@
         
         \subsection{Adic spaces}
             \subsubsection{Huber rings}
-                \begin{definition}[Huber rings] \label{def: huber_rings}
+                \begin{definition}[Huber rings and Tate rings] \label{def: huber_rings_and_tate_rings}
                     \noindent
                     \begin{enumerate}
                         \item \textbf{(Adic rings):} To avoid terminology confusions that might arise from the somewhat liberal use of the word \say{adic} in various differing contexts, let us declare that an \textbf{adic ring} is a commutative ring $A$ that carries an $\a$-adic topology, for some ideal $\a \subset A$. The archetypal examples are $\Z_p$ and $\F_p[\![t]\!]$ (for some prime $p$); these are complete with respect to the obvious $p$-adic and $t$-adic topologies respectively.
@@ -187,6 +187,20 @@
                         \item \textbf{(Tate rings):} A so-called \textbf{Tate ring} is a Huber ring with a topologically nilpotent unit, commonly called a \textbf{pseudo-uniformiser}. 
                     \end{enumerate}
                 \end{definition}
+                \begin{proposition}[The categories of Huber and Tate rings] \label{prop: morphisms_of_huber_rings}
+                    There exists a category of Huber rings. It admits the category of Tate, as a full subcategory.
+                \end{proposition}
+                    \begin{proof}
+                        It is not at all hard to see that a morphism between Huber rings is nothing more than a continuous ring homomorphism.
+                        
+                        Now, we claim that a morphism of Tate rings $(f, f_0): (A_0, I, \varpi) \to (B_0, J, \pi)$ is actually just a morphism of the underlying Huber rings. To see why this is true, consider the following:
+                            $$f\left(\underset{n \to +\infty}{\lim} \varpi^n \right) = \underset{n \to +\infty}{\lim} (f(\varpi))^n$$
+                        which holds due to the fact that $f$ is continuous and is a homomorphism of rings. Additionally, one has that $\varpi$ is topologically nilpotent by assumption. Thus:
+                            $$f\left(\underset{n \to +\infty}{\lim} \varpi^n \right) = f(0) = 0 = \underset{n \to +\infty}{\lim} (f(\varpi))^n$$
+                        which holds again because $f$ is a ring homomorphism, and which implies that we can have:
+                            $$\pi = f(\varpi)$$
+                        Clearly, morphisms of Tate rings can be composed associatively, and there is an identity morphism for each Tate ring. Thus, one can embed Tate rings fully faithfully into Huber rings.
+                    \end{proof}
                 
                 \begin{convention}[Adic completions of rings] \label{conv: adic_completion_of_rings}
                     When necessary, we shall denote the $\a$-adic completion of a commutative ring $A$ by $(A, \a)^{\wedge}$. 
@@ -288,21 +302,122 @@
                 \begin{definition}[\textcolor{red}{\underline{IMPORTANT}} Adic spectra] \label{def: adic_spectra}
                     \noindent
                     \begin{enumerate}
-                        \item \textbf{(Huber pairs):} A Huber pair is a pair $(A, A^+)$ consisting of a Huber ring $A$ and an integrally closed subring $A^+ \subseteq A$, called the \textbf{ring of integral elements} of $A$.
-                        \item \textbf{(Adic spectra):} The \textbf{adic spectrum} of a Huber pair $(A, A^+)$, denoted by $\Spa (A, A^+)$, is the set of equivalence classes of continuous valuations on $\nu: A \to \Gamma \cup \{0\}$ such that for all $f \in A^+$, we are guaranteed that:
+                        \item \textbf{(Huber pairs):} A Huber pair is a pair $(A, A^+)$ consisting of a Huber ring $A$ and an integrally closed open subring $A^+$ of $A^{\circ}$, called the \textbf{ring of integral elements} of $A$.
+                        \item \textbf{(Adic spectra):} The \textbf{adic spectrum} of a Huber pair $(A, A^+)$, denoted by $\Spa (A, A^+)$, is the set of equivalence classes of continuous valuations on $\nu: A \to \Gamma \cup \{\infty\}$ such that for all $f \in A^+$, we are guaranteed that:
                             $$\nu(f) \leq 1$$
                         (with $1$ denoting the unit of the multiplicative totally ordered abelian group $(\Gamma, \leq)$). More generally, one might define the adic spectrum of any pair $(A, \Sigma)$ (which we shall call \textbf{pre-Huber pairs}) where $\Sigma$ is merely some subset of $A$ such that $\nu(f) \leq 1$ for all $f \in \Sigma$. 
                     \end{enumerate}
                 \end{definition}
-                \begin{remark}[Functoriality (or the lack thereof)] \label{remark: adic_spectrum_functoriality}
-                    Let $A$ be a Huber ring and let $\Sigma' \supseteq \Sigma$ be subsets of $A$. Then:
-                        $$\Spa(A, \Sigma) \subseteq \Spa(A, \Sigma')$$
-                    since for all ultranorms $\nu$ on $A$ such that:
-                        $$\nu(g) \leq 1$$
-                    for all $g \in \Sigma'$, it must be true as a consequence of $\Sigma$ being a subset of $\Sigma'$ (and hence every element of $\Sigma$ being inside $\Sigma'$) that:
-                        $$\nu(f) \leq 1$$
-                    for all $f \in \Sigma$. 
+                \begin{example}[Affinoid fields]
+                    Let $K$ be a non-archimedean field. Then $\Spa(K, K^{\circ})$ will be the one-point space: namely, the only valuation on $K$ such that $||K^{\circ}| \leq 1$ is the very valuation from which one gets the topology on $K$, and this is due entirely to the definition of $K^{\circ}$ as the subset of power-bounded elements of $K$. This is also the case for any so-called \textbf{affinoid field} $(K, K^+)$, i.e. for all intergrally closed open subring $K^+ \subset K^{\circ}$, $\Spa(K, K^+)$ is a one-point space.
+                \end{example}
+                \begin{remark}[Category of Huber pairs]
+                    It is not hard to see, from proposition \ref{prop: morphisms_of_huber_rings} and definition \ref{def: adic_spectra}, that there exists a category of all Huber pairs, for which we shall write $\Huber$, whose morphisms from say, $(A, A^+)$ to $(B, B^+)$ is simply a continuous ring homomorphism $\varphi: A \to B$ such that $\varphi(A^+)$ is contained inside $B^+$ (so that integrality would be preserved). Among other things, this means that the category of Huber pairs is \textit{not} full as a subcategory of the category of all Huber rings.
+                    
+                    The full subcategory of $\Huber$ spanend by Tate pairs shall be denoted by $\Tate$.
                 \end{remark}
+                
+                \begin{convention}
+                    Henceforth, for all adic spectrum $X := \Spa(A, A^+)$, all points $x \in X$, and all elements $f \in A$, we shall write $|f(x)|$ instead of $x(f)$.
+                \end{convention}
+                \begin{proposition}[The rational topology] \label{prop: the_rational_topology}
+                    Let $X := \Spa(A, A^+)$ be an adic spectrum, in the sense of definition \ref{def: adic_spectra}. Then, there exists a topology on $X$ with basis elements being open subsets of the form:
+                        $$D_g(\a) := \{x \in X \mid \forall f \in \a: |f(x)| \leq |g(x)|\}$$
+                    where $g$ is any choice of an element of $A$, called \textbf{rational subsets}; they might be thought of as subsets of $X$ on which $g$ dominates any $f \in \a$ as a functional on $A$.
+                \end{proposition}
+                    \begin{proof}
+                        We shall simply verify the axioms defining a topology on a set:
+                            \begin{enumerate}
+                                \item \textbf{(Empty set and whole set are rational):} 
+                                    \begin{itemize}
+                                        \item It is not hard to see that for all $g \in A$, $D_g((0)) = X$. This tells us that the entire space $X$ is rational.
+                                        \item It is also a rather trivial fact that for all non-trivial finitely generated open ideals $\a$, $D_0(\a) = \varnothing$. The empty set is thus also rational.
+                                    \end{itemize}
+                                \item \textbf{(Finite intersections are rational):} Consider the following, for any positive integer $N$ and a fixed finitely generated open ideal $\a$:
+                                    $$
+                                        \begin{aligned}
+                                            & x \in \bigcap_{i = 1}^N D_{g_i}(\a)
+                                            \\
+                                            \iff & \bigwedge_{i = 1}^N \left(x \in D_{g_i}(\a)\right)
+                                            \\
+                                            \iff & \bigwedge_{i = 1}^N \left(x \in \{y \in X \mid \forall f \in \a: |f(y)| \leq |g_i(y)|\}\right)
+                                            \\
+                                            \iff & \bigwedge_{i = 1}^N \bigwedge_{f \in \a} \left(|f(x)| \leq |g_i(x)|\right)
+                                            \\
+                                            \iff & \bigwedge_{f \in \a} \left(|f(x)| \leq \inf_{1 \leq i \leq N} |g_i(x)|\right)
+                                            \\
+                                            \iff & x \in \left\{y \in X \mid \forall f \in \a: |f(y)| \leq |g_{\min}(y)|\right\}
+                                            \\
+                                            \iff & x \in D_{g_{\min}}(\a)
+                                        \end{aligned}
+                                    $$
+                                wherein $g_{\min}$ denotes the element of the finite family $\{g_1, ..., g_N\}$ whose norm at $x$ is the smallest. This clearly shows that the intersection of any finite number of rational subsets is again rational. 
+                                \item \textbf{(Arbitrary unions are rational):} 
+                            \end{enumerate}
+                    \end{proof}
+                \begin{corollary}[Quasi-compactness of adic spectra] \label{coro: adic_spectra_are_quasi_compact}
+                    Any adic spectrum is quasi-compact in the rational topology.
+                \end{corollary}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                The following is the usual route one would take in order to reach adic spaces at the end. We shall guide you through, although at the end, we shall discuss its shortcomings and subsequently, reasons why the more general so-called \textbf{pre-adic spaces} are of interest to us (spoiler: \textit{one can obtain an adic space via sheafifying a pre-adic space}).
+                
+                This first lemma will help us justify only stating proposition \ref{prop: structure_presheaves_of_adic_spectra} for complete Huber pairs.
+                \begin{lemma}[Incomplete Huber pairs are enough] \label{lemma: adic_spectra_of_complete_huber_pairs}
+                    Let $(A, A^+)$ be a Huber pair and let $(A, A^+)^{\wedge} := (\hat{A}, \hat{A}^+)$ be its topological completion. Then, there is a homeomorphism between $X := \Spa(A, A^+)$ and $X^{\wedge} := \Spa(A, A^+)^{\wedge}$.
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{proposition}[Structure presheaves on adic spectra] \label{prop: structure_presheaves_of_adic_spectra}
+                    Let $X$ be an adic spectrum $\Spa(A, A^+)$ of a \textit{complete} Huber pair $(A, A^+)$ and denote the site induced by the rational topology on $X$ by $\Ouv(X)$. 
+                        \begin{enumerate}
+                            \item \textbf{(Existence and uniqueness):} There is a distinguished presheaf of Huber pairs:
+                                $$(\calO_X, \calO_X^+): \Ouv(X)^{\op} \to \Huber$$
+                            such that for all $U \in \Ouv(X)$, there is a homeomorphism:
+                                $$U \cong \Spa(\calO_X(U), \calO_X^+(U))$$
+                            \item \textbf{(Completeness):} For all $U \in \Ouv(X)$, the Huber pair $(\calO_X(U), \calO_X^+(U))$ is complete.
+                        \end{enumerate}
+                \end{proposition} 
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Existence and uniqueness):}
+                            \item \textbf{(Completeness):}
+                        \end{enumerate}
+                    \end{proof}
+                \begin{convention}[Structure Huber pair ?]
+                    For $X$ an adic spectrum, we shall always be referring to the pair $(\calO_X, \calO_X^+)$ whenever we talk about its structure presheaf, as opposed to merely $\calO_X$. This is because in specifying a Huber pair $(A, A^+)$, it is equally important to identify the ambient Huber ring $A$ as well as the integrally closed open subring $A^+ \subset A^{\circ}$.
+                \end{convention}
+                \begin{definition}[Sheafiness] \label{def: sheafiness}
+                    A \textit{complete} Huber pair $(A, A^+)$ defining an adic spectrum $X := \Spa(A, A^+)$ is called \textbf{sheafy} if and only if its structure presheaf $(\calO_X, \calO_X^+)$ is a sheaf in the rational topology.
+                \end{definition}
+                
+                \begin{definition}[Adic spaces] \label{def: adic_spaces}
+                    
+                \end{definition}
+                
+            \subsubsection{Pre-adic spaces}
+                Adic spaces are supposed to be non-archimedean version of complex analytic manifolds. This means that we would like to set them up in a way such that so-called affinoid spaces are not only the basic building blocks, but should also come directly from (complete) Huber pairs, similar to how affine schemes are representable presheaves on $\Cring^{\op}$ (cf. definition \ref{def: zariski_topoi}). For this, let us start with the following definition:
+                \begin{definition}[Pre-adic spaces] \label{def: pre_adic_spaces}
+                    An \textbf{affinoid pre-adic space} is a representable presheaf on $\Huber$. 
+                \end{definition}
+                
+                \begin{remark}[Rational sites of affinoids]
+                    Before we state the following result, let us note that the opposite $\Pre\Ad^{\affd} := \Huber^{\op}$ of the category of Huber pairs canonically admits a coverage whose covering sieves are covers in the rational topology (cf. proposition \ref{prop: the_rational_topology}). We leave it to the reader to show that for any adic spectrum $X$, the maximal small site of the large site $\Pre\Ad^{\affd}_{/X}$ is nothing but $\Ouv(X)$.
+                \end{remark}
+                \begin{proposition}[Sheafifying to get adic spaces] \label{prop: sheafifying_pre_adic_spaces}
+                    The sheafification of any affinoid pre-adic space in the rational coverage on $\Pre\Ad^{\affd}$ is an affinoid adic space, in the sense of definition \ref{def: adic_spaces}. To make the distinction between an affinoid pre-adic space and its sheafification, we shall write $\Spa^{\flat}(A, A^+)$ for the affinoid pre-adic space (co)represented by $(A, A^+) \in \Huber$.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{example}[The rational topology is \textit{not} subcanonical!]
+                    
+                \end{example}
         
         \subsection{Morphisms of adic spaces}
             \subsubsection{Morphisms of finite type and (quasi-)finite morphisms}
@@ -329,6 +444,51 @@
             \subsubsection{Separatedness and properness}
             
             \subsubsection{Ramification, smoothness, and \'etaleness}
+                \paragraph{Smooth morphisms}
+                
+                \paragraph{Unramifield morphisms}
+            
+                \paragraph{\'Etale morphisms}
+                    \begin{definition}[(Finite) \'etale morphisms] \label{def: etale_morphisms_of_adic_spaces}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Finite \'etale adic spaces):} 
+                                \begin{enumerate}
+                                    \item A morphism of affinoid adic spaces:
+                                        $$\Spa(S, S^+) \to \Spa(R, R^+)$$
+                                    is said to be \textbf{finite \'etale} if and only if $S$ is finite \'etale over $R$ (literally \say{\'etale and finite}, in the sense of being finitely generated as an $R$-module), and $S^+$ is the intergral closure (cf, definition \ref{def: integral_extensions}) of $R^+$ inside $S$.
+                                    \item A morphism of adic spaces is \textbf{finite \'etale} if and only if it is affinoid (i.e. the preimage of any affinoid under such a map is once more an affinoid) and locally finite \'etale.
+                                \end{enumerate}
+                            \item \textbf{(\'Etale adic spaces):} 
+                                \begin{enumerate}
+                                    \item A morphism of affinoid adic spaces:
+                                        $$\Spa(S, S^+) \to \Spa(R, R^+)$$
+                                    is said to be \textbf{\'etale} if and only if $S$ is \'etale over $R$ and $S^+$ is the intergral closure of $R^+$ inside $S$.
+                                    \item A morphism of adic spaces is \textbf{\'etale} if and only if it is affinoid (i.e. the preimage of any affinoid under such a map is once more an affinoid) and locally \'etale.
+                                \end{enumerate}
+                        \end{enumerate}
+                    \end{definition}
+                    \begin{remark}[Finite \'etale implies \'etale] \label{remark: finite_etale_implies_etale}
+                        Because \'etale ring maps (cf. definition \ref{def: etale_morphisms}) are of finite presentations (which in particular, means that they are of finite type), they can fail to be finite ($\A^1_k$ is of finite type over $\Spec k$, but does not even come close to being finite over the same base). The converse is always true, however: a finite morphism will automatically be of finite type. This means that finite \'etale morphisms are always \'etale, but the other way around is not necessarily the case. The example below should shed some light on this matter.
+                    \end{remark}
+                    \begin{example}[Adic spaces \'etale over affinoid fields] \label{example: adic_space_etale_over_affinoid_fields}
+                        It is not hard to see (from the definition of the functor $|\Spa|: \Huber \to \Top$; cf. definition \ref{def: adic_spectra}) that for any affinoid field $(K, K^+)$ (i.e. a pair $(K, K^+)$ wherein $K$ is some non-archimedean field and $K^+$ is an integrally closed open subring of $K^{\circ}$), the underlying topological space of $\Spa(K, K^+)$ is a one-point space. Then, one can use definition \ref{def: etale_morphisms_of_adic_spaces} to show that an affinoid adic space over $\Spa(K, K^+)$ is \'etale if and only if it is a \textit{finite} coproduct of finite extensions $(L_i, L_i^+)$ of $(K, K^+)$. From this, we can deduce that a \textit{quasi-compact} adic space $X$ over $\Spa(K, K^+)$ is \'etale if and only if it is finite \'etale; one thing to note is that relaxing the quasi-compactness assumption to Noetherianity will break this assertion in general, since $X$ could be disconnected with infinitely many components; the quasi-compactness assumption ensures that there would only be finitely many components.
+                    \end{example}
+                    
+                    \begin{proposition}[Factorisations of \'etale morphisms] \label{prop: factorisations_of_etale_morphisms_of_adic_spaces}
+                        An \'etale morphism of adic spaces $f: X \to Y$ is always locally decomposable into the composition of an open immersion followed by a finite \'etale morphism. This is to say, $f: X \to Y$ is \'etale if and only if for all $x \in |X|$, there exists an open immersion of an open neighbourhood $U \ni x$ into an adic space $V'$ finite \'etale over an open neighbourhood $V \ni f(x)$.
+                    \end{proposition}
+                        \begin{proof}
+                            Because \'etale-ness is a local notion, we can assume without loss of generality that $X$ and $Y$ are affinoid.
+                        \end{proof}
+                    
+                    \begin{definition}[Strongly (finite) \'etale] \label{def: strongly_finite_etale_morphisms_of_adic_spaces}
+                        Let $K$ be a perfectoid field.
+                            \begin{enumerate}
+                                \item \textbf{(Strongly finite \'etale morphisms):} 
+                                \item \textbf{(Strongly \'etale morphisms):}
+                            \end{enumerate}
+                    \end{definition}
             
             \subsubsection{Dimension theory for adic spaces}
             

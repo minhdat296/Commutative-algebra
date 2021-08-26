@@ -1,4 +1,4 @@
-\chapter{Purity}
+\chapter{Purity and perfectoid spaces}
     \begin{abstract}
         
     \end{abstract}
@@ -25,264 +25,6 @@
     \section{Falting's almost purity}
     
     \section{"The perfect(oid) space doesn't exi-"}
-        \subsection{\textit{Pr\'elude}: Pro-\'etale topoi of perfect schemes}
-            \subsubsection{Tilting schemes of characteristic \texorpdfstring{$p$}{}}
-                \begin{definition}[Tilting and untilting in characteristic $p$] \label{def: tilting_schemes}
-                    Fix a commutative ring $k$ of some prime characteristic $p$ on which the $p^{th}$ power Frobenius is either \textit{surjective} or \textit{injective}, along with an affine scheme $\Spec R$ over $\Spec k$. Let us then define the \textbf{$p$-tilt} of $\Spec R$ to be the following filtered limit in $\Sch^{\aff}_{/\Spec k}$:
-                        $$\Spec R^{\flat} \cong \underset{n \in \N}{\lim} \Spec R^{(n)}$$
-                    wherein $R^{(n)}$ is the $n$-fold pushout of the structural morphism $k \to R$ along the $p^{th}$ power Frobenius $\Frob_k^p: k \to k$. It is not hard to see that $p$-tilting is a functorial process: in fact, there exists a so-called \textbf{$p$-tilting functor}:
-                        $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
-                    which is trivially left-exact due to the fact that limits commute; by The Special Adjoint Functor Theorem \cite[Theorem V.8.2]{maclane} this functor thus admits a left-adjoint, which can be be seen to be the constant functor from the conical definition of limits (cf. \cite[Section 3]{nlab:limit}), which shall however be denoted by $(-)^{\sharp}$ and called the \textbf{$p$-untilting functor} so as to be suggestive:
-                        $$(-)^{\sharp}: \Sch^{\aff}_{/\Spec k^{\flat}} \to \Sch^{\aff}_{/\Spec k}$$
-                \end{definition}
-                \begin{remark}[On surjectivity of Frobenii] \label{remark: surjective_frobenii}
-                    Without the assumption that the Frobenius on our base commutative ring $k$ of characteristic $p$ are surjective, we would run into categorical issues such as pushouts along $\Frob^p_k$ not even existing as a commutative ring. Additionally, note that surjectivity of Frobenii does not immediately imply invertibility, since it is only on reduced rings of positive characteristics are Frobenii injective; when $k$ is a field, however, it is true that a surjective Frobenius would automatically be an automorphism (since fields are reduced), thereby making $k$ a perfect field of characteristic $p$. 
-                    
-                    This is not to say that one can only meaningfully tilt rings of characteristic $p$ whose Frobenii are surjective. Thanks to the fact that finite limits commute with filtered colimits, we can tilt rings whose Frobenii are injective (i.e. reduced rings of characteristic $p$) too. However, it should be said that in practice, most of these rings will actually just be perfect fields. 
-                \end{remark}
-                
-                \begin{lemma}[Tilts are perfect] \label{lemma: tilts_are_perfect}
-                    The $p$-tilt of any commutative ring of characteristic $p$ where the $p^{th}$ power Frobenius is \textit{surjective} is perfect, in the sense that the Frobenius becomes an automorphism. 
-                \end{lemma}
-                    \begin{proof}
-                        \noindent
-                        \begin{itemize}
-                            \item \textbf{(There are many $p^{th}$ power roots):} Let $R$ be a commutative $\F_p$-algebra on which the Frobenius is surjective; by the definition of surjectivity, this means that:
-                                $$\forall x \in R: \exists y \in R: y^p = x$$
-                            i.e.:
-                                $$\forall x \in R: \exists y \in R: y = x^{\frac1p}$$
-                            which tells us that any $x \in R$ has a (perhaps non-unique) $p^{th}$ root $y = x^{\frac1p}$ that is also in $R$.
-                            
-                            Another thing that one can infer from the surjectivity of the Frobenius on $R$ is that:
-                                $$\ker \Frob_R = \{0, p^{\frac1p}\}$$
-                            (one gets this from a straightforward application of the First Isomorphism Theorem). By repeating the process, we obtain the following for all natural numbers $n$:
-                                $$\ker \Frob_R^n = \{0, p^{\frac1p}, ..., p^{\frac{1}{p^n}}\}$$
-                            From this, we get that:
-                                $$\ker \Frob_{R^{(n)}} = \{p^{\frac{1}{p^n}}\}$$
-                            as $R^{(n)}$ is the image of $R^{(n - 1)}$ under $\Frob_R$, or in other words, the image of $R$ under $\Frob_R^n$.
-                            \item \textbf{(Perfectness of tilts):} First of all, because:
-                                $$R^{\flat} \cong \underset{n \in \N}{\colim} R^{(n)}$$
-                            and because colimits commute, the Frobenius on $R^{\flat}$ is trivially surjective; this means that we shall only need to prove that it is injective on $R^{\flat}$, which we will do via showing that the kernel is trivial. To this end, let us make the observation that:
-                                $$\ker \Frob_{R^{\flat}} \cong \ker \underset{n \in \N}{\colim} \Frob_{R^{(n)}} \cong \underset{n \in \N}{\colim} \ker \Frob_{R^{(n)}}$$
-                            which holds thanks to the fact that filtered colimits commute with finite limits. From this, we get:
-                                $$\ker \Frob_{R^{\flat}} \cong \underset{n \in \N}{\colim} \{p^{\frac{1}{p^n}}\} = \{p^{\frac{1}{p^0}}\} = \{0\}$$
-                            where the filtered colimit is as above and is taken in the category of $R$-modules; also the last equality holds because we are in characteristic $p$.
-                        \end{itemize}
-                    \end{proof}
-                
-                \begin{lemma}[Perfect fpqc sites] \label{lemma: perfect_fpqc_sites}
-                    Let $k$ be a commutative ring of some prime characteristic $p$ on which the $p^{th}$ power Frobenius is \textit{surjective}.
-                        \begin{enumerate}
-                            \item \textbf{(Essential images of tilting functors):} The essential image of the $p$-tilting functor:
-                                $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
-                            is equivalent to the full subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ of $\Sch^{\aff}_{/\Spec k^{\flat}}$ spanned by perfect affine schemes over $\Spec k^{\flat}$ (note that this category is well-defined thanks to $k^{\flat}$ being perfect; cf. lemma \ref{lemma: tilts_are_perfect}).
-                            \item \textbf{(Perfect fpqc sites):} The essential image $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ of $(-)^{\flat}$ can be endowed with the fpqc coverage. Doing so turns it into the so-called \textbf{perfect fpqc site} of $\Spec k^{\flat}$; we shall denote this site by $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$. There is also a morphism of site from the usual fpqc site $\Sch^{\aff}_{/\Spec k^{\flat}. \fpqc}$ to the new perfect fpqc site $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$, which essentially helps us restrict the fpqc coverage on the former down onto the latter; interestingly, this morphism of sites turns out to be a $p$-tilting functor, with the only caveat being this time, its domain is $\Sch^{\aff}_{/\Spec k^{\flat}}$ instead of $\Sch^{\aff}_{/\Spec k}$ (note that now, the base ring is $k^{\flat}$, which is perfect):
-                                $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
-                            In essence, we are obtaining perfect fpqc sites via tilting everything in fpqc sites over a perfect ring of characteristic $p$.
-                        \end{enumerate}
-                \end{lemma}
-                    \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item \textbf{(Essential images of tilting functors):} Because the $p$-tilt of any field of characteristic $p$ is perfect (so $k^{\flat}$ in particular is perfect) and because $p$-tilts of $k$-algebras are defined via pushouts along the $p^{th}$ power Frobenius $\Frob_k^p: k \to k$, the relative $p^{th}$ power Frobenius $\Frob^p_{R^{\flat}/k^{\flat}}: R^{\flat} \to R^{\flat}$ must be an automorphism too, since the pushout of an automorphism along any other arrow is necessarily an automorphism itself (for abstract nonsensical reasons). Also, because morphisms between perfect rings of characteristic $p$ are just ring homomorphisms, the subcategory of ${}^{k^{\flat}/}\Comm\Alg$ spanned by perfect $k^{\flat}$-algebras is full. Thus, the essential image of the $p$-tilting functor:
-                                $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
-                            is nothing but $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$.
-                            \item \textbf{(Perfect fpqc sites):} Since $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ is a full subcategory of $\Sch^{\aff}_{/\Spec k^{\flat}}$, it shall suffice to check the fpqc coverage on the ambient category $\Sch^{\aff}_{/\Spec k^{\flat}}$ can simply be restricted down to a coverage on $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ that is only by sieves of fpqc perfect $k^{\flat}$-algebras. To that end, let $\U_{/U}$ be an fpqc sieve that covers some \textit{perfect} affine scheme $U$ in $\Sch^{\aff}_{/\Spec k^{\flat}}$ and let us try to show that there is another fpqc covering sieve $\U_{/U}^{\perf}$ by \textit{perfect} affine schemes on $U$ fitting into the following factorisation:
-                                $$
-                                    \begin{tikzcd}
-                                    	\U_{/U} && {\U^{\perf}_{/U}} \\
-                                    	& h_U
-                                    	\arrow[from=1-1, to=2-2]
-                                    	\arrow[from=1-3, to=2-2]
-                                    	\arrow[dashed, from=1-1, to=1-3]
-                                    \end{tikzcd}
-                                $$
-                            We know every presheaf can be written as the colimit of representable presheaves mapping into it \cite[Section 4]{nlab:presheaf}, so by supposing that:
-                                $$\U_{/U} \cong \underset{ h_V \in \left( \Sch^{\aff}_{/\Spec k^{\flat}} \right)_{/\U_{/U}} }{\colim} h_V$$
-                            we can tilt of the presheaf $\U_{/U}$ via locally tilting the affine schemes $V$ individually. It then remains to show that:
-                                $$\U_{/U}^{\perf} \cong \underset{ h_V \in \left( \Sch^{\aff}_{/\Spec k^{\flat}} \right)_{/\U_{/U}} }{\colim} h_{V^{\flat}}$$
-                            is indeed an fpqc sieve that covers $U$. 
-                        \end{enumerate}
-                    \end{proof}
-                
-                \begin{proposition}[Perfect pro-\'etale sites] \label{prop: perfect_pro_etale_sites}
-                    See \cite[\href{https://stacks.math.columbia.edu/tag/094N}{Tag 094N}]{stacks} for a discussion on weakly \'etale ring maps.
-                    \begin{enumerate}
-                        \item \textbf{(Pro-\'etale perfect schemes):} Let $\kappa$ be a fixed regular cardinal and let $k$ be a commutative ring of some prime characteristic $p$ such that the Frobenius $\Frob^p_k$ on $k$ is \textit{surjective}. Then, the category $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ contains all perfect affine schemes \'etale over $\Spec k^{\flat}$ as well as $\kappa$-small filtered limits thereof. As a consequence, there exists a \textit{$\kappa$-small} full-subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ of the $\kappa$-large category $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$; this $\kappa$-small category is spanned by affine schemes that are pro-\'etale over $\Spec k^{\flat}$.
-                        \item \textbf{(Perfect pro-\'etale sites):} The full subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ of $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ can also be endowed with the fpqc coverage, making it a small full subsite of the (large) perfect fpqc site $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$. This, along with the fact that morphisms between affine schemes are pro-\'etale if and only if they are weakly \'etale \cite[Theorem 1.3]{bhatt_scholze_2014_pro_etale}, implies that $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ can have the structure of a $\kappa$-small pro-\'etale site.
-                        \item \textbf{(Perfect pro-\'etale topoi):} Let us denote the perfect pro-\'etale topos of $\Spec k^{\flat}$ by:
-                            $$(\Spec k^{\flat})^{\perf}_{\proet}$$
-                        (which we note to be well-defined thanks to the $\kappa$-smallness of the underlying pro-\'etale site). Then, via domain restriction of the morphism between fpqc sites:
-                            $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
-                        down to the full subcategory of pro-\'etale affine schemes over $\Spec k^{\flat}$, which gives us the following morphism between perfect pro-\'etale sites:
-                            $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}, \proet}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
-                        This morphism of sites then induces a geometric morphisms from the perfect pro-\'etale topos $(\Spec k^{\flat})^{\perf}_{\proet}$ into the usual pro-\'etale topos $(\Spec k^{\flat})_{\proet}$ (cf. remark \ref{remark: non_perfect_pro_etale_sites}) whose left-adjoint component (i.e. the pullback) is fully faithful.
-                    \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item \textbf{(Pro-\'etale perfect schemes):}
-                                \begin{enumerate}
-                                    \item \textbf{(Pro-\'etale affine schemes):} 
-                                    \item \textbf{($\kappa$-smallness):}
-                                \end{enumerate}
-                            \item \textbf{(Perfect pro-\'etale sites):}
-                            \item \textbf{(Perfect pro-\'etale topoi):}
-                        \end{enumerate}
-                    \end{proof}
-                \begin{corollary}[Enter condensed mathematics] \label{coro: pro_etale_topoi}
-                    Since there exists a small pro-\'etale site of perfect schemes over the $p$-tilt of any suitable commutative ring of characteristic $p$, a corresponding sheaf topos can be formed thereon. Such a topos shall be called, naturally, a \textbf{perfect pro-\'etale topos}, and its objects shall be referred to as being \textbf{condensed}; see section \ref{section: condensed_mathematics} for more. 
-                \end{corollary}
-                \begin{remark}[Non-affine perfect pro-\'etale sites] \label{remark: non_affine_perfect_pro_etale_sites}
-                    Due to weakly \'etale morphisms of schemes that are not affine-schematic not necessarily being pro-\'etale, we should be careful before putting the pro-\'etale topology on non-affine schemes. Let $X$ be a \textit{perfect} scheme in some prime characteristic $p$, which need not be affine. Then, let us firstly define the \textbf{\textit{small} perfect pro-\'etale site $\Sch_{/X, \proet}^{\perf}$} of $X$ to be the full subcategory of $\Sch_{/X}^{\perf}$ wherein:
-                        \begin{itemize}
-                            \item the objects are perfect schemes which are weakly \'etale over $X$,
-                            \item the morphisms are simply morphisms of schemes, and
-                            \item the coverage is the usual fpqc coverage.
-                        \end{itemize}
-                    The corresponding sheaf topos, called the pro-\'etale topos of $X$ and denoted by $X^{\perf}_{\proet}$, is the topos of sheaves of sets on $\Sch_{/X, \proet}^{\perf}$; its objects shall also be referred to as being \say{condensed}. Interestingly, there is a \textit{full} \href{https://ncatlab.org/nlab/show/dense+sub-site}{\underline{dense}} subsite $\Sch_{/X, \proet}^{\perf}$ spanned by so-called \textbf{w-contractible} affine schemes (cf. \cite[\href{https://stacks.math.columbia.edu/tag/0980}{Tag 0980}]{stacks}), due to the fact that every object of $\Sch_{/X, \proet}^{\perf}$ admits a Zariski covering sieve by these w-contractible affine schemes \cite[Theorem 1.5]{bhatt_scholze_2014_pro_etale}; the sheaf topoi are the same, by the very definition of what it means for a subsite to be dense, and let us write $\Sch_{/X, \proet}^{\aff, w, \perf}$ for this subsite (with any luck, we won't have to do this too frequently).
-                \end{remark}
-                
-                \begin{remark}[Pro-\'etale sites of non-perfect schemes] \label{remark: non_perfect_pro_etale_sites}
-                    As it turns out, perfect pro-\'etale sites as constructed in proposition \ref{prop: perfect_pro_etale_sites} and remark \ref{remark: non_affine_perfect_pro_etale_sites} need not be spanned only by perfect schemes, nor do they need to remain in positive characteristics. Given \textit{any} base scheme $X$, one can constructs corresponding pro-\'etale sites $\Sch_{/X, \proet}$ and $\Sch^{\aff, w}_{/X, \proet}$ as above, with the only difference being that now, the objects need not be perfect schemes over $X$; for a more detailed discussion, we refer the reader to \cite[Section 4]{bhatt_scholze_2014_pro_etale} and \cite[\href{https://stacks.math.columbia.edu/tag/0988}{Tag 0988}]{stacks}; for the most part, these constructions are possible thanks to the fact that fpqc coverages, weakly \'etale morphisms, and w-contractible affine schemes are notions that make sense independently of characteristic and perfectness. 
-                \end{remark}
-                
-                \begin{proposition}[Tilting non-affine schemes] \label{prop: tilting_non_affine_schemes}
-                    Let $p$ be a prime number, let $k$ be a commutative $\F_p$-algebra on which the absolute $p^{th}$ power Frobenius is either \textit{surjective} or \textit{injective}, and let $X$ be a non-affine scheme over $\Spec k$. Then, its $p$-tilt $X^{\flat}$, defined as:
-                        $$X^{\flat} \cong \underset{n \in \N}{\lim} X^{(n)}$$
-                    wherein $X^{(n)}$ is the $n$-fold pullback of the structural morphism of $X$ along the absolute Frobenius on $\Spec k$ (which we note to be monic for trivial reasons) exists as a perfect affine scheme over $\Spec k^{\flat}$ (i.e. as an object of $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$).  
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}[Expanding perfect affine pro-\'etale sites]
-                    
-                \end{corollary}
-                
-            \subsubsection{A profinite Galois theory}
-                Ultimately, our interest is the representation theory of absolute Galois groups of certain non-archimedean fields, and so we shall need to link the pro-\'etale machineries that have just been developed to something else with a more intimate connection with Galois representations, i.e. a system of linear-algebraic objects upon which Galois groups act. Thankfully, such entities do exist, and they go by the name \say{\'etale cohomologies}. Making the aforementioned connection shall therefore involve establishing some sort of passage between the \'etale and pro-\'etale topologies. More specifically, we shall want a notion of \textbf{pro-\'etale fundamental groups} that hopefully can be obtained somehow from the classical \'etale fundamental groups. 
-                
-                \begin{remark}[Comparing the \'etale and pro-\'etale topologies] \label{remark: etale_comparison_site_morphism}
-                    Let $k$ be an arbitrary base commutative ring. Because \'etale morphisms are evidently pro-\'etale, objects of $\Sch^{\aff}_{/\Spec k, \et}$ (which we shall take to be the $\kappa$-small \'etale site) are necessarily objects of $\Sch^{\aff}_{/\Spec k, \proet}$; in fact, $\Sch^{\aff}_{/\Spec k, \proet}$ admits $\Sch^{\aff}_{/\Spec k, \et}$ as a full subcategory via say, the following full faithful embedding:
-                        $$\Sch^{\aff}_{/\Spec k, \et} \hookrightarrow \Sch^{\aff}_{/\Spec k, \proet}$$
-                    which let us note to not yet be a morphism of sites. To get a morphism of site out of the above embedding of categories, let us note that both $\Sch^{\aff}_{/\Spec k, \proet}$ and $\Sch^{\aff}_{/\Spec k, \et}$ are categories wherein $\Spec k$ is the terminal object and where pullbacks exist, and also that covering sieves on $\Sch^{\aff}_{/\Spec k, \proet}$ are \textit{a priori} coverings sieves on $\Sch^{\aff}_{/\Spec k, \et}$, since the fpqc topology on $\Sch^{\aff}_{/\Spec k, \proet}$ is finer than the \'etale topology on $\Sch^{\aff}_{/\Spec k, \et}$. We thus obtain the following morphism of sites:
-                        $$\nu: \Sch^{\aff}_{/\Spec k, \proet} \to \Sch^{\aff}_{/\Spec k, \et}$$
-                    along with an induced geometric morphism:
-                        $$
-                            \begin{tikzcd}
-                            	{(\Spec k)_{\proet}} & {(\Spec k)_{\et}}
-                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{\nu_*}"', shift right=2, from=1-1, to=1-2]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\nu^*}"', shift right=2, from=1-2, to=1-1]
-                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
-                            \end{tikzcd}
-                        $$
-                \end{remark}
-                
-                \begin{proposition}
-                    Let $k$ be a commutative ring, let $\kappa$ be a fixed regular cardinal, and let the pro-\'etale topos $(\Spec k)_{\proet}$ be the sheaf topos over the small full subsite of $\Sch^{\aff}_{/\Spec k, \fpqc}$ spanned by affine schemes that are $\kappa$-pro-\'etale over $\Spec k$. The pullback functor:
-                        $$\nu^*: (\Spec k)_{\et} \to (\Spec k)_{\proet}$$
-                    as in remark \ref{remark: etale_comparison_site_morphism} is fully faithful. Its essential image is spanned by objects of $(\Spec k)_{\proet}$ that preserve (necessarily $\kappa$-small) filtered limits in $\Sch^{\aff}_{/\Spec k, \proet}$, i.e. pro-\'etale sheaves $\calF$ such that:
-                        $$\calF(U) \cong \underset{i \in I}{\colim} \calF(U_i)$$
-                    for all small diagrams:
-                        $$I^{\op} \to \Sch^{\aff}_{/\Spec k, \proet}: i \mapsto U_i$$
-                    whose limit exists in $\Sch^{\aff}_{/\Spec k, \proet}$. 
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}[Reintroducing tilts]
-                    Suppose now that $k$ is a commutative ring of some prime characteristic $p$ such that the $p^{th}$ power Frobenius thereon is either \textit{surjective} or \textit{injective}. Then, the fully faithful pullback:
-                        $$\nu^*: (\Spec k^{\flat})_{\et} \hookrightarrow (\Spec k^{\flat})_{\proet}$$
-                    restricts down to the sheaf topoi over the respective full subsites of perfect affine schemes (cf. proposition \ref{prop: perfect_pro_etale_sites}), i.e. there is the following fully faithful induced pullback:
-                        $$\nu^*|_{\Sch^{\aff, \perf}_{/\Spec k^{\flat}}}: (\Spec k^{\flat})^{\perf}_{\et} \hookrightarrow (\Spec k^{\flat})^{\perf}_{\proet}$$
-                \end{corollary}
-                    \begin{proof}
-                        
-                    \end{proof}
-                
-                Let us now try to formulate a pro-finite analogue of Grothendieck's Galois Theory (cf. subsection \ref{subsection: grothendieck_galois_theory}) that should hopefully help us capture the intricacies of Galois representations in the end.
-                
-                First of all, a notion of \say{profinite Galois categories} is needed.
-                \begin{definition}[Profinite Galois categories] \label{def: profinite_galois_theories}
-                    Let $\aleph$ be a regular cardinal. A \textbf{$\aleph$-profinite Galois category} is determined by a pair $(\calG, F)$ of a limit-and-colimit-preserving functor (note that this condition is stronger than being exact, since exact functors merely preserve finite limits and finite colimits):
-                        $$F: \calG \to \Pro_{\aleph}(\Sets^{\fin})$$
-                    into the category of $\aleph$-profinite set, along with an underlying category $\calG$ which:
-                        \begin{itemize}
-                            \item is both $\aleph$-small complete and $\aleph$-small cocomplete,
-                            \item is a category wherein every object is can be written as a (possibly empty and possibly infinite, but necessarily $\aleph$-small) coproduct of connected objects, and
-                            \item is an $\aleph$-presentable category (i.e. $\calG$ is generated by colimits of diagrams whose vertices are elements of an $\aleph$-small set of \textit{connected} objects).
-                        \end{itemize}
-                    Each such profinite Galois category is also equipped with a Noohi group, which is still defined as $\Aut(F)$.
-                \end{definition}
-                \begin{remark}[Finite and profinite Galois categories]
-                    A finite Galois category need not be a profinite Galois category, unless it is a finite category. 
-                \end{remark}
-                    
-                \begin{definition}[Fundamental group(oid)s] \label{def: fundamental_groupoids}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Local systems):} Let $\E$ be any sheaf topos and let:
-                            $$\Gamma: \E \to \Sets$$
-                        denote the global section functor. It is well-known that this functor is actually the right-adjoint component of the terminal geometric morphism into the terminal objects $\Sets$ in the category $\Sh\Topos$ of sheaf topoi and geometric morphisms (one can check this using Freyd's Adjoint Functor Theorem \cite[Theorem V.6.2]{maclane}), and let us call its left-adjoint the \textbf{local system functor} and denote it by:
-                            $$\const: \Sets \to \E$$
-                        It sends sets to locally constant sheaves (i.e. local systems) with values in those very sets.
-                        \item \textbf{(Fundamental $0$-groupoids):} If $\E$ happens to be a locally connected topos, i.e. when it is a (pro)finite Galois category, the local system functor $\const: \Sets \to \E$ also admits a left-adjoint of its own \todo{Check this}:
-                            $$\Pi_0: \E \to \Sets$$
-                        which returns the sets of connected components of objects of $\E$ (which is well-define thanks to $\E$ being a (pro)finite Galois category), commonly known as the \textbf{$0^{th}$ fundamental groupoids}; note that the adjunction $(\Pi_0 \ladjoint \const)$ is in fact a geometric morphism; we leave this proof to our dear readers as an exercise. 
-                    \end{enumerate} 
-                \end{definition}
-                
-                \begin{lemma}[Pro-\'etale sites are \say{locally contractible}] \label{lemma: pro_etale_locally_contractible}
-                    Let $X$ be a base scheme, fix a regular cardinal $\aleph$, and let:
-                        $$\Pi_0^{\proet}: X_{\proet} \to \Sets$$
-                    be the $\aleph$-pro-\'etale fundamental $0$-groupoid functor (in the sense of definition \ref{def: fundamental_groupoids}). Also, let $\Spec R$ be a w-contractible affine scheme over $X$. Then:
-                        $$\Pi_0^{\proet}(\Spec R) \cong *$$
-                    In other words, locally w-contractible schemes become contractible in the homotopical sense in the pro-\'etale topology. 
-                \end{lemma}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}[Pro-\'etale fibres over geometric points] \label{coro: pro_etale_fibres}
-                    Let $X$ be a base scheme, let $\aleph$ be a regular cardinal, and let $\calY$ be a \textit{geometric} stack internal to the $\aleph$-pro-\'etale topos $X_{\proet}$ that is \textit{pro-\'etale over $X$} via:
-                        $$f: \calY \to X$$
-                    Also, let:
-                        $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
-                    be a geometric point of $X$. Then, the fibre $|\calY \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ is an $\aleph$-profinite set.
-                \end{corollary}
-                
-                \begin{theorem}[\textcolor{red}{\underline{IMPORTANT}} A profinite Galois theory] \label{theorem: profinite_galois_theories}
-                    Let $X$ be a base scheme, let $\aleph$ be a fixed regular cardinal, and let:
-                        $$\Pi_0^{\proet}: X_{\proet} \to \Sets$$
-                    be the $\aleph$-pro-\'etale fundamental $0$-groupoid functor (in the sense of definition \ref{def: fundamental_groupoids}). Then, the pair $(X_{\proet}, \Pi_0^{\proet})$ contains all the data necessary for the definition of a $\aleph$-profinite Galois category.
-                \end{theorem}
-                    \begin{proof}
-                        Grothendieck topoi are \textit{a priori} complete and cocomplete as well as $\aleph$-presentable (if viewed as sheaf topoi over $\aleph$-small sites), so we will only need to check if $X_{\proet}$ is locally connected, $\aleph$-presentable by a $\aleph$-small set of \textit{connected} objects, as well as the two fibre functor axioms (cf. definition \ref{def: profinite_galois_theories}):
-                            \begin{enumerate}
-                                \item \textbf{(Galois category axioms):}
-                                    \begin{enumerate}
-                                        \item \textbf{(Connectedness):}
-                                        \item \textbf{(Presentability):}
-                                    \end{enumerate}
-                                \item \textbf{(Fibre functor axioms):}
-                                    \begin{enumerate}
-                                        \item \textbf{(Essential image of $\Pi_0^{\proet}$):} 
-                                        \item \textbf{($\Pi_0^{\proet}$ and (co)limits):}
-                                    \end{enumerate}
-                            \end{enumerate}
-                    \end{proof}
-                    
-                \begin{lemma}[Profiniteness of Noohi groups: reprised] \label{lemma: profiniteness_of_noohi_groups_reprised}
-                    Similar to Noohi groups of finite Galois categories, Noohi groups of profinite Galois categories are also profinite; should one wish to be careful with size issues, then one can specify that the Noohi group of an $\aleph$-profinite Galois category is $\aleph$-profinite, where $\aleph$ is some regular cardinal. This is not all there is to say about these groups, however: they are also topologically complete, or in other words, they are their own $\aleph$-profinite completions.
-                \end{lemma}
-                    \begin{proof}
-                        
-                    \end{proof}
-                    
-                \begin{proposition}[Galois groups and Noohi groups] \label{prop: pro_etale_galois_groups}
-                    
-                \end{proposition}
-    
         \subsection{Perfectoid spaces}
             \subsubsection{Perfectoid fields and perfectoid algebras over them}
                 \paragraph{The geometry of perfectoid algebras}
@@ -340,8 +82,8 @@
                             \item \textbf{A caution}: \textit{the category of perfectoid algebras over a given base perfectoid field $K$ is not equivalent to the category of affinoid perfectoid spaces over $\Spa(K, K^{\circ})$}. This is because one can associate many perfectoid Huber pairs to a given perfectoid algebra. For this reason, we shall have to be careful with how we denote these categories; the category of perfectoid algebras over a perfectoid field $K$ shall be written:
                                 $${}^{K/}\Comm\Alg^{\perfd}$$
                             whereas the category of affinoid perfectoid spaces over $\Spa(K, K^{\circ})$ shall be denoted by:
-                                $$\Spc^{\affd, \perfd}_{/\Spa(K, K^{\circ})}$$
-                            Also, note that ${}^{K/}\Comm\Alg^{\perfd, \op}$ embeds fully faithfully into $\Spc^{\affd, \perfd}_{/\Spa(K, K^{\circ})}$ due to the fact that ordinary ring homomorphisms $R \to S$ can be seen as morphisms between Huber pairs that are of the form $(R, R) \to (S, S)$.
+                                $$\Perfd^{\affd}_{/\Spa(K, K^{\circ})}$$
+                            Also, note that ${}^{K/}\Comm\Alg^{\perfd, \op}$ embeds fully faithfully into $\Perfd^{\affd}_{/\Spa(K, K^{\circ})}$ due to the fact that ordinary ring homomorphisms $R \to S$ can be seen as morphisms between Huber pairs that are of the form $(R, R) \to (S, S)$.
                             \item Let $R$ be a perfectoid algebra over a perfectoid field $K$. Then, any perfectoid Huber pair $(R, R^+)$ over $(K, K^{\circ})$ is sheafy \cite[Theorem 6.3]{scholze2011perfectoid}.
                         \end{enumerate}
                     \end{remark}
@@ -652,3 +394,424 @@
             \subsubsection{Attaching perfectoid spaces to formal schemes}
             
         \subsection{Prisms and prismatic cohomology}
+        
+    \section{Perfectoid stacks; diamonds}
+        \subsection{More topologies on perfectoid spaces}
+            We introduce the v-topology (v for \say{valuation}) and the pro-\'etale topology on categories of perfectoid spaces in this subsection.
+        
+            \subsubsection{v-sites of perfectoid spaces}
+                \begin{definition}[The v-topology] \label{def: v_topology} \index{v-topology}
+                    Let $p$ be a prime and let $X$ be a perfectoid space of characteristic $p$. We can then define a so-called \textbf{v-topology}, which is a Grothendieck topology on the category $\Perfd_{/X}$ of perfectoid spaces (necessarily of characteristic $p$ also) over $X$, whose coverage is generated by covering sieves $\{f_i: X_i \to X\}_{i \in I}$ such that for any \textit{quasi-compact} open subspace $U \subset X$ and finitely many indices $i \in I$, there exist open subspaces $U_i \subset X_i$ generating a covering sieve $\{U_i \to U\}$ of $U$. 
+                \end{definition}
+                \begin{remark}
+                    Since $\Perfd_{/X}$ has all finite pullbacks and finite limits commute with filtered colimits, we can summarise the definition above into the following pullback square:
+                        $$
+                            \begin{tikzcd}
+                            	{\bigcup_{i \in I_U} U_i} & {\bigcup_{i \in I} X_i} \\
+                            	U & X
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow["\qc", hook, from=2-1, to=2-2]
+                            	\arrow[hook, from=1-1, to=1-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    It tells us that a family $\{X_i \to X\}_{i \in I}$ is a covering sieve in the v-topology if and only if:
+                        \begin{itemize}
+                            \item any pullback of $\bigcup_{i \in I} X_i \to X$ along a quasi-compact open immersion $U \hookrightarrow X$ is a \textit{finite} covering sieve $\bigcup_{i \in I_U} U_i \to U$, where $I_U$ is a finite subset of $I$, and
+                            \item the canonical projection $\bigcup_{i \in I_U} U_i \to \bigcup_{i \in I} U_i \hookrightarrow X_i$ is also a quasi-compact open immersion (note that the only thing that one does not get \textit{a priori} is openness: the finiteness condition ensures that $\bigcup_{i \in I_U} U_i \hookrightarrow \bigcup_{i \in I} X_i$ is quasi-compact if and only if each $U_i \hookrightarrow X_i$ is quasi-compact).
+                        \end{itemize}
+                \end{remark}
+                
+                \begin{proposition}[Properties of the v-topology] \label{prop: properties_of_the_v_topology} \index{v-topology! properties}
+                    Let $p$ be a prime and let $X$ be a perfectoid space of characteristic $p$. 
+                        \begin{enumerate}
+                            \item \textbf{(Subcanonicity):} $\Perfd_{/X, v}$ is a subcanonical site.
+                            \item \textbf{(An affinoid criterion \textit{\`a la} Serre):} For all affinoid perfectoid spaces $\Spa(R, R^+) \in \Perfd_{/X, v}$, one has the following crierion for affinoidity:
+                                \begin{enumerate}
+                                    \item \textbf{(Global sections):} 
+                                        $$H^0_v(\Spa(R, R^+), \calO_{\Spa(R, R^+)}) \cong R$$
+                                        $$H^0_v(\Spa(R, R^+), \calO^+_{\Spa(R, R^+)}) \cong R^+$$
+                                    \item \textbf{(Vanishing of higher cohomologies):}
+                                        $$\forall i > 0: H^i_v(\Spa(R, R^+), \calO_{\Spa(R, R^+)}) \cong 0$$
+                                        $$\forall i > 0: \forall n \in \N: \varpi^{\frac{1}{p^n}} H^i_v(\Spa(R, R^+), \calO^+_{\Spa(R, R^+)}) \cong 0$$
+                                    where $\varpi \in R^{\circ \circ}$ is a pseudo-uniformiser of $R$ such that $\varpi \mid p$, which is to say, $H^i_v(\Spa(R, R^+), \calO^+_{\Spa(R, R^+)})$ is almost-zero for all $i > 0$.
+                                \end{enumerate}
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Subcanonicity):}
+                            \item \textbf{(An affinoid criterion \textit{\`a la} Serre):} 
+                                \begin{enumerate}
+                                    \item \textbf{(Global sections):} 
+                                    \item \textbf{(Vanishing of higher cohomologies):}
+                                \end{enumerate}
+                        \end{enumerate} 
+                    \end{proof}
+                    
+            \subsubsection{Interlude: Pro-\'etale topoi of perfect schemes} \label{subsection: pro_etale_topology_for_schemes}
+                \paragraph{Tilting schemes of characteristic \texorpdfstring{$p$}{}}
+                    \begin{definition}[Tilting and untilting in characteristic $p$] \label{def: tilting_schemes}
+                        Fix a commutative ring $k$ of some prime characteristic $p$ on which the $p^{th}$ power Frobenius is either \textit{surjective} or \textit{injective}, along with an affine scheme $\Spec R$ over $\Spec k$. Let us then define the \textbf{$p$-tilt} of $\Spec R$ to be the following filtered limit in $\Sch^{\aff}_{/\Spec k}$:
+                            $$\Spec R^{\flat} \cong \underset{n \in \N}{\lim} \Spec R^{(n)}$$
+                        wherein $R^{(n)}$ is the $n$-fold pushout of the structural morphism $k \to R$ along the $p^{th}$ power Frobenius $\Frob_k^p: k \to k$. It is not hard to see that $p$-tilting is a functorial process: in fact, there exists a so-called \textbf{$p$-tilting functor}:
+                            $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
+                        which is trivially left-exact due to the fact that limits commute; by The Special Adjoint Functor Theorem \cite[Theorem V.8.2]{maclane} this functor thus admits a left-adjoint, which can be be seen to be the constant functor from the conical definition of limits (cf. \cite[Section 3]{nlab:limit}), which shall however be denoted by $(-)^{\sharp}$ and called the \textbf{$p$-untilting functor} so as to be suggestive:
+                            $$(-)^{\sharp}: \Sch^{\aff}_{/\Spec k^{\flat}} \to \Sch^{\aff}_{/\Spec k}$$
+                    \end{definition}
+                    \begin{remark}[On surjectivity of Frobenii] \label{remark: surjective_frobenii}
+                        Without the assumption that the Frobenius on our base commutative ring $k$ of characteristic $p$ are surjective, we would run into categorical issues such as pushouts along $\Frob^p_k$ not even existing as a commutative ring. Additionally, note that surjectivity of Frobenii does not immediately imply invertibility, since it is only on reduced rings of positive characteristics are Frobenii injective; when $k$ is a field, however, it is true that a surjective Frobenius would automatically be an automorphism (since fields are reduced), thereby making $k$ a perfect field of characteristic $p$. 
+                        
+                        This is not to say that one can only meaningfully tilt rings of characteristic $p$ whose Frobenii are surjective. Thanks to the fact that finite limits commute with filtered colimits, we can tilt rings whose Frobenii are injective (i.e. reduced rings of characteristic $p$) too. However, it should be said that in practice, most of these rings will actually just be perfect fields. 
+                    \end{remark}
+                    
+                    \begin{lemma}[Tilts are perfect] \label{lemma: tilts_are_perfect}
+                        The $p$-tilt of any commutative ring of characteristic $p$ where the $p^{th}$ power Frobenius is \textit{surjective} is perfect, in the sense that the Frobenius becomes an automorphism. 
+                    \end{lemma}
+                        \begin{proof}
+                            \noindent
+                            \begin{itemize}
+                                \item \textbf{(There are many $p^{th}$ power roots):} Let $R$ be a commutative $\F_p$-algebra on which the Frobenius is surjective; by the definition of surjectivity, this means that:
+                                    $$\forall x \in R: \exists y \in R: y^p = x$$
+                                i.e.:
+                                    $$\forall x \in R: \exists y \in R: y = x^{\frac1p}$$
+                                which tells us that any $x \in R$ has a (perhaps non-unique) $p^{th}$ root $y = x^{\frac1p}$ that is also in $R$.
+                                
+                                Another thing that one can infer from the surjectivity of the Frobenius on $R$ is that:
+                                    $$\ker \Frob_R = \{0, p^{\frac1p}\}$$
+                                (one gets this from a straightforward application of the First Isomorphism Theorem). By repeating the process, we obtain the following for all natural numbers $n$:
+                                    $$\ker \Frob_R^n = \{0, p^{\frac1p}, ..., p^{\frac{1}{p^n}}\}$$
+                                From this, we get that:
+                                    $$\ker \Frob_{R^{(n)}} = \{p^{\frac{1}{p^n}}\}$$
+                                as $R^{(n)}$ is the image of $R^{(n - 1)}$ under $\Frob_R$, or in other words, the image of $R$ under $\Frob_R^n$.
+                                \item \textbf{(Perfectness of tilts):} First of all, because:
+                                    $$R^{\flat} \cong \underset{n \in \N}{\colim} R^{(n)}$$
+                                and because colimits commute, the Frobenius on $R^{\flat}$ is trivially surjective; this means that we shall only need to prove that it is injective on $R^{\flat}$, which we will do via showing that the kernel is trivial. To this end, let us make the observation that:
+                                    $$\ker \Frob_{R^{\flat}} \cong \ker \underset{n \in \N}{\colim} \Frob_{R^{(n)}} \cong \underset{n \in \N}{\colim} \ker \Frob_{R^{(n)}}$$
+                                which holds thanks to the fact that filtered colimits commute with finite limits. From this, we get:
+                                    $$\ker \Frob_{R^{\flat}} \cong \underset{n \in \N}{\colim} \{p^{\frac{1}{p^n}}\} = \{p^{\frac{1}{p^0}}\} = \{0\}$$
+                                where the filtered colimit is as above and is taken in the category of $R$-modules; also the last equality holds because we are in characteristic $p$.
+                            \end{itemize}
+                        \end{proof}
+                    
+                    \begin{lemma}[Perfect fpqc sites] \label{lemma: perfect_fpqc_sites}
+                        Let $k$ be a commutative ring of some prime characteristic $p$ on which the $p^{th}$ power Frobenius is \textit{surjective}.
+                            \begin{enumerate}
+                                \item \textbf{(Essential images of tilting functors):} The essential image of the $p$-tilting functor:
+                                    $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
+                                is equivalent to the full subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ of $\Sch^{\aff}_{/\Spec k^{\flat}}$ spanned by perfect affine schemes over $\Spec k^{\flat}$ (note that this category is well-defined thanks to $k^{\flat}$ being perfect; cf. lemma \ref{lemma: tilts_are_perfect}).
+                                \item \textbf{(Perfect fpqc sites):} The essential image $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ of $(-)^{\flat}$ can be endowed with the fpqc coverage. Doing so turns it into the so-called \textbf{perfect fpqc site} of $\Spec k^{\flat}$; we shall denote this site by $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$. There is also a morphism of site from the usual fpqc site $\Sch^{\aff}_{/\Spec k^{\flat}. \fpqc}$ to the new perfect fpqc site $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$, which essentially helps us restrict the fpqc coverage on the former down onto the latter; interestingly, this morphism of sites turns out to be a $p$-tilting functor, with the only caveat being this time, its domain is $\Sch^{\aff}_{/\Spec k^{\flat}}$ instead of $\Sch^{\aff}_{/\Spec k}$ (note that now, the base ring is $k^{\flat}$, which is perfect):
+                                    $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
+                                In essence, we are obtaining perfect fpqc sites via tilting everything in fpqc sites over a perfect ring of characteristic $p$.
+                            \end{enumerate}
+                    \end{lemma}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{(Essential images of tilting functors):} Because the $p$-tilt of any field of characteristic $p$ is perfect (so $k^{\flat}$ in particular is perfect) and because $p$-tilts of $k$-algebras are defined via pushouts along the $p^{th}$ power Frobenius $\Frob_k^p: k \to k$, the relative $p^{th}$ power Frobenius $\Frob^p_{R^{\flat}/k^{\flat}}: R^{\flat} \to R^{\flat}$ must be an automorphism too, since the pushout of an automorphism along any other arrow is necessarily an automorphism itself (for abstract nonsensical reasons). Also, because morphisms between perfect rings of characteristic $p$ are just ring homomorphisms, the subcategory of ${}^{k^{\flat}/}\Comm\Alg$ spanned by perfect $k^{\flat}$-algebras is full. Thus, the essential image of the $p$-tilting functor:
+                                    $$(-)^{\flat}: \Sch^{\aff}_{/\Spec k} \to \Sch^{\aff}_{/\Spec k^{\flat}}$$
+                                is nothing but $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$.
+                                \item \textbf{(Perfect fpqc sites):} Since $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ is a full subcategory of $\Sch^{\aff}_{/\Spec k^{\flat}}$, it shall suffice to check the fpqc coverage on the ambient category $\Sch^{\aff}_{/\Spec k^{\flat}}$ can simply be restricted down to a coverage on $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ that is only by sieves of fpqc perfect $k^{\flat}$-algebras. To that end, let $\U_{/U}$ be an fpqc sieve that covers some \textit{perfect} affine scheme $U$ in $\Sch^{\aff}_{/\Spec k^{\flat}}$ and let us try to show that there is another fpqc covering sieve $\U_{/U}^{\perf}$ by \textit{perfect} affine schemes on $U$ fitting into the following factorisation:
+                                    $$
+                                        \begin{tikzcd}
+                                        	\U_{/U} && {\U^{\perf}_{/U}} \\
+                                        	& h_U
+                                        	\arrow[from=1-1, to=2-2]
+                                        	\arrow[from=1-3, to=2-2]
+                                        	\arrow[dashed, from=1-1, to=1-3]
+                                        \end{tikzcd}
+                                    $$
+                                We know every presheaf can be written as the colimit of representable presheaves mapping into it \cite[Section 4]{nlab:presheaf}, so by supposing that:
+                                    $$\U_{/U} \cong \underset{ h_V \in \left( \Sch^{\aff}_{/\Spec k^{\flat}} \right)_{/\U_{/U}} }{\colim} h_V$$
+                                we can tilt of the presheaf $\U_{/U}$ via locally tilting the affine schemes $V$ individually. It then remains to show that:
+                                    $$\U_{/U}^{\perf} \cong \underset{ h_V \in \left( \Sch^{\aff}_{/\Spec k^{\flat}} \right)_{/\U_{/U}} }{\colim} h_{V^{\flat}}$$
+                                is indeed an fpqc sieve that covers $U$. 
+                            \end{enumerate}
+                        \end{proof}
+                        
+                    \begin{remark}[Regular cardinals]
+                        From now on we will be using the notion of regular cardinals often. For details on the notion, see definition \ref{def: limit_cardinal}.
+                    \end{remark}
+                    
+                    \begin{proposition}[Perfect pro-\'etale sites] \label{prop: perfect_pro_etale_sites}
+                        See \cite[\href{https://stacks.math.columbia.edu/tag/094N}{Tag 094N}]{stacks} for a discussion on weakly \'etale ring maps.
+                        \begin{enumerate}
+                            \item \textbf{(Pro-\'etale perfect schemes):} Let $\kappa$ be a fixed regular cardinal and let $k$ be a commutative ring of some prime characteristic $p$ such that the Frobenius $\Frob^p_k$ on $k$ is \textit{surjective}. Then, the category $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ contains all perfect affine schemes \'etale over $\Spec k^{\flat}$ as well as $\kappa$-small filtered limits thereof. As a consequence, there exists a \textit{$\kappa$-small} full-subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ of the $\kappa$-large category $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$; this $\kappa$-small category is spanned by affine schemes that are \textbf{pro-\'etale} over $\Spec k^{\flat}$.
+                            \item \textbf{(Perfect pro-\'etale sites):} The full subcategory $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ of $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$ can also be endowed with the fpqc coverage, making it a small full subsite of the (large) perfect fpqc site $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$. This, along with the fact that morphisms between affine schemes are pro-\'etale if and only if they are weakly \'etale \cite[Theorem 1.3]{bhatt_scholze_2014_pro_etale}, implies that $\Sch^{\aff, \perf}_{/\Spec k^{\flat}, \proet}$ can have the structure of a $\kappa$-small pro-\'etale site.
+                            \item \textbf{(Perfect pro-\'etale topoi):} Let us denote the perfect pro-\'etale topos of $\Spec k^{\flat}$ by:
+                                $$(\Spec k^{\flat})^{\perf}_{\proet}$$
+                            (which we note to be well-defined thanks to the $\kappa$-smallness of the underlying pro-\'etale site). Then, via domain restriction of the morphism between fpqc sites:
+                                $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
+                            down to the full subcategory of pro-\'etale affine schemes over $\Spec k^{\flat}$, which gives us the following morphism between perfect pro-\'etale sites:
+                                $$(-)^{\flat}|_{\Sch^{\aff}_{/\Spec k^{\flat}, \proet}}: \Sch^{\aff}_{/\Spec k^{\flat}, \fpqc} \to \Sch^{\aff, \perf}_{/\Spec k^{\flat}, \fpqc}$$
+                            This morphism of sites then induces a geometric morphisms from the perfect pro-\'etale topos $(\Spec k^{\flat})^{\perf}_{\proet}$ into the usual pro-\'etale topos $(\Spec k^{\flat})_{\proet}$ (cf. remark \ref{remark: non_perfect_pro_etale_sites}) whose left-adjoint component (i.e. the pullback) is fully faithful.
+                        \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{(Pro-\'etale perfect schemes):}
+                                    \begin{enumerate}
+                                        \item \textbf{(Pro-\'etale affine schemes):} 
+                                        \item \textbf{($\kappa$-smallness):}
+                                    \end{enumerate}
+                                \item \textbf{(Perfect pro-\'etale sites):}
+                                \item \textbf{(Perfect pro-\'etale topoi):}
+                            \end{enumerate}
+                        \end{proof}
+                    \begin{corollary}[Enter condensed mathematics] \label{coro: pro_etale_topoi}
+                        Since there exists a small pro-\'etale site of perfect schemes over the $p$-tilt of any suitable commutative ring of characteristic $p$, a corresponding sheaf topos can be formed thereon. Such a topos shall be called, naturally, a \textbf{perfect pro-\'etale topos}, and its objects shall be referred to as being \textbf{condensed}; see section \ref{section: condensed_mathematics} for more. 
+                    \end{corollary}
+                    \begin{remark}[Non-affine perfect pro-\'etale sites] \label{remark: non_affine_perfect_pro_etale_sites}
+                        Due to weakly \'etale morphisms of schemes that are not affine-schematic not necessarily being pro-\'etale, we should be careful before putting the pro-\'etale topology on non-affine schemes. Let $X$ be a \textit{perfect} scheme in some prime characteristic $p$, which need not be affine. Then, let us firstly define the \textbf{\textit{small} perfect pro-\'etale site $\Sch_{/X, \proet}^{\perf}$} of $X$ to be the full subcategory of $\Sch_{/X}^{\perf}$ wherein:
+                            \begin{itemize}
+                                \item the objects are perfect schemes which are weakly \'etale over $X$,
+                                \item the morphisms are simply morphisms of schemes, and
+                                \item the coverage is the usual fpqc coverage.
+                            \end{itemize}
+                        The corresponding sheaf topos, called the pro-\'etale topos of $X$ and denoted by $X^{\perf}_{\proet}$, is the topos of sheaves of sets on $\Sch_{/X, \proet}^{\perf}$; its objects shall also be referred to as being \say{condensed}. Interestingly, there is a \textit{full} \href{https://ncatlab.org/nlab/show/dense+sub-site}{\underline{dense}} subsite $\Sch_{/X, \proet}^{\perf}$ spanned by so-called \textbf{w-contractible} affine schemes (cf. \cite[\href{https://stacks.math.columbia.edu/tag/0980}{Tag 0980}]{stacks}), due to the fact that every object of $\Sch_{/X, \proet}^{\perf}$ admits a Zariski covering sieve by these w-contractible affine schemes \cite[Theorem 1.5]{bhatt_scholze_2014_pro_etale}; the sheaf topoi are the same, by the very definition of what it means for a subsite to be dense, and let us write $\Sch_{/X, \proet}^{\aff, w, \perf}$ for this subsite (with any luck, we won't have to do this too frequently).
+                    \end{remark}
+                    
+                    \begin{remark}[Pro-\'etale sites of non-perfect schemes] \label{remark: non_perfect_pro_etale_sites}
+                        As it turns out, perfect pro-\'etale sites as constructed in proposition \ref{prop: perfect_pro_etale_sites} and remark \ref{remark: non_affine_perfect_pro_etale_sites} need not be spanned only by perfect schemes, nor do they need to remain in positive characteristics. Given \textit{any} base scheme $X$, one can constructs corresponding pro-\'etale sites $\Sch_{/X, \proet}$ and $\Sch^{\aff, w}_{/X, \proet}$ as above, with the only difference being that now, the objects need not be perfect schemes over $X$; for a more detailed discussion, we refer the reader to \cite[Section 4]{bhatt_scholze_2014_pro_etale} and \cite[\href{https://stacks.math.columbia.edu/tag/0988}{Tag 0988}]{stacks}; for the most part, these constructions are possible thanks to the fact that fpqc coverages, weakly \'etale morphisms, and w-contractible affine schemes are notions that make sense independently of characteristic and perfectness. 
+                    \end{remark}
+                    
+                    \begin{proposition}[Tilting non-affine schemes] \label{prop: tilting_non_affine_schemes}
+                        Let $p$ be a prime number, let $k$ be a commutative $\F_p$-algebra on which the absolute $p^{th}$ power Frobenius is either \textit{surjective} or \textit{injective}, and let $X$ be a non-affine scheme over $\Spec k$. Then, its $p$-tilt $X^{\flat}$, defined as:
+                            $$X^{\flat} \cong \underset{n \in \N}{\lim} X^{(n)}$$
+                        wherein $X^{(n)}$ is the $n$-fold pullback of the structural morphism of $X$ along the absolute Frobenius on $\Spec k$ (which we note to be monic for trivial reasons) exists as a perfect affine scheme over $\Spec k^{\flat}$ (i.e. as an object of $\Sch^{\aff, \perf}_{/\Spec k^{\flat}}$).  
+                    \end{proposition}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}[Expanding perfect affine pro-\'etale sites]
+                        
+                    \end{corollary}
+                    
+                \paragraph{A profinite Galois theory}
+                    Ultimately, our interest is the representation theory of absolute Galois groups of certain non-archimedean fields, and so we shall need to link the pro-\'etale machineries that have just been developed to something else with a more intimate connection with Galois representations, i.e. a system of linear-algebraic objects upon which Galois groups act. Thankfully, such entities do exist, and they go by the name \say{\'etale cohomologies}. Making the aforementioned connection shall therefore involve establishing some sort of passage between the \'etale and pro-\'etale topologies. More specifically, we shall want a notion of \textbf{pro-\'etale fundamental groups} that hopefully can be obtained somehow from the classical \'etale fundamental groups. 
+                    
+                    \begin{remark}[Comparing the \'etale and pro-\'etale topologies] \label{remark: etale_comparison_site_morphism}
+                        Let $k$ be an arbitrary base commutative ring. Because \'etale morphisms are evidently pro-\'etale, objects of $\Sch^{\aff}_{/\Spec k, \et}$ (which we shall take to be the $\kappa$-small \'etale site) are necessarily objects of $\Sch^{\aff}_{/\Spec k, \proet}$; in fact, $\Sch^{\aff}_{/\Spec k, \proet}$ admits $\Sch^{\aff}_{/\Spec k, \et}$ as a full subcategory via say, the following full faithful embedding:
+                            $$\Sch^{\aff}_{/\Spec k, \et} \hookrightarrow \Sch^{\aff}_{/\Spec k, \proet}$$
+                        which let us note to not yet be a morphism of sites. To get a morphism of site out of the above embedding of categories, let us note that both $\Sch^{\aff}_{/\Spec k, \proet}$ and $\Sch^{\aff}_{/\Spec k, \et}$ are categories wherein $\Spec k$ is the terminal object and where pullbacks exist, and also that covering sieves on $\Sch^{\aff}_{/\Spec k, \proet}$ are \textit{a priori} coverings sieves on $\Sch^{\aff}_{/\Spec k, \et}$, since the fpqc topology on $\Sch^{\aff}_{/\Spec k, \proet}$ is finer than the \'etale topology on $\Sch^{\aff}_{/\Spec k, \et}$. We thus obtain the following morphism of sites:
+                            $$\nu: \Sch^{\aff}_{/\Spec k, \proet} \to \Sch^{\aff}_{/\Spec k, \et}$$
+                        along with an induced geometric morphism:
+                            $$
+                                \begin{tikzcd}
+                                	{(\Spec k)_{\proet}} & {(\Spec k)_{\et}}
+                                	\arrow[""{name=0, anchor=center, inner sep=0}, "{\nu_*}"', shift right=2, from=1-1, to=1-2]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{\nu^*}"', shift right=2, from=1-2, to=1-1]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                                \end{tikzcd}
+                            $$
+                    \end{remark}
+                    
+                    \begin{proposition}
+                        Let $k$ be a commutative ring, let $\kappa$ be a fixed regular cardinal, and let the pro-\'etale topos $(\Spec k)_{\proet}$ be the sheaf topos over the small full subsite of $\Sch^{\aff}_{/\Spec k, \fpqc}$ spanned by affine schemes that are $\kappa$-pro-\'etale over $\Spec k$. The pullback functor:
+                            $$\nu^*: (\Spec k)_{\et} \to (\Spec k)_{\proet}$$
+                        as in remark \ref{remark: etale_comparison_site_morphism} is fully faithful. Its essential image is spanned by objects of $(\Spec k)_{\proet}$ that preserve (necessarily $\kappa$-small) filtered limits in $\Sch^{\aff}_{/\Spec k, \proet}$, i.e. pro-\'etale sheaves $\calF$ such that:
+                            $$\calF(U) \cong \underset{i \in I}{\colim} \calF(U_i)$$
+                        for all small diagrams:
+                            $$I^{\op} \to \Sch^{\aff}_{/\Spec k, \proet}: i \mapsto U_i$$
+                        whose limit exists in $\Sch^{\aff}_{/\Spec k, \proet}$. 
+                    \end{proposition}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}[Reintroducing tilts]
+                        Suppose now that $k$ is a commutative ring of some prime characteristic $p$ such that the $p^{th}$ power Frobenius thereon is either \textit{surjective} or \textit{injective}. Then, the fully faithful pullback:
+                            $$\nu^*: (\Spec k^{\flat})_{\et} \hookrightarrow (\Spec k^{\flat})_{\proet}$$
+                        restricts down to the sheaf topoi over the respective full subsites of perfect affine schemes (cf. proposition \ref{prop: perfect_pro_etale_sites}), i.e. there is the following fully faithful induced pullback:
+                            $$\nu^*|_{\Sch^{\aff, \perf}_{/\Spec k^{\flat}}}: (\Spec k^{\flat})^{\perf}_{\et} \hookrightarrow (\Spec k^{\flat})^{\perf}_{\proet}$$
+                    \end{corollary}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    
+                    Let us now try to formulate a pro-finite analogue of Grothendieck's Galois Theory (cf. subsection \ref{subsection: grothendieck_galois_theory}) that should hopefully help us capture the intricacies of Galois representations in the end.
+                    
+                    First of all, a notion of \say{profinite Galois categories} is needed.
+                    \begin{definition}[Profinite Galois categories] \label{def: profinite_galois_theories}
+                        Let $\aleph$ be a regular cardinal. A \textbf{$\aleph$-profinite Galois category} is determined by a pair $(\calG, F)$ of a limit-and-colimit-preserving functor (note that this condition is stronger than being exact, since exact functors merely preserve finite limits and finite colimits):
+                            $$F: \calG \to \Pro_{\aleph}(\Sets^{\fin})$$
+                        into the category of $\aleph$-profinite set, along with an underlying category $\calG$ which:
+                            \begin{itemize}
+                                \item is both $\aleph$-small complete and $\aleph$-small cocomplete,
+                                \item is a category wherein every object is can be written as a (possibly empty and possibly infinite, but necessarily $\aleph$-small) coproduct of connected objects, and
+                                \item is an $\aleph$-presentable category (i.e. $\calG$ is generated by colimits of diagrams whose vertices are elements of an $\aleph$-small set of \textit{connected} objects).
+                            \end{itemize}
+                        Each such profinite Galois category is also equipped with a Noohi group, which is still defined as $\Aut(F)$.
+                    \end{definition}
+                    \begin{remark}[Finite and profinite Galois categories]
+                        A finite Galois category need not be a profinite Galois category, unless it is a finite category. 
+                    \end{remark}
+                        
+                    \begin{definition}[Fundamental group(oid)s] \label{def: fundamental_groupoids}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Local systems):} Let $\E$ be any sheaf topos and let:
+                                $$\Gamma: \E \to \Sets$$
+                            denote the global section functor. It is well-known that this functor is actually the right-adjoint component of the terminal geometric morphism into the terminal objects $\Sets$ in the category $\Sh\Topos$ of sheaf topoi and geometric morphisms (one can check this using Freyd's Adjoint Functor Theorem \cite[Theorem V.6.2]{maclane}), and let us call its left-adjoint the \textbf{local system functor} and denote it by:
+                                $$\const: \Sets \to \E$$
+                            It sends sets to locally constant sheaves (i.e. local systems) with values in those very sets.
+                            \item \textbf{(Fundamental $0$-groupoids):} If $\E$ happens to be a locally connected topos, i.e. when it is a (pro)finite Galois category, the local system functor $\const: \Sets \to \E$ also admits a left-adjoint of its own \todo{Check this}:
+                                $$\Pi_0: \E \to \Sets$$
+                            which returns the sets of connected components of objects of $\E$ (which is well-define thanks to $\E$ being a (pro)finite Galois category), commonly known as the \textbf{$0^{th}$ fundamental groupoids}; note that the adjunction $(\Pi_0 \ladjoint \const)$ is in fact a geometric morphism; we leave this proof to our dear readers as an exercise. 
+                        \end{enumerate} 
+                    \end{definition}
+                    
+                    \begin{lemma}[Pro-\'etale sites are \say{locally contractible}] \label{lemma: pro_etale_locally_contractible}
+                        Let $X$ be a base scheme, fix a regular cardinal $\aleph$, and let:
+                            $$\Pi_0^{\proet}: X_{\proet} \to \Sets$$
+                        be the $\aleph$-pro-\'etale fundamental $0$-groupoid functor (in the sense of definition \ref{def: fundamental_groupoids}). Also, let $\Spec R$ be a w-contractible affine scheme over $X$. Then:
+                            $$\Pi_0^{\proet}(\Spec R) \cong *$$
+                        In other words, locally w-contractible schemes become contractible in the homotopical sense in the pro-\'etale topology. 
+                    \end{lemma}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}[Pro-\'etale fibres over geometric points] \label{coro: pro_etale_fibres}
+                        Let $X$ be a base scheme, let $\aleph$ be a regular cardinal, and let $\calY$ be a \textit{geometric} stack internal to the $\aleph$-pro-\'etale topos $X_{\proet}$ that is \textit{pro-\'etale over $X$} via:
+                            $$f: \calY \to X$$
+                        Also, let:
+                            $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
+                        be a geometric point of $X$. Then, the fibre $|\calY \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ is an $\aleph$-profinite set.
+                    \end{corollary}
+                    
+                    \begin{theorem}[\textcolor{red}{\underline{IMPORTANT}} A profinite Galois theory] \label{theorem: profinite_galois_theories}
+                        Let $X$ be a base scheme, let $\aleph$ be a fixed regular cardinal, and let:
+                            $$\Pi_0^{\proet}: X_{\proet} \to \Sets$$
+                        be the $\aleph$-pro-\'etale fundamental $0$-groupoid functor (in the sense of definition \ref{def: fundamental_groupoids}). Then, the pair $(X_{\proet}, \Pi_0^{\proet})$ contains all the data necessary for the definition of a $\aleph$-profinite Galois category.
+                    \end{theorem}
+                        \begin{proof}
+                            Grothendieck topoi are \textit{a priori} complete and cocomplete as well as $\aleph$-presentable (if viewed as sheaf topoi over $\aleph$-small sites), so we will only need to check if $X_{\proet}$ is locally connected, $\aleph$-presentable by a $\aleph$-small set of \textit{connected} objects, as well as the two fibre functor axioms (cf. definition \ref{def: profinite_galois_theories}):
+                                \begin{enumerate}
+                                    \item \textbf{(Galois category axioms):}
+                                        \begin{enumerate}
+                                            \item \textbf{(Connectedness):}
+                                            \item \textbf{(Presentability):}
+                                        \end{enumerate}
+                                    \item \textbf{(Fibre functor axioms):}
+                                        \begin{enumerate}
+                                            \item \textbf{(Essential image of $\Pi_0^{\proet}$):} 
+                                            \item \textbf{($\Pi_0^{\proet}$ and (co)limits):}
+                                        \end{enumerate}
+                                \end{enumerate}
+                        \end{proof}
+                        
+                    \begin{lemma}[Profiniteness of Noohi groups: reprised] \label{lemma: profiniteness_of_noohi_groups_reprised}
+                        Similar to Noohi groups of finite Galois categories, Noohi groups of profinite Galois categories are also profinite; should one wish to be careful with size issues, then one can specify that the Noohi group of an $\aleph$-profinite Galois category is $\aleph$-profinite, where $\aleph$ is some regular cardinal. This is not all there is to say about these groups, however: they are also topologically complete, or in other words, they are their own $\aleph$-profinite completions.
+                    \end{lemma}
+                        \begin{proof}
+                            
+                        \end{proof}
+                        
+                    \begin{proposition}[Galois groups and Noohi groups] \label{prop: pro_etale_galois_groups}
+                        
+                    \end{proposition}
+                    
+            \subsubsection{Pro-\'etale sites of perfectoid spaces} \label{subsubsection: pro_etale_sites_of_perfectoid_spaces}
+                \begin{convention}[Maximal small subcategories]
+                    If $\kappa$ is a regular cardinal (cf. definition \ref{def: limit_cardinal}) and $\C$ is a category then the maximal $\kappa$-small full subcategory of $\C$ (i.e. the largest subcategory whose classes of objects and morphisms are both $\kappa$-small sets) shall be denoted by $\C^{< \kappa}$. Such a subcategory always exists thanks to power sets being partially ordered, which means that Zorn's lemma can be applied.
+                \end{convention}
+                
+                \begin{definition}[The pro-\'etale topology on adic spaces] \label{def: pro_etale_topology_on_adic_spaces}
+                    Fix a regular cardinal $\kappa$.
+                        \begin{enumerate}
+                            \item \textbf{(Pro-\'etale morphisms):} 
+                                \begin{enumerate}
+                                    \item A morphism of affinoid adic spaces:
+                                        $$\Spa(S, S^+) \to \Spa(R, R^+)$$
+                                    is called \textbf{pro-\'etale} if and only if it exists within $\Ad^{\affd}$ as the limit of a $\kappa$-small filtered diagram $\{\Spa(S_i, S_i^+) \to \Spa(R, R^+)\}_{i \in I}$ of \'etale maps (cf. definition \ref{def: etale_morphisms_of_adic_spaces}). 
+                                    \item A morphism of adic spaces is is \textbf{pro-\'etale} if and only if it is affinoid (i.e. the preimage of any affinoid is again an affinoid) and locally pro-\'etale.
+                                \end{enumerate}
+                            \item \textbf{(Pro-\'etale sites of adic spaces):} Let $X$ be an adic space and consider the category $\Ad^{\affd, < \kappa}_{/X}$ be the maximal $\kappa$-small subcategory of $\Ad_{/X}$ of adic spaces over $X$.
+                        \end{enumerate}
+                \end{definition}
+                \begin{remark}[Adic spectra of ind-\'etale pairs]
+                    It is not hard to see that in such a case, one would have the following isomorphism of adic spaces over $\Spa(R, R^+)$:
+                        $$\Spa(S, S^+) \cong \Spa\left( \underset{i \in I}{\colim} (S_i, S_i^+) \right) \cong \Spa \left(\underset{i \in I}{\colim} S_i, \underset{i \in I}{\colim} S_i^+\right)$$
+                    To see why this is the case, recall first of all that by proposition \ref{prop: factorisations_of_etale_morphisms_of_adic_spaces}, any \'etale morphism:
+                        $$\Spa(S_i, S_i^+) \to \Spa(R, R^+)$$
+                    can be factored into an open immersion $j_i: \Spa(S_i, S_i^+) \hookrightarrow \Spa(T_i, T_i^+)$ followed by a finite \'etale morphism $\pi_i: \Spa(T_i, T_i^+) \to \Spa(S, S^+)$. We can then use the fact that colimits commute with other colimits and finite limits too show that there must exist an affinoid $\Spa(T, T^+)$ that is finite \'etale over $\Spa(R, R^+)$ such that $\Spa(S, S^+)$ is an open subspace therein.
+                \end{remark}
+                
+                \begin{claim} 
+                    Let $K$ be a perfectoid field of prime characteristic $p$. Then, there is the following free-forgetful adjunction betwen the big category $\Perfd_{/\Spa(K, K^{\circ})}$ of perfectoid spaces over $\Spa(K, K^{\circ})$ and the category $\Sch^{\perf}_{/\Spec K}$ of perfect schemes over $\Spec K$ (which is perfect itself by \ref{lemma: tilted_perfectoid_fields_are_perfect}):
+                        $$
+                            \begin{tikzcd}
+                            	{\Perfd_{/\Spa(K, K^{\circ})}} & {\Sch^{\perfd}_{/\Spec K}}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "(-)^{\sch}"', shift right=2, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{(-)^{\ad}}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                    wherein one has:
+                        $$(\Spa(R, R^+))^{\sch} \cong \Spec R$$
+                        $$(\Spec R)^{\ad} \cong \Spa(R, R^{\circ})$$
+                    Furthermore, the free construction $(-)^{\ad}$ is fully faithful.
+                \end{claim}
+                    \begin{proof}
+                        One can simply apply the Special Adjoint Functor Theorem directly.        
+                    \end{proof}
+                \begin{remark}
+                    It is not hard to show that one can replace $\Spa(K, K^{\circ})$ with any perfectoid space $X$ of characteristic $p$. If we let $X$ be covered by $\bigcup_{i \in I} \Spa(R_i, R_i^+)$ the scheme $X^{\sch}$ will then simply admit the obvious Zariski cover $\bigcup_{i \in I} \Spec R_i \to X^{\sch}$ (this arrow is indeed surjective, because right-adjoints - such as $(-)^{\sch}$ - preserve colimits \textit{a priori}). 
+                \end{remark}
+                
+                \begin{definition}[The pro-\'etale topology on perfectoid spaces] \label{def: pro_etale_topology_on_perfectoid_spaces}
+                    Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Next, let $\kappa$ be a regular cardinal and consider the maximal $\kappa$-small category $\Perfd_{/X, \proet}^{< \kappa}$ of perfectoid spaces $\kappa$-pro-\'etale over $X$. Then, a \textbf{$\kappa$-pro-\'etale coverage} on $X$ is a family of pro-\'etale morphisms $\{X_i \to X\}_{i \in I}$ such that $\{X_i^{\sch} \to X^{\sch}\}_{i \in I}$ is locally an fpqc covering sieve \footnote{See proposition \ref{prop: perfect_pro_etale_sites} for an explanation of what the fpqc topology has any business being here}. This is to say, for all quasi-compact subspace $U \subset X$, there exist open subspaces $U_i \subset X_i$ such that $\{U_i \to U\}_{i \in I}$ is an fpqc covering sieve (which we note, is necessarily a finite set).
+                \end{definition}
+                \begin{convention}[Pro-\'etale topoi]
+                    Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Next, let $\kappa$ be a regular cardinal. Then, the sheaf topos over the pro-\'etale site $\Perfd_{/X, \proet}^{< \kappa}$ shall be denoted simply by $X_{\proet}^{< \kappa}$.
+                \end{convention}
+                
+                \begin{proposition}[Subcanonicity of the pro-\'etale topology]
+                    Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Also, let $\kappa$ be a regular cardinal. Then, the pro-\'etale topology on $\Perfd_{/X, \proet}^{< \kappa}$ is subcanonical.
+                \end{proposition}
+                    \begin{proof}
+                        This is a direct consequence of the fact that the fpqc topology on $\Sch^{\perf}_{/X, \proet}$ is subcanonical.
+                    \end{proof}
+            
+        \subsection{Stacks on perfectoid spaces}        
+            \subsubsection{The category of diamonds}
+                \begin{definition}[Diamonds] \label{def: diamonds}
+                    Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Also, let $\kappa$ be a regular cardinal. A ($\kappa$-small) \textbf{diamond} is thus a quotient stack $[Y/R]$ internal to $X_{\proet}^{< \kappa}$ (see definition \ref{def: quotient_stacks} for what this means), where $Y$ is representable.
+                \end{definition}
+                
+                \begin{proposition}[Categories of diamonds] \label{prop: categories_of_diamonds}
+                    Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Also, let $\kappa$ be a regular cardinal.
+                        \begin{enumerate}
+                            \item \textbf{(Morphisms of diamonds):} A morphism of diamonds on $X$ is simply a morphism of groupoids internal to $X_{\proet}^{< \kappa}$. A full subcategory of $X_{\proet}^{< \kappa}$ spanned by ($\kappa$-small) diamonds on $X$ thus naturally exists, and we shall denote it by $\Dia_{/X}^{< \kappa}$. 
+                            \item \textbf{(Limits and colimits of diamonds):}
+                                \begin{enumerate}
+                                    \item \textbf{(Limits):} Finite products and finite pullbacks exist in $\Dia_{/X}^{< \kappa}$. These limts are taken as limits of pro-\'etale sheaves on $X$. 
+                                    \item \textbf{(Colimits):} 
+                                \end{enumerate}
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Morphisms of diamonds):}
+                            \item \textbf{(Limits and colimits of diamonds):}
+                                \begin{enumerate}
+                                    \item \textbf{(Limits):}
+                                    \item \textbf{(Colimits):}
+                                \end{enumerate}
+                        \end{enumerate}
+                    \end{proof}
+            
+            \subsubsection{Perfectoid Artin stacks}
+                \begin{definition}[Perfectoid Artin stacks] \label{def: perfectoid_artin_stacks} \index{Perfectoid Artin stacks}
+                    Let $p$ be a prime and let $X$ be a perfectoid space of characteristic $p$. A \textbf{perfectoid Artin v-stack} (or simply an \textbf{Artin v-stack}, since we have only defined the v-topology for perfectoid spaces) is thus a 
+                \end{definition}
+            
+        \subsection{Universally locally acyclic (ULA) sheaves}
+        
+        \subsection{Smoothness of diamonds}
+            \subsubsection{Formal smoothness}
+            
+            \subsubsection{A Jacobian criterion}
