@@ -298,165 +298,195 @@
                         
                     \end{proof}
                     
-            \subsubsection{Adic spectra}
-                \begin{definition}[\textcolor{red}{\underline{IMPORTANT}} Adic spectra] \label{def: adic_spectra}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Huber pairs):} A Huber pair is a Huber ring $(A, A^+)$ whose subring of definition is an integrally closed open subring $A^+$ of $A^{\circ}$, called the \textbf{ring of integral elements} of $A$.
-                        \item \textbf{(Adic spectra):} The \textbf{adic spectrum} of a Huber pair $(A, A^+)$, denoted by $\Spa (A, A^+)$, is the set of equivalence classes of continuous valuations on $\nu: A \to \Gamma \cup \{\infty\}$ such that for all $f \in A^+$, we are guaranteed that:
-                            $$\nu(f) \leq 1$$
-                        (with $1$ denoting the unit of the multiplicative totally ordered abelian group $(\Gamma, \leq)$). More generally, one might define the adic spectrum of any pair $(A, \Sigma)$ (which we shall call \textbf{pre-Huber pairs}) where $\Sigma$ is merely some subset of $A$ such that $\nu(f) \leq 1$ for all $f \in \Sigma$. 
-                    \end{enumerate}
-                \end{definition}
-                \begin{example}[Affinoid fields] \label{example: affinoid_fields}
-                    Let $K$ be a non-archimedean field. Then $\Spa(K, K^{\circ})$ will be the one-point space: namely, the only valuation on $K$ such that $||K^{\circ}| \leq 1$ is the very valuation from which one gets the topology on $K$, and this is due entirely to the definition of $K^{\circ}$ as the subset of power-bounded elements of $K$. This is also the case for any so-called \textbf{affinoid field} $(K, K^+)$, i.e. for all intergrally closed open subring $K^+ \subset K^{\circ}$, $\Spa(K, K^+)$ is a one-point space.
-                \end{example}
-                \begin{remark}[Category of Huber pairs]
-                    It is not hard to see, from proposition \ref{prop: morphisms_of_huber_rings} and definition \ref{def: adic_spectra}, that there exists a category of all Huber pairs, for which we shall write $\Huber$. The morphisms therein are just morphisms of Huber rings, i.e. adic morphisms (cf. proposition \ref{prop: morphisms_of_huber_rings}).
-                    
-                    The full subcategory of $\Huber$ spanend by Tate pairs shall be denoted by $\Tate$.
-                \end{remark}
-                
-                \begin{convention}
-                    Henceforth, for all adic spectra $X := \Spa(A, A^+)$, all points $x \in X$, and all elements $f \in A$, we shall write $|f(x)|$ instead of $x(f)$.
-                \end{convention}
-                \begin{proposition}[The rational topology] \label{prop: the_rational_topology}
-                    Let $X := \Spa(A, A^+)$ be an adic spectrum, in the sense of definition \ref{def: adic_spectra}. Then, there exists a topology on $X$ wherein sets of the following are open:
-                        $$D_g(\a) := \{x \in X \mid \forall f \in \a: |f(x)| \leq |g(x)|\}$$
-                    with $g$ any choice of an element of $A$, called \textbf{rational subsets}; they might be thought of as subsets of $X$ on which $g$ dominates any $f \in \a$ as a functional on $A$.
-                \end{proposition}
-                    \begin{proof}
-                        We shall simply verify the axioms defining a topology on a set:
-                            \begin{enumerate}
-                                \item \textbf{(Empty set and whole set are rational):} 
-                                    \begin{itemize}
-                                        \item It is not hard to see that for all $g \in A$, $D_g((0)) = X$. This tells us that the entire space $X$ is rational.
-                                        \item It is also a rather trivial fact that for all non-trivial finitely generated open ideals $\a$, $D_0(\a) = \varnothing$. The empty set is thus also rational.
-                                    \end{itemize}
-                                \item \textbf{(Finite intersections are rational):} Consider the following, for any positive integer $N$ and a fixed finitely generated open ideal $\a$:
-                                    $$
-                                        \begin{aligned}
-                                            & x \in \bigcap_{i = 1}^N D_{g_i}(\a)
-                                            \\
-                                            \iff & \bigwedge_{i = 1}^N \left(x \in D_{g_i}(\a)\right)
-                                            \\
-                                            \iff & \bigwedge_{i = 1}^N \left(x \in \{y \in X \mid \forall f \in \a: |f(y)| \leq |g_i(y)|\}\right)
-                                            \\
-                                            \iff & \bigwedge_{i = 1}^N \bigwedge_{f \in \a} \left(|f(x)| \leq |g_i(x)|\right)
-                                            \\
-                                            \iff & \bigwedge_{f \in \a} \left(|f(x)| \leq \inf_{1 \leq i \leq N} |g_i(x)|\right)
-                                            \\
-                                            \iff & x \in \left\{y \in X \mid \forall f \in \a: |f(y)| \leq |g_{\min}(y)|\right\}
-                                            \\
-                                            \iff & x \in D_{g_{\min}}(\a)
-                                        \end{aligned}
-                                    $$
-                                wherein $g_{\min}$ denotes the element of the finite family $\{g_1, ..., g_N\}$ whose norm at $x$ is the smallest. This clearly shows that the intersection of any finite number of rational subsets is again rational. 
-                                \item \textbf{(Arbitrary unions are rational):} 
-                            \end{enumerate}
-                    \end{proof}
-                \begin{corollary}[Quasi-compactness of adic spectra] \label{coro: adic_spectra_are_quasi_compact}
-                    Any adic spectrum is quasi-compact in the rational topology.
-                \end{corollary}
-                    \begin{proof}
-                        
-                    \end{proof}
-                
-                The following is the usual route one would take in order to reach adic spaces at the end. We shall guide you through, although at the end, we shall discuss its shortcomings and subsequently, reasons why the more general so-called \textbf{preadic spaces} are of interest to us (spoiler: \textit{one can obtain an adic space via sheafifying a preadic space}).
-                
-                This first lemma will help us justify only stating proposition \ref{prop: structure_presheaves_of_adic_spectra} for complete Huber pairs.
-                \begin{lemma}[Incomplete Huber pairs are enough] \label{lemma: adic_spectra_of_complete_huber_pairs}
-                    Let $(A, A^+)$ be a Huber pair and let $(A, A^+)^{\wedge} := (\hat{A}, \hat{A}^+)$ be its topological completion. Then, there is a homeomorphism between $X := \Spa(A, A^+)$ and $X^{\wedge} := \Spa(A, A^+)^{\wedge}$.
-                \end{lemma}
-                    \begin{proof}
-                        
-                    \end{proof}
-                
-                \begin{proposition}[Structure presheaves on adic spectra] \label{prop: structure_presheaves_of_adic_spectra}
-                    Let $X$ be an adic spectrum $\Spa(A, A^+)$ of a \textit{complete} Huber pair $(A, A^+)$ and denote the site induced by the rational topology on $X$ by $\Ouv(X)$. 
-                        \begin{enumerate}
-                            \item \textbf{(Existence and uniqueness):} There is a distinguished presheaf of Huber pairs:
-                                $$(\calO_X, \calO_X^+): \Ouv(X)^{\op} \to \Huber$$
-                            such that for all $U \in \Ouv(X)$, there is a homeomorphism:
-                                $$U \cong \Spa(\calO_X(U), \calO_X^+(U))$$
-                            \item \textbf{(Completeness):} For all $U \in \Ouv(X)$, the Huber pair $(\calO_X(U), \calO_X^+(U))$ is complete.
-                        \end{enumerate}
-                \end{proposition} 
-                    \begin{proof}
+            \subsubsection{Adic spectra and adic spaces}
+                \paragraph{The definition of an adic space}
+                    \begin{definition}[\textcolor{red}{\underline{IMPORTANT}} Adic spectra] \label{def: adic_spectra}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{(Existence and uniqueness):}
-                            \item \textbf{(Completeness):}
+                            \item \textbf{(Huber pairs):} A Huber pair is a Huber ring $(A, A^+)$ whose subring of definition is an integrally closed open subring $A^+$ of $A^{\circ}$, called the \textbf{ring of integral elements} of $A$.
+                            \item \textbf{(Adic spectra):} The \textbf{adic spectrum} of a Huber pair $(A, A^+)$, denoted by $\Spa (A, A^+)$, is the set of equivalence classes of continuous valuations on $\nu: A \to \Gamma \cup \{\infty\}$ such that for all $f \in A^+$, we are guaranteed that:
+                                $$\nu(f) \leq 1$$
+                            (with $1$ denoting the unit of the multiplicative totally ordered abelian group $(\Gamma, \leq)$). More generally, one might define the adic spectrum of any pair $(A, \Sigma)$ (which we shall call \textbf{pre-Huber pairs}) where $\Sigma$ is merely some subset of $A$ such that $\nu(f) \leq 1$ for all $f \in \Sigma$. 
                         \end{enumerate}
-                    \end{proof}
-                \begin{convention}[Structure sheaf of Huber pair ?]
-                    For $X$ an adic spectrum, we shall always be referring to the pair $(\calO_X, \calO_X^+)$ whenever we talk about its structure presheaf, as opposed to merely $\calO_X$. This is because in specifying a Huber pair $(A, A^+)$, it is equally important to identify the ambient Huber ring $A$ as well as the integrally closed open subring $A^+ \subset A^{\circ}$.
-                \end{convention}
-                \begin{definition}[Sheafiness] \label{def: sheafiness}
-                    A \textit{complete} Huber pair $(A, A^+)$ defining an adic spectrum $X := \Spa(A, A^+)$ is called \textbf{sheafy} if and only if its structure presheaf $(\calO_X, \calO_X^+)$ is a sheaf in the rational topology.
-                \end{definition}
-                
-                \begin{definition}[Adic spaces] \label{def: adic_spaces}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Affinoid adic spaces):} An \textbf{affinoid adic space} is a triple $(X, \calO_X, \calO_X^+)$ wherein:
-                            \begin{itemize}
-                                \item $X$ (sometimes denoted $|X|$ for emphasis) is the underlying topological space, which shall be taken to be homeomorphic to some adic spectrum $\Spa(A, A^+)$ of a \textit{sheafy} complete Huber pair $(A, A^+)$,
-                                \item $(\calO_X, \calO_X^+)$ is the structure sheaf as in proposition \ref{prop: structure_presheaves_of_adic_spectra}.
-                            \end{itemize}
-                        \item \textbf{(Adic spaces):} An adic space is a ringed space that is locally isomorphic to an affinoid adic space.
-                    \end{enumerate}
-                \end{definition}
-                \begin{remark}[Adic spaces are necessarily locally ringed] \label{remark: adic_spaces_are_locally_ringed}
-                    Every adic space $X$ is necessarily a locally ringed space, because for each point $x \in |X|$, there is an associated (equivalence class of) valuation $\nu_x$ (cf. definition \ref{def: adic_spectra}). Then, via Ostrowski's Theorem (or rather, a similar but perfectly analogous argument), one can show that the stalk $\calO_{X, x}$ must be a local ring. This also gives us an alternative definition, which is that an adic space is a ringed space $(X, \calO_X)$ whose structure sheaf $\calO_X$ is a sheaf of complete topological rings such that each stalk $\calO_{X, x}$ carries a unique equivalence class of valuations; technically, one should require $\calO_X$ to be a sheaf of complete Huber rings, but one can rather easily demonstrate that this is redundant. 
-                \end{remark}
-                \begin{definition}[Morphisms of adic spaces]
-                    If $(X, \calO_X, \calO_X^+)$ and $(Y, \calO_Y, \calO_Y^+)$ are adic spaces, then a morphism between them shall be a pair $(f, f^{\sharp})$ wherein:
-                        \begin{itemize}
-                            \item $f: X \to Y$ is a continuous function between the underlying topological spaces, and
-                            \item $f^{\sharp}: \calO_Y \to f_*\calO_X$ is the associated comorphism of structure sheaves, which we shall require to be continuous; we shall also require that its stalks $f^{\sharp}_x: \calO_{Y, f(x)} \to \calO_{X, x}$ are local adic homomorphisms, or simply local continuous homomorphisms, since there is only one valuation on $\calO_{X, x}$ and one other on $\calO_{Y, f(x)}$; incidentally, this last point implies that the category of adic spaces is a full subcategory of the category of topological locally ringed spaces.
-                        \end{itemize}
-                \end{definition}
-                
-                \begin{theorem}[Schemes, formal schemes, rigid spaces, and adic spaces] \label{theorem: schemes_formal_schemes_rigid_spaces_and_adic_spaces}
-                    The category of adic spaces admits the following categories as full subcategories:
-                        \begin{enumerate}
-                            \item \textbf{(Schemes):} Schemes; the embedding is given by:
-                                $$\Spec A \mapsto \Spa(A, A)$$
-                            \item \textbf{(Formal schemes):} Noetherian formal schemes; the embedding is given by:
-                                $$\Spf A \mapsto \Spa(A, A)$$
-                            \item \textbf{(Rigid spaces):} If $K$ is a (complete) non-archimedean field and $\scrV$ is a strongly Noetherian Tate $K$-algebra, then the category of rigid spaces over $\Spm \scrV$ (in the sense of Tate) will embed fully faithfully into that of adic spaces over $\Spa(\scrV, \scrV^{\circ})$; the embedding is given by:
-                                $$\Spm A \mapsto \Spa(A, A^{\circ})$$
-                        \end{enumerate}
-                \end{theorem}
-                    \begin{proof}
-                        Since the construction of adic spaces is local in nature, it will suffice to only prove the assertions for affinoids.
-                        \begin{enumerate}
-                            \item \textbf{(Schemes):}
-                            \item \textbf{(Formal schemes):}
-                            \item \textbf{(Rigid spaces):}
-                        \end{enumerate}
-                    \end{proof}
-                
-                \begin{proposition}[Pullbacks of adic spaces] \label{prop: pullbacks_of_adic_spaces}
-                    Finite pullbacks exist in the category of adic spaces.
-                \end{proposition}
-                    \begin{proof}
+                    \end{definition}
+                    \begin{example}[Affinoid fields] \label{example: affinoid_fields}
+                        Let $K$ be a non-archimedean field. Then $\Spa(K, K^{\circ})$ will be the one-point space: namely, the only valuation on $K$ such that $||K^{\circ}| \leq 1$ is the very valuation from which one gets the topology on $K$, and this is due entirely to the definition of $K^{\circ}$ as the subset of power-bounded elements of $K$. This is also the case for any so-called \textbf{affinoid field} $(K, K^+)$, i.e. for all intergrally closed open subring $K^+ \subset K^{\circ}$, $\Spa(K, K^+)$ is a one-point space.
+                    \end{example}
+                    \begin{remark}[Category of Huber pairs]
+                        It is not hard to see, from proposition \ref{prop: morphisms_of_huber_rings} and definition \ref{def: adic_spectra}, that there exists a category of all Huber pairs, for which we shall write $\Huber$. The morphisms therein are just morphisms of Huber rings, i.e. adic morphisms (cf. proposition \ref{prop: morphisms_of_huber_rings}).
                         
-                    \end{proof}
+                        The full subcategory of $\Huber$ spanend by Tate pairs shall be denoted by $\Tate$.
+                    \end{remark}
+                    
+                    \begin{convention}
+                        Henceforth, for all adic spectra $X := \Spa(A, A^+)$, all points $x \in X$, and all elements $f \in A$, we shall write $|f(x)|$ instead of $x(f)$.
+                    \end{convention}
+                    \begin{proposition}[The rational topology] \label{prop: the_rational_topology}
+                        Let $X := \Spa(A, A^+)$ be an adic spectrum, in the sense of definition \ref{def: adic_spectra}. Then, there exists a topology on $X$ wherein sets of the following are open:
+                            $$D_g(\a) := \{x \in X \mid \forall f \in \a: |f(x)| \leq |g(x)|\}$$
+                        with $g$ any choice of an element of $A$, called \textbf{rational subsets}; they might be thought of as subsets of $X$ on which $g$ dominates any $f \in \a$ as a functional on $A$.
+                    \end{proposition}
+                        \begin{proof}
+                            We shall simply verify the axioms defining a topology on a set:
+                                \begin{enumerate}
+                                    \item \textbf{(Empty set and whole set are rational):} 
+                                        \begin{itemize}
+                                            \item It is not hard to see that for all $g \in A$, $D_g((0)) = X$. This tells us that the entire space $X$ is rational.
+                                            \item It is also a rather trivial fact that for all non-trivial finitely generated open ideals $\a$, $D_0(\a) = \varnothing$. The empty set is thus also rational.
+                                        \end{itemize}
+                                    \item \textbf{(Finite intersections are rational):} Consider the following, for any positive integer $N$ and a fixed finitely generated open ideal $\a$:
+                                        $$
+                                            \begin{aligned}
+                                                & x \in \bigcap_{i = 1}^N D_{g_i}(\a)
+                                                \\
+                                                \iff & \bigwedge_{i = 1}^N \left(x \in D_{g_i}(\a)\right)
+                                                \\
+                                                \iff & \bigwedge_{i = 1}^N \left(x \in \{y \in X \mid \forall f \in \a: |f(y)| \leq |g_i(y)|\}\right)
+                                                \\
+                                                \iff & \bigwedge_{i = 1}^N \bigwedge_{f \in \a} \left(|f(x)| \leq |g_i(x)|\right)
+                                                \\
+                                                \iff & \bigwedge_{f \in \a} \left(|f(x)| \leq \inf_{1 \leq i \leq N} |g_i(x)|\right)
+                                                \\
+                                                \iff & x \in \left\{y \in X \mid \forall f \in \a: |f(y)| \leq |g_{\min}(y)|\right\}
+                                                \\
+                                                \iff & x \in D_{g_{\min}}(\a)
+                                            \end{aligned}
+                                        $$
+                                    wherein $g_{\min}$ denotes the element of the finite family $\{g_1, ..., g_N\}$ whose norm at $x$ is the smallest. This clearly shows that the intersection of any finite number of rational subsets is again rational. 
+                                    \item \textbf{(Arbitrary unions are rational):} 
+                                \end{enumerate}
+                        \end{proof}
+                    \begin{corollary}[Quasi-compactness of adic spectra] \label{coro: adic_spectra_are_quasi_compact}
+                        Any adic spectrum is quasi-compact in the rational topology.
+                    \end{corollary}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    
+                    The following is the usual route one would take in order to reach adic spaces at the end. We shall guide you through, although at the end, we shall discuss its shortcomings and subsequently, reasons why the more general so-called \textbf{preadic spaces} are of interest to us (spoiler: \textit{one can obtain an adic space via sheafifying a preadic space}).
+                    
+                    This first lemma will help us justify only stating proposition \ref{prop: structure_presheaves_of_adic_spectra} for complete Huber pairs.
+                    \begin{lemma}[Incomplete Huber pairs are enough] \label{lemma: adic_spectra_of_complete_huber_pairs}
+                        Let $(A, A^+)$ be a Huber pair and let $(A, A^+)^{\wedge} := (\hat{A}, \hat{A}^+)$ be its topological completion. Then, there is a homeomorphism between $X := \Spa(A, A^+)$ and $X^{\wedge} := \Spa(A, A^+)^{\wedge}$.
+                    \end{lemma}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    
+                    \begin{proposition}[Structure presheaves on adic spectra] \label{prop: structure_presheaves_of_adic_spectra}
+                        Let $X$ be an adic spectrum $\Spa(A, A^+)$ of a \textit{complete} Huber pair $(A, A^+)$ and denote the site induced by the rational topology on $X$ by $\Ouv(X)$. 
+                            \begin{enumerate}
+                                \item \textbf{(Existence and uniqueness):} There is a distinguished presheaf of Huber pairs:
+                                    $$(\calO_X, \calO_X^+): \Ouv(X)^{\op} \to \Huber$$
+                                such that for all $U \in \Ouv(X)$, there is a homeomorphism:
+                                    $$U \cong \Spa(\calO_X(U), \calO_X^+(U))$$
+                                \item \textbf{(Completeness):} For all $U \in \Ouv(X)$, the Huber pair $(\calO_X(U), \calO_X^+(U))$ is complete.
+                            \end{enumerate}
+                    \end{proposition} 
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{(Existence and uniqueness):}
+                                \item \textbf{(Completeness):}
+                            \end{enumerate}
+                        \end{proof}
+                    \begin{convention}[Structure sheaf of Huber pair ?]
+                        For $X$ an adic spectrum, we shall always be referring to the pair $(\calO_X, \calO_X^+)$ whenever we talk about its structure presheaf, as opposed to merely $\calO_X$. This is because in specifying a Huber pair $(A, A^+)$, it is equally important to identify the ambient Huber ring $A$ as well as the integrally closed open subring $A^+ \subset A^{\circ}$.
+                    \end{convention}
+                    \begin{definition}[Sheafiness] \label{def: sheafiness}
+                        A \textit{complete} Huber pair $(A, A^+)$ defining an adic spectrum $X := \Spa(A, A^+)$ is called \textbf{sheafy} if and only if its structure presheaf $(\calO_X, \calO_X^+)$ is a sheaf in the rational topology.
+                    \end{definition}
+                    
+                    \begin{definition}[Adic spaces] \label{def: adic_spaces}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Affinoid adic spaces):} An \textbf{affinoid adic space} is a triple $(X, \calO_X, \calO_X^+)$ wherein:
+                                \begin{itemize}
+                                    \item $X$ (sometimes denoted $|X|$ for emphasis) is the underlying topological space, which shall be taken to be homeomorphic to some adic spectrum $\Spa(A, A^+)$ of a \textit{sheafy} Huber pair $(A, A^+)$, \textit{which need not be complete},
+                                    \item $(\calO_X, \calO_X^+)$ is the structure sheaf as in proposition \ref{prop: structure_presheaves_of_adic_spectra}.
+                                \end{itemize}
+                            \item \textbf{(Adic spaces):} An adic space is a topologically ringed space that is locally isomorphic to an affinoid adic space.
+                        \end{enumerate}
+                    \end{definition}
+                    \begin{remark}[Adic spaces are necessarily locally topologically ringed] \label{remark: adic_spaces_are_locally_ringed}
+                        Every adic space $X$ is necessarily a locally topologically ringed space, because for each point $x \in |X|$, there is an associated (equivalence class of) valuation $\nu_x$ (cf. definition \ref{def: adic_spectra}). Then, via theorem \ref{theorem: principality_and_locality_of_valuation rings}, one can show that the stalk $\calO_{X, x}$ must be a local ring. This also gives us an alternative definition, which is that an adic space is a topologically ringed space $(X, \calO_X)$ whose structure sheaf $\calO_X$ is a sheaf of complete topological rings such that each stalk $\calO_{X, x}$ carries a unique equivalence class of valuations; technically, one should require $\calO_X$ to be a sheaf of complete Huber rings, but one can rather easily demonstrate that this is redundant. 
+                    \end{remark}
+                    \begin{definition}[Morphisms of adic spaces]
+                        If $(X, \calO_X, \calO_X^+)$ and $(Y, \calO_Y, \calO_Y^+)$ are adic spaces, then a morphism between them shall be a pair $(f, f^{\sharp})$ wherein:
+                            \begin{itemize}
+                                \item $f: X \to Y$ is a continuous function between the underlying topological spaces, and
+                                \item $f^{\sharp}: \calO_Y \to f_*\calO_X$ is the associated comorphism of structure sheaves, which we shall require to be continuous; we shall also require that its stalks $f^{\sharp}_x: \calO_{Y, f(x)} \to \calO_{X, x}$ are local adic homomorphisms, or simply local continuous homomorphisms, since there is only one valuation on $\calO_{X, x}$ and one other on $\calO_{Y, f(x)}$; incidentally, this last point implies that the category of adic spaces is a full subcategory of the category of locally topologically ringed spaces.
+                            \end{itemize}
+                    \end{definition}
+                    \begin{example}[Examples of adic spaces] \label{example: adic_spaces}
+                        \noindent
+                        \begin{itemize}
+                            \item \textbf{(Affinoid fields):} See example \ref{example: affinoid_fields} for an explanation of why the underlying topological space of the adic spectrum is the one-point space. In essence, these are adic points; for instance, if $X$ is an adic space and $x \in |X|$ is a point thereof, then one can define the so-called \textbf{adic residue field}, denoted by $K_{X, x}$ or simply $K_x$, to be the field of fractions of the stalk $\calO_{X, x}$; we are not using the usual residue field $\kappa_{X, x}$ as it does not carry a non-discrete topology \textit{a priori}; the topology on $K_{X, x}$ is taken to be that induced by the valuation $\nu_x$ on $\calO_{X, x}$. The point $x \in |X|$ can then be identified with a morphism:
+                                $$x: \Spa(K_{X, x}, K_{X, x}^{\circ}) \to X$$
+                            \item \textbf{(The adic closed disc):} Let $K$ be a complete non-archimedean field. Then, the adic closed disc over $K$, denoted by $\bbD_K^{\ad}$, shall be the rigid unit disc $\Spm K\<t\>$. Note that due to lemma \ref{lemma: adic_spectra_of_complete_huber_pairs}, one can also write $\Spa(K\<t\>, K^{\circ}\<t\>)$ for this adic space.
+                            \item \textbf{(The adic open disc):} Let $K$ be a complete non-archimedean field and let $\B^{\ad}_{K^{\circ}} := \Spf K^{\circ}[\![t]\!]$. This is the open adic space over $K$.
+                        \end{itemize}
+                    \end{example}
+                    
+                    \begin{theorem}[Schemes, formal schemes, rigid spaces, and adic spaces] \label{theorem: schemes_formal_schemes_rigid_spaces_and_adic_spaces}
+                        The category of adic spaces admits the following categories as full subcategories:
+                            \begin{enumerate}
+                                \item \textbf{(Schemes):} Schemes; the embedding is given by:
+                                    $$\Spec A \mapsto \Spa(A, A)$$
+                                \item \textbf{(Formal schemes):} Noetherian formal schemes; the embedding is given by:
+                                    $$\Spf A \mapsto \Spa(A, A)$$
+                                \item \textbf{(Rigid spaces):} If $K$ is a (complete) non-archimedean field and $\scrV$ is a strongly Noetherian Tate $K$-algebra, then the category of rigid spaces over $\Spm \scrV$ (in the sense of Tate) will embed fully faithfully into that of adic spaces over $\Spa(\scrV, \scrV^{\circ})$; the embedding is given by:
+                                    $$\Spm A \mapsto \Spa(A, A^{\circ})$$
+                            \end{enumerate}
+                    \end{theorem}
+                        \begin{proof}
+                            Since the construction of adic spaces is local in nature, it will suffice to only prove the assertions for affinoids.
+                            \begin{enumerate}
+                                \item \textbf{(Schemes):}
+                                \item \textbf{(Formal schemes):}
+                                \item \textbf{(Rigid spaces):}
+                            \end{enumerate}
+                        \end{proof}
                 
-                \begin{example}[Examples of adic spaces] \label{example: adic_spaces}
-                    \noindent
-                    \begin{itemize}
-                        \item \textbf{(Affinoid fields):} See example \ref{example: affinoid_fields} for an explanation of why the underlying topological space of the adic spectrum is the one-point space. In essence, these are adic points; for instance, if $X$ is an adic space and $x \in |X|$ is a point thereof, then one can define the so-called \textbf{adic residue field}, denoted by $K_{X, x}$ or simply $K_x$, to be the field of fractions of the stalk $\calO_{X, x}$; we are not using the usual residue field $\kappa_{X, x}$ as it does not carry a non-discrete topology \textit{a priori}; the topology on $K_{X, x}$ is taken to be that induced by the valuation $\nu_x$ on $\calO_{X, x}$. The point $x \in |X|$ can then be identified with a morphism:
-                            $$x: \Spa(K_{X, x}, K_{X, x}^{\circ}) \to X$$
-                        \item \textbf{(The adic closed disc):} Let $K$ be a complete non-archimedean field, let $\B_{K^{\circ}} := \Spf K^{\circ}[\![t]\!]$, and consider the structural morphism:
-                            $$\B_{K^{\circ}} \to \Spec K^{\circ}$$
-                        and subsequently, its generic fibre:
+                \paragraph{Limits of adic spaces; adification}
+                    \begin{proposition}[Pullbacks and products of adic spaces] \label{prop: products_and_pullbacks_of_adic_spaces}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Pullbacks):} Finite pullbacks exist in the category of adic spaces.
+                            \item \textbf{(Products):} The category of adic spaces also admits a terminal object, namely $\Spa(\Z, \Z)$, where $\Z$ is equipped with the discrete topology. By combining this with the previous assertion, one can show that the category of adic spaces admits finite products.
+                        \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{(Pullbacks):} Combine the following:
+                                    \begin{itemize}
+                                        \item the fact that adic spaces form a full subcategory of the category of locally topologically ringed spaces,
+                                        \item that pushouts in the category of complete Huber rings are simply completed tensor products,
+                                        \item and that the topological spaces $|\Spa(A, A^+)|$ and $|\Spa(A, A^+)^{\wedge}|$ are the same (cf. lemma \ref{lemma: adic_spectra_of_complete_huber_pairs}).
+                                    \end{itemize}
+                                This is to say, one has the following local identity:
+                                    $$\Spa(B, B^+) \x_{\Spa(A, A^+)} \Spa(C, C^+) \cong \Spa\left(B \tensor_A C, B^+ \tensor_{A^+} C^+\right)^{\wedge}$$
+                                \item \textbf{(Products):} It is well-known that the forgetful functor $\oblv: \Top \to \Sets$ that sends a topological space to its underlying set has a left-adjoint, namely the functor that associates the discrete topology to sets. By the universal property of adjoint pairs, this implies that should $X$ be any set, and should $\tau$ be any possibly non-discrete topology on $X$, then there would exist a canonical map $(X, \discrete) \to (X, \tau)$; this in turn, together with the fact that $\Z$ is the initial object of the category of commutative rings, implies that the initial object in the category of topological commutative rings ought to $(\Z, \discrete)$. One can then apply theorem \ref{theorem: schemes_formal_schemes_rigid_spaces_and_adic_spaces} to show that $\Spa(\Z, \Z)$ is necessarily the terminal object in the category of adic spaces. 
+                                
+                                Then, we can use the fact pullbacks over terminal objects are products to show that finite products of adic spaces exist.
+                            \end{enumerate}
+                        \end{proof}
+                    \begin{remark}[What about infinite products and pullbacks ?]
+                        Infinite (fibred) products of adic spaces are not guaranteed to exist. Consider, for instance, the product:
+                            $$\prod_{i \in I} \Spa(A_i, A_i^+)$$
+                        where $I$ is a countably infinite set of indices, taken in the category of locally topologically ringed spaces. Its global section is given by the completed tensor product:
+                            $$\widehat{\bigotimes_{i \in I}} (A_i, A_i^+)$$
+                        which might not even be a Huber ring, let alone a Huber pair, as the ideal of definition might very well fail to be finitely generated (cf. definition \ref{def: huber_rings_and_tate_rings}).  
+                    \end{remark}
+                    \begin{example}[Generic fibre of the adic open disc]
+                        See example \ref{example: adic_spaces} for the construction of the adic open disc $\B^{\ad}_{K^{\circ}}$ over $\Spf K^{\circ}$, where $K$ is some fixed complete non-archimedean field.
+                    
+                        Consider the generic fibre of the structural morphism $\B^{\ad}_{K^{\circ}} \to \Spf K^{\circ}$:
                             $$
                                 \begin{tikzcd}
-                                	{\B_{K^{\circ}, \eta}} & {\B_{K^{\circ}}} \\
-                                	{\Spec K} & {\Spec K^{\circ}}
+                                	{\B^{\ad}_{K^{\circ}, \eta}} & {\B^{\ad}_{K^{\circ}}} \\
+                                	{\Spa(K, K^{\circ})} & {\Spf K^{\circ}}
                                 	\arrow["\eta", from=2-1, to=2-2]
                                 	\arrow[from=1-1, to=2-1]
                                 	\arrow[from=1-1, to=1-2]
@@ -464,37 +494,96 @@
                                 	\arrow[from=1-2, to=2-2]
                                 \end{tikzcd}
                             $$
-                        The claim is that the generic fibre $\B_{K^{\circ}, \eta}$ is not quasi-compact.
-                        
-                        To show that this is the case, fix a point $x \in \B_{K^{\circ}, \eta}$, a formal power series $f \in K^{\circ}[\![t]\!]$, and a pseudo-uniformiser $\varpi \in K^{\circ \circ}$. 
-                        \item \textbf{(The adic open disc):}
-                        \item \textbf{(The adic affine line):}
-                        \item \textbf{(The adic projective line):}
-                    \end{itemize}
-                \end{example}
+                        (which exists thanks to proposition \ref{prop: products_and_pullbacks_of_adic_spaces}). The claim is that the generic fibre $\B^{\ad}_{K^{\circ}, \eta}$ is not quasi-compact. To show that this is the case, fix a point $x \in \B^{\ad}_{K^{\circ}, \eta}$, a formal power series $f \in K^{\circ}[\![t]\!]$, and a pseudo-uniformiser $\varpi \in K^{\circ \circ}$.
+                    \end{example}
+                    
+                    \begin{definition}[Adification] \label{def: adification}
+                        Let $Y$ be a formal scheme \textit{locally of finite type} (this finiteness hypothesis is here to ensure that completed tensor products will be well-defined) over a complete non-archimedean field $K$, or a rigi space over a strongly Noetherian $K$-algebra. Then, the \textbf{adification} of $Y$ shall precisely be the following canonical pullback of adic spaces, which exists thanks to proposition \ref{prop: products_and_pullbacks_of_adic_spaces}:
+                            $$
+                                \begin{tikzcd}
+                                	{Y^{\ad}} & Y \\
+                                	{\Spa(K, K^{\circ})} & {\Spec K}
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                	\arrow[from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                    \end{definition}
+                    \begin{example}[Adic spaces arising through adification] \label{example: adification}
+                        In what follows, let $K$ be a complete non-archimedean ring.
+                        \begin{itemize}
+                            \item \textbf{(The adic affine line):} The adic affine line, denoted by $(\A^1_K)^{\ad}$, is nothing but the adification of the usual schematic affine line $\A^1_K \cong \Spec K[t]$. Now, this is all well and good, but let us take it a bit further and actually compute $(\A^1_K)^{\ad}$ in explicit details. 
+                            \item \textbf{(The adic projective line):}
+                        \end{itemize}
+                    \end{example}
                 
             \subsubsection{Preadic spaces}
-                Adic spaces are supposed to be non-archimedean version of complex analytic manifolds. This means that we would like to set them up in a way such that so-called affinoid spaces are not only the basic building blocks, but should also come directly from (complete) Huber pairs, similar to how affine schemes are representable presheaves on $\Cring^{\op}$ (cf. definition \ref{def: zariski_topoi}). For this, let us start with the following definition:
-                \begin{definition}[Preadic spaces] \label{def: pre_adic_spaces}
-                    An \textbf{affinoid preadic space} is a representable presheaf on $\widehat{\Huber}$, the category of complete Huber pairs. 
-                \end{definition}
-                
-                \begin{remark}[Rational sites of affinoids]
-                    Before we state the following result, let us note that the opposite $\widehat{\Pre\Ad}^{\affd} := \widehat{\Huber}^{\op}$ of the category of Huber pairs canonically admits a coverage whose covering sieves are covers in the rational topology (cf. proposition \ref{prop: the_rational_topology}). We leave it to the reader to show that for any adic spectrum $X$, the maximal small site of the large site $\widehat{\Pre\Ad}^{\affd}_{/X}$ is nothing but $\Ouv(X)$.
-                \end{remark}
-                \begin{theorem}[Sheafifying to get adic spaces] \label{theorem: sheafifying_pre_adic_spaces}
-                    The sheafification of any affinoid preadic space in the rational coverage on $\widehat{\Pre\Ad}^{\affd}$ is an affinoid adic space, in the sense of definition \ref{def: adic_spaces}. To make the distinction between an affinoid preadic space and its sheafification, we shall write $\Spa^{\flat}(A, A^+)$ for the affinoid preadic space (co)represented by $(A, A^+) \in \widehat{\Huber}$.
-                \end{theorem}
-                    \begin{proof}
-                        First of all, let us mention that the sheafification of a given presheaf:
-                            $$F: (\widehat{\Pre\Ad}^{\affd})^{\op} \to \Sets$$
-                        is computed in the same way how one would compute sheafifications over a topological space (which should not ring any bells, since the coverage on $\widehat{\Pre\Ad}^{\affd}$ is locally generated by those on the topological spaces $|\Spa^{\flat}(A, A^+)|$); also, let us denote the sheafifcation of a given presheaf $F$ by $F^{\sharp}$. Now, fix an arbitrary preadic space $X := \Spa^{\flat}(A, A^+)$; we will then need to show that there exists a \textit{unique} sheaf of complete Huber pairs:
-                            $$(\calO_{X^{\sharp}}, \calO_{X^{\sharp}}^+): \Ouv(X^{\sharp})^{\op} \to \widehat{\Huber}$$
-                        as in proposition \ref{prop: structure_presheaves_of_adic_spectra}. 
-                    \end{proof}
-                \begin{example}[The rational topology is \textit{not} subcanonical!]
+                \paragraph{Preadic spaces}
+                    Adic spaces are supposed to be non-archimedean version of complex analytic manifolds. This means that we would like to set them up in a way such that so-called affinoid spaces are not only the basic building blocks, but should also come directly from (complete) Huber pairs, similar to how affine schemes are representable presheaves on $\Cring^{\op}$ (cf. definition \ref{def: zariski_topoi}). For this, let us start with the following definition:
+                    \begin{definition}[Preadic spaces] \label{def: pre_adic_spaces}
+                        An \textbf{affinoid preadic space} is a representable presheaf on $\widehat{\Huber}$, the category of complete Huber pairs. 
+                    \end{definition}
                     
-                \end{example}
+                    \begin{remark}[Rational sites of affinoids]
+                        Before we state the following result, let us note that the opposite $\widehat{\Pre\Ad}^{\affd} := \widehat{\Huber}^{\op}$ of the category of Huber pairs canonically admits a coverage whose covering sieves are covers in the rational topology (cf. proposition \ref{prop: the_rational_topology}). We leave it to the reader to show that for any adic spectrum $X$, the maximal small site of the large site $\widehat{\Pre\Ad}^{\affd}_{/X}$ is nothing but $\Ouv(X)$.
+                    \end{remark}
+                    \begin{theorem}[Sheafifying to get adic spaces] \label{theorem: sheafifying_pre_adic_spaces}
+                        The sheafification of any affinoid preadic space in the rational coverage on $\widehat{\Pre\Ad}^{\affd}$ is an affinoid adic space, in the sense of definition \ref{def: adic_spaces}. To make the distinction between an affinoid preadic space and its sheafification, we shall write $\Spa^{\flat}(A, A^+)$ for the affinoid preadic space (co)represented by $(A, A^+) \in \widehat{\Huber}$.
+                    \end{theorem}
+                        \begin{proof}
+                            First of all, let us mention that the sheafification of a given presheaf:
+                                $$F: (\widehat{\Pre\Ad}^{\affd})^{\op} \to \Sets$$
+                            is computed in the same way how one would compute sheafifications over a topological space (which should not ring any bells, since the coverage on $\widehat{\Pre\Ad}^{\affd}$ is locally generated by those on the topological spaces $|\Spa^{\flat}(A, A^+)|$); also, let us denote the sheafifcation of a given presheaf $F$ by $F^{\sharp}$. Now, fix an arbitrary preadic space $X := \Spa^{\flat}(A, A^+)$; we will then need to show that there exists a \textit{unique} sheaf of complete Huber pairs:
+                                $$(\calO_{X^{\sharp}}, \calO_{X^{\sharp}}^+): \Ouv(X^{\sharp})^{\op} \to \widehat{\Huber}$$
+                            as in proposition \ref{prop: structure_presheaves_of_adic_spectra}. 
+                        \end{proof}
+                    \begin{example}[The rational topology is \textit{not} subcanonical!]
+                        
+                    \end{example}
+                
+                \paragraph{Immersions and colimits}
+                    \begin{definition}[Immersions of topologically ringed spaces] \label{def: immersions_of_topologically_ringed_spaces}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Immersions):} An \textbf{immersion} $j: X \hookrightarrow Y$ of (locally) topologically ringed spaces is a morphism such that the underlying map of topological spaces $|j|: |X| \to |Y|$ is injective. 
+                            \item \textbf{(Open immersions):} An immersion $j: X \hookrightarrow Y$ of (locally) topologically ringed spaces will be an \textbf{open immersion} if and only if:
+                                $$j^*\calO_Y \cong \calO_X$$
+                        \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{definition}[Adic-spectral spaces] \label{def: adic_spectral_spaces}
+                        A topological space is said to be (locally) \textbf{adic-spectral} if and only if it is (locally) homeomorphic to an adic spectrum. Such a space comes pre-equipped with the rational topology, which shall be taken to be the canonical topology.
+                    \end{definition}
+                    \begin{remark}[Open immersions of adic spaces] \label{remark: open_immersions_of_adic_spaces}
+                        Definition \ref{def: adic_spectral_spaces} gives us the vocabulary to talk about open immersions of adic spaces in further details. Let $j: X \hookrightarrow Y$ be an open immersion of locally adic-spectral topologically ringed spaces. By definition, this means that one has:
+                            $$j^* \calO_Y \cong \calO_X$$
+                        i.e. for all $U \in \Ouv(X)$, one has:
+                            $$\calO_Y(j(U)) \cong \underset{W \supseteq j(U)}{\colim} \calO_X(W)$$
+                    \end{remark}
+                    
+                    \begin{remark}[What about closed immersions ?] \label{remark: closed_immersions_of_adic_spaces}
+                        
+                    \end{remark}
+                    
+                    In addition to finite products and pullbacks (cf. proposition \ref{prop: products_and_pullbacks_of_adic_spaces}), one can also construct certain filtered colimits of adic spaces and be sure that they would remain inside the category of adic spaces. For that, let us note first of all that because the category of adic spaces is a \textit{full} subcategory of the category of locally topologically ringed spaces, an \textbf{(open/closed) immersion} of adic spaces is nothing but an (open/closed) immersion of locally topologically ringed spaces. 
+                    
+                    We will also need a definition:
+                    \begin{definition}[Affinoid-spatial morphisms] \label{def: affinoid_spatial_morphisms}
+                        A morphism $X \to Y$ of adic spaces is affinoid-spatial if and only if it is representable by affinoid adic spaces, which is to say, for all morphisms $\Spa(B, B^+) \to Y$, the pullback $\Spa(B, B^+) \x_Y X$ will also be an affinoid adic space. 
+                    \end{definition}
+                    
+                    \begin{proposition}[Increasing unions of adic spaces] \label{prop: increasing_unions_of_adic_spaces}
+                        Let:
+                            $$X_0 \hookrightarrow X_1 \hookrightarrow ...$$
+                        be a countable filtered diagram of adic spaces $X_i$ wherein the transition maps $X_i \hookrightarrow X_{i + 1}$ are affinoid-spatial and either open immersions or closed immersions. Its colimit thus exists inside the category of adic spaces.
+                    \end{proposition}
+                        \begin{proof}
+                            
+                        \end{proof}
+                
+            \subsubsection{Criteria for sheafiness}
         
         \subsection{Morphisms of adic spaces}
             \subsubsection{Morphisms of finite type and (quasi-)finite morphisms}
