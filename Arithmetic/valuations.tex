@@ -179,6 +179,10 @@
                 
         \subsection{Linearly topologised rings and modules}
             \subsubsection{Formal completions}
+                \begin{remark}
+                    For a derived version of the material below, one can use the notion of ideals of commutative monoids internal to general symmetric monoidal categories as in definition \ref{def: ideals_in_symmetric_monoidal_categories}.
+                \end{remark}
+            
                 \begin{definition}[Adic modules] \label{def: adic_modules}
                     Let $A$ be a commutative ring and let $\m$ be an ideal thereof, which henceforth shall be referred to as the \textbf{ideal of definition} of $A$.
                         \begin{enumerate}
@@ -202,6 +206,40 @@
                         \end{itemize}
                 \end{remark}
                 
+                \begin{remark}[Basic properties of formal completions] \label{remark: basic_properties_of_formal_completions}
+                    Fix a commutative ring $A$ and an ideal of definition $\m$. The following properties are entirely categorical, and for the most part come from the fact that filtered limits commute with other limits and finite colimits \textit{a priori}:
+                        \begin{itemize}
+                            \item Let $\{M_i\}_{i \in I}$ be a \textit{discrete} diagram of $A$-modules. Then, the process of taking its coproduct both commute with the process of formally $\m$-adically completing the factors $M_i$, i.e.:
+                                $$\coprod_{i \in I} M_i^{\wedge} \cong \left(\coprod_{i \in I} M_i\right)^{\wedge}$$
+                            Furthermore, if the index category $I$ is a finite set, then:
+                                $$\prod_{i \in I} M_i^{\wedge} \cong \left(\prod_{i \in I} M_i\right)^{\wedge}$$
+                            and in fact:
+                                $$\bigoplus_{i \in I} M_i^{\wedge} \cong \left(\bigoplus_{i \in I} M_i\right)^{\wedge}$$  
+                            \item Let $M \to N$ either be a monomorphism or epimorphism of $A$-modules. Its formal $\m$-adic completion will also either be a monomorphism or an epimorphism, respectively.
+                            \item The $\m$-adic formal completion of the zero module is still the zero module.
+                            \item If $\{M_i\}_{i \in I}$ is any diagram of $A$-modules, then:
+                                $$\underset{i \in I}{\colim} M_i^{\wedge} \cong \left(\underset{i \in I}{\colim} M_i\right)^{\wedge}$$
+                            \item By the tensor-hom adjunction and the fact that left-adjoints preserve colimits, one has:
+                                $$(M \tensor N)^{\wedge} \cong M^{\wedge} \tensor N^{\wedge}$$
+                            for all $A$-modules $M$ and $N$. This is actually a rather ubiquitous fact in the theory of adic modules, and hence has been graced with a special notation: $(M \tensor N)^{\wedge} \cong M \hat{\tensor} N$, the so-called \textbf{completed tensor product}.
+                            
+                            Furthermore, thanks to the fact that internal hom-functors preserve limits in their second entries and are contravariant in their first entries, one has:
+                                $$[M^{\wedge}, N^{\wedge}] \cong [M, N]^{\wedge}$$
+                            and again, for all $M, N \in {}_A\Mod$.
+                        \end{itemize}
+                \end{remark}
+                
+                \begin{proposition}[Formal completions along annihilating ideals] \label{prop: formal_completions_along_annihilating_ideals}
+                    Let $A$ be a commutative ring and let $\m$ be an $A$-ideal such that there exists a power $I^n$ that annhilates some $A$-module $Q$, and suppose that $Q$ fits into the following short exact sequence of $A$-modules:
+                        $$0 \to N \to M \to Q \to 0$$
+                    The formal $\m$-adic completion of this short exact sequence shall be the following short exact sequence:
+                        $$0 \to M^{\wedge} \to N^{\wedge} \to Q \to 0$$
+                \end{proposition}
+                    \begin{proof}
+                        This is entirely categorical.
+                    \end{proof}
+            
+            \subsubsection{Topologically complete adic modules}
                 Formally complete adic modules need not be legitimately complete, as eluded to above, but we can impose conditions upon the ideal of definition to guarantee topological completeness. In essence, one is applying the \textbf{Urysohn Metrisation Theorem}, which asserts that every second-countable regular Hausdorff space is (ultra-)metrisable; we will then construct an explicit metric on adic completions, with which we will be able to check the convergence of Cauchy sequences.
                 
                 Let us first recall the aforementioned topological notions:
@@ -256,8 +294,6 @@
                             \item \textbf{(The fundamental system of neighbourhoods):} It will suffice to show the assertion for $x = 0$.
                         \end{enumerate}
                     \end{proof}
-            
-            \subsubsection{Linear-topological modules}
         
     \section{Adic spaces}
         \subsection{The definition of adic spaces}
