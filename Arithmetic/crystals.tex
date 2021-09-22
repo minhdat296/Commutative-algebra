@@ -633,9 +633,48 @@
         \subsection{The Hard Lefschetz Condition for crystalline cohomology}
         
     \section{Arithmetic D-modules and rigid cohomology}
-        \subsection{Isocrystals and arithmetic D-modules}
-            \subsubsection{Isocrystals}
+        \subsection{Isocrystals, arithmetic D-modules, and rigid cohomology}
+            In chapters \ref{chapter: etale_cohomology_1} and \ref{chapter: etale_cohomology_2}, and specifically in section \ref{section: ell_adic_sheaves}, we have demonstrated how for $k$ a perfect field of some positive characteristic $p$, and for $\ell \not = p$ an auxiliary prime, $\ell$-adic \'etale cohomology is a Weil cohomology theory for (smooth and projective) varieties over $\Spec k$ (cf. definition \ref{def: weil_cohomology_theories}). Within said cohomology theory, the role of coefficients are played by so-called lisse $\ell$-adic sheaves (cf. definition \ref{def: lisse_sheaves}). To construct an analogue that works for the case where $\ell = p$, we will be replacing these lisse sheaves with the so-called \textbf{isocrystals}.
             
-            \subsubsection{Arithmetic D-modules}
+            \begin{convention}
+                Throughout, we will be working with a fixed smooth (and perhaps projective) variety over a perfect field $k$ of some positive characteristic $p$. Also, fix a formal lift $\calX$ of $X$ to over the Witt vectors $\W(k)$, and let $\calX^{\rig}$ be its adic generic fibre, i.e. the pullback along the canonical morphism $\eta: \Spa\W(k)[1/p] \to \Spf\W(k)$, taken inside the category of adic spaces; by a theorem of Raynaud, $\calX^{\rig}$ is a rigid space, hence the notation. Lastly, denote the absolute Frobenius on $X$ by $\Frob_X$ and fix a lift $\sigma_{\calX}: \calX \to \calX$ thereof; this lift of Frobenius can then be pulled back to the generic fibre $\calX^{\rig}$ to get a so-called rigid lift $\sigma_{\calX^{\rig}}$.
+            \end{convention}
+            
+            \subsubsection{Isocrystals and arithmetic D-modules}
+               \begin{definition}[Isocrystals] \label{def: isocrystals}
+                    An \textbf{isocrystal} on $\calX^{\rig}$ shall be a vector bundles $\E$ on $\calX^{\rig}$, which is:
+                        \begin{itemize}
+                            \item \textit{Frobenius-equivariant}, i.e. one has:
+                                $$\sigma_{\calX^{\rig}}* \E \cong \E$$
+                            and
+                            \item equipped with an \textit{integrable connection}, i.e. an $\calO_{X^{\rig}}$-module homomorphism:
+                                $$\nabla_{\E}: \E \tensor_{\calO_{X^{\rig}}} \calO_{X^{\rig}} \to \E \tensor_{\calO_{X^{\rig}}} \Omega^1_{X/k}$$
+                            defined by:
+                                $$\nabla_{\E}(x \tensor y) = x \tensor \nabla_{\E}(y) + x \tensor dy$$
+                            such that:
+                                $$\nabla_{\E} \circ \nabla_{\E} = 0$$
+                        \end{itemize}
+               \end{definition}
+               \begin{proposition}[Categories of isocrystals] \label{prop: categories_of_isocrystals}
+                    Isocrystals over $\calX^{\rig}$ form a full subcategory $\Isoc(\calX^{\rig})$ of the category $\Vect(\calX^{\rig})^{\nabla}_{\dR}$ of integrable connections on vector bundles on $\calX^{\rig}$.
+               \end{proposition}
+                \begin{proof}
+                    Let us first check that $\Isoc(X)$ is indeed a category. We propose that the morphisms inside $\Isoc(X)$ are nothing but commutative diagrams of $\calO_{X^{\rig}}$-modules of the following form:
+                        $$
+                            \begin{tikzcd}
+                            	{\E \tensor_{\calO_{X^{\rig}}} \calO_{X^{\rig}}} & {\E \tensor_{\calO_{X^{\rig}}} \Omega^1_{X/k}} \\
+                            	{\E' \tensor_{\calO_{X^{\rig}}} \calO_{X^{\rig}}} & {\E' \tensor_{\calO_{X^{\rig}}} \Omega^1_{X/k}}
+                            	\arrow["{f \tensor \id_{\Omega^1_{X/k}}}", from=1-2, to=2-2]
+                            	\arrow["{f \tensor \id_{\calO_{X^{\rig}}}}"', from=1-1, to=2-1]
+                            	\arrow["{\nabla_{\E'}}", from=2-1, to=2-2]
+                            	\arrow["{\nabla_{\E}}", from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                    which is to say, they are just morphisms of (integrable) connections; such morphisms compose in the obvious manner, and said composition is trivially associative and unital. In fact, this tells us that $\Isoc(X)$ ought to be a full subcategory of $\Vect(\calX^{\rig})^{\nabla}_{\dR}$. 
+                    
+                    The only thing left to check is whether or not these diagrams are \textit{a priori} Frobenius-equivariant. 
+                \end{proof}
+                
+            \subsubsection{Rigid cohomology}
         
-        \subsection{Rigid cohomology}
+        \subsection{Rigid D-modules}

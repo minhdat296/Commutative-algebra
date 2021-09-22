@@ -1,0 +1,171 @@
+\section{The Fargues-Fontaine Curve}
+        In this section, we will motivate and introduce the construction of the Fargues-Fontaine Curve. We will also touch on its applications, not just to $p$-adic Hodge theory, but also to the larger $p$-adic Local Langlands Correspondence (in the sense of Fargues-Scholze; cf. \cite{fargues_scholze_geometrization_of_local_langlands}).
+    
+        \subsection{Shtukas}
+            \subsubsection{Shtukas over equal-characteristic field}
+                \begin{definition}[The schematic affine Grassmannian] \label{def: schematic_grassmannian}
+                    Suppose that $G$ is an affine algebraic group over some arbitrary ground field $k$. Then, the \textbf{affine Grassmannian} attached to $G$, for which we shall write $\Gr_{G/k}$, will be the \'etale quotient stack $\left[G(\!(t)\!)/G[\![t]\!]\right]$: as a sheaf on $\Sch^{\aff}_{/\Spec k}$, it is given by:
+                        $$\Gr_{G/k}(\Spec R) \cong G(\bbD^{\circ}_R)/G(\bbD_R)$$
+                    where $\bbD_R$ is the \say{formal disc} $\Spec R[\![t]\!]$ and $\bbD^{\circ}_R$ is the \say{punctured disc} $\Spec R(\!(t)\!)$.
+                \end{definition}
+                \begin{remark}
+                    Via some cumbersome and formal mapping stack arguments, one can show that the schematic affine Grassmannian attached to a given affine algebraic group $G$ is nothing but the moduli stack of principal $G$-bundles over the punctured formal disc $\bbD_k^{\circ}$. 
+                \end{remark}
+                    
+                \begin{definition}[Schematic shtukas] \label{def: schematic_shtukas}
+                    Let $k$ be an arbitrary ground field and let $G$ be an affine algebraic group over $k$.
+                        \begin{enumerate}
+                            \item \textbf{(Shtukas with $1$ leg):} The \textbf{moduli stack of shtukas with $1$ leg} attached to $G$ is the prestack:
+                                $$\Sht^1_{G/k}: \left(\Sch^{\aff}_{/\Spec k} \x \Sch_{/\Spec k}\right)^{\op} \to \Grpd$$
+                            given by:
+                                $$\Sht^1_{G/k}(\Spec R, Y) \cong \Bun_G\left(\Spec R \x_{\Spec k} (Y \setminus \{y\}_{\Spec R})\right)$$
+                            where $\{y\}_{\Spec R}$ is the scheme-theoretic image of some $y \in Y(\Spec R)$ (incidentally, called the \textbf{leg} of the shtuka $\Sht^1_{G/k}(\Spec R, Y)$), and the corresponding complement is also scheme-theoretic as opposed to set-theoretic. 
+                            \item \textbf{(Shtukas with $n$ legs):} Now, by noticing that an $n$-tuple of maps $y_1, ..., y_n \in Y(\Spec R)$ is the same as a map $\vec{y} \in Y^n(\Spec R)$ (where $Y^n$ is the $n$-fold product $Y \x_{\Spec k} ... \x_{\Spec k} Y$), we can define \textbf{moduli stacks of shtukas with $n$ legs} for every fixed scheme $Y \in \Sch_{/\Spec k}$ to be given pointwise by:
+                                $$\Sht^n_{G/k}(\Spec R, Y) \cong \Bun_G\left(\Spec R \x_{\Spec k} (Y^n \setminus \{\vec{y}\}_{\Spec R})\right)$$
+                        \end{enumerate} 
+                    Note that should the base scheme $Y$ be fixed, our definition of moduli stacks of shtukas reduces down to the usual one.
+                \end{definition} 
+                
+                \begin{example}[Grassmannians are moduli stacks of shtukas on the punctured unit disc]
+                    Let $X$ be a curve that is smooth, proper, and geometrically connected algebraic curve.
+                    \begin{enumerate}
+                        \item Notice that we have:
+                            $$\Gr_{G/k}\cong \Sht^1_{G/k}(-, \bbD_k)$$
+                        thanks to the fact that:
+                            $$\bbD_R \setminus \{t\}_{\Spec R} \cong \bbD_R^{\circ}$$
+                        This is to say, over the unit disc $\bbD_k$, the moduli stack of shtukas with $1$ legs attached to a given affine algebraic group $G$ is nothing but the affine Grassmannian associated to the same group $G$. We can also denote the formal discs centered at $x$ by $\bbD_x \cong \Spec \calO_{X, x}$ and $\bbD_x^{\circ} \cong \Spec K_{X, x}$ (with $\calO_{X, x}$ the stalk of the structure sheaf of $X$ at a closed point $x \in |X|$, and $K_{X, x}$ its fraction field) and then realise that in some sense, there exists a \say{local} affine Grassmannian around $x \in |X|$, given by:
+                            $$\Gr_{G/k, (X, x)}^{\loc} \cong \Sht^1_{G/k}(-, \bbD_x)$$
+                        \item Interestingly, when $\chara k = p$ for some prime $p$, one can view the affine Grassmannian as the moduli stack of principal $G$-bundles over the unit disc. This is because then, $K_{X, x}$ \textit{a priori} would admit $k$ as a subfield and hence the \say{local} unit discs $\bbD_x$ and $\bbD_x^{\circ}$ will actually be schemes over $\Spec k$; one should keep the following commutative diagram in mind:
+                            $$
+                                \begin{tikzcd}
+                                	& {\bbD_x^{\circ}} \\
+                                	{\Spec k} & {\bbD_x}
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[dashed, from=2-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        The following isomorphism, coming from the very definition of shtukas, then makes sense:
+                            $$\Sht^1_{G/k}(-, \bbD_x) \cong \Bun_G\left(- \x_{\Spec k} \bbD_x^{\circ}\right)$$
+                        From this, one gets the following characterisation of the local affine Grassmannian at the closed point $x \in |X|$:
+                            $$\Gr_{G/k, (X, x)}^{\loc} \cong \Bun_G\left(- \x_{\Spec k} \bbD_x^{\circ}\right)$$
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{convention}
+                    From now on, when $k$ is understood, we shall write $\Sht^n_{G, X}$ instead of $\Sht^n_{G/k, X}$.
+                \end{convention}
+                
+                \begin{remark}[There is a Frobenius action] \label{remark: frobenii_on_shtukas}
+                    Let $X$ be a curve that is smooth, proper, and geometrically connected algebraic curve, and let $G$ be an affine algebraic group, both over some field $k$ of characteristic $p$.
+                    
+                    Each scheme $S$ over a field $k$ of positive characteristic comes equipped with a $p^{th}$ power Frobenius endomorphism $\Frob_{S/k}$. By functoriality, such an action would induce a Frobenius endomorphism on the moduli space of shtukas with $n$ legs attached $G$ over the pair $(S, X)$: specifically, one has:
+                        $$\Frob_{\Sht^n_{G, X}/k} = \Bun_G\left(\Frob_{S/k} \x_{\Spec k} (X \setminus \{\vec{x}\})\right)$$
+                    where $\vec{x} \in X^n(S)$ be some $n$-tuple of $S$-points of $X$. 
+                    
+                    Now what should we do with this information ? One can, for instance, tilt the argument, say $S$, of $\Sht^n_{G, X}$, in the sense of definition \ref{def: tilting_schemes}. Then evaluate to get $\Sht^1_{G, X}(S^{\flat})$, and since the essential image of the tilting functor on $\Sch_{/\Spec k}$ is the category of perfect scheme $\Sch^{\perf}_{/\Spec k^{\flat}}$. Thus, whenever $k$ is a perfect field (say, $\F_q$), one restrict the domain of $\Sht^n_{G, X}$ down onto $\Sch^{\perf}_{/\Spec k}$ instead of consider the functor on the entirety of $\Sch_{/\Spec k}$. Let us denote this restricted moduli stack of shtukas by $(\Sht^n_{G, X})^{\flat}$. This, however, begs the following question: what is the point ? The point, dear reader, is that for $K$ a perfectoid field, because $\Sch^{\perf}_{/\Spec K}$ embeds fully faithfully into the category of (small) v-sheaves on $\Perfd_{/\Spa K}$, which means that there ought to be some sort of extension of $(\Sht^n_{G, X})^{\flat}$ to the adic setting. 
+                \end{remark}
+            
+            \subsubsection{Mixed-characteristic shtukas}
+                Suppose that $X$ is a sufficiently nice scheme (for formal completion purposes, so it might be noetherian and so on). Additionally, fix a point $x \in |X|$ and denote the formal completion of $X$ at $x$ by $\hat{X}$. Then, via some mapping stack arguments (recall that $\Bun_G \cong [-, \bfB G]$) and through exchanging certain limits and colimits, one can show that:
+                    $$(\Sht^1_{G, X})^{\wedge} \cong \Sht^1_{\hat{G}, \hat{X}}$$
+                In fact, we can take this further, using the fact that pullbacks commute, to obtain:
+                    $$(\Sht^1_{\hat{G}, \hat{X}})^{\ad} \cong \Sht^1_{\hat{G}, \hat{X}^{\ad}}$$
+                (recall that adification is defined via pullbacks; cf. definition \ref{def: adification}). In doing this, however, we have unfortunately invoked a technical difficulty: now, the stack $\Bun_G$ is no longer a stack taking in schemes as test objects, but rather, adic spaces. 
+        
+        \subsection{The Fargues-Fontaine Curve}
+            The following description of the Fargues-Fontaine Curve, aside from detailing its applications to Local Class Field Theory, will also serve as a continuation of section \ref{section: perfectoid_spaces}, for The Curve can be viewed as the moduli space of untilts a given algebraically closed perfectoid field of positive characteristic. Specifically, what we want to know are perfectoid fields $E$ of mixed characteristics $(0, p)$ such that $E^{\flat} \cong F$ for some prescribed perfectoid field $F$ of characteristic $p$. Also, let us note that this is in no way an ill-posed question, as for instance, we know that the tilts of both $\Q_p(p^{\frac{1}{p^{\infty}}})^{\wedge}$ and $\Q_p(\mu_{p^{\infty}})^{\wedge}$ are isomorphic to $\F_p(\!(t^{\frac{1}{p^{\infty}}})\!)$. The Fargues-Fontaine Curve, which we shall denote by $X_{\FF}$, should thus be some sheaf of sets on $\Perfd_{/\Spec \F_p}$ whose fibres over adic spectra of algebraic closures of adic residue fields (understood as \textit{geometric points}) shall be sets of untilts of that very algebraically closed field.
+            
+            We would like our to-be adic Fargues-Fontaine Curve to be a curve over a base field that is:
+                \begin{itemize}
+                    \item projective, so it would have a chance of admitting a GAGA-esque functor,
+                    \item smooth, so that its topology would behave nicely (read: so that we would be able to apply \'etale cohomology) and so important cases such as elliptic curves would be covered, 
+                    \item proper (or according to certain authors such as D. Gaitsgory, \say{complete}, although we will avoid this terminology since we would frequently be thinking of topologically complete objects), so the Proper Base Change Theorem from the theory of \'etale cohomology would apply 
+                \end{itemize}
+            and most importantly, such that it would have a very straight forward connection to the Weil group of a $p$-adic number field because then, certain local systems on The Curve would correspond with the Weil-Deligne representations of the aforementioned Weil group, which is something that we would want for the establishment of the Galois/spectral side of the Local Langlands Correspondence. Also, due to this last point, one should imagine the Fargues-Fontaine Curve as a sort of $p$-adic Riemann surface; in fact, we will see (eventually) that it does behave similarly to Riemann surfaces in many ways, particularly via its connection to $p$-adic Shimura varieties.
+            
+            \begin{convention}[Relative Witt vectors] \label{conv: relative_witt_vectors}
+                Let $p$ be a prime number. If $E/\Q_p$ is a finite $p$-adic number field with residue field $\F_q$ (for $q$ some power of $p$) and if $F$ is a perfectoid field of characteristic $p$ (which is \textit{a priori} perfect and therefore can contain $\F_q$; consider fields such as $\F_q(\!(t^{\frac{1}{p^{\infty}}})\!)$ or $\widehat{\overline{\F_q(\!(t)\!)}}$ for example), then let us write:
+                    $$\W_{E^{\circ}}(F) \cong \W(F) \tensor_{\W(\F_q)} E^{\circ}$$
+                for the base change along $E^{\circ} \to $ of the ring $\W(F)$ of (unramified) $p$-typical Witt vectors with coefficients in $F$ along the canonically induced arrow $\W(\F_q) \to E^{\circ}$. For instance, when $q = p$ we have:
+                    $$\W_{E^{\circ}}(\F_p(\!(t^{\frac{1}{p^{\infty}}})\!)) \cong \Z_p[p^{\frac{1}{p^{\infty}}}] \tensor_{\Z_p} \Z_p \cong \Z_p[p^{\frac{1}{p^{\infty}}}]$$
+                Slightly more generally, one can speak of a relative $p$-typical Witt vector functor from the category of perfect commutative $\F_q$-algebras to the category ${}^{E^{\circ}/}\Comm\Alg^{\wedge}$ of $p$-adically complete $E^{\circ}$-algebras:
+                    $$\W_{E^{\circ}}: {}^{\F_q/}\Comm\Alg^{\perf} \to {}^{E^{\circ}/}\Comm\Alg^{\wedge}$$
+                which in particular, gives us the following canonical arrow:
+                    $$\W_{E^{\circ}}(F^{\circ}) \to \W_{E^{\circ}}(F)$$
+            \end{convention}
+            
+            \begin{remark}[Witt vectors over perfect rings] \label{remark: witt_vectors_over_perfect_rings}
+                \noindent
+                \begin{enumerate}
+                    \item One somewhat non-trivial fact to keep in mind is that if $B$ is a \textit{perfect} $\F_q$-domain (for some power $q$ of a prime $p$) with field of fractions $K$, then we have the following natural characterisation of the ring of $p$-typical Witt vectors over $K$ (which we note to be trivially perfect as an $\F_q$-algebra):
+                    $$(\W(B)_{(p)})^{\wedge} \cong \W(K)$$
+                    In particular, $\W(B)_{(p)}$ is an unramified extension of $\W(\F_q)$. We refer the reader to \cite[Proposition 5.2]{shimomoto2014witt} for a proof.
+                    \item This result extends trivially to the relative setting, as relative Witt vectors are defined via a pushout (cf. convention \ref{conv: relative_witt_vectors}), which is in particular a finite limit, and since adic completions are filtered limits, the two procedures can be exchanged, which gives:
+                        $$(\W_{E^{\circ}}(B)_{(p)})^{\wedge} \cong \W_{E^{\circ}}(K)$$
+                    where now, $E$ is a finite $p$-adic number field with residue field $\F_q$ (note that its pseudo-uniformiser is actually just $p$, like $\Q_p$).
+                    \item Another notable property of rings (relative) Witt vectors is that if $B$ is a perfect $\F_q$-algebra (not necessarily a domain), then $\W_{E^{\circ}}(B)$ is $p$-torsion-free, and:
+                        $$\W_{E^{\circ}}(B)/p \cong B$$
+                \end{enumerate}
+            \end{remark}
+            \begin{example}
+                One might think of the following example:
+                    $$(\W_{E^{\circ}}(\F_q)_{(p)})^{\wedge} \cong \W_{E^{\circ}}(\F_q) \cong E^{\circ}$$
+                (note that $E^{\circ}$ is \textit{a priori} complete), or the following slightly subtler one:
+                    $$( \W_{E^{\circ}}( \F_q[\![t^{\frac{1}{p^{\infty}}}]\!] )_{(p)} )^{\wedge} \cong E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong \W_{E^{\circ}}( \F_q(\!(t^{\frac{1}{p^{\infty}}})\!) ) \cong E(p^{\frac{1}{p^{\infty}}})^{\wedge, \circ}$$
+                (indeed, $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong E^{\circ}[\![t]\!]/(t^{p^{\infty}} - p)$ and so $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge}/p \cong \F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$). In both cases, note that $\F_q$ and $\F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$ are both perfect domains (the latter being the $p$-tilt of $\F_q[\![t]\!]$).
+            \end{example}
+            \begin{convention}[Fontaine's infinitesimal period ring] \label{conv: A_inf}
+                If $R$ is a perfectoid ring of characteristic $p$, if $\varphi \in R^{\circ \circ}$ is some pseudo-uniformiser of $R$, and if $R^{\circ}/\varpi$ is some $\F_q$-algebra for $q$ some power of $p$, then let us denote the aboslute Witt vector functor $\W \cong \W_{\Z_p}$ by $\A_{\inf}$. The ring $\A_{\inf}(R)$ is typically known as the \textbf{Fontaine infinitesitmal period ring} associated to $R$, although for reasons that we will not get into here; \textit{The} Fontaine infinitestimal period ring is usually understood to be that associated to $\bbC_p$, the completion of the algebraic closure of $\Q_p$.
+            \end{convention}
+            
+            We refer the reader to convention \ref{conv: prestacks} for the notion of (pre)stacks.
+            \subsubsection{The Curve as a moduli space of untilts}
+                \begin{definition}[Prediamonds] \label{def: prediamonds}
+                    Let $X$ be a perfectoid space of positive characteristic. The category $\Pre\Dia_{/X}$ of \textbf{prediamonds} over $X$ is thus nothing but the presheaf topos on $\Perfd_{/X}$.
+                \end{definition}
+                
+                For now we shall refer to the to-be the Fargues-Fontaine Curve as the \say{Fargues-Fontaine Space}, as there is not yet a good reason to legitimately call it a \say{curve}.
+                \begin{definition}[The Frobenius Space] \label{def: the_frobenius_space}
+                    
+                \end{definition}
+                
+                \begin{definition}[The Fargues-Fontaine Space] \label{def: the_fargues_fontaine_space}
+                    
+                \end{definition}
+                \begin{remark}[Tilting the Fargues-Fontaine Space] \label{remark: tilting_the_fargues_fontaine_space}
+                    
+                \end{remark}
+                
+                \begin{theorem}[The Fargue-Fontaine Space as the moduli curve of untilts] \label{theorem: fargues_fontaine_space_as_moduli_space_of_untilts}
+                    
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{theorem}[The Fargue-Fontaine Space as a punctured disc] \label{theorem: fargues_fontaine_space_as_punctured_disc}
+                    
+                \end{theorem}
+                
+                \begin{lemma}[The Covering Space is a diamond] \label{the_covering_space_is_a_diamond}
+                    
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{theorem}[The Fargues-Fontainte Space is perfectoid] \label{theorem: the_fargues_fontaine_space_is_perfectoid}
+                    
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Discontinuity of Frobenius] \label{coro: discontinuity_of_frobenius}
+                    
+                \end{corollary}
+                
+            \subsubsection{The Curve as a \texorpdfstring{$p$}{}-adic Riemann surface}
+            
+            \subsubsection{A GAGA theorem}
+            
+            \subsubsection{Vector bundles on The Curve}

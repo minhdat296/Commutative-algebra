@@ -1567,7 +1567,7 @@
                         $$\calX(X) \cong \calX\left(\underset{U \in \U_{/X}}{\colim} h_U\right)$$
                     Stacks on $(\C, J)$ form a full weak $2$-subcategory of the weak $2$-category $\Pre\Stk(\C)$ of prestacks on $\C$, which shall be denoted by $\Stk(\C, J)$. Furthermore, stacks of groupoids (i.e. categories fibred in groupoids that satisfy descent) on small sites $(\C, J)$ form a \href{https://ncatlab.org/nlab/show/(n,1)-topos}{\underline{$(2, 1)$-topos}} which is written $\Sh_{(2,1)}(\C, J)$; occasionally, we might refer to these as sheaves of groupoids; naturally, $\Sh_{(2,1)}(\C, J)$ comes equipped with a \href{https://ncatlab.org/nlab/show/adjoint+\%28infinity\%2C1\%29-functor}{\underline{$(2, 1)$-geometric embedding}} into the weak $2$-category $\Psh_{(2, 1)}(\C)$ of prestacks of groupoids on $\C$.
                 \end{enumerate}
-                We refer the reader to \cite{vistoli_descent} for an exposition to prestacks and stacks (in the above senses) that can hardly improved upon. \cite{riehl_loregian_fibration} may also be used as a supplementary reference for the topics of \href{https://ncatlab.org/nlab/show/Grothendieck+fibration#definition}{\underline{fibration}} and \href{https://ncatlab.org/nlab/show/Grothendieck+construction}{\underline{the Grothendieck construction}}.
+                We refer the reader to \cite{vistoli_descent} for an exposition to prestacks and stacks (in the above senses) that can hardly improved upon. \cite{riehl_loregian_fibration} may also be used as a supplementary reference for the topics of \href{https://ncatlab.org/nlab/show/Grothendieck+fibration#definition}{\underline{fibration}} and \href{https://ncatlab.org/nlab/show/Grothendieck+construction}{\underline{the Grothendieck construction}}. Finally, we have our own appendix on fibred categories; cf. section \ref{section: moduli_problems}.
                 \item \textbf{(The internal point of view):} From the internal point of view (which in the opinion of the author, is a lot more intuitive; this is, however, purely personal), (pre)stacks (respectively $(2, 1)$-(pre)sheaves) are nothing but internal categories (respectively internal groupoids) inside (pre)sheaf topoi.
             
                 Readers may also have heard of mysterious entities known as \textbf{gerbes}. There are many definitions floating around, but again, let us fix one meaning for the term. To us, a gerbe on a site $(\C, J)$ will always be group internal to $\Stk(\C, J)$ (i.e. a sheaf of strict $2$-groups \cite{nlab:strict_2-group}, or in other words, an internal groupoid in $\Sh_{\Sets}(\C, J)$ whose object of objects is the terminal object of $\Sh_{\Sets}(\C, J)$). Additionally, should there be no non-trivial automorphisms, the notion of gerbes shall reduce to that of principal bundles. We refer the reader to the discussions in \href{https://mathoverflow.net/questions/263832/phenomena-of-gerbes}{\underline{this MathOverflow thread}} for examples of gerbes. 
@@ -1970,6 +1970,28 @@
                         \end{enumerate}
                     \end{example}
                     
+                \paragraph{Gerbes and principal bundles} \label{paragraph: principal_bundles}
+                    We have already eluded to the notion of gerbes, along with the special case of principal bundles, in convention \ref{conv: prestacks}. To recall: a \textbf{gerbe} is a group object internal to any (small) $2$-topos of stacks, or in other words, it is a $2$-group internal to a (small) $1$-sheaf topos. We then stated that by killing all non-trivial automorphisms, one obtains the notion of so-called \textbf{principal bundles}. Let us now explore this line of thought in more details.
+                    
+                    The strategy is as follows: since $2$-groups - as groupoids internal to the category of internal groups inside a given (small) $1$-topos - are rather difficult to picture, we shall commence with a definition different from the one given above. Then, we shall attempt to prove that the two definitions are in fact equivalent.
+                    
+                    Here is said new definition:
+                    \begin{definition}[Gerbes and principal bundles] \label{def: gerbes_and_principal bundles}
+                        Let $\E$ be a $(2, 1)$-topos and let $\calG$ be a group object therein. 
+                            \begin{enumerate}
+                                \item \textbf{(Gerbes):} The internal hom-functor $[-, \scrG]$ shall thus be the one assigning to objects $X \in \E$ (thought of as \say{spaces}) a so-called object of \textbf{$\scrG$-gerbes over $X$}, which we shall denote by $\Bun_{\scrG}(X)$. 
+                                \item \textbf{(Principal bundles):} If $\scrG$ is furthermore a $1$-group, i.e. the associated loop space $\loopspace(\scrG)$ is a group in the usual sense, then $\Bun_{\scrG}$ shall be known as the object of \textbf{(principal) $\scrG$-bundles over $X$}.
+                                
+                                Actually, for $G$ a $1$-group, one would define $\Bun_G$ as $[-, \bfB G]$ (for this, note that $\loopspace(\bfB G) \cong G$).
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{convention}[Moduli stacks of gerbes]
+                        In the event that the ambient $(2, 1)$-topos $\E$ is a $(2, 1)$-sheaf topos over a base ($1$-)site $(\C, J)$, then for all objects $U \in (\C, J)$, the space $\Bun_{\calG}(U)$ is usually known as the \textbf{moduli stack of $\calG$-gerbes/bundles} over $U$. 
+                    \end{convention}
+                    
+                    Definition \ref{def: gerbes_and_principal bundles} is a very convenient definition, but unfortunately, it makes little geometric sense. 
+                 
+             \subsubsection{Geometric stacks}   
                 \paragraph{Quotient stacks}
                     \begin{definition}[Quotient stacks] \label{def: quotient_stacks} \index{Stacks! quotient}
                         Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
