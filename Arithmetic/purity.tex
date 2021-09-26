@@ -730,10 +730,10 @@
                                 \begin{enumerate}
                                     \item A morphism of affinoid adic spaces:
                                         $$\Spa(S, S^+) \to \Spa(R, R^+)$$
-                                    is called \textbf{pro-\'etale} if and only if it exists within $\Ad^{\affd}$ as the limit of a $\kappa$-small filtered diagram $\{\Spa(S_i, S_i^+) \to \Spa(R, R^+)\}_{i \in I}$ of \'etale maps (cf. definition \ref{def: etale_morphisms_of_adic_spaces}). 
+                                    is called \textbf{pro-\'etale} if and only if it exists within $\Ad\Spc^{\affd}$ as the limit of a $\kappa$-small filtered diagram $\{\Spa(S_i, S_i^+) \to \Spa(R, R^+)\}_{i \in I}$ of \'etale maps (cf. definition \ref{def: etale_morphisms_of_adic_spaces}). 
                                     \item A morphism of adic spaces is is \textbf{pro-\'etale} if and only if it is affinoid (i.e. the preimage of any affinoid is again an affinoid) and locally pro-\'etale.
                                 \end{enumerate}
-                            \item \textbf{(Pro-\'etale sites of adic spaces):} Let $X$ be an adic space and consider the category $\Ad^{\affd, < \kappa}_{/X}$ be the maximal $\kappa$-small subcategory of $\Ad_{/X}$ of adic spaces over $X$.
+                            \item \textbf{(Pro-\'etale sites of adic spaces):} Let $X$ be an adic space and consider the category $\Ad\Spc^{\affd, < \kappa}_{/X}$ be the maximal $\kappa$-small subcategory of $\Ad\Spc_{/X}$ of adic spaces over $X$.
                         \end{enumerate}
                 \end{definition}
                 \begin{remark}[Adic spectra of ind-\'etale pairs]
@@ -750,14 +750,14 @@
                             \begin{tikzcd}
                             	{\Perfd_{/\Spa(K, K^{\circ})}} & {\Sch^{\perfd}_{/\Spec K}}
                             	\arrow[""{name=0, anchor=center, inner sep=0}, "(-)^{\sch}"', shift right=2, from=1-1, to=1-2]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{(-)^{\ad}}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{(-)^{\Ad\Spc}}"', shift right=2, from=1-2, to=1-1]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                             \end{tikzcd}
                         $$
                     wherein one has:
                         $$(\Spa(R, R^+))^{\sch} \cong \Spec R$$
-                        $$(\Spec R)^{\ad} \cong \Spa(R, R^{\circ})$$
-                    Furthermore, the free construction $(-)^{\ad}$ is fully faithful.
+                        $$(\Spec R)^{\Ad\Spc} \cong \Spa(R, R^{\circ})$$
+                    Furthermore, the free construction $(-)^{\Ad\Spc}$ is fully faithful.
                 \end{claim}
                     \begin{proof}
                         One can simply apply the Special Adjoint Functor Theorem directly.        

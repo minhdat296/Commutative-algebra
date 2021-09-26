@@ -13,7 +13,7 @@
         \end{enumerate}
     \end{convention}
     
-    \section{\texorpdfstring{$\ell$}{}-adic sheaves and Galois representations} \label{section: ell_adic_sheaves}
+    \section{\texorpdfstring{$\ell$}{}-adic sheaves and Galois representations} \label{section: l_adic_sheaves}
         \subsection{Grothendieck's Galois Theory} \label{subsection: grothendieck_galois_theory}
             Let us first review a bit of Grothendieck's (finite) Galois theory, mostly for the part of having definitions conveniently nearby for quick references and comparison with an infinite geometric Galois theory that we shall present after this interlude.
             
@@ -98,15 +98,15 @@
     
         \subsection{The \texorpdfstring{$\ell$}{}-adic Monodromy Correspondence}
             Let us start with the notion of $\ell$-adic representations. 
-            \begin{definition}[$\ell$-adic representations] \label{def: ell_adic_representations}
+            \begin{definition}[$\ell$-adic representations] \label{def: l_adic_representations}
                 Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$. An \textbf{$\ell$-adic representation of $\Gal(L/K)$} is thus a finite-dimensional \textit{continuous} $F$-linear representation of $\Gal(L/K)$, i.e. a continuous group homomorphism:
                     $$\rho: \Gal(L/K) \to \GL_n(F)$$
                 for some natural number $n$. $\ell$-adic representations of \textit{absolute} Galois groups are known as \textbf{$\ell$-adic Galois representations}, or just Galois representations for short.
             \end{definition}
             \begin{remark}[It's actually a bit simpler than we've been led to believe]
-                Definition \ref{def: ell_adic_representations} can seem a bit complicated, but what it actually does is just giving names to certain continuous finite-dimensional $F$-linear representations of certain topological groups (recall how Galois groups naturally carry the profinite topology which reduces to the discrete topology in finite cases). The category of $\ell$-adic representations of a given Galois group is thus nothing special, from a categorical point of view, and a lot of the basic properties of $\ell$-adic representations are actually just abstract-nonsensical. 
+                Definition \ref{def: l_adic_representations} can seem a bit complicated, but what it actually does is just giving names to certain continuous finite-dimensional $F$-linear representations of certain topological groups (recall how Galois groups naturally carry the profinite topology which reduces to the discrete topology in finite cases). The category of $\ell$-adic representations of a given Galois group is thus nothing special, from a categorical point of view, and a lot of the basic properties of $\ell$-adic representations are actually just abstract-nonsensical. 
             \end{remark}
-            \begin{example}
+            \begin{example} \label{example: l_adic_representations}
                 Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$.
                 \begin{enumerate}
                     \item \textbf{($\ell$-adic representations that are not Galois):} 
@@ -130,8 +130,12 @@
                                         $$X[\ell^n] \cong (\G_m)_{/\Spec K}[\ell^n] \cong \Z/\ell^n\Z$$
                                     for all $n$, which would imply that:
                                         $$T_{\ell}( (\G_m)_{/\Spec K} ) \cong \Z_{\ell}$$
-                                    \item When $X$ is an elliptic curve (i.e. an abelian variety of dimension $1$), we can apply \cite[Corollary 6.4]{silverman_elliptic_curves} to get:
+                                    \item When $X$ is an elliptic curve (i.e. an abelian variety of dimension $1$; cf. definitions \ref{def: moduli_of_elliptic_curves} and \ref{def: abelian_varieties}), we can apply \cite[Corollary 6.4]{silverman_elliptic_curves} to get:
                                         $$\T_{\ell}(X) \cong \Z_{\ell} \oplus \Z_{\ell}$$
+                                    
+                                    More generally, one can make use of some \'etale homotopy theory to show that for all integers $N$ coprime with $p$, there exists the following decomposition of the $N$-torsion subgroup of $X(K)$:
+                                        $$X[N] \cong \Z/N\Z \oplus \Z/N\Z$$
+                                    First of all, it will have to be shown that every elliptic curve admits a finite \'etale covering which is also an elliptic curve. 
                                 \end{enumerate}
                         \end{itemize}
                 \end{enumerate}
@@ -147,7 +151,7 @@
                 \end{enumerate}
             \end{definition}
         
-            \begin{theorem}[The $\ell$-adic Monodromy Correspondence] \label{theorem: ell_adic_monodromy_correspondence}
+            \begin{theorem}[The $\ell$-adic Monodromy Correspondence] \label{theorem: l_adic_monodromy_correspondence}
                 Let $\ell$ be a prime, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). Also, let $X$ be a \textit{connected} base scheme. There is then the following equivalence of rigid symmetric monoidal categories:
                     $${}_F\LocSys(X_{\proet})^{\fin} \cong \Rep_F^{\cont}(\pi_1^{\fet}(X))$$
             \end{theorem}
@@ -163,7 +167,7 @@
                             
                 For this, let us first use \cite[\href{https://stacks.math.columbia.edu/tag/0BUM}{Tag 0BUM}]{stacks} along with the assumption that $X$ is a scheme over a separably closed field, we get that:
                     $$\pi^{\fet}(X) \cong \bfG_k$$
-                Then, note that the chain complex $H^*_{\Q_{\ell}}(X)$ is actually the same as the \textit{finite-dimensional} chain complex of pro-\'etale cohomologies $H^*_{\proet}(X, \Q_{\ell})$. An appliction of theorem \ref{theorem: ell_adic_monodromy_correspondence} then gives us the desired Galois action on the cohomologies $H^i_{\Q_{\ell}}(X)$.
+                Then, note that the chain complex $H^*_{\Q_{\ell}}(X)$ is actually the same as the \textit{finite-dimensional} chain complex of pro-\'etale cohomologies $H^*_{\proet}(X, \Q_{\ell})$. An appliction of theorem \ref{theorem: l_adic_monodromy_correspondence} then gives us the desired Galois action on the cohomologies $H^i_{\Q_{\ell}}(X)$.
             \end{example}
             
         \subsection{\texorpdfstring{$\ell$}{}-adic representations of finite fields}

@@ -457,7 +457,7 @@
                 \end{example}
                 
                 \begin{proposition}[The frame of radical ideals] \label{prop: radical_frame}
-                    Let $R$ be a commutative ring. Then, the radical ideals of $R$ (note that prime ideals are radical; see proposition \ref{prop: radical_properties}) can be realised as objects of a frame, which we shall denote by $\T_{\Zar}^{\rad}(R)$ and dub the radical Zariski frame on $R$.
+                    Let $R$ be a commutative ring. Then, the radical ideals of $R$ (note that prime ideals are radical; see proposition \ref{prop: radical_properties}) can be realised as objects of a frame, which we shall denote by $\Ouv_{\Zar}^{\rad}(R)$ and dub the radical Zariski frame on $R$.
                 \end{proposition}
                     \begin{proof}
                         
@@ -972,12 +972,12 @@
                     This shows that affine schemes are, in fact, \textit{locally} ringed spaces and not just ringed spaces. 
                 \end{corollary} 
                     \begin{proof}
-                        Recall that the stalk $\calF_x$ of a sheaf (of sets) $\calF$ on a topological space $(X, \T(X))$ is given by the filtered colimit indexed by the poset of open neighbourhoods of the chosen point $x \in X$:
-                            $$\calF_x \cong \underset{U \in \{V \in \T(X) \mid V \ni x\}}{\colim} \calF(U)$$
+                        Recall that the stalk $\calF_x$ of a sheaf (of sets) $\calF$ on a topological space $(X, \Ouv(X))$ is given by the filtered colimit indexed by the poset of open neighbourhoods of the chosen point $x \in X$:
+                            $$\calF_x \cong \underset{U \in \{V \in \Ouv(X) \mid V \ni x\}}{\colim} \calF(U)$$
                         By adapting this definition to the underlying Zariski-topological spaces of affine schemes, we get that:
-                            $$\calO_{\Spec R, \p} \cong \underset{U \in \{V \in \T_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}(U)$$
-                        with $\T_{\Zar}^{\open}(\Spec R)$ the Zariski topology defined via open sets as in definition \ref{def: zariski_open}. In corollary \ref{coro: zariski_basis}, we have already seen how the distinguished Zariski-open sets defined in definition \ref{def: zariski_open} form a basis for the Zariski topology on commutative ring spectra, and so the above filtered colimit can be rewritten as:
-                            $$\calO_{\Spec R, \p} \cong \underset{D_R(f) \in \{V \in \T_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\right)$$
+                            $$\calO_{\Spec R, \p} \cong \underset{U \in \{V \in \Ouv_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}(U)$$
+                        with $\Ouv_{\Zar}^{\open}(\Spec R)$ the Zariski topology defined via open sets as in definition \ref{def: zariski_open}. In corollary \ref{coro: zariski_basis}, we have already seen how the distinguished Zariski-open sets defined in definition \ref{def: zariski_open} form a basis for the Zariski topology on commutative ring spectra, and so the above filtered colimit can be rewritten as:
+                            $$\calO_{\Spec R, \p} \cong \underset{D_R(f) \in \{V \in \Ouv_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\right)$$
                         and because $D_R(f) = \{\p \in \Spec R \mid \p \not \ni f\}$, one subsequently gets:
                             $$\calO_{\Spec R, \p} \cong \underset{f \in \{g \in R \mid g \not \in \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\}\right)$$
                         Lastly we have the following isomorphism:
@@ -1076,9 +1076,9 @@
                 \begin{definition}[Ringed spaces] \label{def: ringed_spaces}
                     \noindent
                     \begin{enumerate}
-                        \item \textbf{(Ringed spaces):} Let $X$ be a topological space with topology $\T(X)$ and let $\calO_X$ be a \textit{fixed} sheaf of rings on the site $\T(X)^{\op}$ of open subsets of $X$. Then, the pair $(X, \calO_X)$ is known as a \textbf{ringed space}, with $\calO_X$ known as the \textbf{structure sheaf}.
+                        \item \textbf{(Ringed spaces):} Let $X$ be a topological space with topology $\Ouv(X)$ and let $\calO_X$ be a \textit{fixed} sheaf of rings on the site $\Ouv(X)^{\op}$ of open subsets of $X$. Then, the pair $(X, \calO_X)$ is known as a \textbf{ringed space}, with $\calO_X$ known as the \textbf{structure sheaf}.
                         \item \textbf{(Locally ringed spaces):} If in addition, the stalks $\calO_{X, x}$ at points $x \in X$, given by the following filtered colimit over open neighbourhoods $U$ of $x$:
-                            $$\calO_{X, x} := \underset{U \in \{V \in \T(X) \mid V \ni x\}}{\colim} \calO_X(U)$$
+                            $$\calO_{X, x} := \underset{U \in \{V \in \Ouv(X) \mid V \ni x\}}{\colim} \calO_X(U)$$
                         are local rings, then $(X, \calO_X)$ will be known as a \textbf{locally ringed space}.
                     \end{enumerate}
                 \end{definition}
@@ -1196,7 +1196,7 @@
                 \begin{remark}[Global sections of ringed spaces]
                     Because each ringed space is uniquely determined by its structure sheaf, it makes sense to consider \say{global sections} of ringed spaces as though we were doing so for just structure sheaves thereof. Notationally, it is common to write:
                         $$\Gamma(X, \calO_X) := \Gamma(\calO_X)$$
-                    for each ringed space $(X, \calO_X)$; whenever this happens, do keep in mind that the domain of $\Gamma$ is not $\Spc^{\ringed, \loc} \x \Sh_{\Cring^{\op}}(\T(X))$ (with $\T(X)$ the topology on $X$), but simply $\Sh_{\Cring^{\op}}(\T(X))$.   
+                    for each ringed space $(X, \calO_X)$; whenever this happens, do keep in mind that the domain of $\Gamma$ is not $\Spc^{\ringed, \loc} \x \Sh_{\Cring^{\op}}(\Ouv(X))$ (with $\Ouv(X)$ the topology on $X$), but simply $\Sh_{\Cring^{\op}}(\Ouv(X))$.   
                 \end{remark}
                     
                 The following, while written out as a lemma, is actually a particularly technical section of the proof that has been isolated for the sake of clarity:
@@ -1208,23 +1208,23 @@
                     \begin{proof}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{(Continuous map between underlying topological spaces):} Let $\T(X)$ denote the given topology on $X$ and let $\T^{\discrete}(X)$ denote the discrete topology. First of all, note that any function:
+                            \item \textbf{(Continuous map between underlying topological spaces):} Let $\Ouv(X)$ denote the given topology on $X$ and let $\T^{\discrete}(X)$ denote the discrete topology. First of all, note that any function:
                                 $$(X, \T^{\discrete}(X)) \to |\Spec \Gamma(\calO_X)|$$
                             must be continuous, as the preimage of any Zariski-open subset of $|\Spec \Gamma(\calO_X)|$, by virtue of being a subset of $X$, must be open according to the definition of the discrete topology. Thus, it shall suffice to show that there exists a continuous function:
-                                $$(X, \T(X)) \to (X, \T^{\discrete}(X))$$
+                                $$(X, \Ouv(X)) \to (X, \T^{\discrete}(X))$$
                             as a continuous function:
-                                $$\eta_X: (X, \T(X)) \to |\Spec \Gamma(\calO_X)|$$
+                                $$\eta_X: (X, \Ouv(X)) \to |\Spec \Gamma(\calO_X)|$$
                             would then exist as the dashed arrow in the following commutative diagram in $\Top$:
                                 $$
                                     \begin{tikzcd}
-                                    	{(X, \T(X))} && {|\Spec \Gamma(\calO_X)|} \\
+                                    	{(X, \Ouv(X))} && {|\Spec \Gamma(\calO_X)|} \\
                                     	& {(X, \T^{\discrete}(X))}
                                     	\arrow[from=1-1, to=2-2]
                                     	\arrow[from=2-2, to=1-3]
                                     	\arrow["\eta_X", dashed, from=1-1, to=1-3]
                                     \end{tikzcd}
                                 $$
-                            However, note that there is nothing preventing us from simply letting the function $(X, \T(X)) \to (X, \T^{\discrete}(X))$ be the one that is the identity on the underlying sets, which is trivially continuous: in fact, the desired continuous function $(X, \T(X)) \to (X, \T^{\discrete}(X))$ is nothing but the evaluation of the unit of the following forgetful-free adjunction at the object $(X, \T(X))$ of $\Top$:
+                            However, note that there is nothing preventing us from simply letting the function $(X, \Ouv(X)) \to (X, \T^{\discrete}(X))$ be the one that is the identity on the underlying sets, which is trivially continuous: in fact, the desired continuous function $(X, \Ouv(X)) \to (X, \T^{\discrete}(X))$ is nothing but the evaluation of the unit of the following forgetful-free adjunction at the object $(X, \Ouv(X))$ of $\Top$:
                                 $$
                                     \begin{tikzcd}
                                     	\Top & \Sets
@@ -2479,8 +2479,8 @@
                     \begin{example}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{(Topological closure in spaces):} Let $(X, \T(X))$ be a topological space and let us recall two facts: one being that the topology $\T(X)$ is a frame, meaning in particular that it is a category, and hence a closure operator can be defined thereon, and the second being that topologies are algebras over power sets. Now, one can just declare that \textit{any} idempotent monad on $\T(X)$, but unfortunately, such a simple notion is not able to capture all the we expect form the closure (in the classical sense) of a subset of a given topological space (this is not to say that topological closure in the classical sense does not display idempotence: the closure of a closed set is trivially closed). For instance, we would like the closure of a \textit{finite} union of family of subsets to be the same finite union of their closures, meaning that we would like our topological closure operator to commute with \textit{finite} joins on the frames of opens. As it turns out, this sole extra requirement is enough to characterise topological closures, and therefore, let us simply declare a \textbf{topological closure operator} on a given frame of open subsets $\T(X)$ of a topological space $(X, \T(X))$ to be an idempotent monad:
-                                $$\overline{(-)}: \T(X) \to \T(X)$$
+                            \item \textbf{(Topological closure in spaces):} Let $(X, \Ouv(X))$ be a topological space and let us recall two facts: one being that the topology $\Ouv(X)$ is a frame, meaning in particular that it is a category, and hence a closure operator can be defined thereon, and the second being that topologies are algebras over power sets. Now, one can just declare that \textit{any} idempotent monad on $\Ouv(X)$, but unfortunately, such a simple notion is not able to capture all the we expect form the closure (in the classical sense) of a subset of a given topological space (this is not to say that topological closure in the classical sense does not display idempotence: the closure of a closed set is trivially closed). For instance, we would like the closure of a \textit{finite} union of family of subsets to be the same finite union of their closures, meaning that we would like our topological closure operator to commute with \textit{finite} joins on the frames of opens. As it turns out, this sole extra requirement is enough to characterise topological closures, and therefore, let us simply declare a \textbf{topological closure operator} on a given frame of open subsets $\Ouv(X)$ of a topological space $(X, \Ouv(X))$ to be an idempotent monad:
+                                $$\overline{(-)}: \Ouv(X) \to \Ouv(X)$$
                             that commutes with finite pushouts/joins. 
                             \item \textbf{(Algebraic closure):} (Ooh a nod to Grothendieck's Galois theory. How exciting!) Another kind of closure that is very common in set-theoretic mathematics, particularly in algebra, is algebraic closure: a field $k$ is algebraically closed if and only if it contains all possible roots of polynomials in $k[x]$. But can we reformulate this notion in the language of definition \ref{def: closure} ? To answer this question, let us first recall two facts:
                                 \begin{enumerate}
@@ -2541,20 +2541,20 @@
                     \begin{definition}[Sober topological spaces] \label{def: sober_spaces}
                         We are following \cite[Definition IX.3.2]{sheaves_in_geometry_and_logic}.
                         \begin{enumerate}
-                            \item A topological space $(X, \T(X))$ is called \textbf{sober} if and only if for all \textbf{proper} open subsets $P \in \T(X)$ satisfying the following \say{prime-like} characterisation:
-                                $$\forall U, V \in \T(X): (U \cap V \subseteq P) \implies \left((U \subseteq P) \vee (V \subseteq P)\right)$$
+                            \item A topological space $(X, \Ouv(X))$ is called \textbf{sober} if and only if for all \textbf{proper} open subsets $P \in \Ouv(X)$ satisfying the following \say{prime-like} characterisation:
+                                $$\forall U, V \in \Ouv(X): (U \cap V \subseteq P) \implies \left((U \subseteq P) \vee (V \subseteq P)\right)$$
                             which from this point on shall be known as the \textbf{Sobreity Criterion}, there exists a unique point $x \in X$ such that:
                                 $$P = X \setminus \overline{\{x\}}$$
                             Formally, one writes:
                                 $$
                                     \begin{aligned}
-                                        & \text{$(X, \T(X))$ is a sober topological space}
+                                        & \text{$(X, \Ouv(X))$ is a sober topological space}
                                         \\
                                         \iff &
                                             \left(\begin{aligned}
-                                                & \forall P \in \T(X):
+                                                & \forall P \in \Ouv(X):
                                                 \\
-                                                    & \forall U, V \in \T(X): (U \cap V \subseteq P) \implies \left((U \subseteq P) \vee (V \subseteq P)\right): 
+                                                    & \forall U, V \in \Ouv(X): (U \cap V \subseteq P) \implies \left((U \subseteq P) \vee (V \subseteq P)\right): 
                                                 \\
                                                 & \exists x \in X: P = X \setminus \overline{\{x\}}
                                             \end{aligned}\right)

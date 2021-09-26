@@ -8,6 +8,7 @@
     \section{Moduli problems} \label{section: moduli_problems}
         The following conventions shall be followed until the end of the section.
         \begin{convention}
+            \noindent
             \begin{itemize}
                 \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
                 
@@ -161,6 +162,33 @@
             
         \subsection{Moduli spaces}
             This subsection, for the most part, is simply a catalogue of terminologies. Our goal is to disambiguate: there are many different yet very similar terminologies in moduli theory, and we would like to clearly state the contexts in which they should be used.
+            
+            \begin{definition}[Moduli spaces] \label{def: moduli_space}
+                A \textbf{moduli space} parametrised by a base category $\calB$ is a Grothendiek Construction:
+                    $$F: \calM \to \calB$$
+                (i.e. \say{space} in the sense of definition \ref{def: spaces}) that is fibred in groupoids, i.e. it is a $2$-pullback of the following form:
+                    $$
+                        \begin{tikzcd}
+                        	{\calM} & {{}^{\pt/}\Grpd^{2, \lax}} \\
+                        	\calB & {\Grpd^2}
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow["F", from=2-1, to=2-2]
+                        	\arrow["\oblv", from=1-2, to=2-2]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["2"{description}, "\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{convention} \label{conv: moduli_spaces_in_algebraic_geometry}
+                Due to the concept of moduli spaces having originated from algebraic geometry, often times, by saying \say{$\calM \to \calB$ is a moduli space over $\calB$}, we will actually mean \say{$\calM \to \calB$ is a moduli space over $\calB^{\op}$}. If $\calB$ has a terminal object $B$, then we might also say that \say{$\calM$ is a moduli space over $B$}. For instance, a moduli space over a base scheme $B$ is nothing but a Grothendieck Construction fibred in groupoids over $\Sch_{/S}^{\op}$.
+            \end{convention}
+            We will be following convention \ref{conv: moduli_spaces_in_algebraic_geometry} from now on.
+            \begin{remark}[Moduli spaces over small categories] \label{remark: moduli_spaces_over_small_categories}
+                If we are to assume the Axiom of Choice, then we will have that every fibred category (i.e. Grothendieck Construction) corresponds to a pseudofunctor. Among other things, this tells us that moduli spaces over small base categories are actually nothing but groupoids internal to the presheaf topos over the same base category. 
+            \end{remark}
+            \begin{definition}[Fine and coarse moduli spaces] \label{def: fine_and_coarse_moduli_spaces}
+                Let $\calM \to \calB$ be a moduli space over a \textit{small} base category $\calB$. Such a moduli space is said to be \textbf{fine} if and only if it is naturally isomorphic to a representable presheaf; note that fine moduli spaces are therefore skeletal internal groupoids in presheaf topoi. Otherwise, the moduli space is said to be \textbf{coarse}, and because every presheaf can be written as a colimit of representables, every coarse moduli space can be written as a colimit of fine moduli spaces, particularly colimits of diagrams whose edges are all invertible arrows.
+            \end{definition} 
 
     \section{Examples of moduli spaces with arithmetic significance}
         \subsection{Picard stacks}
@@ -632,12 +660,39 @@
                         wherein $\pi: X \to S$ and is flat, proper, and of finite presentation (and hence so is $\pi': X' \to S'$). If $\calL$ and $\calL'$ are relatively ample line bundles on $X/S$ and $X'/S'$ respectively, then one says that they define a \textbf{polarisation between $X/S$ and $X'/S'$} if and only if:
                             $$\calL' \cong g^*\calL$$
                     \end{definition}
-                    \begin{remark}[Stack of polarised schemes] \label{remark: stack_of_polarisations}
-                        There is a natural fppf-stack of polarised flat proper schemes, which is in fact a substack of the relative Picard stack over $S$, which, we recall, classifies line bundles over $S$-schemes. Specifically, this new fppf-stack, which we will denote by $\Pol_{/S}$, is the restriction of the Picard stack down onto the subcategory of $\Sch_{/S, \fppf}$ spanned by schemes which are flat, proper, and of finite presentation over $S$.
-                    \end{remark}
-                    \begin{remark}[Polarised abelian schemes] \label{remark: stack_of_polarisations_on_abelian_schemes}
+                    \begin{remark}[Moduli stackss of polarised schemes] \label{remark: moduli_stacks_of_polarisations}
+                        There is a natural fppf-stack of polarised flat proper schemes, which is in fact a substack of the relative Picard stack over $S$, which, we recall, classifies line bundles over $S$-schemes. Specifically, this new fppf-stack, which we will denote by $\Sch_{/S}^{\pol}$, is the restriction of the Picard stack down onto the subcategory of $\Sch_{/S, \fppf}^{\petit}$ spanned by schemes which are flat, proper, and of finite presentation over $S$.
                         
+                        Actually, because the base change of ample line bundles along arbitrary morphisms of finite presentation remains ample, $\Sch_{/S}^{\pol}$ also satisfies Zariski, \'etale, and fpqc descent.
                     \end{remark}
+                    \begin{remark}[Polarised abelian schemes] \label{remark: moduli_stacks_of_polarisations_on_abelian_schemes}
+                        Abelian schemes are smooth and proper by definition, so they span a (non-full) subcategory of the category of schemes which are flat, proper, and of finite presentation over a given base scheme $S$. Should $S$ be Noetherian in addition, one can subsequently construct a natural category of polarised abelian schemes over $S$, which is fibred over $\Sch_{/S}^{\petit}$. By taking the core of this category, one then obtains a moduli space:
+                            $$(\Alg\Spc_{/S}^{\pol})^{\circ} \to \Sch_{/S}^{\petit}$$
+                        of polarised abelian schemes over $S$. Then, by combining remarks \ref{remark: geometry_of_abelian_varieties} and \ref{remark: moduli_stacks_of_polarisations}, one can show that this moduli space satisfies Zariski, \'etale, fppf, and fpqc descent.
+                    \end{remark}
+                    
+                    \begin{proposition}[Some geometric properties of moduli stacks of polarised schemes] \label{prop: geometric_properties_of_moduli_stacks_of_polarised_schemes}
+                        Fix a Noetherian base scheme $S$. 
+                            \begin{enumerate}
+                                \item There exists a natural and obvious extension of the moduli stack:
+                                    $$(\Sch_{/S}^{\pol})^{\circ} \to \Sch_{/S, \fppf}$$
+                                to a moduli stack:
+                                    $$(\Alg\Spc_{/S}^{\pol})^{\circ} \to \Alg\Spc_{/S, \fppf}^{\petit}$$
+                                of \textbf{polarised algebraic spaces}, which is fibred in groupoids over the \textit{small} base category spanned by algebraic spaces fppf over $S$.
+                                \item The diagonal:
+                                    $$\Delta_{(\Alg\Spc_{/S}^{\pol})^{\circ}}: (\Alg\Spc_{/S}^{\pol})^{\circ}\to (\Alg\Spc_{/S}^{\pol})^{\circ} \x_S (\Alg\Spc_{/S}^{\pol})^{\circ}$$
+                                is representable (cf. definition \ref{def: affine_schematic}) as a morphism of stacks on $\Alg\Spc_{/S, \fppf}^{\petit}$. Furthermore, it is separated and of finite presentation.
+                                \item As a $(2, 1)$-sheaf on $\Alg\Spc_{/S, \fppf}^{\petit}$, $(\Alg\Spc_{/S}^{\pol})^{\circ}$ preserves limits in $\Alg\Spc_{/S, \fppf}^{\petit}$. 
+                            \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item 
+                                \item 
+                                \item 
+                            \end{enumerate}
+                        \end{proof}
                 
                 \paragraph{Endomorphisms}
                 

@@ -177,10 +177,10 @@
                                 \\
                                 & = \dim_{\kappa} \T^{\vee}_{\m} \Spec R
                                 \\
-                                & = \dim_{\kappa} \T_{\m} \Spec R
+                                & = \dim_{\kappa} \bfT_{\m} \Spec R
                             \end{aligned}
                         $$
-                    \item \textbf{((Co)tangent spaces of prestacks):} The Zariski (co)tangent space at a point $x$ of a prestack $\calX$ on $\Cring^{\op}$ \textit{with a Zariski atlas} is a \href{https://ncatlab.org/nlab/show/2-vector+space}{\underline{$2$-vector space}} internal to the category $\Vec\T_{\kappa_x}$ of vector spaces over the residue field $\kappa_x$ at $x$. In the event that $\calX$ is a presheaf, the (co)tangent space at $x$ will simply be a vector space over $\kappa_x$ in the usual sense, and again, if $\calX$ is noetherian (i.e. it can be covered by a finite number of affine schemes), then:
+                    \item \textbf{((Co)tangent spaces of prestacks):} The Zariski (co)tangent space at a point $x$ of a prestack $\calX$ on $\Cring^{\op}$ \textit{with a Zariski atlas} is a \href{https://ncatlab.org/nlab/show/2-vector+space}{\underline{$2$-vector space}} internal to the category $\Vect_{\kappa_x}$ of vector spaces over the residue field $\kappa_x$ at $x$. In the event that $\calX$ is a presheaf, the (co)tangent space at $x$ will simply be a vector space over $\kappa_x$ in the usual sense, and again, if $\calX$ is noetherian (i.e. it can be covered by a finite number of affine schemes), then:
                         $$
                             \begin{aligned}
                                 \dim_x \calX & \leq {}_{\calO_{\calX, x}}\rank \m_x
@@ -224,7 +224,7 @@
                     \end{enumerate}
                 \end{proof}
             \begin{remark}[Removing the Noetherian hypothesis]
-                One thing to note is that the dimension of the Zariski cotangent space being equal to the number of generators of $\m$ does not depend on whether or not the local ring $(R, \m)$ is Noetherian, as one can very well have equalities of infinite cardinals. A hiccup in the non-Noetherian case, though, is that the dimension of the Zariski tangent space $\T_{\m}\Spec R$ - defined to be the dual vector space of $\T^{\vee}_{\m}\Spec R$ - might not be equal to that of the Zariski cotangent space, as infinite-dimensional vector spaces are not necessarily isomorphic to their duals. Ultimately, though, we are not concerned with non-Noetherian cases, as the property of smoothness - which we use dimensions of Zariski cotangent spaces to verify - implies Noetherian-ness: smooth morphisms are required to be of finite presentation, after all (cf. definitions \ref{def: standard_smoothness} and \ref{def: cohomological_smoothness}).
+                One thing to note is that the dimension of the Zariski cotangent space being equal to the number of generators of $\m$ does not depend on whether or not the local ring $(R, \m)$ is Noetherian, as one can very well have equalities of infinite cardinals. A hiccup in the non-Noetherian case, though, is that the dimension of the Zariski tangent space $\bfT_{\m}\Spec R$ - defined to be the dual vector space of $\T^{\vee}_{\m}\Spec R$ - might not be equal to that of the Zariski cotangent space, as infinite-dimensional vector spaces are not necessarily isomorphic to their duals. Ultimately, though, we are not concerned with non-Noetherian cases, as the property of smoothness - which we use dimensions of Zariski cotangent spaces to verify - implies Noetherian-ness: smooth morphisms are required to be of finite presentation, after all (cf. definitions \ref{def: standard_smoothness} and \ref{def: cohomological_smoothness}).
             \end{remark}
                 
             \begin{example}[Lie algebras of group schemes]
