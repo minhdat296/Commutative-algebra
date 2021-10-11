@@ -5,6 +5,204 @@
     
     \minitoc
     
+    \section{\textit{Hors d'oeuvres}: Homological algebra in abelian categories}
+        \subsection{Additive categories, abelian categories, everything in between and beyond!}
+            \subsubsection{Abelian categories: the backdrop for homological algebra}
+                Let us first perform some analysis of zero objects and (finite) biproducts in general categories wherein they exist. First up is the definition:
+                \begin{definition}[Zero objects] \label{def: zero_objects}
+                    A \textbf{zero object} (in any category) is an object satisfying both the universal properties of an initial and terminal object.
+                \end{definition}
+                
+                Another notion that will come up often in tandem with that of zero objects is the idea of biproducts:
+                \begin{definition}[Biproducts] \label{def: biproducts}
+                    A \textbf{biproduct} (in any category) is an object satisfying both the universal properties of a product and a coproduct.
+                \end{definition}
+                \begin{remark}
+                    Note that zero objects and biproducts are particular instances of so-called \textbf{bilimits}. 
+                \end{remark}
+                
+                We note that having zero objects is not a sufficient condition for having (finite) biproducts. Consider the following example:
+                \begin{example}[Having zero objects does not imply having having biproducts] \label{example: zero_objects_do_not_imply_biproducts}
+                    In the category ${}^{\{*\}/}\Top$ of \textit{pointed} topological spaces and continuous functions, the identity $\id_{\{*\}}: \{*\} \to \{*\}$ on the one-point space $\{*\}$ (i.e. the distinguished point of the one-point space) is a zero object. Clearly, $\id_{\{*\}}: \{*\} \to \{*\}$ is the initial object in ${}^{\{*\}/}\Top$. As for why it is the final object in ${}^{\{*\}/}\Top$, consider firstly the following commutative triangle in $\Top$ (i.e. the following morphism from $x: \{*\} \to X$ to $\id_{\{*\}}: \{*\} \to \{*\}$):
+                        $$
+                            \begin{tikzcd}
+                            	\{*\} \\
+                            	X & \{*\}
+                            	\arrow["x"', from=1-1, to=2-1]
+                            	\arrow["{\id_{\{*\}}}", from=1-1, to=2-2]
+                            	\arrow["{!}", from=2-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    wherein $X$ is any (pointed) topological space; note that any point $x \in X$ naturally induces a continuous map $x: \{*\} \to X$; also, there exists, for all spaces $X$, a natural and unique surjection $!: X \to \{*\}$ sending every element of $X$ to the unique element of $\{*\}$ (it is indeed continuous, since the preimages of the two open subsets $\varnothing, \{*\} \in \Ouv(\{*\})$ under $!: X \to \{*\}$, being $\varnothing$ and $X$ respectively, are both open in $X$). This diagram tells you that there exists a natural and unique morphism from any $(x: \{x\} \to X) \in {}^{\{*\}/}\Top$ to $\id_{\pt}: \pt \to \pt$, or in other words, that $\id_{\{*\}}: \{*\} \to \{*\}$ is a terminal object in ${}^{\{*\}/}\Top$. 
+                \end{example}
+                Now, as pathological as this example might be, and as much as it might scare us, fear not, for ${}^{\{*\}/}\Top$ is not $\Ab$-enriched (simply note how there is not a good way to define the addition of two continuous morphisms with common domain and codomain)! Therefore, the example above should not concern us too much. In fact, being $\Ab$-enriched is a rather strong assumption, as we shall see through the following proposition:
+                \begin{proposition}[Criterion for having enough finite biporducts] \label{prop: finite_biproduct_criterion}
+                    Let $\calA$ be an $\Ab$-enriched category with zero objects $0$ and all finite products. Then $\calA$ has all finite biproducts. 
+                \end{proposition}
+                    \begin{proof}
+                        As biproducts satisfy both the universal properties of products and coproducts, it shall suffice to show, that for all $x, y \in \calA$, $x \x y$ satisfies the universal property of a coproduct. This entails showing that there exist morphisms $x \to x \x y$ and $y \to x \x y$, and that the following diagram (wherein $x \x y \to z$ is unique) commutes for all $x \to z$ and $y \to z$:
+                            $$
+                                \begin{tikzcd}
+                                                                        & y \arrow[rdd, bend left] \arrow[d]                &   \\
+                                    x \arrow[rrd, bend right] \arrow[r] & x \x y \arrow[rd, "\exists!" description, dashed] &   \\
+                                                                        &                                                   & z
+                                \end{tikzcd}
+                            $$
+                            \begin{enumerate}
+                                \item By symmetry, it suffices to show that there exists a morphism $x \to x \x y$. 
+                                
+                                Now, by the universal property of zero objects (which implies that there exist unique morphisms $\2: x \to 0$ and $\1: 0 \to y$) the following diagram commutes:
+                                    $$
+                                        \begin{tikzcd}
+                                                                                               & 0 \arrow[d, "\1"] \\
+                                            x \arrow[r, "{0_{x, y}}"', dashed] \arrow[ru, "\2"] & y                
+                                        \end{tikzcd}
+                                    $$
+                                From this, one infers that there exists the following span:
+                                    $$
+                                        \begin{tikzcd}
+                                            x \arrow[r, "{0_{x, y}}", dashed] \arrow[d, "\id_x"'] & y \\
+                                            x                                                     &  
+                                        \end{tikzcd}
+                                    $$
+                                which fits naturally into the following commutative diagram, thanks to the universal property of products:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x & y \\
+                                        	x & {x \x y} & y \\
+                                        	& x
+                                        	\arrow["{0_{x, y}}", from=1-1, to=1-2]
+                                        	\arrow["{\id_x}"', from=1-1, to=2-1]
+                                        	\arrow[from=2-2, to=3-2]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow["{\id_x}"', from=2-1, to=3-2]
+                                        	\arrow["{\id_y}", from=1-2, to=2-3]
+                                        	\arrow[dashed, from=1-1, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                We have thus found a morphism  $x \to x \x y$.
+                                \item Now that we know there are natural maps $x \to x \x y \ot y$, consider a diagram of the following form, wherein $z$ is arbitrary:
+                                    $$
+                                        \begin{tikzcd}
+                                                                                                    & y \arrow[d] \arrow[rdd, bend left] &   \\
+                                            x \arrow[r] \arrow[rrd, bend right] & x \x y \arrow[rd, "\exists ?" description, dashed]   &   \\
+                                                                                                    &                                                      & z
+                                        \end{tikzcd}
+                                    $$
+                                If we can show that the dashed arrow exists, then by the universal property of coproducts, we will have shown that $x \x y$ is a coproduct in $\calA$. To that end, note that every span $j_1: x \to z \ot y: j_2$ embeds naturally into the following commutative diagram, thanks to the universal property of products:
+                                    $$
+                                        \begin{tikzcd}
+                                            x \x y \arrow[d, "\pr_1"', dashed] \arrow[r, "\pr_2", dashed] & y \arrow[d, "j_2"] \\
+                                            x \arrow[r, "j_1"]                                            & z                 
+                                        \end{tikzcd}
+                                    $$
+                                Thanks to the crucial assumption that $\calA$ is $\Ab$-enriched, the diagram above induces the following morphism:
+                                    $$j_1 \circ \pr_1 + j_2 \circ \pr_2: x \x y \to z$$
+                                We now claim that $\varphi := j_1 \circ \pr_1 + j_2 \circ \pr_2$ is the sought-for dashed arrow from the first diagram. To show that this is indeed the case, let us simply check that the resulting diagram actually commutes. For this, denote by $\iota_1: x \to x \x y \ot y: \iota_2$ the natural maps and consider the following:
+                                    $$
+                                        \begin{aligned}
+                                            \varphi \circ \iota_1 & = (j_1 \circ \pr_1 + j_2 \circ \pr_2) \circ \iota_1
+                                            \\
+                                            & = j_1 \circ \pr_1 \circ \iota_1 + j_2 \circ \pr_2 \circ \iota_1
+                                            \\
+                                            & = j_1 \circ \id_x + j_2 \circ 0_{x, y}
+                                            \\
+                                            & = j_1 + 0_{x, x \x y}
+                                            \\
+                                            & = j_1
+                                        \end{aligned}
+                                    $$
+                                wherein $\pr_1 \circ \iota_1 = \id_x$ and $\pr_2 \circ \iota_1 = 0_{x, y}$ because we have shown in the previous step that the following diagram commutes:
+                                    $$
+                                        \begin{tikzcd}
+                                            x \arrow[rd, "j_1" description] \arrow[rrd, "{0_{x, y}}", bend left] \arrow[rdd, "\id_x"', bend right] &                                               &   \\
+                                                                                                                                                   & x \x y \arrow[r, "\pr_2"] \arrow[d, "\pr_1"'] & y \\
+                                                                                                                                                   & x                                             &  
+                                        \end{tikzcd}
+                                    $$
+                                Likewise, one can show that:
+                                    $$\varphi \circ \iota_2 = j_2$$
+                                There thus exists $\varphi: x \x y \to z$ making the following diagram commute:
+                                    $$
+                                        \begin{tikzcd}
+                                                                                                   & y \arrow[d, "\iota_2"] \arrow[rdd, "j_2", bend left] &   \\
+                                            x \arrow[r, "\iota_1"] \arrow[rrd, "j_1"', bend right] & x \x y \arrow[rd, "\exists \varphi"]                 &   \\
+                                                                                                   &                                                      & z
+                                        \end{tikzcd}
+                                    $$
+                                \item Lastly, to show that the map $\varphi$ as above is unique, suppose to the contrary that it is not, i.e. there exists $\psi \not = \varphi$ making the diagram:
+                                    $$
+                                        \begin{tikzcd}
+                                                                                                   & y \arrow[d, "\iota_2"] \arrow[rdd, "j_2", bend left] &   \\
+                                            x \arrow[r, "\iota_1"] \arrow[rrd, "j_1"', bend right] & x \x y \arrow[rd, "\psi"]                 &   \\
+                                                                                                   &                                                      & z
+                                        \end{tikzcd}
+                                    $$
+                                commute. The existence of such an arrow would imply that:
+                                    $$\psi \circ \iota_1 = j_1 = \varphi \circ \iota_1$$
+                                and hence:
+                                    $$(\psi - \varphi) \circ \iota_1 = \psi \circ \iota_1 - \varphi \circ \iota_1 = j_1 - j_1 = 0_{x, z}$$
+                                and because $\iota_1 \not = 0$, it must be the case that $\psi - \varphi = 0_{x, x \x y}$; thus, we have shown that $\psi = \varphi$, which contradicts the assumption that $\psi \not = \varphi$. The arrow $\varphi: x \x y \to z$ from the previous step is thus unique.
+                            \end{enumerate}
+                        We have therefore shown that every binary product in $\calA$ satisfies the universal property of a coproduct, which implies (via some elementary induction) that $\calA$ has all finite biproducts.
+                    \end{proof}
+                    
+                \begin{definition}[Additive and abelian categories] \label{def: AB_categories}
+                    An \textbf{additive category} is an $\Ab$-enriched category with zero objects and finite biproducts.
+                    
+                    This notion is subsumed by those of:
+                        \begin{enumerate}
+                            \item $\Ab$-enriched categories,
+                            \item \textbf{pre-additive categories} (i.e. categories with zero objects),
+                            \item \textbf{pseudo-abelian categories} (i.e. categories wherein all idempotent endomorphisms admit kernels and cokernels),
+                        \end{enumerate}
+                    and itself generalises the following notions:
+                        \begin{enumerate}
+                            \item \textbf{pre-abelian/$AB1$ categories} (i.e. additive categories admitting all kernels and all cokernels),
+                            \item \textbf{abelian/$AB2$ categories} (i.e. pre-abelian categories wherein every monomorphism is a kernel and every epimorphism is a cokernel).
+                        \end{enumerate}
+                    The hierachy continues with even stronger notions:
+                        \begin{enumerate}
+                            \item An \textbf{$AB3$-category} is an $AB2$-category with all coproducts; dually, an \textbf{$AB3^*$-category} is an $AB2$-category with all products.
+                            \item An \textbf{$AB4$-category} is an $AB3$-category wherein coproducts and monomorphisms commute; dually, an \textbf{$AB4^*$-category} is one wherein products and epimorphisms commute.
+                            \item An \textbf{$AB5$-category} is an $AB3$-category wherein filtered colimits of exact sequences (i.e. chain complexes with vanishing homologies) remain exact; dually, an \textbf{$AB5^*$-category} is one wherein filtered limits of exact sequences remain exact.
+                            
+                            Additionally, a so-called \textbf{Grothendieck category} is a presentable $AB5$-category.
+                            \item Lastly, an \textbf{$AB6$-category} is an $AB3$-category wherein products and filtered colimits commute; dually an \textbf{$AB6^*$-category} is one wherein coproducts commute with filtered limits.
+                        \end{enumerate}
+                \end{definition}
+                \begin{example} \label{examples: AB_categories}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Modules):}
+                        \item \textbf{(Non-unital rings):}
+                        \item \textbf{(A counter-example: free modules over PIDs that are not fields):}
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}[$AB1$-categories are finitely (co)complete] \label{prop: AB1_categories_are_finitely_(co)complete}
+                    Any $AB1$-category $\calA$ is simultaneously finitely complete and finitely cocomplete.
+                \end{proposition}
+                    \begin{proof}
+                        This is a straightforward consequence of the fact that one can construct finite (co)limits from finite pullbacks/pushouts and terminal/initial objects, and that having pullbacks/pushouts and terminal/initial objects implies having (co)products.
+                    \end{proof}
+            
+            \subsubsection{Epic-monic factorisation and diagram-chasing}
+            
+            \subsubsection{Injective and projective resolutions}
+        
+        \subsection{Derived categories}
+            \subsubsection{Localisation of categories}
+            
+            \subsubsection{Exact functors; derived functors}
+            
+            \subsubsection{Quasi-isomorphisms}
+        
+        \subsection{Fundamental Theorems of homological algebra}
+            \subsubsection{The Freyd-Mitchell Embedding Theorem}
+            
+            \subsubsection{The Universal Coefficient Theorem and The K\"unneth Theorem}
+    
     \section{Homological algebra in stable \texorpdfstring{$\infty$}{}-categories} \label{section: homological_algebra}
         \subsection{Triangulated and stable \texorpdfstring{$\infty$}{}-categories}
             \subsubsection{Triangles and stability}
@@ -517,4 +715,4 @@
     
     \section{Functorial calculus}
     
-    \section{Algebra with \texorpdfstring{$\E_k$}{}-rings}
+    \section{Algebra with \texorpdfstring{$\bbE_k$}{}-rings}
