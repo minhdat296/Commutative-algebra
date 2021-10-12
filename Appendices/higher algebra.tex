@@ -152,7 +152,7 @@
                     
                     This notion is subsumed by those of:
                         \begin{enumerate}
-                            \item $\Ab$-enriched categories,
+                            \item \textbf{$\Ab$-enriched categories},
                             \item \textbf{pre-additive categories} (i.e. categories with zero objects),
                             \item \textbf{pseudo-abelian categories} (i.e. categories wherein all idempotent endomorphisms admit kernels and cokernels),
                         \end{enumerate}
@@ -171,12 +171,22 @@
                             \item Lastly, an \textbf{$AB6$-category} is an $AB3$-category wherein products and filtered colimits commute; dually an \textbf{$AB6^*$-category} is one wherein coproducts commute with filtered limits.
                         \end{enumerate}
                 \end{definition}
-                \begin{example} \label{examples: AB_categories}
+                \begin{example}[Additive categories and so on] \label{examples: AB_categories}
                     \noindent
                     \begin{enumerate}
                         \item \textbf{(Modules):}
                         \item \textbf{(Non-unital rings):}
                         \item \textbf{(A counter-example: free modules over PIDs that are not fields):}
+                        \item \textbf{(An additive category that is not $AB2$):} Let $K$ be a locally compact complete (ultra)metric field (e.g. $\R, \bbC$, or finite extensions of $\Q_p$ or $\F_p(\!(t)\!)$, for some prime $p$) and consider the category ${}_K\Ban$ of $K$-Banach spaces (i.e. $K$-vector spaces topologically complete with respect to a norm induced by the (ultra)metric on $K$) and bounded continuous $K$-linear transformations. We claim that epimorphisms in this category can fail to be cokernels, and hence ${}_K\Ban$ fails to be $AB2$.
+                        
+                        First of all, for the sake of completeness, let us note that ${}_K\Ban$ is $\Ab$-enriched: the enrichment is is given by the usual addition of continuous linear transformation, which preserves boundedness thereof, since either:
+                            $$\|\varphi + \psi\| \leq \|\varphi\| + \|\psi\|$$
+                        or:
+                            $$\|\varphi + \psi\| \leq \max\{\|\varphi\|, \|\psi\|\}$$
+                        and both right-hand sides are finite by the boundedness assumption on the morphisms $\varphi, \psi$ in ${}_K\Ban$.
+                        
+                        Now, let $Z$ be a compact subspace of $K$ (e.g. compact intervals) and consider the Banach $K$-algebra $C^0(X)$ of continuous $K$-valued functions on $Z$; this Banach $K$-algebra is a dense $K$-subalgebra of $L^1(Z)$, the Banach $K$-algebra of absolutely integrable $K$-valued functions on $Z$.
+                        \item Let $\E$ be a topos and let $R$ be a ring object internal to $\E$. Then, the category ${}_R\Mod$ of left-$R$-modules will be a Grothendieck category, and likewise with $\Mod_R$ and ${}_R\Mod_R$.
                     \end{enumerate}
                 \end{example}
                 
