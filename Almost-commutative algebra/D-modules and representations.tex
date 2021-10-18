@@ -139,3 +139,100 @@
     \section{The Riemann-Hilbert Correspondence}
     
     \section{Beilinson-Bernstein Localisation}
+        \subsection{A precursor: The Borel-Weil-Bott Theorem over characteristic \texorpdfstring{$0$}{}}
+            \subsubsection{Reductive groups and flag varieties}
+                \paragraph{Reductive groups}
+                    For generalities on algebraic groups, we refer the reader to subsection \ref{subsubsection: algebraic_groups}.
+                    
+                    \begin{definition}[Unipotent groups] \label{def: unipotent_groups}
+                        Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$. Also, fix a natural number $n$. $G$ is said to be \textbf{unipotent} if and only if it is a Zariski-closed subgroup of the unipotent group:
+                            $$(\bfU_n)_{/k} \cong \Spec \frac{k[x_{11}, x_{12}, ..., x_{nn}]}{(\forall 1 \leq j \leq i \leq n: x_{i = j} = 1, x_{i > j} = 0)}$$
+                        of upper-triangular $n \x n$ matrices with entries in $k$.
+                    \end{definition}
+                    \begin{remark}[Unipotent groups are linear algebraic groups] \label{remark: unipotent_groups_are_linear_algebraic_groups}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Embedding into $\GL_n$):} Since the determinants of upper triangular matrices are just the products of the diagonal entries, and since $1$ is always a unit (which implies that $(\bfU_n)_{/k} \cong (\bfU_n)_{/k}\left[\frac{1}{\det}\right]$), $(\bfU_n){/k}$ is indeed a Zariski-closed subgroup of $(\GL_n)_{/k} \cong \Spec k[x_{11}, x_{12}, ..., x_{nn}]\left[\frac{1}{\det}\right]$. 
+                            \item \textbf{(Elements of unipotent groups are unipotent):} One can show that the eigenvalues of any upper-triangular matrix are all equal to $1$, and hence these matrices are unipotent by definition (recall that an element $r \in R$ of a ring $R$ - which need not be commtuative - is unipotent if and only if $r - 1$ is nilpotent); to show why the eigenvalues all being $1$ is a sufficient and necessary condition, simply apply the Jordan Canonical Decomposition. Elements of unipotent groups are thus indeed unipotent.
+                        \end{enumerate}
+                    \end{remark}
+                    \begin{definition}[Radicals] \label{def: radicals_of_algebraic_groups}
+                        Let $k$ be an algebraically closed field and let $G$ be a connected smooth algebraic group over $\Spec k$. 
+                            \begin{enumerate}
+                                \item \textbf{(Solvability):} $G$ is said to be \textbf{solvable} if its group of $k$-rational points $G(k)$ is solvable, i.e. if the \href{https://ncatlab.org/nlab/show/derived+series}{\underline{derived series}} of $G(k)$:
+                                    $$G(k) \geq G(k)^{(1)} \geq ... $$
+                                terminates at the trivial group after \textit{finitely} many steps. 
+                                \item \textbf{(Radicals):} The \textbf{radical} of $G$, denoted by $\scrR_G$, is the maximal normal solvable algebraic subgroup of $G$. 
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{remark}[Unipotent radicals] \label{remark: unipotent_radicals}
+                        Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$, and note that within such a setting, the radical $\scrR_G$ is necessarily affine too. Then, the \textbf{unipotent radical} of $G$ (denoted by $\scrU_G$) is maximal unipotent subgroup of $\scrR_G$; at the level of $k$-rational points, one also has:
+                            $$\scrU_G(k) = \scrR_G(k) \cap U_G(k)$$
+                        where $U_G \trianglelefteq G$ is the maximal unipotent \textit{normal} subgroup of $G$.
+                    \end{remark}
+                    
+                    \begin{definition}[Tori and reductive groups] \label{def: tori_and_reductive_groups}
+                        Fix a base scheme $S$. We then have the following hierachy of (affine) algebraic groups:
+                        \begin{enumerate}
+                            \item \textbf{(Algebraic tori):} An \textbf{algebraic $S$-torus} is a \textit{finite} product of $(\G_m)_{/S}$, the base change of $\G_m$ (understood to be over $\Spec \Z$) to $S$.
+                            \item \textbf{(Reductive and semi-simple algebraic groups):} 
+                                \begin{enumerate}
+                                    \item \textbf{(Semi-simple groups):} A linear algebraic $S$-group $G$ is \textbf{semi-simple} if and only if its geometric fibres $G_{\bar{x}}$ are semi-simple, which is to say, their radicals $\scrR_{G_{\bar{x}}}$ are all trivial. 
+                                    \item \textbf{(Reductive groups):} A linear algebraic $S$-group $G$ is \textbf{reductive} if and only if its geometric fibres $G_{\bar{x}}$ are reductive, which is to say, their unipotent radicals $\scrU_{G_{\bar{x}}}$ are all trivial.
+                                \end{enumerate}
+                        \end{enumerate}
+                    \end{definition}
+                    \begin{remark} \label{remark: tori_and_reductive_groups}
+                        Let $S$ be a base scheme and let $G$ be a linear algebraic group over $S$.
+                        \begin{enumerate}
+                            \item \textbf{(Tori are reductive):} First of all, since tori are abelian, their derived series are trivial and they are therefore automatically solvable. As a consequence, the radical of a torus is just the whole group, and thus any torus is semi-simple. This also implies that tori are reductive, as the unipotent radical - being the intersection of the radical and the maximal unipotent subgroup - must be trivial if the radical is trivial.
+                            
+                            Non-trivial tori, however, are not unipotent, since diagonal matrices are not necessarily the identity.
+                            \item \textbf{(Semi-simple groups are reductive):} This is easy, as the radical being trivial obviously implies that the unipotent radical is trivial too (this is the other way to show that tori are reductive). 
+                            
+                            The converse statement is not true in general. For instance, unipotent groups are not reductive, as the unipotent radical of one such group is just the entire group.
+                        \end{enumerate}
+                    \end{remark}
+                    
+                    \begin{proposition}[Quotients by algebraic groups] \label{prop: quotients_by_algebraic_groups}
+                        Let $k$ be a field and let $G$ be an algebraic group over $\Spec k$. Additionally, fix a Zariski-closed subgroup $H \leq G$ (which we note to also be an algebraic group over $\Spec k$). Then:
+                            \begin{enumerate}
+                                \item the quotient fppf-sheaf $G/H$ carries the structure of a scheme over $\Spec k$,
+                                \item $G/H$ is a locally algebraic group scheme if and only if $H$ is a normal subgroup of $G$,
+                                \item the quotient map $G \to G/H$ is a $H$-invariant faithfully flat morphism of schemes over $\Spec k$.
+                            \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item First of all, since the fppf topos $(\Spec k)_{\fppf}$ is cocomplete, the quotient sheaf $G/H$ must exist. Second of all, because group scheme actions define fppf-equivalence relations, it is not hard to see that $G/H$ is an fppf-algebraic space. 
+                                \item 
+                                \item 
+                            \end{enumerate}
+                        \end{proof}
+                    
+                    \begin{theorem}[Chevalley's Decomposition Theorem] \label{theorem: chevalley_decomposition_theorem}
+                        This is also known as \textbf{Chevalley's Structure Theorem} and \textbf{Chevelley's theorem on algebraic groups}.
+                    
+                        Let $k$ be a perfect field and let $G$ be an algebraic group over $\Spec k$. Then, $G$ decomposes into a \textit{normal} (and necessarily closed) linear algebraic subgroup $H$ and an abelian variety $A$ via the following short exact sequence of algebraic groups over $\Spec k$:
+                            $$1 \to H \to G \to A \to 1$$
+                    \end{theorem}
+                    \begin{remark}[Short exact sequences of algebraic groups ?] \label{remark: short_exact_sequences_algebraic_groups}
+                        Thanks to proposition \ref{prop: quotients_by_algebraic_groups}, the notion of short exact sequences makes sense for algebraic groups. In particular, for any algebraic group $G$, one defines the cokernel of a closed immersion $H \trianglelefteq G$ of a normal algebraic subgroup $H$ to precisely be the canonical quotient map $G \to G/H$. Then, one can define the kernel of this quotient map simply as the canonical pullback $G \x_{G/H} 1$, which is possible thanks to the left-exactness of the Yoneda embedding. 
+                        
+                        One thing to note is that these notions of (co)kernels do not differ from those within (pre-)abelian categories, at least from a categorical standpoint. This is because the category of (locally) algebraic groups over a fixed base scheme admits a zero object, namely that very base scheme. 
+                    \end{remark}
+                        \begin{proof}[Proof of theorem \ref{theorem: chevalley_decomposition_theorem}]
+                            
+                        \end{proof}
+                    
+                \paragraph{Special subgroups of reductive groups; flag varieties}
+            
+            \subsubsection{Cohomology of flag varieties and the Borel-Weil-Bott Theorem}
+                \begin{convention}
+                    Throughout this subsection, we will be working with:
+                        \begin{enumerate}
+                            \item A reductive group $G$ along with a Borel subgroup $B \leq G$, both over $\Spec \bbC$.
+                            \item The flag variety $X \cong G/B$.
+                        \end{enumerate}
+                \end{convention} 
