@@ -1,0 +1,247 @@
+\chapter{Algebraic groups}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{The geometry of algebraic groups}
+        \subsection{Introducing algebraic groups} \label{subsubsection: algebraic_groups}
+            \subsubsection{General properties of group schemes}
+                \begin{definition}[Algebraic groups] \label{def: algebraic_groups} \index{Algebraic groups}
+                    Let $S$ be a base scheme.
+                    \begin{enumerate}
+                        \item A \textbf{group scheme over $S$} is a group object in the cartesian closed category $\Sch_{/S}$ of schemes over $S$. 
+                        \item In the event that $S$ is isomorphic to the spectrum of some field $k$, a group scheme $G$ over $\Spec k$ will be called a \textbf{(locally) algebraic group scheme} if and only if it is (locally) of finite type over $\Spec k$ (i.e. if and only if it is (locally) algebraic as a scheme over $\Spec k$).
+                        \item An abstract group $S$-scheme:
+                            $$\pi: G \to S$$
+                        is called \textbf{geometrically (locally) algebraic} if and only if over each point:
+                            $$s: \Spec \kappa_s \to S$$
+                        with corresponding residue field $\kappa_s$, and for each field extension $K_s/\kappa_s$ corrsponding to a morphism:
+                            $$i: \Spec K_s \to \Spec \kappa_s$$
+                        of affine schemes, the canonical projection:
+                            $$\pr_2: \left(G \x_{\pi, S, s} \Spec \kappa_s\right) \x_{\pr_2, \Spec \kappa_s, i} \Spec K_s \to \Spec K_s$$
+                        is (locally) of finite type.
+                    \end{enumerate}
+                \end{definition}
+                \begin{example}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(General linear groups)} Traditionally, one thinks of general linear groups as groups of automorphisms of vector spaces of a given (not necessarily finite) dimension; so for instance, $\GL_n(\R)$ is the group of all automorphisms of $n$-dimensional real vector spaces, i.e. its elements are $n \x n$ invertible matrices with real coefficients. However, there is another way. By squinting a bit, we can see that for each natural number $n$, the presheaf:
+                            $$\GL_n: (\Cring^{\op})^{\op} \to \Sets$$
+                        is represented by the affine scheme $\Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]$, since an $n \x n$ matrix has $n^2$ free entries, which are only subjected to the requirement that the determinant (which can be viewed as a polynomial in the $n^2$ variables $x_{11}, ..., x_{nn}$) is invertible (hence the localisation at $\det$); incidentally, this also ensures that $\GL_n$ is a Zariski sheaf (cf. remark \ref{remark: affine_schemes_are_zariski_sheaves}), and hence an affine scheme (cf. definition \ref{def: zariski_topoi}). It remains to check whether or not $\GL_n$ is a group object. We claim that $\GL_n$, as it ought to be, is a group, and that its structure is determined by the following multiplication:
+                            $$
+                                \begin{aligned}
+                                    \GL_n & \leftarrow \GL_n \x \GL_n
+                                    \\
+                                    \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] & \leftarrow \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] \x \Spec \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]
+                                    \\
+                                    \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] & \to \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right] \tensor_{\Z} \Z\left[\{x_{ij}\}_{1 \leq i, j \leq n}, \frac{1}{\det}\right]
+                                    \\
+                                    x_{ij} & \mapsto \sum_{k=1}^n x_{ik} \tensor x_{kj}
+                                \end{aligned}
+                            $$
+                        It is not hard to see that $\GL_n$ is a scheme of finite type, and hence it is an algebraic group, per definition \ref{def: algebraic_groups}.
+                        
+                        When $n = 1$, we recover the multiplicative group scheme $\G_m$ that appears, for instance, in example \ref{example: projective_spaces}.
+                        \item \textbf{(Special linear groups):} Via the above discussion surrounding $\GL_n$, let us define $\SL_n$ to be the Zariski-closed subgroup scheme represented by the affine scheme $\Spec \frac{\Z\left[\{x_{ij}\}_{1 \leq i,j \leq n}, \frac{1}{\det}\right]}{(\det - 1)}$: indeed, special linear groups are, by definition, subgroups of generali linear groups consisting of matrices of determinant $1$. As we shall see, this means two things: that $\SL_n$ is an algebraic group, and as a consequence of this, that $\SL_n$ is smooth over fields. 
+                        \item \textbf{(Roots of unity):} Let:
+                            $$\mu_n: (\Cring^{\op})^{\op} \to \Sets$$
+                        be the presheaf on $\Cring^{\op}$ that is represented by the affine scheme $\Spec \Z[z]/(z^n - 1)$. Its group structure is given by:
+                            $$
+                                \begin{aligned}
+                                    \mu_n & \leftarrow \mu_n \x \mu_n
+                                    \\
+                                    \Spec \Spec \Z[z]/(z^n - 1) & \leftarrow \Spec \Z[z]/(z^n - 1) \x \Spec \Z[z]/(z^n - 1)
+                                    \\
+                                    \Z[z]/(z^n - 1) & \to \Z[z]/(z^n - 1) \tensor_{\Z} \Z[z]/(z^n - 1)
+                                    \\
+                                    \zeta & \mapsto \zeta \tensor \zeta
+                                \end{aligned}
+                            $$
+                        and because it is of finite type, it is also algebraic, just like $\GL_n$ and $\SL_n$. When $n = p^r$, one gets the group $\mu_{p^r}$ of $p^r$-th roots. 
+                    \end{enumerate}
+                \end{example}
+                
+                \begin{proposition}[The conormal sheaf associated to the identity] \label{prop: conormal_sheaf_of_the_identity}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(The identity is a closed immersion):} Let $S$ be a base scheme and let $G$ be a group scheme over $S$. Then, $G$ is separated (respectively quasi-separated) if and only if the identity:
+                            $$e: S \to G$$
+                        is a closed immersion (respectively quasi-compact). 
+                        \item \textbf{(The conormal sheaf associated to the identity):} Since this is good a place as any to state the definition of the conormal sheaf associated to a closed immersion of schemes, let us write it out first.
+                        
+                        Let $X$ be a scheme and let $\calI$ be a $\calO_X$-ideal. Then, the \textbf{conormal sheaf} or \textbf{conormal module} associated to the canonical closed immersion:
+                            $$\Spec \calO_X/\calI \hookrightarrow X$$
+                        is just the quasi-coherent $\calO_X$-module $\calI/\calI^2$, which we note to actually be a quasi-coherent $\calO_Z$-module (see proposition \ref{prop: Zariski_tangent_spaces_are_vector_spaces} for a proof instruction). We shall denote this by $\calN^{\vee}_{Z/X}$.
+                        
+                        As the identity:
+                            $$e: S \to G$$
+                        of a separated group scheme:
+                            $$\pi: G \to S$$
+                        is a closed immersion, its conormal module $\calN^{\vee}_{S/G}$ is well-defined. Furthermore, one has:
+                            $$\Omega^1_{G/S} \cong \pi^* \calN^{\vee}_{S/G} \cong \pi^* e^* \Omega^1_{G/S}$$
+                        In particular, should $S$ be the spectrum of a field (i.e. if one can recognise the identity $e$ has a rational point of $G$), then $\Omega^1_{G/S}$ is free as an $\calO_G$-module.   
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(The identity is a closed immersion):}
+                            \item \textbf{(The conormal sheaf associated to the identity):}
+                        \end{enumerate}
+                    \end{proof}
+                    
+            \subsubsection{Properties of group schemes over a field}
+                
+            \subsubsection{Properties of algebraic groups}
+                \begin{theorem}[Cartier's Smoothness Theorem] \label{theorem: algebraic_groups_over_characteristic_0_are_smooth} \index{Algebraic groups! are smooth over characteristic $0$}
+                    Let $k$ be a ground field of characteristic $0$. Then, any locally algebraic group over $\Spec k$ is smooth.
+                \end{theorem}
+                    \begin{proof}
+                        Firstly, because smoothness is a local property (cf. definition \ref{def: standard_smoothness}), we can assume that $G$ is affine. This, in particular, implies that $G$ is of finite type instead of being merely \textit{locally} of finite type. Now, we will attempt to show that $G$ is of finite presentation, instead of being merely of finite type, and formally smooth. 
+                    \end{proof}
+                    
+                Algebraic groups over positive characteristics $p$ are, however, not so nice. Consider, for instance, the algebraic group $(\mu_p)_{/k}$ of $p^{th}$ roots of unity over some field $k$ of characteristic $p$ that is \textit{not} perfect. This algebraic group is represented by the affine scheme $\Spec \frac{k[x]}{(x^p - 1)}$; the associated Jacobian is thus visibly singular, and $(\mu_p)_{/k}$ is therefore not smooth. Due to this pathology, we will need to figure out the necessary and sufficient conditions for algebraic groups to be smooth over positive characteristics.
+                \begin{theorem}[Cartier's Smoothness Theorem over positive characteristics] \label{theorem: smoothness_of_algebraic_groups_over_characteristic_p} \index{Algebraic groups! are smooth over characteristic $p$}
+                    Let $k$ be a \textit{perfect} ground field of some prime characteristic $p$ and let $G$ be a \textit{reduced} locally algebraic group scheme over $\Spec k$. Then, $G$ is smooth over $\Spec k$.
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Algebraic groups over algebraically closed fields are smooth]
+                    In particular, reduced group schemes over algebraically closed ground fields are always smooth (note how schemes are \textit{a priori} reduced in characteristic $0$).
+                \end{corollary}
+                \begin{remark}
+                    Every assumption in theorem \ref{theorem: smoothness_of_algebraic_groups_over_characteristic_p} is crucial. If $k$ is a \textit{non-perfect} field of characteristic $p$ and $a \in k$ is not a $p^{th}$ power, then for instance, the closed subgroup scheme $\Spec \frac{k[x, y]}{(x^p + ay^p)}$ of the additive group scheme $\Spec k[x, y]$ is reduced but not smooth.
+                \end{remark}
+                
+                Algebraic groups over positive characteristics are not wholefully pathological, though. Their geometries are somewhat intuitive.
+                \begin{proposition}[Algebraic groups are equidimensional] \label{prop: algebraic_groups_are_locally_equidimensional} \index{Algebraic groups! are equidimensional}
+                    Let $k$ be an arbitrary field and let $G$ be a locally algebraic group over $\Spec k$. Then, $G$ is locally equidimensional, in the sense that:
+                        $$\forall g \in G: \dim G = \dim_g G$$
+                    where $\dim_g G := \inf\{\dim U \in \Ouv_{\Zar}(G) \mid U \ni g\}$; in particular, if $g \in |G|$ is a closed point, then:
+                        $$\dim G = \dim \calO_{G, g}$$
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}
+                    Integral algebraic groups (such as group varieties) are equidimensional, in the sense that even over the their generic fibre, say $\eta$, one has:
+                        $$\dim G = \dim \calO_{G, \eta}$$
+                \end{corollary}
+                
+                \begin{proposition}[Algebraic groups are quasi-projective] \label{prop: algebraic_groups_are_quasi_projective} \index{Algebraic groups! are quasi-projective}
+                    Let $k$ be an \textit{arbitrary} ground field and let $G$ be an algebraic group over $\Spec k$. Then, $G$ is quasi-projective as a scheme over $\Spec k$.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{proposition}
+                    If $k$ is an algebraically closed ground field (which we shall allow to be of arbitrary characteristic), then for $G$ a locally algebraic group over $\Spec k$ and $g_1, ..., g_n \in G(k)$ a finite number of $k$-rational points thereof, there exists an affine open subscheme $U$ of $G$ that contains the points $g_1, ..., g_n$; this is to say, there exist an affine open subscheme $U$ of $G$ such that all the following liftings exist:
+                        $$
+                            \begin{tikzcd}
+                            	& U \\
+                            	{\Spec k} & G
+                            	\arrow[hook, from=1-2, to=2-2]
+                            	\arrow["{g_i}", from=2-1, to=2-2]
+                            	\arrow["{g_i|_U}", dashed, from=2-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{proposition}
+                    \begin{proof}
+                        Without loss of generality, we may assume that $G$ is connected, or atleast, that the points $g_1, ..., g_n$ are all on the same connected component of $G$.   
+                    \end{proof}
+                    
+        \subsection{Some useful results}
+            \subsubsection{Actions, quotients, and Chevalley's Theorem}
+                \begin{proposition}[Quotients by algebraic groups] \label{prop: quotients_by_algebraic_groups}
+                    Let $k$ be a field and let $G$ be an algebraic group over $\Spec k$. Additionally, fix a Zariski-closed subgroup $H \leq G$ (which we note to also be an algebraic group over $\Spec k$). Then:
+                        \begin{enumerate}
+                            \item the quotient fppf-sheaf $G/H$ carries the structure of a scheme over $\Spec k$,
+                            \item $G/H$ is a locally algebraic group scheme if and only if $H$ is a normal subgroup of $G$,
+                            \item the quotient map $G \to G/H$ is a $H$-invariant faithfully flat morphism of schemes over $\Spec k$.
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item First of all, since the fppf topos $(\Spec k)_{\fppf}$ is cocomplete, the quotient sheaf $G/H$ must exist. Second of all, because group scheme actions define fppf-equivalence relations, it is not hard to see that $G/H$ is an fppf-algebraic space. 
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{theorem}[Chevalley's Decomposition Theorem] \label{theorem: chevalley_decomposition_theorem}
+                    This is also known as \textbf{Chevalley's Structure Theorem} and \textbf{Chevelley's theorem on algebraic groups}.
+                
+                    Let $k$ be a perfect field and let $G$ be an algebraic group over $\Spec k$. Then, $G$ decomposes into a \textit{normal} (and necessarily closed) linear algebraic subgroup $H$ and an abelian variety $A$ via the following short exact sequence of algebraic groups over $\Spec k$:
+                        $$1 \to H \to G \to A \to 1$$
+                \end{theorem}
+                \begin{remark}[Short exact sequences of algebraic groups ?] \label{remark: short_exact_sequences_algebraic_groups}
+                    Thanks to proposition \ref{prop: quotients_by_algebraic_groups}, the notion of short exact sequences makes sense for algebraic groups. In particular, for any algebraic group $G$, one defines the cokernel of a closed immersion $H \trianglelefteq G$ of a normal algebraic subgroup $H$ to precisely be the canonical quotient map $G \to G/H$. Then, one can define the kernel of this quotient map simply as the canonical pullback $G \x_{G/H} 1$, which is possible thanks to the left-exactness of the Yoneda embedding. 
+                    
+                    One thing to note is that these notions of (co)kernels do not differ from those within (pre-)abelian categories, at least from a categorical standpoint. This is because the category of (locally) algebraic groups over a fixed base scheme admits a zero object, namely that very base scheme. 
+                \end{remark}
+                    \begin{proof}[Proof of theorem \ref{theorem: chevalley_decomposition_theorem}]
+                        
+                    \end{proof}
+            
+            \subsubsection{Grothendieck's theorem on tori}
+    
+    \section{Reductive groups}
+        \subsection{Generalities}
+            \begin{definition}[Unipotent groups] \label{def: unipotent_groups}
+                Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$. Also, fix a natural number $n$. $G$ is said to be \textbf{unipotent} if and only if it is a Zariski-closed subgroup of the unipotent group:
+                    $$(\bfU_n)_{/k} \cong \Spec \frac{k[x_{11}, x_{12}, ..., x_{nn}]}{(\forall 1 \leq j \leq i \leq n: x_{i = j} = 1, x_{i > j} = 0)}$$
+                of upper-triangular $n \x n$ matrices with entries in $k$.
+            \end{definition}
+            \begin{remark}[Unipotent groups are linear algebraic groups] \label{remark: unipotent_groups_are_linear_algebraic_groups}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Embedding into $\GL_n$):} Since the determinants of upper triangular matrices are just the products of the diagonal entries, and since $1$ is always a unit (which implies that $(\bfU_n)_{/k} \cong (\bfU_n)_{/k}\left[\frac{1}{\det}\right]$), $(\bfU_n){/k}$ is indeed a Zariski-closed subgroup of $(\GL_n)_{/k} \cong \Spec k[x_{11}, x_{12}, ..., x_{nn}]\left[\frac{1}{\det}\right]$. 
+                    \item \textbf{(Elements of unipotent groups are unipotent):} One can show that the eigenvalues of any upper-triangular matrix are all equal to $1$, and hence these matrices are unipotent by definition (recall that an element $r \in R$ of a ring $R$ - which need not be commtuative - is unipotent if and only if $r - 1$ is nilpotent); to show why the eigenvalues all being $1$ is a sufficient and necessary condition, simply apply the Jordan Canonical Decomposition. Elements of unipotent groups are thus indeed unipotent.
+                \end{enumerate}
+            \end{remark}
+            \begin{definition}[Radicals] \label{def: radicals_of_algebraic_groups}
+                Let $k$ be an algebraically closed field and let $G$ be a connected smooth algebraic group over $\Spec k$. 
+                    \begin{enumerate}
+                        \item \textbf{(Solvability):} $G$ is said to be \textbf{solvable} if its group of $k$-rational points $G(k)$ is solvable, i.e. if the \href{https://ncatlab.org/nlab/show/derived+series}{\underline{derived series}} of $G(k)$:
+                            $$G(k) \geq G(k)^{(1)} \geq ... $$
+                        terminates at the trivial group after \textit{finitely} many steps. 
+                        \item \textbf{(Radicals):} The \textbf{radical} of $G$, denoted by $\scrR_G$, is the maximal normal solvable algebraic subgroup of $G$. 
+                    \end{enumerate}
+            \end{definition}
+            \begin{remark}[Unipotent radicals] \label{remark: unipotent_radicals}
+                Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$, and note that within such a setting, the radical $\scrR_G$ is necessarily affine too. Then, the \textbf{unipotent radical} of $G$ (denoted by $\scrU_G$) is maximal unipotent subgroup of $\scrR_G$; at the level of $k$-rational points, one also has:
+                    $$\scrU_G(k) = \scrR_G(k) \cap U_G(k)$$
+                where $U_G \trianglelefteq G$ is the maximal unipotent \textit{normal} subgroup of $G$.
+            \end{remark}
+            
+            \begin{definition}[Tori and reductive groups] \label{def: tori_and_reductive_groups}
+                Fix a base scheme $S$. We then have the following hierachy of (affine) algebraic groups:
+                \begin{enumerate}
+                    \item \textbf{(Algebraic tori):} An \textbf{algebraic $S$-torus} is a \textit{finite} product of $(\G_m)_{/S}$, the base change of $\G_m$ (understood to be over $\Spec \Z$) to $S$.
+                    \item \textbf{(Reductive and semi-simple algebraic groups):} 
+                        \begin{enumerate}
+                            \item \textbf{(Semi-simple groups):} A linear algebraic $S$-group $G$ is \textbf{semi-simple} if and only if its geometric fibres $G_{\bar{x}}$ are semi-simple, which is to say, their radicals $\scrR_{G_{\bar{x}}}$ are all trivial. 
+                            \item \textbf{(Reductive groups):} A linear algebraic $S$-group $G$ is \textbf{reductive} if and only if its geometric fibres $G_{\bar{x}}$ are reductive, which is to say, their unipotent radicals $\scrU_{G_{\bar{x}}}$ are all trivial.
+                        \end{enumerate}
+                \end{enumerate}
+            \end{definition}
+            \begin{remark} \label{remark: tori_and_reductive_groups}
+                Let $S$ be a base scheme and let $G$ be a linear algebraic group over $S$.
+                \begin{enumerate}
+                    \item \textbf{(Tori are reductive):} First of all, since tori are abelian, their derived series are trivial and they are therefore automatically solvable. As a consequence, the radical of a torus is just the whole group, and thus any torus is semi-simple. This also implies that tori are reductive, as the unipotent radical - being the intersection of the radical and the maximal unipotent subgroup - must be trivial if the radical is trivial.
+                    
+                    Non-trivial tori, however, are not unipotent, since diagonal matrices are not necessarily the identity.
+                    \item \textbf{(Semi-simple groups are reductive):} This is easy, as the radical being trivial obviously implies that the unipotent radical is trivial too (this is the other way to show that tori are reductive). 
+                    
+                    The converse statement is not true in general. For instance, unipotent groups are not reductive, as the unipotent radical of one such group is just the entire group.
+                \end{enumerate}
+            \end{remark}
+                    
+        \subsection{Special subgroups of reductive groups; flag varieties}
+        
+        \subsection{Split reductive groups}
