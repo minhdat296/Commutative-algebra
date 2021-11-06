@@ -1,4 +1,42 @@
 \subsubsection{A host of concrete examples}
+    \begin{example}[An art project: Projective $n$-spaces] \label{example: projective_spaces} \index{Projective spaces}
+        Out of frustration directed at the seeming lack of a systematic construction of projective $n$-spaces that addresses all of its \textit{fa\c{c}ades}, the author has decided to write down such a presentation, with hopes that this brainitch would finally be scratched. 
+        
+        With that \textit{totally-not-passive-aggressive} introduction out of the way, let us first begin with an outline: namely, what are the many definitions of projective $n$-spaces ? 
+            \begin{enumerate}
+                \item \textbf{(The classical approach):} Classically, one defines the projective $n$-space over a commutative ring $k$ (for some fixed natural number $n$) as the following set:
+                    $$
+                        \P^n_k :=
+                        \left\{\begin{aligned}
+                            & [x_0 : x_1 : ... : x_n] \mid (x_0, x_1, ..., x_n) \in \A^{n+1}_k \setminus \{(0, 0, ..., 0)\}:
+                            \\
+                            & \left([x_0 : x_1 : ... : x_n] \sim [x'_0 : x'_1 : ... : x'_n]\right) \iff \left(\exists \lambda \in k^{\x}: (x'_0, x'_1, ..., x'_n) = \lambda (x_0, x_1, ..., x_n)\right)
+                        \end{aligned}\right\}
+                    $$
+                which essentially consists of non-zero points $[x_0 : x_1 : ... : x_n]$ that are defined uniquely up to scalar multiplications, and can be equipped with the Zariski topology. 
+                \item \textbf{(The stacky approach):} For starters, let us write $\G_m$ for the group object of $(\Spec \Z)_{\et}$ given by:
+                    $$\G_m(k) := k^{\x}$$
+                for all $k \in \Cring^{\op}$, and let this group act via left-multiplication upon the affine $(n+1)$-space $\A^{n+1}$, which by definition is the sheaf $\Spec \Z[x_0, ..., x_n]$ on $\Cring^{\petit, \op}_{\et}$, i.e.:
+                    $$(\Spec \Z)_{\et} \vDash \left(\forall (\lambda, \vec{x}): \G_m \x \A^{n+1}. \pi(\lambda, \vec{x}) := \lambda \vec{x}\right)$$
+                with $\pi: \G_m \x \A^{n+1} \to \A^{n+1}$ denoting the $\G_m$-action via left-multiplication on $\A^{n+1}$. Next, consider the \say{quotient stack} $[\A^{n+1} /_{\pi} \G_m]$, or rather, the associated action groupoid, which we \textit{must} note to be an equivalence relation:
+                    $$
+                        \begin{tikzcd}
+                        	{\G_m \x \A^{n+1}} & {\A^{n+1}} \\
+                        	{\A^{n+1}}
+                        	\arrow["{\pr_2}"', from=1-1, to=2-1]
+                        	\arrow["{\pi}", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                (see \ref{example: internal_groupoids_and_equivalence_relations} for an explanation of why group actions induces equivalence relations). This groupoid being an equivalence relation means that one can take its quotient (in the sense of definition \ref{def: equivalence_relations}, and such a quotient exists because stack categories are cocomplete), and therefore, $[\A^{n+1} /_{\pi} \G_m]$ is actually a quotient stack, \textit{sans parenth\`eses}. Actually, because both $\A^{n+1}$ and $\G_m$ are simply sheaves of sets, the quotient stack $[\A^{n + 1} /_{\pi} \G_m]$ should in fact just be a sheaf of sets; let us denote it by $\P^n$.
+                
+                Now, is $\P^n$ as defined above a scheme ? Firstly, it is certainly a DM-stack, as $\A^{n+1}$ and $\G_m$ are. Also, because \'etale sheaves are \textit{a priori} Zariski sheaves, $\P^n$ being a categorical quotient by an \'etale equivalence relation implies that it naturally possesses a Zariski atlas, namely by $\A^{n+1}$. Next, consider the diagonal:
+                    $$\Delta_{\P^n/\Spec \Z}: \P^n \to \P^n \x \P^n$$
+                
+                \item \textbf{(The topological approach):}
+                \item \textbf{($\Proj$ of polynomial rings):}
+            \end{enumerate}
+    \end{example}
+
     The following list of problems is taken from \href{https://mathoverflow.net/questions/59071/what-elementary-problems-can-you-solve-with-schemes}{\underline{this MO thread}} as well as \href{http://math.stanford.edu/~vakil/725/funprobs.pdf}{\underline{these notes}}  by Ravi Vakil. Detailed citations will be provided where it is possible to do so.
     
     \paragraph{Powers of coprime ideals}

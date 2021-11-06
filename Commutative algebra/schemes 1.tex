@@ -2135,304 +2135,63 @@
                         $(2, 1)$-topoi are also of great importance, as categories of geometric stacks embed fully faithfully via left-exact inclusions into them (cf. lemma \ref{lemma: geometric_stack_categories}). As such, we shall dedicate the notation ${}^{(2, 1)}[\Spec k]^{\geom}_{\tau}$ for the category of sheaves of groupoids over some algebraic site ${}^{k/}\Comm\Alg_{\tau}^{\petit, \op}$; as for $(2, 1)$-presheaf topoi (i.e. categories of prestacks fibred in groupoids), they shall be denoted by ${}^{(2, 1)}[\Spec k]$. 
                     \end{convention}
                 
-            \subsubsection{"Let me tell you my evil scheme"}
-                (Seriously, \href{https://www.youtube.com/watch?v=VnzE6zOy9hA}{\underline{go have a listen}})
-                
+            \subsubsection{Schemes}
                 \begin{definition}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Schemes] \label{def: schemes} \index{Schemes}
-                    Let $k$ be an arbitrary base commutative ring. Then, \textbf{schemes} over $\Spec k$ shall be objects of $[\Spec k]_{\et}$ satisfying the following conditions:
+                    Let $k$ be an arbitrary base commutative ring. Then, a scheme over $\Spec k$ shall be an \'etale sheaf $X \in (\Spec k)_{\et}$ such that:
                         \begin{enumerate}
-                            \item $X$ has got to admit a \textit{Zariski} atlas; that is to say, not only is it required to be a quotient stack internal to $(\Spec k)_{\et}$ (as it is a DM-stack), but furthermore, it must be a quotient stack internal to $(\Spec k)_{\Zar}$; note however, that we have not - and in fact, do not - required that the equivalence relations defining the \'etale atlas and the Zariski atlas of a given scheme need to be coincide; we have simply demanded that the Zariski atlas existed. 
-                            \item For all $(j: T \to X \x_{\Spec k} X) \in \Sch^{\aff}_{/X \x_{\Spec k} X}$, we shall require the canonical projection:
-                                $$\pr_1: T \x_{j, X \x_{\Spec k} X, \Delta_{X/\Spec k}} X \to T$$
-                            to be a closed embedding of affine schemes over $X$, which is well-defined thanks to the fact that every affine scheme possesses a ringed space structure (cf. remark \ref{remark: affine_schemes_are_locally_ringed_spaces}).
+                            \item \textbf{(Representability of diagonals):} the diagonal $\Delta_X: X \to X \x_{\Spec k} X$ is affine-schematic (cf. definition \ref{def: affine_schematic}), and
+                            \item \textbf{(Presence of Zariski coverings):} $X$ admits a Zariski atlas (cf. definition \ref{def: geometric_stacks}).
                         \end{enumerate}
                 \end{definition}
                 \begin{remark}[Schemes are Zariski-algebraic stacks] \label{remark: schemes_are_zariski_algebraic_stacks}
-                    Since schemes are \'etale sheaves, they are trivially Zariski sheaves as well; this (along with the fact that every scheme admits a Zariski covering) implies that every scheme is necessarily a Zariski-algebraic stack, i.e. objects of $[\Spec k]_{\Zar}^{\geom}$. One can also show that they are fppf and fpqc sheaves.
+                    Since schemes are \'etale sheaves, they are trivially Zariski sheaves as well; this (along with the fact that every scheme admits a Zariski atlas and that their diagonals are affine-schematic) implies that every scheme is necessarily a Zariski-algebraic stack, i.e. objects of $[\Spec k]_{\Zar}^{\geom}$. 
                 \end{remark}
                 
-                \begin{proposition}[Schemes are fppf and fpqc sheaves] \label{prop: schemes_are_flat_sheaves}
-                    Schemes over some base affine scheme $\Spec k$, as objects of $[\Spec k]$, satisfy fppf and fpqc descent.
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
-                
-                \begin{lemma}[\'Etale coverings of schemes] \label{lemma: etale_coverings_of_schemes}
-                    The Zariski covering of any given scheme can be coarsen up to an \'etale covering. 
-                \end{lemma}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}[Schemes are DM-stacks] \label{coro: schemes_are_DM_stacks}
-                    Since schemes are \'etale stacks by definition and because we know now that they also admits \'etale coverings, they are \textit{a priori} DM-stacks.
-                \end{corollary}
                 \begin{theorem}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} The category of schemes] \label{theorem: scheme_categories} \index{Schemes}
-                    Let $k$ be a commutative ring. Schemes over $\Spec k$ form a full subcategory of the category $[\Spec k]^{\geom}_{\et}$ of DM-stacks, which shall be denoted by $\Sch_{/\Spec k}$; the embedding of $\Sch$ into $[\Spec k]^{\geom}_{\et}$ is also \textit{left-exact}. Furthermore, there are \textit{left-exact} fully faithful embeddings of $\Sch_{/\Spec k}$ into the Zariski topos $(\Spec k)_{\Zar}$.
+                    Let $k$ be a commutative ring. Schemes over $\Spec k$ form a full subcategory of the category $[\Spec k]^{\geom}_{\et}$ of DM-stacks closed under finite limits, which shall be denoted by $\Sch_{/\Spec k}$. 
                 \end{theorem}
                     \begin{proof}
-                        As schemes are defined to be DM-stacks on which certain conditions are imposed, it suffices to show that morphisms between schemes are merely arrows in $[\Spec k]^{\geom}_{\et}$ (or rather, just arrows in $[\Spec k]_{\et}$, since this category admits $[\Spec k]^{\geom}_{\et}$ as a full subcategory; see lemma \ref{lemma: geometric_stack_categories} for details).
+                        
                     \end{proof}
-                
-                Next, we shall discuss the business of building schemes out of affine schemes, which is a key feature of the theory of schemes. In fact, the original definition reads: \say{a scheme is a locally ringed space which is locally isomorphic to affine schemes}. For this, however, we shall first need to discuss some subtle toplogical technicalities, namely \v{C}ech nerves and hypercovers.
-                
-                \begin{definition}[\v{C}ech nerves and hypercovers] \label{def: hypercovers} \index{\v{C}ech nerves} \index{Hypercovers}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Simplicial objects):} First of all, \textbf{the simplex category} (which we shall denote by $\simp$) shall to us be the full $1$-subcategory spanned by the \textit{non-empty} finite ordinals of the category $\Cat$ of \textit{small} categories:
-                            $$\simp \cong
-                                \left\{
-                                    \begin{tikzcd}
-                                    	{[0]} & {[1]} & {[2]} & \cdots
-                                    	\arrow[shift right=2, from=1-1, to=1-2]
-                                    	\arrow[shift right=1, from=1-2, to=1-1]
-                                    	\arrow[from=1-2, to=1-1]
-                                    	\arrow[shift right=2, from=1-2, to=1-3]
-                                    	\arrow[shift right=1, from=1-2, to=1-3]
-                                    	\arrow[shift right=1, from=1-3, to=1-2]
-                                    	\arrow[shift right=2, from=1-3, to=1-2]
-                                    	\arrow[shift right=3, from=1-3, to=1-2]
-                                    	\arrow[shift right=1, from=1-4, to=1-3]
-                                    	\arrow[shift right=2, from=1-4, to=1-3]
-                                    	\arrow[shift right=3, from=1-4, to=1-3]
-                                    	\arrow[shift right=2, from=1-3, to=1-4]
-                                    	\arrow[shift right=1, from=1-3, to=1-4]
-                                    	\arrow[shift right=4, from=1-4, to=1-3]
-                                    	\arrow[shift right=3, from=1-3, to=1-4]
-                                    \end{tikzcd}
-                                \right\}
-                            $$
-                        The forward arrows are injective functions called \textbf{face maps}, and the backward arrows are surjective functions known as \textbf{degeneracy maps}; see \cite[Definition 2.2]{nlab:simplicial_set} for more details. Then, let us simply define a \textbf{simplicial object} of a category $\E$ with enough pullbacks to be a presheaf on the simplex category, i.e. a functor:
-                            $$X: \simp^{\op} \to \E$$
-                        or in other words, a diagram in $\E$ of shape $\simp^{\op}$. 
-                        \item \textbf{(\v{C}ech nerves):} Let $\E$ be a category with enough pullbacks, and let:
-                            $$u \to x$$
-                        be some morphism of $\E$. Then, the \textbf{\v{C}ech nerve} of $u$ over $x$ - for which we shall write $u^{\bullet}_{/x}$ - is the following simplicial object of $\E$, whose face maps are canonical projections, and the degeneracy maps are equalities (note that the direction in which these arrows point have been flipped since simplicial objects are diagrams of shape $\simp^{\op}$):
-                            $$u^{\bullet}_{/x} \cong
-                                \left\{
-                                    \begin{tikzcd}
-                                    	u & {u \x_x u} & {u \x_x u \x_x u} & \cdots
-                                    	\arrow[shift right=1, from=1-2, to=1-1]
-                                    	\arrow[shift left=1, from=1-2, to=1-1]
-                                    	\arrow[from=1-3, to=1-2]
-                                    	\arrow[shift right=2, from=1-3, to=1-2]
-                                    	\arrow[shift left=2, from=1-3, to=1-2]
-                                    	\arrow[shift left=1, from=1-4, to=1-3]
-                                    	\arrow[shift right=1, from=1-4, to=1-3]
-                                    	\arrow[shift left=3, from=1-4, to=1-3]
-                                    	\arrow[shift right=3, from=1-4, to=1-3]
-                                    \end{tikzcd}
-                                \right\}
-                            $$
-                        When $u$ is implicitly understood, one may say ambiguous things such as \say{the \v{C}ech nerve on $x$}.
-                        
-                        One very important thing to note is that the \v{C}ech nerve associated to some given morphism is the \href{https://ncatlab.org/nlab/show/internal+category#internal_nerve}{\underline{internal nerve}} of the internal groupoid in $\E$ that is the kernel pair:
-                            $$u \toto x$$
-                        corresponding to the given arrow $u \to x$ (cf. definition \ref{def: equivalence_relations}): particularly, if one was to write $u^i_{/x}$ for the $i$-fold pullback of $u \to x$ along itself (so for instance, $u^1_{/x} \cong u \x_x u$), then it would be clear that each span of the following form would be an internal groupoid (in fact, a kernel pair) inside $\E$:
-                            $$
-                                \begin{tikzcd}
-                                	{u^{i + 1}_{/x}} & {u^i_{/x}} \\
-                                	{u^i_{/x}}
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=1-1, to=1-2]
-                                \end{tikzcd}
-                            $$
-                        To pause and handwave a bit (so as to keep traditions alive), one might imagine the \v{C}ech nerve of a given morphism (which itself can be thought of as the inclusion of a space into a larger ambient space) as the system of $2$-fold, $3$-fold, ... intersections of subspaces, which helps us approximate the ambient space (via its cohomology groups!) better with each successive intersection.
-                        \item \textbf{(Hypercovers):} 
-                    \end{enumerate}
-                \end{definition}
-                \begin{remark}[\v{C}ech nerves and hypercovers via functors] \label{remark: hypercovers_alt_def}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(\v{C}ech nerves):} We apologise in advance for invoke the forbidden word, but (un)fortunately, the most natural settings for introducing hypercovers turns out to be that of $\infty$-categories. 
-                        
-                        Recognise the simplex category $\simp$ as a full $\infty$-subcategory the category $\Sets^{\fin}$ of finite sets with the same morphisms but fewer ($1$-truncated) morphisms (since there can be functions between finite sets which are neither injective nor surjective, for instance) via a fully faithful $\infty$-embedding:
-                            $$\simp \hookrightarrow \Sets^{\fin}$$
-                        and consider a commutative diagram of the following form, wherein $\E$ is an $\infty$-category with all $\infty$-pullbacks, $x$ is an object of $\E$:
-                            $$
-                                \begin{tikzcd}
-                                	{\simp^{\op}} && {\Sets^{\fin, \op}} \\
-                                	& \E_{/x}
-                                	\arrow[hook, from=1-1, to=1-3]
-                                	\arrow[from=1-1, to=2-2]
-                                	\arrow[from=1-3, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        and with the functor $\Sets^{\fin, \op} \to \E_{/x}$ being the one that returns pointwise exponentials of objects of $\E_{/x}$ (i.e. it is given by $u \mapsto u^n$, with $u^n$ being the $n$-fold pullback of $u \to x$ along itself). Then, take the right $\infty$-Kan extension of the composite $\simp^{\op} \to \Sets^{\fin, \op} \to \E_{/x}$ along the composite $\simp^{\op} \to \E_{/x} \to \E$, with $\E_{/x} \to \E$ the evident forgetful functor, which fits into the following diagram whose outer portion (i.e. the part without the dashed arrow) commutes:
-                            $$
-                                \begin{tikzcd}
-                                	& {\simp^{\op}} && {\Sets^{\fin, \op}} \\
-                                	{\E_{/x}} && {\E_{/x}} \\
-                                	&& \E
-                                	\arrow[from=1-2, to=1-4]
-                                	\arrow[from=1-2, to=2-3]
-                                	\arrow[from=1-4, to=2-3]
-                                	\arrow[from=1-4, to=3-3]
-                                	\arrow[""{name=0, anchor=center, inner sep=0}, from=1-2, to=3-3]
-                                	\arrow[dashed, from=2-3, to=3-3]
-                                	\arrow[from=1-2, to=2-1]
-                                	\arrow["\oblv"', from=2-1, to=3-3]
-                                	\arrow[shorten >=2pt, Rightarrow, from=2-3, to=0]
-                                \end{tikzcd}
-                            $$
-                        We shall denote this right $\infty$-Kan extension by $(-)^{\bullet}_{/x}$ and call it the \textbf{\v{C}ech nerve functor over $x$}. At this point, let us take note of the fact that by a property of general right $\infty$-Kan extensions, we can realise \v{C}ech nerve functors as certain $\infty$-limits of $\infty$-functors:
-                            $$(-)^{\bullet}_{/x} \cong {}^{(\infty, 1)}\underset{n \in \N}{\lim} (-)^{[n]}_{/x}$$
-                        wherein we view $\N$ as an ordered set, and by $u^{[n]}_{/x}$, we mean the following $n$-truncated object of $\E_{/x}$:
-                            $$
-                                u^{[n]}_{/x} \cong
-                                \left\{
-                                    \begin{tikzcd}
-                                    	u & {u \x_x u} & {u \x_x u \x_x u} & \cdots & {u^n}
-                                    	\arrow[shift left=1, from=1-4, to=1-3]
-                                    	\arrow[shift right=1, from=1-4, to=1-3]
-                                    	\arrow[shift left=3, from=1-4, to=1-3]
-                                    	\arrow[shift right=3, from=1-4, to=1-3]
-                                    	\arrow[from=1-3, to=1-2]
-                                    	\arrow[shift right=2, from=1-3, to=1-2]
-                                    	\arrow[shift left=2, from=1-3, to=1-2]
-                                    	\arrow[shift right=1, from=1-2, to=1-1]
-                                    	\arrow[shift left=1, from=1-2, to=1-1]
-                                    	\arrow[""{name=0, anchor=center, inner sep=0}, shift left=4, from=1-5, to=1-4]
-                                    	\arrow[""{name=1, anchor=center, inner sep=0}, shift right=4, from=1-5, to=1-4]
-                                    	\arrow["\cdots"{marking}, Rightarrow, draw=none, from=1, to=0]
-                                    \end{tikzcd}
-                                \right\}
-                            $$
-                        (i.e. the objects $u^{[n]}_{/x}$ are \say{simplicial powers} of sort). This is evident if we would notice that each $u^{[n]}_{/x}$ is the image of the simplex $[n]$ under the composition:
-                            $$\simp^{\op} \hookrightarrow \Sets^{\fin, \op} \to \E_{/x} \to \E$$
-                        wherein $\E_{/x} \to \E$ is the forgetful functor. This tells us that objects in the essential image of the \v{C}ech nerve functor $(-)^{\bullet}_{/x}$ need to be of the form:
-                            $$
-                                u^{\bullet}_{/x} \cong
-                                \left\{
-                                    \begin{tikzcd}
-                                    	u & {u \x_x u} & {u \x_x u \x_x u} & \cdots
-                                    	\arrow[shift right=1, from=1-2, to=1-1]
-                                    	\arrow[shift left=1, from=1-2, to=1-1]
-                                    	\arrow[from=1-3, to=1-2]
-                                    	\arrow[shift right=2, from=1-3, to=1-2]
-                                    	\arrow[shift left=2, from=1-3, to=1-2]
-                                    	\arrow[shift left=1, from=1-4, to=1-3]
-                                    	\arrow[shift right=1, from=1-4, to=1-3]
-                                    	\arrow[shift left=3, from=1-4, to=1-3]
-                                    	\arrow[shift right=3, from=1-4, to=1-3]
-                                    \end{tikzcd}
-                                \right\}
-                            $$
-                        which means that they are precisely the \v{C}ech nerves associated to the structure morphisms $u \to x$, and also, that:
-                            $$\tau_{\leq n} (-)^{\bullet}_{/x} \cong (-)^{[n]}_{/x}$$
-                        for all natural numbers $n$, which means that \textit{\v{C}ech nerve functors are limits of their \href{https://ncatlab.org/nlab/show/n-truncated+object+of+an+\%28infinity\%2C1\%29-category}{\underline{truncations}}}. Our purpose for bothering with all this abstract nonsense is, that the new formulation helps simplify the computations of (co)limits indexed by \v{C}ech nerves somehwhat. For example, in proposition \ref{prop: affine_schemes_are_schemes} below, we wish to establish the fact that when given a scheme $X$ (which we shall view as an object of the category $[\Spec \Z]_{\et}$ - or the full subcategory $[\Spec \Z]_{\et}^{\geom}$ for that matter, as both have all pullbacks), we can realise it as the colimit of the \v{C}ech nerve associated any of its Zariski atlases $U \to X$, i.e.:
-                            $$X \cong \colim U^{\bullet}_{/X}$$
-                        and we are interpreting $U^{\bullet}_{/X}$ as the image of the object $(U \to X) \in [\Spec \Z]_{/X, \et}$ under the \v{C}ech nerve functor $(-)^{\bullet}_{/X}$. Another advantage of this perspective is that it allows us to study properties of \v{C}ech nerves via asking questions such as whether or not \v{C}ech nerve functors preserve (co)limits (and since \v{C}ech nerve functors are right Kan extensions, they should enjoy all sorts of nice properties). 
-                        
-                        Lastly, because the spans of the following form would are internal groupoids inside $\pi_n(\E)$:
-                            $$
-                                \begin{tikzcd}
-                                	{u^{n + 1}_{/x}} & {u^n_{/x}} \\
-                                	{u^n_{/x}}
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=1-1, to=1-2]
-                                \end{tikzcd}
-                            $$
-                        it is rather easy to see how \v{C}ech complexes are actually internal $\infty$-groupoids (in fact, $\infty$-kernel pairs). 
-                        \item \textbf{(Hypercovers):}
-                    \end{enumerate}
+                \begin{remark}[Affine schemes are schemes] \label{remark: affine_schemes_are_schemes}
+                    For every commutative ring $k$, it is not hard to see that the category $\Sch_{/\Spec k}$ admits $\Sch^{\aff}_{/\Spec k}$ as a full subcategory via a left-exact embedding. 
                 \end{remark}
-                
-                \begin{proposition}[Affine schemes are schemes] \label{prop: affine_schemes_are_schemes}
-                    \noindent
-                    \begin{enumerate}
-                        \item For every commutative ring $k$, the category $\Sch_{/\Spec k}$ admits $\Sch^{\aff}_{/\Spec k}$ as a full subcategory via a left-exact embedding
-                        \item In fact, every scheme $X$ can be written as a colimit over the \v{C}ech nerve associated to any choice of its Zariski atlases.
-                    \end{enumerate}
+                    
+                Arguably, the analysis of a category would not be complete (pun absolutely intended) without a discussion of limits and colimits of diagrams therein, and so let us do exactly that with the category of schemes.
+                \begin{proposition}[Limits of schemes] \label{prop: limits_of_schemes} \index{Limits! of schemes}
+                    The following classes of limits exist in the category of schemes:
+                        \begin{enumerate}
+                            \item Terminal objects in $\Sch$ are isomorphic to $\Spec \Z$.
+                            \item Finite products and pullbacks.
+                            \item Monomorphisms.
+                            \item Filtered limits with affine-schematic transition maps. 
+                        \end{enumerate}
                 \end{proposition}
                     \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item There is no arguing that affine schemes are DM-stacks with Zariski atlases, so let us focus on showing that for each affine scheme $X$ and each affine scheme $(j: T \to \Sch^{\aff}_{X \x_{\Spec k} X})$, the canonical projection:
-                                $$T \x_{j, X \x_{\Spec k} X, \Delta_{X/\Spec k}} X \to T$$
-                            must be a closed immersion. If we set $X \cong \Spec R, T \cong \Spec S$, then this will amount to showing that all the maps (wherein $g$ denotes elements of $S$):
-                                $$S_g \to S_g \tensor_{R \tensor_k R} R$$
-                            are surjective. However, this is evident from the fact that the multiplication $R \tensor_k R \to R$ is surjective, and how colimits (the pushout of rings and the surjective multiplication map in this case) commute, so we are done with the first assertion. 
-                            
-                            Now, because the category $\Sch^{\aff}_{/\Spec k}$ is defined to be the essential image of the Yoneda embedding:
-                                $${}^{k/}\Comm\Alg^{\op} \hookrightarrow (\Spec k)$$
-                            (cf. definition \ref{def: zariski_topoi}), they not only must form a full subcategory of $\Sch_{/\Spec k}$, but moreover, this fully faithful embedding needs to be left-exact, as the Yoneda embedding is so
-                            \item As each scheme is first and foremost a quotient stack (cf. definitions \ref{def: geometric_stacks} and \ref{def: schemes}), they automatically satisfy the universal property of colimits; our job is just to find the diagrams over which these colimits are being taken; in fact, schemes should be coequalisers, since atlases are, by definition, equivalence relations.  
-                        \end{enumerate}
-                    \end{proof}
-                    \begin{example}[An art project: Projective $n$-spaces] \label{example: projective_spaces} \index{Projective spaces}
-                        Out of frustration directed at the seeming lack of a systematic construction of projective $n$-spaces that addresses all of its \textit{fa\c{c}ades}, the author has decided to write down such a presentation, with hopes that this brainitch would finally be scratched. 
                         
-                        With that \textit{totally-not-passive-aggressive} introduction out of the way, let us first begin with an outline: namely, what are the many definitions of projective $n$-spaces ? Classically, one defines the projective $n$-space over a commutative ring $k$ (for some fixed natural number $n$) as the following set:
-                            $$
-                                \P^n_k :=
-                                \left\{\begin{aligned}
-                                    & [x_0 : x_1 : ... : x_n] \mid (x_0, x_1, ..., x_n) \in \A^{n+1}_k \setminus \{(0, 0, ..., 0)\}:
-                                    \\
-                                    & \left([x_0 : x_1 : ... : x_n] \sim [x'_0 : x'_1 : ... : x'_n]\right) \iff \left(\exists \lambda \in k^{\x}: (x'_0, x'_1, ..., x'_n) = \lambda (x_0, x_1, ..., x_n)\right)
-                                \end{aligned}\right\}
-                            $$
-                        which essentially consists of non-zero points $[x_0 : x_1 : ... : x_n]$ that are defined uniquely up to scalar multiplications. This original approach then leads us straight to the second one: the quotient stack $[\A^{n+1} / \G_m]$ is a scheme, which is denoted by $\P^n$. The third construction of $\P^n$ involves gluing $n + 1$ copies of $\A^n$ along certain open subschemes thereof, whose connections to the multiplicative group scheme $\G_m$ shall be explored. Lastly, projective $n$-spaces can be realised as one instance of a \say{$\Proj$} of a graded ring: in this case, polynomial rings in $n + 1$ variables with their natural $\N$-grading. 
-                            \begin{enumerate}
-                                \item \textbf{(The classical approach):} 
-                                \item \textbf{(The stacky approach):} For starters, let us write $\G_m$ for the group object of $(\Spec \Z)_{\et}$ given by:
-                                    $$\G_m(k) := k^{\x}$$
-                                for all $k \in \Cring^{\op}$, and let this group act via left-multiplication upon the affine $(n+1)$-space $\A^{n+1}$, which by definition is the sheaf $\Spec \Z[x_0, ..., x_n]$ on $\Cring^{\petit, \op}_{\et}$, i.e.:
-                                    $$(\Spec \Z)_{\et} \vDash \left(\forall (\lambda, \vec{x}): \G_m \x \A^{n+1}. \pi(\lambda, \vec{x}) := \lambda \vec{x}\right)$$
-                                with $\pi: \G_m \x \A^{n+1} \to \A^{n+1}$ denoting the $\G_m$-action via left-multiplication on $\A^{n+1}$. Next, consider the \say{quotient stack} $[\A^{n+1} /_{\pi} \G_m]$, or rather, the associated action groupoid, which we \textit{must} note to be an equivalence relation:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{\G_m \x \A^{n+1}} & {\A^{n+1}} \\
-                                        	{\A^{n+1}}
-                                        	\arrow["{\pr_2}"', from=1-1, to=2-1]
-                                        	\arrow["{\pi}", from=1-1, to=1-2]
-                                        \end{tikzcd}
-                                    $$
-                                (see \ref{example: internal_groupoids_and_equivalence_relations} for an explanation of why group actions induces equivalence relations). This groupoid being an equivalence relation means that one can take its quotient (in the sense of definition \ref{def: equivalence_relations}, and such a quotient exists because stack categories are cocomplete), and therefore, $[\A^{n+1} /_{\pi} \G_m]$ is actually a quotient stack, \textit{sans parenth\`eses}. Actually, because both $\A^{n+1}$ and $\G_m$ are simply sheaves of sets, the quotient stack $[\A^{n + 1} /_{\pi} \G_m]$ should in fact just be a sheaf of sets; let us denote it by $\P^n$.
-                                
-                                Now, is $\P^n$ as defined above a scheme ? Firstly, it is certainly a DM-stack, as $\A^{n+1}$ and $\G_m$ are. Also, because \'etale sheaves are \textit{a priori} Zariski sheaves, $\P^n$ being a categorical quotient by an \'etale equivalence relation implies that it naturally possesses a Zariski atlas, namely by $\A^{n+1}$. Next, consider the diagonal:
-                                    $$\Delta_{\P^n/\Spec \Z}: \P^n \to \P^n \x \P^n$$
-                                
-                                \item \textbf{(The topological approach):}
-                                \item \textbf{($\Proj$ of polynomial rings):}
-                            \end{enumerate}
-                    \end{example}
-                    
-                    Arguably, the analysis of a category would not be complete (pun absolutely intended) without a discussion of limits and colimits of diagrams therein, and so let us do exactly that with the category of schemes.
-                    
-                    \begin{remark}[On colimits of affine schemes] \label{remark: affine_scheme_colimits} \index{Colimits! of affine schemes}
-                    It might seem strange that while ${}^{k/}\Comm\Alg$ is both complete and cocomplete, $\Sch^{\aff}_{/\Spec k}$ on the other hand is not cocomplete, but let us assure you, this is indeed the case (even though the reasons are somewhat subtle). To see why this is, let us generalise a little and consider a Grothendieck topos that is equivalent to the category of sheaves over some \textit{cocomplete} and \textit{subcanonical} site $(\C, J)$, such as sheaf topoi over Zariski sites. By definition, such a topos comes equipped with a geometric embedding into the presheaf topos $\Psh_{\Sets}(\C)$:
-                        $$
-                            \begin{tikzcd}
-                            	\Sh_{\Sets}(\C, J) & {\Psh_{\Sets}(\C)}
-                            	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, hook, from=1-1, to=1-2]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{}^{\sh}(-)_J"', shift right=2, from=1-2, to=1-1]
-                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
-                            \end{tikzcd}
-                        $$
-                    Now, consider a colimit:
-                        $$\underset{i \in I}{\colim} \C(-, c_i)$$
-                    \textit{of representable presheaves} on $\C$ (which we note to be sheaves on $(\C, J)$ as we have assumed that this site is subcanonical). Such a colimit is itself a sheaf on $(\C, J)$, since the $J$-sheafification functor ${}^{\sh}(-)_J$ is a left-adjoint, and thus \href{https://ncatlab.org/nlab/show/adjoints+preserve+\%28co-\%29limits}{\underline{\textit{a priori} preserves colimits}}:
-                        $${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J \cong \underset{i \in I}{\colim} {}^{\sh}(\C(-, c_i))_J \cong \underset{i \in I}{\colim} \C(-, c_i)$$
-                    But is this sheaf still representable by objects of $\C$ ? Most probably not, though, since \href{https://ncatlab.org/nlab/show/hom-functor+preserves+limits}{\underline{the Yoneda embedding is not expected to preserve gerenal colimits}}, which in particular means that we can not expect that there is a natural isomorphism between the presheaves $\underset{i \in I}{\colim} \C(-, c_i)$ and $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, and consequently, that there is not an identification of the sheaf ${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J$ by the sheaf $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, even though both are well-defined objects of $\Sh_{\Sets}(\C, J)$ (with the latter being a sheaf thanks to the assumption that $\C$ is a cocomplete category). Therefore, we should not count on affine scheme categories to be in possession of all colimits, even though categories of commutative algebras are complete (and hence their opposites are cocomplete) and Zariski sites built out of them are subcanonical: the reason being, that given a base ring $k$, colimits in ${}^{k/}\Comm\Alg^{\op}$ generally do not coincide with those of the corresponding representable sheaves on ${}^{k/}\Comm\Alg^{\op}_{\Zar}$. See example \ref{example: infinite_product_of_affine_schemes} for an analysis of one particular case of this phenomenon.
-                \end{remark}
-                \begin{example}[Spectra of infinite products and ultrafilter galore] \label{example: infinite_product_of_affine_schemes}
-                    
-                \end{example}
-                        
-                \begin{proposition}[Limits and colimits of schemes] \label{limits_and_colimits_of_schemes} \index{Limits! of schemes} \index{Colimits! of schemes} \index{Gluing! of schemes}
-                    Fix a base commutative ring $\Spec k$. Then, the category $\Sch_{/\Spec k}$ of schemes over $\Spec k$ is finitely complete. It is not cocomplete, but does admit certain colimits, most important among which are colimits of \v{C}ech nerves of Zariski atlases of schemes (cf. proposition \ref{prop: affine_schemes_are_schemes}) and pushouts of open/closed immersions along other open/closed immersions (wchih are used for gluing schemes).
-                \end{proposition}
-                    \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item \textbf{(Finite completeness):}
-                            \item \textbf{(Non-cocompleteness):} \todo{Provide a counter-example.} 
-                        \end{enumerate}
                     \end{proof}
-                    
-            \subsubsection{Artin stacks}
                 
+                \begin{remark}[On colimits of affine schemes] \label{remark: affine_scheme_colimits} \index{Colimits! of affine schemes}
+                It might seem strange that while ${}^{k/}\Comm\Alg$ is both complete and cocomplete, $\Sch^{\aff}_{/\Spec k}$ on the other hand is not cocomplete, but let us assure you, this is indeed the case (even though the reasons are somewhat subtle). To see why this is, let us generalise a little and consider a Grothendieck topos that is equivalent to the category of sheaves over some \textit{cocomplete} and \textit{subcanonical} site $(\C, J)$, such as sheaf topoi over Zariski sites. By definition, such a topos comes equipped with a geometric embedding into the presheaf topos $\Psh_{\Sets}(\C)$:
+                    $$
+                        \begin{tikzcd}
+                        	\Sh_{\Sets}(\C, J) & {\Psh_{\Sets}(\C)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, hook, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{}^{\sh}(-)_J"', shift right=2, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                Now, consider a colimit:
+                    $$\underset{i \in I}{\colim} \C(-, c_i)$$
+                \textit{of representable presheaves} on $\C$ (which we note to be sheaves on $(\C, J)$ as we have assumed that this site is subcanonical). Such a colimit is itself a sheaf on $(\C, J)$, since the $J$-sheafification functor ${}^{\sh}(-)_J$ is a left-adjoint, and thus \href{https://ncatlab.org/nlab/show/adjoints+preserve+\%28co-\%29limits}{\underline{\textit{a priori} preserves colimits}}:
+                    $${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J \cong \underset{i \in I}{\colim} {}^{\sh}(\C(-, c_i))_J \cong \underset{i \in I}{\colim} \C(-, c_i)$$
+                But is this sheaf still representable by objects of $\C$ ? Most probably not, though, since the Yoneda embedding is not expected to preserve gerenal colimits, which in particular means that we can not expect that there is a natural isomorphism between the presheaves $\underset{i \in I}{\colim} \C(-, c_i)$ and $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, and consequently, that there is not an identification of the sheaf ${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J$ by the sheaf $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, even though both are well-defined objects of $\Sh_{\Sets}(\C, J)$ (with the latter being a sheaf thanks to the assumption that $\C$ is a cocomplete category). Therefore, we should not count on affine scheme categories to be in possession of all colimits, even though categories of commutative algebras are complete (and hence their opposites are cocomplete) and Zariski sites built out of them are subcanonical: the reason being, that given a base ring $k$, colimits in ${}^{k/}\Comm\Alg^{\op}$ generally do not coincide with those of the corresponding representable sheaves on ${}^{k/}\Comm\Alg^{\op}_{\Zar}$. See example \ref{example: infinite_product_of_affine_schemes} for an analysis of one particular case of this phenomenon.
+            \end{remark}
+            \begin{example}[Spectra of infinite products and ultrafilter galore] \label{example: infinite_product_of_affine_schemes}
+                
+            \end{example}
+                    
+            \subsubsection{Algebraic spaces and Artin stacks}
             
         \subsection{Schemes are locally ringed spaces too!}
             \subsubsection{Topological spaces underlying algebraic stacks}

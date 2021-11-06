@@ -1,9 +1,26 @@
-\chapter{Derived schemes and cohomology}
+\chapter{Derived schemes} \label{chapter: cohomology_and_derived_schemes}
     \begin{abstract}
         
     \end{abstract}
     
     \minitoc
+    
+    \section{Cohomology in algebraic geometry}
+        \subsection{Vanishing theorems}
+            \subsubsection{Quasi-coherent sheaves and Serre's affineness criterion}
+            
+            \subsubsection{Higher direct images}
+        
+        \subsection{Base change}
+        
+        \subsection{Cohomology of projective varieties}
+        
+        \subsection{Some useful theorems}
+            \subsubsection{Theorems on duality}
+            
+            \subsubsection{The theorem on formal functions}
+            
+            \subsubsection{The Grothendieck Existence Theorem; Algebraisation Theorems}
 
     \section{Derived schemes}
         \subsection{(Un)necessary \texorpdfstring{$\infty$}{}-categorical technicalities}
@@ -60,7 +77,7 @@
                             \begin{enumerate}
                                 \item \textbf{($\infty$-sieves):} An $\infty$-sieve on an object $X$ of some $\infty$-category $\C$ is nothing more than an $(\infty, 1)$-subpresheaf of the representable presheaf $h_X$; i.e. for every test object $X_0$ of $\C_{/X}$ and every $\infty$-sieve $\U$ on $X$, one can identify $\U(X_0)$ as a full $\infty$-subcategory ($\infty$-subgroupoid, actually) of the $\infty$-groupoid $\C(X_0, X)$.
                                 
-                                An $\infty$-sieve $\U$ is said to \textbf{cover} an object $X$ of an $\infty$-category $\C$ if and only if $X$ is the $(\infty, 1)$-colimit of the \v{C}ech nerve $\U^{\bullet}_{/X}$ (cf. definition \ref{def: hypercovers} and remark \ref{remark: hypercovers_alt_def}). 
+                                An $\infty$-sieve $\U$ is said to \textbf{cover} an object $X$ of an $\infty$-category $\C$ if and only if $X$ is the $(\infty, 1)$-colimit of the \v{C}ech nerve $\U^{\bullet}_{/X}$. 
                                 \item \textbf{(Axioms for $\infty$-coverages):} The following are conditions for a class of sieves on objects of some base $\infty$-category to qualify as an \textbf{$\infty$-coverage}:
                                     \begin{itemize}
                                         \item Representable $(\infty, 1)$-presheaves - viewed as $\infty$-sieves - cover the objects they represent.
@@ -152,7 +169,7 @@
                                 \end{tikzcd}
                             $$
                         and conversely, the delooping of the $n$-sphere is the $(n + 1)$-sphere.
-                        \item \textbf{(\v{C}ech nerves):} The delooping of the \v{C}ech nerve $u^{\bullet}_{/x}$ on some object $x$ of a finitely $(\infty, 1)$-complete $\infty$-category (cf. definition \ref{def: hypercovers} and remark \ref{remark: hypercovers_alt_def}) is exactly $x$. 
+                        \item \textbf{(\v{C}ech nerves):} The delooping of the \v{C}ech nerve $u^{\bullet}_{/x}$ on some object $x$ of a finitely $(\infty, 1)$-complete $\infty$-category is exactly $x$. 
                     \end{enumerate}
                 \end{example}
                 
@@ -600,105 +617,105 @@
             \subsubsection{\texorpdfstring{$\QCoh$}{} is rigid symmetric monoidal}
         
     \section{Ind-coherent sheaves}
-        \subsection{Ind-coherent modules}
-            \subsubsection{Generalities}
-                \begin{definition}[Ind-coherent modules] \label{def: ind_coherent_modules}
-                    Let $k$ be an arbitrary base commutative ring and $\calY$ be a prestack \textit{locally almost of finite type} on ${}^{k/}\Comm\Alg^{\op}$ that is \textit{locally almost of finite type} and fix a regular cardinal $\kappa$ bounded by the cardinality of the class of objects of $\Coh(\calY)$, the category of \textit{bounded} complexes of coherent modules on $\calY$. Then, the category of $\kappa$-ind-coherent modules on $\calY$ is precisely the $\kappa$-ind completion of $\Coh(\calY)$. Most of the time, we shall take $\kappa$ to exactly be the cardinality of the class of objects of $\Coh(\calY)$, and simply write $\Ind\Coh(\calY)$ instead of $\Ind_{\kappa}(\Coh(\calY))$. 
-                \end{definition}
-                \begin{remark} \label{remark: indcoh_is_cocomplete}
-                    $\Ind\Coh(\calY)$ is a cocomplete full subcategory of $\QCoh(\calY)$.
-                \end{remark}
-                \begin{remark}[(Ind-)coherent sheaves on non-finite prestacks ?] \label{remark: ind_coherent_sheaves_why_almost_finite_type}
-                    \noindent
-                    \begin{itemize}
-                        \item The reason we have to define ind-coherent modules as objects over prestacks which are locally almost of finite type is that without this hypothesis, there is no guarantee that (ind-)coherent sheaves over some given arbitrary prestack of groupoids $\calY$ would be well-defined, as (ind-)coherent sheaves are required to be locally (almost) of finite type. We should also recall that a prestack $\calY$ is locally almost of finite type if and only if every $\H^i(\calY)$ is locally of finite type over $\H^0(\calY)$ (for some cohomology theory $\H^*$).
-                        \item For the reasons just elaborated on above, we can view the prestack of coherent modules on some given suitable prestack of groupoids to be the   
-                    \end{itemize}
-                \end{remark}
-                
-                \begin{definition}[Perfect complexes] \label{def: perfect_complexes}
-                    For our purposes, a \textbf{perfect complex} shall be a \textit{compact} object of a dg-category $\calA$ (i.e. stable linear $\infty$-category; see definition \ref{def: stable_infinity_categories} for what it means for an $\infty$-category to be stable), which are objects $M$ whose corresponding corepresentable copresheaves $\calA(M, -)$ preserves small filtered colimits (particularly, they preserve small direct sums; we shall leave the proof of direct sums being filtered limits to the reader). 
-                \end{definition}
-                \begin{remark} \label{remark: perfect_complexes_via_dold_kan}
-                    Under the stable Dold-Kan Correpsondence, perfect complexes are identified with projective resolutions of finitely generated modules. This itself implies that perfect objects within a given dg-category $\calA$ form a full subcategory, which we shall denote by $\calA^{\perf}$.
-                \end{remark}
-                \begin{theorem}[Ind-coherent modules on classical schemes] \label{theorem: indcoh_on_classical_schemes}
-                    \noindent
-                    \begin{enumerate}
-                        \item If $X$ is a classical scheme, then:
-                            $$\QCoh(X) \cong \Ind\left(\QCoh(X)^{\perf}\right)$$
-                        \item A scheme $X$ is classically smooth if and only if:
-                            $$\QCoh(X)^{\perf} \cong \Coh(X)$$
-                        and hence if and only if:
-                            $$\QCoh(X) \cong \Ind\left(\QCoh(X)^{\perf}\right) \cong \Ind\Coh(X)$$
-                    \end{enumerate}
-                \end{theorem}
-                    \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item First let us apply proposition \ref{prop: qcoh_universal_property}, which tells us that we have:
-                                $$\QCoh(X) \cong \underset{S \in \Sch^{\aff}_{/X}}{\lim} \QCoh^*(S)$$
-                            
-                            \item 
-                        \end{enumerate}
-                    \end{proof}
+        \subsection{Categories of ind-coherent sheaves}
+            \begin{definition}[Ind-coherent sheaves] \label{def: ind_coherent_modules}
+                Let $k$ be an arbitrary base commutative ring and $\calY$ be a prestack \textit{locally almost of finite type} on ${}^{k/}\Comm\Alg^{\op}$ that is \textit{locally almost of finite type} and fix a regular cardinal $\kappa$ bounded by the cardinality of the class of objects of $\Coh(\calY)$, the category of \textit{bounded} complexes of coherent modules on $\calY$. Then, the category of $\kappa$-ind-coherent modules on $\calY$ is precisely the $\kappa$-ind completion of $\Coh(\calY)$. Most of the time, we shall take $\kappa$ to exactly be the cardinality of the class of objects of $\Coh(\calY)$, and simply write $\Ind\Coh(\calY)$ instead of $\Ind_{\kappa}(\Coh(\calY))$. 
+            \end{definition}
+        
+            \subsubsection{Ind-coherent sheaves over Noetherian schemes}
+                Having stated the definition, let us now investigate the (desired) formal properties of ind-coherent sheaves over the simplest setup possible (at least from a homological point-of-view), namely that of Noetherian schemes. 
                 \begin{convention} \label{conv: indcoh_to_qcoh_functor}
-                    For every prestack $\calY$ that is locally almost of finite type, the canonical embedding of $\Ind\Coh(\calY)$ into $\QCoh(\calY)$ shall be denoted by:
-                        $$\Psi_{\calY}: \Ind\Coh(X) \to \QCoh(\calY)$$
+                    $\Ind\Coh(\calY)$ is a cocomplete full subcategory of $\QCoh(\calY)$ for all prestacks $\calY$ locally almost of finite type. Typically, the evident fully faithful embedding is denoted by $\Psi_{\calY}: \Ind\Coh(\calY) \to \QCoh(\calY)$. 
                 \end{convention}
                 
-                \begin{definition}[Eventually coconnective prestacks] \label{def: eventually_coconnectivity}
-                    An affine scheme $X$ is \textbf{eventually coconnective} if and only if its structure sheaf is an object of $\Coh(X)$ (i.e. if and only if Zariski-locally, $X$ has finitely many non-zero cohomologies). It is entirely trivial that eventually coconnective prestacks are necessarily almost of finite type, but the converse need not be true. 
-                \end{definition}
-                
-                \begin{proposition}[Going from $\QCoh$ to $\Ind\Coh$] \label{prop: from_qcoh_to_indcoh}
-                    \noindent
-                    \begin{enumerate}
-                        \item Let $X$ be an eventually coconnective affine scheme. Then there exists the following adjunction:
-                            $$
-                                \begin{tikzcd}
-                                	{\Ind\Coh(X)} & {\QCoh(X)}
-                                	\arrow[""{name=0, anchor=center, inner sep=0}, "{\Xi_X}"', shift right=2, from=1-2, to=1-1]
-                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Psi_X}"', shift right=2, from=1-1, to=1-2]
-                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
-                                \end{tikzcd}
-                            $$
-                        where the left-adjoint $\Xi_X$ is fully faithful. This adjunction specialises to an adjoint equivalence if and only if $X$ is classically smooth, thanks to proposition \ref{theorem: indcoh_on_classical_schemes}. 
-                        \item Furthermore, the following diagram commutes for all morphisms $f: X \to Y$ between eventually coconnective affine schemes:
-                            $$
-                                \begin{tikzcd}
-                                	{\Ind\Coh(X)} & {\QCoh(X)} \\
-                                	{\Ind\Coh(Y)} & {\QCoh(Y)}
-                                	\arrow["{\Xi_X}"', from=1-2, to=1-1]
-                                	\arrow["{\Psi_Y}", from=2-1, to=2-2]
-                                	\arrow["{f^*}"', from=2-2, to=1-2]
-                                	\arrow["{f_*}"', from=1-1, to=2-1]
-                                \end{tikzcd}
-                            $$
-                    \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
+                \paragraph{Homological characterisations of ind-coherent sheaves}
+                    \begin{theorem}[Ind-coherent modules on classical schemes] \label{theorem: indcoh_on_classically__regular_and_smooth_schemes}
+                        If a $0$-coconnective scheme $X$ is Noetherian and regular then $\Psi_X$ is an equivalence. This implication is an equivalence if and only if $X$ is smooth.
+                    \end{theorem}
+                        \begin{proof}
+                            It is known that whenever $X$ is Noetherian as a $0$-coconnective scheme, $\QCoh(X)$ is compactly generated by its (small) subcategory of perfect complexes, i.e. $\QCoh(X) \cong \Ind(\QCoh(X)^{\perf})$. It is also known that over $0$-coconnective regular schemes $X$, one has $\Coh(X) \cong \QCoh(X)^{\perf}$. Thus, if $X$ is a $0$-coconnective regular scheme then one has an equivalence $\Psi_X: \Ind\Coh(X) \cong \QCoh(X)$.
                             
-                    \end{proof}
+                            \todo{Finish this up}
+                        \end{proof}
+                        
+                    Next, recall that for any scheme $X$, $\Coh(X)$ carries a natural t-structure (cf. definition \ref{def: t_structures}), which is a sub-t-structure of the t-structure of $\QCoh(X)$. As it happens, this t-structure gets passed along to $\Ind\Coh(X)$ whenever $X$ is Noetherian.
+                    \begin{lemma}[t-structures of ind-coherent sheaves] \label{lemma: t_structure_of_ind_coherent_sheaves}
+                        Let $X$ be a Noetherian scheme. Then:
+                            \begin{enumerate}
+                                \item $\Ind\Coh(X)$ inherits a $t$-structure from $\Coh(X)$ whose accompanying truncation functors commute with filtered colimits. 
+                                \item the canonical fully faithful embedding $\Coh(X) \subset \Ind\Coh(X)$ is $t$-exact.
+                            \end{enumerate}
+                    \end{lemma}
+                        \begin{proof}
+                                        
+                        \end{proof}
+                    \begin{proposition}[Truncations of ind-coherent sheaves] \label{prop: truncations_of_ind_coherent_sheaves}
+                        Let $X$ be a Noetherian scheme. Then for all $n \in \Z$, the truncation $\Psi_X^{\geq n}: \Ind\Coh(X)^{\geq n} \hookrightarrow \QCoh(X)^{\geq n}$ of $\Psi_X$ is an equivalence.
+                    \end{proposition}
+                        \begin{proof}
+                                        
+                        \end{proof}
+                    \begin{corollary}[Connectivity of ind-coherent sheaves] \label{coro: connectivity_of_ind_coherent_sheaves}
+                        \noindent
+                        \begin{enumerate}
+                            \item An ind-coherent module of over a Noetherian scheme is connective if and only if it is so as a quasi-coherent module.
+                            \item For every Noetherian scheme, one has an equivalence $\Ind\Coh(X)^{\perf} \cong \Coh(X)$.
+                        \end{enumerate}
+                    \end{corollary}
                     
-            \subsubsection{\texorpdfstring{$*$}{}-pushforwards of ind-coherent modules}
-                \begin{proposition}[$*$-pushforwards of ind-coherent sheaves] \label{prop: *_pushforwards_of_ind_coherent_sheaves}
-                    \noindent
-                    \begin{enumerate}
-                        \item Let $f: \calY_1 \to \calY_2$ be a morphism between prestacks that are locally almost of finite type (i.e. an arrow in $[\Spec k]^{\laft}$). Then, from the quasi-coherent $*$-pushforward $f_*: \QCoh(\calY_1) \to \QCoh(\calY_2)$ (cf. remark \ref{remark: existence_of_*_pushforwards}), there exists a uniquely induced \textit{continuous} $*$-pushforward:
-                            $$f_*|_{\Ind\Coh}: \Ind\Coh(\calY_1) \to \Ind\Coh(\calY_2)$$
-                        which is left t-exact (see definition \ref{def: t_structures} for a reminder of the notion of t-structures, and remark \ref{remark: functors_between_stable_infinity_categories} for the notion of exactness).
-                        \item In fact, there is a functor:
-                            $$\Ind\Coh_*: [\Spec k]^{\laft} \to \Cat^{\dg, \cont}$$
-                        given by:
-                            $$\Ind\Coh_*(f: \calY_1 \to \calY_2) \cong \left(f_*|_{\Ind\Coh}: \Ind\Coh(\calY_1) \to \Ind\Coh(\calY_2)\right)$$
-                    \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
+                    \begin{proposition}[$\QCoh$ is the left-completion of $\Ind\Coh$] \label{prop: qcoh_is_the_left_completion_of_indcoh}
+                        Over a Notherian scheme $X$, one recognises $\QCoh(X)$ as the left-completion of $\Ind\Coh(X)$ in its t-structure.
+                    \end{proposition}
+                        \begin{proof}
                             
-                    \end{proof}
+                        \end{proof}
+                    
+                \paragraph{An action of \texorpdfstring{$\QCoh(X)$}{} on \texorpdfstring{$\Ind\Coh(X)$}{}}
+                    It is not hard to see that for any prestack locally almost of finite type $\calY$, the category $\Ind\Coh(\calY)$ of ind-coherent sheaves over it has a natural structure of a dg-category. What this means is that $\Ind\Coh(\calY)$ is an object of the $1$-category $(\Cat^{\dg, \cont})^1$ of dg-categories and continuous functors between them. On this category, there exists a natural monoidal structure inherited from the $1$-category of stable $\infty$-categories, which is the Lurie tensor product $\boxtimes$. 
+                
+                    Now, one thing to note is that for each Noetherian scheme $X$, the evident embedding $\Psi_X: \Ind\Coh(X) \hookrightarrow \QCoh(X)$ is a continuous functor. In particular, this means one can construct continuous functors $\QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$, and hence the Lurie tensor product $\QCoh(X) \boxtimes \Ind\Coh(X)$, which satisfies the following universal property:
+                        $$
+                            \begin{tikzcd}
+                            	{\QCoh(X) \boxtimes \Ind\Coh(X)} & \calA \\
+                            	{\QCoh(X) \x \Ind\Coh(X)}
+                            	\arrow[from=2-1, to=1-2]
+                            	\arrow[dashed, from=1-1, to=1-2]
+                            	\arrow["\boxtimes", from=2-1, to=1-1]
+                            \end{tikzcd}
+                        $$
+                    (wherein, of course, $\calA$ is an arbitrary dg-category and the arrows are continuous functors). As a consequence, we can construct so-called \textbf{actions} of $\QCoh(X)$ on $\Ind\Coh(X)$, which are just continuous functors:
+                        $$\alpha: \QCoh(X) \boxtimes \Ind\Coh(X) \to \Ind\Coh(X)$$
+                    via continuous functors $\underline{\alpha}: \QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$
+                        
+                    \begin{proposition}[The canonical action of $\QCoh$ on $\Ind\Coh$] \label{prop: canonical_action_of_qcoh_on_indcoh}
+                        Let $X$ be a Noetherian scheme. Then, there exists a continuous functor $\bar{\alpha}_X: \QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$ rendering the following diagram commutative:
+                            $$
+                                \begin{tikzcd}
+                                	{\QCoh(X) \x \Ind\Coh(X)} & {\Ind\Coh(X)} \\
+                                	{\QCoh(X) \x \QCoh(X)} & {\QCoh(X)}
+                                	\arrow["{\id \x \Psi_X}"', from=1-1, to=2-1]
+                                	\arrow["\tensor", from=2-1, to=2-2]
+                                	\arrow["{\bar{\alpha}_X}", from=1-1, to=1-2]
+                                	\arrow["{\Psi_X}", from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                    \end{proposition}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary} \label{coro: canonical_action_of_qcoh_on_indcoh}
+                        For each Notherian scheme $X$, there exists a canonically defined $\QCoh(X)$-action on $\Ind\Coh(X)$ coming from $\bar{\alpha}_X$ as above; this means that this action is given by:
+                            $$\alpha_X(\calF \boxtimes \E) \cong \calF \tensor \Psi_X(\E)$$
+                    \end{corollary}
+                
+                \paragraph{Ind-coherent sheaves over eventually coconnective Noetherian schemes}
+                
+            \subsubsection{Ind-coherent sheaves over non-Noetherian schemes}
+            
+        \subsection{Basic functoriality}
+            \subsubsection{\texorpdfstring{$*$}{}-pushforwards of ind-coherent modules}
         
-        \subsection{Ind-coherent sheaves as functors out of the category of correspondences}
+        \subsection{\texorpdfstring{$\Ind\Coh$}{} as a functor out of the category of correspondences}
             \begin{convention}
                 Since everything is derived (cf. convention \ref{conv: schemes_2_everything_is_derived}), by \say{$n$-category} we will actually mean \say{$(\infty, n)$-category}.
             \end{convention}

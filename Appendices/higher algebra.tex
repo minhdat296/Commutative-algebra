@@ -5,7 +5,11 @@
     
     \minitoc
     
-    \section{\textit{Hors d'oeuvres}: Homological algebra in abelian categories}
+    \section{\textit{Hors d'oeuvres}: Classical homological algebra}
+        \begin{convention}
+            Throughout this section we will be working with ordinary $1$-categories, not $(\infty, 1)$-categories. However, we will still try to phrase as many definitions and proofs in a manner that would generalise more or less trivially to the setting of $\infty$-categories.
+        \end{convention}
+    
         \subsection{Additive categories, abelian categories, everything in between and beyond!}
             \subsubsection{Abelian categories: the backdrop for homological algebra}
                 \paragraph{Zero objects and zero morphisms; (co)kernels}
@@ -48,106 +52,27 @@
                                 \begin{tikzcd}
                                 	{} & 0 \\
                                 	x & y
-                                	\arrow["{0_{x, y}}", from=2-1, to=2-2, dashed]
+                                	\arrow["{0_{x, y}}"', from=2-1, to=2-2, dashed]
                                 	\arrow["\1", from=1-2, to=2-2]
                                 	\arrow["\2", from=2-1, to=1-2]
                                 \end{tikzcd}
                             $$
-                        Every such diagram and every arrow $f: x \to y$ thus give rise a pair of parallel arrows, namely:
+                        Every such diagram and every arrow $f: x \to y$ thus give rise a pair of parallel arrows, namely $f, 0_{x, y}: x \toto y$. Now, the claim is that the limit/equaliser of this diagram is precisely $\ker f$. To prove this, simply consider the following commutative diagram:
                             $$
                                 \begin{tikzcd}
-                                	{} \\
-                                	x & y
-                                	\arrow["{0_{x, y}}"', shift right=2, from=2-1, to=2-2]
-                                	\arrow["f", shift left=2, from=2-1, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        Now, the claim is that the limit/equaliser of this diagram is precisely $\ker f$. To prove this, note first of all that by the universal property of limits, $\eq(0_{x, y}, f)$ can be viewed as the following pullback:
-                            $$
-                                \begin{tikzcd}
-                                	{\eq(0_{x, y}, f)} & x \\
-                                	x & y
-                                	\arrow["f", from=2-1, to=2-2]
-                                	\arrow["{0_{x, y}}", from=1-2, to=2-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        Next, consider the following commutative diagram whose side and bottom faces are pullback squares:
-                            $$
-                               \begin{tikzcd}
-                                	&& {\ker f} \\
-                                	{\eq(0_{x, y}, f)} && {\ker f} && {\ker 0_{x, y}} \\
-                                	x && x && 0 \\
-                                	&& y
-                                	\arrow["f", from=3-1, to=4-3]
-                                	\arrow["{0_{x, y}}", from=3-3, to=4-3]
-                                	\arrow[from=2-1, to=3-1]
-                                	\arrow[from=2-1, to=3-3]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, shift right=1, draw=none, from=2-1, to=4-3]
-                                	\arrow["\1"', from=3-5, to=4-3]
-                                	\arrow[from=2-5, to=3-3]
-                                	\arrow[from=2-5, to=3-5]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-90}, shift left=1, draw=none, from=2-5, to=4-3]
-                                	\arrow[from=2-3, to=3-1]
-                                	\arrow["\2", from=2-3, to=3-5]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-45}, draw=none, from=2-3, to=4-3]
-                                	\arrow[from=1-3, to=2-1]
-                                	\arrow[from=1-3, to=2-5]
-                                	\arrow[from=1-3, to=2-3]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, shift right=1, draw=none, from=1-3, to=3-5]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-90}, shift left=1, draw=none, from=1-3, to=3-1]
-                                \end{tikzcd}
-                            $$
-                        and note that because:
-                            $$
-                                \begin{tikzcd}
-                                	0 & x \\
-                                	0 & y
-                                	\arrow["{0_{x, y}}", from=1-2, to=2-2]
-                                	\arrow["\1", from=2-1, to=2-2]
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, shift left=1, draw=none, from=1-1, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        (thanks to the universal property of pullbacks and terminal objects), we indeed have:
-                            $$
-                                \begin{tikzcd}
-                                	{\ker f \x \ker 0_{x, y}} & {\ker 0_{x, y }} && {} \\
-                                	{\ker f} & 0
+                                	& {\ker f} & x \\
+                                	& x & y \\
+                                	0
+                                	\arrow["f", from=1-3, to=2-3]
+                                	\arrow[from=1-2, to=1-3]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                                	\arrow["{0_{x, y}}", from=2-2, to=2-3]
                                 	\arrow[from=1-2, to=2-2]
-                                	\arrow["\2", from=2-1, to=2-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                	\arrow["\1"{description}, from=3-1, to=2-2]
+                                	\arrow["\1"', from=3-1, to=2-3]
+                                	\arrow["\2"', from=1-2, to=3-1]
                                 \end{tikzcd}
                             $$
-                        in the diagram above; because of this, and thanks to the pasting lemma for pullbacks, we obtain an induced \say{diagonal} pullback square:
-                            $$
-                                \begin{tikzcd}
-                                	{\ker f} & x && {} \\
-                                	{\ker f} & y
-                                	\arrow["{0_{x, y}}", from=1-2, to=2-2]
-                                	\arrow[from=2-1, to=2-2]
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=1-1, to=1-2]
-                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                                \end{tikzcd}
-                            $$
-                        which (again by the pasting lemma for pullbacks) forces the left face on the back, i.e.:
-                            $$
-                                \begin{tikzcd}
-                                	{\ker f} & {\eq(0_{x, y}, f)} && {} \\
-                                	{\ker f} & x
-                                	\arrow[from=1-1, to=2-1]
-                                	\arrow[from=2-1, to=2-2]
-                                	\arrow[from=1-2, to=2-2]
-                                	\arrow[from=1-1, to=1-2]
-                                \end{tikzcd}
-                            $$
-                        to also be a pullback square. Now, since the canonical projection $\ker f \to x$ factors through $0$ (cf. definition \ref{def: (co)kernels}), it is necessarily the zero morphism $0_{\ker f, x}$. Let us then consider the following commutative diagram:
                     \end{remark}
                 
                 \paragraph{Biproducts}
@@ -419,7 +344,285 @@
             
             \subsubsection{Epic-monic factorisation and diagram-chasing}
             
-            \subsubsection{Injective and projective resolutions}
+            \subsubsection{Injectives and projectives; Lazard's Theorem}
+                For now, see \href{https://mathoverflow.net/questions/46541/how-to-introduce-notions-of-flat-projective-and-free-modules}{\underline{this MO thread}} for motivation.
+            
+                \begin{definition}[Projective and injective objects] \label{def: projective_and_injective_objects} \index{Projective objects} \index{Injective objects}
+                    An object $p$ in a category $\C$ is said to be \textbf{projective} if and only if the functor $\C(p, -): \C \to \Sets$ preserves epimorphisms. Dually, an object $i$ is said to be \textbf{injective} if and only if it is a projective object of $\C^{\op}$; in other words, if and only if the functor $\C(-, i): \C^{\op} \to \Sets$ send monomorphisms in $\C$ (i.e. epimorphisms in $\C^{\op}$) to epimorphisms in $\Sets$.
+                \end{definition}
+                
+                An important property of projective/injective objects is that they have a so-called left/right-lifting property against epimorphisms. 
+                \begin{proposition}[Lifting property of projectives and injectives] \label{prop: projectives_and_injectives_lifting_property}
+                    \noindent
+                    \begin{itemize}
+                        \item\textbf{(Projectives admit left-liftings):} An object $p$ of some category $\C$ is projective if and only if for any diagram in $\C$ of the following form:
+                            $$
+                                \begin{tikzcd}
+                                	x && p \\
+                                	& y
+                                	\arrow["\pi"', two heads, from=1-1, to=2-2]
+                                	\arrow["\psi", from=1-3, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        there exists an arrow $\varphi: p \to x$ (which need not be unique!) making it commutative:
+                            $$
+                                \begin{tikzcd}
+                                	x && p \\
+                                	& y
+                                	\arrow["\pi"', two heads, from=1-1, to=2-2]
+                                	\arrow["\psi", from=1-3, to=2-2]
+                                	\arrow["{\exists \varphi}"', dashed, from=1-3, to=1-1]
+                                \end{tikzcd}
+                            $$
+                        \item \textbf{(Injectives admit right-liftings):} Dually, an object $i \in \C$ is injective if and only if for every diagram in $\C$ of the following form:
+                            $$
+                                \begin{tikzcd}
+                                	x && i \\
+                                	& y
+                                	\arrow["\iota", tail, from=2-2, to=1-1]
+                                	\arrow["\psi"', from=2-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        there exists an arrow $\varphi: x \to i$ (which again, need not be unique!) making it commutative:
+                            $$
+                                \begin{tikzcd}
+                                	x && i \\
+                                	& y
+                                	\arrow["\iota", tail, from=2-2, to=1-1]
+                                	\arrow["\psi"', from=2-2, to=1-3]
+                                	\arrow["{\exists \varphi}", dashed, from=1-1, to=1-3]
+                                \end{tikzcd}
+                            $$
+                    \end{itemize}
+                \end{proposition}
+                    \begin{proof}
+                        Since the two assertions are dual to one another, it suffices to only prove one. We choose to prove the first assertion.
+                            \begin{enumerate}
+                                \item Assume first of all that $p$ is projective. By definition, $p$ is projetive if and only if $\C(p, -)$ preserve epimorphisms. Thus, by applying the functor $\C(p, -): \C \to \Sets$ to any epimorphism $\pi: x \to y$, one shal obtain a surjective function:
+                                    $$\C(p, \pi): \C(p, x) \to \C(p, y)$$
+                                This tells us that:
+                                    $$\forall \psi \in \C(p, y): \exists \varphi \in \C(p, x): \C(p, \pi)(\varphi) = \psi \iff \pi \circ \varphi = \psi$$
+                                which is precisely that there exists an arrow $\varphi: p \to x$ fitting into the following commutative diagram:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x && p \\
+                                        	& y
+                                        	\arrow["\pi"', two heads, from=1-1, to=2-2]
+                                        	\arrow["\psi", from=1-3, to=2-2]
+                                        	\arrow["{\exists \varphi}"', dashed, from=1-3, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                \item Conversely, suppose that for any diagram in $\C$ of the following form:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x && p \\
+                                        	& y
+                                        	\arrow["\pi"', two heads, from=1-1, to=2-2]
+                                        	\arrow["\psi", from=1-3, to=2-2]
+                                        \end{tikzcd}
+                                    $$
+                                there exists an arrow $\varphi: p \to x$ making it commutative:
+                                    $$
+                                        \begin{tikzcd}
+                                        	x && p \\
+                                        	& y
+                                        	\arrow["\pi"', two heads, from=1-1, to=2-2]
+                                        	\arrow["\psi", from=1-3, to=2-2]
+                                        	\arrow["{\exists \varphi}"', dashed, from=1-3, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                This tells us that $\C(p, \pi): \C(p, x) \to \C(p, y)$ is surjective, and since $\pi: x \to y$ is an epimorphism by assumption, this shows that $p$ is projective by definition.
+                            \end{enumerate}
+                    \end{proof}
+                
+                Projective and injective objects also interact in interesting manners with adjunctions. 
+                \begin{proposition}[Projective and injective objects under adjoint functors] \label{prop: projectives_and_injectives_under_adjoints}
+                    If:
+                        $$
+                            \begin{tikzcd}
+                            	\C & \D
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "R"', shift right=2, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "L"', shift right=2, from=1-2, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                    is an adjunction such that $R$ preserves epimorphisms then $L$ shall preserve projective objects; dually, should $L$ preserve monomorphisms, then $R$ shall preserve injective objects. 
+                \end{proposition}
+                    \begin{proof}
+                        The two assertions are dual to one another, so it shall suffice to only prove one; we choose the first.
+                        
+                        First of all, note that $L$ preserves projectives if and only if for any projective object $q \in \D$, the functors $\D(q, -): \D \to \Sets$ and $\C(Lq, -): \C \to \Sets$ both preserve epimorphisms. Now, because $L$ is left-adjoint to $R$, there exists the following natural isomorphism for all $y \in \D$:
+                            $$\C(Ly, -) \cong \D(y, R(-))$$
+                        and because $R: \C \to \D$ preserves epimorphisms, for any epimorphism $\pi: p \to x$ and any \textit{projective} object $q \in \D$ one obtain a surjection:
+                            $$\D(q, R\pi): \D(q, Rp) \to \D(q, Rx)$$
+                        which induces a surjection
+                            $$\C(Lq, \pi): \C(Lq, p) \to \C(Lq, x)$$
+                        This clearly shows that $Lq$ is a projective object of $\C$. The left-adjoint $L: \D \to \C$ thus preserves projective objects whenever its right-adjoint $R: \C \to \D$ preserves epimorphisms.
+                    \end{proof}
+                This proposition gives rise to some rather useful corollaries. However, there is a catch\footnote{As is always the case when things are too good to be true.}: we will have to take a hard look at the Axiom of Choice\footnote{(again)}.
+                \begin{remark}[All sets are projective] \label{remark: all_sets_are_projective}
+                    The Axiom of Choice reads:
+                        \begin{center}
+                            \say{\textit{Every surjective function admits a section.}}
+                        \end{center}
+                    which is to say, to any surjective function $\pi: X \to Y$ one can associate a function $\sigma: Y \to X$ (called a \textbf{section}) such that $\pi \circ \sigma = \id_Y$. As it turns out, this axiom is equivalent to the assertion that every object of $\Sets$ is projective. 
+                    
+                    To see why this is the case, assume first of all that the Axiom of Choice holds. This implies, tautologically, that for every surjection $\pi: X \to Y$, there exists a function $\sigma: Y \to X$ making the following diagram commute:
+                        $$
+                            \begin{tikzcd}
+                            	X & Y \\
+                            	Y
+                            	\arrow["{\forall \pi}"', two heads, from=1-1, to=2-1]
+                            	\arrow["{\id_Y}", from=1-2, to=2-1]
+                            	\arrow["{\exists \sigma}"', from=1-2, to=1-1]
+                            \end{tikzcd}
+                        $$
+                    Now, note that one can extend the diagram above with any function $\psi: P \to Y$ in the following manner:
+                        $$
+                            \begin{tikzcd}
+                            	X & Y \\
+                            	Y & P
+                            	\arrow["{\forall \pi}"', two heads, from=1-1, to=2-1]
+                            	\arrow["{\id_Y}"{description}, from=1-2, to=2-1]
+                            	\arrow["{\exists \sigma}"', from=1-2, to=1-1]
+                            	\arrow["\psi"', from=2-2, to=1-2]
+                            	\arrow["\psi", from=2-2, to=2-1]
+                            \end{tikzcd}
+                        $$
+                    We thus obtain the following commutative diagram:
+                        $$
+                            \begin{tikzcd}
+                            	X & P \\
+                            	Y
+                            	\arrow["{\forall \pi}"', two heads, from=1-1, to=2-1]
+                            	\arrow["{\forall \psi}", from=1-2, to=2-1]
+                            	\arrow["{\exists \varphi = \sigma \circ \psi}"', from=1-2, to=1-1]
+                            \end{tikzcd}
+                        $$
+                    which, according to proposition \ref{prop: projectives_and_injectives_lifting_property}, implies that $P$ is a projective object of $\Sets$.
+                    
+                    Now, let us assume that every set $P$ is projective. Then, by proposition \ref{prop: projectives_and_injectives_lifting_property}, for all surjections $\pi: X \to Y$ and all functions $\psi: P \to Y$, there exists a function $\sigma: P \to X$ fitting into the following commutative diagram:
+                        $$
+                            \begin{tikzcd}
+                            	X && P \\
+                            	& Y
+                            	\arrow["\forall \pi"', two heads, from=1-1, to=2-2]
+                            	\arrow["\forall \psi", from=1-3, to=2-2]
+                            	\arrow["{\exists \sigma}"', from=1-3, to=1-1]
+                            \end{tikzcd}
+                        $$
+                    By letting $\psi: P \to Y$ be $\id_Y: Y \to Y$, one thus can exploit the commutativity of the diagram to obtain a section $\sigma: Y \to X$ of the surjection $\pi: X \to Y$. Thus, every surjection has a section, and this is precisely the Axiom of Choice. 
+                \end{remark}
+                \begin{corollary}[\textbf{\textcolor{red}{\underline{IMPORTANT}}} Tensor products, freeness, and projectiveness] \label{coro: tensor_products_freeness_and_projectiveness}
+                    \noindent
+                    \begin{itemize}
+                        \item \textbf{(Free modules are projective):} Let $R$ be a ring, which is not necessarily commutative. Then, if we are to assume that the Axiom of Choice holds, then free modules will always be projective.
+                        \item \textbf{(Tensor products of projective modules):} Fix a base rings $R$ and $S$ (which need not be commutative) along with a projective $(R, S)$-bimodule $P$. Then, for all projective right-$R$-modules $Q$, the tensor product $Q \tensor_R P$ shall be a projective right-$S$-module.
+                    \end{itemize}
+                \end{corollary}
+                    \begin{proof}
+                        \noindent
+                        \begin{itemize}
+                            \item \textbf{(Free modules are projective):} Free left-$R$-modules arise through the following adjunction:
+                                $$
+                                    \begin{tikzcd}
+                                    	{{}_R\Mod} & \Sets
+                                    	\arrow[""{name=0, anchor=center, inner sep=0}, "\oblv"', shift right=2, from=1-1, to=1-2]
+                                    	\arrow[""{name=1, anchor=center, inner sep=0}, "{{}_RR^{\oplus (-)}}"', shift right=2, from=1-2, to=1-1]
+                                    	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                                    \end{tikzcd}
+                                $$
+                            where $\oblv: {}_R\Mod \to \Sets$ is the forgetful sending modules to their underlying sets. It is not hard to see that the forgetful functor $\oblv$ preserves epimorphisms, and since it is a right-adjoint, one can apply proposition \ref{prop: projectives_and_injectives_under_adjoints} to deduce that the free construction ${}_RR^{\oplus (-)}: \Sets \to {}_R\Mod$ must preserve projective objects. But, by remark \ref{remark: all_sets_are_projective}, we know that should we assume the Axiom of Choice then all objects of $\Sets$ shall be projective, and so every free module (each of which takes the form ${}_RR^{\oplus X}$ for some set $X$) must also be projective as an object of ${}_R\Mod$.
+                            \item \textbf{(Tensor products of projective modules):} Recall first of all that there is the following adjunction:
+                                $$
+                                   \begin{tikzcd}
+                                	{\Mod_S} & {\Mod_R}
+                                	\arrow[""{name=0, anchor=center, inner sep=0}, "{- \tensor_R P}"', shift right=2, from=1-2, to=1-1]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Mod_S(P, -)}"', shift right=2, from=1-1, to=1-2]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+                                \end{tikzcd}
+                                $$
+                            Since $P$ is projective, the right-adjoint $\Mod_S(P, -)$ preserves epimorphisms by definition, and by proposition \ref{prop: projectives_and_injectives_lifting_property}, this means that the left-adjoint $- \tensor_R P$ preserves projectiveness. Thus, for any projective right-$R$-module $Q$, the tensor product $Q \tensor_R P$ shall be a projective right-$R$-module, as claimed.
+                        \end{itemize}
+                    \end{proof}
+                
+                \begin{lemma}[Epimorphisms into projectives split] \label{lemma: epimorphisms_into_projectives_split}
+                
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{proposition}[Projective modules are direct summands of free modules] \label{prop: projective_modules_are_direct_summands_of_free_modules}
+                    This is \cite[Proposition VIII.6.4]{chapter0}.
+                        
+                    Let $R$ be a commutative ring. Then, a given $R$-module $P$ is projective if and only if it is there exists a free $R$-module $E$ and an auxiliary $R$-module $N$ such that $E \cong P \oplus N$.
+                \end{proposition}
+                    \begin{proof}
+                        Since $R$ is fixed, let us write $\Hom(-, -)$ in place of ${}_R\Mod(-, -)$. 
+                        \begin{enumerate}
+                            \item Assume firstly that $P$ is projective and let $\pi: R^{\oplus X} \to P$ be some presentation of $P$. Such a presentation induces a canonical short exact sequence:
+                                $$
+                                    \begin{tikzcd}
+                                    	0 & {\ker \pi} & {R^{\oplus X}} & P & 0
+                                    	\arrow[from=1-1, to=1-2]
+                                    	\arrow[tail, from=1-2, to=1-3]
+                                    	\arrow["\pi", two heads, from=1-3, to=1-4]
+                                    	\arrow[from=1-4, to=1-5]
+                                    \end{tikzcd}
+                                $$
+                            It thus suffices to show that this sequence splits. 
+                            
+                            For this, 
+                            \item Conversely, assume that there exists a free $R$-module $E$ and an auxiliary $R$-module $N$ such that $E \cong P \oplus N$. $E$ is free, so in particular, it is projective. The functor $\Hom(E, -)$ thus preserves epimorphisms. However, one also has:
+                                $$\Hom(E, -) \cong \Hom(P \oplus N, -) \cong \Hom(P, -) \oplus \Hom(N, -)$$
+                            and because $N$ is arbitrary, $\Hom(P, -)$ must therefore preserve epimorphisms. This means that $P$ is necessarily projective. 
+                        \end{enumerate}
+                    \end{proof}
+                \begin{corollary}
+                    Let $R$ be a ring (again, not necessarily commutative). Then, any projective left/right-$R$-module is necessarily flat over $R$ (in the appropriate sense). 
+                \end{corollary}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                Now that we have established a few properties that projective/injective objects (and in particular, those of projective/injective modules) should have, let us consider some concrete examples. 
+                \begin{example}[Projective modules] \label{example: projetive_modules}
+                    \noindent
+                    \begin{itemize}
+                        \item \textbf{(A few projective modules):} 
+                            \begin{itemize}
+                                \item Vector spaces over field or over division rings (i.e. skew-fields) are \textit{a priori} free, so they are projective.
+                                \item Any projective module over a PID is free. 
+                                \item Let $R$ and $S$ be rings and recall that the zero ring $0$ is a terminal in the category of rings. Then, as $R \x S$-modules, the rings $0 \x S$ and $R \x 0$ are both projective modules that are not free. 
+                                \item Any principal ideal of a Dedekind is always a projective module that is not free. 
+                            \end{itemize}
+                        \item \textbf{(Flat modules that are not projective):} Thanks to Bass' Theorem, we know that a place to look for these sorts of modules are over non-perfect commutative rings\footnote{A perfect commutative ring is a ring of characteristic $p$ (for some prime $p$) over which the Frobenius endomorphism is invertible.} (flatness implies projectiveness if and only if the base ring is perfect). So for instance one can consider:
+                            \begin{itemize}
+                                \item $\F_p(\!(t)\!)$ as a $\F_p[\![t]\!]$-module.
+                                \item The $\m$-adic completion of any non-Artinian local ring $(R, \m)$ of characteristic $p$.
+                            \end{itemize}
+                        There are also examples over characteristic $0$, such as $\Q$ as a $\Z$-module.
+                    \end{itemize}
+                \end{example}
+                \begin{example}[Injective modules] \label{example: injective_modules}
+                    \noindent
+                    \begin{itemize}
+                        \item Any commutative ring is injective as a module over itself. The same statement is not true for noncommutative rings. 
+                        \item $\Q/\Z$ is injective in $\Ab$. 
+                        \item For any non-zero integer $n$, the abelian group $\Z/n\Z$ is not injective as an object of $\Ab$. 
+                    \end{itemize}
+                \end{example}
+                \begin{example}[Objects that are both projective and injective]
+                    Every object of the terminal category $\pt$ and every object of the empty/intial category $\varnothing$ is trivially projective and injective simultaneously. 
+                \end{example}
+                
+            \begin{definition}[Enough projectives and enough injectives] \label{def: enough_projectives_enough_injectives}
+                A category $\C$ is said to be in possession of \textbf{enough projectives} if and only if any object $x$ thereof admits an epimorphism $\pi: p \to x$ from some projective object $p \in \C$. Dually, a category $\C$ is said to have \textbf{enough injectives} if and only if $\C^{\op}$ has enough injectives, or in other words, if and only if every object $x \in \C$ admits a monomorphism $\iota: x \to i$ into some injective object $i$.
+                
+                The epimorphisms/monomorphisms attached to objects of a category with enough projectives/injectives are usually known as \textbf{augmentation maps}.
+            \end{definition}
+            
+            \todo{Add Lazard's Theorem}
         
         \subsection{Derived categories}
             \subsubsection{Localisation of categories}
@@ -428,7 +631,7 @@
             
             \subsubsection{Quasi-isomorphisms}
         
-        \subsection{Fundamental Theorems of homological algebra}
+        \subsection{Fundamental theorems of homological algebra}
             \subsubsection{The Freyd-Mitchell Embedding Theorem}
             
             \subsubsection{The Universal Coefficient Theorem and The K\"unneth Theorem}
@@ -727,7 +930,7 @@
                 \end{remark}
             
                 \begin{definition}[t-structures] \label{def: t_structures} \index{$\infty$-categories! stable! t-structures} \index{$\infty$-categories! stable! t-structures! hearts} \index{Short exact sequences}
-                    \noindent
+                    \noindent \todo{Revise this}
                     \begin{enumerate}
                         \item \textbf{(t-structures):} The \textbf{t-structure} on a \textit{stable} $\infty$-category $\C$ is a pair of \textit{isomorphism-stable} full subcategories $\C_{\leq 0}$ and $\C_{\geq 0}$ containing the zero object $0$ such that:
                             \begin{enumerate}
@@ -867,13 +1070,13 @@
                                         \end{tikzcd}
                                     $$
                             \end{enumerate}
-                        \item \textbf{(Hearts of t-structures):} It is not hard to see that within a stable $\infty$-category $\C$ equipped with some choice of t-structure $(\C_{\geq 0}, \C_{\leq 0})$, short exact sequences would form an \textit{isomorphism-stable} full $\infty$-subcategory of $\C^{[1] \x [1]}$, which we shall call the \textbf{heart} of its t-structure. One can imagine this to be the $\infty$-category of objects concentrated in (co)homological degree $0$, although strictly speaking this is not always true. 
+                        \item \textbf{(Hearts of t-structures):} It is not hard to see that within a stable $\infty$-category $\C$ equipped with some choice of t-structure $(\C_{\geq 0}, \C_{\leq 0})$, short exact sequences would form an \textit{isomorphism-stable} full $\infty$-subcategory of $\C^{[1] \x [1]}$, which we shall call the \textbf{heart} of its t-structure. 
                     \end{enumerate}
                     Note how we are indexing \textit{homologically}.
                 \end{definition}
-                \begin{example}[Chain complexes]
-                    Let $R$ be any commutative ring. Then, the category of chain complexes of $R$-modules, when viewed as a stable $\infty$-category, possesses a t-structure, which is precisely spanned by the classical short exact sequences of $R$-modules. Slightly more generally, one may replace ${}_R\Mod$ by any abelian category.
-                \end{example}
+                \begin{remark}
+                    Let $\C$ be a stable $\infty$-category. Then, its $t$-structure can be thought of as consisting of two subcategories spanned, respectively, by \say{complexes} with vanishing positive cohomlogies (e.g. projective resolutions) and those with vanishing negative cohomologies (e.g. injective resolutions). The heart of that very $t$-structure, therefore, shall be spanned by \say{complexes} concentrated in (co)homological degree $0$, i.e. \say{exact sequences}. 
+                \end{remark}
                 
                 \begin{proposition}[t-structures and localisations] \label{prop: t_structures_and_localisations}
                     Let $\C$ be a stable $\infty$-category and let $(\C_{\geq 0}, \C_{\leq 0})$ be a t-structure thereon with corresponding canonical fully faithful exact embeddings $\iota_{\geq 0}$ and $\iota_{\leq 0}$. Then, there exists the following composable adjunctions exhibiting $\C_{\leq 0}$ and $\C_{\geq 0}$ as a reflective and a coreflective $\infty$-subcategory of $\C$ respectively:
