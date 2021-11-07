@@ -253,25 +253,25 @@
                             $$\Split\SqZ: \calA \to \Comm\Alg(\calA)$$
                         be the corresponding evident functor of split square-zero extensions.
                             \begin{enumerate}
-                                \item \textbf{(Existence and uniqueness):} This functor admits a left-adjoint of its own, which we shall denote by $\bfT^{\vee}$ and refer to as the \textbf{cotangent bundle functor}.
+                                \item \textbf{(Existence and uniqueness):} This functor admits a left-adjoint of its own, which we shall denote by $\tangent^{\vee}$ and refer to as the \textbf{cotangent bundle functor}.
                                 \item \textbf{(Explicit description):} One obtains via corollary \ref{coro: internal_abelian_groups} the following localisation of $\Comm\Alg(\calA)_{/\1}$:
                                     $$
                                         \begin{tikzcd}
                                         	\calA & {\Comm\Alg(\calA)_{/\1}}
                                         	\arrow[""{name=0, anchor=center, inner sep=0}, "\Split\SqZ_{/\1}"', shift right=2, hook, from=1-1, to=1-2]
-                                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\bfT^{\vee}_{/\1}}"', shift right=2, from=1-2, to=1-1]
+                                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\tangent^{\vee}_{/\1}}"', shift right=2, from=1-2, to=1-1]
                                         	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                                         \end{tikzcd}
                                     $$
-                                Then, one can show that the essential image of $\bfT^{\vee}_{/\1}$ inside $\calA$ is equivalent to the subcategory $\Comm\Leib\Alg(\calA)$ spanned by commutative Leibniz algebras (cf. proposition \ref{prop: leibniz_algebra_categories}) therein.
+                                Then, one can show that the essential image of $\tangent^{\vee}_{/\1}$ inside $\calA$ is equivalent to the subcategory $\Comm\Leib\Alg(\calA)$ spanned by commutative Leibniz algebras (cf. proposition \ref{prop: leibniz_algebra_categories}) therein.
                             \end{enumerate}
                     \end{lemma}
                         \begin{proof}
                             \noindent
                             \begin{enumerate}
-                                \item \textbf{(Existence and uniqueness):} Because both $\calA$ and $\Comm\Alg(\calA)$ are \textit{a priori} presentable and because $\Split\SqZ$ preserves all limit and colimits, the left-adjoint $\bfT^{\vee}$ exists naturally by the Special Adjoint Functor Theorem for presentable $\infty$-categories.
-                                \item \textbf{(Explicit description):} Because $\Split\SqZ_{/\1}$ is already fully faithful, (which in particular, implies that the counit of the adjunction $\Split\SqZ_{/\1} \ladjoint \bfT^{\vee}_{/\1}$ is a natural isomorphism) and because we have an isomorphism of simplicial sets:
-                                    $$\calA(\bfT^{\vee}_{/\1}(S), N) \cong \Comm\Alg(\calA)_{/\1}(S, \1 \oplus N)$$
+                                \item \textbf{(Existence and uniqueness):} Because both $\calA$ and $\Comm\Alg(\calA)$ are \textit{a priori} presentable and because $\Split\SqZ$ preserves all limit and colimits, the left-adjoint $\tangent^{\vee}$ exists naturally by the Special Adjoint Functor Theorem for presentable $\infty$-categories.
+                                \item \textbf{(Explicit description):} Because $\Split\SqZ_{/\1}$ is already fully faithful, (which in particular, implies that the counit of the adjunction $\Split\SqZ_{/\1} \ladjoint \tangent^{\vee}_{/\1}$ is a natural isomorphism) and because we have an isomorphism of simplicial sets:
+                                    $$\calA(\tangent^{\vee}_{/\1}(S), N) \cong \Comm\Alg(\calA)_{/\1}(S, \1 \oplus N)$$
                                 for all $S \in \Comm\Alg(\calA)_{/\1}$ and $N \in \calA$, it will suffice to show that any arrow $\varphi \in \Comm\Alg(\calA)_{/\1}(S, \1 \oplus N)$ induces a derivation (cf. definition \ref{def: derivations}) on $\1 \oplus N$ (it is \textit{very important} to consider $\varphi$ as an arrow in the slice category $\Comm\Alg(\calA)_{/\1}$ instead of in $\Comm\Alg(\calA)$). We shall do this by checking that we actually have all the relevant commutative diagrams, as in definition \ref{def: derivations}. To that end, 
                             \end{enumerate}
                         \end{proof}
@@ -285,7 +285,7 @@
                                 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                                 \end{tikzcd}
                             $$
-                        wherein the canonical forgetful functor $\oblv: \Comm\Leib\Alg(\calA) \to \Comm\Alg(\calA)$ is fully faithful (cf. proposition \ref{prop: leibniz_algebra_categories}). When $(\calA, \tensor, \1)$ is furthermore monoidally closed, we get additionally by lemma \ref{lemma: cotangent_bundles} that $\Comm\Leib\Alg(\calA)$ is equivalent to the essential image of the cotangent bundle functor $\bfT^{\vee}_{/\1}: \Comm\Alg(\calA)_{/\1} \to \calA$. Due to this, we can also view $\bfT^{\vee}_{\1}$ as the functor assigning to each $A \in \Comm\Alg(\calA)_{/\1}$ the module of K\"ahler differentials $\Omega^1_{-/\1}$.
+                        wherein the canonical forgetful functor $\oblv: \Comm\Leib\Alg(\calA) \to \Comm\Alg(\calA)$ is fully faithful (cf. proposition \ref{prop: leibniz_algebra_categories}). When $(\calA, \tensor, \1)$ is furthermore monoidally closed, we get additionally by lemma \ref{lemma: cotangent_bundles} that $\Comm\Leib\Alg(\calA)$ is equivalent to the essential image of the cotangent bundle functor $\tangent^{\vee}_{/\1}: \Comm\Alg(\calA)_{/\1} \to \calA$. Due to this, we can also view $\tangent^{\vee}_{\1}$ as the functor assigning to each $A \in \Comm\Alg(\calA)_{/\1}$ the module of K\"ahler differentials $\Omega^1_{-/\1}$.
                     \end{remark}
                 
             \subsubsection{Properties of modules of K\"ahler differentials} \label{subsubsection: properties_of_kahler_differentials}

@@ -194,13 +194,13 @@
         \subsection{Generalities}
             \begin{definition}[Unipotent groups] \label{def: unipotent_groups}
                 Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$. Also, fix a natural number $n$. $G$ is said to be \textbf{unipotent} if and only if it is a Zariski-closed subgroup of the unipotent group:
-                    $$(\bfU_n)_{/k} \cong \Spec \frac{k[x_{11}, x_{12}, ..., x_{nn}]}{(\forall 1 \leq j \leq i \leq n: x_{i = j} = 1, x_{i > j} = 0)}$$
+                    $$(\opU_n)_{/k} \cong \Spec \frac{k[x_{11}, x_{12}, ..., x_{nn}]}{(\forall 1 \leq j \leq i \leq n: x_{i = j} = 1, x_{i > j} = 0)}$$
                 of upper-triangular $n \x n$ matrices with entries in $k$.
             \end{definition}
             \begin{remark}[Unipotent groups are linear algebraic groups] \label{remark: unipotent_groups_are_linear_algebraic_groups}
                 \noindent
                 \begin{enumerate}
-                    \item \textbf{(Embedding into $\GL_n$):} Since the determinants of upper triangular matrices are just the products of the diagonal entries, and since $1$ is always a unit (which implies that $(\bfU_n)_{/k} \cong (\bfU_n)_{/k}\left[\frac{1}{\det}\right]$), $(\bfU_n){/k}$ is indeed a Zariski-closed subgroup of $(\GL_n)_{/k} \cong \Spec k[x_{11}, x_{12}, ..., x_{nn}]\left[\frac{1}{\det}\right]$. 
+                    \item \textbf{(Embedding into $\GL_n$):} Since the determinants of upper triangular matrices are just the products of the diagonal entries, and since $1$ is always a unit (which implies that $(\opU_n)_{/k} \cong (\opU_n)_{/k}\left[\frac{1}{\det}\right]$), $(\opU_n){/k}$ is indeed a Zariski-closed subgroup of $(\GL_n)_{/k} \cong \Spec k[x_{11}, x_{12}, ..., x_{nn}]\left[\frac{1}{\det}\right]$. 
                     \item \textbf{(Elements of unipotent groups are unipotent):} One can show that the eigenvalues of any upper-triangular matrix are all equal to $1$, and hence these matrices are unipotent by definition (recall that an element $r \in R$ of a ring $R$ - which need not be commtuative - is unipotent if and only if $r - 1$ is nilpotent); to show why the eigenvalues all being $1$ is a sufficient and necessary condition, simply apply the Jordan Canonical Decomposition. Elements of unipotent groups are thus indeed unipotent.
                 \end{enumerate}
             \end{remark}
