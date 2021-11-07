@@ -932,13 +932,13 @@
                 \begin{definition}[t-structures] \label{def: t_structures} \index{$\infty$-categories! stable! t-structures} \index{$\infty$-categories! stable! t-structures! hearts} \index{Short exact sequences}
                     \noindent \todo{Revise this}
                     \begin{enumerate}
-                        \item \textbf{(t-structures):} The \textbf{t-structure} on a \textit{stable} $\infty$-category $\C$ is a pair of \textit{isomorphism-stable} full subcategories $\C_{\leq 0}$ and $\C_{\geq 0}$ containing the zero object $0$ such that:
+                        \item \textbf{(t-structures):} The \textbf{t-structure} on a \textit{stable} $\infty$-category $\C$ is a pair of \textit{isomorphism-stable} full subcategories $\C^{\leq 0}$ and $\C^{\geq 0}$ containing the zero object $0$ such that:
                             \begin{enumerate}
-                                \item \textbf{(Orthogonality):} For all $x \in \C_{\geq 0}$ and all $y \in \C_{\leq 0}$, the space $\C(x, \loopspace y)$ is contractible (i.e. homotopic to $0$). 
+                                \item \textbf{(Orthogonality):} For all $x \in \C^{\geq 0}$ and all $y \in \C^{\leq 0}$, the space $\C(x, \loopspace y)$ is contractible (i.e. homotopic to $0$). 
                                 
-                                Objects $y \in \C_{\leq 0}$ such that $\C(x, \loopspace y)$ is contractible for all $x \in \C_{> 0}$ span a full $\infty$-subcategory of $\C_{\leq 0}$, which we shall denote by $\C_{< 0}$. By applying the adjoint triple $(\suspension \ladjoint \const \ladjoint \loopspace)$ (cf. remark \ref{remark: suspensions_and_loops}), we can see that objects $x \in \C_{\geq 0}$ such that the space $\C(\suspension x, y)$ is contractible for all $y \in \C_{< 0}$ similarly span a full subcategory of $\C_{\geq 0}$, which is written $\C_{> 0}$. 
+                                Objects $y \in \C^{\leq 0}$ such that $\C(x, \loopspace y)$ is contractible for all $x \in \C_{> 0}$ span a full $\infty$-subcategory of $\C^{\leq 0}$, which we shall denote by $\C_{< 0}$. By applying the adjoint triple $(\suspension \ladjoint \const \ladjoint \loopspace)$ (cf. remark \ref{remark: suspensions_and_loops}), we can see that objects $x \in \C^{\geq 0}$ such that the space $\C(\suspension x, y)$ is contractible for all $y \in \C_{< 0}$ similarly span a full subcategory of $\C^{\geq 0}$, which is written $\C_{> 0}$. 
                                 
-                                By the definition of stable $\infty$-subcategories (cf. remark \ref{remark: elementary_properties_of_triangulated_categories}), $\C_{\leq 0}$ and $\C_{< 0}$ are stable $\infty$-subcategories of $\C$, but $\C_{\geq 0}$ and $\C_{> 0}$ are not. 
+                                By the definition of stable $\infty$-subcategories (cf. remark \ref{remark: elementary_properties_of_triangulated_categories}), $\C^{\leq 0}$ and $\C_{< 0}$ are stable $\infty$-subcategories of $\C$, but $\C^{\geq 0}$ and $\C_{> 0}$ are not. 
                                 \item \textbf{(Translational retro-invariance):} If a right-extension:
                                     $$
                                         \begin{tikzcd}
@@ -955,7 +955,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-3, to=1-2]
                                         \end{tikzcd}
                                     $$
-                                of a cofibre sequence is an object of $\C_{\geq 0}^{[2] \x [1]}$, then the cofibre sequence:
+                                of a cofibre sequence is an object of $(\C^{\geq 0})^{[2] \x [1]}$, then the cofibre sequence:
                                     $$
                                         \begin{tikzcd}
                                         	x & y \\
@@ -967,7 +967,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
                                         \end{tikzcd}
                                     $$
-                                itself is an object of $\C_{\geq 0}^{[1] \x [1]}$ (actually, this extends to all right-extensions of triangles, because they all factor through cofibre sequences thanks to the universal property of colimits). 
+                                itself is an object of $(\C^{\geq 0})^{[1] \x [1]}$ (actually, this extends to all right-extensions of triangles, because they all factor through cofibre sequences thanks to the universal property of colimits). 
                                 
                                 Dually, if the left-extension of a fibre sequence:
                                     $$
@@ -985,7 +985,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
                                         \end{tikzcd}
                                     $$
-                                is an object of $\C_{\leq 0}^{[2] \x [1]}$, then that fibre sequence itself:
+                                is an object of $(\C^{\leq 0})^{[2] \x [1]}$, then that fibre sequence itself:
                                     $$
                                         \begin{tikzcd}
                                         	x & 0 \\
@@ -997,7 +997,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
                                         \end{tikzcd}
                                     $$
-                                is an object of $\C_{\leq 0}^{[1] \x [1]}$. This also applies to triangles which may not be fibre sequences. 
+                                is an object of $(\C^{\leq 0})^{[1] \x [1]}$. This also applies to triangles which may not be fibre sequences. 
                                 \item \textbf{(Torsion):} For all objects $x \in \C$, there exists a (co)fibre sequence in $\C^{[1] \x [1]}$:
                                     $$
                                         \begin{tikzcd}
@@ -1011,7 +1011,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
                                         \end{tikzcd}
                                     $$
-                                wherein $x' \in \C_{\geq 0}$, whose left and right-extensions are both zero:
+                                wherein $x' \in \C^{\geq 0}$, whose left and right-extensions are both zero:
                                     $$
                                         \begin{tikzcd}
                                         	0 & {x'} & 0 \\
@@ -1035,7 +1035,7 @@
                                         	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
                                         \end{tikzcd}
                                     $$
-                                (note how this implies that the mapping spaces $\C(x, \loopspace x'')$ and $\C(\suspension x', x)$ are contractible, and hence $x' \in \C_{\geq 0}$ and $x'' \in \C_{< 0}$); in other words, $(\C_{\geq 0}, \C_{\leq 0})$ is a $t$-structure if $(\C_{> 0}, \C_{< 0})$ is a (homotopical) \href{https://ncatlab.org/joyalscatlab/published/Factorisation+systems}{\underline{factorisation system}}, and in fact, an epi-mono factorisation system thanks to the universal property of zero objects. Such a sequence is known as a \textbf{short exact sequence}. 
+                                (note how this implies that the mapping spaces $\C(x, \loopspace x'')$ and $\C(\suspension x', x)$ are contractible, and hence $x' \in \C^{\geq 0}$ and $x'' \in \C_{< 0}$); in other words, $(\C^{\geq 0}, \C^{\leq 0})$ is a $t$-structure if $(\C_{> 0}, \C_{< 0})$ is a (homotopical) \href{https://ncatlab.org/joyalscatlab/published/Factorisation+systems}{\underline{factorisation system}}, and in fact, an epi-mono factorisation system thanks to the universal property of zero objects. Such a sequence is known as a \textbf{short exact sequence}. 
                                 
                                 Also, note that in the situation above, we have the following right and left-extensions:
                                     $$
@@ -1070,7 +1070,7 @@
                                         \end{tikzcd}
                                     $$
                             \end{enumerate}
-                        \item \textbf{(Hearts of t-structures):} It is not hard to see that within a stable $\infty$-category $\C$ equipped with some choice of t-structure $(\C_{\geq 0}, \C_{\leq 0})$, short exact sequences would form an \textit{isomorphism-stable} full $\infty$-subcategory of $\C^{[1] \x [1]}$, which we shall call the \textbf{heart} of its t-structure. 
+                        \item \textbf{(Hearts of t-structures):} It is not hard to see that within a stable $\infty$-category $\C$ equipped with some choice of t-structure $(\C^{\geq 0}, \C^{\leq 0})$, short exact sequences would form an \textit{isomorphism-stable} full $\infty$-subcategory of $\C^{[1] \x [1]}$, which we shall call the \textbf{heart} of its t-structure. 
                     \end{enumerate}
                     Note how we are indexing \textit{homologically}.
                 \end{definition}
@@ -1079,41 +1079,41 @@
                 \end{remark}
                 
                 \begin{proposition}[t-structures and localisations] \label{prop: t_structures_and_localisations}
-                    Let $\C$ be a stable $\infty$-category and let $(\C_{\geq 0}, \C_{\leq 0})$ be a t-structure thereon with corresponding canonical fully faithful exact embeddings $\iota_{\geq 0}$ and $\iota_{\leq 0}$. Then, there exists the following composable adjunctions exhibiting $\C_{\leq 0}$ and $\C_{\geq 0}$ as a reflective and a coreflective $\infty$-subcategory of $\C$ respectively:
+                    Let $\C$ be a stable $\infty$-category and let $(\C^{\geq 0}, \C^{\leq 0})$ be a t-structure thereon with corresponding canonical fully faithful exact embeddings $\iota^{\geq 0}$ and $\iota^{\leq 0}$. Then, there exists the following composable adjunctions exhibiting $\C^{\leq 0}$ and $\C^{\geq 0}$ as a reflective and a coreflective $\infty$-subcategory of $\C$ respectively:
                         $$
                             \begin{tikzcd}
-                            	{\C_{\leq 0}} & \C & {\C_{\geq 0}}
-                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{\iota_{\leq 0}}"', shift right=2, hook, from=1-1, to=1-2]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\tau_{\leq 0}}"', shift right=2, from=1-2, to=1-1]
-                            	\arrow[""{name=2, anchor=center, inner sep=0}, "{\tau_{\geq 0}}"', shift right=2, from=1-2, to=1-3]
-                            	\arrow[""{name=3, anchor=center, inner sep=0}, "{\iota_{\geq 0}}"', shift right=2, hook', from=1-3, to=1-2]
+                            	{\C^{\leq 0}} & \C & {\C^{\geq 0}}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{\iota^{\leq 0}}"', shift right=2, hook, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{\tau^{\leq 0}}"', shift right=2, from=1-2, to=1-1]
+                            	\arrow[""{name=2, anchor=center, inner sep=0}, "{\tau^{\geq 0}}"', shift right=2, from=1-2, to=1-3]
+                            	\arrow[""{name=3, anchor=center, inner sep=0}, "{\iota^{\geq 0}}"', shift right=2, hook', from=1-3, to=1-2]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
                             \end{tikzcd}
                         $$
-                    We call the functors $\tau_{\geq 0}$ and $\tau_{\leq 0}$ the \textbf{$\geq 0$-truncation} and the \textbf{$\leq 0$-truncation} respectively.
+                    We call the functors $\tau^{\geq 0}$ and $\tau^{\leq 0}$ the \textbf{$\geq 0$-truncation} and the \textbf{$\leq 0$-truncation} respectively.
                 \end{proposition}
                     \begin{proof}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{($(\iota_{\geq 0} \ladjoint \tau_{\geq 0})$):}    
-                            \item \textbf{($(\tau_{\leq 0} \ladjoint \iota_{\leq 0})$):} 
+                            \item \textbf{($(\iota^{\geq 0} \ladjoint \tau^{\geq 0})$):}    
+                            \item \textbf{($(\tau^{\leq 0} \ladjoint \iota^{\leq 0})$):} 
                         \end{enumerate}
                     \end{proof}
                 \begin{corollary}[Cooking up short exact sequences using truncations] \label{coro: short_exact_sequences_and_truncations}
-                    Suppose that $x$ is an object of a stable $\infty$-category $\C$, and let $(\C_{\geq 0}, \C_{\leq 0})$ be a t-structure thereon. Then, the heart of this t-structure can be given by:
+                    Suppose that $x$ is an object of a stable $\infty$-category $\C$, and let $(\C^{\geq 0}, \C^{\leq 0})$ be a t-structure thereon. Then, the heart of this t-structure can be given by:
                         $$
                             \begin{aligned}
-                                \C^{\heart} & \cong \iota_{\leq 0} \circ \tau_{\geq 0} \C_{\leq 0}
+                                \C^{\heart} & \cong \iota^{\leq 0} \circ \tau^{\geq 0} \C^{\leq 0}
                                 \\
-                                & \cong \iota_{\geq 0} \circ \tau_{\leq 0} \C_{\geq 0} 
+                                & \cong \iota^{\geq 0} \circ \tau^{\leq 0} \C^{\geq 0} 
                                 \\
-                                & \cong \tau_{\geq 0} \circ \iota_{\geq 0} \circ \tau_{\leq 0} \circ \iota_{\leq 0} \C 
+                                & \cong \tau^{\geq 0} \circ \iota^{\geq 0} \circ \tau^{\leq 0} \circ \iota^{\leq 0} \C 
                                 \\
-                                & \cong \tau_{\leq 0} \circ \iota_{\leq 0} \circ \tau_{\geq 0} \circ \iota_{\geq 0} \C
+                                & \cong \tau^{\leq 0} \circ \iota^{\leq 0} \circ \tau^{\geq 0} \circ \iota^{\geq 0} \C
                             \end{aligned}
                         $$
-                    In other words, the composite adjunction $(\tau_{\leq 0} \circ \iota_{\geq 0} \ladjoint \tau_{\geq 0} \circ \iota_{\leq 0})$ is an adjoint equivalence over $\C^{\heart}$. 
+                    In other words, the composite adjunction $(\tau^{\leq 0} \circ \iota^{\geq 0} \ladjoint \tau^{\geq 0} \circ \iota^{\leq 0})$ is an adjoint equivalence over $\C^{\heart}$. 
                 \end{corollary}
                     \begin{proof}
                         
