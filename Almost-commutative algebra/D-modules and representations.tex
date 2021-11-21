@@ -8,7 +8,7 @@
     \begin{convention}[Everything is derived!] \label{conv: D_modules_everything_is_derived}
         \noindent
         \begin{itemize}
-            \item From now on until the end of the chapter, everything will be assumed to be derived. In particular, this means that we shall defer to convention \ref{conv: algebraic_stacks_notations} rather than convention \ref{conv: derived_algebraic_stacks_notations}.
+            \item From now on until the end of the chapter, everything will be assumed to be derived. 
             \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
             
             Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
@@ -17,7 +17,7 @@
     \end{convention}
     
     \section{D-modules over characteristic zero}
-        In this section, we will be giving a demonstration of how the theory of inf-schemes (cf. section \ref{section: formal_schemes_and_inf_schemes}) helps us define and describe D-modules as ind-coherent sheaves over a certain kind of prestacks, thereby naturally establishing the six-functor formalism \textit{\`a la} Grothendieck in a natural manner for D-modules. In particular, should a prestack $\calZ$ be sufficiently nice, one would even be able to figure out the behaviours of D-modules on $\calZ$ only from what one would expect from ind-coherent sheaves on $\calZ$. 
+        In this section, we will be giving a demonstration of how the theory of ind-coherent sheaves on inf-schemes (cf. section \ref{section: formal_schemes_and_inf_schemes}) helps us define and describe D-modules as ind-coherent sheaves over a certain kind of prestacks, thereby naturally establishing the six-functor formalism \textit{\`a la} Grothendieck in a natural manner for D-modules, in the sense that, should a prestack $\calZ$ be sufficiently nice, one would even be able to figure out the behaviours of D-modules on $\calZ$ only from what one would expect from ind-coherent sheaves on $\calZ$. 
         
         Before submerging ourselves in the tecnnical details, let us first recall some notable features of the classical theory of D-modules (in the sense of say, Kashiwara), both to equip ourselves with an intuitive sense of purpose for our endeavour, as well as to justify this highly abstract alternative approach to D-modules. 
             \begin{enumerate}
@@ -37,19 +37,7 @@
                 
                 But what about cases wherein $X$ is not smooth ? In such a situation, one would embed $X$ into some smooth ambient scheme, say $Y$ (which can always be done, as one can take $X$ to be the affine singular locus and then embed that locus into a smooth deformation of its ambient scheme). Then, we can make use of what Kashiwara taught us, which is that regardless of our choice of embedding $X \hookrightarrow Y$, the restriction ${}^l\DMod(Y/k)|_X$ of the category of left-$\D_{Y/k}$-modules onto objects (set-theoretically) supported on $X$ will be the same. Choosing such an embedding into a smooth scheme, however, would still involve appealing to resolutions, which is a rather unnatural procedure (at least from a $\infty$-categorical standpoint).
                 
-                Base-changing D-modules is especially an issue, due to rings of differential operators being noncommutative, and consequently, so is establishing a pull-push yoga that is easy to work with. Consider a product in $\Sch$, wherein both $X$ and $Y$ are smooth and proper over $\Spec k$:
-                    $$
-                        \begin{tikzcd}
-                        	{X \x_{\Spec k} Y} & Y \\
-                        	X & {\Spec k}
-                        	\arrow[from=1-2, to=2-2]
-                        	\arrow[from=2-1, to=2-2]
-                        	\arrow[from=1-1, to=1-2]
-                        	\arrow[from=1-1, to=2-1]
-                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                        \end{tikzcd}
-                    $$
-                Because neither $\D_{X/k}$ nor $\D_{Y/k}$ is commutative, it is not entirely clear whether $\D_{X \x_{\Spec k} Y/k}$ should be $\D_{X/k} \tensor_{\calO_{X \x_{\Spec k} Y/k}} \D_{Y/k}$ or $\D_{Y/k} \tensor_{\calO_{X \x_{\Spec k} Y/k}} \D_{X/k}$. 
+                Additionally, the relationship between left-D-module and right-D-modules is rather unclear within this classical framework (it turns out that via the dualising complex, left and right-D-modules are equivalent, but this does not excuse the fact that the correspondence seems rather unnatural).
                 \item \textbf{(The new perspective):} Again, suppose that $k$ is a field (perhaps of characteristic $0$) and that $X$ is a scheme that is flat, proper, and of finite presentation over $\Spec k$.
                 
                 Let us firstly that a crystal in quasi-coherent modules over $X$ is one which is isomorphic to its restriction to the maximal reduced closed subscheme (note that $|X| \cong |{}^{\red}X|$; cf. example \ref{example: reducedeness_and_nilpotency}), which is to say that:
@@ -73,7 +61,7 @@
             \end{enumerate}
                     
             \begin{convention}
-                Until the end of this section, we shall be working over a field of characteristic $0$ ($k = \Q$ and $k = \bbC$ are cases of particular interest). Additionally, by \say{prestacks}, we shall always mean \say{prestacks fibred in $\infty$-groupoids}. Due to these reasons, the $\infty$-presheaf $\infty$-topos $\Spec k$ (cf. convention \ref{conv: derived_algebraic_stacks_notations}) shall be denoted somewhat ambiguously by $\Pre\Stk$; likewise, by $\Comm\Alg$ we shall mean ${}^{k/}\Comm\Alg$ and by $\Sch$ (respectively $\Sch^{\aff}$), we shall mean $\Sch_{/\Spec k}$ (respectively $\Sch^{\aff}_{/\Spec k}$).
+                Until the end of this section, we shall be working over a field of characteristic $0$ ($k = \Q$ and $k = \bbC$ are cases of particular interest). Additionally, by \say{prestacks}, we shall always mean \say{prestacks fibred in $\infty$-groupoids}. Due to these reasons, the $\infty$-presheaf $\infty$-topos $\Spec k$ shall be denoted somewhat ambiguously by $\Pre\Stk$; likewise, by $\Comm\Alg$ we shall mean ${}^{k/}\Comm\Alg$ and by $\Sch$ (respectively $\Sch^{\aff}$), we shall mean $\Sch_{/\Spec k}$ (respectively $\Sch^{\aff}_{/\Spec k}$).
             \end{convention}
     
         \subsection{Crystals as sheaves}
@@ -107,15 +95,15 @@
                         between prestacks on $\Comm\Alg^{\op}$. It is not hard to show, via evaluation at quotients by nilradicals, that such a morphism induced a morphism of de Rham spaces:
                             $$\calX_{\dR} \to \calY_{\dR}$$
                         which tells us that there exists a so-called \textbf{de Rham space functor}:
-                            $$(-)_{\dR}: \Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}} \to \Pre\Stk$$
+                            $$\dR: \Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}} \to \Pre\Stk$$
                         that assigns de Rham spaces $\calZ_{\dR}$ to prestacks $\calZ \in \Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}}$. 
-                        \item Due to the fact that limits and colimits of prestacks are computed object-wise, the functor $(-)_{\dR}$ commutes with all limits and colimits in $\Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}}$.
+                        \item Due to the fact that limits and colimits of prestacks are computed object-wise, the functor $\dR$ commutes with all limits and colimits in $\Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}}$.
                     \end{enumerate}
                 \end{remark}
                 
                 \begin{proposition}[The locally almost of finite type case] \label{prop: laft_de_rham_spaces}
                     If $\calZ$ is a prestack that is locally almost of finite type then so is its associated de Rham prestack $\calZ_{\dR}$. This is to say, the essential image of the functor:
-                        $$(-)_{\dR}|_{\Pre\Stk^{\laft}}: \Pre\Stk^{\laft} \to \Pre\Stk$$
+                        $$\dR|_{\Pre\Stk^{\laft}}: \Pre\Stk^{\laft} \to \Pre\Stk$$
                     is a subcategory of $\Pre\Stk^{\laft}$.
                 \end{proposition}
                     \begin{proof}
@@ -130,7 +118,13 @@
                     
                 \end{remark}
                     
-            \subsubsection{Left and right-crystals; vector bundles with flat connections}
+            \subsubsection{Left and right-crystals}
+                \begin{definition}[Right-crystals] \label{def: right-crystals}
+                    By composing $\dR: \Pre\Stk^{\laft} \to \Pre\Stk^{\laft}$ with the functor:
+                        $$\Ind\Coh^!: (\Pre\Stk^{\laft})^{\op} \to (\Cat^{\dg, \cont})^1$$
+                    one obtains a so-called functor of \textbf{right-crystals}:
+                        $$\Crys^! \cong \Ind\Coh^! \circ \dR$$
+                \end{definition}
         
         \subsection{Crystals as functors on the category of correspondences}
         

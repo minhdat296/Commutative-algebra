@@ -830,7 +830,7 @@
                     \begin{definition}[Fpqc morphisms] \label{def: fpqc_morphisms} 
                         Fix a base commutative ring $k$. An affine-schematic morphism:
                             $$f: \calY \to \calX$$
-                        of prestacks in $[\Spec k]$ is said to be \textbf{fpqc} (which stands for \textit{fid\`element plat et quasi-compacte} and translate into \say{faithfully flat and quasi-compact}) if and only if the corresponding $k$-algebra map is (surprise!) faithfully flat and quasi-compact in the Zariski topology.
+                        of prestacks in $\Pre\Stk_{/\Spec k}$ is said to be \textbf{fpqc} (which stands for \textit{fid\`element plat et quasi-compacte} and translate into \say{faithfully flat and quasi-compact}) if and only if the corresponding $k$-algebra map is (surprise!) faithfully flat and quasi-compact in the Zariski topology.
                     \end{definition}
                     
                     \begin{remark}[Quasi-compact affine-schematic morphisms] \label{remark: quasi_compact_affine_schematic_morphisms} 
@@ -1534,9 +1534,9 @@
                             \item \textbf{(Well-definiteness):} In remark \ref{remark: weak_2_yoneda}, we gave an alternate definition of what it means for a prestack on $\Cring^{\op}$ to be an affine scheme over other given base prestack: they are just objects of a certain slice category. But does this formulation agree with that of definition \ref{def: relative_affine_schemes} ? 
                         
                             Suppose that we are working over a base prestack $\calY$. First of all, note that objects of $\Sch^{\aff}_{/\calY}$, i.e. affine schemes over $\calY$, are presheaves on $\Cring^{\op}$ themselves, as the category ${}^{\calY/}\Comm\Alg$ of quasi-coherent commutative monoids internal to the symmetric monoidal category of quasi-coherent modules on $\calY$
-                            \item \textbf{(These all seem awfully abstract ...):} Relative affine schemes should best (at least in the opinion of the author) be thought of as objects of categories that are fibres parametrised by the $1$-category $[\Spec \Z]$ of prestacks over $\Cring^{\op}$: that is, one should think of categories of relative affine schemes as coming from a prestack:
-                                $$\Sch^{\aff}_{/(-)}: [\Spec \Z]^{\op} \to \Cat$$
-                            This might seem like a rather pointless abstraction, or to put it even more critically, just an abstraction for the sake of abstraction. However, its virtue lies in how the fibres over objects of $[\Spec \Z]$ that happen to be affine schemes $\Spec k$ (in the sense of definition \ref{def: zariski_topoi}) would just be the categories $\Sch^{\aff}_{/\Spec k}$, which we have a rather solid handle on. This, incidentally, suggests a remarkable idea: there is a more-or-less functorial way to realise the idea that prestacks are locally affine. In fact, we shall return to this abstraction and analyse it in more details in proposition \ref{prop: relative_Spec_on_schemes}, where we will see how the domain restriction $\Sch^{\aff}_{/(-)}|_{\Sch}$ of the prestack $\Sch^{\aff}_{/(-)}$ to $\Sch$ instead of $[\Spec \Z]$ is actually stack on $\Sch_{\Zar}$.
+                            \item \textbf{(These all seem awfully abstract ...):} Relative affine schemes should best (at least in the opinion of the author) be thought of as objects of categories that are fibres parametrised by the $1$-category $\Pre\Stk$ of prestacks over $\Cring^{\op}$: that is, one should think of categories of relative affine schemes as coming from a prestack:
+                                $$\Sch^{\aff}_{/(-)}: \Pre\Stk^{\op} \to \Cat$$
+                            This might seem like a rather pointless abstraction, or to put it even more critically, just an abstraction for the sake of abstraction. However, its virtue lies in how the fibres over objects of $\Pre\Stk$ that happen to be affine schemes $\Spec k$ (in the sense of definition \ref{def: zariski_topoi}) would just be the categories $\Sch^{\aff}_{/\Spec k}$, which we have a rather solid handle on. This, incidentally, suggests a remarkable idea: there is a more-or-less functorial way to realise the idea that prestacks are locally affine. In fact, we shall return to this abstraction and analyse it in more details in proposition \ref{prop: relative_Spec_on_schemes}, where we will see how the domain restriction $\Sch^{\aff}_{/(-)}|_{\Sch}$ of the prestack $\Sch^{\aff}_{/(-)}$ to $\Sch$ instead of $\Pre\Stk$ is actually stack on $\Sch_{\Zar}$.
                         \end{enumerate}
                     \end{remark}
                     
@@ -1585,7 +1585,7 @@
                 $$\Spec R_{\p} \to \Spec R$$
             gives us an identification of the point $\p$ inside $|\Spec R|$ (usually, one would consider the morphism $\Spec \kappa_{\p} \to \Spec R$ instead, as spectra of fields are actually singleton spaces). Alternatively, this morphism might be thought of as the identification of the open subscheme $\Spec R_{\p}$ inside $\Spec R$, whose underlying topological space we note to precisely be the complement $|\Spec R| \setminus \{\p\}$. Thus, we have managed to puncture the affine scheme $\Spec R$ at $\p \in |\Spec R|$. 
             
-            On the surface, this might seem like nothing more than a fun observation, but in fact, it is a rather powerful one. The fact that a \textit{canonical} morphism helps us puncture an affine scheme at a given point means that we can perform a similar procedure on general prestacks on $\Cring^{\op}$ and do not have to restrict ourselves to affine schemes. The way that we shall be going about this is as follows: if we are to consider the category $\Sch^{\aff}_{/\calY}$ of affine schemes over some given base prestack $\calY \in [\Spec \Z]$, then we can define the prestack $\calY^{\circ}$ (or $\calY^{\circ}_{\p}$ when the choice of $\p$ is not obvious) that is punctured at $\p \in |\Spec R|$ (for some $\Spec R \in \Sch^{\aff}_{/\calY}$) to be that specified by the following condition:
+            On the surface, this might seem like nothing more than a fun observation, but in fact, it is a rather powerful one. The fact that a \textit{canonical} morphism helps us puncture an affine scheme at a given point means that we can perform a similar procedure on general prestacks on $\Cring^{\op}$ and do not have to restrict ourselves to affine schemes. The way that we shall be going about this is as follows: if we are to consider the category $\Sch^{\aff}_{/\calY}$ of affine schemes over some given base prestack $\calY \in \Pre\Stk$, then we can define the prestack $\calY^{\circ}$ (or $\calY^{\circ}_{\p}$ when the choice of $\p$ is not obvious) that is punctured at $\p \in |\Spec R|$ (for some $\Spec R \in \Sch^{\aff}_{/\calY}$) to be that specified by the following condition:
                 $$\calY^{\circ}(\Spec R) \cong \calY(\Spec R_{\p})$$
             and thanks to the fact that there is a canonical morphism in $\Cring^{\op}$ from $\Spec R_{\p}$ to $\Spec R$, there is a canonical morphism from $\calY(\Spec R)$ to $\calY(\Spec R_{\p})$, or equivalently, a pseudo-natural transformation:
                 $$\calY \to \calY^{\circ}$$
@@ -2129,11 +2129,6 @@
                         \begin{proof}
                             
                         \end{proof}
-                    \begin{convention}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Categories of algebraic stacks] \label{conv: algebraic_stacks_notations}
-                        From now on, category of algebraic stacks determined by some Grothendieck topology $\tau$ on some small site of commutative $k$-algebras ${}^{k/}\Comm\Alg^{\petit, \op}$ will be denoted by $[\Spec k]^{\geom}_{\tau}$. For instance, the category of DM-stacks over $\Spec k$ is going to be denoted by $[\Spec k]^{\geom}_{\et}$. Also, since we are being in accordance with the notations used for denoting, say, Zariski topoi or \'etale topoi (cf. definition \ref{def: zariski_topoi}), let us also denote the category of general stacks on a site ${}^{k/}\Comm\Alg^{\petit, \op}_{\tau}$ by $[\Spec k]_{\tau}$. When $\tau$ is the chaotic topology, we shall simply write $[\Spec k]$ for the category of prestacks on ${}^{k/}\Comm\Alg^{\op}$; the category of presheaves on ${}^{k/}\Comm\Alg^{\op}$ shall therefore be denoted by $(\Spec k)$.
-                        
-                        $(2, 1)$-topoi are also of great importance, as categories of geometric stacks embed fully faithfully via left-exact inclusions into them (cf. lemma \ref{lemma: geometric_stack_categories}). As such, we shall dedicate the notation ${}^{(2, 1)}[\Spec k]^{\geom}_{\tau}$ for the category of sheaves of groupoids over some algebraic site ${}^{k/}\Comm\Alg_{\tau}^{\petit, \op}$; as for $(2, 1)$-presheaf topoi (i.e. categories of prestacks fibred in groupoids), they shall be denoted by ${}^{(2, 1)}[\Spec k]$. 
-                    \end{convention}
                 
             \subsubsection{Schemes}
                 \begin{definition}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Schemes] \label{def: schemes} \index{Schemes}
@@ -2144,11 +2139,11 @@
                         \end{enumerate}
                 \end{definition}
                 \begin{remark}[Schemes are Zariski-algebraic stacks] \label{remark: schemes_are_zariski_algebraic_stacks}
-                    Since schemes are \'etale sheaves, they are trivially Zariski sheaves as well; this (along with the fact that every scheme admits a Zariski atlas and that their diagonals are affine-schematic) implies that every scheme is necessarily a Zariski-algebraic stack, i.e. objects of $[\Spec k]_{\Zar}^{\geom}$. 
+                    Since schemes are \'etale sheaves, they are trivially Zariski sheaves as well; this (along with the fact that every scheme admits a Zariski atlas and that their diagonals are affine-schematic) implies that every scheme is necessarily a Zariski-algebraic stack, i.e. objects of $(\Stk_{/\Spec k})_{\Zar}^{\geom}$. 
                 \end{remark}
                 
                 \begin{theorem}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} The category of schemes] \label{theorem: scheme_categories} \index{Schemes}
-                    Let $k$ be a commutative ring. Schemes over $\Spec k$ form a full subcategory of the category $[\Spec k]^{\geom}_{\et}$ of DM-stacks closed under finite limits, which shall be denoted by $\Sch_{/\Spec k}$. 
+                    Let $k$ be a commutative ring. Schemes over $\Spec k$ form a full subcategory of the category $(\Stk_{/\Spec k})^{\geom}_{\et}$ of DM-stacks closed under finite limits, which shall be denoted by $\Sch_{/\Spec k}$. 
                 \end{theorem}
                     \begin{proof}
                         

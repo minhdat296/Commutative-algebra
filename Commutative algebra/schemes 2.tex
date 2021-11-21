@@ -364,11 +364,6 @@
                     \begin{proof}
                         
                     \end{proof}
-                \begin{convention}[\textcolor{red}{\underline{IMPORTANT}} Categories of derived algebraic stacks] \label{conv: derived_algebraic_stacks_notations}
-                    From now on, category of derived algebraic stacks determined by some Grothendieck topology $\tau$ on some small $\infty$-site of commuative $k$-algebras ${}^{\dg, k/}\Comm\Alg^{\op}$ will be denoted by ${}^{\infty}[\Spec k]^{\geom}_{\tau}$. For instance, the category of derived DM-stacks over $\Spec k$ is going to be denoted by ${}^{\infty}[\Spec k]^{\geom}_{\et}$. Also, let us also denote the category of general $\infty$-stacks on a site ${}^{\dg, \tau}\Comm\Alg^{\petit, \op}_{\tau}$ by ${}^{\infty}[\Spec k]_{\tau}$. When $\tau$ is the chaotic topology, we shall simply write ${}^{\infty}[\Spec k]$ for the $\infty$-category of $\infty$-prestacks on ${}^{\dg, k/}\Comm\Alg^{\op}$.
-                    
-                    $\infty$-topoi are also of great importance, as categories of geometric $\infty$-stacks embed fully faithfully via left-exact inclusions into them (cf. lemma \ref{lemma: derived_geometric_stack_categories}). As such, we shall dedicate the notation ${}^{(\infty, 1)}[\Spec k]^{\geom}_{\tau}$ for the $\infty$-topos of sheaves of $\infty$-groupoids over some algebraic $\infty$-site ${}^{\dg, k/}\Comm\Alg_{\tau}^{\petit, \op}$; as for $\infty$-presheaf topoi, they shall be denoted by ${}^{(\infty, 1)}[\Spec k]$. 
-                \end{convention}
             
             \subsubsection{Connectivity and co-connectivity of derived geometric stacks}
         
@@ -377,7 +372,7 @@
             
             \subsubsection{As structured spaces \textit{\`a la} Lurie}
         
-    \section{Quasi-coherent modules} \label{section: qcoh}
+    \section{Quasi-coherent sheaves} \label{section: qcoh}
         Let's be real: people - especially modern representation theorists disguised as geometers - care absolutely zilch about the \textit{actual} geometric objects in algebraic geometry. Instead, we sought after a notion of \say{local-global compatible} linear algebra, i.e. a way to probe geometric structures using the abundance of knowledge that has been accumulated through the centuries in the field of linear algebra. For instance, and to bring up representation theory again, by gaining and understanding of their linear representations, one effectively knows all there is to know about mysterious and exotic objects such as groups and Lie algebras, which (and especially the case of groups) are ultimately geometric in nature: groups are nothing but local versions of group schemes. Now that's all well and good, but how do we actually perform this linear-algebraic black magic ? The answer is via quasi-coherent modules.
         
         Quasi-coherent modules are quite literally everywhere in algebraic geometry. Classically (i.e. \`a la EGA or Stacks Project), one would define these objects as sheaves of modules on schemes/algebraic spaces/what-have-you or even just topological spaces and sites that satisfy certain local-to-global compatibility conditions (see \cite[\href{https://stacks.math.columbia.edu/tag/01BD}{Tag 01BD}]{stacks} for a reminder of this traditional formulation). This approach, while seemingly technically simple, has one flaw that is rather hard to ignore: the local-to-global transition is not very \say{categorical}, meaning that this seemingly perfectly usable definition of quasi-coherent modules will might bring home technical difficulties that at some point, might make us (read: the author) decide to throw in the towel and go downstairs for a biscuit instead. It is due to this reason that in this book, we are going to approach quasi-coherent modules from a $2$-categorical angle: namely, we shall be studying the symmetric monoidal (abelian) categories of quasi-coherent modules and continuous functors between them, instead of objects therein (in fact, we care little about the actual quasi-coherent modules themselves), how these categories are parametrised by underlying sites of schemes, and how everything is packaged together by so-called \say{stacks of quasi-coherent modules}, which form $2$-categories in a somewhat obvious manner. We should also note that such an approach is $2$-categorical due to the important fact that the associativity that compositions of base change functors between categories of quasi-coherent modules are \textit{supposed} to enjoy is only preserved up to natural equivalences; heuristically, one can think about how the functors:
@@ -397,7 +392,7 @@
         \begin{convention}[Everything is derived!] \label{conv: schemes_2_everything_is_derived}
             \noindent
             \begin{itemize}
-                \item From now on until the end of the chapter, everything will be assumed to be derived. In particular, this means that we shall defer to convention \ref{conv: algebraic_stacks_notations} rather than convention \ref{conv: derived_algebraic_stacks_notations}.
+                \item From now on until the end of the chapter, everything will be assumed to be derived. 
                 \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
                 
                 Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
@@ -405,216 +400,103 @@
             \end{itemize} 
         \end{convention}
         
-        \subsection{Generalities}
-            \subsubsection{Prestacks of quasi-coherent modules}
-                \begin{definition}[Quasi-coherent modules] \label{def: qcoh_def}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Quasi-coherent modules):} Our goal is to construct categories of quasi-coherent sheaves on schemes and algebraic spaces/stacks in a manner that is as adaptable to the world of derived algebraic geometry as possible, because at the end of the day, one cares most about cohomologies of quasi-coherent modules, and these \say{things} naturally inhabit stable linear $(\infty,1)$-categories - whatever that means - and to that end, let us consider firstly a sketch of the theory. For every affine scheme $\Spec R$, let us \textit{declare} that:
-                            $$\QCoh(\Spec R) \cong {}_R\Mod$$
-                        and for prestacks of groupoids $\calY$ on $\Cring^{\op}$ (a class of objects which subsumes that of affine schemes; schemes and algebraic stacks are instances of prestacks on $\Cring^{\op}$), fitting into commutative diagrams of prestacks as follows:
-                            $$
-                                \begin{tikzcd}
-                                	{\Spec R'} && {\Spec R} \\
-                                	& \calY
-                                	\arrow["{y'}"', from=1-1, to=2-2]
-                                	\arrow["y", from=1-3, to=2-2]
-                                	\arrow["f", from=1-1, to=1-3]
-                                \end{tikzcd}
-                            $$
-                        suppose that there is a functor $f^*: \QCoh(\Spec R) \to \QCoh^*(\Spec R')$ such that for all objects $M_{\Spec R', y'} \in \QCoh(\Spec R')$, there exists an object $M_{\Spec R, y} \in \QCoh^*(\Spec R)$ so that:
-                            $$M_{\Spec R', y'} \cong f^* M_{\Spec R, y}$$
-                        We shall be calling the categories of the form $\QCoh^*(\calY)$ categories of \textbf{quasi-coherent modules} on $\calY$.
-                        \item \textbf{(Categories of quasi-coherent modules):} More precisely, an object $M \in \QCoh^*(\calY)$ is a prestack (cf. convention \ref{conv: prestacks}):
-                            $$M: (\Sch^{\aff}_{/\calY})^{\op} \to \Cat$$
-                        which:
-                            \begin{enumerate}
-                                \item sends the affine schemes $y: \Spec R \to \calY$ to the categories $\QCoh(\Spec R)$.
-                                \item and sends commutative diagrams in $\Sch^{\aff}_{/\calY}$ as below:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{\Spec R''} & {\Spec R'} & {\Spec R} \\
-                                        	& \calY
-                                        	\arrow["{y''}"', from=1-1, to=2-2]
-                                        	\arrow["{y'}", from=1-2, to=2-2]
-                                        	\arrow["{f'}", from=1-1, to=1-2]
-                                        	\arrow["y", from=1-3, to=2-2]
-                                        	\arrow["f", from=1-2, to=1-3]
-                                        \end{tikzcd}
-                                    $$
-                                to diagrams in $\Cat$ as below:
-                                    $$
-                                        \begin{tikzcd}
-                                        	{\QCoh(\Spec R'')} & {\QCoh(\Spec R')} & {\QCoh(\Spec R)}
-                                        	\arrow["{M(f')}"', from=1-2, to=1-1]
-                                        	\arrow["{M(f)}"', from=1-3, to=1-2]
-                                        \end{tikzcd}
-                                    $$
-                                such that one has natural isomorphisms between $M(f' \circ f)$ and $M(f') \circ M(f)$ that are not necessarily the identity.
-                            \end{enumerate}
-                        and a morphism in $\QCoh(\calY)$ is just a \href{https://ncatlab.org/nlab/show/pseudonatural+transformation}{\underline{pseudo-natural transformation}} (i.e. a morphism of pseudo-functors).
-                        \item \textbf{(Prestacks of quasi-coherent modules):} Having defined categories of quasi-coherent modules on categories of affine schemes over prestacks of groupoids on $\Cring^{\op}$, let us try to define the \textbf{prestack of quasi-coherent modules} on the category $[\Spec \Z]$ of prestacks on $\Cring^{\op}$, which we shall denote by:
-                            $$\QCoh^*: [\Spec \Z]^{\op} \to \Cat$$
-                        Such a prestack will associate to each commutative diagrams in $[\Spec \Z]$ as below:
-                            $$
-                                \begin{tikzcd}
-                                	{\calY''} & {\calY'} & \calY
-                                	\arrow["{\varphi'}", from=1-1, to=1-2]
-                                	\arrow["\varphi", from=1-2, to=1-3]
-                                \end{tikzcd}
-                            $$
-                        to diagrams in $\Cat$ as below:
-                            $$
-                                \begin{tikzcd}
-                                	{\QCoh^*(\calY'')} & {\QCoh^*(\calY')} & {\QCoh^*(\calY)}
-                                	\arrow["{\QCoh^*(\varphi')}"', from=1-2, to=1-1]
-                                	\arrow["{\QCoh^*(\varphi)}"', from=1-3, to=1-2]
-                                \end{tikzcd}
-                            $$
-                        such that one has natural isomorphisms between $\QCoh^*(\varphi' \circ \varphi)$ and $\QCoh^*(\varphi') \circ \QCoh^*(\varphi)$ that are not necessarily the identity. In short, $\QCoh^*(-)$ is a prestack that sends objects $\calY \in [\Spec \Z]^{\op}$ to $1$-categories $\QCoh^*(\calY)$ of prestacks $M$ that in turn assign to affine schemes over $\calY$ the appropriate module categories. 
-                        
-                        In the event that the prestacks $\calY'', \calY'$, and $\calY$ are affine schemes over some base prestack $\calY_0$, i.e. by replacing the category $[\Spec \Z]^{\op}$ with $\Sch^{\aff}_{/\calY_0}$, one recovers the prestack $\QCoh^*(\calY_0)$. 
-                    \end{enumerate}
-                \end{definition}
-                \begin{remark}[The purpose of quasi-coherent modules]
-                    Ultimately, we are trying to build a theory of quasi-coherent modules wherein categories thereof over schemes can be obtained via gluing together those on the covering affine schemes. In other words, the theory of quasi-coherent modules ought to look like a globalisation of the theory of modules over commutative rings. This goal shall be realised fully via descent theory (cf. \cite{vistoli_descent}).
-                \end{remark}
-                \begin{remark}[Why prestacks ?]
-                    We should note that definition \ref{def: qcoh_def} is not standard. Most textbooks will define \textit{objects} of quasi-coherent module categories as modules over structure sheaves that satisfy certain cohomological conditions. The problem with this formulation is that even though abstract entities such as pseudo-functors are not needed for it, it relies very heavily on the idea of sheaf restriction, which is not very well-defined. Prestacks allow us to avoid that technical hiccup; they also highlight an important point: non-quasi-coherent modules are not very \say{algebraic}.
-                \end{remark}
-                
-                Now that we have managed to write down the definition of what it means for a category to have quasi-coherent modules as objects, let us examine some basic properties of the prestack of quasi-coherent modules on $[\Spec \Z]$. The first of these is its universal property.
-                \begin{proposition}[Universal property of quasi-coherent modules] \label{prop: qcoh_universal_property}
-                    Fix a base commutative ring $k$. Then, the prestack:
-                        $$\QCoh^*: [\Spec k]^{\op} \to \Cat$$
-                    of quasi-coherent modules on the $1$-category $[\Spec k]$ of prestacks of groupoids on ${}^{k/}\Comm\Alg^{\op}$ is the \textit{right}-Kan extension of:
-                        $$\QCoh^*|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff, \op}_{/\Spec k} \to \Cat$$
-                    along the canonical embedding $\Sch^{\aff, \op} \hookrightarrow [\Spec k]^{\op}$. In particular, we have:
-                        $$\QCoh^*(\calY) \cong \underset{S \in \Sch^{\aff}_{/\calY}}{\lim} \QCoh^*(S)$$
-                    for all $\calY \in [\Spec k]$.
-                \end{proposition}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{remark}[The correct definition of quasi-coherent modules]
-                    To be quite honest, definition \ref{def: qcoh_def} should be thought of less as a proper definition of the prestack of quasi-coherent modules and more of a preliminary discussion. We have only granted it the title of \say{Definition} and the honour that goes along with it because proposition \ref{prop: qcoh_universal_property} is a rather non-trivial phenomenon. 
-                \end{remark}
-    
-            \subsubsection{Stability and continuity}
-                \begin{remark}[dg-categories of quasi-coherent sheaves] \label{remark: dg_qcoh_categories}
-                    For every commutative ring $k$ and every prestacks of groupoids $\calY$ over ${}^{\dg, k/}\Comm\Alg^{\op}$, the $\infty$-category $\QCoh(\calY)$ is stable and $k$-linear (see definition \ref{def: stable_infinity_categories} along with section \ref{section: homological_algebra} altogether for the notion of stable $(\infty, 1)$-categories), i.e. $\QCoh(\calY)$ is a dg-category (via Lurie's version of the Dold-Kan Correspondence for stable $\infty$-categories; cf. \cite[Theorem 1.2.3.7]{HA}). If this seems a bit abstract, then keep in mind that one can imagine the stable $\infty$-category of quasi-coherent sheaves on a prestacks of groupoids to be the stable $\infty$-category of chain complexes of quasi-coherent sheaves on the underlying classical prestack; note that chain complexes of classical quasi-coherent sheaves are well-defined, as these classical quasi-coherent sheaves form abelian categories. 
-                \end{remark}
-                
-                \begin{remark}[Discontinuity of $*$-pullbacks] \label{remark: *_pullbacks_discontinuity}
-                    Let:
-                        $$f: \calY_1 \to \calY_2$$
-                    be a morphism of prestacks of groupoids on ${}^{k/}\Comm\Alg^{\op}$ (where $k$ is some base commutative ring). Then, the corresponding $*$-pullback:
-                        $$f^*: \QCoh(\calY_2) \to \QCoh(\calY_1)$$
-                    is expected to preserve (small) limits in general, as it is given by tensor products (cf. definition \ref{def: qcoh_def}), and it is why we need to develop the notion of $*$-pushforwards (see subsubsection \ref{subsubsection: qcoh_*_pushforwards}). To give an example of why discontinuous $*$-pullbacks might create issues for us, \todo{Finish example}
-                \end{remark}
-        
-        \subsection{The pull-push yoga}
-            \subsubsection{\texorpdfstring{$*$}{}-pushforwards of quasi-coherent modules} \label{subsubsection: qcoh_*_pushforwards}
-                \begin{remark}[Existence of $*$-pushforwards] \label{remark: existence_of_*_pushforwards}
-                    Let:
-                        $$f: \calY_1 \to \calY_2$$
-                    be a morphism of prestacks of groupoids on ${}^{k/}\Comm\Alg^{\op}$, for some commutative ring $k$. As categories of quasi-coherent modules are presentable (cf. definition \ref{def: presentable_infinity_categories}), we can apply Lurie's Adjoint Functor Theorem \cite[Corollary 5.5.2.9]{HTT} to the canonically induced pullback:
-                        $$f^*: \QCoh(\calY_2) \to \QCoh(\calY_1)$$
-                    and get back the following adjunction:
+        \subsection{Categories of quasi-coherent sheaves}
+            \begin{definition}[Quasi-coherent modules] \label{def: qcoh_def}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Quasi-coherent modules):} Our goal is to construct categories of quasi-coherent sheaves on schemes and algebraic spaces/stacks in a manner that is as adaptable to the world of derived algebraic geometry as possible, because at the end of the day, one cares most about cohomologies of quasi-coherent modules, and these \say{things} naturally inhabit stable linear $(\infty,1)$-categories - whatever that means - and to that end, let us consider firstly a sketch of the theory. For every affine scheme $\Spec R$, let us \textit{declare} that:
+                        $$\QCoh(\Spec R) \cong {}_R\Mod$$
+                    and for prestacks of groupoids $\calY$ on $\Cring^{\op}$ (a class of objects which subsumes that of affine schemes; schemes and algebraic stacks are instances of prestacks on $\Cring^{\op}$), fitting into commutative diagrams of prestacks as follows:
                         $$
                             \begin{tikzcd}
-                            	{\QCoh(\calY_1)} & {\QCoh(\calY_2)}
-                            	\arrow[""{name=0, anchor=center, inner sep=0}, "{f^*}"', shift right=2, from=1-2, to=1-1]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{f_*}"', shift right=2, from=1-1, to=1-2, dashed]
-                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+                            	{\Spec R'} && {\Spec R} \\
+                            	& \calY
+                            	\arrow["{y'}"', from=1-1, to=2-2]
+                            	\arrow["y", from=1-3, to=2-2]
+                            	\arrow["f", from=1-1, to=1-3]
                             \end{tikzcd}
                         $$
-                    (specifically, $f^*$ preserves small colimits - which can all be built out of epimorphisms and coproducts - because $f^*(-) \cong - \tensor_{\calO_{\calY_1}} \calO_{\calY_2}$, and hence admits a right-adjoint). 
-                    
-                    The right-adjoint $f_*: \QCoh(\calY_1) \to \QCoh(\calY_2)$ is known as the \textbf{$*$-pushforward}, and we shall call the adjoint pair $(f^* \ladjoint f_*)$ a $*$-pull-push adjunction.
-                \end{remark}
-            
-                \begin{definition}[Base change morphisms] \label{def: base_change_morphisms}
-                    Let $k$ be an arbitrary commutative ring. Then, for every pullback square in $[\Spec k]$:
-                        $$
-                            \begin{tikzcd}
-                            	{\calY_1'} & {\calY_1} \\
-                            	{\calY_2'} & {\calY_2}
-                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                            	\arrow["{f'}"', from=1-1, to=2-1]
-                            	\arrow["g", from=2-1, to=2-2]
-                            	\arrow["f", from=1-2, to=2-2]
-                            	\arrow["{g'}", from=1-1, to=1-2]
-                            \end{tikzcd}
-                        $$
-                    (which, let us note, is uniquely determined by the pair of arrows $f: \calY_1 \to \calY_2, g: \calY_2' \to \calY_2'$), there is a uniquely determined \textbf{base change morphism}, which is the following natural transformation coming from the various $*$-pull-push adjunctions at play:
-                        $$
-                            \begin{tikzcd}
-                            	{\QCoh(\calY_1')} & {\QCoh(\calY_1)} \\
-                            	{\QCoh(\calY_2')} & {\QCoh(\calY_2)}
-                            	\arrow["{g^*}"', from=2-2, to=2-1]
-                            	\arrow["{f'_*}"', from=1-1, to=2-1]
-                            	\arrow["{f_*}", from=1-2, to=2-2]
-                            	\arrow["{g'^*}"', from=1-2, to=1-1]
-                            	\arrow[shorten <=14pt, shorten >=14pt, Rightarrow, from=2-2, to=1-1]
-                            \end{tikzcd}
-                        $$
-                \end{definition}
-                \begin{example}[Pathological behaviours of base change morphisms] \label{example: base_change_bad_behaviour}
-                    One would hope that base change morphisms are all isomorphisms, but sadly, this is not the case. Consider the following situation, for instance:
-                        $$
-                            \begin{tikzcd}
-                            	{\A^1 \x_{\pt} \coprod^{\aleph} \pt} & {\coprod^{\aleph} \pt} \\
-                            	{\A^1} & \pt
-                            	\arrow["{f'}"', from=1-1, to=2-1]
-                            	\arrow["g", from=2-1, to=2-2]
-                            	\arrow["{g'}", from=1-1, to=1-2]
-                            	\arrow["f", from=1-2, to=2-2]
-                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                            \end{tikzcd}
-                        $$
-                    where $\pt$ is the one-point scheme and $\aleph$ is some countable cardinal. There is no guarantee that the morphism:
-                        $$f: \coprod^{\aleph} \pt \to \pt$$
-                    would be affine-schematic, and hence we can not expect the base change morphism $g^* f_* \to f'_* g'^*$ to be an isomorphism (to prove this, we can use the fact that higher direct images of quasi-coherent modules vanish over affine schemes).
-                \end{example}
-                
-                \begin{proposition}[Schematic base change] \label{prop: schematic_qc_base_change} 
-                    This is \cite[Proposition I.2.2.2]{GR1}.
-                    
-                    Let:
-                        $$f: \calY_1 \to \calY_2$$
-                    be a schematic and quasi-compact morphism in $[\Spec k]$, for some commutative ring $k$. Then:
+                    suppose that there is a functor $f^*: \QCoh(\Spec R) \to \QCoh^*(\Spec R')$ such that for all objects $M_{\Spec R', y'} \in \QCoh(\Spec R')$, there exists an object $M_{\Spec R, y} \in \QCoh^*(\Spec R)$ so that:
+                        $$M_{\Spec R', y'} \cong f^* M_{\Spec R, y}$$
+                    We shall be calling the categories of the form $\QCoh^*(\calY)$ categories of \textbf{quasi-coherent modules} on $\calY$.
+                    \item \textbf{(Categories of quasi-coherent modules):} More precisely, an object $M \in \QCoh^*(\calY)$ is a prestack (cf. convention \ref{conv: prestacks}):
+                        $$M: (\Sch^{\aff}_{/\calY})^{\op} \to \Cat$$
+                    which:
                         \begin{enumerate}
-                            \item The $*$-pushforward $f_*: \QCoh(\calY_1) \to \QCoh(\calY_2)$ is continuous (i.e. it preserves all small limits).
-                            \item For all morphism of prestack $g: \calY_2' \to \calY_2$, the base change morphism $g^* f_* \to f'_* g'^*$ shall be an isomorphism.
+                            \item sends the affine schemes $y: \Spec R \to \calY$ to the categories $\QCoh(\Spec R)$.
+                            \item and sends commutative diagrams in $\Sch^{\aff}_{/\calY}$ as below:
+                                $$
+                                    \begin{tikzcd}
+                                    	{\Spec R''} & {\Spec R'} & {\Spec R} \\
+                                    	& \calY
+                                    	\arrow["{y''}"', from=1-1, to=2-2]
+                                    	\arrow["{y'}", from=1-2, to=2-2]
+                                    	\arrow["{f'}", from=1-1, to=1-2]
+                                    	\arrow["y", from=1-3, to=2-2]
+                                    	\arrow["f", from=1-2, to=1-3]
+                                    \end{tikzcd}
+                                $$
+                            to diagrams in $\Cat$ as below:
+                                $$
+                                    \begin{tikzcd}
+                                    	{\QCoh(\Spec R'')} & {\QCoh(\Spec R')} & {\QCoh(\Spec R)}
+                                    	\arrow["{M(f')}"', from=1-2, to=1-1]
+                                    	\arrow["{M(f)}"', from=1-3, to=1-2]
+                                    \end{tikzcd}
+                                $$
+                            such that one has natural isomorphisms between $M(f' \circ f)$ and $M(f') \circ M(f)$ that are not necessarily the identity.
                         \end{enumerate}
-                \end{proposition} 
-                    \begin{proof}
-                        Without loss of generality, we may assume that $\calY_1, \calY_2$ are merely affine schemes instead of general quasi-compact prestacks (as we can simply perform induction to recover the general case), and in particular, that $f: \calY_1 \to \calY_2$ is \textit{affine}-schematic, as schematic morphisms between quasi-compact prestacks are representable by finitely affine-schematic morphisms; let:
-                            $$\calY_1 \cong \Spec R_1, \calY_2 \cong \Spec R_2$$
-                            \begin{enumerate}
-                                \item Thanks to the fact that quasi-coherent modules over affine schemes are just modules in the ordinary sense (cf. definition \ref{def: qcoh_def}), the $*$-pushforward along $f: \Spec R_1 \to \Spec R_2$ is, by the tensor-hom adjunction, nothing but the functor:
-                                    $${}_{R_1}\Mod(R_2, -): {}_{R_1}\Mod \to {}_{R_2}\Mod$$
-                                and hence preserves all small limits. 
-                                \item This can easily be shown by evaluating the natural transformation $g^* f_* \to f'_* g'^*$ at objects of ${}_{R_2}\Mod$ and carrying out the routine computations.  
-                            \end{enumerate}
-                    \end{proof}
-                    \begin{remark}[Quasi-coherent modules on schematic quasi-compact prestacks] \label{remark: qcoh_on_schematic_qs_prestacks}
-                        Fix a base commutative ring $k$ and note that because compositions of schematic morphisms in $[\Spec k]$ are also schematic and compositions of quasi-compact morphisms remain quasi-compact, there is a (non-full) subcategory $[\Spec k]^{\sch, \qc}$ of $[\Spec k]$ spanned by schematic quasi-compact morphisms. Now, thanks to the fact that affine schemes are tautologically quasi-compact (and schematic!) and by proposition \ref{prop: schematic_qc_base_change}, there is a \say{restricted} prestack of quasi-coherent modules:
-                            $$\QCoh_*|_{[\Spec k]^{\sch, \qc}}: [\Spec k]^{\sch, \qc} \to \Cat^{\dg, \cont}$$
-                        which exists as the \textit{left}-Kan extension of $\QCoh_*|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff}_{/\Spec k} \to \Cat^{\dg, \cont}$ along the canonical inclusion $\Sch^{\aff}_{/\Spec k} \hookrightarrow [\Spec k]^{\sch, \qc}$. In particular, this tells us that:
-                            $$\QCoh_*|_{[\Spec k]^{\sch, \qc}}(\calY_1 \to \calY_2) \cong \underset{S \in \Sch^{\aff}_{/\calY_2}}{\colim} \QCoh_*|_{\Sch^{\aff}_{/\Spec k}}(S \to \calY_2)$$
-                        for all schematic and quasi-compact morphism of prestacks $\calY_1 \to \calY_2$ (the reader in encouraged to contrast this with proposition \ref{prop: qcoh_universal_property}).
-                    \end{remark}
+                    and a morphism in $\QCoh(\calY)$ is just a \href{https://ncatlab.org/nlab/show/pseudonatural+transformation}{\underline{pseudo-natural transformation}} (i.e. a morphism of pseudo-functors).
+                    \item \textbf{(Prestacks of quasi-coherent modules):} Having defined categories of quasi-coherent modules on categories of affine schemes over prestacks of groupoids on $\Cring^{\op}$, let us try to define the \textbf{prestack of quasi-coherent modules} on the category $\Pre\Stk$ of prestacks on $\Cring^{\op}$, which we shall denote by:
+                        $$\QCoh^*: \Pre\Stk^{\op} \to \Cat$$
+                    Such a prestack will associate to each commutative diagrams in $\Pre\Stk$ as below:
+                        $$
+                            \begin{tikzcd}
+                            	{\calY''} & {\calY'} & \calY
+                            	\arrow["{\varphi'}", from=1-1, to=1-2]
+                            	\arrow["\varphi", from=1-2, to=1-3]
+                            \end{tikzcd}
+                        $$
+                    to diagrams in $\Cat$ as below:
+                        $$
+                            \begin{tikzcd}
+                            	{\QCoh^*(\calY'')} & {\QCoh^*(\calY')} & {\QCoh^*(\calY)}
+                            	\arrow["{\QCoh^*(\varphi')}"', from=1-2, to=1-1]
+                            	\arrow["{\QCoh^*(\varphi)}"', from=1-3, to=1-2]
+                            \end{tikzcd}
+                        $$
+                    such that one has natural isomorphisms between $\QCoh^*(\varphi' \circ \varphi)$ and $\QCoh^*(\varphi') \circ \QCoh^*(\varphi)$ that are not necessarily the identity. In short, $\QCoh^*(-)$ is a prestack that sends objects $\calY \in \Pre\Stk^{\op}$ to $1$-categories $\QCoh^*(\calY)$ of prestacks $M$ that in turn assign to affine schemes over $\calY$ the appropriate module categories. 
                     
-                    \begin{proposition}[Smooth and quasi-compact quasi-separated base change] \label{prop: smooth_qcqs_base_change}
-                        
-                    \end{proposition}
-                        \begin{proof}
-                            
-                        \end{proof}
+                    In the event that the prestacks $\calY'', \calY'$, and $\calY$ are affine schemes over some base prestack $\calY_0$, i.e. by replacing the category $\Pre\Stk^{\op}$ with $\Sch^{\aff}_{/\calY_0}$, one recovers the prestack $\QCoh^*(\calY_0)$. 
+                \end{enumerate}
+            \end{definition}
+            \begin{remark}[The purpose of quasi-coherent modules]
+                Ultimately, we are trying to build a theory of quasi-coherent modules wherein categories thereof over schemes can be obtained via gluing together those on the covering affine schemes. In other words, the theory of quasi-coherent modules ought to look like a globalisation of the theory of modules over commutative rings. This goal shall be realised fully via descent theory (cf. \cite{vistoli_descent}).
+            \end{remark}
+            \begin{remark}[Why prestacks ?]
+                We should note that definition \ref{def: qcoh_def} is not standard. Most textbooks will define \textit{objects} of quasi-coherent module categories as modules over structure sheaves that satisfy certain cohomological conditions. The problem with this formulation is that even though abstract entities such as pseudo-functors are not needed for it, it relies very heavily on the idea of sheaf restriction, which is not very well-defined. Prestacks allow us to avoid that technical hiccup; they also highlight an important point: non-quasi-coherent modules are not very \say{algebraic}.
+            \end{remark}
+            
+            Now that we have managed to write down the definition of what it means for a category to have quasi-coherent modules as objects, let us examine some basic properties of the prestack of quasi-coherent modules on $\Pre\Stk$. The first of these is its universal property.
+            \begin{proposition}[Universal property of quasi-coherent modules] \label{prop: qcoh_universal_property}
+                Fix a base commutative ring $k$. Then, the prestack:
+                    $$\QCoh^*: \Pre\Stk_{/\Spec k}^{\op} \to \Cat$$
+                of quasi-coherent modules on the $1$-category $\Pre\Stk_{/\Spec k}$ of prestacks of groupoids on ${}^{k/}\Comm\Alg^{\op}$ is the \textit{right}-Kan extension of:
+                    $$\QCoh^*|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff, \op}_{/\Spec k} \to \Cat$$
+                along the canonical embedding $\Sch^{\aff, \op} \hookrightarrow \Pre\Stk_{/\Spec k}^{\op}$. In particular, we have:
+                    $$\QCoh^*(\calY) \cong \underset{S \in \Sch^{\aff}_{/\calY}}{\lim} \QCoh^*(S)$$
+                for all $\calY \in \Pre\Stk_{/\Spec k}$.
+            \end{proposition}
+                \begin{proof}
                     
-            \subsubsection{\texorpdfstring{$\QCoh$}{} is rigid symmetric monoidal}
+                \end{proof}
+            \begin{remark}[The correct definition of quasi-coherent modules]
+                To be quite honest, definition \ref{def: qcoh_def} should be thought of less as a proper definition of the prestack of quasi-coherent modules and more of a preliminary discussion. We have only granted it the title of \say{Definition} and the honour that goes along with it because proposition \ref{prop: qcoh_universal_property} is a rather non-trivial phenomenon. 
+            \end{remark}
+            
+        \subsection{\texorpdfstring{$*$}{}-pushforwards of quasi-coherent modules} \label{subsubsection: qcoh_*_pushforwards}
+                    
+        \subsection{The rigid symmetric monoidal structure on \texorpdfstring{$\QCoh$}{}}
         
     \section{Ind-coherent sheaves} \label{section: indcoh}
         \subsection{Categories of ind-coherent sheaves} \label{subsection: categories_of_ind_coherent_sheaves}
@@ -745,7 +627,6 @@
             \end{convention}
             
             \subsubsection{\texorpdfstring{$*$}{}-pushforwards}
-                
                 \begin{proposition}[Existence of $*$-pushforwards] \label{prop: indcoh_*_pushforwards}
                     Let $f: X \to Y$ be any morphism in $\Sch^{\aft}$. Then, there exists a corresponding uniquely defined t-exact functor:
                         $$f_*|_{\Ind\Coh}: \Ind\Coh(X) \to \Ind\Coh(Y)$$
@@ -800,7 +681,12 @@
                         defined via the assignment:
                             $$\calA \mapsto \calA^+$$
                     \end{proof}
-                
+                \begin{lemma}
+                    
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
                 \begin{theorem}[Functoriality of $\Ind\Coh$] \label{theorem: indcoh_functoriality}
                     There exists a functor:
                         $$\Ind\Coh_*|_{\Sch^{\aft}}: \Sch^{\aft} \to (\Cat^{\dg, \cont})^1$$
@@ -821,8 +707,15 @@
                     \begin{proof}
                         
                     \end{proof}
-        
+    
             \subsubsection{\texorpdfstring{$*$}{}-pullbacks}
+                \paragraph{\texorpdfstring{$*$}{}-pullbacks along eventually coconnective morphisms}
+                
+                \paragraph{Base change along eventually coconnective morphisms}
+                
+            \subsubsection{Restricting down to subschemes}
+            
+            \subsubsection{Descent for \texorpdfstring{$\Ind\Coh$}{}}
         
         \subsection{\texorpdfstring{$\Ind\Coh$}{} as a functor out of the category of correspondences}
             \begin{convention}
