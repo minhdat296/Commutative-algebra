@@ -1,17 +1,17 @@
-\chapter{Motives}
+\chapter{Motivic Hodge theory}
     \begin{abstract}
         
     \end{abstract}
     
     \minitoc
     
-    \section{Weil cohomology theories}
+    \section{Weil Cohomology Theories}
         \subsection{Fantastic cohomology theories and where to find them}
-            \subsubsection{Some intersection theory}
+            \subsubsection{Some intersection theory; Chow Motives}
                 \begin{remark}[Categories of smooth projective schemes] \label{remark: categories_of_smooth_projective_schemes}
                     Fix a ground field $k$. 
                     
-                    Inspired by Serre's GAGA Theorem - which relates smooth projective varieties over $\Spec \bbC$ to (compact) complex analytic manifolds - we shall try to set up the so-called Weil cohomology theories so that they would behave well over smooth projective (algebraic) schemes over fields such as $k$ (not that we would object to these cohomology theories working over more general schemes, but one should also be reasonable with one's expectations). For that, we shall need to first see if smooth projective algebraic schemes form a category (otherwise, what even is the point ?); also, notice how even with two additional adjectives, the class smooth projective algebraic schemes still includes a lot of important examples, notable among which are elliptic curves and higher dimensional abelian varieties.
+                    Inspired by Serre's GAGA Theorem - which relates smooth projective varieties over $\Spec \bbC$ to (compact) complex analytic manifolds - we shall try to set up the so-called Weil Cohomology Theories so that they would behave well over smooth projective (algebraic) schemes over fields such as $k$ (not that we would object to these cohomology theories working over more general schemes, but one should also be reasonable with one's expectations). For that, we shall need to first see if smooth projective algebraic schemes form a category (otherwise, what even is the point ?); also, notice how even with two additional adjectives, the class smooth projective algebraic schemes still includes a lot of important examples, notable among which are elliptic curves and higher dimensional abelian varieties.
                     
                     Thankfully, we do have a category of smooth projective algebraic schemes over any given base field $k$, which we denote by $\Sch_{/\Spec k}^{\smooth, \proj}$. To see why this is the case, recall firstly that thanks to the universal property of the $\Proj$-construction, a projective schemes $X$ is nothing but an $\N$-filtration of schemes (i.e. a diagram:
                         $$X: \N \to \Sch$$
@@ -28,10 +28,10 @@
                         \end{enumerate}
                 \end{definition}
                 
-            \subsubsection{Weil cohomology theories}    
-                \begin{definition}[Weil cohomology theories] \label{def: weil_cohomology_theories}
-                    Let $k$ be an arbitrary base field, and let $F$ be a field of characteristic $0$, which will serve as a so-called \say{field of coefficients}. A \textbf{Weil cohomology theory} over $k$ is thus a contravariant functor:
-                        $$\H^*: \Sch_{/\Spec k}^{\smooth, \proj, \op} \to [\Z, {}_F\Vect]$$
+            \subsubsection{Weil Cohomology Theories}    
+                \begin{definition}[Weil Cohomology Theories] \label{def: weil_cohomology_theories}
+                    Let $k$ be an arbitrary base field, and let $F$ be a field of characteristic $0$, which will serve as a so-called \say{field of coefficients}. A \textbf{Weil Cohomology Theory} over $k$ is thus a contravariant functor:
+                        $$\H^*: (\Sch_{/\Spec k}^{\smooth, \proj})^{\op} \to [\Z, {}_F\Vect]$$
                     from the category of smooth projective algebraic schemes over $\Spec k$ into the category of $\Z$-graded $F$-vector spaces (which are just diagrams of shape $\Z$ of $F$-vector spaces) that satisfies the following axioms:
                         \begin{enumerate}
                             \item \textbf{(Finiteness):} Given a smooth projective algebraic scheme $X$ over $\Spec k$, we shall want all the vector spaces in the diagram:
@@ -67,7 +67,7 @@
                         \end{enumerate}
                 \end{definition}
                 \begin{remark}[Why these axioms ?] \label{remark: motivation_for_motives}
-                    For the most part, the axioms laid out in definition \ref{def: weil_cohomology_theories} are there because we want Weil cohomology theories to behave how we have come to expect reasonable \say{geometric} cohomology theories to. In particular, we want for (smooth and projective) schemes cohomology theories that act more or less like singular cohomology or the classical de Rham cohomology for manifolds. In fact, most famous examples of Weil cohomology theories were conceived in the images of singular and de Rham cohomologies: \'etale cohomology (cf. chapter \ref{chapter: etale_cohomology_1}) is supposed to be the topological cohomology theory that works for schemes - especially those in positive characteristics - and crystalline cohomology exists so that we might have a \say{differential geometry} of schemes (cf. chapter \ref{chapter: crystals}). 
+                    For the most part, the axioms laid out in definition \ref{def: weil_cohomology_theories} are there because we want Weil Cohomology Theories to behave how we have come to expect reasonable \say{geometric} cohomology theories to. In particular, we want for (smooth and projective) schemes cohomology theories that act more or less like singular cohomology or the classical de Rham cohomology for manifolds. In fact, most famous examples of Weil Cohomology Theories were conceived in the images of singular and de Rham cohomologies: \'etale cohomology (cf. chapter \ref{chapter: etale_cohomology_1}) is supposed to be the topological cohomology theory that works for schemes - especially those in positive characteristics - and crystalline cohomology exists so that we might have a \say{differential geometry} of schemes (cf. chapter \ref{chapter: crystals}). 
                 \end{remark}
                 \begin{remark}[What about the Lefschetz Conditions ?] \label{remark: lefschetz_axioms}
                     
@@ -89,7 +89,16 @@
                     \end{enumerate}
                 \end{example}
         
-        \subsection{Motives}
+        \subsection{Mixed motives}
+            \subsubsection{Introduction}
+                Grothendieck once dreamed of a categorical framework for a universal cohomology theory for algebraic varieties, something which was eventually called \say{\textbf{the category of motives}}. Even though the mere existence of such a category remains unknown, many desirable features has been described over the past few decades:
+                    \begin{itemize}
+                        \item The category of mixed motives, which we shall denote by $\MM$, is to be fibred over the category $\Sch$ of schemes.
+                        \item 
+                        \item 
+                    \end{itemize}
+            
+            \subsubsection{The motivic category}
     
     \section{Complex Hodge theory}
         \subsection{Hodge structures}

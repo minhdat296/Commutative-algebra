@@ -366,7 +366,7 @@
                             \item The underlying set of the radical of an ideal $I$ of a commutative ring $R$ is equal to the intersection of all prime ideals of $R$ that (improperly) contain $I$. Consequently, prime ideals are trivially radical.
                             \item  Let $I$ be an ideal of a commutative ring $R$. Then $\sqrt{I} \supseteq I$; in fact, $\sqrt{I}$ is the minimal ideal that contains $I$. 
                             \item An ideal $\r$ of a commutative ring $R$ is radical if and only if the quotient $R/\r$ is reduced.
-                \end{enumerate}
+                        \end{enumerate}
                 \end{proposition}
                     \begin{proof}
                         As stated, these properties are rather trivial. However, let us nevertheless prove that radicalisation preserves finite intersection, and that the radical of an ideal is the intersection of all prime ideals containing it, as these properties has interesting topological interpretations.
@@ -457,7 +457,7 @@
                 \end{example}
                 
                 \begin{proposition}[The frame of radical ideals] \label{prop: radical_frame}
-                    Let $R$ be a commutative ring. Then, the radical ideals of $R$ (note that prime ideals are radical; see proposition \ref{prop: radical_properties}) can be realised as objects of a frame, which we shall denote by $\Ouv_{\Zar}^{\rad}(R)$ and dub the radical Zariski frame on $R$.
+                    Let $R$ be a commutative ring. Then, the radical ideals of $R$ (note that prime ideals are radical; see proposition \ref{prop: radical_properties}) can be realised as objects of a frame, which we shall denote by $\Ouv^{\rad}(R)$ and dub the radical Zariski frame on $R$.
                 \end{proposition}
                     \begin{proof}
                         
@@ -762,9 +762,9 @@
                         \end{proof}
                         
                     \begin{corollary}[Zariski-open frames and small Zariski sites] \label{coro: zariski_frames_and_sites}
-                        Thanks to lemma \ref{lemma: localisations_are_open} and lemma \ref{lemma: localisations_are_open}, we know that a Zariski sieve such as $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is actually no different from a covering of the topological space $\Spec R$ by the Zariski-open subsets $D_R(f_{\alpha})$. In particular, this implies that the coverage on the frame $\Ouv_{\Zar}(\Spec R)$ of Zariski-open subsets of $\Spec R$ (as defined in definition \ref{def: zariski_open}) is the same as that on the Zariski site ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ associated to $\Spec R$. Note that even though every frame is a site, we can \textit{not} simply just claim that there is the following equivalence of categories for all commutative rings $R$:
-                            $$\Ouv_{\Zar}(\Spec R) \cong {}^{R/}\Comm\Alg^{\op}$$
-                        As a matter of fact, these two categories are \textit{not} equivalent, seeing how objects of $\Ouv_{\Zar}(\Spec R)$ are necessarily of the form $\bigcup_{f \in \calF} D_R(f)$ (with $\calF$ some subset of $R$), whereas objects of ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ are only in bijection with prime spectra of commutative $R$-algebras (one might also point out that $\Ouv_{\Zar}(\Spec R)$ is small, while ${}^{R/}\Comm\Alg^{\op}$ is not), which may or may not be open subsets of $\Spec R$. 
+                        Thanks to lemma \ref{lemma: localisations_are_open} and lemma \ref{lemma: localisations_are_open}, we know that a Zariski sieve such as $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is actually no different from a covering of the topological space $\Spec R$ by the Zariski-open subsets $D_R(f_{\alpha})$. In particular, this implies that the coverage on the frame $\Ouv(\Spec R)$ of Zariski-open subsets of $\Spec R$ (as defined in definition \ref{def: zariski_open}) is the same as that on the Zariski site ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ associated to $\Spec R$. Note that even though every frame is a site, we can \textit{not} simply just claim that there is the following equivalence of categories for all commutative rings $R$:
+                            $$\Ouv(\Spec R) \cong {}^{R/}\Comm\Alg^{\op}$$
+                        As a matter of fact, these two categories are \textit{not} equivalent, seeing how objects of $\Ouv(\Spec R)$ are necessarily of the form $\bigcup_{f \in \calF} D_R(f)$ (with $\calF$ some subset of $R$), whereas objects of ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ are only in bijection with prime spectra of commutative $R$-algebras (one might also point out that $\Ouv(\Spec R)$ is small, while ${}^{R/}\Comm\Alg^{\op}$ is not), which may or may not be open subsets of $\Spec R$. 
                         
                         As a consequence of this equivalence of coverages, Zariski sheaves can be thought of as simply sheaves on certain topological spaces. See remark \ref{remark: big_and_small_zariski_sites} for more.
                     \end{corollary}
@@ -784,8 +784,8 @@
                         
                         Now, does $\Cring^{\petit, \op}$ admit a Zariski coverage as in theorem \ref{theorem: zariski_coverages} ? Well, obviously yes, because Zariski covering sieves are collections of arrows $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ such that the set $\{f_{\alpha}\}_{\alpha \in A}$ generates $R$, and clearly, the algebras $R_{f_{\alpha}}$ are finitely generated over $R$ (i.e. they are objects of $\Cring^{\petit}$). And thus we have constructed the desired small Zariski site $\Cring^{\petit, \op}_{\Zar}$. 
                         
-                        One thing to note about the small Zariski site $\Cring^{\petit, \op}_{\Zar}$ is that sheaves thereon are exactly sheaves on $\Ouv_{\Zar}(\Spec \Z)$, thanks to the equivalence of coverages elaborated on in corollary \ref{coro: zariski_frames_and_sites} and thanks to the fact that the coverage on $\Cring^{\petit, \op}_{\Zar}$ is the same as that on $\Cring^{\op}_{\Zar}$. In other words, one has the following equivalence of sheaf topoi:
-                            $$(\Spec \Z)_{\Zar} \cong \Sh_{\Sets}\left(\Ouv_{\Zar}(\Spec \Z)\right)$$
+                        One thing to note about the small Zariski site $\Cring^{\petit, \op}_{\Zar}$ is that sheaves thereon are exactly sheaves on $\Ouv(\Spec \Z)$, thanks to the equivalence of coverages elaborated on in corollary \ref{coro: zariski_frames_and_sites} and thanks to the fact that the coverage on $\Cring^{\petit, \op}_{\Zar}$ is the same as that on $\Cring^{\op}_{\Zar}$. In other words, one has the following equivalence of sheaf topoi:
+                            $$(\Spec \Z)_{\Zar} \cong \Sh_{\Sets}\left(\Ouv(\Spec \Z)\right)$$
                         (refer to definition \ref{def: zariski_topoi} for the establishment of the notation $(\Spec \Z)_{\Zar}$). However, the underlying sites are certainly \textit{not} equivalent, as it was the case with the big Zariski site. This is because there are finitely presented commutative rings that can not be obtained via localisations of $\Z$ (consider $\Z[x]$, with $x$ a formal variable, for example). 
                     \end{remark}
                     \begin{example}[A Zariski-open subset of the complex affine plane]
@@ -943,12 +943,12 @@
                 Our efforts will culminate in definition \ref{def: zariski_topoi}, along with remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}. 
                     
                 \begin{proposition}[Structure sheaves of affine schemes] \label{prop: structure_sheaf} \index{Structure sheaves}
-                    Let $k$ be a base commutative ring, and let $\calO_{\Spec R}$ be \textit{a} presheaf of commutative rings on $\Ouv_{\Zar}(\Spec R)$ determined by the following rule on objects:
+                    Let $k$ be a base commutative ring, and let $\calO_{\Spec R}$ be \textit{a} presheaf of commutative rings on $\Ouv(\Spec R)$ determined by the following rule on objects:
                         $$\calO_{\Spec R}(D_R(f)) \cong R_f$$
-                    for all element $f \in R$. Any presheaf on $\Ouv_{\Zar}(\Spec R)$ that are defined this way is a Zariski sheaf (i.e. a sheaf on the site $\Ouv_{\Zar}(\Spec R)$ of Zariski-open subsets of $\Spec R$), and is called \textit{a} \textbf{structure sheaf} on $\Spec R$.
+                    for all element $f \in R$. Any presheaf on $\Ouv(\Spec R)$ that are defined this way is a Zariski sheaf (i.e. a sheaf on the site $\Ouv(\Spec R)$ of Zariski-open subsets of $\Spec R$), and is called \textit{a} \textbf{structure sheaf} on $\Spec R$.
                 \end{proposition}
                     \begin{proof}
-                        Let $\U_{/\Spec R}$ be a sieve on $\Ouv_{\Zar}(\Spec R)$ that covers $U$, which is necessarily a set $\{D_R(f_{\alpha}) \hookrightarrow \Spec R\}_{\alpha \in A}$ of open subsets of $\Spec R$ indexed some set $\{f_{\alpha}\}_{\alpha \in A}$ of generators of $R$ (see lemma \ref{lemma: limits_indexed_by_generators} for an explanation of why this is the case). Then, consider the following:
+                        Let $\U_{/\Spec R}$ be a sieve on $\Ouv(\Spec R)$ that covers $U$, which is necessarily a set $\{D_R(f_{\alpha}) \hookrightarrow \Spec R\}_{\alpha \in A}$ of open subsets of $\Spec R$ indexed some set $\{f_{\alpha}\}_{\alpha \in A}$ of generators of $R$ (see lemma \ref{lemma: limits_indexed_by_generators} for an explanation of why this is the case). Then, consider the following:
                             $$
                                 \begin{aligned}
                                     \calO_{\Spec R}(\Spec R) & \cong \calO_{\Spec R}(D_R(1))
@@ -975,9 +975,9 @@
                         Recall that the stalk $\calF_x$ of a sheaf (of sets) $\calF$ on a topological space $(X, \Ouv(X))$ is given by the filtered colimit indexed by the poset of open neighbourhoods of the chosen point $x \in X$:
                             $$\calF_x \cong \underset{U \in \{V \in \Ouv(X) \mid V \ni x\}}{\colim} \calF(U)$$
                         By adapting this definition to the underlying Zariski-topological spaces of affine schemes, we get that:
-                            $$\calO_{\Spec R, \p} \cong \underset{U \in \{V \in \Ouv_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}(U)$$
-                        with $\Ouv_{\Zar}^{\open}(\Spec R)$ the Zariski topology defined via open sets as in definition \ref{def: zariski_open}. In corollary \ref{coro: zariski_basis}, we have already seen how the distinguished Zariski-open sets defined in definition \ref{def: zariski_open} form a basis for the Zariski topology on commutative ring spectra, and so the above filtered colimit can be rewritten as:
-                            $$\calO_{\Spec R, \p} \cong \underset{D_R(f) \in \{V \in \Ouv_{\Zar}^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\right)$$
+                            $$\calO_{\Spec R, \p} \cong \underset{U \in \{V \in \Ouv^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}(U)$$
+                        with $\Ouv^{\open}(\Spec R)$ the Zariski topology defined via open sets as in definition \ref{def: zariski_open}. In corollary \ref{coro: zariski_basis}, we have already seen how the distinguished Zariski-open sets defined in definition \ref{def: zariski_open} form a basis for the Zariski topology on commutative ring spectra, and so the above filtered colimit can be rewritten as:
+                            $$\calO_{\Spec R, \p} \cong \underset{D_R(f) \in \{V \in \Ouv^{\open}(\Spec R) \mid V \ni \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\right)$$
                         and because $D_R(f) = \{\p \in \Spec R \mid \p \not \ni f\}$, one subsequently gets:
                             $$\calO_{\Spec R, \p} \cong \underset{f \in \{g \in R \mid g \not \in \p\}}{\colim} \calO_{\Spec R}\left(D_R(f)\}\right)$$
                         Lastly we have the following isomorphism:
