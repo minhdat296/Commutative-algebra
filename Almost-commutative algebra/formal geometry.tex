@@ -292,7 +292,7 @@
                 \end{proof}
             \begin{theorem}
                 If $k$ is a ring, $\O$ is a \textit{locally small} \textit{closed} symmetric monoidal $k$-linear category with all coproducts and cokernels, and $\g$ is a (faithfully ?) flat Lie algebra object of $\O$, then there is an equivalence of abelian monoidal $k$-linear categories as follows:
-                    $$\Rep_{\O}(\g) \cong {}_{\U(\g)}\Mod$$
+                    $$\Rep_{\O}(\g) \cong {\U(\g)}\mod$$
                 wherein $\Rep_{\O}(\g)$, the category of representations of $\g$ on $\O$, is the category whose objects are Lie algebra homomorphisms from $\g$ to $\frakgl(V)$ (with $\frakgl(V)$ the canonical Lie algebra associated to the associative and unital endomorphism algebra $\End_{\O}(V)$), and morphisms are commutative triangles in $\Lie\Alg(\O)$ of the form:
                     $$
                         \begin{tikzcd}
@@ -303,11 +303,11 @@
                         	\arrow[from=1-2, to=2-3]
                         \end{tikzcd}
                     $$
-                Also, note that ${}_{\U(\g)}\Mod$ is \href{https://ncatlab.org/nlab/show/module+over+a+monoid}{\underline{well-defined}} as the category of $\U(\g)$-left-equivariant objects of $\O$, and it exhibits all properties that one might expect of a module category.
+                Also, note that ${\U(\g)}\mod$ is \href{https://ncatlab.org/nlab/show/module+over+a+monoid}{\underline{well-defined}} as the category of $\U(\g)$-left-equivariant objects of $\O$, and it exhibits all properties that one might expect of a module category.
             \end{theorem}
                 \begin{proof}
                     Before we prove this claim, let us first note that because $\O$ has all countable coproducts and cokernels, all Lie algebras possess universal enveloping algebras. With that out of the way, let us note that by Tannaka duality (cf. lemma \ref{lemma: tannaka_duality}), each left-$\U(\g)$-module is actually just a $\U(\g)$-representation. Thus, to show that:
-                        $$\Rep_{\O}(\g) \cong {}_{\U(\g)}\Mod$$
+                        $$\Rep_{\O}(\g) \cong {\U(\g)}\mod$$
                     it will suffice to show that:
                         $$\Rep_{\O}(\g) \cong \Rep_{\O}\left(\U(\g)\right)$$
                     (this might seem like a round-about method, but without Tannaka duality, guaranteeing that the equivalence is actually between abelian monoidal $k$-linear categories instead of just between ordinary categories will be difficult). In turn, one can do this via showing that there is the following equivalence of categories of Lie algebra representations:

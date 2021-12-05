@@ -1,0 +1,574 @@
+\subsubsection{Principal bundles in algebraic geometry}
+                \paragraph{\textit{Pr\'elude}: Internal categories and equivalence relations therein}
+                    We shall be defining quotient stacks using the language of internal groupoids, which shall be defined below via the more general notion of internal categories. This is a rather high-tech approach, but it is superior to other (more traditional) approaches in that what equivalence relations - particularly those induced by group actions - can now be understood rather syntactically.
+                
+                    \begin{definition}[Internal categories] \label{def: internal_categories}
+                        Let $\E$ be a category with \textit{enough pullbacks}. A category \textbf{internal} to $\E$ is then a pair $(C_0, C_1)$ of objects of $\E$ defined via the following data:
+                            \begin{enumerate}
+                                \item \textbf{(Objects and morphisms):} An object of \textbf{objects} $C_0 \in \E$ and an object of \textbf{arrows} $C_1 \in \E$, both are to be viewed as internal analogues of the collections of objects and arrows in the definition of categories.
+                                \item \textbf{(Composition):} 
+                                    \begin{enumerate}
+                                        \item \textbf{(Sources and targets):} From the object of arrows $C_1$ to the object of objects $C_0$, there are two morphisms $s, t$ as follows, known as the \textbf{source} and \textbf{target} maps:
+                                            $$
+                                                \begin{tikzcd}
+                                                	{C_1} & {C_0}
+                                                	\arrow["s", shift left=2, from=1-1, to=1-2]
+                                                	\arrow["t"', shift right=2, from=1-1, to=1-2]
+                                                \end{tikzcd}
+                                            $$
+                                        which, respectively, assign to each arrow $f \in C_1$ (which, along with similar instances, shall be viewed as a \href{https://ncatlab.org/nlab/show/generalized+element}{\underline{generalised elements}} for the sake of linguistic convenience) its domain and codomain objects in $C_0$.
+                                        \item \textbf{(Units):} From the object of objects $C_0$ to the object of arrows $C_1$, there is a distinguished morphism:
+                                            $$e: C_0 \to C_1$$
+                                        called the \textbf{unit map} which assigns to each object $x \in C_0$ (again, viewed as a generalised element) the identity $\id_x: x \to x$ thereon, which we note to be an a generalised element of the object of arrows $C_1$ (hence the codomain of $e$ is $C_1$).
+                                        \item \textbf{(Composition of arrows):} There is a monoidal composition operation (in the sense of monoidal categories):
+                                            $$\mu: C_1 \x_{s, C_0, t} C_1 \to C_1$$
+                                        satisfying the following conditions specified by commutative diagrams in $\E$:
+                                            \begin{enumerate}
+                                                \item \textbf{(Identities do not alter domains and codomains):}
+                                                    $$
+                                                        \begin{tikzcd}
+                                                        	{C_0} & {C_1} && {C_0} & {C_1} \\
+                                                        	& {C_0} &&& {C_0}
+                                                        	\arrow["e", from=1-1, to=1-2]
+                                                        	\arrow["{\id_{C_0}}"', from=1-1, to=2-2]
+                                                        	\arrow["s", from=1-2, to=2-2]
+                                                        	\arrow["{\id_{C_0}}"', from=1-4, to=2-5]
+                                                        	\arrow["t", from=1-5, to=2-5]
+                                                        	\arrow["e", from=1-4, to=1-5]
+                                                        \end{tikzcd}
+                                                    $$
+                                                \item \textbf{(Sources and targets of compositions):} The source of a composition $g \mu f \in C_1$ should be that of $f$ (the former), wheareas its target should be that of $g$ (the latter): 
+                                                    $$
+                                                        \begin{tikzcd}
+                                                        	& {C_1 \x_{s, C_0, t} C_1} & {C_1} && {C_1 \x_{s, C_0, t} C_1} & {C_1} \\
+                                                        	{} & {C_1} & {C_0} && {C_1} & {C_0}
+                                                        	\arrow["s", from=1-3, to=2-3]
+                                                        	\arrow["s", from=2-2, to=2-3]
+                                                        	\arrow["{\pr_2}"', from=1-2, to=2-2]
+                                                        	\arrow["{\pr_1}", from=1-2, to=1-3]
+                                                        	\arrow["t", from=1-6, to=2-6]
+                                                        	\arrow["t", from=2-5, to=2-6]
+                                                        	\arrow["{\pr_1}"', from=1-5, to=2-5]
+                                                        	\arrow["{\pr_1}", from=1-5, to=1-6]
+                                                        \end{tikzcd}
+                                                    $$
+                                                \item \textbf{(Associativity):} 
+                                                    $$
+                                                        \begin{tikzcd}
+                                                        	& {C_1 \x_{s, C_0, t} C_1 \x_{s, C_0, t} C_1} & {C_1 \x_{s, C_0, t} C_1} \\
+                                                        	{} & {C_1 \x_{s, C_0, t} C_1} & {C_1}
+                                                        	\arrow["\mu", from=1-3, to=2-3]
+                                                        	\arrow["\mu", from=2-2, to=2-3]
+                                                        	\arrow["{\id_{C_1} \x_{s, C_0, t} \mu}"', from=1-2, to=2-2]
+                                                        	\arrow["{\mu \x_{s, C_0, t} \id_{C_1}}", from=1-2, to=1-3]
+                                                        \end{tikzcd}
+                                                    $$
+                                                \item \textbf{(Left and right-unitarity):} 
+                                            \end{enumerate}
+                                                $$
+                                                    \begin{tikzcd}
+                                                    	{C_0 \x_{C_0} C_1} & {C_1 \x_{s, C_0, t} C_1} & {C_1 \x_{C_0} C_0} \\
+                                                    	& {C_1}
+                                                    	\arrow["\mu", from=1-2, to=2-2]
+                                                    	\arrow["{\pr_2}"', from=1-1, to=2-2]
+                                                    	\arrow["{\pr_1}", from=1-3, to=2-2]
+                                                    	\arrow["{\e \x_{C_0} \id_{C_1}}", from=1-1, to=1-2]
+                                                    	\arrow["{\id_{C_1} \x_{C_0} e}"', from=1-3, to=1-2]
+                                                    \end{tikzcd}
+                                                $$
+                                        with the latter three specifying the monoidality of the composition operation $\mu$.
+                                    \end{enumerate}
+                            \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{remark}[Internal categories vs. subcategories]
+                            
+                    \end{remark}
+                    
+                    \begin{remark}[Another formulation: Internal categories as monads on spans] \label{remark: internal_categories_alt_def}
+                        Definition \ref{def: internal_categories} gives us a perfectly fine idea of what one might mean by \say{internal categories}. However, it is manifestly rather clunky. Therefore, the author has taken the liberty to provide one alternative formulation of the notion of internal categories.
+                        
+                        We refer the reader to definition \ref{def: spans} and the discussion that follows for necessary information on the paradigm of spans; in particular, let us recall that spans are only well-defined inside categories with pullbacks (which is a slightly stronger condition than the assumption in definition \ref{def: internal_categories} that the ambient category as merely \textit{enough} pullbacks). 
+                            
+                        Now, let $\E$ be an ambient category with all pullbacks, and subsequently, let us define a category $C$ internal to $\E$ as being the same as a monad in the weak $2$-category $\Span^{\leq 2}(\E)$ of spans on $\E$. Why would this even resemble a reasonable definition of categories internal to a given category $\E$ ? For starters, recall that a monad is an endomorphism satisfying so-called \say{monoidal multiplication}. Therefore, an internal category $C$ inside a given ambient category $\E$ is first and foremost an endomorphism on a choice of object, and because the weak $2$-category in which we are trying to build monads is one of spans, our endomorphism should be a \say{roof} diagram whose two \say{lower} vertices are the same. By consulting definition \ref{def: internal_categories}, one sees that an obvious choice is the source-target span:
+                            $$
+                                \begin{tikzcd}
+                                	{C_1} & {C_0} \\
+                                	{C_0}
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["t", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        (recall that objects in span categories are those of the underlying category and morphisms are span themselves; cf. definition \ref{def: spans}); let us denote this span by the \textit{unordered} pair $(s, t)$. Now, is this endomorphism indeed a monad in $\Span^{\leq 2}(\E)$ ? First of all, one can certainly compose $(s, t)$ with itself thanks to the assumption that $\E$ has all pullbacks: said composition is nothing but the composite span $(s, t) \x (s, t)$ (see remark \ref{conv: span_notations} for an explanation of this notation); let us denote this composition by $\mu$, and note that it is precisely a $2$-cell from $(s, t) \x (s, t)$ to $(s, t)$, a fact that can be proven via consideration of the following universal diagram:
+                            $$
+                                \begin{tikzcd}
+                                	{(s, t) \x (s, t)} & {(s, t)} \\
+                                	{(s, t)} & {(s, t)}
+                                	\arrow[dashed, from=1-1, to=2-1]
+                                	\arrow[dashed, from=1-1, to=1-2]
+                                	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+                                	\arrow[Rightarrow, no head, from=2-1, to=2-2]
+                                	\arrow["\mu", from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        and thanks to the universal property of products, this composition is trivially asociative. There is also a unit $e := (\id_{C_0}, \id_{C_0}) \x (s, t)$ which satisfies the following commutative diagram:
+                            $$
+                                \begin{tikzcd}
+                                	{(\id_{C_0}, \id_{C_0}) \x (s, t)} & {(s, t) \x (s, t)} & {(s, t) \x (\id_{C_0}, \id_{C_0})} \\
+                                	& {(s, t)}
+                                	\arrow["\mu", from=1-2, to=2-2]
+                                	\arrow["{\pr_2}"', from=1-1, to=2-2]
+                                	\arrow["{\pr_1}", from=1-3, to=2-2]
+                                	\arrow["{e \x \id_{(s, t)}}", from=1-1, to=1-2]
+                                	\arrow["{\id_{(s, t)} \x e}"', from=1-3, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        This proves that the composition $\mu$ is also unital, and hence all the monad axioms have been shown to hold. Incidentally, we have also managed to show via this discussion, that monads in the category of spans in a category with pullbacks are nothing but internal categories.
+                    \end{remark}
+                    
+                    \begin{definition}[Internal functors] \label{def: internal_functors}
+                        Let $\E$ be an ambient category with \textit{enough pullbacks} and let $C, D$ be two categories that are internal to $\E$.
+                            \begin{enumerate}
+                                \item \textbf{(Internal functors):} Internal functors between categories that are internal to a given ambient category (with enough pullbacks) are defined in the exact same way as the internal definition of functors between ordinary categories. See \href{https://ncatlab.org/nlab/show/functor#InternalDefinition}{\underline{here}} for a reminder.
+                                \item \textbf{(Anafunctors):} (Ah yes, the Axiom of Choice. Making lives miserable as always) While the general definition of internal functors might not have lit any bulbs in the deparment of choice, one should definitely keep in mind that the notion of essential surjectivity definitely does depend on choice: if:
+                                    $$F: C \to D$$
+                                is an essentially surjective internal functor, then one will be able to \textit{choose} objects $x \in C_0$ such that:
+                                    $$Fx \cong y$$
+                                for every object $y \in D_0$. As the ramifications of the Axiom of Choice tend to be unfamiliar to those not actively involved in the logic community (including the author, who had to go read a few \textcolor{ForestGreen}{nLab} too), let us quickly explain why anafunctors are needed in place of the above \textit{na\"ive} notion of internal functors; particularly, we would like to know what mappings between internal categories might look like when our ambient category does not host the Axiom of Choice, such as when its size is an inaccessible cardinal ($\Top$ is one particular case). To that end, \todo{Write about why the Axiom of Choice breaks essentially surjective internal functors}
+                                
+                                Now, let us define an \textbf{anafunctor} $F$ between two internal categories $C$ and $D$ of a given category $\E$ - should such a mapping exist - to be a span (i.e. a $1$-morphism in $\Span^{\leq 2}(\E)$; cf. definition \ref{def: spans}) of internal categories:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{F} & {D} \\
+                                        	{C}
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                which shall be interpreted as the following composition of spans in $\E$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	\bullet & \bullet & {D_1} & {D_0} \\
+                                        	\bullet & {F_0} & {D_0} \\
+                                        	{C_1} & {C_0} \\
+                                        	{C_0}
+                                        	\arrow[from=3-1, to=4-1]
+                                        	\arrow[from=3-1, to=3-2]
+                                        	\arrow[from=2-2, to=3-2]
+                                        	\arrow[from=2-2, to=2-3]
+                                        	\arrow[from=1-3, to=2-3]
+                                        	\arrow[from=1-3, to=1-4]
+                                        	\arrow[from=2-1, to=3-1]
+                                        	\arrow[from=2-1, to=2-2]
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        	\arrow[from=1-2, to=2-2]
+                                        	\arrow[from=1-2, to=1-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-1, to=3-2]
+                                        \end{tikzcd}
+                                    $$
+                                (see remark \ref{remark: internal_categories_alt_def} for a description of internal categories as spans - or to be more precise, monads in span categories). Note that in the event that $\E$ also has products (or equivalently, terminal objects), anafunctors between any given pair of internal categories $C$ and $D$ always exist: one can simply take $F_0$ to be $C_0 \x D_0$. Also, let us draw attention to the fact that this definition is logically independent of the notion of internal functors, and therefore we have not committed circular reasoning.
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{remark}[Categories of internal categories] \label{remark: categories_of_internal_categories}
+                        Via the above notion of anafunctors and the idea presented in remark \ref{remark: internal_categories_alt_def} that internal categories and monads in span categories are the same thing, one can rather easily show that categories internal to a given ambient category $\E$ (with pullbacks) form a weak $2$-category, which is precisely equivalent to the category of monads in $\Span^{\leq 2}(\E)$. In notations, one writes:
+                            $$\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
+                    \end{remark}
+                    \begin{remark}[Categories as monoids] \label{remark: categories_as_monoids}
+                        Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
+                            $$
+                                \begin{tikzcd}
+                                	{C_1 \x_{s, C_0, t} C_1} \\
+                                	& {C_1} & {C_0} \\
+                                	& {C_0}
+                                	\arrow["s", from=2-2, to=3-2]
+                                	\arrow["t"', from=2-2, to=2-3]
+                                	\arrow[from=1-1, to=3-2]
+                                	\arrow[from=1-1, to=2-3]
+                                	\arrow["\mu"{description}, from=1-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        and whose monoidal unit is given pointwise on each internal category:
+                            $$
+                                \begin{tikzcd}
+                                	{C_1} & {C_0} \\
+                                	{C_0}
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["t", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        by a $2$-span from $(\id_{C_0}, \id_{C_0}) \to (s,t)$:
+                            $$
+                                \begin{tikzcd}
+                                	{C_0} \\
+                                	& {C_1} & {C_0} \\
+                                	& {C_0}
+                                	\arrow["s", from=2-2, to=3-2]
+                                	\arrow["t"', from=2-2, to=2-3]
+                                	\arrow["e"{description}, from=1-1, to=2-2]
+                                	\arrow["{\id_{C_0}}"', from=1-1, to=3-2]
+                                	\arrow["{\id_{C_0}}", from=1-1, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
+                    \end{remark}
+                    
+                    \begin{example}[Examples of internal categories] \label{example: internal_categories}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Categories):} Every small $1$-category is internal to $\Sets$.
+                            \item \textbf{($\omega$-categories and $n$-categories):} 
+                            \item \textbf{(Prestacks and stacks):} A category internal to the category of presheaves on a given base category is a prestack, and a category internal to the sheaf topos on a given base site is a stack. In particular, groupoids internal to (pre)sheaf topoi are (pre)stacks of groupoids (see definition \ref{def: internal_groupoids} and example \ref{example: internal_groupoids_and_equivalence_relations} for more details on internal groupoids).  
+                        \end{enumerate}
+                    \end{example}
+                    
+                    \begin{definition}[Internal groupoids] \label{def: internal_groupoids}
+                        Let $\E$ be a category with pullbacks and let:
+                            $$
+                                \begin{tikzcd}
+                                	{\scrG_1} & {\scrG_0} \\
+                                	{\scrG_0}
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["t", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        be the data of a category internal to $\E$. Such an internal category is an \textbf{internal groupoid} if in addition, there exists an arrow:
+                            $$i: \scrG_1 \to \scrG_1$$
+                        called the \textbf{inverse map}, that renders the following diagram in $\E$ commutative:
+                            $$
+                                \begin{tikzcd}
+                                	{\scrG_1} \\
+                                	& {\scrG_1} & {\scrG_0} \\
+                                	& {\scrG_0}
+                                	\arrow["i"{description}, from=1-1, to=2-2]
+                                	\arrow["t"', from=1-1, to=3-2]
+                                	\arrow["s", from=2-2, to=3-2]
+                                	\arrow["t"', from=2-2, to=2-3]
+                                	\arrow["s", from=1-1, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        (i.e. the inverse map switches the source and target of a given internal morphism), and such that the following diagrams of spans - telling us that multiplication with inverses returns the identity regardless of whether the process is carried out from the left and from the right - commute:
+                            $$
+                                \begin{tikzcd}
+                                	{\scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} \\
+                                	{\scrG_0} && {\scrG_1}
+                                	\arrow["{\mu_{\scrG}}", from=1-3, to=2-3]
+                                	\arrow["{i \x_{s, \scrG_0, t} \id_{\scrG_1}}", from=1-2, to=1-3]
+                                	\arrow["{\Delta_{\scrG_1/\scrG_0}}", from=1-1, to=1-2]
+                                	\arrow["t"', from=1-1, to=2-1]
+                                	\arrow["e", from=2-1, to=2-3]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	{\scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} \\
+                                	{\scrG_0} && {\scrG_1}
+                                	\arrow["{\mu_{\scrG}}", from=1-3, to=2-3]
+                                	\arrow["{\id_{\scrG_1} \x_{s, \scrG_0, t} i}", from=1-2, to=1-3]
+                                	\arrow["{\Delta_{\scrG_1/\scrG_0}}", from=1-1, to=1-2]
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["e", from=2-1, to=2-3]
+                                \end{tikzcd}
+                            $$
+                        In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
+                    \end{definition}
+                    \begin{remark}[On the inverse maps of internal groupoids]
+                        Definition \ref{def: internal_groupoids}, while standard, suffers from a few issues. For one, it is not very clear how internal groupoids should be thought of as groups in categories of internal categories. Also, the inverse map defining the structure of each internal groupoid, at least according to definition \ref{def: internal_groupoids}, is rather non-functorial. Luckily, these two problems can be easily resolved. 
+                        
+                        Firstly, let us note that the inverse map $i_{\scrG}: \scrG_1 \to \scrG_1$ associated to an internal groupoid:
+                            $$
+                                \begin{tikzcd}
+                                	{\scrG_1} & {\scrG_0} \\
+                                	{\scrG_0}
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["t", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        is not just a morphism in the ambient category satisfying certain conditions, but actually a $2$-span: it is a $2$-span from the $1$-span $(s,t): \scrG_1 \toto \scrG_0$ to the $1$-span $(t,s): \scrG_1 \toto \scrG_0$. Thus, one can meaningfully think of the inverse map on $\scrG$ as an anafunctor from $\scrG$ to itself. Second of all, recall that in remark \ref{remark: categories_as_monoids}, we have seen how internal categories are actually monoid objects, which in particular, means that composition of arrows therein behaves in a manner similar to multiplication. So actually, all that we need to do is to somehow configure inverse maps so that they would act like multiplicative inverses, which would in turn help us formally recognise internal groupoids as group objects; we shall leave the drawing of the relevant commutative diagrams to the reader, as they can be rather easily inferred from the ones in definition \ref{def: internal_groupoids}. 
+                    \end{remark}
+                
+                    \begin{definition}[Equivalence relations] \label{def: equivalence_relations}
+                        Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $\Cat$, for instance)
+                            \begin{enumerate}
+                                \item \textbf{(Binary relations):} A \textbf{binary relation} $R$ from an object $X$ to another object $Y$ of $\E$ is a $1$-span:
+                                    $$
+                                        \begin{tikzcd}
+                                        	R & Y \\
+                                        	X
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                such that $R$ is a subobject of $X \x Y$. 
+                                \item \textbf{(Equivalence relations):} An \textbf{equivalence relation} (also known as a congruence) $R$ on an object $X$ of $\E$ is a binary relation from $X$ to itself which also happens to be an internal groupoid. 
+                                \item \textbf{(Quotients):} The coequaliser of an (internal) equivalence relation is known as a \textbf{quotient object}. That is, the quotient $Q$ of an object $X$ by an equivalence relation $R$ is the following coequaliser in $\E$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	R & X & Q
+                                        	\arrow["s", shift left=2, from=1-1, to=1-2]
+                                        	\arrow["t"', shift right=2, from=1-1, to=1-2]
+                                        	\arrow[dashed, from=1-2, to=1-3]
+                                        \end{tikzcd}
+                                    $$
+                                Of course, quotients are only guaranteed to exist if and only if $\E$ has enough coequalisers. 
+                            \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{example}[Examples of internal groupoids and equivalence relations] \label{example: internal_groupoids_and_equivalence_relations}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Action groupoids):} Let $\E$ be a category with pullbacks and let $\scrG$ be a groupoid internal to $\E$ that is given by the following data:
+                                $$
+                                    \begin{tikzcd}
+                                    	\scrG_1 & \scrG_0 \\
+                                    	\scrG_0
+                                    	\arrow["s"', from=1-1, to=2-1]
+                                    	\arrow["t", from=1-1, to=1-2]
+                                    \end{tikzcd}
+                                $$
+                            and recall from definition \ref{def: internal_groupoids} that groupoids are nothing but group objects in the category $\Cat(\E)$ that has all finite products. Therefore, it is natural to consider actions of $\scrG$ on other objects $X$ of $\E$, which are just morphisms:
+                                $$\pi: \scrG \x X \to X$$
+                            Given such a morphism, one naturally obtains an internal category of $\Cat(\E)$ - which we shall denote by $[X/G]$ - defined by the following data:
+                                $$
+                                    \begin{tikzcd}
+                                    	\scrG \x X & X \\
+                                    	X
+                                    	\arrow["\pr_2"', from=1-1, to=2-1]
+                                    	\arrow["\pi", from=1-1, to=1-2]
+                                    \end{tikzcd}
+                                $$
+                            From this span, along with the fact that $\scrG$ is already an internal groupoid, one may infer that the dashed arrow below renders the following diagram commutative:
+                                $$
+                                    \begin{tikzcd}
+                                        \scrG \x X \arrow[rd, "i_{\scrG} \x \id_X"] \arrow[rdd, "\pi"', bend right] \arrow[rrd, "\pr_2", bend left] &                                                 &   \\
+                                                                                                                                                                & \scrG \x X \arrow[d, "\pr_2"] \arrow[r, "\pi"'] & X \\
+                                                                                                                                                                & X                                               &  
+                                    \end{tikzcd}
+                                $$
+                            (with $i_{\scrG}: \scrG_1 \to \scrG_1$ the inversion map defining the groupoid structure on $\scrG$). 
+                            
+                            In general, action groupoids are not equivalence relations: in fact, they might even fail to be binary relations in the first place. This is because there is no guarantee that the product $\scrG \x X$ has to be a subobject of $X \x X$. However, in the event that $X$ is acted upon by a group (which we note to be an internal groupoid whose object of objects is the terminal one $*$, assuming that it exists), the action groupoid is necessarily a relation, and better yet, an equivalence relation. To see why this is, 
+                            \item \textbf{(Lie groupoids):}
+                            \item \textbf{(Groupoids in schemes and algebraic spaces):} 
+                        \end{enumerate}
+                    \end{example}
+                    
+                \paragraph{Gerbes and principal bundles} \label{paragraph: principal_bundles}
+                    We have already eluded to the notion of gerbes, along with the special case of principal bundles, in convention \ref{conv: prestacks}. To recall: a \textbf{gerbe} is a group object internal to any (small) $2$-topos of stacks, or in other words, it is a $2$-group internal to a (small) $1$-sheaf topos. We then stated that by killing all non-trivial automorphisms, one obtains the notion of so-called \textbf{principal bundles}. Let us now explore this line of thought in more details.
+                    
+                    The strategy is as follows: since $2$-groups - as groupoids internal to the category of internal groups inside a given (small) $1$-topos - are rather difficult to picture, we shall commence with a definition different from the one given above. Then, we shall attempt to prove that the two definitions are in fact equivalent.
+                    
+                    Here is said new definition:
+                    \begin{definition}[Gerbes and principal bundles] \label{def: gerbes_and_principal bundles}
+                        Let $\E$ be a $(2, 1)$-topos and let $\calG$ be a group object therein. 
+                            \begin{enumerate}
+                                \item \textbf{(Gerbes):} The internal hom-functor $[-, \scrG]$ shall thus be the one assigning to objects $X \in \E$ (thought of as \say{spaces}) a so-called object of \textbf{$\scrG$-gerbes over $X$}, which we shall denote by $\Bun_{\scrG}(X)$. 
+                                \item \textbf{(Principal bundles):} If $\scrG$ is furthermore a $1$-group, i.e. the associated loop space $\loopspace(\scrG)$ is a group in the usual sense, then $\Bun_{\scrG}$ shall be known as the object of \textbf{(principal) $\scrG$-bundles over $X$}.
+                                
+                                Actually, for $G$ a $1$-group, one would define $\Bun_G$ as $[-, \bfB G]$ (for this, note that $\loopspace(\bfB G) \cong G$).
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{convention}[Moduli stacks of gerbes]
+                        In the event that the ambient $(2, 1)$-topos $\E$ is a $(2, 1)$-sheaf topos over a base ($1$-)site $(\C, J)$, then for all objects $U \in (\C, J)$, the space $\Bun_{\calG}(U)$ is usually known as the \textbf{moduli stack of $\calG$-gerbes/bundles} over $U$. 
+                    \end{convention}
+                    
+                    Definition \ref{def: gerbes_and_principal bundles} is a very convenient definition, but unfortunately, it makes little geometric sense. 
+                 
+             \subsubsection{Geometric stacks}   
+                \paragraph{Quotient stacks}
+                    \begin{definition}[Quotient stacks] \label{def: quotient_stacks} \index{Stacks! quotient}
+                        Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
+                            $$
+                                \begin{tikzcd}
+                                	R & \calX \\
+                                	\calX
+                                	\arrow["s"', from=1-1, to=2-1]
+                                	\arrow["t", from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        on a stack $\calX \in \Stk(\C, J)_0$ to be exactly that equivalence relation, or equivalently, the quotient thereof, i.e. the following coequaliser diagram makes sense:
+                            $$
+                                \begin{tikzcd}
+                                	R & \calX & {[\calX/R]}
+                                	\arrow["s", shift left=2, from=1-1, to=1-2]
+                                	\arrow["t"', shift right=2, from=1-1, to=1-2]
+                                	\arrow[dashed, from=1-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        Immediately, one has that quotient stacks are $(2,1)$-sheaves (i.e. stacks in groupoids), as internal equivalence relations are internal groupoids with certain conditions imposed upon them. 
+                    \end{definition}
+                    
+                    \begin{example}[The quotient stack \texorpdfstring{$[\A^n / \GL_n]$}{}]
+                        
+                    \end{example}
+            
+                \paragraph{Geometric stacks}
+                    Right right, on to schemes. Arguably, we should begin with outlining our hopes and dreams for this theory of schemes (yes, we are being hopeful for once). Schemes, as Grothendieck envisioned them, are geometric objects that are somehow locally algebraic. That is to say, given a scheme, one should be able to apply techniques from commutative algebra to sufficiently small open neighbourhoods of points therein, and then by patching together these data using sheaves, one should obtain a picture of said scheme. So to that end, let us start our discussion of schemes with how one should make sense of how schemes might be covered by affine schemes. 
+                
+                    \begin{definition}[Affine-schematic morphisms] \label{def: affine_schematic}
+                        Throughout this definition, let us suppose that all prestacks are fibred in categories with enough pullbacks. 
+                            \begin{enumerate}
+                                \item \textbf{(Representable morphisms):} 
+                                    \begin{enumerate}
+                                        \item A morphism:
+                                            $$f: \calY' \to \calY$$
+                                        of prestacks on $\Cring^{\op}$ is called \textbf{affine-schematic} if for all $(y: S \to \calY) \in \Sch^{\aff}_{/\calY}$, the pullback $S \x_{y, \calY, f} \calY'$ is an affine scheme over $\calY'$ i.e. an object of $\Sch^{\aff}_{/\calY'}$). 
+                                        \item Affine-schematic morphisms are also known as representable morphisms (which is a perfectly good terminology, since affine schemes are nothing but representable presheaves on $\Cring^{\op}$; cf. definition \ref{def: zariski_topoi}); in full generality, a morphism of prestacks $f: \calY' \to \calY$ on a given base category $\C$ is called \textbf{representable} if and only if for all $(y: c \to \calY) \in \C_{/\calY}$, the pullback $c \x_{y, \calY, f} \calY'$ is an object of $\C_{/\calY'}$).
+                                    \end{enumerate}
+                                \item \textbf{(Properties of morphisms of prestacks):} A representable morphism of prestacks on a base category $\C$:
+                                    $$f: \calY' \to \calY$$
+                                is said to have property $\calP$ if and only if for all $(y: c \to \calY) \in \C_{\calY}$, the canonical projection:
+                                    $$c \x_{y, \calY, f} \calY' \to c$$
+                                has property $\calP$ (which a reasonable idea, because the pullback $c \x_{y, \calY, f} \calY'$ is representable just as $c$ is).
+                            \end{enumerate}
+                    \end{definition}
+                
+                    \begin{definition}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Geometric stacks] \label{def: geometric_stacks} \index{Stacks! geometric} \index{Atlases}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Atlases):} Let $(\C, J)$ be a \textit{small} site. Then, an \textbf{atlas} (or a \textbf{$J$-atlas}) is nothing more than an equivalence relation internal to the sheaf topos $\Sh_{\Sets}(\C, J)$, which we note to be finitely complete in particular (cf. definition \ref{def: equivalence_relations}). Clearly, each equivalence relation corresponds universally to a quotient stack (cf. definitions \ref{def: equivalence_relations} and \ref{def: quotient_stacks}), and thus, we shall not make any distinction between an atlas and the quotient stack which it covers. Also, note that because every presheaf is a colimit of representable presheaves \cite[Section 4]{nlab:presheaf}, every atlas can be refined to one by representables, which is typical in algebraic geometry (one would cover schemes by affine schemes, which are representable sheaves on $\Cring^{\op}$, instead of just open subschemes, for instance). 
+                            \item \textbf{(Geometric stacks):} A stack $\calX$ on some \textit{small} site $(\C, J)$ is said to be \textbf{geometric} if and only if the following conditions are satisfied:
+                                \begin{enumerate}
+                                    \item \textbf{(Covering):} $\calX$ must be covered by a $J$-atlas. That is to say, one should be able to identify it as the quotient of some equivalence relation internal to $\Sh_{\Sets}(\C, J)$. Incidentally, this also implies that geometric stacks are necessarily fibred in groupoids, i.e. they are objects of $\Sh_{(2,1)}(\C, J)$. 
+                                    
+                                    Intuitively, one might think of this axiom as one which ensures that geometric stacks admit sufficiently well-behaved covers, and thus would actually make \textit{geometric} sense. 
+                                    \item \textbf{(Diagonal representability):} Its diagonal:
+                                        $$\Delta_{\calX}: \calX \to \calX \x \calX$$
+                                    is representable by objects of $\C$. 
+                                \end{enumerate}
+                            So-called \textbf{algebraic stacks} are special cases of geometric stacks: they are geometric stacks on the small sites ${}^{k/}\Comm\Alg^{\petit, \op}_{\tau}$ (with $\tau$ some Grothendieck topology on ${}^{k/}\Comm\Alg^{\petit, \op}$ and $k$ an arbitrary base commutative ring); in particular, when $\tau$ is \'etale topology, algebraic stacks are usually known as \textbf{Deligne-Mumford stacks} (commonly shortened to \say{DM-stacks}).
+                        \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{lemma}[Categories of geometric stacks] \label{lemma: geometric_stack_categories}
+                        Let $(\C, J)$ be a small site. Then, we have the following tower of full weak $2$-subcategories that are all \textit{closed under arbitrary weak $2$-limits and under finite weak $2$-colimits}:
+                            $$
+                                \begin{tikzcd}
+                                	{\Stk(\C, J)} \\
+                                	{\Sh_{(2,1)}(\C, J)} \\
+                                	{\Stk^{\geom}(\C, J)}
+                                	\arrow[no head, from=3-1, to=2-1]
+                                	\arrow[no head, from=2-1, to=1-1]
+                                \end{tikzcd}
+                            $$
+                        wherein $\Stk^{\geom}(\C, J)$ is the weak $2$-category of geometric stacks on $(\C, J)$, $\Sh_{(2,1)}(\C, J)$ is the weak $2$-category of sheaves of groupoids on $(\C, J)$, and $\Stk(\C, J)$ is the weak $2$-category of all stacks on $(\C, J)$. 
+                    \end{lemma}
+                        \begin{proof}
+                            Let us divide the proof into two sections, one for each of the two embedding of categories above.
+                            \begin{enumerate}
+                                \item Recall that stacks fibred in groupoids are just sheaves of groupoids. Therefore, the category spanned by these objects, namely $\Sh_{(2,1)}(\C, J)$, is a full subcategory of $\Stk(\C, J)$, as $\Grpd$ is a full subcategory of $\Cat$ (since functors preserve invertible arrows), and furthermore, because $\Grpd$ is a complete and cocomplete category, the embedding:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\Stk(\C, J)} \\
+                                        	{\Sh_{(2,1)}(\C, J)}
+                                        	\arrow[no head, from=2-1, to=1-1]
+                                        \end{tikzcd}
+                                    $$
+                                trivially identifies $\Sh_{(2,1)}(\C, J)$ as a subcategory of $\Stk(\C, J)$ that is closed under all limits and all colimits (and hence finite colimits). 
+                                \item Showing that $\Stk^{\geom}(\C, J)$ embeds fully faithfully into $\Sh_{(2,1)}(\C, J)$ essentially entails finding the \say{correct} notion of morphisms between geometric stacks, and this is precisely what we will be doing. First of all, recall that sheaves of groupoids are actually just groupoids internal to sheaf topoi (cf. definitions \ref{example: internal_categories} and \ref{def: internal_groupoids}), and because geometric stacks are first and foremost sheaves of groupoids, we can begin by considering a geometric stack $\calX$ on $(\C, J)$ via the following interal groupoid structure in $\Sh_{\Sets}(\C, J)$:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{\calX_1} \\
+                                        	& {\calX_1} & {\calX_0} \\
+                                        	& {\calX_0}
+                                        	\arrow["s", from=2-2, to=3-2]
+                                        	\arrow["t"', from=2-2, to=2-3]
+                                        	\arrow["i"{description}, from=1-1, to=2-2]
+                                        	\arrow["t"', from=1-1, to=3-2]
+                                        	\arrow["s", from=1-1, to=2-3]
+                                        \end{tikzcd}
+                                    $$
+                                Now, consider two such geometric stacks, $\calX = (\calX_0, \calX_1)$ and $\calY = (\calY_0, \calY_1)$, along with a mapping between them, an anafunctor:
+                                    $$
+                                        \begin{tikzcd}
+                                        	F & \calY \\
+                                        	\calX
+                                        	\arrow[from=1-1, to=2-1]
+                                        	\arrow[from=1-1, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                perhaps. By definition, the diagonal $\Delta_{\calY}: \calY \to \calY \x \calY$ is representable, 
+                            \end{enumerate}
+                        \end{proof}
+                    
+                    \begin{theorem}[$(2, 1)$-sheafification of geometric prestacks] \label{theorem: (2,1)_sheafification_of_geometric_prestacks}
+                        Let $(\C, J)$ be a small site. Then, every weak $2$-geometric embedding of the $(2, 1)$-topos $\Sh_{(2, 1)}(\C, J)$ into the $(2, 1)$-presheaf topos $\Psh_{(2, 1)}(\C, J)$ can be restricted down to a weak $2$-geometric embedding of the weak $2$-category of geometric stacks $\Stk^{\geom}(\C, J)$ into the weak $2$-category of geometric prestacks $\Pre\Stk^{\geom}(\C)$ (i.e. geometric stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $2$-category ${}^2\Cat$ of weak $2$-categories: 
+                            $$
+                                \begin{tikzcd}
+                                	{\Sh_{(2, 1)}(\C, J)} & {\Psh_{(2, 1)}(\C)} \\
+                                	{\Stk^{\geom}(\C, J)} & {\Pre\Stk^{\geom}(\C)}
+                                	\arrow[""{name=0, anchor=center, inner sep=0}, "{{}^{\sh}(-)}"', shift right=2, shorten <=2pt, from=1-2, to=1-1]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "i"', shift right=2, hook, from=1-1, to=1-2]
+                                	\arrow[shift left=2, hook', from=2-1, to=1-1]
+                                	\arrow[shift left=2, hook', from=2-2, to=1-2]
+                                	\arrow[""{name=2, anchor=center, inner sep=0}, "{i^{\geom}}"', shift right=2, hook, from=2-1, to=2-2]
+                                	\arrow[""{name=3, anchor=center, inner sep=0}, "{{}^{\sh}(-)^{\geom}}"', shift right=2, from=2-2, to=2-1]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
+                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=3, to=2]
+                                \end{tikzcd}
+                            $$
+                        Note that the restricted geometric embedding $({}^{\sh}(-)^{\geom} \ladjoint i^{\geom})$ is well-defined thanks to categories of geometric (pre)stacks embedding fully faithfully into $(2, 1)$-(pre)sheaf topoi.
+                    \end{theorem}
+                        \begin{proof}
+                            
+                        \end{proof}
+                
+            \subsubsection{Schemes}
+                \begin{definition}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Schemes] \label{def: schemes} \index{Schemes}
+                    Let $k$ be an arbitrary base commutative ring. Then, a scheme over $\Spec k$ shall be an \'etale sheaf $X \in (\Spec k)_{\et}$ such that:
+                        \begin{enumerate}
+                            \item \textbf{(Representability of diagonals):} the diagonal $\Delta_X: X \to X \x_{\Spec k} X$ is affine-schematic (cf. definition \ref{def: affine_schematic}), and
+                            \item \textbf{(Presence of Zariski coverings):} $X$ admits a Zariski atlas (cf. definition \ref{def: geometric_stacks}).
+                        \end{enumerate}
+                \end{definition}
+                \begin{remark}[Schemes are Zariski-algebraic stacks] \label{remark: schemes_are_zariski_algebraic_stacks}
+                    Since schemes are \'etale sheaves, they are trivially Zariski sheaves as well; this (along with the fact that every scheme admits a Zariski atlas and that their diagonals are affine-schematic) implies that every scheme is necessarily a Zariski-algebraic stack, i.e. objects of $(\Stk_{/\Spec k})_{\Zar}^{\geom}$. 
+                \end{remark}
+                
+                \begin{theorem}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} The category of schemes] \label{theorem: scheme_categories} \index{Schemes}
+                    Let $k$ be a commutative ring. Schemes over $\Spec k$ form a full subcategory of the category $(\Stk_{/\Spec k})^{\geom}_{\et}$ of DM-stacks closed under finite limits, which shall be denoted by $\Sch_{/\Spec k}$. 
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{remark}[Affine schemes are schemes] \label{remark: affine_schemes_are_schemes}
+                    For every commutative ring $k$, it is not hard to see that the category $\Sch_{/\Spec k}$ admits $\Sch^{\aff}_{/\Spec k}$ as a full subcategory via a left-exact embedding. 
+                \end{remark}
+                    
+                Arguably, the analysis of a category would not be complete (pun absolutely intended) without a discussion of limits and colimits of diagrams therein, and so let us do exactly that with the category of schemes.
+                \begin{proposition}[Limits of schemes] \label{prop: limits_of_schemes} \index{Limits! of schemes}
+                    The following classes of limits exist in the category of schemes:
+                        \begin{enumerate}
+                            \item Terminal objects in $\Sch$ are isomorphic to $\Spec \Z$.
+                            \item Finite products and pullbacks.
+                            \item Monomorphisms.
+                            \item Filtered limits with affine-schematic transition maps. 
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                
+                \begin{remark}[On colimits of affine schemes] \label{remark: affine_scheme_colimits} \index{Colimits! of affine schemes}
+                It might seem strange that while ${}^{k/}\Comm\Alg$ is both complete and cocomplete, $\Sch^{\aff}_{/\Spec k}$ on the other hand is not cocomplete, but let us assure you, this is indeed the case (even though the reasons are somewhat subtle). To see why this is, let us generalise a little and consider a Grothendieck topos that is equivalent to the category of sheaves over some \textit{cocomplete} and \textit{subcanonical} site $(\C, J)$, such as sheaf topoi over Zariski sites. By definition, such a topos comes equipped with a geometric embedding into the presheaf topos $\Psh_{\Sets}(\C)$:
+                    $$
+                        \begin{tikzcd}
+                        	\Sh_{\Sets}(\C, J) & {\Psh_{\Sets}(\C)}
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, hook, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{}^{\sh}(-)_J"', shift right=2, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                Now, consider a colimit:
+                    $$\underset{i \in I}{\colim} \C(-, c_i)$$
+                \textit{of representable presheaves} on $\C$ (which we note to be sheaves on $(\C, J)$ as we have assumed that this site is subcanonical). Such a colimit is itself a sheaf on $(\C, J)$, since the $J$-sheafification functor ${}^{\sh}(-)_J$ is a left-adjoint, and thus \href{https://ncatlab.org/nlab/show/adjoints+preserve+\%28co-\%29limits}{\underline{\textit{a priori} preserves colimits}}:
+                    $${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J \cong \underset{i \in I}{\colim} {}^{\sh}(\C(-, c_i))_J \cong \underset{i \in I}{\colim} \C(-, c_i)$$
+                But is this sheaf still representable by objects of $\C$ ? Most probably not, though, since the Yoneda embedding is not expected to preserve gerenal colimits, which in particular means that we can not expect that there is a natural isomorphism between the presheaves $\underset{i \in I}{\colim} \C(-, c_i)$ and $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, and consequently, that there is not an identification of the sheaf ${}^{\sh}\left(\underset{i \in I}{\colim} \C(-, c_i)\right)_J$ by the sheaf $\C\left(-, \underset{i \in I}{\colim} c_i\right)$, even though both are well-defined objects of $\Sh_{\Sets}(\C, J)$ (with the latter being a sheaf thanks to the assumption that $\C$ is a cocomplete category). Therefore, we should not count on affine scheme categories to be in possession of all colimits, even though categories of commutative algebras are complete (and hence their opposites are cocomplete) and Zariski sites built out of them are subcanonical: the reason being, that given a base ring $k$, colimits in ${}^{k/}\Comm\Alg^{\op}$ generally do not coincide with those of the corresponding representable sheaves on ${}^{k/}\Comm\Alg^{\op}_{\Zar}$. See example \ref{example: infinite_product_of_affine_schemes} for an analysis of one particular case of this phenomenon.
+            \end{remark}
+            \begin{example}[Spectra of infinite products and ultrafilter galore] \label{example: infinite_product_of_affine_schemes}
+                
+            \end{example}
+                    
+            \subsubsection{Algebraic spaces and Artin stacks}

@@ -31,11 +31,11 @@
                         	\arrow[from=1-1, to=1-2]
                         \end{tikzcd}
                     $$
-                (henceforth abbreviated by $\E \tensor_{\calO_{X/k}} \Omega^*_{X/k}$) corresponding to any given \textit{flat} $\calO_{X/k}$-linear connection $\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$ will also be concentrated in non-negative degrees. Recall also, that to specify a \textit{flat} $\calO_{X/k}$-linear connection $\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$ on a $\calO_{X/k}$-vector bundle $\E$ over a smooth scheme $X/k$ is the same as specifying the structure of a left-$\D_{X/k}$-module on $\E$. Together, these two facts imply that the dg-category ${}^l\DMod(X/k)$ of chain complexes of left-$\D_{X/k}$-modules is equivalent to the category whose objects are the de Rham complexes corresponding to flat connections on vector bundles over $X/k$, which we will denote by ${}^{\geq 0}\Vect(X/k)^{\nabla}_{\dR}$. As a consequence, given any smooth morphism:
+                (henceforth abbreviated by $\E \tensor_{\calO_{X/k}} \Omega^*_{X/k}$) corresponding to any given \textit{flat} $\calO_{X/k}$-linear connection $\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$ will also be concentrated in non-negative degrees. Recall also, that to specify a \textit{flat} $\calO_{X/k}$-linear connection $\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$ on a $\calO_{X/k}$-vector bundle $\E$ over a smooth scheme $X/k$ is the same as specifying the structure of a left-$\D_{X/k}$-module on $\E$. Together, these two facts imply that the dg-category ${}^l\Dmod(X/k)$ of chain complexes of left-$\D_{X/k}$-modules is equivalent to the category whose objects are the de Rham complexes corresponding to flat connections on vector bundles over $X/k$, which we will denote by ${}^{\geq 0}\Vect(X/k)^{\nabla}_{\dR}$. As a consequence, given any smooth morphism:
                     $$f: X \to Y$$
-                of schemes over $\Spec k$, one obtains a six-functor formalism between ${}^l\DMod(X/k)$ and ${}^l\DMod(Y/k)$ simply as that between ${}^{\geq 0}\Vect(X/k)^{\nabla}_{\dR}$ and ${}^{\geq 0}\Vect(Y/k)^{\nabla}_{\dR}$. While this is all well and good, categories of vector bundles equipped with flat connections (over smooth schemes) are rather unnatural as far as functorial constructions are concerned. 
+                of schemes over $\Spec k$, one obtains a six-functor formalism between ${}^l\Dmod(X/k)$ and ${}^l\Dmod(Y/k)$ simply as that between ${}^{\geq 0}\Vect(X/k)^{\nabla}_{\dR}$ and ${}^{\geq 0}\Vect(Y/k)^{\nabla}_{\dR}$. While this is all well and good, categories of vector bundles equipped with flat connections (over smooth schemes) are rather unnatural as far as functorial constructions are concerned. 
                 
-                But what about cases wherein $X$ is not smooth ? In such a situation, one would embed $X$ into some smooth ambient scheme, say $Y$ (which can always be done, as one can take $X$ to be the affine singular locus and then embed that locus into a smooth deformation of its ambient scheme). Then, we can make use of what Kashiwara taught us, which is that regardless of our choice of embedding $X \hookrightarrow Y$, the restriction ${}^l\DMod(Y/k)|_X$ of the category of left-$\D_{Y/k}$-modules onto objects (set-theoretically) supported on $X$ will be the same. Choosing such an embedding into a smooth scheme, however, would still involve appealing to resolutions, which is a rather unnatural procedure (at least from a $\infty$-categorical standpoint).
+                But what about cases wherein $X$ is not smooth ? In such a situation, one would embed $X$ into some smooth ambient scheme, say $Y$ (which can always be done, as one can take $X$ to be the affine singular locus and then embed that locus into a smooth deformation of its ambient scheme). Then, we can make use of what Kashiwara taught us, which is that regardless of our choice of embedding $X \hookrightarrow Y$, the restriction ${}^l\Dmod(Y/k)|_X$ of the category of left-$\D_{Y/k}$-modules onto objects (set-theoretically) supported on $X$ will be the same. Choosing such an embedding into a smooth scheme, however, would still involve appealing to resolutions, which is a rather unnatural procedure (at least from a $\infty$-categorical standpoint).
                 
                 Additionally, the relationship between left-D-module and right-D-modules is rather unclear within this classical framework (it turns out that via the dualising complex, left and right-D-modules are equivalent, but this does not excuse the fact that the correspondence seems rather unnatural).
                 \item \textbf{(The new perspective):} Again, suppose that $k$ is a field (perhaps of characteristic $0$) and that $X$ is a scheme that is flat, proper, and of finite presentation over $\Spec k$.
@@ -44,7 +44,7 @@
                     $$\E \cong \E|_{X_{\dR}}$$
                 (here $X_{\dR}$ denotes the so-called \textbf{de Rham space} attached to $X$, which as a presheaf is given by $X_{\dR}(R) \cong X({}^{\red}R)$ for all commutative $k$-algebras $R$). Additionally, recall that to any crystal in quasi-coherent modules $\E \in \QCoh(X_{\dR}/k)$, one can canonically associate an $\calO_{X/k}$-linear flat connection:
                     $$\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$$
-                As stated above, when $X$ is smooth over $\Spec k$, this is the same as giving a left-$\D_{X/k}$-module, so for smooth schemes, one might as well define the dg-category of left-$\D_{X/k}$-modules to literally be the dg-category $\QCoh(X_{\dR}/k)$ of crystals in quasi-coherent modules over $X$; in fact, as schemes smooth over fields are \textit{a priori} reduced, ${}^l\DMod(X/k)$ is nothing but $\QCoh(X/k)$.
+                As stated above, when $X$ is smooth over $\Spec k$, this is the same as giving a left-$\D_{X/k}$-module, so for smooth schemes, one might as well define the dg-category of left-$\D_{X/k}$-modules to literally be the dg-category $\QCoh(X_{\dR}/k)$ of crystals in quasi-coherent modules over $X$; in fact, as schemes smooth over fields are \textit{a priori} reduced, ${}^l\Dmod(X/k)$ is nothing but $\QCoh(X/k)$.
                 
                 The nice thing about this approach is that we understand quasi-coherent sheaves very well, and better yet, the theory of quasi-coherent sheaves over schemes is essentially that of modules over commutative rings (cf. definition \ref{def: qcoh_def}). Moreover, it now makes sense to speak of D-modules over smooth algebraic stacks and so on (perhaps with some sort of properness or separatedness assumption imposed), as there is nothing preventing us from considering de Rham spaces attached to \textit{any presheaf} on $\Comm\Alg^{\op}$, as the definition is completely functorial. This is very useful, as there are many geometric objects which appear naturally in geometric representation theory yet are not schemes, such as the stack $\Bun_G(X)$ of principal $G$-bundles over a smooth curve $X$, for $G$ a reductive group; in fact, the so-called \say{Automorphic Side} of the Geometric Global Langlands Correspondence is the category of D-modules on this stack.
                 \item \textbf{(What happens in positive characteristics ?):} The new perspective that we have just described is not without flaws, however. One of its most prominent shortcoming is that it fails completely when $k$ is instead of some positive characteristic $p$. In that situation, one can still attach to each crystal in quasi-coherent sheaves $\E$ - in a canonical manner - a flat connection $\nabla: \E \to \Omega^1_{X/k} \tensor_{\calO_{X/k}} \E$ that would generate a de Rham complex:
@@ -132,4 +132,43 @@
         
     \section{The Riemann-Hilbert Correspondence}
     
-    \section{Beilinson-Bernstein Localisation}
+    \section{Localisations of Lie algebras}
+        \subsection{The Borel-Weil-Bott Theorem}
+            \begin{convention}
+                \noindent
+                \begin{itemize}
+                    \item Throughout this subsection, we work over a ground field $k$ that is algebraically closed and of characteristic $0$. 
+                    \item $X$ will always be a smooth algebraic variety over $\Spec k$.
+                    \item $G$ will always be a connected algebraic group over $\Spec k$ that acts smoothly on $X$.
+                \end{itemize}
+            \end{convention}
+            
+            \subsubsection{Equivariant and twisted D-modules}
+            
+            \subsubsection{Cohomology of \texorpdfstring{$\D_{\lambda}$}{}-modules}
+            
+            \subsubsection{The Borel-Weil-Bott Theorem}
+        
+        \subsection{Localisation of \texorpdfstring{$\g$}{}-modules}
+        
+        \subsection{D-modules on the affine Grassmannians and representations of Kac-Moody algebras}
+            \begin{convention}
+                \noindent
+                \begin{itemize}
+                    \item We work with a complex algebraic group $G$ of adjoint type with \textit{a priori} simple Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be its Borel subgroup. 
+                    \item $\Gr_G$ shall denote the loop affine Grassmannian $G(\!(t)\!)/G[\![t]\!]$ attached to $G$.
+                \end{itemize}
+            \end{convention}
+            
+        \subsection{Localisation of \texorpdfstring{$\hat{\g}$}{}-modules}
+            \begin{convention}
+                \noindent
+                \begin{itemize}
+                    \item We work with a simple complex algebraic group $G$ with Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be its Borel subgroup. 
+                    \item $\Gr_G$ shall denote the loop affine Grassmannian $G(\!(t)\!)/G[\![t]\!]$ attached to $G$.
+                \end{itemize}
+            \end{convention}
+            
+            \subsubsection{The Hecke Category}
+            
+            \subsubsection{The Main Theorem}

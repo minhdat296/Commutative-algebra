@@ -249,16 +249,16 @@
                             \item \textbf{(Modules):}
                             \item \textbf{(Non-unital rings):}
                             \item \textbf{(A counter-example: free modules over PIDs that are not fields):}
-                            \item \textbf{(An additive category that is not $AB2$):} Let $K$ be a locally compact complete (ultra)metric field (e.g. $\R, \bbC$, or finite extensions of $\Q_p$ or $\F_p(\!(t)\!)$, for some prime $p$) and consider the category ${}_K\Ban$ of $K$-Banach spaces (i.e. $K$-vector spaces topologically complete with respect to a norm induced by the (ultra)metric on $K$) and bounded continuous $K$-linear transformations. We claim that epimorphisms in this category can fail to be cokernels, and hence ${}_K\Ban$ fails to be $AB2$.
+                            \item \textbf{(An additive category that is not $AB2$):} Let $K$ be a locally compact complete (ultra)metric field (e.g. $\R, \bbC$, or finite extensions of $\Q_p$ or $\F_p(\!(t)\!)$, for some prime $p$) and consider the category $K\Ban$ of $K$-Banach spaces (i.e. $K$-vector spaces topologically complete with respect to a norm induced by the (ultra)metric on $K$) and bounded continuous $K$-linear transformations. We claim that epimorphisms in this category can fail to be cokernels, and hence $K\Ban$ fails to be $AB2$.
                             
-                            First of all, for the sake of completeness, let us note that ${}_K\Ban$ is $\Ab$-enriched: the enrichment is is given by the usual addition of continuous linear transformation, which preserves boundedness thereof, since either:
+                            First of all, for the sake of completeness, let us note that $K\Ban$ is $\Ab$-enriched: the enrichment is is given by the usual addition of continuous linear transformation, which preserves boundedness thereof, since either:
                                 $$\|\varphi + \psi\| \leq \|\varphi\| + \|\psi\|$$
                             or:
                                 $$\|\varphi + \psi\| \leq \max\{\|\varphi\|, \|\psi\|\}$$
-                            and both right-hand sides are finite by the boundedness assumption on the morphisms $\varphi, \psi$ in ${}_K\Ban$.
+                            and both right-hand sides are finite by the boundedness assumption on the morphisms $\varphi, \psi$ in $K\Ban$.
                             
                             Now, let $Z$ be a compact subspace of $K$ (e.g. compact intervals in $\R$, compact balls in $\bbC$, or $\Z_p$ in $\Q_p$) and consider the Banach $K$-algebra $C^0(X)$ of continuous $K$-valued functions on $Z$; this Banach $K$-algebra is a dense $K$-subalgebra of $L^1(Z)$, the Banach $K$-algebra of absolutely integrable $K$-valued functions on $Z$.
-                            \item \textbf{(Sheaves of modules):} Let $\E$ be a topos and let $R$ be a ring object internal to $\E$. Then, the category ${}_R\Mod$ of left-$R$-modules will be a Grothendieck category, and likewise with $\Mod_R$ and ${}_R\Mod_R$.
+                            \item \textbf{(Sheaves of modules):} Let $\E$ be a topos and let $R$ be a ring object internal to $\E$. Then, the category $R\mod$ of left-$R$-modules will be a Grothendieck category, and likewise with $\mod_R$ and $R\mod_R$.
                         \end{itemize}
                     \end{example}
                     
@@ -526,23 +526,23 @@
                             \item \textbf{(Free modules are projective):} Free left-$R$-modules arise through the following adjunction:
                                 $$
                                     \begin{tikzcd}
-                                    	{{}_R\Mod} & \Sets
+                                    	{R\mod} & \Sets
                                     	\arrow[""{name=0, anchor=center, inner sep=0}, "\oblv"', shift right=2, from=1-1, to=1-2]
                                     	\arrow[""{name=1, anchor=center, inner sep=0}, "{{}_RR^{\oplus (-)}}"', shift right=2, from=1-2, to=1-1]
                                     	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                                     \end{tikzcd}
                                 $$
-                            where $\oblv: {}_R\Mod \to \Sets$ is the forgetful sending modules to their underlying sets. It is not hard to see that the forgetful functor $\oblv$ preserves epimorphisms, and since it is a right-adjoint, one can apply proposition \ref{prop: projectives_and_injectives_under_adjoints} to deduce that the free construction ${}_RR^{\oplus (-)}: \Sets \to {}_R\Mod$ must preserve projective objects. But, by remark \ref{remark: all_sets_are_projective}, we know that should we assume the Axiom of Choice then all objects of $\Sets$ shall be projective, and so every free module (each of which takes the form ${}_RR^{\oplus X}$ for some set $X$) must also be projective as an object of ${}_R\Mod$.
+                            where $\oblv: R\mod \to \Sets$ is the forgetful sending modules to their underlying sets. It is not hard to see that the forgetful functor $\oblv$ preserves epimorphisms, and since it is a right-adjoint, one can apply proposition \ref{prop: projectives_and_injectives_under_adjoints} to deduce that the free construction ${}_RR^{\oplus (-)}: \Sets \to R\mod$ must preserve projective objects. But, by remark \ref{remark: all_sets_are_projective}, we know that should we assume the Axiom of Choice then all objects of $\Sets$ shall be projective, and so every free module (each of which takes the form ${}_RR^{\oplus X}$ for some set $X$) must also be projective as an object of $R\mod$.
                             \item \textbf{(Tensor products of projective modules):} Recall first of all that there is the following adjunction:
                                 $$
                                    \begin{tikzcd}
-                                	{\Mod_S} & {\Mod_R}
+                                	{\mod_S} & {\mod_R}
                                 	\arrow[""{name=0, anchor=center, inner sep=0}, "{- \tensor_R P}"', shift right=2, from=1-2, to=1-1]
-                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Mod_S(P, -)}"', shift right=2, from=1-1, to=1-2]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{\mod_S(P, -)}"', shift right=2, from=1-1, to=1-2]
                                 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=0, to=1]
                                 \end{tikzcd}
                                 $$
-                            Since $P$ is projective, the right-adjoint $\Mod_S(P, -)$ preserves epimorphisms by definition, and by proposition \ref{prop: projectives_and_injectives_lifting_property}, this means that the left-adjoint $- \tensor_R P$ preserves projectiveness. Thus, for any projective right-$R$-module $Q$, the tensor product $Q \tensor_R P$ shall be a projective right-$R$-module, as claimed.
+                            Since $P$ is projective, the right-adjoint $\mod_S(P, -)$ preserves epimorphisms by definition, and by proposition \ref{prop: projectives_and_injectives_lifting_property}, this means that the left-adjoint $- \tensor_R P$ preserves projectiveness. Thus, for any projective right-$R$-module $Q$, the tensor product $Q \tensor_R P$ shall be a projective right-$R$-module, as claimed.
                         \end{itemize}
                     \end{proof}
                 
@@ -558,7 +558,7 @@
                     Let $R$ be a commutative ring. Then, a given $R$-module $P$ is projective if and only if it is there exists a free $R$-module $E$ and an auxiliary $R$-module $N$ such that $E \cong P \oplus N$.
                 \end{proposition}
                     \begin{proof}
-                        Since $R$ is fixed, let us write $\Hom(-, -)$ in place of ${}_R\Mod(-, -)$. 
+                        Since $R$ is fixed, let us write $\Hom(-, -)$ in place of $R\mod(-, -)$. 
                         \begin{enumerate}
                             \item Assume firstly that $P$ is projective and let $\pi: R^{\oplus X} \to P$ be some presentation of $P$. Such a presentation induces a canonical short exact sequence:
                                 $$

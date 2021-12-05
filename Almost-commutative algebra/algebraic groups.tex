@@ -190,7 +190,7 @@
             
             \subsubsection{Grothendieck's theorem on tori}
             
-        \subsection{\texorpdfstring{$\Bun_G$}{} and the affine Grassmannian}
+        \subsection{The geometry of torsors}
             This subsection shall be dedicated to the study of $\Bun_G(X)$, the algebraic stack of principal $G$-bundles (with $G$ some affine algebraic group) over a smooth, projective, and geometrically connected curve $X$ over some field $k$ of charactersitic $0$. 
             
             \subsubsection{The geometry of \texorpdfstring{$\Bun_G(X)$}{}}
@@ -257,8 +257,8 @@
                     \end{enumerate}
             \end{definition}
             \begin{remark}[Unipotent radicals] \label{remark: unipotent_radicals}
-                Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$, and note that within such a setting, the radical $\scrR_G$ is necessarily affine too. Then, the \textbf{unipotent radical} of $G$ (denoted by $\scrU_G$) is maximal unipotent subgroup of $\scrR_G$; at the level of $k$-rational points, one also has:
-                    $$\scrU_G(k) = \scrR_G(k) \cap U_G(k)$$
+                Let $k$ be an algebraically closed field and let $G$ be a linear algebraic group over $\Spec k$, and note that within such a setting, the radical $\scrR_G$ is necessarily affine too. Then, the \textbf{unipotent radical} of $G$ (denoted by $\U_G$) is maximal unipotent subgroup of $\scrR_G$; at the level of $k$-rational points, one also has:
+                    $$\U_G(k) = \scrR_G(k) \cap U_G(k)$$
                 where $U_G \trianglelefteq G$ is the maximal unipotent \textit{normal} subgroup of $G$.
             \end{remark}
             
@@ -269,7 +269,7 @@
                     \item \textbf{(Reductive and semi-simple algebraic groups):} 
                         \begin{enumerate}
                             \item \textbf{(Semi-simple groups):} A linear algebraic $S$-group $G$ is \textbf{semi-simple} if and only if its geometric fibres $G_{\bar{x}}$ are semi-simple, which is to say, their radicals $\scrR_{G_{\bar{x}}}$ are all trivial. 
-                            \item \textbf{(Reductive groups):} A linear algebraic $S$-group $G$ is \textbf{reductive} if and only if its geometric fibres $G_{\bar{x}}$ are reductive, which is to say, their unipotent radicals $\scrU_{G_{\bar{x}}}$ are all trivial.
+                            \item \textbf{(Reductive groups):} A linear algebraic $S$-group $G$ is \textbf{reductive} if and only if its geometric fibres $G_{\bar{x}}$ are reductive, which is to say, their unipotent radicals $\U_{G_{\bar{x}}}$ are all trivial.
                         \end{enumerate}
                 \end{enumerate}
             \end{definition}
@@ -288,3 +288,84 @@
         \subsection{Special subgroups of reductive groups; flag varieties}
         
         \subsection{Split reductive groups}
+        
+    \section{The Geometric Satake Equivalence and Langlands Duality}
+        \subsection{Perverse sheaves on the affine Grassmannian}
+            \subsubsection{Beauville-Laszlo Uniformisation and the affine Grassmannian}
+                \paragraph{Vector bundles on the formal disc and Beauville-Laszlo Uniformisation}
+                    \begin{convention}
+                        For now, by \say{vector bundles} on a locally Noetherian scheme $X$, we shall mean \say{locally free coherent sheaves}, which \textit{a priori} form a category - denoted by $\Vect(X)$ - equivalent to the full subcategory of $\Coh(X)$ spanned by projective objects. 
+                    \end{convention}
+                    \begin{remark}
+                        Over every locally Noetherian scheme $X$, the category of vector bundles $\Vect(X)$ is not abelian. However, it is \href{https://ncatlab.org/nlab/show/exact+category}{\underline{exact}}.
+                    \end{remark}
+                    
+                    \begin{convention}[Formal discs]
+                        For any commutative ring $R$, we denote by $\bbD_R$ the formal disc $\Spec R[\![t]\!]$ and by $\bbD_R^{\circ}$ the punctured formal disc $\Spec R(\!(t)\!)$.
+                    \end{convention}
+                    
+                    \begin{lemma}[Vector bundles on the formal disc] \label{lemma: vector_bundles_on_the_formal_disc}
+                        Let $R$ be a Noetherian commutative ring. Then, one has the following $1$-limit of locally small categories:
+                            $$\Vect(\bbD_R) \cong \underset{n \in \N}{\lim} \Vect(\Spec R[t]/t^{n + 1})$$
+                    \end{lemma}
+                        \begin{proof}
+                            
+                        \end{proof}
+                
+                \paragraph{The affine Grassmannian}
+                    \begin{definition}[Local affine Grassmannians] \label{def: local_affine_grassmannians}
+                        For any algebraic group $G$ over some base commutative ring $k$, there is a canonically defined moduli space, commonly denoted by $\Gr_G^{\loc}$ and called the \textbf{\textit{local} affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the groupoid that is the core of the category of $G$-torsors on $\bbD_R$ that trivialise over $\bbD_R^{\circ}$.  
+                    \end{definition}
+                    \begin{remark}
+                        \noindent
+                        \begin{itemize}
+                            \item It is rather easy to see that $\Gr_G^{\loc}$ satisfies fppf descent and hence a stack in the fppf topology.
+                            \item Furthermore, by introducing the so-called loop and arc groups $G[\![t]\!]$ and $G(\!(t)\!)$, defined by $G[\![t]\!](R) \cong G(R[\![t]\!])$ and $G(\!(t)\!)(R) \cong G(R(\!(t)\!))$ respectively, one can show that:
+                                $$\Gr_G^{\loc} \cong G(\!(t)\!)/G[\![t]\!]$$
+                            using the fact that $G(\!(t)\!)$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. lemma \ref{lemma: affine_grassmannians_as_coset_spaces}).
+                        \end{itemize}
+                    \end{remark}
+                    
+                    \begin{convention}
+                        Let $k$ be a commutative ring and let $R$ be a commutative $k$-algebra. Then, for any scheme $X \in \Sch_{/\Spec k}$, we shall write $X_R$ for the base-change $X \x_{\Spec k} \Spec R$.
+                    \end{convention}
+                    \begin{definition}[Global affine Grassmannian] \label{def: global_affine_grassmannians}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a $k$-rational point $x \in |X|$. Then, we define the \textbf{global affine Grassmannian} over $X$ attached to $G$, denoted by $\Gr_{G, X}^{\glob}$, to be the prestack that assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the core of the category of $G$-torsors on $X_R$ which trivialise over $(X \setminus \{x\})_R$.
+                    \end{definition}
+                    \begin{remark}[Local-to-global compatibility] \label{remark: local_to_global_for_affine_grassmannians}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Also, fix a $k$-rational point $x \in |X|$ and denote by $\Gr_{G, X, x}^{\loc}$ the local affine $G$-Grassmannian over the formal disc $\bbD$ around $x$ (cf. definition \ref{def: local_affine_grassmannians}). Then, via Beauville-Laszlo Uniformisation, one can easily show that:
+                            $$\Gr_{G, X}^{\glob} \cong \Gr_{G, X, x}^{\loc}$$
+                    \end{remark}
+                    
+                    \begin{lemma}[Affine Grassmannians as coset spaces] \label{lemma: affine_grassmannians_as_coset_spaces}
+                        Let $G$ be an algebraic group. Then, $\Gr_G^{\loc} \cong G(\!(t)\!)/G[\![t]\!]$.
+                    \end{lemma}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Also, fix a $k$-rational point $x \in |X|$. Then $\Gr_{G, X}^{\glob} \cong G(\!(t)\!)/G[\![t]\!]$.
+                    \end{corollary}
+                    
+                    \begin{proposition}[Structure of affine Grassmannians] \label{prop: structure_of_affine_grasmannian}
+                        Let $G$ be an algebraic group. Then:
+                            \begin{enumerate}
+                                \item $\Gr_G^{\loc}$ is an ind-scheme of ind-finite type, and
+                                \item when $G$ is reductive over some field $k$, $\Gr_G^{\loc}$ will be ind-projective.
+                            \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item 
+                                \item 
+                            \end{enumerate}
+                        \end{proof}
+            
+            \subsubsection{Perverse sheaves and geometry}
+            
+        \subsection{Weights}
+        
+        \subsection{Convolution and fusion of perverse sheaves}
+        
+        \subsection{The Tannakian structure}

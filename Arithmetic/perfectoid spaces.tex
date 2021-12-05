@@ -49,7 +49,7 @@
                         \end{proof}
                         
                     \begin{proposition}[Thick subcategories of almost-zero modules] \label{prop: thick_subcategories_of_almost_zero_modules}
-                        Let $(\scrV, \m)$ be a flat basic setup. Then, almost-zero $\scrV$-modules form a thick subcategory of ${}_{\scrV}\Mod$, which we shall denote by ${}_{(\scrV, \m)}\Mod^0$.
+                        Let $(\scrV, \m)$ be a flat basic setup. Then, almost-zero $\scrV$-modules form a thick subcategory of $\scrV\mod$, which we shall denote by $(\scrV, \m)\mod^0$.
                     \end{proposition}
                         \begin{proof}
                             \noindent
@@ -76,10 +76,10 @@
                                         	\arrow[from=1-4, to=2-4]
                                         \end{tikzcd}
                                     $$
-                                From this, we can infer that morphisms of almost-zero module are just module homomorphisms, which means that there exists a full subcategory ${}_{(\scrV, \m)}\Mod^0$ of ${}_{\scrV}\Mod$ spanned by almost-zero $(\scrV, \m)$-modules.
-                                \item \textbf{(Thickness):} A \textit{full} subcategory $\S$ of a triangulated category $\T$ (cf. definition \ref{def: triangulated_infinity_categories}; our triangulated category is ${}_{\scrV}\Mod$) is said to be \textbf{thick} whenever it is closed under extensions, which is to say, for all short exact sequences:
+                                From this, we can infer that morphisms of almost-zero module are just module homomorphisms, which means that there exists a full subcategory $(\scrV, \m)\mod^0$ of $\scrV\mod$ spanned by almost-zero $(\scrV, \m)$-modules.
+                                \item \textbf{(Thickness):} A \textit{full} subcategory $\S$ of a triangulated category $\T$ (cf. definition \ref{def: triangulated_infinity_categories}; our triangulated category is $\scrV\mod$) is said to be \textbf{thick} whenever it is closed under extensions, which is to say, for all short exact sequences:
                                     $$0 \to M' \to M \to M'' \to 0$$
-                                should $M$ be an object of $\S$, then so must $M'$ and $M''$ too, and vice versa (one might also think of a thick subcategory as the homotopy category of a stable full $\infty$-subcategory of a triangulated $\infty$-category; cf. remark \ref{remark: elementary_properties_of_triangulated_categories}). We already have fullness, so it remains to show that ${}_{(\scrV, \m)}\Mod^0$ is closed under extensions. To this end, consider a short exact sequence of $\scrV$-modules, such as the following:
+                                should $M$ be an object of $\S$, then so must $M'$ and $M''$ too, and vice versa (one might also think of a thick subcategory as the homotopy category of a stable full $\infty$-subcategory of a triangulated $\infty$-category; cf. remark \ref{remark: elementary_properties_of_triangulated_categories}). We already have fullness, so it remains to show that $(\scrV, \m)\mod^0$ is closed under extensions. To this end, consider a short exact sequence of $\scrV$-modules, such as the following:
                                     $$0 \to M' \to M \to M'' \to 0$$
                                 wherein $M$ is almost-zero. Then, because binary direct sums of modules are biproducts and because $\m$ is flat over $\scrV$, one can construct the following diagram with short exact rows out of the short exact sequence above:
                                     $$
@@ -133,35 +133,35 @@
                                         	\arrow[from=3-4, to=3-5]
                                         \end{tikzcd}
                                     $$
-                                We can now easily deduce that $\m M \cong 0$, i.e. that $M$ is almost-zero. This tells us that the full subcategory ${}_{(\scrV, \m)}\Mod^0$ is closed under extensions, and thus thick by definition.
+                                We can now easily deduce that $\m M \cong 0$, i.e. that $M$ is almost-zero. This tells us that the full subcategory $(\scrV, \m)\mod^0$ is closed under extensions, and thus thick by definition.
                             \end{enumerate}
                         \end{proof}
                     \begin{remark}[Almost-zero modules over non-flat basic setups] \label{remark: almost_zero_modules_over_non_flat_basic_setups}
                         \noindent
                         \begin{itemize}
-                            \item \textbf{(Removing the flatness assumption):} Proposition \ref{prop: thick_subcategories_of_almost_zero_modules} allows us to pull off quite a stunt, and for that matter, not even with much difficulty: the flatness assumption on $\m$ can be completely removed! Of course, the trade-off is that now, only the $\infty$-categorical version of proposition \ref{prop: thick_subcategories_of_almost_zero_modules} would hold: via the Dold-Kan Correspondence, one has that for $(\scrV, \m)$ a basic setup, $\scrV$-modules annihilated by $\m$ span a stable full $\infty$-subcategory ${}_{(\scrV, \m)}\Mod^0$ (or perhaps ${}^{\leq 0}_{(\scrV, \m)}\Mod^0$) of the triangulated $\infty$-category ${}^{\leq 0}_{\scrV}\Mod$ of projective resolutions of $\scrV$-modules. This descends naturally down to the level of derived categories. One can thus generalise proposition \ref{prop: almost_zero_module_alt_def} too: a $\scrV$-module is almost-zero if and only if:
+                            \item \textbf{(Removing the flatness assumption):} Proposition \ref{prop: thick_subcategories_of_almost_zero_modules} allows us to pull off quite a stunt, and for that matter, not even with much difficulty: the flatness assumption on $\m$ can be completely removed! Of course, the trade-off is that now, only the $\infty$-categorical version of proposition \ref{prop: thick_subcategories_of_almost_zero_modules} would hold: via the Dold-Kan Correspondence, one has that for $(\scrV, \m)$ a basic setup, $\scrV$-modules annihilated by $\m$ span a stable full $\infty$-subcategory $(\scrV, \m)\mod^0$ (or perhaps ${}^{\leq 0}_{(\scrV, \m)}\mod^0$) of the triangulated $\infty$-category ${}^{\leq 0}_{\scrV}\mod$ of projective resolutions of $\scrV$-modules. This descends naturally down to the level of derived categories. One can thus generalise proposition \ref{prop: almost_zero_module_alt_def} too: a $\scrV$-module is almost-zero if and only if:
                                 $$\m \tensor_{\scrV}^{\L} M \cong_{\qis} 0$$
                             (i.e. the chain complex $\Tor_{\scrV}^*(\m, M)$ is homotopic to $0$).
-                            \item \textbf{(Abelian categories of almost-zero modules):} If we extract the hearts of the t-structures out of ${}^{\leq 0}_{(\scrV, \m)}\Mod^0$ and ${}^{\leq 0}_{\scrV}\Mod$, we will be able to establish ${}^{\leq 0}_{(\scrV, \m)}\Mod^{\almost, \heart}$ as a Serre subcategory of ${}^{\leq 0}_{\scrV}\Mod^{\heart}$, and since hearts of t-structure are spanned by objects concentrated in degree $0$, one can furthurmore recognise ${}^{\leq 0}_{(\scrV, \m)}\Mod^0$ as a Serre subcategory of ${}_{\scrV}\Mod$ whenever the basic setup $(\scrV, \m)$ is \textit{flat}. In particular, we have that the thick subcategories of almost-zero modules are \textit{abelian}.
+                            \item \textbf{(Abelian categories of almost-zero modules):} If we extract the hearts of the t-structures out of ${}^{\leq 0}_{(\scrV, \m)}\mod^0$ and ${}^{\leq 0}_{\scrV}\mod$, we will be able to establish ${}^{\leq 0}_{(\scrV, \m)}\mod^{\almost, \heart}$ as a Serre subcategory of ${}^{\leq 0}_{\scrV}\mod^{\heart}$, and since hearts of t-structure are spanned by objects concentrated in degree $0$, one can furthurmore recognise ${}^{\leq 0}_{(\scrV, \m)}\mod^0$ as a Serre subcategory of $\scrV\mod$ whenever the basic setup $(\scrV, \m)$ is \textit{flat}. In particular, we have that the thick subcategories of almost-zero modules are \textit{abelian}.
                         \end{itemize}
                     \end{remark}
                     
                     \begin{definition}[Almost modules] \label{def: almost_modules}
                         Let $(\scrV, \m)$ be a basic setup. Then, the essential image of the functor:
-                            $$\m \tensor_{\scrV}^{\L} -: {}_{\scrV}^{\leq 0}\Mod \to {}_{\scrV}^{\leq 0}\Mod$$
-                        (i.e. the category spanned by objects of the form $\m \tensor_{\scrV}^{\L} M$, where $M$ is a $\scrV$-module) shall be called the category of \textbf{almost modules}. We shall denote this category by ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$.
+                            $$\m \tensor_{\scrV}^{\L} -: {\scrV}^{\leq 0}\mod \to {\scrV}^{\leq 0}\mod$$
+                        (i.e. the category spanned by objects of the form $\m \tensor_{\scrV}^{\L} M$, where $M$ is a $\scrV$-module) shall be called the category of \textbf{almost modules}. We shall denote this category by ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$.
                     \end{definition}
                     \begin{remark}[Categories of almost-zero modules are kernels] \label{remark: categories_of_almost_zero_modules_are_kernels}
-                        It is not hard to see that for $(\scrV, \m)$ a basic setup, the category ${}_{(\scrV, \m)}^{\leq 0}\Mod^0$ of almost-zero $(\scrV, \m)$-modules is the kernel or the essentially surjective functor:
-                            $$\m \tensor_{\scrV}^{\L} -: {}_{\scrV}^{\leq 0}\Mod \to {}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$$
+                        It is not hard to see that for $(\scrV, \m)$ a basic setup, the category ${(\scrV, \m)}^{\leq 0}\mod^0$ of almost-zero $(\scrV, \m)$-modules is the kernel or the essentially surjective functor:
+                            $$\m \tensor_{\scrV}^{\L} -: {\scrV}^{\leq 0}\mod \to {(\scrV, \m)}^{\leq 0}\mod^{\almost}$$
                         Note that this kernel is well-defined because $\m \tensor_{\scrV}^{\L} -$ is an idempotent functor (cf. remark \ref{remark: almost_zero_modules_over_non_flat_basic_setups}).
                     \end{remark}
                     
                     \begin{proposition}[Localising at almost modules] \label{prop: localising_at_almost_modules}
-                        Let $(\scrV, \m)$ be a basic setup (which need not be flat). Then, the tensor-hom adjunction establishes ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ as a localisation. This is to say, there exists the following $\infty$-adjunction:
+                        Let $(\scrV, \m)$ be a basic setup (which need not be flat). Then, the tensor-hom adjunction establishes ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ as a localisation. This is to say, there exists the following $\infty$-adjunction:
                             $$
                                 \begin{tikzcd}
-                                	{{}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}} & {{}_{\scrV}^{\leq 0}\Mod}
+                                	{{(\scrV, \m)}^{\leq 0}\mod^{\almost}} & {{\scrV}^{\leq 0}\mod}
                                 	\arrow[""{name=0, anchor=center, inner sep=0}, "{j_*}"', shift right=2, hook, from=1-1, to=1-2]
                                 	\arrow[""{name=1, anchor=center, inner sep=0}, "{j^*}"', shift right=2, from=1-2, to=1-1]
                                 	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
@@ -172,14 +172,14 @@
                         \begin{proof}
                             The only thing to prove here is that $j_*$ ought to be fully faithful, which we can do via showing that the counit of the adjunction is naturally isomorphic to the identity; explicitly, this means showing that for all almost-zero $(\scrV, \m)$-modules $M$, one has the following isomorphism:
                                 $$j^* j_* M \cong M$$
-                            However, this is an automatic consequence of the fact that ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is the essential image of $j^*: {}_{\scrV}^{\leq}\Mod \to {}_{\scrV}^{\leq}\Mod$.
+                            However, this is an automatic consequence of the fact that ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is the essential image of $j^*: {\scrV}^{\leq}\mod \to {\scrV}^{\leq}\mod$.
                         \end{proof}
                     
                     \begin{theorem}[Four functors for almost modules] \label{theorem: four_functors_for_almost_modules}
                         Let $(\scrV, \m)$ be a \textit{flat} basic setup. Then, the usual four-functor pull-push yoga is applicable to almost modules over \textit{flat} basic setups, in the sense that one has the following adjunction quadruple:
                             $$
                                 \begin{tikzcd}
-                                	{{}_{\scrV}^{\leq 0}\Mod} & {{}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}}
+                                	{{\scrV}^{\leq 0}\mod} & {{(\scrV, \m)}^{\leq 0}\mod^{\almost}}
                                 	\arrow[""{name=0, anchor=center, inner sep=0}, "{j_! \ladjoint j^* \ladjoint j_* \ladjoint j^!}"', shift right=5, from=1-2, to=1-1]
                                 	\arrow[""{name=1, anchor=center, inner sep=0}, shift right=5, from=1-1, to=1-2]
                                 	\arrow[""{name=2, anchor=center, inner sep=0}, shift left=2, from=1-2, to=1-1]
@@ -195,11 +195,11 @@
                             We have already been provided with the middle adjunction $j^* \ladjoint j_*$, so let us just prove that the $!$-pushforwards and $!$-pullbacks exist and fit into the following adjunctions:
                                 $$j_! \ladjoint j^*$$
                                 $$j_* \ladjoint j^!$$
-                            Although, we should note that we can have $j^* \cong \m \tensor_{\scrV}^{\L} -$ and $j_*(-) \cong \R\Hom_{\scrV}(\m, -)$ as two of the basic \href{https://ncatlab.org/nlab/show/six+operations}{\underline{four operations}} because ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is the essential image of a functor out of ${}_{\scrV}^{\leq 0}\Mod$ (cf. proposition \ref{prop: localising_at_almost_modules}). 
+                            Although, we should note that we can have $j^* \cong \m \tensor_{\scrV}^{\L} -$ and $j_*(-) \cong \R\Hom_{\scrV}(\m, -)$ as two of the basic \href{https://ncatlab.org/nlab/show/six+operations}{\underline{four operations}} because ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is the essential image of a functor out of ${\scrV}^{\leq 0}\mod$ (cf. proposition \ref{prop: localising_at_almost_modules}). 
                                 \begin{enumerate}
-                                    \item \textbf{($!$-pushforward):} To show that the further left-adjoint $j^!$ exists, we will be using Lurie's Adjoint Functor Theorem \cite[Corollary 5.5.2.9]{HTT}, which states that should $\C$ and $\D$ be presentable $\infty$-categories and $R: \C \to \D$ be a functor between them, then there exists an adjunction $L \ladjoint R$ if and only if $R$ is accessible (i.e. $R$ preserves all filtered colimits) and left-exact. For this, we will first need to show that ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is a presentable $\infty$-category (it is well-known that module categories like ${}_{\scrV}^{\leq 0}\Mod$ are presentable, so we will not be providing a proof).
+                                    \item \textbf{($!$-pushforward):} To show that the further left-adjoint $j^!$ exists, we will be using Lurie's Adjoint Functor Theorem \cite[Corollary 5.5.2.9]{HTT}, which states that should $\C$ and $\D$ be presentable $\infty$-categories and $R: \C \to \D$ be a functor between them, then there exists an adjunction $L \ladjoint R$ if and only if $R$ is accessible (i.e. $R$ preserves all filtered colimits) and left-exact. For this, we will first need to show that ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is a presentable $\infty$-category (it is well-known that module categories like ${\scrV}^{\leq 0}\mod$ are presentable, so we will not be providing a proof).
                                         \begin{enumerate}
-                                            \item \textbf{(${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is presentable):} Recall that a presentable stable $\infty$-category is the same as an $\infty$-category that is:
+                                            \item \textbf{(${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is presentable):} Recall that a presentable stable $\infty$-category is the same as an $\infty$-category that is:
                                                 \begin{itemize}
                                                     \item accessible (cf. proposition \ref{prop: accessible_stable_infinity_categories}; accessible $\infty$-category is simply one that is its own ind-completion) and
                                                     \item equivalent to a left-exact localisation (i.e a left-exact functor with a full faithful right-adjoint) of a stable $\infty$-category.
@@ -211,20 +211,20 @@
                                                 $$\underset{i \in I}{\colim} (\m \tensor_{\scrV}^{\L} M_i)$$
                                             of almost $(\scrV, \m)$-modules $\m \tensor_{\scrV}^{\L} M_i$ (see proposition \ref{prop: localising_at_almost_modules} for why almost modules are of this form). We can then apply the fact that $\m \tensor_{\scrV}^{\L} -$ commutes with all colimits to get:
                                                 $$\m \tensor_{\scrV}^{\L} \underset{i \in I}{\colim} (\m \tensor_{\scrV}^{\L} M_i) \cong \m \tensor_{\scrV}^{\L} \underset{i \in I}{\colim} M_i$$
-                                            Because ${}_{\scrV}^{\leq 0}\Mod$ is a cocomplete category (which implies, in particular, that $\underset{i \in I}{\colim} M_i$ is a $\scrV$-module), this tells us that ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is closed under filtered colimits. 
+                                            Because ${\scrV}^{\leq 0}\mod$ is a cocomplete category (which implies, in particular, that $\underset{i \in I}{\colim} M_i$ is a $\scrV$-module), this tells us that ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is closed under filtered colimits. 
                                             
-                                            The category ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is thus accessible by definition, and we have therefore shown that ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is presentable as an $\infty$-category.
+                                            The category ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is thus accessible by definition, and we have therefore shown that ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is presentable as an $\infty$-category.
                                             \item \textbf{($j^*$ is accessible):} Because tensor products commute with all colimits, $j^*$ is trivially accessible by virtue of being naturally isomorphic to $\m \tensor_{\scrV}^{\L} -$. 
                                             \item \textbf{($j^*$ is left-exact):} This is an automatic consequence of the flatness assumption on $\m$.
                                         \end{enumerate}
-                                    \item \textbf{($!$-pullback):} We have already shown that ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is a presentable $\infty$-category, so we can apply Lurie's Adjoint Functor Theorem again, which tells us that we will only need to show that $j_*$ is right-exact. However, because corepresentable functors preserve colimits \textit{a priori} (cf. \cite{nlab:hom-functor_preserves_limits}), the functor:
+                                    \item \textbf{($!$-pullback):} We have already shown that ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is a presentable $\infty$-category, so we can apply Lurie's Adjoint Functor Theorem again, which tells us that we will only need to show that $j_*$ is right-exact. However, because corepresentable functors preserve colimits \textit{a priori} (cf. \cite{nlab:hom-functor_preserves_limits}), the functor:
                                         $$j_* \cong \R\Hom_{\scrV}(\m, -)$$
                                     is trivially right-exact.
                                 \end{enumerate}
                         \end{proof}
                         
                     \begin{proposition}[Tensor products of almost modules] \label{prop: tensor_products_of_almost_modules}
-                        Let $(\scrV, \m)$ be a basic setup. Then, ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ is a rigid monoidal category; in particular, there is a compatibility of tensor products in the following manner for all $\scrV$-modules $M$ and $N$:
+                        Let $(\scrV, \m)$ be a basic setup. Then, ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ is a rigid monoidal category; in particular, there is a compatibility of tensor products in the following manner for all $\scrV$-modules $M$ and $N$:
                             $$j^*M \tensor^{\L}_{\scrV} j^*N \cong j^*(M \tensor^{\L}_{\scrV} N)$$
                         where $j^*$ is as in proposition \ref{prop: localising_at_almost_modules} and theorem \ref{theorem: four_functors_for_almost_modules}; the monoidal unit is $\m$.
                     \end{proposition}
@@ -232,7 +232,7 @@
                             
                         \end{proof}
                     \begin{convention}[Almost tensor products] \label{conv: almost_tensor_products}
-                        Let $(\scrV, \m)$ be a basic setup. Then for all $M, N \in {}_{\scrV}^{\leq 0}\Mod$, let us abbreviate the quasi-isomorphism:
+                        Let $(\scrV, \m)$ be a basic setup. Then for all $M, N \in {\scrV}^{\leq 0}\mod$, let us abbreviate the quasi-isomorphism:
                             $$j^*M \tensor^{\L}_{\scrV} j^*N \cong j^*(M \tensor^{\L}_{\scrV} N)$$
                         by:
                             $$M^{\almost} \tensor^{\L}_{\scrV} N^{\almost} \cong (M \tensor^{\L}_{\scrV} N)^{\almost}$$
@@ -241,10 +241,10 @@
                     \begin{remark}[(In)compatibility of monoidal structures] \label{remark: incompatible_monoidal_structures_almost_modules}
                         Let $(\scrV, \m)$ be a basic setup, which is possible non-flat.
                         \begin{itemize}
-                            \item \textbf{(Tensor products of almost modules):} ${}_{\scrV}^{\leq 0}\Mod$ does \textit{not} admit ${}_{(\scrV, \m)}^{\leq 0}\Mod^{\almost}$ as a \textit{monoidal} subcategory, as the monoidal structures thereon are formed differently; in particular, their monoidal units ($\scrV$ and $\m$ respectively) do not coincide.
-                            \item \textbf{(Tensor products of almost-zero modules):} The story is not quite the same for almost-zero modules, which form a subcategory of ${}_{\scrV}^{\leq 0}\Mod$. Thanks to the assumption that $\m$ is idempotent (in the sense that $\m \tensor_{\scrV}^{\L} \m \cong \m$; cf. convention \ref{conv: basic_setups} and remark \ref{remark: almost_zero_modules_over_non_flat_basic_setups}), one has the following for all almost-zero modules $M, N$:
+                            \item \textbf{(Tensor products of almost modules):} ${\scrV}^{\leq 0}\mod$ does \textit{not} admit ${(\scrV, \m)}^{\leq 0}\mod^{\almost}$ as a \textit{monoidal} subcategory, as the monoidal structures thereon are formed differently; in particular, their monoidal units ($\scrV$ and $\m$ respectively) do not coincide.
+                            \item \textbf{(Tensor products of almost-zero modules):} The story is not quite the same for almost-zero modules, which form a subcategory of ${\scrV}^{\leq 0}\mod$. Thanks to the assumption that $\m$ is idempotent (in the sense that $\m \tensor_{\scrV}^{\L} \m \cong \m$; cf. convention \ref{conv: basic_setups} and remark \ref{remark: almost_zero_modules_over_non_flat_basic_setups}), one has the following for all almost-zero modules $M, N$:
                                 $$\m \tensor_{\scrV}^{\L} (M \tensor_{\scrV}^{\L} N) \cong (\m \tensor_{\scrV}^{\L} \m) \tensor_{\scrV}^{\L} (M \tensor_{\scrV}^{\L} N) \cong (\m \tensor_{\scrV}^{\L} M) \tensor_{\scrV}^{\L} (\m \tensor_{\scrV}^{\L} N) = 0 \tensor_{\scrV}^{\L} 0 \cong 0$$
-                            which proves that ${}_{(\scrV, \m)}^{\leq 0}\Mod^0$ is a monoidal subcategory of ${}_{\scrV}^{\leq 0}\Mod$. 
+                            which proves that ${(\scrV, \m)}^{\leq 0}\mod^0$ is a monoidal subcategory of ${\scrV}^{\leq 0}\mod$. 
                         \end{itemize}
                     \end{remark}
                     
