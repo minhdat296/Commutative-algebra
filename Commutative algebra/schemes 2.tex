@@ -87,7 +87,7 @@
                                 An $\infty$-category equipped with an $\infty$-coverage is an \textbf{$\infty$-site.}
                             \end{enumerate}
                         \item \textbf{($\infty$-descent theory):} An $\infty$-prestack $\calY$ (cf. convention \ref{conv: infinity_prestacks}) on some $\infty$-category $\C$ equipped with an $\infty$-coverage $J$ (i.e. an $\infty$-site $(\C, J)$) is said to \textbf{satisfy $J$-descent} if and only if for all objects $X$ of $\C$ and for all $\infty$-sieves $\U$ that covers $X$, one has the following equivalence of $\infty$-groupoids:
-                            $$\calY(X) \cong \calY\left({}^{(\infty, 1)}\colim \U^{\bullet}_{/X}\right)$$
+                            $$\calY(X) \cong \calY\left((\infty, 1)\-\colim \U^{\bullet}_{/X}\right)$$
                         In particular, $(\infty, 1)$-presheaves that satisfy descent are \textbf{$(\infty, 1)$-sheaves}.
                     \end{enumerate}
                 \end{definition}
@@ -113,7 +113,7 @@
                         in an $\infty$-category $\E$ is a \textbf{monomorphism} if and only if $\E(x, -)$ is an $(\infty, 1)$-subfunctor of $\E(y, -)$: that is to say, for all test objects $x_0$ of $\E$, $\E(x, x_0)$ is a full $\infty$-subcategory of the $\infty$-groupoid $\E(y, x_0)$. 
                         \item \textbf{(Subobject classifiers):} Let $\E$ be a $(\infty, 1)$-complete $\infty$-category and let us denote its terminal object by $1$ (note that such a terminal object exists as a consequence of the finite-completeness hypothesis). Then, a morphism:
                             $$t: 1 \to \Omega$$
-                        of $\E$ will be called a \textbf{subobject classifier} if and only if it is terminal in the (non-full) $\infty$-subcategory of the $\infty$-category $\E^{[1]} \cong {}^{\infty}\Cat([1], \E)$ of arrows and commutative squares in $\E$ spanned by monomorphisms.
+                        of $\E$ will be called a \textbf{subobject classifier} if and only if it is terminal in the (non-full) $\infty$-subcategory of the $\infty$-category $\E^{[1]} \cong \infty\-\Cat([1], \E)$ of arrows and commutative squares in $\E$ spanned by monomorphisms.
                         
                         Thanks to the assumption that $\E$ is finitely $(\infty, 1)$-complete, if a subobject classifier $t: 1 \to \Omega$ exists, one will be able to write any monomorphism $u \to x$ in $\E$ as the pullback of the subobject classifier along some \textit{unique} morphism $\chi_x: x \to \Omega$.
                     \end{enumerate}
@@ -204,14 +204,14 @@
                                         $$
                                     These liftings exist thanks to the fact that topological spaces have underlying sets, and one can always order their cardinalities. One thing to note here is that the Seifert-van Kampen Theorem can be applied here because disjoint spaces intersect at the empty set (of course!) and subsequently because the empty set is path-connected (recall that the Seifert-van Kampen Theorem can only be applied when the intersection is path-connected).
                                     \item \textbf{(Coequalisers):} $(\infty, 1)$-coequalisers are nothing but internal equivalence relations, and since these are nothing more than certain kinds of internal groupoids, let us show the stronger assertion that all internal groupoids in $\E$ can be delooped (cf. definition \ref{def: looping}). To that end, note that because $\E$ is $\kappa$-accessible, we can write this as a $\kappa$-small filtered $(\infty, 1)$-colimit of other internal groupoids $\left( s^{(i)}, t^{(i)}: H_1^{(i)} \toto H_0^{(i)} \right)$ in $\E$, which we might as well take to be deloopable:
-                                        $$(s, t: H_1 \to H_0) \cong {}^{(\infty, 1)}\underset{i \in I}{\colim} \left( s^{(i)}, t^{(i)}: H_1^{(i)} \toto H_0^{(i)} \right)$$
+                                        $$(s, t: H_1 \to H_0) \cong (\infty, 1)\-\underset{i \in I}{\colim} \left( s^{(i)}, t^{(i)}: H_1^{(i)} \toto H_0^{(i)} \right)$$
                                     But we $(\infty, 1)$-colimits commute with one another, and so it is precisely because the groupoids $\left( s^{(i)}, t^{(i)}: H_1^{(i)} \toto H_0^{(i)} \right)$ are deloopable that we can also deloop the filtered $(\infty, 1)$-colimit $(s, t: H_1 \toto H_0)$. Thus, every internal groupoid in $\E$ is deloopable, which as stated above, implies that $\E$ has all $(\infty, 1)$-coequalisers.
                                 \end{enumerate}
                             \item \textbf{(Universality of colimits):} Now that we have established the $(\infty, 1)$-cocompleteness of $\infty$-topoi, let us check if the $(\infty, 1)$-colimits therein are all universal. To that end, let $x$ be an object of $\E$ and let:
                                 $$f: x \to y$$
                             be a morphism. Also, let:
                                 $$F: \D \to \E_{/y}$$
-                            be a diagram of shape $\D$ in $\E_{/y}$, which we note to necessarily be $\kappa$-small; a pullback of this diagram is just a lifting in ${}^{\infty}\Cat^{\leq \kappa}$ of the following form:
+                            be a diagram of shape $\D$ in $\E_{/y}$, which we note to necessarily be $\kappa$-small; a pullback of this diagram is just a lifting in $\infty\-\Cat^{\leq \kappa}$ of the following form:
                                 $$
                                     \begin{tikzcd}
                                     	& {\E_{/x}} \\
@@ -256,7 +256,7 @@
                     Because of this, the left-adjoint component of the topological localisation $L \ladjoint R$ is usually known as the $(\infty, 1)$-sheafification functor with respect to the $\infty$-coverage on $(\C, J)$, and we shall denote it by ${}^{(\infty, 1), \sh}(-)_J$.
                 \end{corollary}
             
-                \begin{remark}[The $(\infty, 2)$-category of $(\infty, 1)$-topoi] \label{remark: (infinity, 1)_topoi_categories} \index{$\infty$-topoi} \index{$\infty$-topoi! ${}^{\infty}\Sh\Topos$}
+                \begin{remark}[The $(\infty, 2)$-category of $(\infty, 1)$-topoi] \label{remark: (infinity, 1)_topoi_categories} \index{$\infty$-topoi} \index{$\infty$-topoi! $\infty\-\Sh\Topos$}
                     We shall leave the verification of the following facts to the reader.
                     \\
                     $(\infty, 1)$-topoi naturally form a \textit{weak} $(\infty, 2)$-category, wherein:
@@ -265,9 +265,9 @@
                             \item $(\infty, 1)$-morphisms are $(\infty, 1)$-geometric morphisms, i.e. pairs of $(\infty, 1)$-adjoint $(\infty, 1)$-functors with the left-$(\infty, 1)$-adjoint component being left-$(\infty, 1)$-exact; also, compositions of these left-$(\infty, 1)$-adjoint components are merely associative up to invertible strict $(\infty, 1)$-natural transformations.
                             \item $(\infty, 1)$-morphisms are $(\infty, 1)$-natural transformations between the left-$(\infty, 1)$-adjoint components of weak $(\infty, 1)$-geometric morphisms. 
                         \end{itemize}
-                    This weak $(\infty, 2)$-category shall be denoted by ${}^{\infty}\Sh\Topos$. It is finitely weakly $(\infty, 2)$-complete:
+                    This weak $(\infty, 2)$-category shall be denoted by $\infty\-\Sh\Topos$. It is finitely weakly $(\infty, 2)$-complete:
                         \begin{itemize}
-                            \item \textbf{(Products):} It admits weak $(\infty, 2)$-products and weak $(\infty, 2)$-pullbacks, along with a terminal object, that being the $(\infty, 1)$-category ${}^{\infty}\Grpd$ of small $\infty$-groupoids, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana)natural transformations between those functors. 
+                            \item \textbf{(Products):} It admits weak $(\infty, 2)$-products and weak $(\infty, 2)$-pullbacks, along with a terminal object, that being the $(\infty, 1)$-category $\infty\-\Grpd$ of small $\infty$-groupoids, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana)natural transformations between those functors. 
                             \item \textbf{(Monomorphisms):} Its \href{https://ncatlab.org/nlab/show/monomorphism+in+an+\%28infinity\%2C1\%29-category}{\underline{monomorphisms}} are topological localisations.
                         \end{itemize}
                 \end{remark}
@@ -276,23 +276,23 @@
                     \noindent
                     \begin{enumerate}
                         \item \textbf{(The descent-theoretic perspective):} \begin{enumerate}
-                            \item \textbf{($\infty$-prestacks):} To us, a \textbf{prestack} on an $(\infty, 1)$-category $\C$ will always be a \textit{weak} $(\infty, 2)$-functor (i.e. a $(\infty, 2)$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological bicategory) into the weak $(\infty, 2)$-category ${}^{(\infty, 1)}\Cat$ of small $(\infty, 1)$-categories, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana-)natural transformations between these $(\infty, 1)$-(ana-)functors. In other terminologies, an $\infty$-prestack is an $(\infty, 1)$-pseudo-functor with values in ${}^{(\infty, 1)}\Cat$. Prestacks over a given $(\infty, 1)$-category $\C$ form a $(\infty, 1)$-category in an obvious manner; we shall denote it by ${}^{\infty}\Pre\Stk(\C)$. Actually, for all base $(\infty, 1)$-categories $\C$, the $(\infty, 1)$-category ${}^{\infty}\Pre\Stk(\C)$ can also be endowed with the structure of a weak $(\infty, 2)$-category, determined on the $(\infty, 2)$-categorical level by $(\infty, 2)$-morphisms which are \textit{strict} $(\infty, 2)$-natural transformations
+                            \item \textbf{($\infty$-prestacks):} To us, a \textbf{prestack} on an $(\infty, 1)$-category $\C$ will always be a \textit{weak} $(\infty, 2)$-functor (i.e. a $(\infty, 2)$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological bicategory) into the weak $(\infty, 2)$-category $(\infty, 1)\-\Cat$ of small $(\infty, 1)$-categories, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana-)natural transformations between these $(\infty, 1)$-(ana-)functors. In other terminologies, an $\infty$-prestack is an $(\infty, 1)$-pseudo-functor with values in $(\infty, 1)\-\Cat$. Prestacks over a given $(\infty, 1)$-category $\C$ form a $(\infty, 1)$-category in an obvious manner; we shall denote it by $\infty\-\Pre\Stk(\C)$. Actually, for all base $(\infty, 1)$-categories $\C$, the $(\infty, 1)$-category $\infty\-\Pre\Stk(\C)$ can also be endowed with the structure of a weak $(\infty, 2)$-category, determined on the $(\infty, 2)$-categorical level by $(\infty, 2)$-morphisms which are \textit{strict} $(\infty, 2)$-natural transformations
                             
                             Additionally, we shall assume the Axiom of Choice (which incidentally, forces us to adopt definition \ref{def: internal_categories}). The advantage in this is that for all base $(\infty, 1)$-categories $\C$, we will automatically be given a \textit{weak} $2$-equivalence of \textit{weak} $(\infty, 2)$-categories:
-                                $${}^{\infty}\Pre\Stk(\C) \cong \Fib_{(\infty, 1)}(\C)$$
+                                $$\infty\-\Pre\Stk(\C) \cong \Fib_{(\infty, 1)}(\C)$$
                             between the weak $(\infty, 2)$-category of $\infty$-prestacks on $\C$ and that of fibred $(\infty, 1)$-categories on $\C$. Logicians might scoff at such a practice, but since choosing cleavages in algebraic geometry is mostly just asking for trouble, we shall try to bear the shame of having Choice.
                             \item \textbf{($\infty$-stacks):} Let us build upon the above notion of $\infty$-prestacks and declare that from this point on, the term \say{\textbf{$\infty$-stack}} shall mean \say{sheaf of $(\infty, 1)$-categories}, i.e. an $\infty$-stack is a fibred $(\infty, 1)$-category which satisfies $(\infty, 1)$-descent; concretely, an $\infty$-stack $\calX$ over a small \href{https://ncatlab.org/nlab/show/(infinity,1)-site}{\underline{$\infty$-site}} $(\C, J)$ is an $\infty$-prestack such that for all objects $X$ of $\C$ and all covering $J$-sieves $\U_{/X}$ thereon, one has the following equivalence of $(\infty, 1)$-categories:
-                                $$\calX(X) \cong \calX\left({}^{(\infty, 1)}\underset{U \in \U_{/X}}{\colim} h_U\right)$$
-                            $\infty$-stacks on $(\C, J)$ form a full weak $(\infty, 2)$-subcategory of the weak $(\infty, 2)$-category ${}^{\infty}\Pre\Stk(\C)$ of $\infty$-prestacks on $\C$, which shall be denoted by ${}^{\infty}\Stk(\C, J)$. Furthermore, $\infty$-stacks of $\infty$-groupoids (i.e. $(\infty, 1)$-categories fibred in $\infty$-groupoids that satisfy $(\infty, 1)$-descent) on small $\infty$-sites $(\C, J)$ form an $\infty$-topos which is written $\Sh_{(\infty, 1)}(\C, J)$; occasionally, we might refer to these as sheaves of $\infty$-groupoids; naturally, $\Sh_{(\infty, 1)}(\C, J)$ comes equipped with a \href{https://ncatlab.org/nlab/show/(infinity,1)-topos#AsAGeometricEmbedding}{\underline{$(\infty, 1)$-geometric embedding}} into the weak $(\infty, 2)$-category $\Psh_{(\infty, 1)}(\C)$ of $\infty$-prestacks of $\infty$-groupoids on $\C$.
+                                $$\calX(X) \cong \calX\left((\infty, 1)\-\underset{U \in \U_{/X}}{\colim} h_U\right)$$
+                            $\infty$-stacks on $(\C, J)$ form a full weak $(\infty, 2)$-subcategory of the weak $(\infty, 2)$-category $\infty\-\Pre\Stk(\C)$ of $\infty$-prestacks on $\C$, which shall be denoted by $\infty\-\Stk(\C, J)$. Furthermore, $\infty$-stacks of $\infty$-groupoids (i.e. $(\infty, 1)$-categories fibred in $\infty$-groupoids that satisfy $(\infty, 1)$-descent) on small $\infty$-sites $(\C, J)$ form an $\infty$-topos which is written $\Sh_{(\infty, 1)}(\C, J)$; occasionally, we might refer to these as sheaves of $\infty$-groupoids; naturally, $\Sh_{(\infty, 1)}(\C, J)$ comes equipped with a \href{https://ncatlab.org/nlab/show/(infinity,1)-topos#AsAGeometricEmbedding}{\underline{$(\infty, 1)$-geometric embedding}} into the weak $(\infty, 2)$-category $\Psh_{(\infty, 1)}(\C)$ of $\infty$-prestacks of $\infty$-groupoids on $\C$.
                         \end{enumerate}
                         \item \textbf{(The internal point of view):} From the internal point of view (which in the opinion of the author, is a lot more intuitive; this is, however, purely personal), $\infty$-(pre)stacks are nothing but internal $(\infty, 1)$-categories inside $\infty$-(pre)sheaf topoi. Note that $\infty$-(pre)stacks fibred in $\infty$-groupoids are precisely $(\infty, 1)$-(pre)sheaves, so we do not to treat them as a cases of (pre)stacks which are not (pre)sheaves, unlike how $(2, 1)$-(pre)sheaves having to be considered as phenomena more general than (pre)sheaves of sets; this is thanks to the fact that the notion of $\infty$-groupoids subsumes both those of $1$-groupoids and sets (which may be viewed as $0$-groupoids): in particular, \textit{sets are $0$-truncated $\infty$-groupoids, and $1$-groupoids are $1$-truncated $\infty$-groupoids}. Incidentally, this is also a first glimpse into the myriads of reasons why $\infty$-categories might help us simplify instead of further complicating constructions in algebraic geometry, especially when it comes to taking colimits (recall how in general, quotients stacks are not sheaves of sets but rather stacks in groupoids).
                     
-                        Readers may also have heard of mysterious entities known as \textbf{$\infty$-gerbes}. There are many definitions floating around, but again, let us fix one meaning for the term. To us, an $\infty$-gerbe on a small $\infty$-site $(\C, J)$ will always be an group object internal to ${}^{\infty}\Stk(\C, J)$ (i.e. an object of $\Sh_{{}^{\infty}\Grpd}(\C, J)$ whose connected component is the connected component of the terminal object of $\Sh_{{}^{\infty}\Grpd}(\C, J)$). Additionally, the notion of gerbes coincides with that of so-called principal $\infty$-bundles.
+                        Readers may also have heard of mysterious entities known as \textbf{$\infty$-gerbes}. There are many definitions floating around, but again, let us fix one meaning for the term. To us, an $\infty$-gerbe on a small $\infty$-site $(\C, J)$ will always be an group object internal to $\infty\-\Stk(\C, J)$ (i.e. an object of $\Sh_{\infty\-\Grpd}(\C, J)$ whose connected component is the connected component of the terminal object of $\Sh_{\infty\-\Grpd}(\C, J)$). Additionally, the notion of gerbes coincides with that of so-called principal $\infty$-bundles.
                     \end{enumerate}
                 \end{convention}
                 
                 \begin{remark}[Derived affine schemes over general $\infty$-(pre)stacks] \label{remark: weak_(infinity, 2)_yoneda}
-                    Instead of embedding a base $(\infty, 1)$-category $\C$ into the $(\infty, 1)$-category of $(\infty, 1)$-presheaves of $\infty$-groupoids $\Psh_{{}^{\infty}\Grpd}(\C)$ thereon, we shall be viewing $\C$ as a tautological weak $(\infty, 2)$-category, and shall instead be embedding it into the weak $(\infty, 2)$-category ${}^{\infty}\Pre\Stk(\C)$ of $\infty$-prestacks over $\C$ via a fully faithful $(\infty, 2)$-functor, known as the \textbf{$(\infty, 2)$-Yoneda embedding}. Via the $(\infty, 2)$-Yoneda embedding, one can view objects of $\C$ as $\infty$-prestacks fibred in $\infty$-groupoids (which we note to be $(\infty, 2)$-categories wherein all $(\infty, 1)$-cells and $(\infty, 2)$-cells are identities), and therefore, the notion of objects of $\C$ with mappings into an arbitrarily given base $\infty$-prestack $\calY \in {}^{\infty}\Pre\Stk(\C)$ is well-defined; in particular, one can meaningfully talk about so-called derived affine schemes over $\infty$-prestacks on any (symmetric monoidal) dg-category of commutative algebras ${}^{\dg, k/}\Comm\Alg^{\op}$ (more on this later). 
+                    Instead of embedding a base $(\infty, 1)$-category $\C$ into the $(\infty, 1)$-category of $(\infty, 1)$-presheaves of $\infty$-groupoids $\Psh_{\infty\-\Grpd}(\C)$ thereon, we shall be viewing $\C$ as a tautological weak $(\infty, 2)$-category, and shall instead be embedding it into the weak $(\infty, 2)$-category $\infty\-\Pre\Stk(\C)$ of $\infty$-prestacks over $\C$ via a fully faithful $(\infty, 2)$-functor, known as the \textbf{$(\infty, 2)$-Yoneda embedding}. Via the $(\infty, 2)$-Yoneda embedding, one can view objects of $\C$ as $\infty$-prestacks fibred in $\infty$-groupoids (which we note to be $(\infty, 2)$-categories wherein all $(\infty, 1)$-cells and $(\infty, 2)$-cells are identities), and therefore, the notion of objects of $\C$ with mappings into an arbitrarily given base $\infty$-prestack $\calY \in \infty\-\Pre\Stk(\C)$ is well-defined; in particular, one can meaningfully talk about so-called derived affine schemes over $\infty$-prestacks on any (symmetric monoidal) dg-category of commutative algebras ${}^{\dg, k/}\Comm\Alg^{\op}$ (more on this later). 
                     \\
                     For a detailed discussion of the weak $(\infty, 2)$-Yoneda embedding, the reader may consult \cite{nlab:yoneda_lemma_for_bicategories}.
                 \end{remark}
@@ -330,25 +330,25 @@
                     Let $(\C, J)$ be a small $\infty$-site. Then, we have the following tower of full weak $(\infty, 2)$-subcategories that are all \textit{closed under arbitrary weak $(\infty, 2)$-limits and under finite weak $(\infty, 2)$-colimits}:
                         $$
                             \begin{tikzcd}
-                            	{{}^{\infty}\Stk(\C, J)} \\
+                            	{\infty\-\Stk(\C, J)} \\
                             	{\Sh_{(\infty,1)}(\C, J)} \\
-                            	{{}^{\infty}\Stk^{\geom}(\C, J)}
+                            	{\infty\-\Stk^{\geom}(\C, J)}
                             	\arrow[no head, from=3-1, to=2-1]
                             	\arrow[no head, from=2-1, to=1-1]
                             \end{tikzcd}
                         $$
-                    wherein ${}^{\infty}\Stk^{\geom}(\C, J)$ is the weak $(\infty, 2)$-category of geometric $\infty$-stacks on $(\C, J)$.
+                    wherein $\infty\-\Stk^{\geom}(\C, J)$ is the weak $(\infty, 2)$-category of geometric $\infty$-stacks on $(\C, J)$.
                 \end{lemma}
                     \begin{proof}
                         
                     \end{proof}
                 
                 \begin{theorem}[$(\infty, 1)$-sheafification of geometric $\infty$-prestacks] \label{theorem: (infinity,1)_sheafification_of_derived_geometric_prestacks}
-                    Let $(\C, J)$ be a small $\infty$-site. Then, every weak $(\infty, 2)$-geometric embedding of the $\infty$-topos $\Sh_{(\infty, 1)}(\C, J)$ into the $(\infty, 1)$-presheaf $\infty$-topos $\Psh_{(\infty, 1)}(\C, J)$ can be restricted down to a weak $(\infty, 2)$-geometric embedding of the weak $(\infty, 2)$-category of geometric $\infty$-stacks $\Stk^{\geom}(\C, J)$ into the weak $(\infty, 2)$-category of geometric $\infty$-prestacks ${}^{\infty}\Pre\Stk^{\geom}(\C)$ (i.e. geometric $\infty$-stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $(\infty, 2)$-category ${}^{(\infty, 2)}\Cat$ of weak $2$-categories: 
+                    Let $(\C, J)$ be a small $\infty$-site. Then, every weak $(\infty, 2)$-geometric embedding of the $\infty$-topos $\Sh_{(\infty, 1)}(\C, J)$ into the $(\infty, 1)$-presheaf $\infty$-topos $\Psh_{(\infty, 1)}(\C, J)$ can be restricted down to a weak $(\infty, 2)$-geometric embedding of the weak $(\infty, 2)$-category of geometric $\infty$-stacks $\Stk^{\geom}(\C, J)$ into the weak $(\infty, 2)$-category of geometric $\infty$-prestacks $\infty\-\Pre\Stk^{\geom}(\C)$ (i.e. geometric $\infty$-stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $(\infty, 2)$-category ${}^{(\infty, 2)}\Cat$ of weak $2$-categories: 
                         $$
                             \begin{tikzcd}
                             	{\Sh_{(\infty, 1)}(\C, J)} & {\Psh_{(\infty, 1)}(\C)} \\
-                            	{{}^{\infty}\Stk^{\geom}(\C, J)} & {{}^{\infty}\Pre\Stk^{\geom}(\C)}
+                            	{\infty\-\Stk^{\geom}(\C, J)} & {\infty\-\Pre\Stk^{\geom}(\C)}
                             	\arrow[""{name=0, anchor=center, inner sep=0}, "{{}^{\sh}(-)}"', shift right=2, shorten <=2pt, from=1-2, to=1-1]
                             	\arrow[""{name=1, anchor=center, inner sep=0}, "i"', shift right=2, hook, from=1-1, to=1-2]
                             	\arrow[shift left=2, hook', from=2-1, to=1-1]
@@ -393,10 +393,10 @@
             \noindent
             \begin{itemize}
                 \item From now on until the end of the chapter, everything will be assumed to be derived. 
-                \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
+                \item By $\Cat_1$, or simply $\Cat$, we shall actually mean $(\infty, 1)\-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
                 
-                Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
-                \item A subcategory of $\Cat$ this is of particular interest is $(\Cat^{\dg, \cont})^2$ (or simply $\Cat^{\dg, \cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\Cat^{\dg, \cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $(\Cat^{\dg, \cont})^1$ to put emphasis on the disregard of $2$-morphisms.
+                Similarly, by $\Grpd_1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd_2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
+                \item A subcategory of $\Cat$ this is of particular interest is $\dg\Cat^{\cont}_2$ (or simply $\dg\Cat^{\cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $\dg\Cat^{\cont}_1$ to put emphasis on the disregard of $2$-morphisms.
             \end{itemize} 
         \end{convention}
         
@@ -555,7 +555,7 @@
                         \end{proof}
                     
                 \paragraph{An action of \texorpdfstring{$\QCoh(X)$}{} on \texorpdfstring{$\Ind\Coh(X)$}{}}
-                    It is not hard to see that for any prestack locally almost of finite type $\calY$, the category $\Ind\Coh(\calY)$ of ind-coherent sheaves over it has a natural structure of a dg-category. What this means is that $\Ind\Coh(\calY)$ is an object of the $1$-category $(\Cat^{\dg, \cont})^1$ of dg-categories and continuous functors between them. On this category, there exists a natural monoidal structure inherited from the $1$-category of stable $\infty$-categories, which is the Lurie tensor product $\boxtimes$. 
+                    It is not hard to see that for any prestack locally almost of finite type $\calY$, the category $\Ind\Coh(\calY)$ of ind-coherent sheaves over it has a natural structure of a dg-category. What this means is that $\Ind\Coh(\calY)$ is an object of the $1$-category $\dg\Cat^{\cont}_1$ of dg-categories and continuous functors between them. On this category, there exists a natural monoidal structure inherited from the $1$-category of stable $\infty$-categories, which is the Lurie tensor product $\boxtimes$. 
                 
                     Now, one thing to note is that for each locally almost of finite type scheme $X$, the evident embedding $\Psi_X: \Ind\Coh(X) \hookrightarrow \QCoh(X)$ is a continuous functor. In particular, this means one can construct continuous functors $\QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$, and hence the Lurie tensor product $\QCoh(X) \boxtimes \Ind\Coh(X)$, which satisfies the following universal property:
                         $$
@@ -630,7 +630,7 @@
                 \begin{proposition}[Existence of $*$-pushforwards] \label{prop: indcoh_*_pushforwards}
                     Let $f: X \to Y$ be any morphism in $\Sch^{\aft}$. Then, there exists a corresponding uniquely defined t-exact functor:
                         $$f_*|_{\Ind\Coh}: \Ind\Coh(X) \to \Ind\Coh(Y)$$
-                    fitting into the following commutative diagram in $(\Cat^{\dg, \cont})^1$:
+                    fitting into the following commutative diagram in $\dg\Cat^{\cont}_1$:
                         $$
                             \begin{tikzcd}
                             	{\Ind\Coh(X)} & {\QCoh(X)} \\
@@ -653,12 +653,12 @@
                 \begin{convention}
                     \noindent
                     \begin{itemize}
-                        \item Let $(\Cat^{\dg, \cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})^1$ be the $1$-full subcategory of $(\Cat^{\dg, \cont})^1$ wherein:
+                        \item Let $(\dg\Cat^{\cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})_1$ be the $1$-full subcategory of $\dg\Cat^{\cont}_1$ wherein:
                             \begin{itemize}
                                 \item objects are \textit{cocomplete} dg-categories $\calA$ endowed with t-structures such that $\calA$ is compactly generated by $\calA^+$ and that $\calA^{\geq 0}$ is accessible, and
                                 \item $1$-morphisms are \textit{continuous} functors $F: \calA \to \calB$ between such non-cocomplete dg-categories which are left-t-exact up a finite shift and such that the restriction $F|_{\calA^{\geq 0}}$ is accessible. 
                             \end{itemize}
-                        \item Let $(\Cat^{\dg, \non\co\compl}_{\tstructure^+, \access(\geq 0)})^1$ be the $1$-full subcategory of $(\Cat^{\dg})^1$ wherein:
+                        \item Let $(\dg\Cat^{\non\co\compl}_{\tstructure^+, \access(\geq 0)})_1$ be the $1$-full subcategory of $\dg\Cat_1$ wherein:
                             \begin{itemize}
                                 \item objects are \textit{non-cocomplete} dg-categories $\calA$ endowed with t-structures such that:
                                     $$\calA \cong \calA^+$$
@@ -669,15 +669,15 @@
                 \end{convention}
                 \begin{lemma} \label{lemma: selecting_a_compact_generator}
                     There exists a natural $1$-fully faithful embedding:
-                        $$(\Cat^{\dg, \cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})^1 \to (\Cat^{\dg, \non\co\compl}_{\tstructure^+, \access(\geq 0)})^1$$
+                        $$(\dg\Cat^{\cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})_1 \to (\dg\Cat^{\non\co\compl}_{\tstructure^+, \access(\geq 0)})_1$$
                     defined via the assignment:
                         $$\calA \mapsto \calA^+$$
                 \end{lemma}
                     \begin{proof}
-                        Denote the assignment in question by $(-)^+$. Then, observe that for every object $\calA \in (\Cat^{\dg, \cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})^1$, the corresponding object $\calA^+ \in (\Cat^{\dg, \non\co\compl}_{\tstructure^+, \access(\geq 0)})^1$ compactly generates $\calA$ by the very construction of $(\Cat^{\dg, \cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})^1$. Also, note that any $\calA' \in (\Cat^{\dg, \non\co\compl}_{\tstructure^+, \access(\geq 0)})^1$ satisfies $\calA' \cong (\calA')^+$ by definition. By putting the two observations together one sees that there is a natural equivalence:
+                        Denote the assignment in question by $(-)^+$. Then, observe that for every object $\calA \in (\dg\Cat^{\cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})_1$, the corresponding object $\calA^+ \in (\dg\Cat^{\non\co\compl}_{\tstructure^+, \access(\geq 0)})_1$ compactly generates $\calA$ by the very construction of $(\dg\Cat^{\cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})_1$. Also, note that any $\calA' \in (\dg\Cat^{\non\co\compl}_{\tstructure^+, \access(\geq 0)})_1$ satisfies $\calA' \cong (\calA')^+$ by definition. By putting the two observations together one sees that there is a natural equivalence:
                             $$\Maps(\calA, \calB) \cong \Maps(\calA^+, \calB^+)$$
                         which implies that indeed, there exists a natural $1$-fully faithful embedding:
-                            $$(\Cat^{\dg, \cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})^1 \to (\Cat^{\dg, \non\co\compl}_{\tstructure^+, \access(\geq 0)})^1$$
+                            $$(\dg\Cat^{\cont, \co\compl}_{\tstructure^{\pm}, \access(\geq 0), \comp\gen(+)})_1 \to (\dg\Cat^{\non\co\compl}_{\tstructure^+, \access(\geq 0)})_1$$
                         defined via the assignment:
                             $$\calA \mapsto \calA^+$$
                     \end{proof}
@@ -689,7 +689,7 @@
                     \end{proof}
                 \begin{theorem}[Functoriality of $\Ind\Coh$] \label{theorem: indcoh_functoriality}
                     There exists a functor:
-                        $$\Ind\Coh_*|_{\Sch^{\aft}}: \Sch^{\aft} \to (\Cat^{\dg, \cont})^1$$
+                        $$\Ind\Coh_*|_{\Sch^{\aft}}: \Sch^{\aft} \to \dg\Cat^{\cont}_1$$
                     along with a natural tranformation:
                         $$\Psi|_{\Sch^{\aft}}: \Ind\Coh_*|_{\Sch^{\aft}} \to \QCoh_*|_{\Sch^{\aft}}$$
                     which at the level of components, associates to each morphism $f: X \to Y$ in $\Sch^{\aft}$ a commutative diagram as follows:

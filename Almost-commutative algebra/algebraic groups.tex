@@ -290,7 +290,7 @@
         \subsection{Split reductive groups}
         
     \section{The Geometric Satake Equivalence and Langlands Duality}
-        \subsection{Perverse sheaves on the affine Grassmannian}
+        \subsection{The abelian version}
             \subsubsection{Beauville-Laszlo Uniformisation and the affine Grassmannian}
                 \paragraph{Vector bundles on the formal disc and Beauville-Laszlo Uniformisation}
                     \begin{convention}
@@ -314,7 +314,7 @@
                 
                 \paragraph{The affine Grassmannian}
                     \begin{definition}[Local affine Grassmannians] \label{def: local_affine_grassmannians}
-                        For any algebraic group $G$ over some base commutative ring $k$, there is a canonically defined moduli space, commonly denoted by $\Gr_G^{\loc}$ and called the \textbf{\textit{local} affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the groupoid that is the core of the category of $G$-torsors on $\bbD_R$ that trivialise over $\bbD_R^{\circ}$.  
+                        For any algebraic group $G$ over some base commutative ring $k$, there is a canonically defined moduli space, commonly denoted by $\Gr_G$ and called the \textbf{\textit{local} affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the groupoid that is the core of the category of $G$-torsors on $\bbD_R$ that trivialise over $\bbD_R^{\circ}$.  
                     \end{definition}
                     \begin{remark}
                         \noindent
@@ -322,36 +322,29 @@
                             \item It is rather easy to see that $\Gr_G^{\loc}$ satisfies fppf descent and hence a stack in the fppf topology.
                             \item Furthermore, by introducing the so-called loop and arc groups $G[\![t]\!]$ and $G(\!(t)\!)$, defined by $G[\![t]\!](R) \cong G(R[\![t]\!])$ and $G(\!(t)\!)(R) \cong G(R(\!(t)\!))$ respectively, one can show that:
                                 $$\Gr_G^{\loc} \cong G(\!(t)\!)/G[\![t]\!]$$
-                            using the fact that $G(\!(t)\!)$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. lemma \ref{lemma: affine_grassmannians_as_coset_spaces}).
+                            using the fact that $G(\!(t)\!)$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. lemma \ref{prop: affine_grassmannians_as_coset_spaces}).
                         \end{itemize}
                     \end{remark}
                     
                     \begin{convention}
                         Let $k$ be a commutative ring and let $R$ be a commutative $k$-algebra. Then, for any scheme $X \in \Sch_{/\Spec k}$, we shall write $X_R$ for the base-change $X \x_{\Spec k} \Spec R$.
                     \end{convention}
-                    \begin{definition}[Global affine Grassmannian] \label{def: global_affine_grassmannians}
-                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a $k$-rational point $x \in |X|$. Then, we define the \textbf{global affine Grassmannian} over $X$ attached to $G$, denoted by $\Gr_{G, X}^{\glob}$, to be the prestack that assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the core of the category of $G$-torsors on $X_R$ which trivialise over $(X \setminus \{x\})_R$.
+                    \begin{definition}[Global affine Grassmannians] \label{def: global_affine_grassmannians}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a $k$-rational point $x \in |X|$. Then, we define the \textbf{global affine Grassmannian} or \textbf{Hecke stack}\footnote{A terminology we shall reserve for later.} over $X$ attached to $G$, denoted by $\Gr_{G, X}^{\glob}$, to be the prestack that assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the core of the category of $G$-torsors on $X_R$ which trivialise over $(X \setminus \{x\})_R$.
                     \end{definition}
                     \begin{remark}[Local-to-global compatibility] \label{remark: local_to_global_for_affine_grassmannians}
                         Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Also, fix a $k$-rational point $x \in |X|$ and denote by $\Gr_{G, X, x}^{\loc}$ the local affine $G$-Grassmannian over the formal disc $\bbD$ around $x$ (cf. definition \ref{def: local_affine_grassmannians}). Then, via Beauville-Laszlo Uniformisation, one can easily show that:
                             $$\Gr_{G, X}^{\glob} \cong \Gr_{G, X, x}^{\loc}$$
                     \end{remark}
-                    
-                    \begin{lemma}[Affine Grassmannians as coset spaces] \label{lemma: affine_grassmannians_as_coset_spaces}
-                        Let $G$ be an algebraic group. Then, $\Gr_G^{\loc} \cong G(\!(t)\!)/G[\![t]\!]$.
-                    \end{lemma}
-                        \begin{proof}
-                            
-                        \end{proof}
-                    \begin{corollary}
-                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Also, fix a $k$-rational point $x \in |X|$. Then $\Gr_{G, X}^{\glob} \cong G(\!(t)\!)/G[\![t]\!]$.
-                    \end{corollary}
+                    \begin{convention}
+                        From now on, we shall write $\Gr_G$ instead of $\Gr_G^{\loc}$.
+                    \end{convention}
                     
                     \begin{proposition}[Structure of affine Grassmannians] \label{prop: structure_of_affine_grasmannian}
                         Let $G$ be an algebraic group. Then:
                             \begin{enumerate}
-                                \item $\Gr_G^{\loc}$ is an ind-scheme of ind-finite type, and
-                                \item when $G$ is reductive over some field $k$, $\Gr_G^{\loc}$ will be ind-projective.
+                                \item $\Gr_G$ is an ind-scheme of ind-finite type, and
+                                \item when $G$ is reductive over some field $k$, $\Gr_G$ will be ind-projective.
                             \end{enumerate}
                     \end{proposition}
                         \begin{proof}
@@ -361,11 +354,55 @@
                                 \item 
                             \end{enumerate}
                         \end{proof}
+                        
+                    \begin{proposition}[Affine Grassmannians as coset spaces] \label{prop: affine_grassmannians_as_coset_spaces}
+                        Let $G$ be an algebraic group. Then, $\Gr_G \cong G(\!(t)\!)/G[\![t]\!]$.
+                    \end{proposition}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Also, fix a $k$-rational point $x \in |X|$. Then $\Gr_{G, X}^{\glob} \cong G(\!(t)\!)/G[\![t]\!]$.
+                    \end{corollary}
+                    \begin{corollary}[Loop group action on Grassmannians] \label{coro: loop_group_action_on_grassmannians}
+                        There is a $G[\![t]\!]$-action on $\Gr_G$, which means that one can now meaningfully discuss equivariance of sheaves on the affine Grassmannian $\Gr_G$. In particular, we shall be interested in $G[\![t]\!]$-equivariant (i.e. \say{spherical}) D-modules on $\Gr_G$.
+                    \end{corollary}
+                    
+                \paragraph{The Hecke stack and the factorisable Grassmannian}
+                    \begin{definition}[The Hecke (pre)stack] \label{def: hecke_stack}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a finite set of $k$-rational points $x_1, ..., x_n \in |X|$, which we shall view as a $k$-rational point $\vec{x} \in |X^n|$. Then, we define the \textbf{Hecke stack} over $X$ attached to $G$, denoted by $\Hecke_{G, X^n}$, to be the prestack that assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the core of the category of $G$-torsors on $X_R$ which trivialise over $(X \setminus \{x_1, ..., x_n\})_R$. 
+                        
+                        Alternatively, one defines $\Hecke_{G, X^n}$ as the prestack that assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the core of the category of $G$-torsors (\textit{not $G^n$-torsors!}) on $X^n_R$ which trivialise over $(X^n \setminus \{\vec{x}\})_R$. 
+                    \end{definition}
+                    \begin{remark}
+                        It is an immediate consequence of the definitions that:
+                            $$\Hecke_{G, X^1} \cong \Gr_{G, X}^{\glob}$$
+                        and via remark \ref{remark: local_to_global_for_affine_grassmannians}, one also has the following equivalence of fppf-stacks:
+                            $$\Hecke_{G, X^1} \cong \Gr_G$$
+                    \end{remark}
             
-            \subsubsection{Perverse sheaves and geometry}
+            \subsubsection{Convolutions of spherical D-modules, the fusion product, and the rigid-monoidal structure on spherical D-modules}
+                \begin{convention}
+                    From now on, our ground field $k$ shall be of characteristic $0$.
+                \end{convention}
+                
+                \paragraph{Convolution}
+                    \begin{definition}[Spherical D-modules] \label{def: spherical_D_modules}
+                        Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a finite set of $k$-rational points $x_1, ..., x_n \in |X|$. Then, the category of $G[\![t]\!]$-equivariant D-modules on the Hecke stack $\Hecke_{G, X^n}$, which we shall denote by $\Sph_{G, X^n}$, shall be called the $n^{th}$ category of \textbf{$G$-spherical D-modules} on $X$.
+                    \end{definition}
+                    \begin{remark}
+                        Since the ground field $k$ is of characteristic $0$ and because $\Gr_G \cong \Hecke_{G, X^1}$ is an ind-scheme of ind-finite type, the category $\Dmod(\Gr_G)$ is well-defined. The category $\Sph_{G, X^1} \cong \Dmod(\Gr_G)^{G[\![t]\!]}$ can then be obtained via consideration of the natural $G[\![t]\!]$-action on $\Gr_G$. 
+                                
+                        We shall discuss the well-definiteness of $\Sph_{G, X^n}$ for $n > 1$ later.
+                    \end{remark}
+                    \begin{convention}
+                        Thanks to the local-to-global compatibility of the affine Grassmannian established in remark \ref{remark: local_to_global_for_affine_grassmannians}, we shall henceforth be abbreviating $\Sph_{G, X^1}$ down to $\Sph_G$.
+                    \end{convention}
             
-        \subsection{Weights}
-        
-        \subsection{Convolution and fusion of perverse sheaves}
-        
-        \subsection{The Tannakian structure}
+            \subsubsection{Hecke eigensheaves}
+            
+            \subsubsection{Fibre functors and weights}
+            
+            \subsubsection{Langlands Duality}
+            
+        \subsection{The quantised derived version}

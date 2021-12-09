@@ -10,10 +10,10 @@
         \begin{convention}
             \noindent
             \begin{itemize}
-                \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
+                \item By $\Cat_1$, or simply $\Cat$, we shall actually mean $(\infty, 1)\-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
                 
                 Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
-                \item A subcategory of $\Cat$ this is of particular interest is $\Cat^{\dg, \cont}$, the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\Cat^{\dg, \cont}$ as a mere $(\infty, 1)$-category.
+                \item A subcategory of $\Cat$ this is of particular interest is $\dg\Cat^{\cont}$, the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category.
             \end{itemize} 
         \end{convention}
     
@@ -67,14 +67,14 @@
                             \item whose $2$-morphisms are lax-natural transformation between the functors $f^*$.
                         \end{itemize}
                     and note that there is a canonical forgetful functor:
-                        $$\oblv: {}^{\pt/}\Cat^{2, \lax} \to \Cat^2$$
+                        $$\oblv: {}^{\pt/}\Cat^{2, \lax} \to \Cat_2$$
                     that disregards the choices of distinguished objects and morphisms between them (i.e. $(\E, e)$ gets sent to $\E$). Now, let:
-                        $$\beta: \calB \to \Cat^2$$
+                        $$\beta: \calB \to \Cat_2$$
                     be any pseudo-functor between weak $2$-categories. Then, the \textbf{Grothendieck Construction} for $\beta$, denoted by $\int \beta$, shall be the folloiwng $2$-pullback:
                         $$
                             \begin{tikzcd}
                             	{\int \beta} & {{}^{\pt/}\Cat^{2, \lax}} \\
-                            	\calB & {\Cat^2}
+                            	\calB & {\Cat_2}
                             	\arrow[from=1-1, to=2-1]
                             	\arrow["\beta", from=2-1, to=2-2]
                             	\arrow["\oblv", from=1-2, to=2-2]
@@ -86,7 +86,7 @@
                         $$
                             \begin{tikzcd}
                             	{{}^{\pt/}\Cat^{2, \lax}} \\
-                            	{\Cat^2}
+                            	{\Cat_2}
                             	\arrow["\oblv", from=1-1, to=2-1]
                             \end{tikzcd}
                         $$
@@ -112,11 +112,11 @@
                                     $$
                                 is a pair of functors $L: \D \to \C, R: \C \to \D$ such that for all $x \in \C, y \in \D$, we have the following isomorphism in $\V$:
                                     $$\C(Ly, x) \cong \D(y, Rx)$$
-                                \item \textbf{(Strict $2$-adjunctions):} By letting $\V$ be $\Cat^1$, one obtains so-called \textbf{strict $2$-adjunctions}, which induces equivalences of $1$-categories of the form:
+                                \item \textbf{(Strict $2$-adjunctions):} By letting $\V$ be $\Cat_1$, one obtains so-called \textbf{strict $2$-adjunctions}, which induces equivalences of $1$-categories of the form:
                                     $$\C(Ly, x) \underset{1}{\cong} \D(y, Rx)$$
                                 (again, for all $x \in \C$ and $y \in \D$).
                             \end{enumerate}
-                        \item \textbf{(Weak $2$-adjunctions):} Now, what one can do to relax a strict $2$-adjunction into a \textbf{weak $2$-adjunction} (also known as a \textbf{biadjunction}) is to let the enriching cosmos $\V$ be $\Cat^2$ instead of $\Cat^1$. This however, warrants a certain level of care for there to be no circular logical dependence. Particularly, we can not simply define $\Cat^2$ as the category of all $\Cat^1$-enriched categories, as said enriched category would only be a $1$-category: hom-spaces would simply be functor $1$-categories, and no so-called modulators between natural transformations between functors would be taken in account as $2$-morphisms in these functor categories. The way to get around this issue is to instead take $\Cat^2$ as the natural weak $2$-category of (small) categories, anafunctors between said categories, and ananatural transformations between those anafunctors. Then, enriching over $\Cat^2$ would produce \textit{weak} $2$-equivalences of the following form for all $x \in \C$ and $y \in \D$:
+                        \item \textbf{(Weak $2$-adjunctions):} Now, what one can do to relax a strict $2$-adjunction into a \textbf{weak $2$-adjunction} (also known as a \textbf{biadjunction}) is to let the enriching cosmos $\V$ be $\Cat_2$ instead of $\Cat_1$. This however, warrants a certain level of care for there to be no circular logical dependence. Particularly, we can not simply define $\Cat_2$ as the category of all $\Cat_1$-enriched categories, as said enriched category would only be a $1$-category: hom-spaces would simply be functor $1$-categories, and no so-called modulators between natural transformations between functors would be taken in account as $2$-morphisms in these functor categories. The way to get around this issue is to instead take $\Cat_2$ as the natural weak $2$-category of (small) categories, anafunctors between said categories, and ananatural transformations between those anafunctors. Then, enriching over $\Cat_2$ would produce \textit{weak} $2$-equivalences of the following form for all $x \in \C$ and $y \in \D$:
                             $$\C(Ly, x) \underset{2, \weak}{\cong} \D(y, Rx)$$
                         \item \textbf{(Lax $2$-adjunctions):} There are also so-called \textbf{lax $2$-adjunctions}. These are not really adjunctions in the usual sense, since they only qualify as \say{adjunctions} up to adjunctions between certain hom-spaces. Particularly, if $(L \underset{2, \lax}{\ladjoint} R)$ is lax $2$-adjoint pair then for all $x \in \C$ and $y \in \D$, we shall have a $1$-adjunction of the following shape:
                             $$
@@ -130,12 +130,12 @@
                     \end{enumerate}
                 \end{remark}
                 \begin{proposition}[Universal property of the Grothendieck Construction] \label{prop: grothendieck_construction_universal_property}
-                    Alternatively (and of course, equivalently), one might define the Grothendieck Construction of pseudo-functors from some base category $\calB$ to $\Cat^2$ as a $2$-functor:
-                        $$\int: \Pseudo(\calB, \Cat^2) \to \Cat^2_{/\calB}$$
+                    Alternatively (and of course, equivalently), one might define the Grothendieck Construction of pseudo-functors from some base category $\calB$ to $\Cat_2$ as a $2$-functor:
+                        $$\int: \Pseudo(\calB, \Cat_2) \to (\Cat_2)_{/\calB}$$
                     fitting into the following weak $2$-adjunction:
                         $$
                             \begin{tikzcd}
-                            	{\Cat^2_{/\calB}} & {\Pseudo(\calB, \Cat^2)} & {}
+                            	{(\Cat_2)_{/\calB}} & {\Pseudo(\calB, \Cat_2)} & {}
                             	\arrow[""{name=0, anchor=center, inner sep=0}, "\const"', shift right=2, from=1-1, to=1-2]
                             	\arrow[""{name=1, anchor=center, inner sep=0}, "\int"', shift right=2, from=1-2, to=1-1]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]

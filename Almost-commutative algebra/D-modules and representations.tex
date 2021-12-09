@@ -9,10 +9,10 @@
         \noindent
         \begin{itemize}
             \item From now on until the end of the chapter, everything will be assumed to be derived. 
-            \item By $\Cat^1$, or simply $\Cat$, we shall actually mean ${}^{(\infty, 1)}\Cat^1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat^2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
+            \item By $\Cat_1$, or simply $\Cat$, we shall actually mean $(\infty, 1)\-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
             
             Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
-            \item A subcategory of $\Cat$ this is of particular interest is $(\Cat^{\dg, \cont})^2$ (or simply $\Cat^{\dg, \cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\Cat^{\dg, \cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $(\Cat^{\dg, \cont})^1$ to put emphasis on the disregard of $2$-morphisms.
+            \item A subcategory of $\Cat$ this is of particular interest is $\dg\Cat^{\cont}_2$ (or simply $\dg\Cat^{\cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $\dg\Cat^{\cont}_1$ to put emphasis on the disregard of $2$-morphisms.
         \end{itemize} 
     \end{convention}
     
@@ -75,7 +75,7 @@
                         \item \textbf{(Reduced rings):} Reduced objects of $\Comm\Alg$ are nothing but $0$-connective commutative $k$-algebras with vanishing nilradicals, i.e. they have no non-zero nilpotent elements, and because ring homomorphisms preserve $0$, a homomorphism:
                             $$\varphi: R \to S$$
                         between two reduced commutative $k$-algebras $R$ and $S$ will be nothing more than an ordinary algebra homomorphism. As a consequence, reduced $k$-algebras form a full subcategory of $\Comm\Alg$ (or for that matter, of ${}^{\leq 0}\Comm\Alg$); we shall denote it by ${}^{\leq 0}\Comm\Alg^{\red}$; note that $k$ itself, by virtue of being a field of characteristic $0$, is trivially reduced as an algebra over itself, and hence is still the initial object of ${}^{\leq 0}\Comm\Alg^{\red}$. 
-                        \item \textbf{(Prestacks over reduced affine schemes):} The category of prestacks over ${}^{\leq 0}\Comm\Alg^{\red}$ shall be denoted by $\Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}}$. This is nothing but the domain restriction of the presheaf $\infty$-topos $\Pre\Stk$ (if we would view the assignment of $\infty$-presheaves $\infty$-topoi to $\infty$-categories as fibration $\Pre\Stk \to \Cat^1$) down from $\Comm\Alg^{\op}$ onto $({}^{\leq 0}\Comm\Alg^{\red})^{\op}$. 
+                        \item \textbf{(Prestacks over reduced affine schemes):} The category of prestacks over ${}^{\leq 0}\Comm\Alg^{\red}$ shall be denoted by $\Pre\Stk|_{{}^{\leq 0}\Sch^{\aff, \red}}$. This is nothing but the domain restriction of the presheaf $\infty$-topos $\Pre\Stk$ (if we would view the assignment of $\infty$-presheaves $\infty$-topoi to $\infty$-categories as fibration $\Pre\Stk \to \Cat_1$) down from $\Comm\Alg^{\op}$ onto $({}^{\leq 0}\Comm\Alg^{\red})^{\op}$. 
                     \end{itemize}
                 \end{remark}
                 
@@ -121,7 +121,7 @@
             \subsubsection{Left and right-crystals}
                 \begin{definition}[Right-crystals] \label{def: right-crystals}
                     By composing $\dR: \Pre\Stk^{\laft} \to \Pre\Stk^{\laft}$ with the functor:
-                        $$\Ind\Coh^!: (\Pre\Stk^{\laft})^{\op} \to (\Cat^{\dg, \cont})^1$$
+                        $$\Ind\Coh^!: (\Pre\Stk^{\laft})^{\op} \to \dg\Cat^{\cont}_1$$
                     one obtains a so-called functor of \textbf{right-crystals}:
                         $$\Crys^! \cong \Ind\Coh^! \circ \dR$$
                 \end{definition}
