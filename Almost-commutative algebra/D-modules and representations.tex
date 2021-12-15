@@ -130,7 +130,12 @@
         
         \subsection{D-modules}
         
-    \section{The Riemann-Hilbert Correspondence}
+        \subsection{Twistings}
+            \subsubsection{The notion of twists}
+            
+            \subsubsection{Twisted crystals}
+            
+    \section{D-schemes}
     
     \section{Localisations of Lie algebras}
         \subsection{The Borel-Weil-Bott Theorem}
@@ -139,15 +144,37 @@
                 \begin{itemize}
                     \item Throughout this subsection, we work over a ground field $k$ that is algebraically closed and of characteristic $0$. 
                     \item $X$ will always be a smooth algebraic variety over $\Spec k$.
-                    \item $G$ will always be a connected algebraic group over $\Spec k$ that acts smoothly on $X$.
+                    \item $G$ will always be a connected algebraic group over $\Spec k$ that acts smoothly on $X$. We shall also choose a maximal torus $T$ and some Borel subgroup $B$ which contains $T$.
                 \end{itemize}
             \end{convention}
             
-            \subsubsection{Equivariant and twisted D-modules}
-            
             \subsubsection{Cohomology of \texorpdfstring{$\D_{\lambda}$}{}-modules}
             
-            \subsubsection{The Borel-Weil-Bott Theorem}
+            \subsubsection{The Borel-Weil-Bott Theorem over \texorpdfstring{$\bbC$}{}}
+                Let us now give a proof of the Borel-Weil-Bott Theorem over $\Spec \bbC$, which deals with the cohomology of line bundles on flag varieties. 
+                
+                \begin{convention}
+                    We shall observe the following further conventions:
+                        \begin{itemize}
+                            \item the character group of $T$ shall be denoted by $\bbX(T)$,
+                            \item the root lattice shall be denoted by $\Phi$ and the coroot lattice shall be denoted by $\check{\Phi}$, and
+                            \item if $S_B$ denotes the set of simple roots relative to a choice of Borel subgroup $B \leq G$ which contains the fixed maximal torus $T$, then we shall write $P_{\alpha}$ for the minimal parabolic subgroup of $G$ attached to $\alpha$.
+                        \end{itemize}
+                \end{convention}
+                
+                \begin{proposition}
+                    Let $G$ be a semi-simple and simple connected complex algebraic group. Then, there exists an equivalence between the groupoid of equivariant line bundles on $G/B$ and the groupoid of line bundles on $G/B$ via the evident forgetful functor. 
+                \end{proposition}
+                    \begin{proof}
+                            
+                    \end{proof}
+                    
+                \begin{lemma}
+                    If $-\lambda \in \bbX(T)$ is not a dominant weight, then 
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
         
         \subsection{Localisation of \texorpdfstring{$\g$}{}-modules}
         
@@ -155,7 +182,7 @@
             \begin{convention}
                 \noindent
                 \begin{itemize}
-                    \item We work with a complex algebraic group $G$ of adjoint type with \textit{a priori} simple Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be its Borel subgroup. 
+                    \item We work with a complex algebraic group $G$ of adjoint type with \textit{a priori} simple Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be a Borel subgroup thereof. 
                     \item $\Gr_G$ shall denote the loop affine Grassmannian $G(\!(t)\!)/G[\![t]\!]$ attached to $G$.
                 \end{itemize}
             \end{convention}
@@ -164,7 +191,7 @@
             \begin{convention}
                 \noindent
                 \begin{itemize}
-                    \item We work with a simple complex algebraic group $G$ with Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be its Borel subgroup. 
+                    \item We work with a simple complex algebraic group $G$ with Lie algebra $\g$, along with universal enveloping algebra $\U(\g)$ and centre $\scrZ(\g)$ thereof. $B$ shall be a Borel subgroup thereof. 
                     \item $\Gr_G$ shall denote the loop affine Grassmannian $G(\!(t)\!)/G[\![t]\!]$ attached to $G$.
                 \end{itemize}
             \end{convention}
@@ -172,3 +199,5 @@
             \subsubsection{The Hecke Category}
             
             \subsubsection{The Main Theorem}
+            
+    \section{The Riemann-Hilbert Correspondence}

@@ -1,0 +1,48 @@
+\chapter{Introduction}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \section{The Global Correspondence}
+        Let $X$ be a curve that is smooth, proper, and geometrically connected algebraic curve (for instance, we can take $X$ be an elliptic curve or $\P^1$) and suppose that $G$ is a reductive group (think $\GL_n$ or $\SL_n$, or more concretely, $\GL_1$, or groups of diagonal matrices); both shall be over a field $k$ of characteristic $0$. Additionally, denote the function field of our curve $X$ by $K_X$, the completions of said field at (closed) points $x \in |X|$ by $K_{X, x}$, and we shall write $\scrO_{X, x}$ for the associated rings of integers (note how they coincide with the adic completions $\calO_{X, x}^{\wedge}$).
+            
+        The end goal for us, shall be to construct some semblance of an equivalence of derived/abelian/stable $\infty$-categories:
+            $$\Dmod\left(\Bun_G(X)\right) \cong \Ind\Coh\left(\LocSys_F(X)^{\check{G}}\right)$$
+        between:
+            \begin{itemize}
+                \item the category $\Dmod\left(\Bun_G(X)\right)$ of D-modules on the moduli stack $\Bun_G(X)$ of $G$-bundles on $X$, and
+                \item the category $\Ind\Coh\left(\LocSys_F(X)^{\check{G}}\right)$ of ind-coehrent sheaves (cf. section \ref{section: indcoh}) on the moduli stack of $\check{G}$-equivariant local systems on $X$ with coefficients in some implicitly understood suitable field $F$. 
+            \end{itemize}
+        When $G$ is a torus - i.e. when it is abelian - the above correspondence is a bit simpler:
+            $$\Dmod\left(\Bun_G(X)\right) \cong \QCoh\left(\LocSys_F(X)^{\check{G}}\right)$$
+        (notice how now, we can work with the entire category of quasi-coherent sheaves instead of having to restrict ourselves to ind-coherent sheaves). One thing that needs to be made clear right away, however, is that aside from a few very special cases such as $G = \GL_1$ and $G = \SL_2$, this equivalence is \textit{entirely conjectural}. Nevertheless, we do have a rough idea of how to eventually obtain a proper theorem from this vision:
+            \begin{enumerate}
+                \item The very first thing to do is to understand the construction of D-modules on (pre)stacks locally of finite type, and we can do this by learning about crystals (in the sense of Grothendieck) and their infinitesimal/crystalline cohomology over base fields of characteristic $0$ (crystalline cohomology over base fields of positive characteristics and the accompanying theory of arithmetic D-modules is significantly more complicated than their characteristic $0$ counterparts, which incidentally is why we have required that $\chara k = 0$).
+                \item Then, we must know what $\check{G}$ actually is, i.e. we must understand Langlands duals. There is a tool for this, which is the Geometric Satake Equivalence. However, we are going to have to go through two substeps:
+                    \begin{enumerate}
+                        \item To begin, we shall need to understand what the affine Grassmannian is and its roles in the representation theory of algebraic groups.
+                        \item We shall also have to know what it means to have a group act upon a (nice enough) category so as to be able to define the category of so-called \textbf{spherical D-modules}, which are certain kinds of equivariant D-modules.
+                        \item We shall then establish the Geometric Satake Correspondence to be a Tannakian equivalence:
+                            $$\Rep^{\heart}_F(\check{G}_{K_{X, x}}) \cong \Sph^{\heart}_{G, X, x}$$
+                        between the hearts of the t-structures of the rigid monoidal derived categories of $F$-linear representations of the $K_{X, x}$-points of the Langlands dual group $\check{G}$ and of $G(\scrO_{X, x})$-equivariant/spherical D-modules over the local affine Grassmannian $\Gr_{G, X, x}$.
+                    \end{enumerate}
+                \item Lastly, we shall seek to understand the subtle technical differences between quasi-coherent sheaves and ind-coherent sheaves, and why restricting ourselves to the case of tori allows us to forego the ind-coherent sheaf machinery. 
+            \end{enumerate}
+        Of course, before embarking on this journey, we might also want to learn some (derived) algebraic geometry, which will help us understand $\Bun_G(X)$ and $\LocSys_F(X)^{\check{G}}$, what these categories have to do with the theory of Galois representations (because at the end of the day, the Langlands Programme is all about understanding higher reciprocity laws), or even simply why we have required that our curve $X$ is smooth (spoiler: smoothness helps us identify $\QCoh(X)$ with the category $\QCoh(X)^{\perf}$ of perfect complexes on $X$), proper, and geometrically connected, beyond wanting our machineries to be applicable to important classes of examples such as elliptic curves and abelian varieties. For details, see chapters \ref{chapter: schemes} and \ref{chapter: cohomology_and_derived_schemes}.
+        
+        We should also make some remarks about the above equivalence of categories as well. Thanks to Grothendieck's Galois theory, the left-hand side can be thought of as the \say{\textbf{Automorphic Side}} of the Langlands Correspondence, which holds information about Galois representations. Drawing inspiration from another one of Grothendieck's major contributions, $\ell$-adic \'etale cohomology, the right-hand side in turn can be thought of as the \say{\textbf{Spectral Side}}, which tells interesting stories\footnote{Fairy tales, really...} through harmonic analysis.
+    
+        \subsection{The Categorical-Geometric Langlands Correspondence for algebraic tori}
+            This sectionr, as the title suggests, shall be dedicated to outlining our hopes and dreams (or the lack thereof) for a Categorical-Geometric Langlands Correspondence for algebraic tori; specifically, we would like to present of a list of key results known to be involved in a proof of the Correspondence. We will also give run-down of the various technical tools used for establishing said key results. 
+            
+            \subsubsection{Equivariant local systems}
+        
+            \subsubsection{The Fourier-Muka\"i-Laumon Transform}
+            
+            \subsubsection{Factor-wise Langlands duality}
+            
+        \subsection{The Conjecture for non-abelian groups}
+        
+        \subsection{Outline of the proof for the case of \texorpdfstring{$G = \GL_2$}{}}
+    
+    \section{Deformation quantisation and the Local Correspondence}

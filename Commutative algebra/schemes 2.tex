@@ -498,6 +498,19 @@
                     
         \subsection{The rigid symmetric monoidal structure on \texorpdfstring{$\QCoh$}{}}
         
+        \subsection{Actions of monoidal categories; 1-affineness}
+            Informally, a sheaf of categories with coefficients in some category $\C$ over a prestack $\calY$ is an assignment:
+                $$\Sch^{\aff}_{/\calY} \to \dg\Cat: (S \to \calY) \mapsto \bfGamma(S, \C)$$
+            of affine schemes $S$ over $\calY$ to dg-categories $\bfGamma(S, \C)$ with a $\QCoh(S)$-action, i.e. to objects $\bfGamma(S, \C) \in \QCoh(S)\mod$. Furthermore, we shall require that this assingment is functorial (up to homotopies, of course), in the sense that given any arrow $f: S' \to S$ in $\Sch^{\aff}_{/\calY}$, we get a corresponding isomorphism of $\QCoh(S)$-modules:
+                $$\bfGamma(S', \C) \cong \QCoh(S') \tensor_{\QCoh(S)} \bfGamma(S, \C)$$
+            Lastly, the functor $\Gamma(-, \C): \Sch^{\aff}_{/\calY} \to \dg\Cat$ shall have to somehow satisfy descent in order to be a sheaf. 
+            
+            In this subsection, we shall attempt to set up such a theory.
+            
+            \subsubsection{Quasi-coherent sheaves of categories}
+            
+            \subsubsection{1-affineness}
+        
     \section{Ind-coherent sheaves} \label{section: indcoh}
         \subsection{Categories of ind-coherent sheaves} \label{subsection: categories_of_ind_coherent_sheaves}
             \subsubsection{Ind-coherent sheaves over locally almost of finite type schemes}
@@ -555,20 +568,20 @@
                         \end{proof}
                     
                 \paragraph{An action of \texorpdfstring{$\QCoh(X)$}{} on \texorpdfstring{$\Ind\Coh(X)$}{}}
-                    It is not hard to see that for any prestack locally almost of finite type $\calY$, the category $\Ind\Coh(\calY)$ of ind-coherent sheaves over it has a natural structure of a dg-category. What this means is that $\Ind\Coh(\calY)$ is an object of the $1$-category $\dg\Cat^{\cont}_1$ of dg-categories and continuous functors between them. On this category, there exists a natural monoidal structure inherited from the $1$-category of stable $\infty$-categories, which is the Lurie tensor product $\boxtimes$. 
+                    It is not hard to see that for any prestack locally almost of finite type $\calY$, the category $\Ind\Coh(\calY)$ of ind-coherent sheaves over it has a natural structure of a dg-category. What this means is that $\Ind\Coh(\calY)$ is an object of the $1$-category $\dg\Cat^{\cont}_1$ of dg-categories and continuous functors between them. On this category, there exists a natural monoidal structure inherited from the $1$-category of stable $\infty$-categories, which is the Lurie tensor product $\tensor$. 
                 
-                    Now, one thing to note is that for each locally almost of finite type scheme $X$, the evident embedding $\Psi_X: \Ind\Coh(X) \hookrightarrow \QCoh(X)$ is a continuous functor. In particular, this means one can construct continuous functors $\QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$, and hence the Lurie tensor product $\QCoh(X) \boxtimes \Ind\Coh(X)$, which satisfies the following universal property:
+                    Now, one thing to note is that for each locally almost of finite type scheme $X$, the evident embedding $\Psi_X: \Ind\Coh(X) \hookrightarrow \QCoh(X)$ is a continuous functor. In particular, this means one can construct continuous functors $\QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$, and hence the Lurie tensor product $\QCoh(X) \tensor \Ind\Coh(X)$, which satisfies the following universal property:
                         $$
                             \begin{tikzcd}
-                            	{\QCoh(X) \boxtimes \Ind\Coh(X)} & \calA \\
+                            	{\QCoh(X) \tensor \Ind\Coh(X)} & \calA \\
                             	{\QCoh(X) \x \Ind\Coh(X)}
                             	\arrow[from=2-1, to=1-2]
                             	\arrow[dashed, from=1-1, to=1-2]
-                            	\arrow["\boxtimes", from=2-1, to=1-1]
+                            	\arrow["\tensor", from=2-1, to=1-1]
                             \end{tikzcd}
                         $$
                     (wherein, of course, $\calA$ is an arbitrary dg-category and the arrows are continuous functors). As a consequence, we can construct so-called \textbf{actions} of $\QCoh(X)$ on $\Ind\Coh(X)$, which are just continuous functors:
-                        $$\alpha: \QCoh(X) \boxtimes \Ind\Coh(X) \to \Ind\Coh(X)$$
+                        $$\alpha: \QCoh(X) \tensor \Ind\Coh(X) \to \Ind\Coh(X)$$
                     via continuous functors $\underline{\alpha}: \QCoh(X) \x \Ind\Coh(X) \to \Ind\Coh(X)$
                         
                     \begin{proposition}[The canonical action of $\QCoh$ on $\Ind\Coh$] \label{prop: canonical_action_of_qcoh_on_indcoh}
@@ -589,7 +602,7 @@
                         \end{proof}
                     \begin{corollary} \label{coro: canonical_action_of_qcoh_on_indcoh}
                         For each Notherian scheme $X$, there exists a canonically defined $\QCoh(X)$-action on $\Ind\Coh(X)$ coming from $\bar{\alpha}_X$ as above; this means that this action is given by:
-                            $$\alpha_X(\calF \boxtimes \E) \cong \calF \tensor \Psi_X(\E)$$
+                            $$\alpha_X(\calF \tensor \E) \cong \calF \tensor \Psi_X(\E)$$
                     \end{corollary}
                 
                 \paragraph{Ind-coherent sheaves over eventually coconnective schemes}
