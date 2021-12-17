@@ -5,26 +5,26 @@
     
     \minitoc
     
-    \section{Higher operads and higher categories}
+    \section{\texorpdfstring{$n$}{}-operads and \texorpdfstring{$n$}{}-categories}
         \subsection{Monoidal categories; enrichments}
             \subsubsection{Classical monoidal categories}
                 \begin{definition}[Monoidal categories] \label{def: monoidal_categories}
-                    A monoidal category is a quintuple $(\calV, \tensor, 1, \alpha, (\lambda, \rho))$ of:
+                    A monoidal category is a quintuple $(\V, \tensor, 1, \alpha, (\lambda, \rho))$ of:
                         \begin{enumerate}
-                            \item a category $\calV$;
-                            \item a bifunctor $\tensor: \calV \x \calV \to \calV$;
-                            \item a distinguished object $1 \in \calV$ - called the \textbf{unit} - which we shall view as a functor $\eta: \pt \to \calV$ from the terminal category;
+                            \item a category $\V$;
+                            \item a bifunctor $\tensor: \V \x \V \to \V$;
+                            \item a distinguished object $1 \in \V$ - called the \textbf{unit} - which we shall view as a functor $\eta: \pt \to \V$ from the terminal category;
                             \item a natural isomorphism of functors - called the \textbf{associator} - as follows:
                                 $$
                                     \begin{tikzcd}
-                                    	{(\calV \x \calV) \x \calV} && {\calV \x (\calV \x \calV)} \\
+                                    	{(\V \x \V) \x \V} && {\V \x (\V \x \V)} \\
                                     	\\
-                                    	{\calV \x \calV} && {\calV \x \calV} \\
-                                    	& \calV
-                                    	\arrow["{\tensor \x \id_{\calV}}"', from=1-1, to=3-1]
+                                    	{\V \x \V} && {\V \x \V} \\
+                                    	& \V
+                                    	\arrow["{\tensor \x \id_{\V}}"', from=1-1, to=3-1]
                                     	\arrow["\tensor"', from=3-1, to=4-2]
                                     	\arrow["\tensor", from=3-3, to=4-2]
-                                    	\arrow["{\id_{\calV} \x \tensor }", from=1-3, to=3-3]
+                                    	\arrow["{\id_{\V} \x \tensor }", from=1-3, to=3-3]
                                     	\arrow["\cong", from=1-1, to=1-3]
                                     	\arrow[""{name=0, anchor=center, inner sep=0}, "{(- \tensor -) \tensor -}"{description}, from=1-1, to=4-2]
                                     	\arrow[""{name=1, anchor=center, inner sep=0}, "{- \tensor (- \tensor -)}"{description}, from=1-3, to=4-2]
@@ -34,25 +34,25 @@
                             \item natural isomorphisms $\lambda$ and $\rho$ - known, respectively, as the \textbf{left and right-unitors} - as follows:
                                 $$
                                     \begin{tikzcd}
-                                    	{\calV \x \pt} & {\calV \x \calV} & {\pt \x \calV} \\
-                                    	\calV & \calV & \calV
+                                    	{\V \x \pt} & {\V \x \V} & {\pt \x \V} \\
+                                    	\V & \V & \V
                                     	\arrow["{\tensor}"{description}, from=1-2, to=2-2]
-                                    	\arrow["{\eta \x \id_{\calV}}"', from=1-3, to=1-2]
-                                    	\arrow["{\id_{\calV} \x \eta}", from=1-1, to=1-2]
-                                    	\arrow["{\id_{\calV}}"', from=2-1, to=2-2]
+                                    	\arrow["{\eta \x \id_{\V}}"', from=1-3, to=1-2]
+                                    	\arrow["{\id_{\V} \x \eta}", from=1-1, to=1-2]
+                                    	\arrow["{\id_{\V}}"', from=2-1, to=2-2]
                                     	\arrow["{\pr_1}"', from=1-1, to=2-1]
                                     	\arrow["{\pr_2}", from=1-3, to=2-3]
-                                    	\arrow["{\id_{\calV}}", from=2-3, to=2-2]
+                                    	\arrow["{\id_{\V}}", from=2-3, to=2-2]
                                     	\arrow["\lambda"', shorten <=13pt, shorten >=13pt, Rightarrow, from=1-2, to=2-1]
                                     	\arrow["\rho", shorten <=13pt, shorten >=13pt, Rightarrow, from=1-2, to=2-3]
                                     \end{tikzcd}
                                 $$
-                            (note that the functors $\pr_1: \calV \x \pt \to \calV$ and $\pr_2: \pt \x \calV \to \calV$ are equivalences \textit{a priori}, thanks to the universal property of the terminal objects and that of products).
+                            (note that the functors $\pr_1: \V \x \pt \to \V$ and $\pr_2: \pt \x \V \to \V$ are equivalences \textit{a priori}, thanks to the universal property of the terminal objects and that of products).
                         \end{enumerate}
                     
                 \end{definition}
                 \begin{definition}[Lax-monoidal categories] \label{def: lax_monoidal_categories}
-                    Let $(\calV, \tensor, 1, \alpha, (\lambda, \rho))$ a quintuple as in definition \ref{def: monoidal_categories}, but now, suppose that $\alpha: (- \tensor -) \tensor - \to - \tensor (- \tensor -)$ is a non-invertible $2$-cell. Then, this quintuple will define a so-called \textbf{lax-monoidal category} if and only if 
+                    Let $(\V, \tensor, 1, \alpha, (\lambda, \rho))$ a quintuple as in definition \ref{def: monoidal_categories}, but now, suppose that $\alpha: (- \tensor -) \tensor - \to - \tensor (- \tensor -)$ is a non-invertible $2$-cell. Then, this quintuple will define a so-called \textbf{lax-monoidal category} if and only if 
                 \end{definition}
                 \begin{definition}[Non-unital monoidal categories]
                     
@@ -66,52 +66,86 @@
             
             \subsubsection{Unbiased monoidal categories}
         
-        \subsection{Operads and multicategories}
-            \begin{definition}[Cartesian categories] \label{def: cartesian_categories}
-                \noindent
-                \begin{enumerate}
-                    \item \textbf{(Cartesian categories):} A category is said to be \textbf{Cartesian} if it has all pullbacks. A \textbf{Cartesian} functor (not necessarily between Caterisan categories) is one that preserves pullbacks. 
-                    \item \textbf{(Cartesian natural transformations):} A natural transformation:
-                        $$
-                            \begin{tikzcd}
-                            	\C & \D
-                            	\arrow[""{name=0, anchor=center, inner sep=0}, "G"', shift right=3, from=1-1, to=1-2]
-                            	\arrow[""{name=1, anchor=center, inner sep=0}, "F", shift left=3, from=1-1, to=1-2]
-                            	\arrow["\alpha", shorten <=2pt, shorten >=2pt, Rightarrow, from=1, to=0]
-                            \end{tikzcd}
-                        $$
-                    between two functors $F, G: \C \to \D$ (where $\C, \D$ need not be Cartesian categories) if the naturality square induced by any arrow $f: x \to y$ in $\C$ is a pullback square in $\D$:
-                        $$
-                            \begin{tikzcd}
-                            	Fx & Fy \\
-                            	Gx & Gy
-                            	\arrow["Ff", from=1-1, to=1-2]
-                            	\arrow["Gf", from=2-1, to=2-2]
-                            	\arrow["{\alpha_x}"', from=1-1, to=2-1]
-                            	\arrow["{\alpha_y}", from=1-2, to=2-2]
-                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-                            \end{tikzcd}
-                        $$
-                    \item \textbf{(Cartesian monads):} Let $\E$ be a Cartesian category .A so-called \textbf{Cartesian monad} $(T: \E \to \E, \mu: T^2 \to T, \eta: \id \to T)$ internal to $\E$ is thus one wherein the defining endomofunctor $T: \E \to \E$ is Carterian, and so are the natural transformations $\mu: T^2 \to T$ and $\eta: \id \to T$.
-                \end{enumerate}
-            \end{definition}
-            \begin{remark}[$2$-category of Catersian categories] \label{remark: 2_category_of_cartesian_categories}
-                There exists a natural 
-            \end{remark}
-            \begin{example}[Cartesian categories] \label{example: cartesian_categories}
-                    
-            \end{example}
-            \begin{example}[Cartesian monads] \label{example: cartesian_monads}
-                    
-            \end{example}
+        \subsection{Operads and coloured operads}
         
         \subsection{Weak \texorpdfstring{$n$}{}-categories}
             \subsubsection{Globular operads}
             
             \subsubsection{The many definitions of weak \texorpdfstring{$n$}{}-categories}
-        
-    \section{Algebraic K-theory}
-    
+            
     \section{\texorpdfstring{$(\infty, 1)$}{}-categories and \texorpdfstring{$\infty$}{}-topoi}
     
-    \section{\texorpdfstring{$(\infty, 2)$}{}-categories}
+    \section{Monoidal \texorpdfstring{$(\infty, 1)$}{}-categories and \texorpdfstring{$(\infty, 2)$}{}-categories}
+        \subsection{Monoidal \texorpdfstring{$(\infty, 1)$}{}-categories}
+            \begin{convention}
+                Until the end of this subsection, the term \say{$\infty$-category} shall be used in place of \say{$(\infty, 1)$-category}, barring extreme prejudices.
+            \end{convention}
+        
+            \subsubsection{Monoidal structures; algebra objects}
+                Monoidal categories (cf. definition \ref{def: monoidal_categories}) are categories $\V$ equipped with a bifunctor $\tensor: \V \x \V \to \V$ satisfying axioms which help us ensure that (finite) \say{tensor products} of objects in $\V$ with one another would behave in a similar manner to tensor products of modules. Notably, these \say{tensor products} are only defined up to isomorphisms; in other words, one says that the bifunctor $\tensor$ is subjected to certain \say{coherence conditions}. Now, what if we would like a theory of monoidal categories wherein said coherence conditions admit coherence conditions of their own, e.g. isomorphisms between say, $x \tensor y$ amd $y \tensor x$ form not a set\footnote{Let us ignore set-theoretic issues for now.} but rather, a groupoid whose objects are these isomorphisms and whose (invertible) $1$-cells are \say{$2$-isomorphisms} between these isomorphisms (e.g. concretely, one might think of the $2$-category $(1\-\Cat_2, \x, \pt)$ of small $1$-categories with its canonical monoidal structure given by finite products: products $\C \x \D$ are defined up to equivalences of categories, but one may also speak of invertible natural transformations between these equivalences of categories) ? Of course, one can write down these higher coherence conditions by hand, but given the complexity of the definition of monoidal $1$-categories alone (cf. definition \ref{def: monoidal_categories}), it might prove prudent to seek out an alternative method. Moreover, given how $\infty$-categories are \say{spaces} in which equivalences are only specified up to an infinite number of higher coherence constraints, simply trying to specify these coherence conditions might not be so wise a thing to attempt after all.
+                
+                To that end, let us begin our construction of monoidal $\infty$-categories with an observation.
+                \begin{remark}[Monoidal structures as op-fibrations] \label{remark: monoidal_op_fibrations}
+                    Recall how for $R$ a commutative ring, the binary tensor product $M \tensor_R N$ of two $R$-modules $M$ and $N$ is defined to be the universal $R$-module such that for every pair of $R$-bilinear maps $M \x N \to P$ and $M \x N \to M \tensor_R N$, there exists a unique $R$-linear map $M \tensor_R N \to P$ making the following diagram commute:
+                        $$
+                            \begin{tikzcd}
+                            	{M \x N} & {M \tensor_R N} \\
+                            	& P
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow[dashed, from=1-2, to=2-2]
+                            	\arrow[from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    One would then show that binary tensor products are nothing special: in fact, one can re-iterate the construction an arbitrary (but finite!) number of times to get $n$-ary tensor products $\bigotimes_{i = 1}^n M_i$ that satisfy a similar kind of universal property; one can also show that the $0$-fold tensor product exists as the zero module. 
+                    
+                    At this point, we might suspect that the endowment of finite tensor products to some category $\V$ might be some functorial process $\simp^{\op} \to \V^{\tensor}$ whereby one associates to some given enumerating sequence of indices $[n] \in \simp^{\op}$ a sequence $\{x_1, x_2, ..., x_n\} \in \V^{\tensor}$ of objects of $\V$, which should be thought of as diagrams $[n] \to \V$.
+                \end{remark}
+                
+                We have thus come to the notion of monoidal ($1$-)op-fibrations:
+                \begin{definition}[Monoidal op-fibrations] \label{def: monoidal_op_fibrations}
+                    Let $(\V, \tensor, \1)$ be a monoidal category. Then, let us associate to it a $1$-functor:
+                        $$\V^{\tensor}: \simp^{\op} \to 1\-\Cat_1$$
+                    subjected to the following constraints:
+                        \begin{enumerate}
+                            \item $\V^{\tensor}$ ought to preserve the terminal object $[0] \in \simp^{\op}$, i.e.:
+                                $$\V^{\tensor}([0]) \cong \pt$$
+                            \item For all $n \geq 1$, the following natural $n$-tuple of natural arrows in $\simp^{\op}$:
+                                $$[n] \to [1]: \left((i \to i + 1) \mapsto (0 \to 1)\right) \: (\forall i \in [n])$$
+                            defines an equivalence:
+                                $$\V^{\tensor}([n]) \cong \V^{\tensor}([1])^n$$
+                        \end{enumerate}
+                \end{definition}
+                The functor $\V^{\tensor}$ shall - in time - be thought of as the monoidal structure on $\V$. This, however, is a somewhat non-trivial fact, along with the following, which establishes some descent-theoretic coherence properties of monoidal structures as in definition \ref{def: monoidal_op_fibrations}. 
+                \begin{proposition}
+                    Let $(\V, \tensor, \1)$ be a monoidal category and let us assume the Axiom of Choice (which is equivalent to every fibred category having a cleavage; cf. \cite[Definition 3.9]{vistoli_descent}). Then, the canonically associated functor (as in definition \ref{def: monoidal_op_fibrations}):
+                        $$\V^{\tensor}: \simp^{\op} \to 1\-\Cat_1$$
+                    defines a coCartesian fibration:
+                        $$p^{\tensor}: 1\-\Cat_1 \to \simp^{\op}$$
+                    and vice versa.
+                \end{proposition}
+                    \begin{proof}
+                        Fix a category $V_n \in 1\-\Cat$ such that $p^{\tensor}(V_n) \cong [n]$ (i.e. a section over $[n] \in \simp^{\op}$) along with a pair of arbitrary arrows $\varphi: V_n \to V$ and $\psi: V_n \to V'$ and inducing the following commutative diagram in $\simp^{\op}$ wherein $h: p^{\tensor}(V) \to p^{\tensor}(V')$ is arbitrary:
+                            $$
+                                \begin{tikzcd}
+                                    p^{\tensor}(V') \arrow[rd, "h"'] \arrow[rrd, "p^{\tensor}(\psi)", bend left] &                                                  &       \\
+                                                                                                                 & p^{\tensor}(V) \arrow[r, "p^{\tensor}(\varphi)"] & {[n]}
+                                \end{tikzcd}
+                            $$
+                        The definition of the category $\simp$ can then be made use of, specifically to realise that $p^{\tensor}(V) \cong [m]$ and $p^{\tensor}([m'])$ for $m, m' \in \N$ such that $m' \geq m \geq n$. Definition \ref{def: monoidal_op_fibrations} and the universal property of products (note that because $p^{\tensor}(V) \cong [m]$ and $p^{\tensor}([m'])$, we have $V \cong \V^{\tensor}([1])^m$ and $V' \cong \V^{\tensor}([1])^{m'}$) then ensures that there exists an arrow $\eta: V' \to V$ making the following diagram commute:
+                            $$
+                                \begin{tikzcd}
+                                    V' \arrow[rd, "\eta"', dashed] \arrow[rrd, "\psi", bend left] &                                                  &       \\
+                                                                                                                 & V \arrow[r, "\varphi"] & {V_n}
+                                \end{tikzcd}
+                            $$
+                            
+                        The converse assertion comes directly from the fact that given the Axiom of Choice, every fibred category admits a cleavage.
+                    \end{proof}
+                
+            \subsubsection{Monoidal \texorpdfstring{$(\infty, 1)$}{}-categories as coCartesian fibrations}
+            
+            \subsubsection{Universal constructions in monoidal \texorpdfstring{$(\infty, 1)$}{}-categories}
+        
+        \subsection{\texorpdfstring{$(\infty, 2)$}{}-categories}
+        
+    \section{Algebraic K-theory}

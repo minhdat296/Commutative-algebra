@@ -1535,14 +1535,14 @@
                         
                             Suppose that we are working over a base prestack $\calY$. First of all, note that objects of $\Sch^{\aff}_{/\calY}$, i.e. affine schemes over $\calY$, are presheaves on $\Cring^{\op}$ themselves, as the category ${}^{\calY/}\Comm\Alg$ of quasi-coherent commutative monoids internal to the symmetric monoidal category of quasi-coherent modules on $\calY$
                             \item \textbf{(These all seem awfully abstract ...):} Relative affine schemes should best (at least in the opinion of the author) be thought of as objects of categories that are fibres parametrised by the $1$-category $\Pre\Stk$ of prestacks over $\Cring^{\op}$: that is, one should think of categories of relative affine schemes as coming from a prestack:
-                                $$\Sch^{\aff}_{/(-)}: \Pre\Stk^{\op} \to \Cat$$
+                                $$\Sch^{\aff}_{/(-)}: \Pre\Stk^{\op} \to 1-1-1-\Cat$$
                             This might seem like a rather pointless abstraction, or to put it even more critically, just an abstraction for the sake of abstraction. However, its virtue lies in how the fibres over objects of $\Pre\Stk$ that happen to be affine schemes $\Spec k$ (in the sense of definition \ref{def: zariski_topoi}) would just be the categories $\Sch^{\aff}_{/\Spec k}$, which we have a rather solid handle on. This, incidentally, suggests a remarkable idea: there is a more-or-less functorial way to realise the idea that prestacks are locally affine. In fact, we shall return to this abstraction and analyse it in more details in proposition \ref{prop: relative_Spec_on_schemes}, where we will see how the domain restriction $\Sch^{\aff}_{/(-)}|_{\Sch}$ of the prestack $\Sch^{\aff}_{/(-)}$ to $\Sch$ instead of $\Pre\Stk$ is actually stack on $\Sch_{\Zar}$.
                         \end{enumerate}
                     \end{remark}
                     
                     \begin{proposition}[Relative $\Spec$ on schemes] \label{prop: relative_Spec_on_schemes}
                         Let $S$ be a base scheme. Then, the prestack of relative affine schemes:
-                            $$\Sch^{\aff}_{/(-)}|_{\Sch_{/S}}: \Sch_{/S}^{\op} \to \Cat$$
+                            $$\Sch^{\aff}_{/(-)}|_{\Sch_{/S}}: \Sch_{/S}^{\op} \to 1-1-1-\Cat$$
                         is a stack on $\Sch_{/S, \Zar}$ (which should be intuitively true, since schemes are covered by affines after all).
                     \end{proposition}
                         \begin{proof}
@@ -1558,7 +1558,7 @@
             \noindent
             \begin{enumerate}
                 \item \textbf{(The descent-theoretic perspective):} \begin{enumerate}
-                    \item \textbf{(Prestacks):} To us, a \textbf{prestack} on a $1$-category $\C$ will always be a \textit{weak} $2$-functor (i.e. a $2$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological weak $2$-category) into the \href{https://ncatlab.org/nlab/show/bicategory}{\underline{weak $2$-category}} ${}^1\Cat$ of small $1$-categories, (ana)functors between them, and (ana-)natural transformations between these (ana-)functors (see definition \ref{def: internal_functors} for the definition of anafunctors, along with an explanation of why this is our chosen definition of ${}^1\Cat$). In other terminologies, a prestack is a \href{https://ncatlab.org/nlab/show/pseudofunctor}{\underline{pseudo-functor}} with values in ${}^1\Cat$. Prestacks over a given category $\C$ form a $1$-category in an obvious manner; we shall denote it by $\Pre\Stk(\C)$. Actually, for all base categories $\C$, the $1$-category $\Pre\Stk(\C)$ can also be endowed with the structure of a weak $2$-category, determined on the $2$-categorical level by $2$-morphisms which are \href{https://ncatlab.org/nlab/show/strict+2-natural+transformation}{\underline{\textit{strict} $2$-natural transformations}}.
+                    \item \textbf{(Prestacks):} To us, a \textbf{prestack} on a $1$-category $\C$ will always be a \textit{weak} $2$-functor (i.e. a $2$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological weak $2$-category) into the \href{https://ncatlab.org/nlab/show/bicategory}{\underline{weak $2$-category}} ${}^11-1-1-\Cat$ of small $1$-categories, (ana)functors between them, and (ana-)natural transformations between these (ana-)functors (see definition \ref{def: internal_functors} for the definition of anafunctors, along with an explanation of why this is our chosen definition of ${}^11-1-1-\Cat$). In other terminologies, a prestack is a \href{https://ncatlab.org/nlab/show/pseudofunctor}{\underline{pseudo-functor}} with values in ${}^11-1-1-\Cat$. Prestacks over a given category $\C$ form a $1$-category in an obvious manner; we shall denote it by $\Pre\Stk(\C)$. Actually, for all base categories $\C$, the $1$-category $\Pre\Stk(\C)$ can also be endowed with the structure of a weak $2$-category, determined on the $2$-categorical level by $2$-morphisms which are \href{https://ncatlab.org/nlab/show/strict+2-natural+transformation}{\underline{\textit{strict} $2$-natural transformations}}.
                     
                     Additionally, we shall assume the Axiom of Choice (which incidentally, forces us to adopt definition \ref{def: internal_categories}). The advantage in this is that for all base categories $\C$, we will automatically be given a \textit{weak} $2$-equivalence of \textit{weak} $2$-categories:
                         $$\Pre\Stk(\C) \cong \Fib(\C)$$
@@ -1789,10 +1789,10 @@
                     \end{definition}
                     \begin{remark}[Categories of internal categories] \label{remark: categories_of_internal_categories}
                         Via the above notion of anafunctors and the idea presented in remark \ref{remark: internal_categories_alt_def} that internal categories and monads in span categories are the same thing, one can rather easily show that categories internal to a given ambient category $\E$ (with pullbacks) form a weak $2$-category, which is precisely equivalent to the category of monads in $\Span^{\leq 2}(\E)$. In notations, one writes:
-                            $$\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
+                            $$1-1-1-\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
                     \end{remark}
                     \begin{remark}[Categories as monoids] \label{remark: categories_as_monoids}
-                        Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
+                        Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $1-1-1-\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
                             $$
                                 \begin{tikzcd}
                                 	{C_1 \x_{s, C_0, t} C_1} \\
@@ -1827,7 +1827,7 @@
                                 	\arrow["{\id_{C_0}}", from=1-1, to=2-3]
                                 \end{tikzcd}
                             $$
-                        Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
+                        Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $1-1-1-\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
                     \end{remark}
                     
                     \begin{example}[Examples of internal categories] \label{example: internal_categories}
@@ -1887,7 +1887,7 @@
                                 	\arrow["e", from=2-1, to=2-3]
                                 \end{tikzcd}
                             $$
-                        In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
+                        In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $1-1-1-\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
                     \end{definition}
                     \begin{remark}[On the inverse maps of internal groupoids]
                         Definition \ref{def: internal_groupoids}, while standard, suffers from a few issues. For one, it is not very clear how internal groupoids should be thought of as groups in categories of internal categories. Also, the inverse map defining the structure of each internal groupoid, at least according to definition \ref{def: internal_groupoids}, is rather non-functorial. Luckily, these two problems can be easily resolved. 
@@ -1905,7 +1905,7 @@
                     \end{remark}
                 
                     \begin{definition}[Equivalence relations] \label{def: equivalence_relations}
-                        Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $\Cat$, for instance)
+                        Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $1-1-1-\Cat$, for instance)
                             \begin{enumerate}
                                 \item \textbf{(Binary relations):} A \textbf{binary relation} $R$ from an object $X$ to another object $Y$ of $\E$ is a $1$-span:
                                     $$
@@ -1943,9 +1943,9 @@
                                     	\arrow["t", from=1-1, to=1-2]
                                     \end{tikzcd}
                                 $$
-                            and recall from definition \ref{def: internal_groupoids} that groupoids are nothing but group objects in the category $\Cat(\E)$ that has all finite products. Therefore, it is natural to consider actions of $\scrG$ on other objects $X$ of $\E$, which are just morphisms:
+                            and recall from definition \ref{def: internal_groupoids} that groupoids are nothing but group objects in the category $1-1-1-\Cat(\E)$ that has all finite products. Therefore, it is natural to consider actions of $\scrG$ on other objects $X$ of $\E$, which are just morphisms:
                                 $$\pi: \scrG \x X \to X$$
-                            Given such a morphism, one naturally obtains an internal category of $\Cat(\E)$ - which we shall denote by $[X/G]$ - defined by the following data:
+                            Given such a morphism, one naturally obtains an internal category of $1-1-1-\Cat(\E)$ - which we shall denote by $[X/G]$ - defined by the following data:
                                 $$
                                     \begin{tikzcd}
                                     	\scrG \x X & X \\
@@ -1980,7 +1980,7 @@
              \subsubsection{Geometric stacks}   
                 \paragraph{Quotient stacks}
                     \begin{definition}[Quotient stacks] \label{def: quotient_stacks} \index{Stacks! quotient}
-                        Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
+                        Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $1-1-1-\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
                             $$
                                 \begin{tikzcd}
                                 	R & \calX \\
@@ -2059,7 +2059,7 @@
                         \begin{proof}
                             Let us divide the proof into two sections, one for each of the two embedding of categories above.
                             \begin{enumerate}
-                                \item Recall that stacks fibred in groupoids are just sheaves of groupoids. Therefore, the category spanned by these objects, namely $\Sh_{(2,1)}(\C, J)$, is a full subcategory of $\Stk(\C, J)$, as $\Grpd$ is a full subcategory of $\Cat$ (since functors preserve invertible arrows), and furthermore, because $\Grpd$ is a complete and cocomplete category, the embedding:
+                                \item Recall that stacks fibred in groupoids are just sheaves of groupoids. Therefore, the category spanned by these objects, namely $\Sh_{(2,1)}(\C, J)$, is a full subcategory of $\Stk(\C, J)$, as $\Grpd$ is a full subcategory of $1-1-1-\Cat$ (since functors preserve invertible arrows), and furthermore, because $\Grpd$ is a complete and cocomplete category, the embedding:
                                     $$
                                         \begin{tikzcd}
                                         	{\Stk(\C, J)} \\
@@ -2095,7 +2095,7 @@
                         \end{proof}
                     
                     \begin{theorem}[$(2, 1)$-sheafification of geometric prestacks] \label{theorem: (2,1)_sheafification_of_geometric_prestacks}
-                        Let $(\C, J)$ be a small site. Then, every weak $2$-geometric embedding of the $(2, 1)$-topos $\Sh_{(2, 1)}(\C, J)$ into the $(2, 1)$-presheaf topos $\Psh_{(2, 1)}(\C, J)$ can be restricted down to a weak $2$-geometric embedding of the weak $2$-category of geometric stacks $\Stk^{\geom}(\C, J)$ into the weak $2$-category of geometric prestacks $\Pre\Stk^{\geom}(\C)$ (i.e. geometric stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $2$-category ${}^2\Cat$ of weak $2$-categories: 
+                        Let $(\C, J)$ be a small site. Then, every weak $2$-geometric embedding of the $(2, 1)$-topos $\Sh_{(2, 1)}(\C, J)$ into the $(2, 1)$-presheaf topos $\Psh_{(2, 1)}(\C, J)$ can be restricted down to a weak $2$-geometric embedding of the weak $2$-category of geometric stacks $\Stk^{\geom}(\C, J)$ into the weak $2$-category of geometric prestacks $\Pre\Stk^{\geom}(\C)$ (i.e. geometric stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $2$-category ${}^21-1-1-\Cat$ of weak $2$-categories: 
                             $$
                                 \begin{tikzcd}
                                 	{\Sh_{(2, 1)}(\C, J)} & {\Psh_{(2, 1)}(\C)} \\
@@ -2244,7 +2244,7 @@
                                             	\arrow[no head, from=3-2, to=2-2]
                                             \end{tikzcd}
                                         $$
-                                    wherein the elements $\alpha_1, \alpha_2, ...$ are algebraic over $\F_{\p}$, and wherein $x$ is a formal variable (so that $\F_{\p}(x)$ would represent transcendental extensions). The fact that $\Fld$ can be written as such a coproduct is a natural consequence of the pre-established fact that arrows in $\Fld$ are all monic, and the observation that the procedure of forming field extensions respects whatever characteristic one might be working in - the proof is just a routine construction of a coproduct (although this time, in the category ${}_{\bbU}\Cat^{\gros}$ of $\bbU$-large categories) and we shall thus leave it as an exercise for the reader. 
+                                    wherein the elements $\alpha_1, \alpha_2, ...$ are algebraic over $\F_{\p}$, and wherein $x$ is a formal variable (so that $\F_{\p}(x)$ would represent transcendental extensions). The fact that $\Fld$ can be written as such a coproduct is a natural consequence of the pre-established fact that arrows in $\Fld$ are all monic, and the observation that the procedure of forming field extensions respects whatever characteristic one might be working in - the proof is just a routine construction of a coproduct (although this time, in the category ${}_{\bbU}1-1-1-\Cat^{\gros}$ of $\bbU$-large categories) and we shall thus leave it as an exercise for the reader. 
                                 \end{enumerate}
                             Even more interesting are the ramifications of these two observations. For instance, one can seek to understand the category of fields via understanding the individual towers of extensions inside the posets $\Fld_{\F_{\p}}$ (or coslices thereof). Particularly, when one tries to do so, one thing will become abundantly obvious: these posets of towers of field extensions behave very similarly to posets of open subsets of a give topological space. In fact, they are frames (firstly by virtue of already being posets) whose meet operation is given by intersections of fields extensions and whose join operation is given by tensor products of field extensions, both over some fixed common base field. 
                                 

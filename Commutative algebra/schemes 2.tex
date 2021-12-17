@@ -113,7 +113,7 @@
                         in an $\infty$-category $\E$ is a \textbf{monomorphism} if and only if $\E(x, -)$ is an $(\infty, 1)$-subfunctor of $\E(y, -)$: that is to say, for all test objects $x_0$ of $\E$, $\E(x, x_0)$ is a full $\infty$-subcategory of the $\infty$-groupoid $\E(y, x_0)$. 
                         \item \textbf{(Subobject classifiers):} Let $\E$ be a $(\infty, 1)$-complete $\infty$-category and let us denote its terminal object by $1$ (note that such a terminal object exists as a consequence of the finite-completeness hypothesis). Then, a morphism:
                             $$t: 1 \to \Omega$$
-                        of $\E$ will be called a \textbf{subobject classifier} if and only if it is terminal in the (non-full) $\infty$-subcategory of the $\infty$-category $\E^{[1]} \cong \infty\-\Cat([1], \E)$ of arrows and commutative squares in $\E$ spanned by monomorphisms.
+                        of $\E$ will be called a \textbf{subobject classifier} if and only if it is terminal in the (non-full) $\infty$-subcategory of the $\infty$-category $\E^{[1]} \cong \infty\-1-\Cat([1], \E)$ of arrows and commutative squares in $\E$ spanned by monomorphisms.
                         
                         Thanks to the assumption that $\E$ is finitely $(\infty, 1)$-complete, if a subobject classifier $t: 1 \to \Omega$ exists, one will be able to write any monomorphism $u \to x$ in $\E$ as the pullback of the subobject classifier along some \textit{unique} morphism $\chi_x: x \to \Omega$.
                     \end{enumerate}
@@ -211,7 +211,7 @@
                                 $$f: x \to y$$
                             be a morphism. Also, let:
                                 $$F: \D \to \E_{/y}$$
-                            be a diagram of shape $\D$ in $\E_{/y}$, which we note to necessarily be $\kappa$-small; a pullback of this diagram is just a lifting in $\infty\-\Cat^{\leq \kappa}$ of the following form:
+                            be a diagram of shape $\D$ in $\E_{/y}$, which we note to necessarily be $\kappa$-small; a pullback of this diagram is just a lifting in $\infty\-1-\Cat^{\leq \kappa}$ of the following form:
                                 $$
                                     \begin{tikzcd}
                                     	& {\E_{/x}} \\
@@ -276,7 +276,7 @@
                     \noindent
                     \begin{enumerate}
                         \item \textbf{(The descent-theoretic perspective):} \begin{enumerate}
-                            \item \textbf{($\infty$-prestacks):} To us, a \textbf{prestack} on an $(\infty, 1)$-category $\C$ will always be a \textit{weak} $(\infty, 2)$-functor (i.e. a $(\infty, 2)$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological bicategory) into the weak $(\infty, 2)$-category $(\infty, 1)\-\Cat$ of small $(\infty, 1)$-categories, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana-)natural transformations between these $(\infty, 1)$-(ana-)functors. In other terminologies, an $\infty$-prestack is an $(\infty, 1)$-pseudo-functor with values in $(\infty, 1)\-\Cat$. Prestacks over a given $(\infty, 1)$-category $\C$ form a $(\infty, 1)$-category in an obvious manner; we shall denote it by $\infty\-\Pre\Stk(\C)$. Actually, for all base $(\infty, 1)$-categories $\C$, the $(\infty, 1)$-category $\infty\-\Pre\Stk(\C)$ can also be endowed with the structure of a weak $(\infty, 2)$-category, determined on the $(\infty, 2)$-categorical level by $(\infty, 2)$-morphisms which are \textit{strict} $(\infty, 2)$-natural transformations
+                            \item \textbf{($\infty$-prestacks):} To us, a \textbf{prestack} on an $(\infty, 1)$-category $\C$ will always be a \textit{weak} $(\infty, 2)$-functor (i.e. a $(\infty, 2)$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological bicategory) into the weak $(\infty, 2)$-category $(\infty, 1)\-1-\Cat$ of small $(\infty, 1)$-categories, $(\infty, 1)$-(ana)functors between them, and $(\infty, 1)$-(ana-)natural transformations between these $(\infty, 1)$-(ana-)functors. In other terminologies, an $\infty$-prestack is an $(\infty, 1)$-pseudo-functor with values in $(\infty, 1)\-1-\Cat$. Prestacks over a given $(\infty, 1)$-category $\C$ form a $(\infty, 1)$-category in an obvious manner; we shall denote it by $\infty\-\Pre\Stk(\C)$. Actually, for all base $(\infty, 1)$-categories $\C$, the $(\infty, 1)$-category $\infty\-\Pre\Stk(\C)$ can also be endowed with the structure of a weak $(\infty, 2)$-category, determined on the $(\infty, 2)$-categorical level by $(\infty, 2)$-morphisms which are \textit{strict} $(\infty, 2)$-natural transformations
                             
                             Additionally, we shall assume the Axiom of Choice (which incidentally, forces us to adopt definition \ref{def: internal_categories}). The advantage in this is that for all base $(\infty, 1)$-categories $\C$, we will automatically be given a \textit{weak} $2$-equivalence of \textit{weak} $(\infty, 2)$-categories:
                                 $$\infty\-\Pre\Stk(\C) \cong \Fib_{(\infty, 1)}(\C)$$
@@ -344,7 +344,7 @@
                     \end{proof}
                 
                 \begin{theorem}[$(\infty, 1)$-sheafification of geometric $\infty$-prestacks] \label{theorem: (infinity,1)_sheafification_of_derived_geometric_prestacks}
-                    Let $(\C, J)$ be a small $\infty$-site. Then, every weak $(\infty, 2)$-geometric embedding of the $\infty$-topos $\Sh_{(\infty, 1)}(\C, J)$ into the $(\infty, 1)$-presheaf $\infty$-topos $\Psh_{(\infty, 1)}(\C, J)$ can be restricted down to a weak $(\infty, 2)$-geometric embedding of the weak $(\infty, 2)$-category of geometric $\infty$-stacks $\Stk^{\geom}(\C, J)$ into the weak $(\infty, 2)$-category of geometric $\infty$-prestacks $\infty\-\Pre\Stk^{\geom}(\C)$ (i.e. geometric $\infty$-stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $(\infty, 2)$-category ${}^{(\infty, 2)}\Cat$ of weak $2$-categories: 
+                    Let $(\C, J)$ be a small $\infty$-site. Then, every weak $(\infty, 2)$-geometric embedding of the $\infty$-topos $\Sh_{(\infty, 1)}(\C, J)$ into the $(\infty, 1)$-presheaf $\infty$-topos $\Psh_{(\infty, 1)}(\C, J)$ can be restricted down to a weak $(\infty, 2)$-geometric embedding of the weak $(\infty, 2)$-category of geometric $\infty$-stacks $\Stk^{\geom}(\C, J)$ into the weak $(\infty, 2)$-category of geometric $\infty$-prestacks $\infty\-\Pre\Stk^{\geom}(\C)$ (i.e. geometric $\infty$-stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $(\infty, 2)$-category ${}^{(\infty, 2)}1-\Cat$ of weak $2$-categories: 
                         $$
                             \begin{tikzcd}
                             	{\Sh_{(\infty, 1)}(\C, J)} & {\Psh_{(\infty, 1)}(\C)} \\
@@ -393,10 +393,10 @@
             \noindent
             \begin{itemize}
                 \item From now on until the end of the chapter, everything will be assumed to be derived. 
-                \item By $\Cat_1$, or simply $\Cat$, we shall actually mean $(\infty, 1)\-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
+                \item By $1-\Cat_1$, or simply $1-\Cat$, we shall actually mean $(\infty, 1)\-1-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $1-\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
                 
                 Similarly, by $\Grpd_1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd_2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
-                \item A subcategory of $\Cat$ this is of particular interest is $\dg\Cat^{\cont}_2$ (or simply $\dg\Cat^{\cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $\dg\Cat^{\cont}_1$ to put emphasis on the disregard of $2$-morphisms.
+                \item A subcategory of $1-\Cat$ this is of particular interest is $\dg\Cat^{\cont}_2$ (or simply $\dg\Cat^{\cont}$), the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories (see section \ref{section: homological_algebra} for the notion of stable $(\infty, 1)$-categories). Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category; when necessary, we shall write $\dg\Cat^{\cont}_1$ to put emphasis on the disregard of $2$-morphisms.
             \end{itemize} 
         \end{convention}
         
@@ -420,7 +420,7 @@
                         $$M_{\Spec R', y'} \cong f^* M_{\Spec R, y}$$
                     We shall be calling the categories of the form $\QCoh^*(\calY)$ categories of \textbf{quasi-coherent modules} on $\calY$.
                     \item \textbf{(Categories of quasi-coherent modules):} More precisely, an object $M \in \QCoh^*(\calY)$ is a prestack (cf. convention \ref{conv: prestacks}):
-                        $$M: (\Sch^{\aff}_{/\calY})^{\op} \to \Cat$$
+                        $$M: (\Sch^{\aff}_{/\calY})^{\op} \to 1-\Cat$$
                     which:
                         \begin{enumerate}
                             \item sends the affine schemes $y: \Spec R \to \calY$ to the categories $\QCoh(\Spec R)$.
@@ -436,7 +436,7 @@
                                     	\arrow["f", from=1-2, to=1-3]
                                     \end{tikzcd}
                                 $$
-                            to diagrams in $\Cat$ as below:
+                            to diagrams in $1-\Cat$ as below:
                                 $$
                                     \begin{tikzcd}
                                     	{\QCoh(\Spec R'')} & {\QCoh(\Spec R')} & {\QCoh(\Spec R)}
@@ -448,7 +448,7 @@
                         \end{enumerate}
                     and a morphism in $\QCoh(\calY)$ is just a \href{https://ncatlab.org/nlab/show/pseudonatural+transformation}{\underline{pseudo-natural transformation}} (i.e. a morphism of pseudo-functors).
                     \item \textbf{(Prestacks of quasi-coherent modules):} Having defined categories of quasi-coherent modules on categories of affine schemes over prestacks of groupoids on $\Cring^{\op}$, let us try to define the \textbf{prestack of quasi-coherent modules} on the category $\Pre\Stk$ of prestacks on $\Cring^{\op}$, which we shall denote by:
-                        $$\QCoh^*: \Pre\Stk^{\op} \to \Cat$$
+                        $$\QCoh^*: \Pre\Stk^{\op} \to 1-\Cat$$
                     Such a prestack will associate to each commutative diagrams in $\Pre\Stk$ as below:
                         $$
                             \begin{tikzcd}
@@ -457,7 +457,7 @@
                             	\arrow["\varphi", from=1-2, to=1-3]
                             \end{tikzcd}
                         $$
-                    to diagrams in $\Cat$ as below:
+                    to diagrams in $1-\Cat$ as below:
                         $$
                             \begin{tikzcd}
                             	{\QCoh^*(\calY'')} & {\QCoh^*(\calY')} & {\QCoh^*(\calY)}
@@ -480,9 +480,9 @@
             Now that we have managed to write down the definition of what it means for a category to have quasi-coherent modules as objects, let us examine some basic properties of the prestack of quasi-coherent modules on $\Pre\Stk$. The first of these is its universal property.
             \begin{proposition}[Universal property of quasi-coherent modules] \label{prop: qcoh_universal_property}
                 Fix a base commutative ring $k$. Then, the prestack:
-                    $$\QCoh^*: \Pre\Stk_{/\Spec k}^{\op} \to \Cat$$
+                    $$\QCoh^*: \Pre\Stk_{/\Spec k}^{\op} \to 1-\Cat$$
                 of quasi-coherent modules on the $1$-category $\Pre\Stk_{/\Spec k}$ of prestacks of groupoids on ${}^{k/}\Comm\Alg^{\op}$ is the \textit{right}-Kan extension of:
-                    $$\QCoh^*|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff, \op}_{/\Spec k} \to \Cat$$
+                    $$\QCoh^*|_{\Sch^{\aff}_{/\Spec k}}: \Sch^{\aff, \op}_{/\Spec k} \to 1-\Cat$$
                 along the canonical embedding $\Sch^{\aff, \op} \hookrightarrow \Pre\Stk_{/\Spec k}^{\op}$. In particular, we have:
                     $$\QCoh^*(\calY) \cong \underset{S \in \Sch^{\aff}_{/\calY}}{\lim} \QCoh^*(S)$$
                 for all $\calY \in \Pre\Stk_{/\Spec k}$.
