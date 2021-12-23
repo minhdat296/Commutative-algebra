@@ -480,6 +480,17 @@
                                 \item \textbf{($n = 3$: Obstructions):}
                             \end{enumerate}
                         \end{proof}
+                    
+                    Lemma \ref{lemma: de_rham_resolutions_of_lie_algebras} also help us makes sense of homologies of Lie algebras, defined as follows:
+                    \begin{definition}[Lie algebra homologies] \label{def: lie_algebra_homologies}
+                        Let $\g$ be a Lie algebra over a commutative ring $k$ and let $A$ be a $\g$-module. Then, we define the $n^{th}$ cohomology group of $\g$ with coefficient in $A$ as:
+                            $$H_n(\g, A) \cong \Tor_n^{\U(\g)}(k, A)$$
+                        where we view $k$ as the $1$-dimensional $\g$-representation on the right-hand side. 
+                    \end{definition}
+                    \begin{remark}
+                        It is not hard to show, using the associativity of the derived tensor product, that one has the following quasi-isomorphism:
+                            $$\Tor_{\bullet}^{\U(\g)}(k, A) \cong_{\qis} \Lambda^{\bullet}(\g) \tensor_k^{\L} A$$
+                    \end{remark}
                 
                 \paragraph{Cohomology of semi-simple Lie algebras over characteristic \texorpdfstring{$0$}{}}
                 
