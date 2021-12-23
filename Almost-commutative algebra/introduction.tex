@@ -3,18 +3,20 @@
         
     \end{abstract}
     
+    \minitoc
+    
     \section{The Global Correspondence}
         Let $X$ be a curve that is smooth, proper, and geometrically connected algebraic curve (for instance, we can take $X$ be an elliptic curve or $\P^1$) and suppose that $G$ is a reductive group (think $\GL_n$ or $\SL_n$, or more concretely, $\GL_1$, or groups of diagonal matrices); both shall be over a field $k$ of characteristic $0$. Additionally, denote the function field of our curve $X$ by $K_X$, the completions of said field at (closed) points $x \in |X|$ by $K_{X, x}$, and we shall write $\scrO_{X, x}$ for the associated rings of integers (note how they coincide with the adic completions $\calO_{X, x}^{\wedge}$).
             
         The end goal for us, shall be to construct some semblance of an equivalence of derived/abelian/stable $\infty$-categories:
-            $$\Dmod\left(\Bun_G(X)\right) \cong \Ind\Coh\left(\LocSys_F(X)^{\check{G}}\right)$$
+            $$\Dmod\left(\Bun_G(X)\right) \cong \Ind\Coh\left(F\-\LocSys_{\check{G}}(X)\right)$$
         between:
             \begin{itemize}
                 \item the category $\Dmod\left(\Bun_G(X)\right)$ of D-modules on the moduli stack $\Bun_G(X)$ of $G$-bundles on $X$, and
-                \item the category $\Ind\Coh\left(\LocSys_F(X)^{\check{G}}\right)$ of ind-coehrent sheaves (cf. section \ref{section: indcoh}) on the moduli stack of $\check{G}$-equivariant local systems on $X$ with coefficients in some implicitly understood suitable field $F$. 
+                \item the category $\Ind\Coh\left(F\-\LocSys_{\check{G}}(X)\right)$ of ind-coehrent sheaves (cf. section \ref{section: indcoh}) on the moduli stack of $\check{G}$-equivariant local systems on $X$ with coefficients in some implicitly understood suitable field $F$. 
             \end{itemize}
         When $G$ is a torus - i.e. when it is abelian - the above correspondence is a bit simpler:
-            $$\Dmod\left(\Bun_G(X)\right) \cong \QCoh\left(\LocSys_F(X)^{\check{G}}\right)$$
+            $$\Dmod\left(\Bun_G(X)\right) \cong \QCoh\left(F\-\LocSys_{\check{G}}(X)\right)$$
         (notice how now, we can work with the entire category of quasi-coherent sheaves instead of having to restrict ourselves to ind-coherent sheaves). One thing that needs to be made clear right away, however, is that aside from a few very special cases such as $G = \GL_1$ and $G = \SL_2$, this equivalence is \textit{entirely conjectural}. Nevertheless, we do have a rough idea of how to eventually obtain a proper theorem from this vision:
             \begin{enumerate}
                 \item The very first thing to do is to understand the construction of D-modules on (pre)stacks locally of finite type, and we can do this by learning about crystals (in the sense of Grothendieck) and their infinitesimal/crystalline cohomology over base fields of characteristic $0$ (crystalline cohomology over base fields of positive characteristics and the accompanying theory of arithmetic D-modules is significantly more complicated than their characteristic $0$ counterparts, which incidentally is why we have required that $\chara k = 0$).
@@ -28,12 +30,12 @@
                     \end{enumerate}
                 \item Lastly, we shall seek to understand the subtle technical differences between quasi-coherent sheaves and ind-coherent sheaves, and why restricting ourselves to the case of tori allows us to forego the ind-coherent sheaf machinery. 
             \end{enumerate}
-        Of course, before embarking on this journey, we might also want to learn some (derived) algebraic geometry, which will help us understand $\Bun_G(X)$ and $\LocSys_F(X)^{\check{G}}$, what these categories have to do with the theory of Galois representations (because at the end of the day, the Langlands Programme is all about understanding higher reciprocity laws), or even simply why we have required that our curve $X$ is smooth (spoiler: smoothness helps us identify $\QCoh(X)$ with the category $\QCoh(X)^{\perf}$ of perfect complexes on $X$), proper, and geometrically connected, beyond wanting our machineries to be applicable to important classes of examples such as elliptic curves and abelian varieties. For details, see chapters \ref{chapter: schemes} and \ref{chapter: cohomology_and_derived_schemes}.
+        Of course, before embarking on this journey, we might also want to learn some (derived) algebraic geometry, which will help us understand $\Bun_G(X)$ and $F\-\LocSys_{\check{G}}(X)$, what these categories have to do with the theory of Galois representations (because at the end of the day, the Langlands Programme is all about understanding higher reciprocity laws), or even simply why we have required that our curve $X$ is smooth (spoiler: smoothness helps us identify $\QCoh(X)$ with the category $\QCoh(X)^{\perf}$ of perfect complexes on $X$), proper, and geometrically connected, beyond wanting our machineries to be applicable to important classes of examples such as elliptic curves and abelian varieties. For details, see chapters \ref{chapter: schemes} and \ref{chapter: cohomology_and_derived_schemes}.
         
         We should also make some remarks about the above equivalence of categories as well. Thanks to Grothendieck's Galois theory, the left-hand side can be thought of as the \say{\textbf{Automorphic Side}} of the Langlands Correspondence, which holds information about Galois representations. Drawing inspiration from another one of Grothendieck's major contributions, $\ell$-adic \'etale cohomology, the right-hand side in turn can be thought of as the \say{\textbf{Spectral Side}}, which tells interesting stories\footnote{Fairy tales, really...} through harmonic analysis.
     
         \subsection{The Categorical-Geometric Langlands Correspondence for algebraic tori}
-            This sectionr, as the title suggests, shall be dedicated to outlining our hopes and dreams (or the lack thereof) for a Categorical-Geometric Langlands Correspondence for algebraic tori; specifically, we would like to present of a list of key results known to be involved in a proof of the Correspondence. We will also give run-down of the various technical tools used for establishing said key results. 
+            This section, as the title suggests, shall be dedicated to outlining our hopes and dreams (or the lack thereof) for a Categorical-Geometric Langlands Correspondence for algebraic tori; specifically, we would like to present of a list of key results known to be involved in a proof of the Correspondence. We will also give run-down of the various technical tools used for establishing said key results. 
             
             \subsubsection{Equivariant local systems}
         
@@ -44,5 +46,23 @@
         \subsection{The Conjecture for non-abelian groups}
         
         \subsection{Outline of the proof for the case of \texorpdfstring{$G = \GL_2$}{}}
+        
+    \section{The Local Correspondence for complex loop groups}
+        \subsection{The appearance of Langlands parameters}
+            Consider the formal loop group $G(\!(t)\!)$ associated to some chosen connected complex reductive group $G$. 
+            
+            Let us start by describing the absolute Galois group of the field $\bbC(\!(t)\!)$. First of all, notice that:
+                $$\Gal(\bbC(\!(t^{\frac1n})\!)/\bbC(\!(t)\!)) \cong \Z/n\Z$$
+            and so:
+                $$\Gal(\overline{\bbC(\!(t)\!)}/\bbC(\!(t)\!)) \cong \hat{\Z}$$
+            which is a canonical homeomorphism of topological groups obtained via the Fundamental Theorem of Galois Theory. Now, one thing to note is that for some fixed power $q$ of a prime $p$, one also has:
+                $$\Gal(\overline{\F_q}/\F_q) \cong \hat{\Z}$$
+            but unlike the complex case, the group $\Gal(\overline{\F_q(\!(t)\!)}/\F_q(\!(t)\!))$ surjects (continuously) onto the non-trivial group $\Gal(\overline{\F_q}/\F_q)$ ($\bbC$ is algebraically closed so $\Gal(\bar{\bbC}/\bbC)$ is trivial), a fact known through local class field theory. As a consequence, describing the Weil group (and by extension, Weil-Deligne representations thereof) attached to $\bbC(\!(t)\!)$ will - hopefully - be somewhat simpler than that of $\F_q(\!(t)\!)$ and might therefore help us gain insight into the nature of the Langlands Correspondence. Better yet, we have via Grothendieck's Galois Theory, that:
+                $$\Gal(\overline{\bbC(\!(t)\!)}/\bbC(\!(t)\!)) \cong \hat{\Z} \cong \pi_1^{\et}(\bbD^{\x}_{\bbC})$$
+            wherein $\bbD^{\x}_{\bbC} \cong \Spec \bbC(\!(t)\!)$; through the discussion above, one sees that this is not the case for $\bbD^{\x}_{\F_q}$, i.e.:
+                $$\Gal(\overline{\F_q(\!(t)\!)}/\F_q(\!(t)\!)) \not \cong \pi_1^{\et}(\bbD^{\x}_{\F_q})$$
+            Since representations of the (\'etale) fundamental group correspond to certain D-modules, we essentially have access to the theory of D-modules in studying the Langlands Correspondence for the case of $G\!(t)\!)$, which roughly postulates a bijective relationship between homomorphisms $W_{\bbC(\!(t)\!)} \to \check{G}$ and certain representations of $G(\!(t)\!)$.
+        
+        \subsection{Representations of loop groups; Kac-Moody algebras}
     
-    \section{Deformation quantisation and the Local Correspondence}
+    \section{Deformation quantisation of the Local Correspondence}

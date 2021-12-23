@@ -135,45 +135,360 @@
             
             \subsubsection{Twisted crystals}
     
-    \section{Localisations of Lie algebras}
-        \subsection{The Borel-Weil-Bott Theorem}
-            \begin{convention}
-                \noindent
-                \begin{itemize}
-                    \item Throughout this subsection, we work over a ground field $k$ that is algebraically closed and of characteristic $0$. 
-                    \item $X$ will always be a smooth algebraic variety over $\Spec k$.
-                    \item $G$ will always be a connected algebraic group over $\Spec k$ that acts smoothly on $X$. We shall also choose a maximal torus $T$ and some Borel subgroup $B$ which contains $T$.
-                \end{itemize}
-            \end{convention}
+    \section{Localisations of Lie algebras representations}
+        \subsection{Some supplementary Lie theory}
+            \subsubsection{Lie algebras in symmetric monoidal categories and their enveloping algebras}
+                \begin{definition}[Algebras, coalgebras, and bialgebras] \label{def: algebras_and_coalgebras}
+                    Let $(\O, \tensor, 1)$ be a monoidal category. 
+                        \begin{enumerate}
+                            \item A(n) (associative and unital) algebra $A$ internal to $\O$ is a monoid object of $\O$, i.e. one equipped with a so-called multiplication:
+                                $$\nabla: A \tensor A \to A$$
+                            and unit:
+                                $$\eta: 1 \to A$$
+                            satisfying the following commutative diagrams:
+                                $$
+                                    \begin{tikzcd}
+                                    	{A \tensor A \tensor A} & {A \tensor A} \\
+                                    	{A \tensor A} & {A}
+                                    	\arrow["{\id_A \tensor \nabla}"', from=1-1, to=2-1]
+                                    	\arrow["{\nabla}", from=2-1, to=2-2]
+                                    	\arrow["{\nabla \tensor \id_A}", from=1-1, to=1-2]
+                                    	\arrow["{\nabla}", from=1-2, to=2-2]
+                                    \end{tikzcd}
+                                $$
+                                $$
+                                    \begin{tikzcd}
+                                    	{1 \tensor A} & {A \tensor A} \\
+                                    	{A \tensor A} & {A}
+                                    	\arrow["{\nabla}", from=1-2, to=2-2]
+                                    	\arrow["{\nabla}"', from=2-1, to=2-2]
+                                    	\arrow["{\id_A \tensor \eta}"', from=1-1, to=2-1]
+                                    	\arrow["{\eta \tensor \id_A}", from=1-1, to=1-2]
+                                    \end{tikzcd}
+                                $$
+                            \item A (coassociative and counital) coalgebra internal to $\O$ is then a comonoid object of $\O$, or in other words, an monoid object in $\O^{\op}$. Typically, the so-called multiplication and counit maps on a coalgebra will be denoted by $\Delta$ and $\e$.
+                        \end{enumerate}
+                    Algebras, and coalgebras internal to a monoidal category $\O$ form full subcategories, which we will denote, respectively, by $\Mon(\O)$ and $\co\Mon(\O)$.
+                \end{definition}
+                \begin{example}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Rings and algebras over them)} All rings are associative and unital algebra in the (symmetric monoidal) category of abelian groups. More generally, for any given base ring $R$ (not necessarily commutative), associative and unital left/right/two-sided $R$-algebras are monoids in the (monoidal) category of left/right/two-sided $R$-modules.
+                        \item \textbf{(Lie algebras and their universal enveloping algebras)} Lie algebras, despite their names, are not algebras in the sense of definition \ref{def: algebras_and_coalgebras}, as their Lie brackets are not associative (see definition \ref{def: lie_algebras} for more details). Their univeral enveloping algebras (cf. definition \ref{def: enveloping_algebras} and theorem \ref{theorem: universal_enveloping_algebras_universal_property}), on the other hand, are associative and unital algebras. In fact, they are coassociative and counital coalgebras too (cf. remark \ref{remark: universal_enveloping_algebras_are_bialgebras}). 
+                    \end{enumerate}
+                \end{example}
             
-            \subsubsection{Cohomology of \texorpdfstring{$\D^{(\lambda)}$}{}-modules}
-            
-            \subsubsection{The Borel-Weil-Bott Theorem over \texorpdfstring{$\bbC$}{}}
-                Let us now give a proof of the Borel-Weil-Bott Theorem over $\Spec \bbC$, which deals with the cohomology of line bundles on flag varieties. 
+                Let us now take a closer look at how universal enveloping algebras are bialgebras. To do so, however, we will need to have a good understanding of these algebras behave. 
+                \begin{definition}[Lie algebras] \label{def: lie_algebras}
+                    Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category with braiding isomorphisms:
+                        $$\tau_{x, y}: x \tensor y \cong y \tensor x$$
+                    A Lie algebra internal to is then an object $\g \in \O$ equipped with a so-called Lie bracket:
+                        $$[-,-]: \g \tensor \g \to \g$$
+                    subject to two requirements:
+                        \begin{enumerate}
+                            \item \textbf{(Skew-symmetry)}
+                                $$[-,-] + [-,-] \circ \tau_{\g, \g} = 0$$
+                            \item \textbf{(The Jacobi identity)}
+                                $$
+                                    \begin{aligned}
+                                        & \left[-, [-,-]\right]
+                                        \\
+                                        + & \left[-, [-,-]\right] \circ \left(\id_{\g} \tensor \tau_{\g, \g}\right) \circ \left(\tau_{\g, \g} \tensor \id_{\g}\right)
+                                        \\
+                                        + & \left[-, [-,-]\right] \circ \left(\tau_{\g, \g} \tensor \id_{\g}\right) \circ \left(\id_{\g} \tensor \tau_{\g, \g}\right)
+                                        \\
+                                        = & \: 0
+                                    \end{aligned}
+                                $$
+                        \end{enumerate}
+                    Lie algebras internal to a symmetric monoidal $k$-linear category $\O$ form a full subcategory which we shall denote by $\Lie\Alg(\O)$. Its objects are the Lie algebra objects of $\g$, and its morphisms are arrows in $\O$ that intertwine with Lie brackets, i.e. they are arrows $\phi: \g \to \h$ such that:
+                        $$[-,-]_{\h} \circ (\phi \tensor \phi) = \phi \circ [-,-]_{\g}$$
+                    or equivalently, such that diagrams of the following form commute in $\O$:
+                        $$
+                            \begin{tikzcd}
+                            	{\g \tensor \g} & {\g} \\
+                            	{\h \tensor \h} & {\h}
+                            	\arrow["{\phi}", from=1-2, to=2-2]
+                            	\arrow["{\phi \tensor \phi}"', from=1-1, to=2-1]
+                            	\arrow["{[-,-]_{\h}}", from=2-1, to=2-2]
+                            	\arrow["{[-,-]_{\g}}", from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{definition}
                 
-                \begin{convention}
-                    We shall observe the following further conventions:
-                        \begin{itemize}
-                            \item the character group of $T$ shall be denoted by $\bbX(T)$,
-                            \item the root lattice shall be denoted by $\Phi$ and the coroot lattice shall be denoted by $\check{\Phi}$, and
-                            \item if $S_B$ denotes the set of simple roots relative to a choice of Borel subgroup $B \leq G$ which contains the fixed maximal torus $T$, then we shall write $P_{\alpha}$ for the minimal parabolic subgroup of $G$ attached to $\alpha$.
-                        \end{itemize}
-                \end{convention}
+                \begin{definition}[Enveloping algebras] \label{def: enveloping_algebras}
+                    Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category.
+                        \begin{enumerate}
+                            \item \textbf{(The Lie functor)} The Lie functor is the one that assigns to each associative and unital algebra $A$ internal to $\O$ a Lie algebra $\frakLie(A)$ whose underlying object is just $A$, and whose Lie bracket is given by:
+                                $$[-,-]_{\frakLie(A)} := \nabla_A - \nabla_A \circ \tau_{A,A}$$
+                            \item \textbf{(Enveloping algebras)} Fix a Lie algebra object $\g$ of $\O$. Then, an enveloping algebra of a Lie algebra $\g$ internal to $\O$ is just a Lie algebra homomorphism:
+                                $$e: \g \to \frakLie(A)$$
+                            for some $A \in \Mon(\O)$. These enveloping algebras form a category, whose objects are Lie algebra homomorphisms as described above, and whose morphisms are commutative triangles in $\Lie\Alg(\O)$ as follows:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g} \\
+                                    	{\frakLie(A)} && {\frakLie(A')}
+                                    	\arrow[from=2-1, to=2-3]
+                                    	\arrow["{e}"', from=1-2, to=2-1]
+                                    	\arrow["{e'}", from=1-2, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            which we note to be induced by algebra homomorphisms $A \to A'$. We will denote the category of enveloping algebras of $\g$ by $\Env(\g)$. 
+                            \\
+                            The universal enveloping algebra of $\g$ (denoted by $\U(\g)$), if it exists, then its Lie algebra will be the initial object of $\Env(\g)$. 
+                        \end{enumerate}
+                \end{definition}
                 
-                \begin{proposition}
-                    Let $G$ be a semi-simple and simple connected complex algebraic group. Then, there exists an equivalence between the groupoid of equivariant line bundles on $G/B$ and the groupoid of line bundles on $G/B$ via the evident forgetful functor. 
-                \end{proposition}
+                \begin{theorem}[Existence and uniqueness of universal enveloping algebras] \label{theorem: universal_enveloping_algebras_universal_property}
+                     Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category. Then:
+                        \begin{enumerate}
+                            \item \textbf{(Existence and uniqueness)} There is the following ($\O$-enriched) adjunction if $\O$ has all countable coproducts:
+                                $$
+                                    \begin{tikzcd}
+                                    	{(\U \ladjoint \frakLie): \Mon(\O)} & {\Lie\Alg(\O)}
+                                    	\arrow["{\frakLie}"{name=0, swap}, from=1-1, to=1-2, shift right=2]
+                                    	\arrow["{\U}"{name=1, swap}, from=1-2, to=1-1, shift right=2]
+                                    	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                                    \end{tikzcd}
+                                $$
+                            wherein $\U$ is the functor sending each Lie algebra in $\O$ to its universal enveloping algebra.
+                            \item \textbf{(Explicit construction)} If $\O$ also has all cokernels then we can explicitly characterise the universal enveloping algebra of a Lie algebra $\left(\g, [-,-]_{\g}\right)$ as the following quotient of the (Lie algebra canonically associated to) the tensor algebra $T(\g)$:
+                                $$\frakLie\left(\U(\g)\right) \cong \coker \bigg(\left([-,-]_{\frakLie T(\g)} - \left(\nabla_{T(\g)} - \nabla_{T(\g)} \circ \tau_{T(\g), T(\g)}\right)\right): T(\g) \tensor T(\g) \to T(\g)\bigg)$$
+                        \end{enumerate}
+                \end{theorem}
                     \begin{proof}
-                            
+                        \noindent
+                        \begin{enumerate}
+                            \item We will be using Freyd's Adjoint Functor Theorem \cite[Theorem V.6.2]{maclane} to prove this assertion, and to that end, let us first note that the category $\Mon(\O)$ is complete and locally small (this can be proven in the exact same way that one might prove that algebraic categories such as $\Ab$ or $\Ring$ are complete and locally small). Next, we will try to show that the functor $\frakLie$ satisfies the \href{https://ncatlab.org/nlab/show/solution+set+condition}{\underline{solution set condition}}, which we can do by finding a small indexing set $I$ such that for all enveloping algebras $\g \to \frakLie(A)$ of $\g$, there exists a family of algebras $A_i$ indexed by $i \in I$ and factorisations:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g} \\
+                                    	{\frakLie(A_i)} && {\frakLie(A)}
+                                    	\arrow[from=2-1, to=2-3, dashed]
+                                    	\arrow["{}"', from=1-2, to=2-1]
+                                    	\arrow["{}", from=1-2, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            (we actually do not need to worry about the size of $I$, since we have already fixed a sufficiently large Grothendieck universe). To that end, note that because $\O$ has all countable coproducts, one can always construct tensor algebras, whose universal property implies that there is the following adjunction:
+                                $$
+                                    \begin{tikzcd}
+                                    	{(T \ladjoint \oblv): \Mon(\O)} & {\O}
+                                    	\arrow["{\oblv}"{name=0, swap}, from=1-1, to=1-2, shift right=2]
+                                    	\arrow["{T}"{name=1, swap}, from=1-2, to=1-1, shift right=2]
+                                    	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                                    \end{tikzcd}
+                                $$
+                            In particular, this means that for each $A \in \Mon(\O)$ and each Lie algebra $\g$, there is a canonical morphism from $T(\g)$ into $A$. At the same time, note that because tensor algebras are constructed as coproducts of tensor powers, one has canonical inclusions of the tensor powers $\g^{\tensor n}$ into $T(\g)$. Thus, there are commutative diagrams in $\O$ as follows for each $A \in \Mon(\O)$ and each $n \in \N$:
+                                $$
+                                    \begin{tikzcd}
+                                    	{\g^{\tensor n}} \\
+                                    	& {T(\g)} & {A}
+                                    	\arrow[from=1-1, to=2-2]
+                                    	\arrow[from=2-2, to=2-3]
+                                    	\arrow[from=1-1, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            Thus, for each associative and unital algebra $A$, there is a universal morphism in $\Env(\g)$ as follows:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g} \\
+                                    	{\frakLie\left(T(\g)\right)} && {\frakLie(A)}
+                                    	\arrow[from=2-1, to=2-3]
+                                    	\arrow[from=1-2, to=2-1]
+                                    	\arrow[from=1-2, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            proving the existence of a small index set $I$ (the singleton in this instance) and a family of objects $\{A_i\}_{i \in I}$ of $\Mon(\O)$ such that there are factorisations as below for all $i \in I$:
+                                $$
+                                    \begin{tikzcd}
+                                    	& {\g} \\
+                                    	{\frakLie(A_i)} && {\frakLie(A)}
+                                    	\arrow[from=2-1, to=2-3, dashed]
+                                    	\arrow["{}"', from=1-2, to=2-1]
+                                    	\arrow["{}", from=1-2, to=2-3]
+                                    \end{tikzcd}
+                                $$
+                            (for the sake of clarity, let us note that here, we take $A_i = T(\g)$ for all $i \in I$). Lastly, note that the category $\Mon(\O)$ is complete and locally small. Thus, all the conditions in Freyd's Adjoint Functor Theorem are satisfied, and therefore, $\frakLie$ is a right-adjoint. This of course means that we can construct a functor:
+                                $$\U: \Lie\Alg(\O) \to \Mon(\O)$$
+                            to be left-adjoint to $\frakLie$. Then, as a consequence of the universal property of adjoint pairs, the category of enveloping algebras of $\g$ must have $\frakLie\left(\U(\g)\right)$ as an initial object, which by definition is the so-called universal enveloping algebra of $\g$.
+                            \item This is trivial if we note that taking the quotient of $T(\g)$ by the equivalence relation generated by the image of $[-,-]_{\frakLie T(\g)} - \left(\nabla_{T(\g)} - \nabla_{T(\g)} \circ \tau_{T(\g), T(\g)}\right)$ (which incidentally, also canonically endows $T(\g)$ with a Lie bracket) is just to ensure that the canonical map:
+                                $$\g \to (\frakLie \circ \U \circ \frakLie \circ T)(\g)$$
+                            is a Lie algebra homomorphism for every $\g$.
+                        \end{enumerate}
                     \end{proof}
+                \begin{corollary}
+                    $\frakLie$ is left-exact and $\U$ is right-exact. In particular, we have:
+                        $$\U\left(\g \sqcup \g'\right) \cong \U(\g) \tensor \U(\g')$$
+                    for any pair $\g, \g'$ of Lie algebras. 
+                \end{corollary}
+                    \begin{proof}
+                        These are general properties of adjoint functors.
+                    \end{proof}
+                \begin{remark}
+                    The adjunction as presented in the preceding theorem can be understood as fitting into the following (non-commutative) diagram:
+                        $$
+                            \begin{tikzcd}
+                            	{\Mon(\O)} & {} & {\O} \\
+                            	& {\Lie\Alg(\O)}
+                            	\arrow["{\oblv}"{name=0, swap}, from=1-1, to=1-3, shift right=2]
+                            	\arrow["{T}"{name=1, swap}, from=1-3, to=1-1, shift right=2]
+                            	\arrow["{L}"{name=2, swap}, from=2-2, to=1-3, shift right=5]
+                            	\arrow[""{name=3, inner sep=0}, from=1-3, to=2-2, shift left=1]
+                            	\arrow["{\U}"{name=4, swap}, from=2-2, to=1-1, shift left=1]
+                            	\arrow["{\frakLie}"{name=5, swap}, from=1-1, to=2-2, shift right=5]
+                            	\arrow["\dashv"{rotate=-90}, from=1, to=0, phantom]
+                            	\arrow["\dashv"{rotate=61}, from=5, to=4, phantom]
+                            	\arrow["\dashv"{rotate=129}, from=2, to=3, phantom]
+                            \end{tikzcd}
+                        $$
+                \end{remark}
+                \begin{remark}[Universal enveloping algebras are bialgebras] \label{remark: universal_enveloping_algebras_are_bialgebras}
+                    Let $k$ be a ring and let $\g$ be a Lie algebra internal to some $k$-linear symmetric monoidal category $(\V, \tensor, 1, \tau)$. Then, its universal enveloping algebra $\U(\g)$ is a cocommutative bialgebra internal to $\V$, which is commutative if and only if $\g$ is abelian. 
                     
-                \begin{lemma}
-                    If $-\lambda \in \bbX(T)$ is not a dominant weight, then 
+                    This becomes trivial if we let the comultiplication be given by:
+                        $$\Delta_{\U(\g)} := \id_{\U(\g)} \tensor \e + \e \tensor \id_{\U(\g)}$$
+                    and the counit be:
+                        $$\e_{\U(\g)} := 0$$
+                \end{remark}
+                    
+                \begin{lemma}[Embedding of Lie algebras into their universal enveloping algebras]
+                    Let $k$ be a ring (not necessarily commutative) and let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear \textbf{abelian} category. Also, suppose that $\g$ is a (faithfully ?) flat Lie algebra object internal to $\O$, i.e. that the functor $\g \tensor -$ is (faithfully ?) flat. Then, there is a canonical monomorphism embedding $\g$ itno $\frakLie \U(\g)$
                 \end{lemma}
                     \begin{proof}
-                        
+                        \todo{Currently I'm not certain that this statement is entirely correct.}
                     \end{proof}
-        
+                
+                \begin{example}[The abelian case]
+                    If $\g$ is an abelian Lie algebra (i.e. one whose Lie bracket is just the zero morphism), then as a direct consequence of the definition of symmetric algebras and of theorem 1.1.1, we have the following isomorphism of associative and unital algebras:
+                        $$\U(\g) \cong \Sym(\g)$$
+                \end{example}
+                \begin{example}[The Poincar\'e-Birkhoff-Witt Theorem]
+                    Let $k$ be a commutative and unital $\Q$-algebra, let $(\O, \tensor, 1, \tau)$ be a symmetric monoidal $k$-linear category with all countable coproducts and cokernels, and let $\g$ be a Lie algebra object of $\O$ that is (faithfully ?) flat (i.e. one such that the functor $\g \tensor -$ is left-exact). Then, there is the following isomorphism of cocommutative $\N$-graded $k$-bialgebras:
+                        $$\U(\g) \cong \Sym(\g)$$
+                    In other words, one can understand representations of such a Lie algebra $\g$ via representations of the symmetric algebra $\Sym(\g)$, which in turn are just representations of symmetric groups.
+                \end{example}
+                \begin{example}[A counter-example]
+                    Let $k$ be a field of characteristic $0$ and consider the symmetric monoidal category of finite-dimensional $k$-vector spaces. Then clearly, $\O$ does not have all countable coproducts (for example, the vector space $k^{\oplus \aleph_0}$, which is a coproduct indexed by the countable infinite cardinal $\aleph_0$, is not an object as it is infinite-dimensional), and thus not all Lie $k$-algebras have a universal enveloping algebra.
+                \end{example}
+                \begin{example}[Open problem]
+                    It is not known if the functor:
+                        $$\U: \frakLie(\O) \to \Lie\Alg(\O)$$
+                    is faithful, and even if that is not the case in general, we also do not have a good understanding of which extra assumptions to impose on our ambient symmetric monoidal linear category $\O$ so that in such a setting, $\U$ might be faithful. 
+                \end{example}
+                
+                \begin{lemma}[Tannaka duality] \label{lemma: tannaka_duality}
+                    Let $\O$ be a closed symmetric monoidal category that is locally small (such as the symmetric monoidal category of vector spaces over a field), so that it may be enriched over itself via its internal homs (which exist thanks to the monoidal closure assumption), and let $A$ be a monoid object of $\O$. If we denote the category of $\O$-representations on $A$ by:
+                        $$\Rep_{\O}(A) := \O\-\Cat(\bfB A^{\op}, \O)$$
+                    then the algebra $\End_{\O\-\Cat(\Rep_{\O}(A), \O)}(F)$ of $\O$-natural endomorphisms on the canonical forgetful functor $F: \Rep_{\O}(A) \to \O$ is isomorphic to $A$.
+                \end{lemma}
+                    \begin{proof}
+                        Apply the $\O$-enriched Yoneda's lemma:
+                            $$
+                                \begin{aligned}
+                                    \End_{\O\-\Cat(\Rep_{\O}(A), \O)}(F) & \cong \O\-\Cat(\Rep_{\O}(A), \O)(F, F)
+                                    \\
+                                    & \cong \Psh_{\O}\left(\Psh_{\O}(\bfB A)\right)\bigg(\Psh_{\O}(\bfB A)(*, -), \Psh_{\O}(\bfB A)(*, -)\bigg)
+                                    \\
+                                    & \cong \Psh_{\O}(\bfB A)(*, *)
+                                    \\
+                                    & \cong \Rep_{\O}(A)(*, *)
+                                    \\
+                                    & \cong \End_{\O}(A)
+                                    \\
+                                    & \cong A
+                                \end{aligned}
+                            $$
+                    \end{proof}
+                \begin{theorem}
+                    If $k$ is a ring, $\O$ is a \textit{locally small} \textit{closed} symmetric monoidal $k$-linear category with all coproducts and cokernels, and $\g$ is a (faithfully ?) flat Lie algebra object of $\O$, then there is an equivalence of abelian monoidal $k$-linear categories as follows:
+                        $$\Rep_{\O}(\g) \cong {\U(\g)}\mod$$
+                    wherein $\Rep_{\O}(\g)$, the category of representations of $\g$ on $\O$, is the category whose objects are Lie algebra homomorphisms from $\g$ to $\frakgl(V)$ (with $\frakgl(V)$ the canonical Lie algebra associated to the associative and unital endomorphism algebra $\End_{\O}(V)$), and morphisms are commutative triangles in $\Lie\Alg(\O)$ of the form:
+                        $$
+                            \begin{tikzcd}
+                            	& {\g} \\
+                            	{\frakgl(V)} && {\frakgl(V')}
+                            	\arrow[from=2-1, to=2-3]
+                            	\arrow[from=1-2, to=2-1]
+                            	\arrow[from=1-2, to=2-3]
+                            \end{tikzcd}
+                        $$
+                    Also, note that ${\U(\g)}\mod$ is \href{https://ncatlab.org/nlab/show/module+over+a+monoid}{\underline{well-defined}} as the category of $\U(\g)$-left-equivariant objects of $\O$, and it exhibits all properties that one might expect of a module category.
+                \end{theorem}
+                    \begin{proof}
+                        Before we prove this claim, let us first note that because $\O$ has all countable coproducts and cokernels, all Lie algebras possess universal enveloping algebras. With that out of the way, let us note that by Tannaka duality (cf. lemma \ref{lemma: tannaka_duality}), each left-$\U(\g)$-module is actually just a $\U(\g)$-representation. Thus, to show that:
+                            $$\Rep_{\O}(\g) \cong {\U(\g)}\mod$$
+                        it will suffice to show that:
+                            $$\Rep_{\O}(\g) \cong \Rep_{\O}\left(\U(\g)\right)$$
+                        (this might seem like a round-about method, but without Tannaka duality, guaranteeing that the equivalence is actually between abelian monoidal $k$-linear categories instead of just between ordinary categories will be difficult). In turn, one can do this via showing that there is the following equivalence of categories of Lie algebra representations:
+                            $$\Rep_{\O}(\g) \cong \Rep_{\O}\left(\frakLie \U(\g)\right)$$
+                        thanks to the uniqueness of the universal enveloping algebra. Then, we can simply apply lemma 1.1.1, which states that $\g$ is a subobject of $\frakLie \U(\g)$, and consider commutative diagrams as follows in $\Lie\Alg(\O)$:
+                            $$
+                                \begin{tikzcd}
+                                	{\g} \\
+                                	& {\frakgl(V)} \\
+                                	{\frakLie \U(\g)}
+                                	\arrow[from=1-1, to=2-2]
+                                	\arrow[from=3-1, to=2-2]
+                                	\arrow[from=1-1, to=3-1, tail]
+                                \end{tikzcd}
+                            $$
+                        to show that for each representation of $\g$ on $V \in \O$, there is a representation of $\frakLie \U(\g)$ on $V$ as well, and vice versa.
+                    \end{proof}
+                    
+            \subsubsection{Cohomology of Lie algebras}
+                \paragraph{Cohomologies and homologies of Lie algebra}
+                    \begin{definition}[Lie algebra cohomologies] \label{def: lie_algebra_cohomologies}
+                        Let $\g$ be a Lie algebra over a commutative ring $k$ and let $A$ be a $\g$-module. Then, we define the $n^{th}$ cohomology group of $\g$ with coefficient in $A$ as:
+                            $$H^n(\g, A) \cong \Ext^n_{\U(\g)}(k, A)$$
+                        where we view $k$ as the $1$-dimensional $\g$-representation on the right-hand side. 
+                    \end{definition}
+                    \begin{remark}
+                        It is not hard to see via induction on the cohomological dimension $n \in \N$ that $H^n(\g, A)$ (as in definition \ref{def: lie_algebra_cohomologies}) actually has a $k$-module structure.
+                    \end{remark}
+                    
+                    Let us now attempt to compute cohomologies of Lie algebras in low dimensions (namely, $n = 0, 1, 2, 3$) as well as give meaning to these spaces. We shall require, first of all, the following lemma:
+                    \begin{lemma}[de Rham resolutions of Lie algebras] \label{lemma: de_rham_resolutions_of_lie_algebras}
+                        For $\g$ a Lie algebra over a commutative ring $k$ and $A$ any $\g$-module, one has the following isomorphism of cohomology groups:
+                            $$H^n(\g, A) \cong \Ext^n_k(\Lambda^{\bullet}(\g), A)$$
+                    \end{lemma}
+                        \begin{proof}
+                            By definition, we have:
+                                $$H^n(\g, A) \cong \Ext^n_{\U(\g)}(k, A)$$
+                            Through noting that $\Lambda^{\bullet}(\g) \cong \{k \to \g \to \g \wedge \g \to \cdots\}$ is an injective resolution of $k \in \U(\g)\mod$, one sees that these isomorphisms of cohomologies \say{lift} to the following quasi-isomorphism of cochain complexes:
+                                $$H^{\bullet}(\g, A) \cong_{\qis} \R\Hom_{\U(\g)}\left(\U(\g) \tensor_k^{\L} \Lambda^{\bullet}(\g), A\right)$$
+                            An application of the tensor-hom adjunction then gives:
+                                $$H^{\bullet}(\g, A) \cong_{\qis} \R\Hom_k(\Lambda^{\bullet}(\g), A)$$
+                            which implies:
+                                $$H^n(\g, A) \cong \Ext^n_k(\Lambda^{\bullet}(\g), A)$$
+                        \end{proof}
+                    We can now perform the aforementioned computations:
+                    \begin{proposition}[Low-dimensional cohomologies of Lie algebras]
+                        For $\g$ a Lie algebra over a commutative ring $k$ and $A$ any $\g$-module, one has the following interpretations of the low-dimensional cohomology spaces of $\g$ with coeffcients in $A$:
+                        \begin{enumerate}
+                            \item \textbf{($n = 0$: Invariants):} $H^0(\g, A) \cong \{a \in A \mid \forall x \in \g: x \cdot a = 0\}$.
+                            \item \textbf{($n = 1$: Derivations):}
+                            \item \textbf{($n = 2$: Extensions):}
+                            \item \textbf{($n = 3$: Obstructions):}
+                        \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{($n = 0$: Invariants):}
+                                \item \textbf{($n = 1$: Derivations):}
+                                \item \textbf{($n = 2$: Extensions):}
+                                \item \textbf{($n = 3$: Obstructions):}
+                            \end{enumerate}
+                        \end{proof}
+                
+                \paragraph{Cohomology of semi-simple Lie algebras over characteristic \texorpdfstring{$0$}{}}
+                
+                \paragraph{Whitehead's two lemmas}
+                    
+            \subsubsection{Structural theorems for compact Lie algebras}
+            
+            \subsubsection{Structural theorems for general Lie algebras}
+    
         \subsection{Localisation of \texorpdfstring{$\g$}{}-modules; the Beilinson-Bernstein Equivalence}
             \begin{convention} \label{conv: beilinson_bernstein_localisation_conventions}
                 \noindent
@@ -190,7 +505,7 @@
                 
                 Let $\pi: G \to G/B$ denote the canonical projection and observe that there exists a canonically determined sheaf pullback functor:
                     $$\pi^*: \Dmod(G/B) \to \Dmod(G)$$
-                which in turn induces a (compatible) \say{twisted} pullback functor:
+                which in turn induces a \say{twisted} pullback functor, compatible with the aforementioned pullback $\pi^*$ in some appropriate and natural sense:
                     $$(\pi^{(\lambda)})^*: \Dmod(G/B)^{(\lambda)} \to \Dmod(G)$$
                 Also, note the fact that for all $\calM \in \Dmod(G)$, the global section $\Gamma(G, \calM)$ has a natural $\U(\g)$-bimodule structure thanks to the self-actions of $G$ via left and right-translations. Among other things, this implies that there exists the following natural composition of functors:
                     $$
@@ -208,8 +523,26 @@
                         	\arrow["{\Gamma(G, -)}", from=1-2, to=1-3]
                         \end{tikzcd}
                     $$
+                Set:
+                    $$\Gamma^{(\lambda)} := \Gamma(G, -) \circ (\pi^{(\lambda)})^*$$
+                
+                Now, let $\calV^{(\lambda)}$ denote the Verma module attached to a given weight $\lambda$ and set:
+                    $$\bfGamma^{(\lambda)} := \Hom_{\U(\g)}(\calV^{(\lambda)}, -) \circ \Gamma^{(\lambda)}$$
+                Eventually, we will be establishing an adjunction:
+                    $$
+                        \begin{tikzcd}
+                        	{\Dmod(G/B)^{(\lambda)}} & \O
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\bfGamma^{(\lambda)}}"', shift right=2, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Delta^{(\lambda)}}"', shift right=2, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                wherein $\O$ is the so-called \say{Category $\O$} whose construction we shall get to\footnote{For now, think of $\O$ as a suitable subcategory of the category of right-$\U(\g)$-modules.}; here $\Delta^{(\lambda)}$ is given by:
+                    $$M \mapsto \D_{G/B} \tensor^{\L}_{\U(\g)} M$$
                     
-            \subsubsection{Kazhdan-Lusztig modules, the category \texorpdfstring{$\rmO$}{}, and Verma modules}
+                All of this is simply to say that, the global section of the pullback along $\pi: G \to G/B$ of any D-modules on $G/B$ twisted by some character $\lambda$, remains unchanged under \say{twisting} by the Verma module $\calV^{(\lambda)}$. The adjunction $\Delta^{(\lambda)} \ladjoint \bfGamma^{(\lambda)}$ - as complicated as it may seem - is actually just an enhanced version of the usual tensor-hom adjunction.
+                    
+            \subsubsection{Kazhdan-Lusztig modules, the category \texorpdfstring{$\O$}{}, and Verma modules}
                     
             \subsubsection{Proving the theorem}
                 The following geometric result shall help us make better sense of the Beilinson-Bernstein Localisation Theorem (cf. theorem \ref{theorem: beilinson_bernstein_localisation}). In fact, it is the true \say{localisation theorem}: the Beilinson-Bernstein Theorem simply refines the adjunction established by this results down to an adjoint equivalence (which, of course, is of great representation-theoretic significance)\footnote{Additionally, note how the notion of weight does not appear at all in theorem \ref{theorem: localisation_adjunction_for_D_modules}}.
@@ -289,14 +622,18 @@
                     Since $G/B$ is a smooth variety, theorem \ref{theorem: localisation_adjunction_for_D_modules} specialises to the case of $X \cong G/B$.
                 \end{corollary}
                 
+                It now remains to establish a functor from the category of $\U(\g)$-bimodules to the category $\O$, which shall be $\Hom_{\U(\g)}(\calV^{(\lambda)}, -)$ where $\calV^{(\lambda)}$ is the Verma module attached to a weight $\lambda$. 
                 \begin{theorem}[The Beilinson-Bernstein Localisation Theorem] \label{theorem: beilinson_bernstein_localisation}
                     
                 \end{theorem}
                     \begin{proof}
                         
                     \end{proof}
+                \begin{corollary}[The Borel-Weil-Bott Theorem] \label{coro: borel_weil_bott_theorem}
+                    
+                \end{corollary}
         
-        \subsection{D-modules on the affine Grassmannians and representations of Kac-Moody algebras} \label{subsection: localisation_of_affine_lie_algebras}
+        \subsection{Chiral D-modules on the affine Grassmannians and representations of Kac-Moody algebras} \label{subsection: localisation_of_affine_lie_algebras}
             \begin{convention} \label{conv: chiral_beilinson_bernstein_localisation_conventions}
                 \noindent
                 \begin{itemize}
@@ -306,6 +643,57 @@
                     \item The Lie algebras of $G, B$, and $T$ shall be denoted - respectively - by $\g, \b$, and $\t$.
                 \end{itemize}
             \end{convention}
+            
+            \begin{convention} \label{conv: loop_algebras_1}
+                If $\g$ is a simple complex Lie algebra then we shall denote by $\g(\!(t)\!)$ the corresponding loop algebra, which is defined to be isomorphic to $\g \tensor_{\bbC} \bbC(\!(t)\!)$.
+            \end{convention}
+            
+            \subsubsection{\textit{Pr\'elude}: Affine Kac-Moody algebras}
+                We begin by recalling the following result, which classifies $\ad_{\g}$-invariant inner products on our given simple Lie algebra $\g$:
+                \begin{lemma}[Invariant inner products on simple complex Lie algebras] \label{lemma: invariant_inner_products_on_simple_complex_lie_algebras}
+                    On any given simple complex Lie algebra $\g$, there exists (up to non-zero scalar multiples) only one $\ad_{\g}$-invariant $\kappa$, namely the Killing Form, which is defined to be a linear map:
+                        $$\kappa: \g \tensor \g \to \bbC$$
+                    given by:
+                        $$x \tensor y \mapsto \trace(\ad_{\g}(x) \ad_{\g}(y))$$
+                    Furthermore, this space of invariant inner products is isomorphic (as a $\bbC$-vector space) to $H^2(\g(\!(t)\!), \bbC)$.
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                We shall also need to recall the general fact that extensions of a given Lie algebra $\g$ (for now, not necessarily simple), i.e. short exact sequences of $R$-modules of the form $0 \to M \to \hat{\g}_M \to \g \to 0$ by some $\g$-module $M$\footnote{Note that $M$ is necessarily a Lie algebra ideal of $\hat{g}_M$ and hence a Lie subalgebra of $\hat{g}$, due to Lie algebras being non-unital.}, are parametrised by $2$-cocyles $\kappa \in H^2(\g, M)$:
+                \begin{lemma}[Extensions of Lie algebras are $2$-cocycles] \label{lemma: lie_algebra_extensions_are_2_cocycles}
+                    Let $\g$ be an arbitrary Lie algebra over any commutative ring (cf. definition \ref{def: lie_algebras}) and let $M$ be a $\g$-module. Then, extensions $\hat{\g}_M$ of $\g$ by $M$ are in bijective correspondence with elements $\kappa \in H^2(\g, M)$.
+                \end{lemma}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}
+                    Central extensions of any Lie algebra $\g$ over a commutative ring $k$ are in bijection with elements of $H^2(\g, R)$.
+                \end{corollary}
+                    
+                Now, by putting lemma \ref{lemma: invariant_inner_products_on_simple_complex_lie_algebras} and lemma \ref{lemma: lie_algebra_extensions_are_2_cocycles} together, one can meaningfully speak of central extensions of \say{central extensions of the loop algebra $\g(\!(t)\!)$ with respect to a given invariant inner product $\kappa$ on $\g$} in the following manner:
+                \begin{definition}[Central extension with respect to invariant inner products] \label{def: central_extensions_with_respect_to_invariant_inner_products}
+                    Let $\g$ be a simple complex Lie algebra and let $\kappa$ be an $\ad_{\g}$-invariant inner product thereon. Then, an \textbf{extension of $\g(\!(t)\!)$ with respect to $\kappa$} is nothing but a (central) extension $\hat{\g}_{\kappa}$ of $\g$ with respect to $\bbC$.
+                    
+                    Due to $H^2(\g(\!(t)\!), \bbC)$ being of dimension $1$ over $\bbC$, the extension $\hat{\g}_{\kappa}$ is actually unique up to scalar multiples, and thus is usually known as \textbf{\textit{the} affine Kac-Moody algebra associated to $\g$ of level $\kappa$}.
+                \end{definition}
+                
+                Let us also state the following accompanying definition:
+                \begin{definition}[Representations of the Kac-Moody algebra] \label{def: kac_moody_algebra_representations}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{definition}
+                
+            \subsubsection{Towards a chiral version of the Beilinson-Bernstein Localisation Theorem}
+            
+            \subsubsection{The case of the Kac-Moody algebra at negative and at irrational levels}
+            
+            \subsubsection{The case of the Kac-Moody algebra at the critical level}
+            
+            \subsubsection{Global sections of chiral D-modules on the affine Grassmannian}
             
         \subsection{Localisation of \texorpdfstring{$\hat{\g}$}{}-modules}
             \begin{convention} \label{conv: quantum_beilinson_bernstein_localisation_conventions}

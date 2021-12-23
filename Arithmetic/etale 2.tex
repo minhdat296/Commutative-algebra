@@ -147,20 +147,20 @@
                     \item \textbf{(Lisse $\ell$-adic functions):} Let $X$ be a \textit{totally disconnected} topological space (typically just locally profinite, although there are interesting non-profinite examples such as $\Q$). An $\ell$-adic function $f: X \to F$ shall then be called \textbf{lisse} if and only if it is \textit{compactly supported} and \textit{locally constant} (this terminology is suppose to be a nod to the notion of smooth functions on locally profinite spaces). The space of lisse $\ell$-adic functions on any open subset $U \subseteq X$ is denoted by $C^{\infty}_c(U, F)$ or simply $C^{\infty}_c(U)$ when $F$ is understood.
                     
                     One thing to note is that when $F = \bbC$, this notion does \textit{not} coincide with that of smoothness, since totally disconnected spaces can not admit any sort of archimedean metric. This is another reason why we opted for \say{lisse functions} instead of \say{smooth functions} or \say{bump functions}.
-                    \item \textbf{(Lisse $\ell$-adic sheaves):} In analogy with the above notion of lisse $\ell$-adic functions, let us define a \textbf{lisse $\ell$-adic sheaf} as a \textit{finite-dimensional} $F$-linear local system over some pro-\'etale site $X_{\proet}$ of a given base scheme $X$. It is not hard to see that lisse sheaves on $X$ form a category, which we shall denote by ${}_F\LocSys(X_{\proet})^{\fin}$.
+                    \item \textbf{(Lisse $\ell$-adic sheaves):} In analogy with the above notion of lisse $\ell$-adic functions, let us define a \textbf{lisse $\ell$-adic sheaf} as a \textit{finite-dimensional} $F$-linear local system over some pro-\'etale site $X_{\proet}$ of a given base scheme $X$. It is not hard to see that lisse sheaves on $X$ form a category, which we shall denote by $F\-\LocSys(X_{\proet})^{\fin}$.
                 \end{enumerate}
             \end{definition}
         
             \begin{theorem}[The $\ell$-adic Monodromy Correspondence] \label{theorem: l_adic_monodromy_correspondence}
                 Let $\ell$ be a prime, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). Also, let $X$ be a \textit{connected} base scheme. There is then the following equivalence of rigid symmetric monoidal categories:
-                    $${}_F\LocSys(X_{\proet})^{\fin} \cong \Rep_F^{\cont}(\pi_1^{\fet}(X))$$
+                    $$F\-\LocSys(X_{\proet})^{\fin} \cong \Rep_F^{\cont}(\pi_1^{\fet}(X))$$
             \end{theorem}
                 \begin{proof}
                     
                 \end{proof}
             \begin{corollary}[Continuous Galois representations as lisse sheaves] \label{coro: continuous_galois_representations_as_lisse_sheaves}
                 Let $K$ be a field whose characteristic is different from $\ell$. Then, we have the following equivalence of rigid symmetric monoidal categories:
-                    $${}_F\LocSys(*_{\proet})^{\fin} \cong \Rep_F^{\cont}(\bfG_K)$$
+                    $$F\-\LocSys(*_{\proet})^{\fin} \cong \Rep_F^{\cont}(\bfG_K)$$
             \end{corollary}
             \begin{example}[\'Etale cohomologies as geometric Galois representations] \label{example: etale_cohomologies_as_galois_representations}
                 Let $K$ be a separably closed field and let $X$ be a smooth and proper scheme over $\Spec K$. Since $\ell$-adic cohomology is a Weil cohomology theory, the $\ell$-adic cohomologies $H^i_{\Q_{\ell}}(X)$ are, in particular, finite-dimensional. Since we wish to show that these cohomologies are naturall Galois representations, it then remains to verify that $\bfG_K$ indeed acts on them.
