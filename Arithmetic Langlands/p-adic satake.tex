@@ -1,0 +1,102 @@
+\chapter{The \texorpdfstring{$p$}{}-adic Geometric Satake Equivalence}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{The Geometric Satake Equivalence in mixed characteristics}
+        \begin{convention} \label{conv: p_adic_geometric_satake_conventions}
+            \noindent
+            \begin{itemize}
+                \item Let us fix once and for all a non-archimedean local field $E$ with residue field $\F_q$, along with some choice of pseudo-uniformiser $\varpi \in E^{\circ \circ}$. 
+                \item Additionally, $X_S$ shall denote the Fargues-Fontaine Curve over any given perfectoid space $S \in \Perfd_{/\Spa \F_q}$. We refer the reader to section \ref{section: the_fargues_fontaine_curve} for details on the construction and properties of The Curve. 
+                \item Lastly, $G$ shall be a connected reductive group over $\Spd E$.
+            \end{itemize}
+        \end{convention}
+        
+        In this section we attempt to understand a version of the Geometric Satake Correspondence in mixed characteristics as written down in \cite{fargues_scholze_geometrization_of_local_langlands}, whose statement asserts an equivalence between certain kinds of sheaves on the affine Grassmannian attached to $G$ and the category of representations of the Langlands dual of $G$, thereby establishing a rudimentary version of Langlands Duality. 
+    
+        \subsection{The \texorpdfstring{$\B_{\dR}$}{}-affine Grassmannian}
+            \subsubsection{The affine Grassmannian over a point}
+                \begin{convention}[$\B_{\dR}$-discs]
+                    For each $\Spa(R, R^+) \in \Perfd^{\affd}_{/\Spa E^{\flat}}$, let us write $\bbD_{\dR}^+(R)$ for the so-called \textbf{$\B_{\dR}$-disc} $\Spec \B^+_{\dR}(R)$, and $\bbD_{\dR}(R)$ for the \textbf{punctured $\B_{\dR}$-disc} $\Spec \B_{\dR}(R)$.
+                \end{convention}
+            
+                \begin{definition}[Local $\B_{\dR}$-affine Grassmannians] \label{def: local_B_dR_affine_grassmannian}
+                    There is a canonically defined moduli space, denoted by $\Gr_G^{\loc}$ and called the \textbf{\textit{local} $\B_{\dR}$-affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spa R \in \Perfd_{/\Spd E}^{\affd}$ the groupoid that is the core of the category of \'etale $G$-torsors on $\bbD_{\dR}^+(R)$ that trivialise over $\bbD_{\dR}(R)$.  
+                \end{definition}
+                \begin{remark}
+                    \noindent
+                    \begin{itemize}
+                        \item It is rather easy to see that $\Gr_G^{\loc}$ satisfies \'etale descent and hence tautologically a stack on $(\Perfd^{\affd}_{/\Spd E})_{\et}$.
+                        \item Furthermore, by introducing the so-called $\B_{\dR}$-loop and $\B_{\dR}$-arc groups $G_{\dR}^+$ and $G_{\dR}$\footnote{Note that in this context $(-)_{\dR}$ is not the functor of de Rham spaces like in section \ref{section: D_modules_over_characteristic_0}.}, defined by $G_{\dR}^+(R) \cong G(\B_{\dR}^+(R))$ and $G_{\dR}(R) \cong G(\B_{\dR}(R))$ respectively, one can show that:
+                            $$\Gr_G^{\loc} \cong G_{\dR}/G_{\dR}^+$$
+                        using the fact that $G_{\dR}^+$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. proposition \ref{prop: B_dR_affine_grassmannian_as_coset_spaces}).
+                    \end{itemize}
+                \end{remark}
+                
+                Let us now investigate the geometry of $\Gr_G^{\loc}$. In particular, our aim is to establish properties of $\Gr_G^{\loc}$ that would make the consideration of (equivariant) perverse sheaves thereon a meaningful process.
+                
+                \begin{proposition}[Affine Grassmannians as coset spaces] \label{prop: B_dR_affine_grassmannian_as_coset_spaces}
+                    Let $G$ be an algebraic group. Then, $\Gr_G^{\loc} \cong G_{\dR}/G_{\dR}^+$, with the right-hand side implicitly meaning the \'etale sheafification of quotient presheaf.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Affine Grassmannians are v-sheaves] \label{coro: B_dR_affine_grassmannians_are_v_sheaves}
+                    The fact that:
+                        $$\Gr_G^{\loc} \cong G_{\dR}/G_{\dR}^+$$
+                    as \'etale sheaves (hence tautologically as pro-\'etale sheaves) implies that $\Gr_G^{\loc}$ is a diamond, and hence a v-sheaf.\todo{Check if $\Gr_G^{\loc}$ is a diamond.} 
+                \end{corollary}
+                \begin{corollary}
+                    If viewed as a prestack on $\Sch^{\aff, \perf}_{/\Spec E^{\flat}}$ then $\Gr_G^{\loc}$ satisfies fpqc descent (this is straightforward from the definition of the pro-\'etale topology).
+                \end{corollary}
+                \begin{corollary}[Loop group action on Grassmannians] \label{coro: loop_group_action_on_B_dR_grassmannians}
+                    There is a $G_{\dR}^+$-action on $\Gr_G^{\loc}$, which means that one can now meaningfully discuss equivariance of sheaves on the affine Grassmannian $\Gr_G^{\loc}$. In particular, we shall be interested in $G_{\dR}^+$-equivariant perverse sheaves on $\Gr_G^{\loc}$.
+                \end{corollary}
+                
+                \begin{proposition}[Structure of affine Grassmannians] \label{prop: structure_of_B_dR_affine_grassmannian}
+                    As a v-stack over $\Spd E$, the affine Grassmannian $\Gr_G^{\loc}$ is separated (hence quasi-separated) and proper.
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Separatedness):}
+                            \item \textbf{(Properness):}
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{proposition}[Functoriality of the affine Grassmannian] \label{prop: B_dR_affine_grassmannian_functoriality}
+                    Let $H$ be a closed reductive subgroup (also over $\Spd E$) of $G$. Then, the induced map $\Gr_H^{\loc} \to \Gr_G^{\loc}$ is a closed embedding as well.
+                \end{proposition}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{remark}
+                    Proposition \ref{prop: B_dR_affine_grassmannian_functoriality} is tremendously useful. This is because every reductive group is in particular a linear algebraic group, and the \say{maximal} reductive group - that being $\GL_n$ - is also the \say{maximal} linear algebraic group. One can thus prove assertions for $\Gr_{\GL_n}$ (which is relatively simple to understand) before extending these results to other reductive groups.  
+                \end{remark}
+                    
+            \subsubsection{Bruhat Decomposition, Schubert cells, and ind-structures}
+            
+            \subsubsection{The Demazure Resolution for the affine Grassmannian}
+            
+            \subsubsection{Representability of the affine Grassmannian}
+            
+        \subsection{Beilinson-Drinfeld Grassmannians}
+            \subsubsection{Definition}
+            
+            \subsubsection{Semi-infinite orbits}
+            
+            \subsubsection{Sheaves on Beilinson-Drinfeld Grassmannians}
+            
+        \subsection{The Satake Equivalence}
+            \subsubsection{Convolution of equivariant perverse sheaves on the affine Grassmannian and properties thereof}
+            
+            \subsubsection{Hecke eigensheaves}
+            
+            \subsubsection{Fibre functors and weights}
+            
+            \subsubsection{Langlands Duality}
+    
+    \section{Relative perverse sheaves}

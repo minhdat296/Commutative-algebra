@@ -336,7 +336,7 @@
                 
                 \paragraph{The affine Grassmannian}
                     \begin{definition}[Local affine Grassmannians] \label{def: local_affine_grassmannians}
-                        For any algebraic group $G$ over some base commutative ring $k$, there is a canonically defined moduli space, commonly denoted by $\Gr_G$ and called the \textbf{\textit{local} affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the groupoid that is the core of the category of $G$-torsors on $\bbD_R$ that trivialise over $\bbD_R^{\circ}$.  
+                        For any algebraic group $G$ over some base commutative ring $k$, there is a canonically defined moduli space, denoted by $\Gr_G^{\loc}$ and called the \textbf{\textit{local} affine Grassmannian} attached to $G$. It is the prestack which assigns to each $\Spec R \in \Sch_{/\Spec k}^{\aff}$ the groupoid that is the core of the category of $G$-torsors on $\bbD_R$ that trivialise over $\bbD_R^{\circ}$.  
                     \end{definition}
                     \begin{remark}
                         \noindent
@@ -344,7 +344,7 @@
                             \item It is rather easy to see that $\Gr_G^{\loc}$ satisfies fppf descent and hence a stack in the fppf topology.
                             \item Furthermore, by introducing the so-called loop and arc groups $G[\![t]\!]$ and $G(\!(t)\!)$, defined by $G[\![t]\!](R) \cong G(R[\![t]\!])$ and $G(\!(t)\!)(R) \cong G(R(\!(t)\!))$ respectively, one can show that:
                                 $$\Gr_G^{\loc} \cong G(\!(t)\!)/G[\![t]\!]$$
-                            using the fact that $G(\!(t)\!)$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. lemma \ref{prop: affine_grassmannians_as_coset_spaces}).
+                            using the fact that $G(\!(t)\!)$ acts on $\Gr_G^{\loc}$ by changing the trivialisation. This is an important description of the affine Grassmannian, so let us state and prove it properly (cf. proposition \ref{prop: affine_grassmannians_as_coset_spaces}).
                         \end{itemize}
                     \end{remark}
                     
@@ -362,7 +362,7 @@
                         From now on, we shall write $\Gr_G$ instead of $\Gr_G^{\loc}$.
                     \end{convention}
                     
-                    \begin{proposition}[Structure of affine Grassmannians] \label{prop: structure_of_affine_grasmannian}
+                    \begin{proposition}[Structure of affine Grassmannians] \label{prop: structure_of_affine_grassmannian}
                         Let $G$ be an algebraic group. Then:
                             \begin{enumerate}
                                 \item $\Gr_G$ is an ind-scheme of ind-finite type, and
@@ -408,7 +408,7 @@
                     From now on, our ground field $k$ shall be of characteristic $0$.
                 \end{convention}
                 
-                \paragraph{Convolution}
+                \paragraph{Convolution of equivariant sheaves on the affine Grassmannian and properties thereof}
                     \begin{definition}[Spherical D-modules] \label{def: spherical_D_modules}
                         Let $k$ be a field, $X$ be an algebraic curve over $\Spec k$, and $G$ be an algebraic group over $\Spec k$. Additionally, fix a finite set of $k$-rational points $x_1, ..., x_n \in |X|$. Then, the category of $G[\![t]\!]$-equivariant D-modules on the Hecke stack $\Hecke_{G, X^n}$, which we shall denote by $\Sph_{G, X^n}$, shall be called the $n^{th}$ category of \textbf{$G$-spherical D-modules} on $X$.
                     \end{definition}
@@ -420,6 +420,8 @@
                     \begin{convention}
                         Thanks to the local-to-global compatibility of the affine Grassmannian established in remark \ref{remark: local_to_global_for_affine_grassmannians}, we shall henceforth be abbreviating $\Sph_{G, X^1}$ down to $\Sph_G$.
                     \end{convention}
+                    
+                \paragraph{Commutativity}
             
             \subsubsection{Hecke eigensheaves}
             

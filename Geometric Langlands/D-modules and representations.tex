@@ -16,7 +16,7 @@
         \end{itemize} 
     \end{convention}
     
-    \section{D-modules over characteristic zero}
+    \section{D-modules over characteristic zero} \label{section: D_modules_over_characteristic_0}
         In this section, we will be giving a demonstration of how the theory of ind-coherent sheaves on inf-schemes (cf. section \ref{section: formal_schemes_and_inf_schemes}) helps us define and describe D-modules as ind-coherent sheaves over a certain kind of prestacks, thereby naturally establishing the six-functor formalism \textit{\`a la} Grothendieck in a natural manner for D-modules, in the sense that, should a prestack $\calZ$ be sufficiently nice, one would even be able to figure out the behaviours of D-modules on $\calZ$ only from what one would expect from ind-coherent sheaves on $\calZ$. 
         
         Before submerging ourselves in the tecnnical details, let us first recall some notable features of the classical theory of D-modules (in the sense of say, Kashiwara), both to equip ourselves with an intuitive sense of purpose for our endeavour, as well as to justify this highly abstract alternative approach to D-modules. 
@@ -318,7 +318,7 @@
                     \end{proof}
                 \begin{corollary}
                     $\frakLie$ is left-exact and $\U$ is right-exact. In particular, we have:
-                        $$\U\left(\g \sqcup \g'\right) \cong \U(\g) \tensor \U(\g')$$
+                        $$\U\left(\g \oplus \g'\right) \cong \U(\g) \tensor \U(\g')$$
                     for any pair $\g, \g'$ of Lie algebras. 
                 \end{corollary}
                     \begin{proof}
@@ -359,7 +359,7 @@
                     \end{proof}
                 
                 \begin{example}[The abelian case]
-                    If $\g$ is an abelian Lie algebra (i.e. one whose Lie bracket is just the zero morphism), then as a direct consequence of the definition of symmetric algebras and of theorem 1.1.1, we have the following isomorphism of associative and unital algebras:
+                    If $\g$ is an abelian Lie algebra (i.e. one whose Lie bracket is just the zero morphism), then as a direct consequence of the definition of symmetric algebras and of theorem \ref{theorem: universal_enveloping_algebras_universal_property}, we have the following isomorphism of associative and unital algebras:
                         $$\U(\g) \cong \Sym(\g)$$
                 \end{example}
                 \begin{example}[The Poincar\'e-Birkhoff-Witt Theorem]
@@ -492,13 +492,79 @@
                             $$\Tor_{\bullet}^{\U(\g)}(k, A) \cong_{\qis} \Lambda^{\bullet}(\g) \tensor_k^{\L} A$$
                     \end{remark}
                 
-                \paragraph{Cohomology of semi-simple Lie algebras over characteristic \texorpdfstring{$0$}{}}
-                
-                \paragraph{Whitehead's two lemmas}
+                \paragraph{Cohomology of semi-simple Lie algebras over characteristic \texorpdfstring{$0$}{} and Whitehead's two lemmas}
+                    We begin with some algebraic prelimiaries. Specifically, we want to understand the notion of (semi)simplicity within the context of Lie theory, due to simple Lie algebras not quite being simple objects in categories of Lie algebras.
+                    \begin{definition}[Subalgebras and ideals] \label{def: lie_subalgebras_and_lie_ideals}
+                        
+                    \end{definition}
                     
-            \subsubsection{Structural theorems for compact Lie algebras}
-            
-            \subsubsection{Structural theorems for general Lie algebras}
+                    \begin{definition}[Simple Lie algebras] \label{def: simple_lie_algebras}
+                        A Lie algebra internal to an appropriate tensor category $\O$ (cf. definition \ref{def: lie_algebras}) is \textbf{simple} if and only if it is a \textit{non-abelian} (i.e. the Lie bracket in question is not the zero morphism) simple object of $\Lie\Alg(\O)$.
+                        
+                        More algebraically, one might say that a simple Lie algebra is a non-abelian Lie algebra with no non-trivial proper ideal.
+                    \end{definition}
+                
+                    Let us now move on to two important results concerning semi-simple Lie algebras, namely:
+                        \begin{itemize}
+                            \item the fact that finite-dimensional representations of semi-simple Lie algebras are completely reducible, and
+                            \item that every Lie algebra which is finite-dimensional splits into the direct sum of its so-called \say{radical} and some semi-simple Lie algebra. 
+                        \end{itemize}
+                    During the way, we shall prove two technical lemmas, commonly known as Whitehead's First and Second Lemmas.
+                    
+                    \begin{convention} \label{conv: cohomology_of_semi_simple_lie_algebras_conventions}
+                        Throughout this paragraph, $\g$ shall denote a finite-dimensional semi-simple Lie algebra over a field $k$ of characteristic $0$, and $A$ shall denote a $\g$-module that is of finite dimension as a $k$-vector space (i.e. a finite-dimensional $\g$-representation) with structural homomorphism:
+                            $$\rho: \g \to \End_k(A)$$
+                    \end{convention}
+                    
+                    \begin{proposition}[Associated invariant bilinear forms] \label{prop: associated_invariant_bilinear_forms_of_lie_algebras}
+                        To $\g$, $A$, and $\rho$ as in convention \ref{conv: cohomology_of_semi_simple_lie_algebras_conventions}, there exists a symmetric bilinear form:
+                            $$\beta: \g \tensor \g \to k$$
+                        given by\footnote{Note that $\beta(x, y)$ should technically be written as $\beta(x \tensor y)$.}:
+                            $$x \tensor y \mapsto \beta(x, y) := \trace(\rho(x) \rho(y))$$
+                        Furthermore, such a bilinear form is $\ad_{\g}$-invariant, i.e.:
+                            $$\beta([x, y], z) = \beta(x, [y, z])$$
+                        for all $x, y, z \in \g$.
+                    \end{proposition}
+                        \begin{proof}
+                            Bilinearity is a straightforward consequence of the linearity of $\rho$ (in the two factors $x$ and $y$) and the linearity of the trace map $\trace: \End_k(A) \to k$. As for symmetry, it is a consequence of the well-known fact that traces of endomorphisms on finite-dimensional vector spaces (whihc $\End_k(A)$ is, since $A$ is a finite-dimensional $k$-vector space) are invariant under cyclic permutations.
+                            
+                            Now, to prove that $\beta$ is $\ad_{\g}$-invariant, consider the following:
+                                $$
+                                    \begin{aligned}
+                                        \beta([x, y], z) & = \trace(\rho([x, y]) \rho(z))
+                                        \\
+                                        & = \trace([\rho(x), \rho(y)] \rho(z))
+                                        \\
+                                        & = \trace((\rho(x)\rho(y) - \rho(y)\rho(x)) \rho(z))
+                                        \\
+                                        & = \trace(\rho(x) \rho(y)\rho(z)) - \trace(\rho(y)\rho(x)\rho(z))
+                                        \\
+                                        & = \trace(\rho(x) \rho(y)\rho(z)) - \trace(\rho(x)\rho(z)\rho(y))
+                                        \\
+                                        & = \trace(\rho(x)[\rho(y), \rho(z)])
+                                        \\
+                                        & = \beta(x, [y, z])
+                                    \end{aligned}
+                                $$
+                        \end{proof}
+                    \begin{example}[The Killing Form] \label{example: the_killing_form}
+                        Since $\g$ is assumed to be finite-dimensional over $k$, one can meaningfully construct ymmetric bilinear forms in the fashion of proposition \ref{prop: associated_invariant_bilinear_forms_of_lie_algebras} for the case $A \cong \g$. In particular, when $\rho$ is the adjoint representation:
+                            $$\ad_{\g}: \g \to \End_k(\g): x \mapsto \left(x \mapsto [x, -]: \g \to \g\right)$$
+                        the associated symmetric bilinear form is the \textbf{Killing Form} $\kappa: \g \tensor \g \to k$, which is defined via:
+                            $$\kappa(x, y) := \trace(\ad_{\g}(x) \ad_{\g}(y))$$
+                    \end{example}
+                    
+                    \begin{theorem}[Non-degeneracy of associated invariant bilinear forms] \label{theorem: nondegeneracy_of_associated_invariant_bilinear_forms_of_lie_algebras}
+                        The associated invariant bilinear form is non-degenerate when the representation $\rho: \g \to \End_k(A)$ is faithful.
+                    \end{theorem}
+                        \begin{proof}
+                            
+                        \end{proof}
+                    \begin{corollary}
+                        The adjoint representation is faithful, so the Killing Form is non-degenerate. 
+                    \end{corollary}
+                    
+            \subsubsection{Structure and classification of compact Lie algebras}
     
         \subsection{Localisation of \texorpdfstring{$\g$}{}-modules; the Beilinson-Bernstein Equivalence}
             \begin{convention} \label{conv: beilinson_bernstein_localisation_conventions}
@@ -511,47 +577,46 @@
                 \end{itemize}
             \end{convention}
             
-            \subsubsection{The idea behind the theorem}
-                In this subsection, we shall be presenting a proof by Gaitsgory and Frenkel of the Beilinson Bernstein Localisation Theorem, which shall then (in subsection \ref{subsection: localisation_of_affine_lie_algebras}) be generalised to obtain an analogous statement regarding localisations of modules over affine Lie algebras. Let us first jot down some initial observations and then give an outline of the idea behind the proof.
+            In this subsection, we shall be presenting a proof by Gaitsgory and Frenkel of the Beilinson Bernstein Localisation Theorem, which shall then (in subsection \ref{subsection: localisation_of_affine_lie_algebras}) be generalised to obtain an analogous statement regarding localisations of modules over affine Lie algebras. Let us first jot down some initial observations and then give an outline of the idea behind the proof.
+            
+            Let $\pi: G \to G/B$ denote the canonical projection and observe that there exists a canonically determined sheaf pullback functor:
+                $$\pi^*: \Dmod(G/B) \to \Dmod(G)$$
+            which in turn induces a \say{twisted} pullback functor, compatible with the aforementioned pullback $\pi^*$ in some appropriate and natural sense:
+                $$(\pi^{(\lambda)})^*: \Dmod(G/B)^{(\lambda)} \to \Dmod(G)$$
+            Also, note the fact that for all $\calM \in \Dmod(G)$, the global section $\Gamma(G, \calM)$ has a natural $\U(\g)$-bimodule structure thanks to the self-actions of $G$ via left and right-translations. Among other things, this implies that there exists the following natural composition of functors:
+                $$
+                    \begin{tikzcd}
+                    	{\Dmod(G/B}) & {\Dmod(G)} & {\U(\g)\bimod}
+                    	\arrow["{\pi^*}", from=1-1, to=1-2]
+                    	\arrow["{\Gamma(G, -)}", from=1-2, to=1-3]
+                    \end{tikzcd}
+                $$
+            which induces the following composition wherein the first functor is now \say{twisted} by the character $\lambda$:
+                $$
+                    \begin{tikzcd}
+                    	{\Dmod(G/B)^{(\lambda)}} & {\Dmod(G)} & {\U(\g)\bimod}
+                    	\arrow["{(\pi^{(\lambda)})^*}", from=1-1, to=1-2]
+                    	\arrow["{\Gamma(G, -)}", from=1-2, to=1-3]
+                    \end{tikzcd}
+                $$
+            Set:
+                $$\Gamma^{(\lambda)} := \Gamma(G, -) \circ (\pi^{(\lambda)})^*$$
+            
+            Now, let $\calV^{(\lambda)}$ denote the Verma module attached to a given weight $\lambda$ and set:
+                $$\bfGamma^{(\lambda)} := \Hom_{\U(\g)}(\calV^{(\lambda)}, -) \circ \Gamma^{(\lambda)}$$
+            Eventually, we will be establishing an adjunction:
+                $$
+                    \begin{tikzcd}
+                    	{\Dmod(G/B)^{(\lambda)}} & \O
+                    	\arrow[""{name=0, anchor=center, inner sep=0}, "{\bfGamma^{(\lambda)}}"', shift right=2, from=1-1, to=1-2]
+                    	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Delta^{(\lambda)}}"', shift right=2, from=1-2, to=1-1]
+                    	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                    \end{tikzcd}
+                $$
+            wherein $\O$ is the so-called \say{Category $\O$} whose construction we shall get to\footnote{For now, think of $\O$ as a suitable subcategory of the category of right-$\U(\g)$-modules.}; here $\Delta^{(\lambda)}$ is given by:
+                $$M \mapsto \D_{G/B} \tensor^{\L}_{\U(\g)} M$$
                 
-                Let $\pi: G \to G/B$ denote the canonical projection and observe that there exists a canonically determined sheaf pullback functor:
-                    $$\pi^*: \Dmod(G/B) \to \Dmod(G)$$
-                which in turn induces a \say{twisted} pullback functor, compatible with the aforementioned pullback $\pi^*$ in some appropriate and natural sense:
-                    $$(\pi^{(\lambda)})^*: \Dmod(G/B)^{(\lambda)} \to \Dmod(G)$$
-                Also, note the fact that for all $\calM \in \Dmod(G)$, the global section $\Gamma(G, \calM)$ has a natural $\U(\g)$-bimodule structure thanks to the self-actions of $G$ via left and right-translations. Among other things, this implies that there exists the following natural composition of functors:
-                    $$
-                        \begin{tikzcd}
-                        	{\Dmod(G/B}) & {\Dmod(G)} & {\U(\g)\bimod}
-                        	\arrow["{\pi^*}", from=1-1, to=1-2]
-                        	\arrow["{\Gamma(G, -)}", from=1-2, to=1-3]
-                        \end{tikzcd}
-                    $$
-                which induces the following composition wherein the first functor is now \say{twisted} by the character $\lambda$:
-                    $$
-                        \begin{tikzcd}
-                        	{\Dmod(G/B)^{(\lambda)}} & {\Dmod(G)} & {\U(\g)\bimod}
-                        	\arrow["{(\pi^{(\lambda)})^*}", from=1-1, to=1-2]
-                        	\arrow["{\Gamma(G, -)}", from=1-2, to=1-3]
-                        \end{tikzcd}
-                    $$
-                Set:
-                    $$\Gamma^{(\lambda)} := \Gamma(G, -) \circ (\pi^{(\lambda)})^*$$
-                
-                Now, let $\calV^{(\lambda)}$ denote the Verma module attached to a given weight $\lambda$ and set:
-                    $$\bfGamma^{(\lambda)} := \Hom_{\U(\g)}(\calV^{(\lambda)}, -) \circ \Gamma^{(\lambda)}$$
-                Eventually, we will be establishing an adjunction:
-                    $$
-                        \begin{tikzcd}
-                        	{\Dmod(G/B)^{(\lambda)}} & \O
-                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{\bfGamma^{(\lambda)}}"', shift right=2, from=1-1, to=1-2]
-                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Delta^{(\lambda)}}"', shift right=2, from=1-2, to=1-1]
-                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
-                        \end{tikzcd}
-                    $$
-                wherein $\O$ is the so-called \say{Category $\O$} whose construction we shall get to\footnote{For now, think of $\O$ as a suitable subcategory of the category of right-$\U(\g)$-modules.}; here $\Delta^{(\lambda)}$ is given by:
-                    $$M \mapsto \D_{G/B} \tensor^{\L}_{\U(\g)} M$$
-                    
-                All of this is simply to say that, the global section of the pullback along $\pi: G \to G/B$ of any D-modules on $G/B$ twisted by some character $\lambda$, remains unchanged under \say{twisting} by the Verma module $\calV^{(\lambda)}$. The adjunction $\Delta^{(\lambda)} \ladjoint \bfGamma^{(\lambda)}$ - as complicated as it may seem - is actually just an enhanced version of the usual tensor-hom adjunction.
+            All of this is simply to say that, the global section of the pullback along $\pi: G \to G/B$ of any D-modules on $G/B$ twisted by some character $\lambda$, remains unchanged under \say{twisting} by the Verma module $\calV^{(\lambda)}$. The adjunction $\Delta^{(\lambda)} \ladjoint \bfGamma^{(\lambda)}$ - as complicated as it may seem - is actually just an enhanced version of the usual tensor-hom adjunction.
                     
             \subsubsection{Kazhdan-Lusztig modules, the category \texorpdfstring{$\O$}{}, and Verma modules}
                     
