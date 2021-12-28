@@ -665,7 +665,7 @@
                         
                     \end{proposition}
                     
-            \subsubsection{Pro-\'etale and \texorpdfstring{$v$}{}-sites of perfectoid spaces} \label{subsubsection: pro_etale_sites_of_perfectoid_spaces}
+            \subsubsection{Pro-\'etale and \texorpdfstring{$v$}{}-sites of perfectoid spaces} \label{subsubsection: pro_etale_sites_and_v_sites_of_perfectoid_spaces}
                 Having known how the pro-\'etale topology is supposed to behave (heuristically speaking, that is) through schemes, we now return to the world of perfectoid spaces. We shall also be introducing a new topology, called the $v$-topology; it is closely related to the pro-\'etale topology.
                 
                 The upshot is that both topologies are rather well-behaved, and play the role of the fppf and fpqc topologies - respectively - for perfectoid spaces. For instance, they are both subcanonical (cf. proposition \ref{prop: perfectoid_topologies_subcanonicity}), and sheaves in these topologies do in fact obey a (weaker) version of Serre's Criterion for Affineness (cf. proposition \ref{prop: serre_affineness_for_perfectoid_spaces}). As a matter of fact, one has the following hierachy of topologies on $\Perfd_{/X}$ in terms of increasing fineness:
@@ -741,20 +741,20 @@
                         \end{enumerate}
                     \end{proof}
     
-        \subsection{Stacks on perfectoid spaces}        
+        \subsection{Perfectoid stacks}        
             \subsubsection{Diamonds}
-                \begin{definition}[Diamonds] \label{def: diamonds}
+                \begin{definition}[Diamonds] \label{def: diamonds} \index{Diamonds}
                     Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Also, let $\kappa$ be a regular cardinal. A ($\kappa$-small) \textbf{diamond} is thus a quotient stack $[Y/R]$ internal to $X_{\proet}^{< \kappa}$ (see definition \ref{def: quotient_stacks} for what this means), where $Y$ is representable.
                 \end{definition}
                 
-                \begin{proposition}[Categories of diamonds] \label{prop: categories_of_diamonds}
+                \begin{proposition}[The category of diamonds] \label{prop: the_category_of_diamonds}
                     Let $p$ be a prime and let $X$ be a base perfectoid space of characteristic $p$. Also, let $\kappa$ be a regular cardinal.
                         \begin{enumerate}
                             \item \textbf{(Morphisms of diamonds):} A morphism of diamonds on $X$ is simply a morphism of groupoids internal to $X_{\proet}^{< \kappa}$. A full subcategory of $X_{\proet}^{< \kappa}$ spanned by ($\kappa$-small) diamonds on $X$ thus naturally exists, and we shall denote it by $\Dia_{/X}^{< \kappa}$. 
                             \item \textbf{(Limits and colimits of diamonds):}
                                 \begin{enumerate}
                                     \item \textbf{(Limits):} Finite products and finite pullbacks exist in $\Dia_{/X}^{< \kappa}$. These limts are taken as limits of pro-\'etale sheaves on $X$. 
-                                    \item \textbf{(Colimits):} 
+                                    \item \textbf{(Colimits):} Surjections (i.e. regular epimorphisms) and finite corproducts exist in $\Dia_{/X}^{< \kappa}$.
                                 \end{enumerate}
                         \end{enumerate}
                 \end{proposition}
@@ -769,20 +769,25 @@
                                 \end{enumerate}
                         \end{enumerate}
                     \end{proof}
+                    
+                Let us now concern ourselves with the intermediary notion of small $v$-stacks, which are essentially diamonds in the $v$-topology.
+                \begin{definition}[Small $v$-stacks] \label{def: small_v_stacks} \index{$v$-stacks!small}
+                    A \textbf{small $v$-sheaf} covered by a perfectoid space (viewed as a representable $v$-sheaf; cf. proposition \ref{prop: perfectoid_topologies_subcanonicity}).
+                \end{definition}
+                \begin{remark}[Diamonds are small $v$-sheaves] \label{remark: dimaonds_are_small_v_sheaves}
+                    The $v$-topology is finer than the pro-\'etale topology (cf. proposition \ref{prop: perfectoid_topology_hierachy}) so $v$-sheaves are \textit{a priori} pro-\'etale sheaves. Additionally, diamonds are quotients of perfectoid spaces by pro-\'etale equivalence relations by definition, so small $v$-stacks are automatically diamonds.  
+                    
+                    Furthermore, because the category of diamonds admits finite coproducts, quasi-compact $v$-stacks are automatically small.
+                \end{remark}
             
-            \subsubsection{Perfectoid Artin stacks}
+            \subsubsection{Cohomologically smooth morphisms and perfectoid Artin stacks}
                 \begin{definition}[Perfectoid Artin stacks] \label{def: perfectoid_artin_stacks} \index{Perfectoid Artin stacks}
                     
                 \end{definition}
                 
-            \subsubsection{An example: \texorpdfstring{$\Bun_G$}{}}
+            \subsubsection{\texorpdfstring{$\Bun_G$}{} and Beauville-Laszlo Uniformisation}
         
         \subsection{Smoothness of diamonds}
             \subsubsection{Formal smoothness}
             
             \subsubsection{A Jacobian criterion}
-            
-    \section{The Fargues-Fontaine Curve} \label{section: the_fargues_fontaine_curve}
-        \subsection{Construction of The Fargues-Fontaine Curve}
-        
-        \subsection{A GAGA theorem for The Fargues-Fontaine Curve}

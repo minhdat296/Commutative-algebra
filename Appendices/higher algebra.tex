@@ -14,13 +14,13 @@
             \subsubsection{Abelian categories: the backdrop for homological algebra}
                 \paragraph{Zero objects and zero morphisms; (co)kernels}
                     Let us first perform some analysis of zero objects and (finite) biproducts in general categories wherein they exist. First up is the definition:
-                    \begin{definition}[Zero objects] \label{def: zero_objects}
+                    \begin{definition}[Zero objects] \label{def: zero_objects} \index{Zero objects}
                         A \textbf{zero object} (in any category) is an object satisfying both the universal properties of an initial and terminal object.
                     \end{definition}
                     
                     \todo{Add info about zero morphisms}
                     
-                    \begin{definition}[(Co)kernels] \label{def: (co)kernels}
+                    \begin{definition}[(Co)kernels] \label{def: (co)kernels} \index{Kernels} \index{Cokernels}
                         Within a category with zero objects $0$, the \textbf{kernel} of an arrow $f: x \to y$, should it exist, shall be the following pulback:
                             $$
                                 \begin{tikzcd}
@@ -77,7 +77,7 @@
                 
                 \paragraph{Biproducts}
                     Another notion that will come up often in tandem with that of zero objects is the idea of biproducts:
-                    \begin{definition}[Biproducts] \label{def: biproducts}
+                    \begin{definition}[Biproducts] \label{def: biproducts} \index{Biproducts}
                         A \textbf{biproduct} (in any category) is an object satisfying both the universal properties of a product and a coproduct.
                     \end{definition}
                     \begin{remark}
@@ -211,7 +211,7 @@
                         \end{proof}
                     
                 \paragraph{Homological categories}
-                    \begin{definition}[Additive and abelian categories] \label{def: AB_categories}
+                    \begin{definition}[Additive and abelian categories] \label{def: AB_categories} \index{Additive categories} \index{Abelian categories}
                         An \textbf{additive category} is an $\Ab$-enriched category with zero objects and finite biproducts.
                         
                         This notion is subsumed by those of:
@@ -616,7 +616,7 @@
                     Every object of the terminal category $\pt$ and every object of the empty/intial category $\varnothing$ is trivially projective and injective simultaneously. 
                 \end{example}
                 
-            \begin{definition}[Enough projectives and enough injectives] \label{def: enough_projectives_enough_injectives}
+            \begin{definition}[Enough projectives and enough injectives] \label{def: enough_projectives_enough_injectives} \index{Projective objects! enough} \index{Injective objects! enough}
                 A category $\C$ is said to be in possession of \textbf{enough projectives} if and only if any object $x$ thereof admits an epimorphism $\pi: p \to x$ from some projective object $p \in \C$. Dually, a category $\C$ is said to have \textbf{enough injectives} if and only if $\C^{\op}$ has enough injectives, or in other words, if and only if every object $x \in \C$ admits a monomorphism $\iota: x \to i$ into some injective object $i$.
                 
                 The epimorphisms/monomorphisms attached to objects of a category with enough projectives/injectives are usually known as \textbf{augmentation maps}.

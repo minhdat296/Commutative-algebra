@@ -59,7 +59,7 @@
                     $$
                 It was these kinds of spaces that inspired Grothendieck to look for a construction for some sort of \say{universal moduli space}, which is now known as the \textbf{Grothendieck Construction}.
                 
-                \begin{definition}[The Grothendieck Construction] \label{def: grothendieck_construction}
+                \begin{definition}[The Grothendieck Construction] \label{def: grothendieck_construction} \index{Grothendieck Construction}
                     Let ${}^{\pt/}1\-\Cat^{\lax}_2$ denote the $2$-category of so-called \textbf{lax-pointed $1$-categories}:
                         \begin{itemize}
                             \item whose objects are pairs $(\E, e)$ consisting of a category $\E$ and a distinguished object $e$ (recall that a functor from the terminal category $\pt$ is the same as the identification of an object),
@@ -149,7 +149,7 @@
                     
                 \end{corollary}
                 
-                \begin{definition}[Spaces] \label{def: spaces}
+                \begin{definition}[Spaces] \label{def: spaces} \index{Grothendieck Construction}
                     Fix a base category $\calB$. A \textbf{space} over $\calB$, in the largest possible generality, is nothing but a Grothendieck Construction $\E \to \calB$. Note that it satisfies the universal property described in proposition \ref{prop: grothendieck_construction_universal_property} \textit{a priori}. Additionally, note that such a \say{space} comes equipped with transition functors:
                         $$f^*: \E_y \to \E_x$$
                     corresponding to arrows $(f: x \to y) \in \calB$; compositions of these functors satisfy 
@@ -165,7 +165,7 @@
         \subsection{Moduli spaces}
             This subsection, for the most part, is simply a catalogue of terminologies. Our goal is to disambiguate: there are many different yet very similar terminologies in moduli theory, and we would like to clearly state the contexts in which they should be used.
             
-            \begin{definition}[Moduli spaces] \label{def: moduli_space}
+            \begin{definition}[Moduli spaces] \label{def: moduli_space} index{Moduli space}
                 A \textbf{moduli space} parametrised by a base category $\calB$ is a Grothendiek Construction:
                     $$F: \calM \to \calB$$
                 (i.e. \say{space} in the sense of definition \ref{def: spaces}) that is fibred in groupoids, i.e. it is a $2$-pullback of the following form:
@@ -188,7 +188,7 @@
             \begin{remark}[Moduli spaces over small categories] \label{remark: moduli_spaces_over_small_categories}
                 If we are to assume the Axiom of Choice, then we will have that every fibred category (i.e. Grothendieck Construction) corresponds to a pseudofunctor. Among other things, this tells us that moduli spaces over small base categories are actually nothing but groupoids internal to the presheaf topos over the same base category. 
             \end{remark}
-            \begin{definition}[Fine and coarse moduli spaces] \label{def: fine_and_coarse_moduli_spaces}
+            \begin{definition}[Fine and coarse moduli spaces] \label{def: fine_and_coarse_moduli_spaces} \index{Moduli space! fine} \index{Moduli space! coarse}
                 Let $\calM \to \calB$ be a moduli space over a \textit{small} base category $\calB$. Such a moduli space is said to be \textbf{fine} if and only if it is naturally isomorphic to a representable presheaf; note that fine moduli spaces are therefore skeletal internal groupoids in presheaf topoi. Otherwise, the moduli space is said to be \textbf{coarse}, and because every presheaf can be written as a colimit of representables, every coarse moduli space can be written as a colimit of fine moduli spaces, particularly colimits of diagrams whose edges are all invertible arrows.
             \end{definition} 
 
