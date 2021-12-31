@@ -5,6 +5,87 @@
     
     \minitoc
     
+    \section{Motivic \texorpdfstring{$p$}{}-adic Hodge theory}
+        \subsection{The Ax-Tate-Sen Theorem}
+    
+        \subsection{The Hodge-Tate Decomposition and the \'etale-de Rham comparison}
+            First, let us recall some relevant facts about Witt vectors.
+            \begin{convention}[Relative Witt vectors] \label{conv: relative_witt_vectors}
+                Let $p$ be a prime number. If $E/\Q_p$ is a finite $p$-adic number field with residue field $\F_q$ (for $q$ some power of $p$) and if $F$ is a perfectoid field of characteristic $p$ (which is \textit{a priori} perfect and therefore can contain $\F_q$; consider fields such as $\F_q(\!(t^{\frac{1}{p^{\infty}}})\!)$ or $\widehat{\overline{\F_q(\!(t)\!)}}$ for example), then let us write:
+                    $$\W_{E^{\circ}}(F) \cong \W(F) \tensor_{\W(\F_q)} E^{\circ}$$
+                for the base change along $E^{\circ} \to $ of the ring $\W(F)$ of (unramified) $p$-typical Witt vectors with coefficients in $F$ along the canonically induced arrow $\W(\F_q) \to E^{\circ}$. For instance, when $q = p$ we have:
+                    $$\W_{E^{\circ}}(\F_p(\!(t^{\frac{1}{p^{\infty}}})\!)) \cong \Z_p[p^{\frac{1}{p^{\infty}}}] \tensor_{\Z_p} \Z_p \cong \Z_p[p^{\frac{1}{p^{\infty}}}]$$
+                Slightly more generally, one can speak of a relative $p$-typical Witt vector functor from the category of perfect commutative $\F_q$-algebras to the category ${}^{E^{\circ}/}\Comm\Alg^{\wedge}$ of $p$-adically complete $E^{\circ}$-algebras:
+                    $$\W_{E^{\circ}}: {}^{\F_q/}\Comm\Alg^{\perf} \to {}^{E^{\circ}/}\Comm\Alg^{\wedge}$$
+                which in particular, gives us the following canonical arrow:
+                    $$\W_{E^{\circ}}(F^{\circ}) \to \W_{E^{\circ}}(F)$$
+            \end{convention}
+        
+            \begin{remark}[Witt vectors over perfect rings] \label{remark: witt_vectors_over_perfect_rings}
+                \noindent
+                \begin{enumerate}
+                    \item One somewhat non-trivial fact to keep in mind is that if $B$ is a \textit{perfect} $\F_q$-domain (for some power $q$ of a prime $p$) with field of fractions $K$, then we have the following natural characterisation of the ring of $p$-typical Witt vectors over $K$ (which we note to be trivially perfect as an $\F_q$-algebra):
+                    $$(\W(B)_{(p)})^{\wedge} \cong \W(K)$$
+                    In particular, $\W(B)_{(p)}$ is an unramified extension of $\W(\F_q)$. We refer the reader to \cite[Proposition 5.2]{shimomoto2014witt} for a proof.
+                    \item This result extends trivially to the relative setting, as relative Witt vectors are defined via a pushout (cf. convention \ref{conv: relative_witt_vectors}), which is in particular a finite limit, and since adic completions are filtered limits, the two procedures can be exchanged, which gives:
+                        $$(\W_{E^{\circ}}(B)_{(p)})^{\wedge} \cong \W_{E^{\circ}}(K)$$
+                    where now, $E$ is a finite $p$-adic number field with residue field $\F_q$ (note that its pseudo-uniformiser is actually just $p$, like $\Q_p$).
+                    \item Another notable property of rings (relative) Witt vectors is that if $B$ is a perfect $\F_q$-algebra (not necessarily a domain), then $\W_{E^{\circ}}(B)$ is $p$-torsion-free, and:
+                        $$\W_{E^{\circ}}(B)/p \cong B$$
+                \end{enumerate}
+            \end{remark}
+            \begin{example}
+                One might think of the following example:
+                    $$(\W_{E^{\circ}}(\F_q)_{(p)})^{\wedge} \cong \W_{E^{\circ}}(\F_q) \cong E^{\circ}$$
+                (note that $E^{\circ}$ is \textit{a priori} complete), or the following slightly subtler one:
+                    $$( \W_{E^{\circ}}( \F_q[\![t^{\frac{1}{p^{\infty}}}]\!] )_{(p)} )^{\wedge} \cong E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong \W_{E^{\circ}}( \F_q(\!(t^{\frac{1}{p^{\infty}}})\!) ) \cong E(p^{\frac{1}{p^{\infty}}})^{\wedge, \circ}$$
+                (indeed, $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong E^{\circ}[\![t]\!]/(t^{p^{\infty}} - p)$ and so $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge}/p \cong \F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$). In both cases, note that $\F_q$ and $\F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$ are both perfect domains (the latter being the $p$-tilt of $\F_q[\![t]\!]$).
+            \end{example}
+        
+            \subsubsection{The Hodge-Tate Decomposition via perfectoid spaces}
+                \paragraph{Scholze's de Rham period sheaf}
+                    \begin{definition}[de Rham period sheaves] \label{def: de_rham_period_sheaves}
+                        Let $K$ be a perfectoid field of mixed characteristic $(0, p)$ and let $X$ be a perfectoid space over $\Spa K$. Additionally, recall that the integral subsheaf $\calO_{X^{\flat}}^+$ is \textit{a priori} perfect (over characteristic $p$). We are interested in the following commutative ring objects of the pro-\'etale topos $X_{\proet}$:
+                            \begin{enumerate}
+                                \item \textbf{(Fontaine's infinitesimal period rings):} There is first of all the so-called \textbf{infinitesimal period ring of Fontaine}, usually denoted by $\A_{\inf}$, and is defined to be the ring of Witt vectors $\W(\calO_{X^{\flat}}^+)$. One also would usually be interested in its rational localisation, namely $\B_{\inf} := \A_{\inf}[1/p]$. 
+                                
+                                We care also about the canonical map $\theta: \A_{\inf} \to \calO_X^+$, which extends naturally to a map $\Theta: \B_{\inf} \to \calO_X$.
+                                \item \textbf{(Scholze's de Rham period rings):} Scholze, in \cite[Definition 6.1]{scholze2012padic} then defined his \textbf{de Rham period ring} as the formal completion $(\B_{\inf}, \ker \Theta)^{\wedge}$; we will denote this period ring by $\B_{\dR}^+$. There exists also a rational localisation of this period ring, though this is a less than trivial fact.
+                            \end{enumerate}
+                    \end{definition}
+                    
+                    \begin{proposition}[$\theta$ is surjective] \label{prop: theta_is_surjective}
+                        Let $K$ be a perfectoid field of characteristic $0$ and let $X = \Spa(R, R^+)$ be an affinoid perfectoid space over $\Spa K$.
+                        \begin{enumerate}
+                            \item The canonical map $\theta: \A_{\inf} \to R^+$ is a surjective continuous ring homomorphism.
+                            \item $\ker \Theta$ is a non-zero principal ideal of $\B_{\inf}$.
+                        \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{(Surjectivity of $\theta$):} 
+                                \item \textbf{(Principality of $\ker \Theta$):} First of all, because localisation is a colimit, the map $\Theta: \B_{\inf} \to \calO_X$ must also be surjective as a consequence of $\theta: \A_{\inf} \to \calO_X^+$ being surjective; this ensures that the ideal $\ker \Theta$ is not trivial.
+                            \end{enumerate}
+                        \end{proof}
+                    \begin{corollary}[Rational de Rham period rings] \label{coro: rational_de_rham_period_rings}
+                        \noindent
+                        \begin{enumerate}
+                            \item Proposition \ref{prop: theta_is_surjective} applies also to non-affinoid perfectoid spaces.
+                            \item Additionally, not only is the completion $\B_{\dR}^+ := (\B_{\inf}, \ker \Theta)^{\wedge}$ adic, but also, it admits a rational localisation: if $t \in \ker \Theta$ is any generator, then we can define $\B_{\dR} := \B_{\dR}^+[1/t]$. 
+                        \end{enumerate}
+                    \end{corollary}
+                    
+                    \begin{remark}
+                        
+                    \end{remark}
+                
+                \paragraph{The Hodge-Tate Decomposition}
+            
+            \subsubsection{The \'etale-de Rham comparison}
+        
+        \subsection{The \'etale-crystalline comparison}
+    
     \section{Robba rings and \texorpdfstring{$\varphi$}{}-modules}
         \subsection{Robba rings}
         

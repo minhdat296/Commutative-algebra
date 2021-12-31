@@ -632,8 +632,8 @@
                             \begin{itemize}
                                 \item the base scheme $S$ is Noetherian,
                                 \item the structural morphism $\pi: X \to S$ is proper, and
-                                \item there exists $s \geq 0$ such that for all $\calF \in \Coh(X/S)$, all the higher cohomologies of $\calF \tensor_{\calO_{X/S}} \calL^{\tensor r}$ vanish for $r \geq s$, i.e.:
-                                    $$\forall i > 0: \forall r \geq s: H^i(X/S, \calF \tensor \calL^{\tensor r}) \cong 0$$
+                                \item there exists $s \geq 0$ such that for all $\calF \in \Coh(X_{/S})$, all the higher cohomologies of $\calF \tensor_{\calO_{X/S}} \calL^{\tensor r}$ vanish for $r \geq s$, i.e.:
+                                    $$\exists s \geq 0: \forall i > 0: \forall r \geq s: H^i(X_{/S}, \calF \tensor \calL^{\tensor r}) \cong 0$$
                             \end{itemize}
                     \end{definition}
                     \begin{remark}[Base-changing ample line bundles] \label{remark: base_changing_ample_line_bundles}
@@ -650,7 +650,7 @@
                                 \end{tikzcd}
                             $$
                         Also, suppose that $\calL$ is a $\pi$-relatively ample line bundle on $X/S$. Now, note that because $f: S' \to S$ is of finite presentation, $\calO_{S'}$ has to be coherent as a $\calO_S$-module, and hence $\calO_{X'}$ is coherent over $\calO_X$ as well. This implies, via the ampleness assumption on $\calL$, that for all coherent $\calO_{X'}$-modules $\calF'$, there exists $s \geq 0$ such that:
-                            $$\forall i' > 0: \forall r' \geq s': H^i\left(X'/S', \calF' \tensor_{\calO_{X'}} \left(\calL^{\tensor r'} \tensor_{\calO_X} \calO_{X'}\right)\right) \cong 0$$
+                            $$\forall i' > 0: \forall r' \geq s': H^i\left(X'_{/S'}, \calF' \tensor_{\calO_{X'}} \left(\calL^{\tensor r'} \tensor_{\calO_X} \calO_{X'}\right)\right) \cong 0$$
                         This tells us that the obvious base change $g^*\calL \cong \calL \tensor_{\calO_X} \calO_{X'}$ is indeed $\pi'$-relatively ample.
                     \end{remark}
                     

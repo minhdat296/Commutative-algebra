@@ -1,4 +1,4 @@
-\chapter{Shtukas and automorphic sheaves} \label{chapter: automorphic_forms}
+\chapter{Categorical traces, shtukas, and automorphic sheaves} \label{chapter: automorphic_forms}
     \begin{abstract}
         
     \end{abstract}
@@ -6,6 +6,37 @@
     \section{How to invent shtukas}
         \subsection{Traces of Frobenii}
             \subsubsection{Traces of endomorphisms in symmetric monoidal categories}
+                Let us start by reviewing the notion of the trace of an endomorphism in a symmetric monoidal category. For this, let us first fix a symmetric monoidal category $(\O, \tensor, \1)$ along with a dualisable object $o \in \O$ therein. Additionally, consider an endormophism:
+                    $$T: o \to o$$
+                Then, the trace of $T$ on $o$, which is an element of $\End_{\O}(\1)$ and denoted by $\trace(T, o)$, is defined to be the following composition:
+                    $$
+                        \begin{tikzcd}
+                        	\1 & {o \tensor o^{\vee}} & {o \tensor o^{\vee}} & \1
+                        	\arrow["{T \tensor \id_{o^{\vee}}}", from=1-2, to=1-3]
+                        	\arrow["\ev_o", from=1-3, to=1-4]
+                        	\arrow["\co\ev_o", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                If we were to now consider $\O \cong \dg\Cat_1^{\cont}$, the $1$-category of dg-categories and continuous functors between them, equipped with the natural monoidal structure given via the Lurie tensor product along with the dualisable dg-category $\Dmod(\calY)$ of D-modules on some quasi-compact algebraic stack $\calY$ with affine-schematic diagonal, then one can consider traces of endofunctors:
+                    $$F^!: \Dmod(\calY) \to \Dmod(\calY)$$
+                (which shall come from endomorphisms $F: \calY \to \calY$, but more on that later) as compositions of functors as follows:
+                    $$
+                        \begin{tikzcd}
+                        	\Vect & {\Dmod(\calY) \tensor \Dmod(\calY)^{\vee}} & {\Dmod(\calY) \tensor \Dmod(\calY)^{\vee}} & \Vect
+                        	\arrow["{F^! \tensor \id}", from=1-2, to=1-3]
+                        	\arrow["\ev", from=1-3, to=1-4]
+                        	\arrow["\co\ev", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                Here, the evaluation functor $\ev = \ev_{\Dmod(\calY)}$ is given by the composition:
+                    $$
+                        \begin{tikzcd}
+                        	{\Dmod(\calY) \tensor \Dmod(\calY)} & {\Dmod(\calY \x \calY)} & {\Dmod(\calY)} & \Vect
+                        	\arrow["\boxtimes", from=1-1, to=1-2]
+                        	\arrow["{\Delta_{\calY}^!}", from=1-2, to=1-3]
+                        	\arrow["{H^*(\calY, \omega_{\calY})}", from=1-3, to=1-4]
+                        \end{tikzcd}
+                    $$
             
             \subsubsection{Action of local systems}
             

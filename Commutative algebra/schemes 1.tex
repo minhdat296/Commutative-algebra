@@ -938,7 +938,7 @@
                 Having defined sheaves that might take values categories other than $\Sets$, let us now try to define affine schemes as locally ringed spaces whose underlying topological spaces are spectra of commutative rings, and whose structure presheaves have a certain condition imposed upon them, which happens to guarantee that:
                     \begin{enumerate}
                         \item these structure presheaves are indeed sheaves (proposition \ref{prop: structure_sheaf}) with local stalks (corollary \ref{coro: structure_sheaf_properties}), and
-                        \item they are unique (proposition \ref{prop: structure_sheaf_uniqueness}), which is an important feature, because ringed spaces are uniquely defined by their structure sheaves; this fact will also be used to establish the fully faithfulness of $\Spec$ as a functor from $\Cring^{\op}$ to the category $\Spc^{\ringed, \loc}$ of locally ringed spaces. 
+                        \item they are unique (proposition \ref{prop: structure_sheaf_uniqueness}), which is an important feature, because ringed spaces are uniquely defined by their structure sheaves; this fact will also be used to establish the fully faithfulness of $\Spec$ as a functor from $\Cring^{\op}$ to the category $\Spc^{\loc.\ringed}$ of locally ringed spaces. 
                     \end{enumerate}
                 Our efforts will culminate in definition \ref{def: zariski_topoi}, along with remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}. 
                     
@@ -1083,7 +1083,7 @@
                     \end{enumerate}
                 \end{definition}
                 \begin{remark}[The category of (locally) ringed spaces] \label{remark: cateogry_of_ringed_spaces}
-                    Ringed spaces and locally ringed spaces form categories, denoted by $\Spc^{\ringed}$ and $\Spc^{\ringed, \loc}$ respectively; note that the latter is not a full subcategory of the former. See remark \ref{remark: affine_schemes_are_locally_ringed_spaces} for more details, particularly on how morphisms in these categories are defined.
+                    Ringed spaces and locally ringed spaces form categories, denoted by $\Spc^{\ringed}$ and $\Spc^{\loc.\ringed}$ respectively; note that the latter is not a full subcategory of the former. See remark \ref{remark: affine_schemes_are_locally_ringed_spaces} for more details, particularly on how morphisms in these categories are defined.
                 \end{remark}
                 \begin{example}
                     A very important feature of (locally) ringed spaces is that they are uniquely determined, up to natural isomorphisms, by their structure sheaves. For instance, a topological manifold equipped with a sheaf of smooth functions is a different ringed space from that very same manifold equipped with a sheaf of analytic functions. Also, the structure sheaf tends not to define the underlying topological space; this happens for (affine) schemes, which is why categories thereof are interesting.
@@ -1179,7 +1179,7 @@
                             Also, for the sake of making things more familiar, one can show that the object $\m_R$ associated to a local ring $R$ is first of all unique, and second of all, is the sole maximal ideal in the \href{https://stacks.math.columbia.edu/tag/07BH}{\underline{common definition of local rings}}.
                             \item \textbf{(Putting everything together):} We have already shown that given any morphism of affine schemes:
                                 $$f: \Spec B \to \Spec A$$
-                            along with a fixed point $\q \in |\Spec B|$, along with a choice of comorphism of sheaves $f^{\flat}: \calO_{\Spec A} \to f_*\calO_{\Spec B}$, the corresponding stalk $f^{\sharp}_{\q}: \calO_{\Spec A, \q} \to \calO_{\Spec B, f(\q)}$ at $\q$ is a commutative ring homomorphism. Now, because local rings form natural categories internal to topoi, and because affine schemes are locally ringed spaces (see remark \ref{remark: affine_schemes_are_locally_ringed_spaces}), it makes sense to require stalks of comorphisms of sheaves to be local homomorphisms. This, incidentally, tells us that affine schemes form a \textit{full} subcategory of the category $\Spc^{\ringed, \loc}$ of locally ringed spaces (which we note to be equivalent to the slice $\Spc^{\ringed, \loc}_{/(|\Spec \Z|, \calO_{\Spec \Z})}$), as morphisms of locally ringed spaces are precisely those between ringed spaces whose stalks of comorphisms are local ring homomorphisms (cf. \cite{hartshorne}, section II.2). 
+                            along with a fixed point $\q \in |\Spec B|$, along with a choice of comorphism of sheaves $f^{\flat}: \calO_{\Spec A} \to f_*\calO_{\Spec B}$, the corresponding stalk $f^{\sharp}_{\q}: \calO_{\Spec A, \q} \to \calO_{\Spec B, f(\q)}$ at $\q$ is a commutative ring homomorphism. Now, because local rings form natural categories internal to topoi, and because affine schemes are locally ringed spaces (see remark \ref{remark: affine_schemes_are_locally_ringed_spaces}), it makes sense to require stalks of comorphisms of sheaves to be local homomorphisms. This, incidentally, tells us that affine schemes form a \textit{full} subcategory of the category $\Spc^{\loc.\ringed}$ of locally ringed spaces (which we note to be equivalent to the slice $\Spc^{\loc.\ringed}_{/(|\Spec \Z|, \calO_{\Spec \Z})}$), as morphisms of locally ringed spaces are precisely those between ringed spaces whose stalks of comorphisms are local ring homomorphisms (cf. \cite{hartshorne}, section II.2). 
                         \end{enumerate}
                 \end{remark}
                 
@@ -1190,20 +1190,20 @@
                 \end{definition}
                 
                 \begin{remark}[A slight technical modification] 
-                    Our main result, theorem \ref{theorem: fundamental_adjunction}, is meant to be about an adjoint pair between $\Spc^{\ringed, \loc}$ and $\Cring^{\op}$, not $\Cring$, and this is a problem, because so far, we have been working with structure sheaves on ringed spaces (and particularly, affine schemes), as though they took values in $\Cring$. What to do, then ? The answer is simple: just go to the opposite category. $\Cring$ is a category which is both complete and cocomplete, which in particular, means that $\Cring^{\op}$ has enough limits (colimits in $\Cring$) and enough filtered colimits (filtered limits in $\Cring$). Hence, there is nothing preventing structure sheaves from taking values in $\Cring^{\op}$, and this is precisely idea of structure sheaf that we shall be working with from this point on. Requiring structure sheaves to take values in $\Cring^{\op}$ instead of $\Cring$ should not affect any of the previously established results - including, but not limited to proposition \ref{prop: structure_sheaf}, corollary \ref{coro: structure_sheaf_properties}, and proposition \ref{prop: structure_sheaf_uniqueness} - as what they are concerned with occur at the level of elements, not objects and arrows between them. 
+                    Our main result, theorem \ref{theorem: fundamental_adjunction}, is meant to be about an adjoint pair between $\Spc^{\loc.\ringed}$ and $\Cring^{\op}$, not $\Cring$, and this is a problem, because so far, we have been working with structure sheaves on ringed spaces (and particularly, affine schemes), as though they took values in $\Cring$. What to do, then ? The answer is simple: just go to the opposite category. $\Cring$ is a category which is both complete and cocomplete, which in particular, means that $\Cring^{\op}$ has enough limits (colimits in $\Cring$) and enough filtered colimits (filtered limits in $\Cring$). Hence, there is nothing preventing structure sheaves from taking values in $\Cring^{\op}$, and this is precisely idea of structure sheaf that we shall be working with from this point on. Requiring structure sheaves to take values in $\Cring^{\op}$ instead of $\Cring$ should not affect any of the previously established results - including, but not limited to proposition \ref{prop: structure_sheaf}, corollary \ref{coro: structure_sheaf_properties}, and proposition \ref{prop: structure_sheaf_uniqueness} - as what they are concerned with occur at the level of elements, not objects and arrows between them. 
                 \end{remark}
                 
                 \begin{remark}[Global sections of ringed spaces]
                     Because each ringed space is uniquely determined by its structure sheaf, it makes sense to consider \say{global sections} of ringed spaces as though we were doing so for just structure sheaves thereof. Notationally, it is common to write:
                         $$\Gamma(X, \calO_X) := \Gamma(\calO_X)$$
-                    for each ringed space $(X, \calO_X)$; whenever this happens, do keep in mind that the domain of $\Gamma$ is not $\Spc^{\ringed, \loc} \x \Sh_{\Cring^{\op}}(\Ouv(X))$ (with $\Ouv(X)$ the topology on $X$), but simply $\Sh_{\Cring^{\op}}(\Ouv(X))$.   
+                    for each ringed space $(X, \calO_X)$; whenever this happens, do keep in mind that the domain of $\Gamma$ is not $\Spc^{\loc.\ringed} \x \Sh_{\Cring^{\op}}(\Ouv(X))$ (with $\Ouv(X)$ the topology on $X$), but simply $\Sh_{\Cring^{\op}}(\Ouv(X))$.   
                 \end{remark}
                     
                 The following, while written out as a lemma, is actually a particularly technical section of the proof that has been isolated for the sake of clarity:
                 \begin{lemma}\label{lemma: adjunction_unit_ringed_spaces}
                     Let $(X, \calO_X)$ be a locally ringed space. Then, there is a canonical arrow:
                         $$\eta_X: (X, \calO_X) \to \left(|\Spec \Gamma(\calO_X)|, \calO_{\Spec \Gamma(\calO_X)}\right)$$
-                    in $\Spc^{\ringed, \loc}$, which should be thought of as the evaluation of global functions on $X$ (i.e. elements of $\Gamma(\calO_X)$) at points therein.
+                    in $\Spc^{\loc.\ringed}$, which should be thought of as the evaluation of global functions on $X$ (i.e. elements of $\Gamma(\calO_X)$) at points therein.
                 \end{lemma}
                     \begin{proof}
                         \noindent
@@ -1330,16 +1330,16 @@
                     which itself comes from the following adjunction:
                         $$
                             \begin{tikzcd}
-                            	{{}^{k/}\Comm\Alg^{\op}} & {\Spc^{\ringed, \loc}_{/(|\Spec k|, \calO_{\Spec k})}}
+                            	{{}^{k/}\Comm\Alg^{\op}} & {\Spc^{\loc.\ringed}_{/(|\Spec k|, \calO_{\Spec k})}}
                             	\arrow[""{name=0, anchor=center, inner sep=0}, "\Spec"', shift right=2, from=1-1, to=1-2, hook]
                             	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', shift right=2, from=1-2, to=1-1]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                             \end{tikzcd}
                         $$
-                    wherein $\Spec$ is a fully faithful inclusion. Here, $\Gamma$ denotes the global section functor, and $\Spc^{\ringed, \loc}_{/(|\Spec k|, \calO_{\Spec k})}$ denotes the category of locally ringed spaces over $(|\Spec k|, \calO_{\Spec k})$.  
+                    wherein $\Spec$ is a fully faithful inclusion. Here, $\Gamma$ denotes the global section functor, and $\Spc^{\loc.\ringed}_{/(|\Spec k|, \calO_{\Spec k})}$ denotes the category of locally ringed spaces over $(|\Spec k|, \calO_{\Spec k})$.  
                 \end{theorem}
                     \begin{proof}
-                        Through remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}, we have already shown that $\Spec$ helps us identify $\Comm\Alg^{\op}_k$ with a full subcategory of $\Spc^{\ringed, \loc}_{/(|\Spec k|, \calO_{\Spec k})}$, and furthermore, that $\Spec$ is one direction of an equivalence of categories between $\Comm\Alg^{\op}_k$ and $\Sch^{\aff}_{/\Spec k}$. Thus, it suffices to demonstrate that $\Spec$ admits a left-adjoint, and that $\Gamma$ is said left-adjoint. To that end, let us first note that the two prepatory assumptions in Freyd's Adjoint Functor Theorem have already been satisfied: the domain of $\Spec$, the category ${}^{k/}\Comm\Alg^{\op}$ is locally small and complete. Therefore, all that needs to be done is to show that $\Spec$ satisfies the Solution Set Condition (see theorem V.6.2, \cite{maclane}): we need to demonstrate that for each locally ringed space $(X, \calO_X)$ over $(|\Spec k|, \calO_{\Spec k})$, there is a small collection of arrows $f_i: X \to \Spec A_i$ in $\Spc^{\ringed, \loc}_{/(|\Spec k|, \calO_{\Spec k})}$ such that every arrow $f: X \to \Spec A$ in the same category factors through some of the arrows $f_i$ in the following manner:
+                        Through remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}, we have already shown that $\Spec$ helps us identify $\Comm\Alg^{\op}_k$ with a full subcategory of $\Spc^{\loc.\ringed}_{/(|\Spec k|, \calO_{\Spec k})}$, and furthermore, that $\Spec$ is one direction of an equivalence of categories between $\Comm\Alg^{\op}_k$ and $\Sch^{\aff}_{/\Spec k}$. Thus, it suffices to demonstrate that $\Spec$ admits a left-adjoint, and that $\Gamma$ is said left-adjoint. To that end, let us first note that the two prepatory assumptions in Freyd's Adjoint Functor Theorem have already been satisfied: the domain of $\Spec$, the category ${}^{k/}\Comm\Alg^{\op}$ is locally small and complete. Therefore, all that needs to be done is to show that $\Spec$ satisfies the Solution Set Condition (see theorem V.6.2, \cite{maclane}): we need to demonstrate that for each locally ringed space $(X, \calO_X)$ over $(|\Spec k|, \calO_{\Spec k})$, there is a small collection of arrows $f_i: X \to \Spec A_i$ in $\Spc^{\loc.\ringed}_{/(|\Spec k|, \calO_{\Spec k})}$ such that every arrow $f: X \to \Spec A$ in the same category factors through some of the arrows $f_i$ in the following manner:
                             $$
                                 \begin{tikzcd}
                                 	& {\Spec A_i} \\
@@ -1351,7 +1351,7 @@
                             $$
                         To that end, let us firstly observe that for each arrow:
                             $$f: X \to \Spec A$$
-                        in $\Spc^{\ringed, \loc}_{/(|\Spec k|, \calO_{\Spec k})}$, the $k$-algebra $\Gamma(\calO_X)$ is a commutative algebra over $A$: to see why this is the case, simply note that the following diagram is commutative in ${}^{k/}\Comm\Alg^{\op}$:
+                        in $\Spc^{\loc.\ringed}_{/(|\Spec k|, \calO_{\Spec k})}$, the $k$-algebra $\Gamma(\calO_X)$ is a commutative algebra over $A$: to see why this is the case, simply note that the following diagram is commutative in ${}^{k/}\Comm\Alg^{\op}$:
                             $$
                                 \begin{tikzcd}
                                 	& A \\
@@ -1400,7 +1400,7 @@
                             This shows that the complement of $\p$ in $R$ is a multiplicative submonoid of $R$, as claimed.
                             \item \textbf{(Localisation and openness):} Now that we have seen how localisation at prime ideals is well-defined, let us try to actually compute prime spectra of these localisations. To begin, let $\p$ be a prime ideal of $R$ and recall that the localisation $R_{\p}$ is given by the following colimit in $\Sets$, which actually lives in $\Cring$ as well, since the canonical functions $R \to R_x$ are ring homomorphisms:
                                 $$R_{\p} \cong \underset{x \in R \setminus \p}{\colim} R_x$$
-                            By passing to $\Cring^{\op}$, applying the functor $\Spec: \Cring^{\op} \to \Spc^{\ringed, \loc}$, and then using the fact that $\Spec$ is a right-adjoint and thus preserves limits, one formally obtains the following limit of affine schemes:
+                            By passing to $\Cring^{\op}$, applying the functor $\Spec: \Cring^{\op} \to \Spc^{\loc.\ringed}$, and then using the fact that $\Spec$ is a right-adjoint and thus preserves limits, one formally obtains the following limit of affine schemes:
                                 $$\Spec R_{\p} \cong \underset{x \in R \setminus \p}{\lim} \Spec R_x$$
                             meaning that there is the following homeomorphisms of underlying topological spaces:
                                 $$|\Spec R_{\p}| \cong \bigcap_{x \in R \setminus \p} |\Spec R_x| \cong \bigcap_{x \in R \setminus \p} D_R(x)$$
@@ -1430,13 +1430,13 @@
                     thanks to the universal property of adjoint pairs. Thus, the second adjunction presented in theorem \ref{theorem: fundamental_adjunction} can also be understood to be the following:
                         $$
                             \begin{tikzcd}
-                            	{{}^{k/}\Comm\Alg^{\op}} & {\Sh\Topos^{\ringed, \loc}_{/\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)}}
+                            	{{}^{k/}\Comm\Alg^{\op}} & {\Sh\Topos^{\loc.\ringed}_{/\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)}}
                             	\arrow[""{name=0, anchor=center, inner sep=0}, "\Spec"', shift right=2, from=1-1, to=1-2]
                             	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', shift right=2, from=1-2, to=1-1]
                             	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                             \end{tikzcd}
                         $$
-                    wherein $\Sh\Topos^{\ringed, \loc}_{/\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)}$ is the category of locally ringed topoi over the locally ringed topos $\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)$ of sheaves over the Zariski site $\Sch^{\aff}_{/\Spec k, \Zar}$. Taking the effort to make this upgrade might seem overkill, but the point is that now, the global section functor indeed takes \textit{sheaves} (and not even necessarily structure sheaves; the notion of global sections makes sense for all sheaves) as inputs, not ringed spaces.
+                    wherein $\Sh\Topos^{\loc.\ringed}_{/\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)}$ is the category of locally ringed topoi over the locally ringed topos $\left((\Spec k)_{\Zar}, \calO_{\Spec k}\right)$ of sheaves over the Zariski site $\Sch^{\aff}_{/\Spec k, \Zar}$. Taking the effort to make this upgrade might seem overkill, but the point is that now, the global section functor indeed takes \textit{sheaves} (and not even necessarily structure sheaves; the notion of global sections makes sense for all sheaves) as inputs, not ringed spaces.
                 \end{corollary}
                     
                 \begin{example}[On nilpotency and reducedness] \label{example: reducedeness_and_nilpotency}
@@ -2180,9 +2180,9 @@
             \subsubsection{Structure sheaves of algebraic stacks}
             
             \subsubsection{Interlude: How to glue ringed spaces}
-                We will be using \cite{schwede_gluing} as the main reference. Essentially, our goal here is to analyse the cocompleteness of the categories $\Spc^{\ringed}$ and $\Spc^{\ringed, \loc}$ of ringed spaces and locally ringed spaces respectively (if these categories are even in possession of all colimits in the first place, that is), with an emphasis on the latter, because ultimately, we will be interested in how affine schemes (which are locally ringed spaces; cf. remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}) might be glued together to form schemes. 
+                We will be using \cite{schwede_gluing} as the main reference. Essentially, our goal here is to analyse the cocompleteness of the categories $\Spc^{\ringed}$ and $\Spc^{\loc.\ringed}$ of ringed spaces and locally ringed spaces respectively (if these categories are even in possession of all colimits in the first place, that is), with an emphasis on the latter, because ultimately, we will be interested in how affine schemes (which are locally ringed spaces; cf. remarks \ref{remark: affine_schemes_are_locally_ringed_spaces} and \ref{remark: affine_scheme_morphisms}) might be glued together to form schemes. 
                 
-                A categorical fact to bear in mind until the end of this discussion (or until the end of your life for that matter) is that (co)limits can be built out of (co)products and (co)equalisers, and hence a category is (co)complete if and only if it has all (co)products and (co)equalisers (see sections V.1 and V.2 of \cite{maclane} for more details). Knowing this fact will prove to be crucial in establishing the cocompleteness of the categories $\Spc^{\ringed}$ and $\Spc^{\ringed, \loc}$. Now, having prefaced with this, let us start by discussing coproducts of (locally) ringed spaces, since coequalisers, quotients in particular, make for a scary endeavour. Actually, hold that thought: the author is being a dirty liar. We absolutely need to discuss largeness in category theory.
+                A categorical fact to bear in mind until the end of this discussion (or until the end of your life for that matter) is that (co)limits can be built out of (co)products and (co)equalisers, and hence a category is (co)complete if and only if it has all (co)products and (co)equalisers (see sections V.1 and V.2 of \cite{maclane} for more details). Knowing this fact will prove to be crucial in establishing the cocompleteness of the categories $\Spc^{\ringed}$ and $\Spc^{\loc.\ringed}$. Now, having prefaced with this, let us start by discussing coproducts of (locally) ringed spaces, since coequalisers, quotients in particular, make for a scary endeavour. Actually, hold that thought: the author is being a dirty liar. We absolutely need to discuss largeness in category theory.
                 
                 \begin{remark}[Large (co)limits] \label{remark: large_limits}
                     Whenever we say that a category is \say{complete} or \say{cocomplete}, we shall always means so in regards to \textit{small} limits and colimits, i.e. (co)limits of diagrams whose vertices and edges form a set as opposed to a proper class. Now, on to large limits.
