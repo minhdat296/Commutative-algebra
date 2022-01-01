@@ -63,18 +63,98 @@
                        \end{enumerate}
                     \end{proof}
                 
-                Next, we introduce the notion of locally convex topological vector spaces.
+                Next, we introduce the notion of locally convex topological vector spaces. Let us first recall the notion of topological vector spaces.
+                \begin{definition}[Topological vector spaces] \label{def: topological_vector_spaces}
+                    The category of \textbf{topological vector spaces} (over some fixed topological field $K$) and continuous linear maps between them is the same as the category of internal $K$ vector spaces in $\topological$. When $K$ is understood (as is the case for us), we shall write $\Vect^{\topological}$ for this category. 
+                \end{definition}
                 \begin{remark}
-                    Let us first remind ourselves with the elementary fact that the category of \textbf{topological vector spaces} (over some fixed topological field $K$) and continuous linear maps between them is the same as the category of internal $K$ vector spaces in $\Top$. When $K$ is understood (as is the case for us), we shall write $\TVS$ for this category. 
-                    
-                    One crucial thing to note is that this category does not have a well-behaved monoidal structure. For instance, it is not clear how one would topologise the $\Q$-vector space\footnote{Spoilers: the answer is the condesned formalism; cf. section \ref{section: condensed_mathematics}.}:
+                    One crucial thing to note is that $\Vect^{\topological}$ does not have a well-behaved monoidal structure. For instance, it is not clear how one would topologise the $\Q$-vector space\footnote{Spoilers: the answer is the condesned formalism; cf. section \ref{section: condensed_mathematics}.}:
                         $$\R \tensor_{\Q} \Q_p$$
-                    wherein $\Q$ is endowed with the usual Archimedean norm. 
+                    wherein $\Q$ is endowed with the usual Archimedean norm. We can, however, still find certain subcategories of $\Vect^{\topological}$ which do admit a canonical monoidal structure: the full subcategory of locally convex topological vector spaces is one such example. 
+                \end{remark}
+                Let us also remind ourselves of the universal constructions that exist in the category of topological vector spaces.
+                \begin{proposition}[(Co)limits of topological vector spaces] \label{prop: (co)limits_of_topological_vector_spaces}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Limits):} 
+                            \begin{enumerate}
+                                \item \textbf{(Subspaces):} Subspaces of topological vector spaces are topological vector (sub)spaces. 
+                                \item \textbf{(Products):} Products of topological vector spaces are topological vector spaces, equipped with the canonical product topology.
+                            \end{enumerate}
+                        \item \textbf{(Colimits):} Quotients of topological vector spaces by subspaces are once more topological vector spaces, equipped with the canonical quotient topology.
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Limits):}
+                            \begin{enumerate}
+                                \item \textbf{(Subspaces):}
+                                \item \textbf{(Products):}
+                            \end{enumerate}
+                            \item \textbf{(Colimits):}
+                        \end{enumerate}
+                    \end{proof}
+                \begin{remark}
+                    The category of topological vector spaces is not abelian.
                 \end{remark}
                 
                 \begin{definition}[Locally convex topological vector space] \label{def: locally_convex_topological_vector_spaces}
-                    A \textbf{locally convex topological vector space} is a Hausdorff gauge space. 
+                    For a fixed topological field $K$, the category of \textbf{locally convex topological $K$-vector spaces} - which we shall denote by $\Vect^{\topological, \loc.\convex}$ - is the full subcategory of the category of topological $K$-vector spaces spanned by Hausdorff gauge spaces. 
                 \end{definition}
+                \begin{proposition}[Tensor products of locally convex topological vector space] \label{prop: tensor_products_of_locally_convex_topological_vector_spaces}
+                    $\Vect^{\topological, \loc.\convex}$ admits a natural \textit{closed} symmetric monoidal structure, namely that where the internal-hom is given by spaces of continuous linear maps and the tensor product is just the continuous tensor product.  
+                \end{proposition}
+                    \begin{proof}
+                                
+                    \end{proof}
+                \begin{proposition}[(Co)limits of locally convex topological vector spaces] \label{prop: (co)limits_of_locally_convex_topological_vector_spaces}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Limits):}
+                        \item \textbf{(Colimits):}
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Limits):}
+                            \item \textbf{(Colimits):}
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{definition}[Banach spaces] \label{def: banach_spaces}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Bounded linear maps):} A continuous linear map between two \textit{normed} spaces:
+                            $$f: V \to W$$
+                        is said to be \textbf{bounded} if and only if its operator norm is bounded, i.e. if and only if:
+                            $$\forall v \in V: \exists M \in \R_{\geq 0}: \|f(v)\| \leq M \|v\|$$
+                        or alternatively, if and only if $\sup_{v \in V} \|f(v)\|$ is finite.
+                        \item \textbf{(Banach spaces):} The category of \textbf{Banach spaces} (denoted by $\Ban$) is the \textit{non-full} subcategory of $\Vect^{\topological}$ spanned by complete normed spaces and bounded linear maps between them.
+                    \end{enumerate}
+                \end{definition}
+                \begin{definition}[Cross norms] \label{def: cross_norms}
+                    Let $V, W$ be Banach space. Then, a \textbf{uniform cross norm} on the algebraic tensor product $V \tensor W$ is a norm such that:
+                        \begin{itemize}
+                            \item $\forall v \in V: \forall w \in W: \|v \tensor w\| = \|v\| \|w\|$,
+                            \item $\forall \varphi \in V^*: \forall \psi \in W^*: \|\varphi \tensor \psi\| = \|\varphi\| \|\psi\|$ (where $(-)^*$ denotes the continuous dual).
+                        \end{itemize}
+                \end{definition}
+                \begin{proposition}[Tensor products of Banach spaces] \label{prop: tensor_product_of_banach_spaces}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Existence of cross norm):}
+                        \item \textbf{(Completed tensor products):}
+                    \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item \textbf{(Existence of cross norm):}
+                            \item \textbf{(Completed tensor products):}
+                        \end{enumerate}
+                    \end{proof}
                 
                 \begin{definition}[Fr\'echet spaces] \label{def: frechet_spaces}
                     A \textbf{Fr\'echet space} is a complete gauge space.
