@@ -139,7 +139,9 @@
                         This amounts to proving that binary products (over $S$) of quasi-projective smooth $S$-schemes are once more quasi-projective and smooth over $S$, since $S$ is so as a scheme over itself. Preservation of smoothness is easy (cf. proposition \ref{prop: compositions_and_base_changes_of_smooth_morphisms}), so we shall focus on showing preservation of quasi-projectivity. For this, recall that an $S$-scheme $\pi: X \to S$ is quasi-projective if and only if it is of finite type and there exists a $\pi$-relatively ample line bundle. Being of finite type is obviously preserved by binary products, so it remains to check the existence of relatively ample line bundles over binary products. For this, we shall verify the conditions spelled out in definition \ref{def: relatively_ample_line_bundles}:
                             \begin{itemize}
                                 \item Any structural morphism $\pi: X \to S$ has already been assumed to be separated, and by being smooth, it must also be of finite type \textit{a fortiori}. Both these properties are preserved under binary products. Thus, we need only to prove that being universally closed is preserved under binary products. But this is a straightforward consequence of the definition. Therefore, properness is preserved by binary products and hence one can define relatively ample line bundles on binary products.
-                                \item Now, consider two quasi-projective smooth $S$-schemes $\pi_1: X_1 \to S$ and $\pi_2: X_2 \to S$; choose two relatively ample line bundles $\calL_1$ and $\calL_2$ thereon. 
+                                \item Now, consider two quasi-projective smooth $S$-schemes $\pi_1: X_1 \to S$ and $\pi_2: X_2 \to S$; choose two relatively ample line bundles $\calL_1$ and $\calL_2$ thereon. We thus claim that:
+                                    $$\pi_1^*\calL_1 \tensor_{\calO_{X_1 \x_S X_2}} \pi_2^*\calL_2$$
+                                is $\pi_1 \x \pi_2$-relatively ample. 
                             \end{itemize}
                     \end{proof}
             
@@ -175,6 +177,7 @@
                                     \end{tikzcd}
                                 $$
                         \end{itemize}
+                    We call this category the category of \textbf{smooth liftings} over $S$.
                 \end{definition}
         
         \subsection{Motivic cohomology}

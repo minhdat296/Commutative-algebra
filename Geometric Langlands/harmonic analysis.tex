@@ -3,6 +3,99 @@
         
     \end{abstract}
     
+    \minitoc
+    
+    \section{Some classical analysis}
+        \subsection{The theory of topological vector spaces and functional analysis}
+            In functional analysis, the concept of distributional density, usually just called \textbf{distribution} for short, is something that may be integrated against a bump function to produce a number (and hence a \say{mathematically analytic} version of the notion of physical density\footnote{Probability density functions, in fact, are special kinds of distribution.}). If a non-degenerate background density/volume form:
+                $$d\vol$$
+            is fixed, then each other density is a function relative to $d\vol$, and hence with such an identification understood distributional densities are generalized functions, namely objects that may arise as potentially singular limits of sequences of smooth functions (i.e. of non-singular distributions). Famous examples of such are the Dirac delta-\say{function} and the Heaviside distribution which behave like constant functions with an infinitely sharp \say{spike} or \say{kink}, respectively.
+
+            Distributional densities appear notably as fundamental solutions to linear partial differential equations (such as for the wave equation and/or Klein-Gordon equation, whose fundamental solutions are the propagators of free quantum fields), which is the context in which the concept was originally introduced. The study of their singularity structure (encoded by their singular support and their wave front set) is a fundamental tool in PDE theory (for instance in the propagation of singularities theorem), known as microlocal analysis. Distributions are also fundamental in the rigorous construction of perturbative quantum field theory, where they appear in the variant as operator-valued distributions.
+            
+            Often distributions are considered by default just on open subsets of Euclidean space with its canonical volume form tacitly understood. But the concept of distributions makes sense more generally on general smooth manifolds (at least). If these are equipped with the structure of a (pseudo-)Riemannian manifold then the induced volume form again identifies distributions with generalised functions.
+            
+            \subsubsection{Generalities on topological vector spaces}
+                We start with a reminder of the notion of (locally) convex topological vector spaces, that of Fr\'echet spaces, and then the notion of \textbf{LF-spaces}.
+                
+                The first technical notion is that of semi-norms and gauges.
+                \begin{definition}[Semi-norms and gauge spaces] \label{def: seminorms_and_gauges}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Pseudo-norms):} A \textbf{pseudo-metric space} is a pair $(X, d)$ is a pair consisting of:
+                            \begin{itemize}
+                                \item a set $X$,
+                                \item a function $d: X \x X \to \R_{\geq 0}$ subjected to the following conditions:
+                                    \begin{itemize}
+                                        \item $\forall x \in X: d(x, x) = 0$,
+                                        \item $\forall x, y \in X: d(x, y) = d(y, x)$,
+                                        \item $\forall x, y, z \in X: d(x, z) \leq d(x, y) + d(y, z)$.
+                                    \end{itemize}
+                            \end{itemize}
+                        By requiring furthermore that $d(x, y) > 0$ for all pairs of distinct points $x \not y$, one gets the familiar notion of \textbf{metric spaces}.
+                        
+                        If $X$ is a vector space, then the $d: X \x X \to \R_{\geq 0}$ shall be known as a \textbf{semi-norm}.
+                        \item \textbf{(Gauge spaces):} A \textbf{gauge} is a \textit{countable} direct set $\{d_i\}_{i \in I}$ of pseudo-metrics on a given set $X$. 
+                        
+                        A \textbf{gauge space} $(X, \del)$ is a pair consisting of a set $X$ (typically, a vector space) and a gauge $\del$.
+                    \end{enumerate}
+                \end{definition}
+                \begin{example}
+                    Consider the countable directed set $\{(\R^n, d_n)\}_{n \in \N}$ of finite-dimensional real vector spaces equipped with their canonical Euclidean norms. Its filtered limit taken in the category of topological spaces:
+                        $$\R^{\infty} \cong \underset{n \in \N}{\lim} \R^n$$
+                    then carries a natural gauge:
+                        $$d_{\infty}: \R^{\infty} \x \R^{\infty} \to \R_{\geq 0}$$
+                    which is naturally the limit of norms thanks to some abstract nonsense in the category of topological spaces, i.e.:
+                        $$d_{\infty} \cong \underset{n \in \N}{\lim} d_n$$
+                    More succinctly, one can define the gauge space $(\R^{\infty}, d_{\infty})$ as:
+                        $$(\R^{\infty}, d_{\infty}) \cong \underset{n \in \N}{\lim} (\R^n, d_n)$$
+                    where we take the limit in the category of metric spaces (recall that metrics are \textit{a priori} continuous functions).
+                \end{example}
+                
+                \begin{proposition}[Topologies induced by pseudo-metrics and gauges] \label{prop: topologies_induced_by_pseudo_metrics_and_gauges}
+                    Every pseudo-metric induces a topology, and so does every gauge.
+                \end{proposition}
+                    \begin{proof}
+                       \noindent
+                       \begin{enumerate}
+                           \item 
+                           \item 
+                       \end{enumerate}
+                    \end{proof}
+                
+                Next, we introduce the notion of locally convex topological vector spaces.
+                \begin{remark}
+                    Let us first remind ourselves with the elementary fact that the category of \textbf{topological vector spaces} (over some fixed topological field $K$) and continuous linear maps between them is the same as the category of internal $K$ vector spaces in $\Top$. When $K$ is understood (as is the case for us), we shall write $\TVS$ for this category. 
+                    
+                    One crucial thing to note is that this category does not have a well-behaved monoidal structure. For instance, it is not clear how one would topologise the $\Q$-vector space\footnote{Spoilers: the answer is the condesned formalism; cf. section \ref{section: condensed_mathematics}.}:
+                        $$\R \tensor_{\Q} \Q_p$$
+                    wherein $\Q$ is endowed with the usual Archimedean norm. 
+                \end{remark}
+                
+                \begin{definition}[Locally convex topological vector space] \label{def: locally_convex_topological_vector_spaces}
+                    A \textbf{locally convex topological vector space} is a Hausdorff gauge space. 
+                \end{definition}
+                
+                \begin{definition}[Fr\'echet spaces] \label{def: frechet_spaces}
+                    A \textbf{Fr\'echet space} is a complete Gauge space.
+                \end{definition}
+                
+                \begin{definition}[LF-spaces] \label{def: LF_spaces}
+                    An \textbf{LF-space} is a \textit{countable} directed colimit of \textit{locally convex} topological vector spaces.
+                \end{definition}
+                
+            \subsubsection{Test functions and distributions}
+                Let us first write down the definition of the space of distribution on a pre-determined open subset $X \subseteq \R^n$, which shall be a filtered colimit of Fr\'echet spaces endowed with a natural final topology.
+                \begin{definition}[Distributions] \label{def: distributions}
+                    
+                \end{definition}
+            
+            \subsubsection{Spaces of distributions}
+        
+            \subsubsection{Sobolev spaces}
+            
+        \subsection{Abelian harmonic analysis}
+    
     \section{The Fourier-Mukai-Laumon Transform}
     
     \section{The Global Correspondence for tori}
