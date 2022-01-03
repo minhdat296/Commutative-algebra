@@ -443,12 +443,57 @@
                     
                     The upshot for this segment is that categories of Lie algebras are not quite abelian. In fact, Lie algebras behave more like groups than modules (unsurprising, given the Lie group-Lie algebra Correspondence), in the sense that monomorphisms of Lie algebras are kernels if and only if they are \textit{normal}. It should be noted, however, the non-unitality of Lie algebras makes categories of Lie algebras a little better than categories of groups. 
                     
-                    We begin with the notions of subalgebras and ideals.
+                    We begin by proving that the category $\Lie\Alg(\O)$ has zero objects, kernels, and cokernels.
+                    \begin{proposition}[The zero Lie algebra] \label{prop: zero_lie_algebra}
+                        The zero object $0 \in \O$ is also the zero object in $\Lie\Alg(\O)$.
+                    \end{proposition}
+                        \begin{proof}
+                            One simply has to note that there is only one unique morphism from $0$ to any Lie algebra $\g$, and likewise, from any Lie algebra $\g$ to $0$. 
+                        \end{proof}
+                        
+                    \begin{proposition}[(Co)kernels of Lie algebra homomorphisms] \label{prop: (co)kernels_of_lie_algebra_homomorphisms}
+                        For any Lie algebra homomorphism $\phi: \g \to \h$, the following pullback and pushout exist in $\Lie\Alg(\O)$:
+                            $$
+                                \begin{tikzcd}
+                                	{\ker \phi} & 0 \\
+                                	\g & \h
+                                	\arrow["\phi", from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                \end{tikzcd}
+                            $$
+                            $$
+                                \begin{tikzcd}
+                                	\g & \h \\
+                                	0 & {\coker \phi}
+                                	\arrow["\phi", from=1-1, to=1-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=180}, draw=none, from=2-2, to=1-1]
+                                \end{tikzcd}
+                            $$
+                    \end{proposition}
+                        \begin{proof}
+                            We can embed $\O$ into a category of modules over a commutative ring, \textit{\`a la} Freyd-Mitchell, so for the purposes of this proof, we might as well take $\O \cong k\mod$. Our strategy is then to compute $\ker \phi$ and $\coker \phi$ in $k\mod$, and then verify that they have natural Lie algebra structures. 
+                            
+                            To this end, consider first of all the folloiwng:
+                                $$\ker \phi := \{x \in \g \mid \phi(x) = 0\}$$
+                            Since $\ker \phi$ is a $k$-submodule of $\g$, we claim that the Lie bracket on $\ker \phi$ is precisely that of $\g$. To verify that this is true, simply consider:
+                                $$\phi([x, y]) = [\phi(x), \phi(y)] = [0, 0] = 0$$
+                            wherein $x, y \in \g$ are arbitrary elements. 
+                            
+                            Now, consider:
+                                $$\coker \phi := \h/\im\phi$$
+                        \end{proof}
+                    
+                    Now, we shall define Lie subalgebras and Lie ideals. 
                     \begin{definition}[Subalgebras and ideals] \label{def: lie_subalgebras_and_lie_ideals}
                         Let $\g$ be a Lie algebra internal to $\O$. 
                             \begin{enumerate}
-                                \item \textbf{(Subalgebras):} A \textbf{Lie subalgebra} of $\g$ is thus 
-                                \item \textbf{(Ideals):}
+                                \item \textbf{(Subalgebras):} A \textbf{Lie subalgebra} of $\g$ is a monomorphism of Lie algebras\footnote{Note that this need not be a kernel, because only \say{$k$-linear} morphisms in the ambient tensor category $\O$ are kernel if and only if they are monomorphisms; the same need not be true for Lie algebra homomorphisms.}.
+                                \item \textbf{(Ideals):} A \textbf{Lie algebra ideal} is not just a monomorphism, but futhermore, the kernel of a Lie algebra homomorphism (i.e. it is a \textit{normal} monomorphism\footnote{Note how this is in perfect analogy with normal subgroups, which are precisely kernels of group homomorphisms.}). 
                             \end{enumerate}
                     \end{definition}
                     
