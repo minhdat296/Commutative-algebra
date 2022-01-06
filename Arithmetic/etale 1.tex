@@ -156,7 +156,7 @@
                                 \begin{enumerate}
                                     \item \textbf{(Splitting primes):} Let $\p = \q_1^{e_1}...\q_n^{e_n}$. If $e_i = 1$ and $n > 1$, then we will say that $\p$ splits in $\scrO_L$.
                                     \item \textbf{(Inert primes):} However, if $e_i = 1$ for all $1 \leq i \leq n$ and $n = 1$ also, then we will say that $\p$ remains \textbf{inert} in $\scrO_L$.
-                                    \item \textbf{(Ramifying primes):} Otherwise (i.e. if $e_i > 1$ for all $1 \leq i \leq n$ and $n \geq 1$), we will say that $\p$ \textbf{ramifies}, or that $\p$ is a \textbf{place of ramification}.
+                                    \item \textbf{(Ramifying primes):} Otherwise (i.e. if $e_i > 1$ for all $1 \leq i \leq n$ and $n Geq 1$), we will say that $\p$ \textbf{ramifies}, or that $\p$ is a \textbf{place of ramification}.
                                     \item If $e_i > 1$ for all $1 \leq i \leq n$ and $n = 1$ then we will say that $\p$ is a non-splitting prime that ramifies with index $e = e_i = e_1$.
                                 \end{enumerate}
                             \item \textbf{(Inertial degrees):} Because $\p$ factors uniquely in $\scrO_L$ - say as $\q_1^{e_1}...\q_n^{e_n}$) - all the primes $\q_i$ are divisors of $\p$. Thus, any prime ideal $\p$ in a base Dedekind domain ($\scrO_K$ in this case) along with an integral extension of Dedekind domains (which is the canonical map $\scrO_K \to \scrO_L$ here) has prime divisors $\q_i$. To such prime divisors, there are associated \textbf{inertial degrees} $f_i$ that we are going to define as the degree of the field extension $(\scrO_L/\q_i)/(\scrO_K/\p)$, i.e.:
@@ -340,7 +340,7 @@
                         \begin{tikzcd}
                         	{{}^{k/}\Comm\Alg^{\op}} & {\Sch^{\aff}_{/\Spec k}}
                         	\arrow[""{name=0, anchor=center, inner sep=0}, "\Spec"', shift right=2, from=1-1, to=1-2]
-                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', shift right=2, from=1-2, to=1-1]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "Gamma"', shift right=2, from=1-2, to=1-1]
                         	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                         \end{tikzcd}
                     $$
@@ -356,7 +356,7 @@
                 exists for all non-empty indexing sets $A$). In turn, this implies something remarkable, which is that for all Galois extensions $K/k$ (which are necessarily separable by definition, and hence \'etale) and for all \textit{sheaves} $\calF$ on ${}^{k/}\Comm\Alg^{\op, \petit}_{\et}$ (we refer the reader to paragraph \ref{paragraph: etale_descent} for the descent theory along \'etale morphisms) we have via the fact that finite colimits (in this case, the orbit space ) commute with filtered limits that and the Fundamental Theorem of Galois Theory that:
                     $$
                         \begin{aligned}
-                            F(\Spec K)/\Gal(K/k) & \cong \calF(\Spec E)/\left(\underset{E}{\lim} \Aut(E/k)\right)
+                            F(\Spec K)/Gal(K/k) & \cong \calF(\Spec E)/\left(\underset{E}{\lim} \Aut(E/k)\right)
                             \\
                             & \cong \underset{E}{\lim} \left(\calF(\Spec E)/\Aut(E/k)\right)
                             \\
@@ -375,7 +375,7 @@
                         \begin{tikzcd}
                         	{{}^{k/}\Comm\Alg^{\op}} & {\Sch^{\aff}_{/\Spec k}}
                         	\arrow[""{name=0, anchor=center, inner sep=0}, "\Spec"', shift right=2, from=1-1, to=1-2]
-                        	\arrow[""{name=1, anchor=center, inner sep=0}, "\Gamma"', shift right=2, from=1-2, to=1-1]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "Gamma"', shift right=2, from=1-2, to=1-1]
                         	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
                         \end{tikzcd}
                     $$
@@ -385,118 +385,90 @@
                 
                 One implication of this is that given any scheme $X$ over $\Spec k$, its fibres over $k$-rational points $x \in X(k)$ are nothing but finite collections of points (even if the fibre is not affine, its affine patches would still necessarily be finite collections of points, as shown above, and thus the whole fibre would be so as well).
             \end{remark}
-            
-            \begin{definition}[Local isomorphisms and maps identifying local rings] \label{def: local_isomorphisms_and_maps_identifying_local_rings}
-                This was taken almost \textit{verbatim} from \cite[\href{https://stacks.math.columbia.edu/tag/096E}{Tag 096E}]{stacks}.
-                \begin{enumerate}
-                    \item \textbf{(Local isomorphisms):} A ring map:
-                        $$\pi: A \to B$$
-                    is called a \textbf{local isomorphism} if and only if for all primes $\q \in |\Spec B|$, there exists an element $g \in B$ not contained in $\q$ (i.e. a basic Zariski open neighbourhood $D_B(g)$ of $\q$) such that the \say{restricted} morphism of affine schemes $\pi_g: \Spec B_g \to \Spec A$ fitting into the following commutative diagram in $\Sch^{\aff}$ (the dashed arrow):
-                        $$
-                            \begin{tikzcd}
-                            	{\Spec B_g} & {\Spec B} \\
-                            	{} & {\Spec A}
-                            	\arrow["\pi", from=1-2, to=2-2]
-                            	\arrow["{\lambda_{g, B}}", hook, from=1-1, to=1-2]
-                            	\arrow["{\pi_g}"', dashed, from=1-1, to=2-2]
-                            \end{tikzcd}
-                        $$
-                    (wherein $\lambda_{g, B}: B \to B_g$ is the canonical localisation map) is an open immersion.
-                    
-                    One might also rephrase this definition so it would appear more topological. To that end, observe that having an element $g \in B$ such that $\q \not \ni g$ is actually the same as having a point $\q \in |\Spec B|$ inside a Zariski-open neighbourhood $D_B(g)$, which also happens to be a basic Zariski-open subset of $|\Spec B|$. Also, note that there is a homeomorphism:
-                        $$D_B(g) \cong |\Spec B_g|$$
-                    Thus, a morphism of affine schemes:
-                        $$\pi: \Spec B \to \Spec A$$
-                    is a local isomorphism if and only if for all prime ideals $\q$ of $B$, one can identify Zariski-open neighbourhoods of $\pi(\q)$ inside $|\Spec A|$ with basic Zariski-open neighbourhoods of $\q$ inside $|\Spec B|$. 
-                    \item \textbf{(Maps identifying local rings):} A ring map:
-                        $$\pi: A \to B$$
-                    is said to \textbf{identify local rings} (read: to be a \say{local homeomorphism}) if for all $\q \in |\Spec B|$, the canonical arrow:
-                        $$\pi_{\q}: \Spec B_{\q} \to \Spec A_{\pi^{-1}(\q)}$$
-                    is an isomorphism. Note that this is actually the stalk map at $\q$:
-                        $$\pi^{\sharp}_{\q}: \calO_{\Spec A, \pi(\q)} \to \calO_{\Spec B, \q}$$
-                    (see corollary \ref{coro: structure_sheaf_properties} for an explanation of why this is the case).
-                \end{enumerate}
-            \end{definition}
-            
-            \begin{example}[An \'etale map that is not a local isomorphism of schemes]
-                Let $k$ be a field of prime characteristic $p > 2$, and let:
-                    $$\pi: \Spec k[u]_u \to \Spec k[t]$$
-                be the morphism of affine schemes induced by the ring homomorphism from $k[t]$ to $k[u]_u$ given by:
-                    $$t \mapsto u^2$$
-                This is an \'etale map, but not a local isomorphism.
-                    \begin{enumerate}
-                        \item \textbf{(\'Etale-ness):} Let us abuse notations somewhat denote the ring map corresponding to:
-                            $$\pi: \Spec k[u]_u \to \Spec k[t]$$
-                        by:
-                            $$\pi: k[t] \to k[u]_u$$
-                        Because this ring homomorphism is specified by the rule:
-                            $$t \mapsto u^2$$
-                        its image can be thought of as being isomorphic to $k[t, u]_u/(u^2 - t)$, which in turn is isomorphic to $\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}$. Then, let us apply the Jacobian Criterion to check whether or not this is smooth as a $k[t]$-algebra:
-                            $$
-                                \begin{aligned}
-                                    \det \Jac_{u, u'} (u^2 - t, uu' - 1)^T & = \det (\nabla_{u, u'} (u^2 - t), \nabla_{u, u'} (uu' - 1))^T
-                                    \\
-                                    & = \det
-                                        \begin{pmatrix}
-                                            \del_u (u^2 - t) & \del_{u'} (u^2 - t)
-                                            \\
-                                            \del_u (uu' - 1) & \del_{u'} (uu' - 1)
-                                        \end{pmatrix}
-                                    \\
-                                    & = \det
-                                        \begin{pmatrix}
-                                            2u & 0
-                                            \\
-                                            u' & u
-                                        \end{pmatrix}
-                                    \\
-                                    & = 2u^2
-                                \end{aligned}
-                            $$
-                        Because $2u^2$ is necessarily inverible in $k[u]_u$, the above tells us that the Jacobian is invertible, and as stated, implies that the image of $\pi$ in $k[u]_u$ is smooth over $k[t]$. Additionally, it is not hard to see that the relative dimension over $k[t]$ of $\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}$ is $2 - 2 = 0$. Thus, the morphism of affine schemes:
-                            $$\pi: \Spec k[u]_u \to \Spec k[t]$$
-                        specified by $t \mapsto u^2$ is smooth and of relative dimension $0$, which according to definition \ref{def: etale_morphisms}, means that it is \'etale. One can imagine this morphism as follows:
-                            \begin{figure}[H]
-                                \centering
-                                \includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{Figures/etale_but_not_locally_isomorphic.png}
-                                \caption{A morphism that, while \'etale, is not a local isomorphism.}
-                                \label{fig: etale_but_not_locally_isomorphic}
-                            \end{figure}
-                        and it should be clear how the preimage of \say{points} in $\Spec k[t]$, by virtue of being disjoint pairs of \say{points} in $\Spec k[u]_u$, are zero-dimensional.
-                        \item \textbf{(Failure to be a local isomorphism):} First of all, recall that the image of the ring homomorphism:
-                            $$\pi: k[t] \to k[u]_u: t \mapsto u^2$$
-                        is $\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}$, as shown above. Because of this, to show why the above ring map fails to be a local isomorphism, it shall suffice, according to definition \ref{def: local_isomorphisms_and_maps_identifying_local_rings}, to find a Zariski-open neighbourhood of some prime ideal $\q$ of $\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}$ (which we might as well take to be a basic Zariski-open subset $D_{\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}}(g)$) such that the dashed arrow in the following commutative diagram is \textit{not} an open immersion:
-                            $$
-                                \begin{tikzcd}
-                                	{\Spec \frac{k[t]\left[u, u', \frac1g\right]}{(u^2 - t, uu' - 1)}} && {\Spec \frac{k[t][u, u']}{(u^2 - t, uu' - 1)}} \\
-                                	& {} & {\Spec k[t]}
-                                	\arrow["\pi", from=1-3, to=2-3]
-                                	\arrow["{\lambda_{g, \frac{k[t][u, u']}{(u^2 - t, uu' - 1)}}}", hook, from=1-1, to=1-3]
-                                	\arrow["{\pi_g}"', dashed, from=1-1, to=2-3]
-                                \end{tikzcd}
-                            $$
-                        wherein
-                            $$\lambda_{g, \frac{k[t][u, u']}{(u^2 - t, uu' - 1)}}: \frac{k[t][u, u']}{(u^2 - t, uu' - 1)} \to \frac{k[t]\left[u, u', \frac1g\right]}{(u^2 - t, uu' - 1)}$$
-                        is the canonical localisation map; also, note that:
-                            $$D_{\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}}(g) \cong \left|\Spec \frac{k[t]\left[u, u', \frac1g\right]}{(u^2 - t, uu' - 1)}\right|$$
-                        To that end, let us first rewrite $\Spec k[t]$ as $\Spec \frac{k[t][u, u']}{(u, u')}$. Then, notice that the ideal $(u, u')$ of $k[t][u, u']$ admits the ideal $(u^2 - t, uu' - 1)$ (also of $k[t][u, u']$) as a submodule, as the latter is spanned by all $k[t][u, u']$-linear combinations of $u$ and $u'$, which include both $u^2 - t$ and $uu' - 1$. By applying the Third Isomorphism Theorem, which allows us to write down the following isomorphisms of $k[t][u, u']$-modules:
-                            $$k[t] \cong \frac{k[t][u, u']}{(u, u')} \cong \frac{k[t][u, u']/(u^2 - t, uu' - 1)}{(u, u')/(u^2 - t, uu' - 1)}$$
-                        From this, one can infer that prime ideals of $\frac{k[t][u, u']}{(u^2 - t, uu' - 1)}$ are precise;y those of $\frac{k[t][u, u']}{(u, u')}$ that are inside $(u^2 - t, uu' - 1)$, which themselves are prime ideals of $k[t][u, u']$ (read: $k[t, u, u']$) that are contained in both $(u^2 - t, uu' - 1)$ and $(u, u')$, and as the latter contain the former, these are primes of $k[t][u, u']$ that are contained in $(u^2 - t, uu' - 1)$. The primes of $\frac{k[t]\left[u, u', \frac1g\right]}{(u^2 - t, uu' - 1)}$ are therefore just primes of $k[t][u, u']$ that are contained in $(u^2 - t, uu' - 1)$ and do not contain some chosen element $g$ of $\frac{k[t]\left[u, u'\right]}{(u^2 - t, uu' - 1)}$. 
-                    \end{enumerate}
-            \end{example}
     
-    \section{\'Etale cohomology for schemes: The Chosen One} 
-        \subsection{Feats and drawbacks of \'etale cohomology}
+    \section{\'Etale cohomology for schemes: The Chosen One}
+        \subsection{The interesting point: Galois cohomology}
+            \subsubsection{Cohomology of profinite groups}
+                Cohomology of profinite groups is nothing but group cohomology but for pro-objects in the category of finite groups (for us, cohomology shall always mean cohomology with abelian coefficients). Because of that, we shall pay less attention to the definition and general properties, and more on the special properties that cohomologies of profinite groups enjoy. By the end of it, we shall apply what we know to Galois groups, which are profinite thanks to the Fundamental Theorem of Galois Theory. 
+                
+                \paragraph{Group cohomology}
+                    \begin{convention}
+                        \noindent
+                        \begin{itemize}
+                            \item Throughout, we shall work with a sheaf topos $\E$ in which the category of internal abelian groups $\Ab(\E)$ has enough projectives (for instance, one can consider $\E \cong \Sets$ or the \'etale topos over any qcqs scheme). This essentially just means that we are assuming that the internal logic of $\E$ supports the Axiom of Choice (or more minimally, the Axiom of Presentation). 
+                            
+                            In particular, fix an abelian group $A \in \Ab(\E)$.
+                            \item Additionally, fix a group object $G \in Grp(\E)$. Its group ring shall be denoted by $\Z[G]$ (which is not an abuse of notation, since a natural number object exists in $\E$, allowing us to define an integer object $\Z$ as the group completion of the monoid $\N$; alternatively, one can think of $\Z$ as the monoidal unit of $\Ab(\E)$); recall that this ring object is defined via the following forgetful-free adjunction, whose existence we shall let the reader prove as an exercise\footnote{Recall that $\Ring(\E)$ is the category of monoids internal to the symmetric monoidal category $\Ab(\E)$.}:
+                                $$
+                                    \begin{tikzcd}
+                                    	{\Ring(\E)} & {\Grp(\E)}
+                                    	\arrow[""{name=0, anchor=center, inner sep=0}, "\oblv"', shift right=2, from=1-1, to=1-2]
+                                    	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Z[-]}"', shift right=2, from=1-2, to=1-1]
+                                    	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                                    \end{tikzcd}
+                                $$
+                                
+                            We shall also want a $G$-action on $A$, which would make $A$ a $\Z[G]$-module.
+                        \end{itemize}
+                    \end{convention}
+                    
+                    \begin{definition}[Group cohomologies] \label{def: group_cohomologies}
+                        The $n^{th}$ cohomology group of $G$ with coefficient in $A$ is defined as:
+                            $$H^n(G, A) \cong \Ext^n_{\Z[G]}(\Z, A)$$
+                        where we view $\Z$ as trivial $G$-representation on the right-hand side. 
+                    \end{definition}
+                    \begin{remark}
+                        It is not hard to see via induction on the cohomological dimension $n \in \N$ that $H^n(G, A)$ (as in definition \ref{def: group_cohomologies}) actually has a $k$-module structure.
+                    \end{remark}
+                    
+                    Let us now attempt to compute cohomologies of groups in low dimensions (namely, $n = 0, 1, 2$) as well as give meaning to these spaces, which we shall do using free (or at worst, projective) resolutions of the trivial $\Z[G]$-module $\Z$.
+                    \begin{proposition}[Low-dimensional cohomologies of groups] \label{prop: low_dimensional_cohomologies_of_groups}
+                        One has the following interpretations of the low-dimensional cohomologies of $G$ with coeffcients in $A$:
+                        \begin{enumerate}
+                            \item \textbf{($n = 0$: Invariants):}
+                                $$H^0(G, A) \cong A^G$$
+                            with $A^G$ denoting the space of $G$-fixed point of $A$.
+                            \item \textbf{($n = 1$: Torsors):} 
+                            \item \textbf{($n = 2$: Extensions):} 
+                                $$H^2(G, A) \cong \{\text{extensions of $G$ by $A$}\}$$
+                        \end{enumerate}
+                    \end{proposition}
+                        \begin{proof}
+                            \noindent
+                            \begin{enumerate}
+                                \item \textbf{($n = 0$: Invariants):}
+                                \item \textbf{($n = 1$: Torsors):}
+                                \item \textbf{($n = 2$: Extensions):}
+                            \end{enumerate}
+                        \end{proof}
+                    \begin{example}
+                                    
+                    \end{example}
+                
+                \paragraph{Properties of cohomologies of profinite groups}
             
-        
-        \subsection{\'Etale \texorpdfstring{$\ell$}{}-adic cohomology}
-            \subsubsection{\texorpdfstring{$\ell$}{}-adic cohomology: "This is where the fun begins"}
+            \subsubsection{Iwasawa theory}
+    
+        \subsection{\texorpdfstring{$\ell$}{}-adic cohomology}
+            \subsubsection{\texorpdfstring{$\ell$}{}-adic cohomology for schemes: "This is where the fun begins!"}
                 Let $X$ be a smooth projective scheme over a base field that is possibly of some prime characteristic $p$. Let $\ell$ be a prime different from $p$. By \say{$\ell$-adic cohomology}, we shall mean the cohomology theory whose cohomology groups are given by:
                     $$H^i_{\Q_{\ell}}(X) \cong \underset{n \in \N}{\lim} H_{\et}^i(X, \Z/\ell^{n + 1}\Z) \tensor_{\Z_{\ell}} \Q_{\ell}$$
                 This means, among other things, that $\ell$-adic cohomology is effectively a \say{singular cohomology theory} for (smooth projective) schemes. This, however, is not the only amazing property that $\ell$-adic cohomology enjoys: it is also a Weil cohomology theory (see definition \ref{def: weil_cohomology_theories} for a description of what this means). At surface level, this might seem odd, since only \'etale cohomology with torsion coefficients gives satisfactory results. However, this is precisely why we take the limit over the torsion rings $\Z/\ell^{n + 1}\Z$ and then base change to $\Q_{\ell}$: $\Q_{\ell}$ is a field of characteristic $0$, and hence can serve as the field of a coefficients of a Weil cohomology theory (cf. definition \ref{def: weil_cohomology_theories}). 
                 
-                To check that $\ell$-adic cohomology is indeed a Weil cohomology theory, let us \say{simply} go through the axioms laid out in definition \ref{def: weil_cohomology_theories}.
+                To check that $\ell$-adic cohomology is indeed a Weil cohomology theory, let us \say{simply} go through the axioms laid out in definition \ref{def: weil_cohomology_theories}. Before we can do that, however, we will first need to actually set up the theory of \'etale $\ell$-adic cohomology.
+                
+                Now, we are finally ready to verify that \'etale $\ell$-adic cohomology is a Weil cohomology theory.
+                \paragraph{Finiteness}
             
+                \paragraph{The K\"unneth Formula}
+                
+                \paragraph{Poincar\'e Duality}
+            
+                \paragraph{The Lefschetz Conditions}
+        
+            \subsubsection{The Artin comparison theorem: an \'etale GAGA theorem}
+            
+            \subsubsection{\texorpdfstring{$\ell$}{}-adic cohomology for algebraic stacks: "Another happy landing!"}
                 \paragraph{Finiteness}
             
                 \paragraph{The K\"unneth Formula}
@@ -505,6 +477,108 @@
             
                 \paragraph{The Lefschetz Conditions}
                 
-            \subsubsection{The trace formula}
+    \section{Class field theory}
+        \subsection{Local class field theory and the \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
+            \subsubsection{Pro-algebraic groups and their homotopy groups}
+                Local class field theory in the sense of Serre-Hazewinkel-Suzuki-Yoshida is the realisation that certain important constructions surrounding Galois groups of local fields (namely, the Galois group of the maximal abelian extension of a given non-archimedean discrete valuation field), such as the inertia group and so on, are actually just fundamental groups of particular infinite-dimensional group schemes, called \textbf{pro-algebraic groups} (and as the name suggests, are objects of the pro-completion of the category of algebraic groups). The issue, however, is that algebraic fundamental group (cf. definition \ref{def: etale_fundamental_groups}) are only commonly within the finite-dimensional context. Thus, we shall need some sort of profinite analogue of the usual \'etale fundamental group in order to meaningfully our desired results.
+                
+                \begin{definition}[Pro-algebraic groups] \label{def: pro_algebraic_groups}
+                    The category of \textbf{pro-algebraic groups} (over some fixed base field $k$) is nothing but the pro-completion of the category of algebraic groups over $\Spec k$ (cf. definition \ref{def: algebraic_groups}). We shall suggestively denote it by $\Pro\Alg\Grp_{/\Spec k}$.
+                \end{definition}
+                \begin{remark}[Quasi-algebraic groups ?]
+                    Since pro-algebraic groups arise most commonly over fields of characteristic $p > 0$, many authors use the term \textbf{pro-algebraic group} to mean objects of the category:
+                        $$\Pro(\Alg\Grp_{/\Spec k^{\flat}}^{\perf})$$
+                    which arises most naturally as the essential image of the schematic tilting functor:
+                        $$(-)^{\flat}: \Pro(\Alg\Grp_{/\Spec k}) \to \Pro(\Alg\Grp_{/\Spec k^{\flat}})$$
+                    defined in definition \ref{def: tilting_schemes}. 
+                \end{remark}
+                
+                Nevertheless, one should verify that tilts of pro-algebraic groups are still pro-algebraic groups.
+                \begin{lemma}[Tilts of pro-algebraic groups] \label{lemma: tilts_of_pro_algebraic_groups}
+                    Let $k$ be a field of characteristic $p > 0$ on which the Frobenius is surjective and let $\calG$ be a pro-algebraic group over $\Spec k$. Then, $\calG^{\flat}$ is also a pro-algebraic group (but of course, over $\Spec k^{\flat}$). Furthermore, it is perfect, in the sense that the (geometric) Frobenius $\Frob_{\calG/k}$ is invertible.
+                \end{lemma}
+                    \begin{proof}
+                        The first assertion is entirely formal. The second assertion comes from lemma \ref{lemma: tilts_are_perfect}.
+                    \end{proof}
+                \begin{remark}
+                    Thanks to lemma \ref{lemma: tilts_of_pro_algebraic_groups}, we shall assume most of the time that the base field $k$ is perfect (as a field of characterisitic $p > 0$).
+                \end{remark}
+                
+                \begin{convention}
+                    From now on, denote by $\Pro\Alg\Ab_{/\Spec k}$ the category of pro-algebraic \textit{commutative} groups over $\Spec k$, where $k$ will commonly be some base field of characteristic $p > 0$ on which the Frobenius is surjective.
+                \end{convention}
+                \begin{proposition}[The coGrothendieck category of pro-algebraic commutative groups] \label{prop: the_cogrothendieck_category_of_pro_algebraic_commutative_groups}
+                    Fix a perfect base field $k$ of characteristic $p > 0$. Then:
+                        \begin{enumerate}
+                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category,
+                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an $AB5$-category, i.e. it is cocomplete and filtered colimits of exact sequences are once more exact,
+                            \item and $\Pro\Alg\Ab_{/\Spec k}$ has a \textit{projective} cogenerator.
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item It is known that for any category $\C$ with enough limits then $\Ab(\C)$ is abelian if and only if $\C$ is exact, in the sense that every equivalence is a kernel pair. This is certainly the case for $\C \cong \Pro(\Sch^{\ft}_{/\Spec k})$, and because $\Pro\Alg\Ab_{/\Spec k} \cong \Ab(\Pro(\Sch^{\ft}_{/\Spec k}))$, we have shown that $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category.
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{convention}
+                    From now on, we work with a mixed-characteristic complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
+                \end{convention}
+                \begin{convention}
+                    We fix the following notation:
+                        $$\U_K \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                    and recall that the groups of units:
+                        $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                    are represented by the affine schemes:
+                        $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
+                \end{convention}
+                \begin{proposition}[Properties of $\U_K$] \label{prop: properties_of_the_pro_algebraic_group_of_units}
+                    $\U_K$ is a commutative pro-algebraic group over $\Spec k$ such that:
+                        $$\U_K(k) \cong K^{\x}$$
+                \end{proposition}
+                    \begin{proof}
+                        $\U_K$ being a commutative pro-algbebraic group over $\Spec k$ is an obvious consequence of its construction (note that the component groups:
+                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                        are all commutative), so the only thing to show is that $\U_K(k) \cong K^{\x}$. For this, we can use the fact that the component groups:
+                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                        are represented by the affine schemes:
+                            $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
+                        and the fact that the Yoneda embedding preserves limits to see that:
+                            $$\U_K(k) \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}(k) \cong \underset{n \in \N}{\lim} (\scrO_K/\m_K^{n + 1})^{\x}$$
+                    \end{proof}
+            
+            \subsubsection{Local class field theory \textit{\`a la} Serre-Hazelwinkel}
+                \begin{convention}
+                    From now on, we work with a mixed-characteristic complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
+                \end{convention}
+                
+                The story of classical local class field theory (which started in the 19th century and culminated in the 1930s with a theorem of Artin) is that should $k$ be a finite extension of $\F_p$ (i.e. $k \cong \F_q$ for $q$ some power of $p$), then one has a canonical group homomorphism:
+                    $$K^{\x} \to \Gal(K^{\ab}/K)$$
+                (where $K^{\ab}/K$ is the maximal abelian extension of $K$) inducing the following commutative diagram in $\Ab$ with exact rows:
+                    $$
+                        \begin{tikzcd}
+                        	0 & {k^{\x}} & {K^{\x}} & \Z & 0 \\
+                        	0 & {\rmI(K)} & {\Gal(K^{\ab}/K)} & {\Gal(\bar{k}/k)} & 0
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow[tail, from=1-2, to=1-3]
+                        	\arrow[two heads, from=1-3, to=1-4]
+                        	\arrow[from=1-4, to=1-5]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[tail, from=2-2, to=2-3]
+                        	\arrow[two heads, from=2-3, to=2-4]
+                        	\arrow[from=2-4, to=2-5]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow[from=1-3, to=2-3]
+                        	\arrow[from=1-4, to=2-4]
+                        \end{tikzcd}
+                    $$
+                Serre then went on to generalise this programme to cases where $k$ need not be a finite extension of $\F_p$, but he had to make the assumption that $k$ was algebraically closed (so for instance, $k$ could be $\overline{\F_p(t)}$ but not $\F_p(\!(t)\!)$ or even $\F_p(\!(t^{1/p^{\infty}})\!)$). Hazelwinkel and Suzuki-Yoshida (cf. \cite{suzuki_yoshida_lcft_refinement}) then managed to generalised this to the case where $k$ could be any perfect field (so now, for instance, one can consider $k \cong \F_p(\!(t^{1/p^{\infty}})\!)$).
+                
+                
+            
+            \subsubsection{The \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
         
-            \subsubsection{The Artin comparison theorem: an \'etale GAGA theorem}
+        \subsection{Global class field theory}

@@ -5,6 +5,58 @@
     
     \minitoc
     
+    \section{Algebraic topology}
+        \subsection{The fundamental group(oid) and van Kampen's Theorem}
+            \begin{definition}[Homotopies] \label{def: homotopies}
+                Consider two continuous functions:
+                    $$
+                        \begin{tikzcd}
+                            X \arrow[r, "g"', bend right, shift right] \arrow[r, "f", bend left, shift left] & Y
+                        \end{tikzcd}
+                    $$
+                A \textbf{homotopy} between them is then  
+            \end{definition}
+        
+            \begin{definition}[The fundamental ($\infty$-)groupoid] \label{def: the_fundamental_groupoid}
+                Let ${}^{*/}\bbS^1$ denote the $1$-sphere with a marked point. Then, for any pointed topological space $(X, x)$, denote by $\Pi_{\infty}(X, x)$ the $\infty$-groupoid wherein:
+                    \begin{itemize}
+                        \item $0$-morphisms are points of $X$,
+                        \item $1$-morphisms are marked-point-preserving continuous functions ${}^{*/}\bbS^1 \to (X, x)$ (which we call \textbf{loops based at $x$} in $X$),
+                        \item $2$-morphisms are homotopies between these loops,
+                        \item etc.
+                    \end{itemize}
+            \end{definition}
+        
+        \subsection{Higher homotopy groups}
+            \subsubsection{Quasi-fibrations and long exact sequences of homotopy groups}
+                \begin{definition}[Homotopy groups] \label{def: homotopy_groups}
+                    
+                \end{definition}
+                
+                \begin{definition}[Quasi-fibration] \label{def: quasi_fibration}
+                    A \textbf{quasi-fibration} is nothing but an $(\infty, 1)$-kernel in the $(\infty, 1)$-category of \textit{pointed} $\infty$-groupoids, i.e. an $(\infty, 1)$-pullback of the form:
+                        $$
+                            \begin{tikzcd}
+                            	X & \pt \\
+                            	Y & Z
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=2-1, to=2-2]
+                            	\arrow[from=1-2, to=2-2]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                \end{definition}
+                
+                \begin{theorem}[Induced long exact sequence of homotopy groups] \label{theorem: induced_long_exact_sequence_of_homotopy_groups}
+                    
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+            
+            \subsubsection{The Mayer-Vietoris Sequence}
+    
     \section{\texorpdfstring{$n$}{}-operads and \texorpdfstring{$n$}{}-categories}
         \subsection{Monoidal categories; enrichments}
             \subsubsection{Classical monoidal categories}
