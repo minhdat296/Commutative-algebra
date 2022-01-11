@@ -33,9 +33,9 @@
                     \end{enumerate}
                     
                     One interesting object that can be built out of global fields, local fields, along with rings of integers thereof are rings of a\`eles of global fields: the ring of ad\`eles of a global field $F$ is defined to be the following so-called \textbf{restricted product}:
-                        $$\scrA_F := \hat{\prod_{\nu \in \Spec \scrO_F}} F_{\nu} := \underset{V \in \calP^{\fin}_{\Spec \scrO_F}}{\colim} \left(\prod_{v \in V} F_v \x \prod_{\nu \in \Spec \scrO_F \setminus V} \scrO_{F, \nu}\right)$$
-                    wherein $\calP^{\fin}_{\Spec \scrO_F}$ is the poset of \textit{finite} subsets of $\Spec \scrO_F$, and for each place $\nu \in \Spec \scrO_F$, one writes $F_{\nu}$ for the $\nu$-adic completion of $F$ and $\scrO_{F, \nu}$ for the ring of integers of $F_{\nu}$. For instance, the ring of ad\`eles of $\Q$ is:
-                        $$\scrA_{\Q} := \hat{\prod_{p \in \Spec \Z}} \Q_p := \underset{V \in \calP^{\fin}_{\Spec \Z}}{\colim} \left(\prod_{p \in V} \Q_p \x \prod_{q \in \Spec \scrO_F \setminus V} \Z_q\right)$$
+                        $$\A_F := \hat{\prod_{v \in \Spec \scrO_F}} F_v := \underset{V \in \calP^{\fin}_{\Spec \scrO_F}}{\colim} \left(\prod_{v \in V} F_v \x \prod_{v \in \Spec \scrO_F \setminus V} \scrO_{F, v}\right)$$
+                    wherein $\calP^{\fin}_{\Spec \scrO_F}$ is the poset of \textit{finite} subsets of $\Spec \scrO_F$, and for each place $v \in \Spec \scrO_F$, one writes $F_v$ for the $v$-adic completion of $F$ and $\scrO_{F, v}$ for the ring of integers of $F_v$. For instance, the ring of ad\`eles of $\Q$ is:
+                        $$\A_{\Q} := \hat{\prod_{p \in \Spec \Z}} \Q_p := \underset{V \in \calP^{\fin}_{\Spec \Z}}{\colim} \left(\prod_{p \in V} \Q_p \x \prod_{q \in \Spec \scrO_F \setminus V} \Z_q\right)$$
                 \end{example}
                 \begin{example}[More instances of integrality]
                     \noindent
@@ -284,7 +284,13 @@
                     We say that 
                 \end{proposition}
                 
-            \subsection{\'Etale morphisms} \label{subsection: etale_morphisms}
+            \subsubsection{Extensions of discrete valuation rings}
+                
+            
+            \subsubsection{Galois extensions and ramification}
+    
+    \section{\'Etale cohomology for schemes: The Chosen One}
+        \subsection{\'Etale morphisms} \label{subsection: etale_morphisms}
             \begin{definition}[\'Etale morphisms] \label{def: etale_morphisms} \index{\'Etale-ness}
                 An \'etale ring map is a smooth ring map whose cotangent complex is quasi-isomorphic to the zero complex. Equivalently, a ring homomorphism is \'etale if and only if it is smooth and of relative dimension $0$ (see proposition \ref{prop: smoothness_implies_almost_finiteness_of_cotangent_complex} for an explanation). 
             \end{definition}
@@ -386,7 +392,6 @@
                 One implication of this is that given any scheme $X$ over $\Spec k$, its fibres over $k$-rational points $x \in X(k)$ are nothing but finite collections of points (even if the fibre is not affine, its affine patches would still necessarily be finite collections of points, as shown above, and thus the whole fibre would be so as well).
             \end{remark}
     
-    \section{\'Etale cohomology for schemes: The Chosen One}
         \subsection{The interesting point: Galois cohomology}
             \subsubsection{Cohomology of profinite groups}
                 Cohomology of profinite groups is nothing but group cohomology but for pro-objects in the category of finite groups (for us, cohomology shall always mean cohomology with abelian coefficients). Because of that, we shall pay less attention to the definition and general properties, and more on the special properties that cohomologies of profinite groups enjoy. By the end of it, we shall apply what we know to Galois groups, which are profinite thanks to the Fundamental Theorem of Galois Theory. 
@@ -477,108 +482,4 @@
             
                 \paragraph{The Lefschetz Conditions}
                 
-    \section{Class field theory}
-        \subsection{Local class field theory and the \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
-            \subsubsection{Pro-algebraic groups and their homotopy groups}
-                Local class field theory in the sense of Serre-Hazewinkel-Suzuki-Yoshida is the realisation that certain important constructions surrounding Galois groups of local fields (namely, the Galois group of the maximal abelian extension of a given non-archimedean discrete valuation field), such as the inertia group and so on, are actually just fundamental groups of particular infinite-dimensional group schemes, called \textbf{pro-algebraic groups} (and as the name suggests, are objects of the pro-completion of the category of algebraic groups). The issue, however, is that algebraic fundamental group (cf. definition \ref{def: etale_fundamental_groups}) are only commonly within the finite-dimensional context. Thus, we shall need some sort of profinite analogue of the usual \'etale fundamental group in order to meaningfully our desired results.
-                
-                \begin{definition}[Pro-algebraic groups] \label{def: pro_algebraic_groups}
-                    The category of \textbf{pro-algebraic groups} (over some fixed base field $k$) is nothing but the pro-completion of the category of algebraic groups over $\Spec k$ (cf. definition \ref{def: algebraic_groups}). We shall suggestively denote it by $\Pro\Alg\Grp_{/\Spec k}$.
-                \end{definition}
-                \begin{remark}[Quasi-algebraic groups ?]
-                    Since pro-algebraic groups arise most commonly over fields of characteristic $p > 0$, many authors use the term \textbf{pro-algebraic group} to mean objects of the category:
-                        $$\Pro(\Alg\Grp_{/\Spec k^{\flat}}^{\perf})$$
-                    which arises most naturally as the essential image of the schematic tilting functor:
-                        $$(-)^{\flat}: \Pro(\Alg\Grp_{/\Spec k}) \to \Pro(\Alg\Grp_{/\Spec k^{\flat}})$$
-                    defined in definition \ref{def: tilting_schemes}. 
-                \end{remark}
-                
-                Nevertheless, one should verify that tilts of pro-algebraic groups are still pro-algebraic groups.
-                \begin{lemma}[Tilts of pro-algebraic groups] \label{lemma: tilts_of_pro_algebraic_groups}
-                    Let $k$ be a field of characteristic $p > 0$ on which the Frobenius is surjective and let $\calG$ be a pro-algebraic group over $\Spec k$. Then, $\calG^{\flat}$ is also a pro-algebraic group (but of course, over $\Spec k^{\flat}$). Furthermore, it is perfect, in the sense that the (geometric) Frobenius $\Frob_{\calG/k}$ is invertible.
-                \end{lemma}
-                    \begin{proof}
-                        The first assertion is entirely formal. The second assertion comes from lemma \ref{lemma: tilts_are_perfect}.
-                    \end{proof}
-                \begin{remark}
-                    Thanks to lemma \ref{lemma: tilts_of_pro_algebraic_groups}, we shall assume most of the time that the base field $k$ is perfect (as a field of characterisitic $p > 0$).
-                \end{remark}
-                
-                \begin{convention}
-                    From now on, denote by $\Pro\Alg\Ab_{/\Spec k}$ the category of pro-algebraic \textit{commutative} groups over $\Spec k$, where $k$ will commonly be some base field of characteristic $p > 0$ on which the Frobenius is surjective.
-                \end{convention}
-                \begin{proposition}[The coGrothendieck category of pro-algebraic commutative groups] \label{prop: the_cogrothendieck_category_of_pro_algebraic_commutative_groups}
-                    Fix a perfect base field $k$ of characteristic $p > 0$. Then:
-                        \begin{enumerate}
-                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category,
-                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an $AB5$-category, i.e. it is cocomplete and filtered colimits of exact sequences are once more exact,
-                            \item and $\Pro\Alg\Ab_{/\Spec k}$ has a \textit{projective} cogenerator.
-                        \end{enumerate}
-                \end{proposition}
-                    \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item It is known that for any category $\C$ with enough limits then $\Ab(\C)$ is abelian if and only if $\C$ is exact, in the sense that every equivalence is a kernel pair. This is certainly the case for $\C \cong \Pro(\Sch^{\ft}_{/\Spec k})$, and because $\Pro\Alg\Ab_{/\Spec k} \cong \Ab(\Pro(\Sch^{\ft}_{/\Spec k}))$, we have shown that $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category.
-                            \item 
-                            \item 
-                        \end{enumerate}
-                    \end{proof}
-                
-                \begin{convention}
-                    From now on, we work with a mixed-characteristic complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
-                \end{convention}
-                \begin{convention}
-                    We fix the following notation:
-                        $$\U_K \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
-                    and recall that the groups of units:
-                        $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
-                    are represented by the affine schemes:
-                        $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
-                \end{convention}
-                \begin{proposition}[Properties of $\U_K$] \label{prop: properties_of_the_pro_algebraic_group_of_units}
-                    $\U_K$ is a commutative pro-algebraic group over $\Spec k$ such that:
-                        $$\U_K(k) \cong K^{\x}$$
-                \end{proposition}
-                    \begin{proof}
-                        $\U_K$ being a commutative pro-algbebraic group over $\Spec k$ is an obvious consequence of its construction (note that the component groups:
-                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
-                        are all commutative), so the only thing to show is that $\U_K(k) \cong K^{\x}$. For this, we can use the fact that the component groups:
-                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
-                        are represented by the affine schemes:
-                            $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
-                        and the fact that the Yoneda embedding preserves limits to see that:
-                            $$\U_K(k) \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}(k) \cong \underset{n \in \N}{\lim} (\scrO_K/\m_K^{n + 1})^{\x}$$
-                    \end{proof}
-            
-            \subsubsection{Local class field theory \textit{\`a la} Serre-Hazelwinkel}
-                \begin{convention}
-                    From now on, we work with a mixed-characteristic complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
-                \end{convention}
-                
-                The story of classical local class field theory (which started in the 19th century and culminated in the 1930s with a theorem of Artin) is that should $k$ be a finite extension of $\F_p$ (i.e. $k \cong \F_q$ for $q$ some power of $p$), then one has a canonical group homomorphism:
-                    $$K^{\x} \to \Gal(K^{\ab}/K)$$
-                (where $K^{\ab}/K$ is the maximal abelian extension of $K$) inducing the following commutative diagram in $\Ab$ with exact rows:
-                    $$
-                        \begin{tikzcd}
-                        	0 & {k^{\x}} & {K^{\x}} & \Z & 0 \\
-                        	0 & {\rmI(K)} & {\Gal(K^{\ab}/K)} & {\Gal(\bar{k}/k)} & 0
-                        	\arrow[from=1-1, to=1-2]
-                        	\arrow[tail, from=1-2, to=1-3]
-                        	\arrow[two heads, from=1-3, to=1-4]
-                        	\arrow[from=1-4, to=1-5]
-                        	\arrow[from=2-1, to=2-2]
-                        	\arrow[tail, from=2-2, to=2-3]
-                        	\arrow[two heads, from=2-3, to=2-4]
-                        	\arrow[from=2-4, to=2-5]
-                        	\arrow[from=1-2, to=2-2]
-                        	\arrow[from=1-3, to=2-3]
-                        	\arrow[from=1-4, to=2-4]
-                        \end{tikzcd}
-                    $$
-                Serre then went on to generalise this programme to cases where $k$ need not be a finite extension of $\F_p$, but he had to make the assumption that $k$ was algebraically closed (so for instance, $k$ could be $\overline{\F_p(t)}$ but not $\F_p(\!(t)\!)$ or even $\F_p(\!(t^{1/p^{\infty}})\!)$). Hazelwinkel and Suzuki-Yoshida (cf. \cite{suzuki_yoshida_lcft_refinement}) then managed to generalised this to the case where $k$ could be any perfect field (so now, for instance, one can consider $k \cong \F_p(\!(t^{1/p^{\infty}})\!)$).
-                
-                
-            
-            \subsubsection{The \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
-        
-        \subsection{Global class field theory}
+    

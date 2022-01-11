@@ -1,4 +1,4 @@
-\chapter{\'Etale cohomology and Galois representations} \label{chapter: etale_cohomology_2}
+\chapter{The Weil Conjectures over finite fields} %\label{chapter: etale_cohomology_2}
     \begin{abstract}
         
     \end{abstract}
@@ -13,172 +13,7 @@
         \end{enumerate}
     \end{convention}
     
-    \section{\texorpdfstring{$\ell$}{}-adic sheaves and Galois representations} \label{section: l_adic_sheaves}
-        \subsection{Grothendieck's Galois Theory} \label{subsection: grothendieck_galois_theory}
-            Let us first review a bit of Grothendieck's (finite) Galois theory, mostly for the part of having definitions conveniently nearby for quick references and comparison with an infinite geometric Galois theory that we shall present after this interlude.
-            
-            \subsubsection{\'Etale fundamental groups of schemes}
-                \begin{definition}[Noohi groups] \label{def: fintie_galois_categories}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Finite Galois categories \cite[\href{https://stacks.math.columbia.edu/tag/0BMY}{Tag 0BMY}]{stacks}):} A \textbf{finite Galois category} is defined via the data contained in a pair $(\calG, F)$ consisting of an \textit{exact} functor $F: \calG^{\op} \to \Sets^{\fin}$ and a category $\calG$ such that:
-                            \begin{itemize}
-                                \item $\calG$ is finitely complete and finitely cocomplete.
-                                \item Objects in $\calG$ can all be written as a (possibly empty but necessarily finite) coproduct of connected objects (objects $X \in \calG$ such that the functor $\calG(X, -)$ preserves all coproducts). 
-                            \end{itemize}
-                        Functors such as the functor $F$ above are commonly called \textbf{fibre functors}. 
-                        \item \textbf{(Noohi groups):} In the sense of \cite[Theorem 2.16]{noohi_fundamental_group}, a so-called \textbf{Noohi group} is the group of natural automorphisms on the $\Sets^{\fin}$-valued functor defining a Galois finite category; that is to say, given a Galois finite category $(\calG, F)$, its Noohi group is $\Aut(F)$.  
-                    \end{enumerate}
-                \end{definition}
-                
-                \begin{lemma}[Profiniteness of Noohi groups] \label{lemma: profiniteness_of_noohi_groups}
-                    Let $(\calG, F)$ be a finite Galois category. Then:
-                        \begin{enumerate}
-                            \item The associated Noohi group $\Aut(F)$ is profinite.
-                            \item $\calG$ is equivalent to the category $[\bfB\Aut(F)^{\op}, \Sets^{\fin}]$ of $\Aut(F)$-equivariant finite sets.
-                        \end{enumerate}
-                \end{lemma}
-                    \begin{proof}
-                        \cite[Theorem 2.16]{noohi_fundamental_group}
-                    \end{proof}
-                    
-                \begin{definition}[\'Etale fundamental group] \label{def: etale_fundamental_groups}
-                    Recall first of all that for any given base scheme $X$, the category $\Sch_{/X, \fet}$ of schemes finite and \'etale over $X$ is a category wherein:
-                        \begin{itemize}
-                            \item all finite limits and all finite colimits exist, and
-                            \item all objects can be written as a (possibly empty) finite coproduct of connected objects, which happen to be schemes that are \'etale over $X$.  
-                        \end{itemize}
-                    In other words, the category spanned by (possibly empty) finite coproducts of schemes \'etale over $X$ can serve as the underlying category of a finite Galois category. Let us then fix a geometric point:
-                        $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
-                    (where $\overline{\kappa_x}$ denotes an algebraic closure of the residue field $\kappa_x$ at some point $x \in |X|$) of $X$ and define the following fibre functor:
-                        $$F_{\overline{x}}: \Sch_{/X, \fet} \to \Sets^{\fin}$$
-                    by the rule:
-                        $$F_{\overline{x}}(f: Y \to X) \cong |Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$$
-                    The pair $(\Sch_{/X, \fet}, F_{\overline{x}})$ as above thus define a finite Galois category. Its Noohi group $\Aut(F_{\overline{x}})$ is commonly denoted by $\pi_1^{\fet}(X, \overline{x})$.
-                \end{definition}
-                \begin{remark}
-                    Definition \ref{def: etale_fundamental_groups} is actually a bit subtle and honestly, somewhat ill-founded, as did not actually prove that $F_{\overline{x}}$ was an honest-to-Grothendieck fibre functor. It is certainly left-exact, by virtue of being defined via pullbacks, and it is right-exact because any \'etale algebra over a field can be written as a finite direct sum of finite extensions of that field \cite[\href{https://stacks.math.columbia.edu/tag/00U3}{Tag 00U3}]{stacks}, and direct sums are biproducts of vector spaces. However, the fact that the sets $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ are finite is not really trivial, although it is not too hard to prove either. Basically, this fact is also consequence \'etale algebras being isomorphic to finite direct sums of finite extensions: in our case, since $\overline{\kappa_x}$ is algebraically closed, the underlying vector space of \'etale $\overline{\kappa_x}$-algebras must be isomorphic to a finite direct sum of $\overline{\kappa_x}$ itself. In terms of schemes, this means that when both $Y$ and $X$ are affine, the pullback $Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}$ would be nothing but a coproduct of finitely many copies of $\Spec \overline{\kappa_x}$, and hence the set $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ would have to be finite. Then, by using the fact the \'etale-ness is a local property, we can deduce that the set $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ must be finite regardless of whether $Y$ and $X$ are finite or not. The functor:
-                        $$F_{\overline{x}}: \Sch_{/X, \fet} \to \Sets^{\fin}: (f: Y \to X) \mapsto |Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$$
-                    is therefore indeed a fibre functor.
-                \end{remark}
-                
-                \begin{theorem}[Grothendieck's Galois theory] \label{theorem: grothendieck's_galois_theorem}
-                    Let $X$ be a \textit{connected} base scheme and let:
-                        $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
-                    be a geometric point therein. By lemma \ref{lemma: profiniteness_of_noohi_groups}, we have the following equivalence of categories:
-                        $$\Sch_{/X, \fet} \cong [\bfB\pi_1^{\fet}(X, \overline{x})^{\op}, \Sets^{\fin}]$$
-                    But this purely topological equivalence can be upgraded to an algebraic one via the the following canonical isomorphism of groups:
-                        $$\pi_1^{\fet}(X, \overline{x}) \cong \Gal(k^{\sep}/k)$$
-                    wherein $k^{\sep}$ is the unique separable closure inside $\overline{k}$, which holds if and only if $X$ is the spectrum of some field $k$ (note that in such a situation, the geometric point $\overline{x}$ is nothing but the canonical morphism $\Spec \overline{k} \to \Spec k$).
-                \end{theorem}
-                    \begin{proof}
-                        
-                    \end{proof}
-                    
-            \subsubsection{Properties of \'etale fundamental groups}
-                \begin{theorem}[\'Etale fundamental groups are unique up to universal homeomorphisms] \label{theorem: etale_fundamental_groups_are_unique_up_to_universal_homeomorphisms}
-                    Let $f: Y \to X$ be a universal homeomorphism. Then, one has the following equivalence of categories:
-                        $$\Sch_{/X}^{\fet} \cong \Sch_{/Y}^{\fet}: (j: U \to X) \mapsto U \x_{j, X, f} Y$$
-                    which in particular, implies that for any geometric point $\overline{x}$ of $X$, there is an isomorphism of \'etale fundamental groups:
-                        $$\pi_1^{\fet}(X, \overline{x}) \cong \pi_1^{\fet}(Y, \overline{y})$$
-                    where $\overline{y}$ is the geometric point of $Y$ lying over $\overline{x}$ (it is uniquely determined as $f: Y \to X$ is a universal homemomorphism). 
-                \end{theorem}
-                    \begin{proof}
-                        
-                    \end{proof}
-                \begin{corollary}
-                    Let $X \to X'$ be a morphism of schemes which is a homeomorphism at the level of the underlying topological spaces and enjoys the universal property of a  filtered colimit or that of a limit. This is a special case of a universal homeomorphism, and one thus has:
-                        $$\pi_1^{\fet}(X) \cong \pi_1^{\fet}(X')$$
-                    Examples include but certainly not limited to the following:
-                        \begin{itemize}
-                            \item $X \to X'$ is a thickening.
-                            \item 
-                        \end{itemize}
-                \end{corollary}
-    
-        \subsection{The \texorpdfstring{$\ell$}{}-adic Monodromy Correspondence}
-            Let us start with the notion of $\ell$-adic representations. 
-            \begin{definition}[$\ell$-adic representations] \label{def: l_adic_representations}
-                Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$. An \textbf{$\ell$-adic representation of $\Gal(L/K)$} is thus a finite-dimensional \textit{continuous} $F$-linear representation of $\Gal(L/K)$, i.e. a continuous group homomorphism:
-                    $$\rho: \Gal(L/K) \to \GL_n(F)$$
-                for some natural number $n$. $\ell$-adic representations of \textit{absolute} Galois groups are known as \textbf{$\ell$-adic Galois representations}, or just Galois representations for short.
-            \end{definition}
-            \begin{remark}[It's actually a bit simpler than we've been led to believe]
-                Definition \ref{def: l_adic_representations} can seem a bit complicated, but what it actually does is just giving names to certain continuous finite-dimensional $F$-linear representations of certain topological groups (recall how Galois groups naturally carry the profinite topology which reduces to the discrete topology in finite cases). The category of $\ell$-adic representations of a given Galois group is thus nothing special, from a categorical point of view, and a lot of the basic properties of $\ell$-adic representations are actually just abstract-nonsensical. 
-            \end{remark}
-            \begin{example} \label{example: l_adic_representations}
-                Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$.
-                \begin{enumerate}
-                    \item \textbf{($\ell$-adic representations that are not Galois):} 
-                        \begin{itemize}
-                            \item \textbf{(The trivial representation):} This is a bit of a silly example, but if $F$ were to be equipped with the discrete topology then any finite-dimensional $F$-linear representation of $\Gal(L/K)$ would be an $\ell$-adic representation for trivial reasons. Note that the trivial representation is a special case of this, since the trivial subgroup $1 \leq \GL_n(F)$ can not have any topology other than the discrete one. 
-                            \item \textbf{(Finite Galois representations):} Any finite-dimensional $F$-linear represetation of a finite Galois group is trivially $\ell$-adic, due to the fact that every subset is defined to be open in the discrete topology. 
-                        \end{itemize}
-                    \item \textbf{(Galois representations):}
-                        \begin{itemize}
-                            \item \textbf{(Tate modules):} \index{Tate module} \index{Tate twist} Let $X$ be an abelian variety over $\Spec K$ and let us write $(\mu_{\ell^{\infty}})_{/X}$ for the base change:
-                                $$(\mu_{\ell^{\infty}})_{/\Spec K} \x_{\Spec K} X$$
-                            of the $\Spec K$-algebraic group:
-                                $$(\mu_{\ell^{\infty}})_{/\Spec K} \cong \underset{n \in \N}{\lim} \Spec \frac{K[x]}{(x^{\ell^n} - 1)}$$
-                            of all $\ell^{th}$-roots of unity to $X$, which is once more an commutative group scheme for trivial reasons. Then, the \textbf{$\ell$-adic Tate module} of $X$ is the abelian group of $\Spec K^{\sep}$-points of $\mu_{\ell^{\infty} /X}$; we shall denote it by $\T_{\ell}(X)$. Alternatively, one might define the $\ell$-adic Tate module of $X$ to be the filtered limit of all $\ell$-torsion subgroups of $X(\Spec K^{\sep})$, which form the following descending filtration: 
-                                $$X[\ell] \supset X[\ell^2] \supset ... \supset \T_{\ell}(X)$$
-                            wherein $X[\ell^n] \cong X(\Spec K^{\sep}) \tensor_{\Z} \Z/\ell^n\Z$ is the subgroup with $\ell^n$-torsion.
-                                
-                            Because $\ell$ is prime, $\T_{\ell}(X)$ is thus an abelian pro-$\ell$-group (i.e. a filtered limit of finite abelian $\ell$-groups), and hence isomorphic to a free $\Z_{\ell}$-module. 
-                                \begin{enumerate}
-                                    \item If $X$ were to be isomorphic to the multiplicative group scheme $(\G_m)_{/\Spec K}$ (i.e. the unique abelian variety of dimension $0$, up to isomorphisms) then:
-                                        $$X[\ell^n] \cong (\G_m)_{/\Spec K}[\ell^n] \cong \Z/\ell^n\Z$$
-                                    for all $n$, which would imply that:
-                                        $$\T_{\ell}( (\G_m)_{/\Spec K} ) \cong \Z_{\ell}$$
-                                    \item When $X$ is an elliptic curve (i.e. an abelian variety of dimension $1$; cf. definitions \ref{def: moduli_of_elliptic_curves} and \ref{def: abelian_varieties}), we can apply \cite[Corollary 6.4]{silverman_elliptic_curves} to get:
-                                        $$\T_{\ell}(X) \cong \Z_{\ell} \oplus \Z_{\ell}$$
-                                    
-                                    More generally, one can make use of some \'etale homotopy theory to show that for all integers $N$ coprime with $p$, there exists the following decomposition of the $N$-torsion subgroup of $X(K)$:
-                                        $$X[N] \cong \Z/N\Z \oplus \Z/N\Z$$
-                                    First of all, it will have to be shown that every elliptic curve admits a finite \'etale covering which is also an elliptic curve. 
-                                \end{enumerate}
-                        \end{itemize}
-                \end{enumerate}
-            \end{example}
-        
-            \begin{definition}[Lisse sheaves] \label{def: lisse_sheaves}
-                Let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). We shall refer to functions into $F$ as being \say{$\ell$-adic} as typically, one takes $F$ to be $\Q_{\ell}$ or extensions thereof (the reason we are using $\ell$ instead of a simple \say{$p$} as our prime is historical: $\ell$-adic sheaves were first conceived for the purposes of the Riemann Hypothesis on varieties over characteristics $p$).
-                \begin{enumerate}
-                    \item \textbf{(Lisse $\ell$-adic functions):} Let $X$ be a \textit{totally disconnected} topological space (typically just locally profinite, although there are interesting non-profinite examples such as $\Q$). An $\ell$-adic function $f: X \to F$ shall then be called \textbf{lisse} if and only if it is \textit{compactly supported} and \textit{locally constant} (this terminology is suppose to be a nod to the notion of smooth functions on locally profinite spaces). The space of lisse $\ell$-adic functions on any open subset $U \subseteq X$ is denoted by $C^{\infty}_c(U, F)$ or simply $C^{\infty}_c(U)$ when $F$ is understood.
-                    
-                    One thing to note is that when $F = \bbC$, this notion does \textit{not} coincide with that of smoothness, since totally disconnected spaces can not admit any sort of archimedean metric. This is another reason why we opted for \say{lisse functions} instead of \say{smooth functions} or \say{bump functions}.
-                    \item \textbf{(Lisse $\ell$-adic sheaves):} In analogy with the above notion of lisse $\ell$-adic functions, let us define a \textbf{lisse $\ell$-adic sheaf} as a \textit{finite-dimensional} $F$-linear local system over some pro-\'etale site $X_{\proet}$ of a given base scheme $X$. It is not hard to see that lisse sheaves on $X$ form a category, which we shall denote by $F\-\LocSys(X_{\proet})^{\fin}$.
-                \end{enumerate}
-            \end{definition}
-        
-            \begin{theorem}[The $\ell$-adic Monodromy Correspondence] \label{theorem: l_adic_monodromy_correspondence}
-                Let $\ell$ be a prime, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). Also, let $X$ be a \textit{connected} base scheme. There is then the following equivalence of rigid symmetric monoidal categories:
-                    $$F\-\LocSys(X_{\proet})^{\fin} \cong \Rep_F^{\cont}(\pi_1^{\fet}(X))$$
-            \end{theorem}
-                \begin{proof}
-                    
-                \end{proof}
-            \begin{corollary}[Continuous Galois representations as lisse sheaves] \label{coro: continuous_galois_representations_as_lisse_sheaves}
-                Let $K$ be a field whose characteristic is different from $\ell$. Then, we have the following equivalence of rigid symmetric monoidal categories:
-                    $$F\-\LocSys(*_{\proet})^{\fin} \cong \Rep_F^{\cont}(\bfG_K)$$
-            \end{corollary}
-            \begin{example}[\'Etale cohomologies as geometric Galois representations] \label{example: etale_cohomologies_as_galois_representations}
-                Let $K$ be a separably closed field and let $X$ be a smooth and proper scheme over $\Spec K$. Since $\ell$-adic cohomology is a Weil cohomology theory, the $\ell$-adic cohomologies $H^i_{\Q_{\ell}}(X)$ are, in particular, finite-dimensional. Since we wish to show that these cohomologies are naturall Galois representations, it then remains to verify that $\bfG_K$ indeed acts on them.
-                            
-                For this, let us first use \cite[\href{https://stacks.math.columbia.edu/tag/0BUM}{Tag 0BUM}]{stacks} along with the assumption that $X$ is a scheme over a separably closed field, we get that:
-                    $$\pi^{\fet}(X) \cong \bfG_k$$
-                Then, note that the chain complex $H^*_{\Q_{\ell}}(X)$ is actually the same as the \textit{finite-dimensional} chain complex of pro-\'etale cohomologies $H^*_{\proet}(X, \Q_{\ell})$. An appliction of theorem \ref{theorem: l_adic_monodromy_correspondence} then gives us the desired Galois action on the cohomologies $H^i_{\Q_{\ell}}(X)$.
-            \end{example}
-            
-        \subsection{\texorpdfstring{$\ell$}{}-adic representations of finite fields}
-        
-        \subsection{\texorpdfstring{$\ell$}{}-adic representations of local fields}
-    
-    \section{The Weil Conjectures over finite fields}
-        \subsection{The trace formula}
-    
-        \subsection{Rationality of the zeta functions}
-        
+    \section{The trace formula}
         \subsection{The functional equation via Frobenii}
             \subsubsection{L-functions}
                 Let us start the discussion by defining so-called $L$-functions  and examine some of the relevant properties that they exhibit. 
@@ -245,7 +80,9 @@
                             \end{enumerate}
                     \end{enumerate} 
                 \end{example}
+    
+    \section{Rationality of the zeta functions}
         
-        \subsection{The Riemann Hypothesis over finite fields}
+    \section{The Riemann Hypothesis over finite fields}
         
     

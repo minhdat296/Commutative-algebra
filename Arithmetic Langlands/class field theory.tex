@@ -1,0 +1,333 @@
+\chapter{Class field theory}
+    \begin{abstract}
+        
+    \end{abstract}
+    
+    \minitoc
+    
+    \section{Local class field theory}
+        \subsection{Local class field theory via Galois cohomology}
+            \subsubsection{Cohomological duality for profinite groups}
+            
+            \subsubsection{Abstract class field theory}
+            
+            \subsubsection{Iwasawa theory}
+    
+        \subsection{The \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
+            \subsubsection{Pro-algebraic groups and their homotopy groups}
+                Local class field theory in the sense of Serre-Hazewinkel-Suzuki-Yoshida is the realisation that certain important constructions surrounding Galois groups of local fields (namely, the Galois group of the maximal abelian extension of a given non-archimedean discrete valuation field), such as the inertia group and so on, are actually just fundamental groups of particular infinite-dimensional group schemes, called \textbf{pro-algebraic groups} (and as the name suggests, are objects of the pro-completion of the category of algebraic groups). The issue, however, is that algebraic fundamental group (cf. definition \ref{def: etale_fundamental_groups}) are only commonly within the finite-dimensional context. Thus, we shall need some sort of profinite analogue of the usual \'etale fundamental group in order to meaningfully our desired results.
+                
+                \begin{definition}[Pro-algebraic groups] \label{def: pro_algebraic_groups}
+                    The category of \textbf{pro-algebraic groups} (over some fixed base field $k$) is nothing but the pro-completion of the category of algebraic groups over $\Spec k$ (cf. definition \ref{def: algebraic_groups}). We shall suggestively denote it by $\Pro\Alg\Grp_{/\Spec k}$.
+                \end{definition}
+                \begin{remark}[Quasi-algebraic groups ?]
+                    Since pro-algebraic groups arise most commonly over fields of characteristic $p > 0$, many authors use the term \textbf{pro-algebraic group} to mean objects of the category:
+                        $$\Pro(\Alg\Grp_{/\Spec k^{\flat}}^{\perf})$$
+                    which arises most naturally as the essential image of the schematic tilting functor:
+                        $$(-)^{\flat}: \Pro(\Alg\Grp_{/\Spec k}) \to \Pro(\Alg\Grp_{/\Spec k^{\flat}})$$
+                    defined in definition \ref{def: tilting_schemes}. 
+                \end{remark}
+                
+                Nevertheless, one should verify that tilts of pro-algebraic groups are still pro-algebraic groups.
+                \begin{lemma}[Tilts of pro-algebraic groups] \label{lemma: tilts_of_pro_algebraic_groups}
+                    Let $k$ be a field of characteristic $p > 0$ on which the Frobenius is surjective and let $\calG$ be a pro-algebraic group over $\Spec k$. Then, $\calG^{\flat}$ is also a pro-algebraic group (but of course, over $\Spec k^{\flat}$). Furthermore, it is perfect, in the sense that the (geometric) Frobenius $\Frob_{\calG/k}$ is invertible.
+                \end{lemma}
+                    \begin{proof}
+                        The first assertion is entirely formal. The second assertion comes from lemma \ref{lemma: tilts_are_perfect}.
+                    \end{proof}
+                \begin{remark}
+                    Thanks to lemma \ref{lemma: tilts_of_pro_algebraic_groups}, we shall assume most of the time that the base field $k$ is perfect (as a field of characterisitic $p > 0$).
+                \end{remark}
+                
+                \begin{convention}
+                    From now on, denote by $\Pro\Alg\Ab_{/\Spec k}$ the category of pro-algebraic \textit{commutative} groups over $\Spec k$, where $k$ will commonly be some base field of characteristic $p > 0$ on which the Frobenius is surjective.
+                \end{convention}
+                \begin{proposition}[The coGrothendieck category of pro-algebraic commutative groups] \label{prop: the_cogrothendieck_category_of_pro_algebraic_commutative_groups}
+                    Fix a perfect base field $k$ of characteristic $p > 0$. Then:
+                        \begin{enumerate}
+                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category,
+                            \item $\Pro\Alg\Ab_{/\Spec k}$ is an $AB5$-category, i.e. it is cocomplete and filtered colimits of exact sequences are once more exact,
+                            \item and $\Pro\Alg\Ab_{/\Spec k}$ has a \textit{projective} cogenerator.
+                        \end{enumerate}
+                \end{proposition}
+                    \begin{proof}
+                        \noindent
+                        \begin{enumerate}
+                            \item It is known that for any category $\C$ with enough limits then $\Ab(\C)$ is abelian if and only if $\C$ is exact, in the sense that every equivalence is a kernel pair. This is certainly the case for $\C \cong \Pro(\Sch^{\ft}_{/\Spec k})$, and because $\Pro\Alg\Ab_{/\Spec k} \cong \Ab(\Pro(\Sch^{\ft}_{/\Spec k}))$, we have shown that $\Pro\Alg\Ab_{/\Spec k}$ is an abelian category.
+                            \item 
+                            \item 
+                        \end{enumerate}
+                    \end{proof}
+                
+                \begin{convention}
+                    From now on, we work with a complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
+                \end{convention}
+                \begin{convention}
+                    We fix the following notation:
+                        $$\U_K \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                    and recall that the groups of units:
+                        $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                    are represented by the affine schemes:
+                        $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
+                \end{convention}
+                \begin{proposition}[Properties of $\U_K$] \label{prop: properties_of_the_pro_algebraic_group_of_units}
+                    $\U_K$ is a commutative pro-algebraic group over $\Spec k$ such that:
+                        $$\U_K(k) \cong K^{\x}$$
+                \end{proposition}
+                    \begin{proof}
+                        $\U_K$ being a commutative pro-algbebraic group over $\Spec k$ is an obvious consequence of its construction (note that the component groups:
+                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                        are all commutative), so the only thing to show is that $\U_K(k) \cong K^{\x}$. For this, we can use the fact that the component groups:
+                            $$(\G_m)_{/\scrO_K/\m_K^{n + 1}}$$
+                        are represented by the affine schemes:
+                            $$\Spec \scrO_K/\m_K^{n + 1}[t, 1/t]$$
+                        and the fact that the Yoneda embedding preserves limits to see that:
+                            $$\U_K(k) \cong \underset{n \in \N}{\lim} (\G_m)_{/\scrO_K/\m_K^{n + 1}}(k) \cong \underset{n \in \N}{\lim} (\scrO_K/\m_K^{n + 1})^{\x}$$
+                    \end{proof}
+            
+            \subsubsection{Local class field theory \textit{\`a la} Serre-Hazelwinkel}
+                \begin{convention}
+                    From now on, we work with a complete non-archimedean field $K$ equipped with a discrete rank-$1$ valuation $v$. The subring of bounded elements shall be denoted by $\scrO_K$, and $\m_K$ shall be the maximal ideal of topologically nilpotent elements. Finally, denote the residue field $\scrO_K/\m_K$ by $k$; we shall work under the assumption that $k$ is known to be perfect as a field of characteristic $p > 0$.
+                \end{convention}
+                
+                The story of classical local class field theory (which started in the 19th century and culminated in the 1930s with a theorem of Artin) is that should $k$ be a finite extension of $\F_p$ (i.e. $k \cong \F_q$ for $q$ some power of $p$), then one has a canonical group homomorphism:
+                    $$K^{\x} \to \Gal(K^{\ab}/K)$$
+                (where $K^{\ab}/K$ is the maximal abelian extension of $K$) inducing the following commutative diagram in $\Ab$ with exact rows:
+                    $$
+                        \begin{tikzcd}
+                        	0 & {k^{\x}} & {K^{\x}} & \Z & 0 \\
+                        	0 & {\rmI(K)} & {\Gal(K^{\ab}/K)} & {\Gal(\bar{k}/k)} & 0
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow[tail, from=1-2, to=1-3]
+                        	\arrow[two heads, from=1-3, to=1-4]
+                        	\arrow[from=1-4, to=1-5]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[tail, from=2-2, to=2-3]
+                        	\arrow[two heads, from=2-3, to=2-4]
+                        	\arrow[from=2-4, to=2-5]
+                        	\arrow[from=1-2, to=2-2]
+                        	\arrow[from=1-3, to=2-3]
+                        	\arrow[from=1-4, to=2-4]
+                        \end{tikzcd}
+                    $$
+                Serre then went on to generalise this programme to cases where $k$ need not be a finite extension of $\F_p$, but he had to make the assumption that $k$ was algebraically closed (so for instance, $k$ could be $\overline{\F_p(t)}$ but not $\F_p(\!(t)\!)$ or even $\F_p(\!(t^{1/p^{\infty}})\!)$). Hazelwinkel and Suzuki-Yoshida (cf. \cite{suzuki_yoshida_lcft_refinement}) then managed to generalised this to the case where $k$ could be any perfect field (so now, for instance, one can consider $k \cong \F_p(\!(t^{1/p^{\infty}})\!)$).
+            
+            \subsubsection{The \texorpdfstring{$p$}{}-adic Local Langlands Correspondence for \texorpdfstring{$\GL_1$}{}}
+        
+        \subsection{The Fargues-Fontaine Curve} \label{section: the_fargues_fontaine_curve}
+            In this section, we will motivate and introduce the construction of the Fargues-Fontaine Curve. We will also touch on its applications, not just to $p$-adic Hodge theory, but also to the larger $p$-adic Local Langlands Correspondence (in the sense of Fargues-Scholze; cf. \cite{fargues_scholze_geometrization_of_local_langlands}).
+        
+            \subsubsection{Construction of The Fargues-Fontaine Curve}
+                The following description of the Fargues-Fontaine Curve, aside from detailing its applications to Local Class Field Theory, will also serve as a continuation of section \ref{section: perfectoid_spaces}, for The Curve can be viewed as the moduli space of untilts a given algebraically closed perfectoid field of positive characteristic. Specifically, what we want to know are perfectoid fields $E$ of mixed characteristics $(0, p)$ such that $E^{\flat} \cong F$ for some prescribed perfectoid field $F$ of characteristic $p$. Also, let us note that this is in no way an ill-posed question, as for instance, we know that the tilts of both $\Q_p(p^{\frac{1}{p^{\infty}}})^{\wedge}$ and $\Q_p(\mu_{p^{\infty}})^{\wedge}$ are isomorphic to $\F_p(\!(t^{\frac{1}{p^{\infty}}})\!)$. The Fargues-Fontaine Curve, which we shall denote by $X_{\FF}$, should thus be some sheaf of sets on $\Perfd_{/\Spec \F_p}$ whose fibres over adic spectra of algebraic closures of adic residue fields (understood as \textit{geometric points}) shall be sets of untilts of that very algebraically closed field.
+                
+                We would like our to-be adic Fargues-Fontaine Curve to be a curve over a base field that is:
+                    \begin{itemize}
+                        \item projective, so it would have a chance of admitting a GAGA-esque functor,
+                        \item smooth, so that its topology would behave nicely (read: so that we would be able to apply \'etale cohomology) and so important cases such as elliptic curves would be covered, 
+                        \item proper, so the Proper Base Change Theorem from the theory of \'etale cohomology would apply 
+                    \end{itemize}
+                and most importantly, such that it would have a very straight forward connection to the Weil group of a $p$-adic number field because then, certain local systems on The Curve would correspond with the Weil-Deligne representations of the aforementioned Weil group, which is something that we would want for the establishment of the Galois/spectral side of the Local Langlands Correspondence. Also, due to this last point, one should imagine the Fargues-Fontaine Curve as a sort of $p$-adic Riemann surface; in fact, we will see (eventually) that it does behave similarly to Riemann surfaces in many ways, particularly via its connection to $p$-adic Shimura varieties.
+            
+            \subsubsection{A GAGA theorem for vector bundles on The Curve}
+        
+    \section{Global class field theory for function fields}
+        \subsection{Grothendieck's Galois Theory} \label{subsection: grothendieck_galois_theory}
+            \subsubsection{\'Etale fundamental groups of schemes}
+                \begin{definition}[Noohi groups] \label{def: fintie_galois_categories}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Finite Galois categories \cite[\href{https://stacks.math.columbia.edu/tag/0BMY}{Tag 0BMY}]{stacks}):} A \textbf{finite Galois category} is defined via the data contained in a pair $(\calG, F)$ consisting of an \textit{exact} functor $F: \calG^{\op} \to \Sets^{\fin}$ and a category $\calG$ such that:
+                            \begin{itemize}
+                                \item $\calG$ is finitely complete and finitely cocomplete.
+                                \item Objects in $\calG$ can all be written as a (possibly empty but necessarily finite) coproduct of connected objects (objects $X \in \calG$ such that the functor $\calG(X, -)$ preserves all coproducts). 
+                            \end{itemize}
+                        Functors such as the functor $F$ above are commonly called \textbf{fibre functors}. 
+                        \item \textbf{(Noohi groups):} In the sense of \cite[Theorem 2.16]{noohi_fundamental_group}, a so-called \textbf{Noohi group} is the group of natural automorphisms on the $\Sets^{\fin}$-valued functor defining a Galois finite category; that is to say, given a Galois finite category $(\calG, F)$, its Noohi group is $\Aut(F)$.  
+                    \end{enumerate}
+                \end{definition}
+                
+                \begin{lemma}[Profiniteness of Noohi groups] \label{lemma: profiniteness_of_noohi_groups}
+                    Let $(\calG, F)$ be a finite Galois category. Then:
+                        \begin{enumerate}
+                            \item The associated Noohi group $\Aut(F)$ is profinite.
+                            \item $\calG$ is equivalent to the category $[\bfB\Aut(F)^{\op}, \Sets^{\fin}]$ of $\Aut(F)$-equivariant finite sets.
+                        \end{enumerate}
+                \end{lemma}
+                    \begin{proof}
+                        \cite[Theorem 2.16]{noohi_fundamental_group}
+                    \end{proof}
+                    
+                \begin{definition}[\'Etale fundamental group] \label{def: etale_fundamental_groups}
+                    Recall first of all that for any given base scheme $X$, the category $\Sch_{/X, \fet}$ of schemes finite and \'etale over $X$ is a category wherein:
+                        \begin{itemize}
+                            \item all finite limits and all finite colimits exist, and
+                            \item all objects can be written as a (possibly empty) finite coproduct of connected objects, which happen to be schemes that are \'etale over $X$.  
+                        \end{itemize}
+                    In other words, the category spanned by (possibly empty) finite coproducts of schemes \'etale over $X$ can serve as the underlying category of a finite Galois category. Let us then fix a geometric point:
+                        $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
+                    (where $\overline{\kappa_x}$ denotes an algebraic closure of the residue field $\kappa_x$ at some point $x \in |X|$) of $X$ and define the following fibre functor:
+                        $$F_{\overline{x}}: \Sch_{/X, \fet} \to \Sets^{\fin}$$
+                    by the rule:
+                        $$F_{\overline{x}}(f: Y \to X) \cong |Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$$
+                    The pair $(\Sch_{/X, \fet}, F_{\overline{x}})$ as above thus define a finite Galois category. Its Noohi group $\Aut(F_{\overline{x}})$ is commonly denoted by $\pi_1^{\fet}(X, \overline{x})$.
+                \end{definition}
+                \begin{remark}
+                    Definition \ref{def: etale_fundamental_groups} is actually a bit subtle and honestly, somewhat ill-founded, as did not actually prove that $F_{\overline{x}}$ was an honest-to-Grothendieck fibre functor. It is certainly left-exact, by virtue of being defined via pullbacks, and it is right-exact because any \'etale algebra over a field can be written as a finite direct sum of finite extensions of that field \cite[\href{https://stacks.math.columbia.edu/tag/00U3}{Tag 00U3}]{stacks}, and direct sums are biproducts of vector spaces. However, the fact that the sets $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ are finite is not really trivial, although it is not too hard to prove either. Basically, this fact is also consequence \'etale algebras being isomorphic to finite direct sums of finite extensions: in our case, since $\overline{\kappa_x}$ is algebraically closed, the underlying vector space of \'etale $\overline{\kappa_x}$-algebras must be isomorphic to a finite direct sum of $\overline{\kappa_x}$ itself. In terms of schemes, this means that when both $Y$ and $X$ are affine, the pullback $Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}$ would be nothing but a coproduct of finitely many copies of $\Spec \overline{\kappa_x}$, and hence the set $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ would have to be finite. Then, by using the fact the \'etale-ness is a local property, we can deduce that the set $|Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$ must be finite regardless of whether $Y$ and $X$ are finite or not. The functor:
+                        $$F_{\overline{x}}: \Sch_{/X, \fet} \to \Sets^{\fin}: (f: Y \to X) \mapsto |Y \x_{f, X, \overline{x}} \Spec \overline{\kappa_x}|$$
+                    is therefore indeed a fibre functor.
+                \end{remark}
+                
+                \begin{theorem}[Grothendieck's Galois theory] \label{theorem: grothendieck's_galois_theorem}
+                    Let $X$ be a \textit{connected} base scheme and let:
+                        $$\overline{x}: \Spec \overline{\kappa_x} \to X$$
+                    be a geometric point therein. By lemma \ref{lemma: profiniteness_of_noohi_groups}, we have the following equivalence of categories:
+                        $$\Sch_{/X, \fet} \cong [\bfB\pi_1^{\fet}(X, \overline{x})^{\op}, \Sets^{\fin}]$$
+                    But this purely topological equivalence can be upgraded to an algebraic one via the the following canonical isomorphism of groups:
+                        $$\pi_1^{\fet}(X, \overline{x}) \cong \Gal(k^{\sep}/k)$$
+                    wherein $k^{\sep}$ is the unique separable closure inside $\overline{k}$, which holds if and only if $X$ is the spectrum of some field $k$ (note that in such a situation, the geometric point $\overline{x}$ is nothing but the canonical morphism $\Spec \overline{k} \to \Spec k$).
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                    
+                \begin{theorem}[\'Etale fundamental groups are unique up to universal homeomorphisms] \label{theorem: etale_fundamental_groups_are_unique_up_to_universal_homeomorphisms}
+                    Let $f: Y \to X$ be a universal homeomorphism. Then, one has the following equivalence of categories:
+                        $$\Sch_{/X}^{\fet} \cong \Sch_{/Y}^{\fet}: (j: U \to X) \mapsto U \x_{j, X, f} Y$$
+                    which in particular, implies that for any geometric point $\overline{x}$ of $X$, there is an isomorphism of \'etale fundamental groups:
+                        $$\pi_1^{\fet}(X, \overline{x}) \cong \pi_1^{\fet}(Y, \overline{y})$$
+                    where $\overline{y}$ is the geometric point of $Y$ lying over $\overline{x}$ (it is uniquely determined as $f: Y \to X$ is a universal homemomorphism). 
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}
+                    Let $X \to X'$ be a morphism of schemes which is a homeomorphism at the level of the underlying topological spaces and enjoys the universal property of a  filtered colimit or that of a limit. This is a special case of a universal homeomorphism, and one thus has:
+                        $$\pi_1^{\fet}(X) \cong \pi_1^{\fet}(X')$$
+                    Examples include but certainly not limited to the following:
+                        \begin{itemize}
+                            \item $X \to X'$ is a thickening.
+                            \item 
+                        \end{itemize}
+                \end{corollary}
+                
+            \subsubsection{\texorpdfstring{$\ell$}{}-adic sheaves and Galois representations} \label{subsubsection: l_adic_sheaves}
+                Let us start with the notion of $\ell$-adic representations. 
+                \begin{definition}[$\ell$-adic representations] \label{def: l_adic_representations}
+                    Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$. An \textbf{$\ell$-adic representation of $\Gal(L/K)$} is thus a finite-dimensional \textit{continuous} $F$-linear representation of $\Gal(L/K)$, i.e. a continuous group homomorphism:
+                        $$\rho: \Gal(L/K) \to \GL_n(F)$$
+                    for some natural number $n$. $\ell$-adic representations of \textit{absolute} Galois groups are known as \textbf{$\ell$-adic Galois representations}, or just Galois representations for short.
+                \end{definition}
+                \begin{remark}[It's actually a bit simpler than we've been led to believe]
+                    Definition \ref{def: l_adic_representations} can seem a bit complicated, but what it actually does is just giving names to certain continuous finite-dimensional $F$-linear representations of certain topological groups (recall how Galois groups naturally carry the profinite topology which reduces to the discrete topology in finite cases). The category of $\ell$-adic representations of a given Galois group is thus nothing special, from a categorical point of view, and a lot of the basic properties of $\ell$-adic representations are actually just abstract-nonsensical. 
+                \end{remark}
+                \begin{example} \label{example: l_adic_representations}
+                    Let $K$ be a field and let $L/K$ be a Galois extension thereof. Additionally, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite); also, we shall require that $\ell \not = \chara K$.
+                    \begin{enumerate}
+                        \item \textbf{($\ell$-adic representations that are not Galois):} 
+                            \begin{itemize}
+                                \item \textbf{(The trivial representation):} This is a bit of a silly example, but if $F$ were to be equipped with the discrete topology then any finite-dimensional $F$-linear representation of $\Gal(L/K)$ would be an $\ell$-adic representation for trivial reasons. Note that the trivial representation is a special case of this, since the trivial subgroup $1 \leq \GL_n(F)$ can not have any topology other than the discrete one. 
+                                \item \textbf{(Finite Galois representations):} Any finite-dimensional $F$-linear represetation of a finite Galois group is trivially $\ell$-adic, due to the fact that every subset is defined to be open in the discrete topology. 
+                            \end{itemize}
+                        \item \textbf{(Galois representations):}
+                            \begin{itemize}
+                                \item \textbf{(Tate modules):} \index{Tate module} \index{Tate twist} Let $X$ be an abelian variety over $\Spec K$ and let us write $(\mu_{\ell^{\infty}})_{/X}$ for the base change:
+                                    $$(\mu_{\ell^{\infty}})_{/\Spec K} \x_{\Spec K} X$$
+                                of the $\Spec K$-algebraic group:
+                                    $$(\mu_{\ell^{\infty}})_{/\Spec K} \cong \underset{n \in \N}{\lim} \Spec \frac{K[x]}{(x^{\ell^n} - 1)}$$
+                                of all $\ell^{th}$-roots of unity to $X$, which is once more an commutative group scheme for trivial reasons. Then, the \textbf{$\ell$-adic Tate module} of $X$ is the abelian group of $\Spec K^{\sep}$-points of $\mu_{\ell^{\infty} /X}$; we shall denote it by $\T_{\ell}(X)$. Alternatively, one might define the $\ell$-adic Tate module of $X$ to be the filtered limit of all $\ell$-torsion subgroups of $X(\Spec K^{\sep})$, which form the following descending filtration: 
+                                    $$X[\ell] \supset X[\ell^2] \supset ... \supset \T_{\ell}(X)$$
+                                wherein $X[\ell^n] \cong X(\Spec K^{\sep}) \tensor_{\Z} \Z/\ell^n\Z$ is the subgroup with $\ell^n$-torsion.
+                                    
+                                Because $\ell$ is prime, $\T_{\ell}(X)$ is thus an abelian pro-$\ell$-group (i.e. a filtered limit of finite abelian $\ell$-groups), and hence isomorphic to a free $\Z_{\ell}$-module. 
+                                    \begin{enumerate}
+                                        \item If $X$ were to be isomorphic to the multiplicative group scheme $(\G_m)_{/\Spec K}$ (i.e. the unique abelian variety of dimension $0$, up to isomorphisms) then:
+                                            $$X[\ell^n] \cong (\G_m)_{/\Spec K}[\ell^n] \cong \Z/\ell^n\Z$$
+                                        for all $n$, which would imply that:
+                                            $$\T_{\ell}( (\G_m)_{/\Spec K} ) \cong \Z_{\ell}$$
+                                        \item When $X$ is an elliptic curve (i.e. an abelian variety of dimension $1$; cf. definitions \ref{def: moduli_of_elliptic_curves} and \ref{def: abelian_varieties}), we can apply \cite[Corollary 6.4]{silverman_elliptic_curves} to get:
+                                            $$\T_{\ell}(X) \cong \Z_{\ell} \oplus \Z_{\ell}$$
+                                        
+                                        More generally, one can make use of some \'etale homotopy theory to show that for all integers $N$ coprime with $p$, there exists the following decomposition of the $N$-torsion subgroup of $X(K)$:
+                                            $$X[N] \cong \Z/N\Z \oplus \Z/N\Z$$
+                                        First of all, it will have to be shown that every elliptic curve admits a finite \'etale covering which is also an elliptic curve. 
+                                    \end{enumerate}
+                            \end{itemize}
+                    \end{enumerate}
+                \end{example}
+            
+                \begin{definition}[Lisse sheaves] \label{def: lisse_sheaves}
+                    Let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). We shall refer to functions into $F$ as being \say{$\ell$-adic} as typically, one takes $F$ to be $\Q_{\ell}$ or extensions thereof (the reason we are using $\ell$ instead of a simple \say{$p$} as our prime is historical: $\ell$-adic sheaves were first conceived for the purposes of the Riemann Hypothesis on varieties over characteristics $p$).
+                    \begin{enumerate}
+                        \item \textbf{(Lisse $\ell$-adic functions):} Let $X$ be a \textit{totally disconnected} topological space (typically just locally profinite, although there are interesting non-profinite examples such as $\Q$). An $\ell$-adic function $f: X \to F$ shall then be called \textbf{lisse} if and only if it is \textit{compactly supported} and \textit{locally constant} (this terminology is suppose to be a nod to the notion of smooth functions on locally profinite spaces). The space of lisse $\ell$-adic functions on any open subset $U \subseteq X$ is denoted by $C^{\infty}_c(U, F)$ or simply $C^{\infty}_c(U)$ when $F$ is understood.
+                        
+                        One thing to note is that when $F = \bbC$, this notion does \textit{not} coincide with that of smoothness, since totally disconnected spaces can not admit any sort of archimedean metric. This is another reason why we opted for \say{lisse functions} instead of \say{smooth functions} or \say{bump functions}.
+                        \item \textbf{(Lisse $\ell$-adic sheaves):} In analogy with the above notion of lisse $\ell$-adic functions, let us define a \textbf{lisse $\ell$-adic sheaf} as a \textit{finite-dimensional} $F$-linear local system over some pro-\'etale site $X_{\proet}$ of a given base scheme $X$. It is not hard to see that lisse sheaves on $X$ form a category, which we shall denote by $\LocSys_F(X_{\proet})^{\fin}$.
+                    \end{enumerate}
+                \end{definition}
+            
+                \begin{theorem}[The $\ell$-adic Monodromy Correspondence] \label{theorem: l_adic_monodromy_correspondence}
+                    Let $\ell$ be a prime, let $F$ be a local field (we shall view finite fields as $0$-dimensional local fields) equipped with its natural topology (e.g. non-archimedean when $F$ is some sort of $\ell$-adic number field, archimedean when $F$ is $\R$ or $\bbC$, and discrete when $F$ is finite). Also, let $X$ be a \textit{connected} base scheme. There is then the following equivalence of rigid symmetric monoidal categories:
+                        $$\LocSys_F(X_{\proet})^{\fin} \cong \Rep_F^{\cont}(\pi_1^{\fet}(X))$$
+                \end{theorem}
+                    \begin{proof}
+                        
+                    \end{proof}
+                \begin{corollary}[Continuous Galois representations as lisse sheaves] \label{coro: continuous_galois_representations_as_lisse_sheaves}
+                    Let $K$ be a field whose characteristic is different from $\ell$. Then, we have the following equivalence of rigid symmetric monoidal categories:
+                        $$\LocSys_F(*_{\proet})^{\fin} \cong \Rep_F^{\cont}(\bfG_K)$$
+                \end{corollary}
+                \begin{example}[\'Etale cohomologies as geometric Galois representations] \label{example: etale_cohomologies_as_galois_representations}
+                    Let $K$ be a separably closed field and let $X$ be a smooth and proper scheme over $\Spec K$. Since $\ell$-adic cohomology is a Weil cohomology theory, the $\ell$-adic cohomologies $H^i_{\Q_{\ell}}(X)$ are, in particular, finite-dimensional. Since we wish to show that these cohomologies are naturall Galois representations, it then remains to verify that $\bfG_K$ indeed acts on them.
+                                
+                    For this, let us first use \cite[\href{https://stacks.math.columbia.edu/tag/0BUM}{Tag 0BUM}]{stacks} along with the assumption that $X$ is a scheme over a separably closed field, we get that:
+                        $$\pi^{\fet}(X) \cong \bfG_k$$
+                    Then, note that the chain complex $H^*_{\Q_{\ell}}(X)$ is actually the same as the \textit{finite-dimensional} chain complex of pro-\'etale cohomologies $H^*_{\proet}(X, \Q_{\ell})$. An appliction of theorem \ref{theorem: l_adic_monodromy_correspondence} then gives us the desired Galois action on the cohomologies $H^i_{\Q_{\ell}}(X)$.
+                \end{example}
+                
+        \subsection{Classical abelian global class field theory for function fields}
+            \begin{convention} \label{conv: classical_abelian_global_class_field_theory_conventions}
+                \noindent
+                \begin{itemize}
+                    \item 
+                        \begin{itemize}
+                            \item Let $K$ be a global function field over $\F_q$, with $q$ some power of a prime $p$ (that is, let $K$ be a finite extension of $\F_q(t)$). 
+                            \item The ring of integers of $K$ shall be denoted by $\scrO_K$.
+                        \end{itemize}
+                    \item For $\ell \not = p$ an auxiliary prime, $\overline{\Q_{\ell}}$ shall be our field of coefficients. Sometimes, we shall fix an implicit (algebraic) isomorphism $\overline{\Q_{\ell}} \cong \bbC$.
+                    \item 
+                        \begin{itemize}
+                            \item The words \say{prime}, \say{valuation}, and \say{place} shall be used interchangeably. For an explanation/excuse, see convention \ref{conv: places_and_primes}. 
+                            \item If $v$ is a place of $K$, then the completion of $K$ at $v$ shall be denoted by $K_v$, and the corresponding local ring of integers shall be denoted by $\scrO_v$. In particular, $K_{\infty}$ shall denote the completion of $K$ at the \say{place at infinity} $(0) \in \Spec \scrO_K$ (note that because $\scrO_K$ is an integral domain, this generic point is unique).
+                            \item $K_{\R}$ shall denote the product of all the completions $K_v$ of $K$ along \textit{archimedean} places $v$, and $\hat{\scrO_K}$ the product of all the \textit{non-archimedean} local ring of integers $\scrO_{\p}$. 
+                        \end{itemize}
+                \end{itemize}
+            \end{convention}
+            
+            \subsubsection{Ad\`eles}
+                We would like to begin by introducing some fundamental constructions, most notable among which is the ring of ad\`eles of our fixed global function field $K$. Before we can, however, we must discuss some topological preliminaries.
+                    \begin{definition}[Ad\`eles] \label{def: ring_of_adeles}
+                        For a moment, suppose that $K$ is an arbitrary global field (not even necessarily of characteristic $p > 0$). 
+                            \begin{enumerate}
+                                \item \textbf{(Integral ad\`eles):} The ring of \textbf{integral ad\`eles} of $K$, denoted by $\A_{\scrO_K}$, shall then be:
+                                    $$\A_{\scrO_K} := K_{\R} \x \hat{\scrO_K}$$
+                                \item \textbf{(Rational ad\`eles):} The \say{rationalisation} of $\A_{\scrO_K}$, i.e. the ring:
+                                    $$\A_K \cong \A_{\scrO_K} \tensor_{\scrO_K} K$$
+                                is known as the ring of \textbf{rational ad\`eles} or simply the ring of \textbf{ad\`eles} of $K$.
+                            \end{enumerate}
+                    \end{definition}
+                    \begin{example}[The ad\`eles of $\Q$] \label{example: adeles_of_Q}
+                        The ring of integral ad\`eles of $\Q$ is:
+                            $$\A_{\Z} := \R \x \prod_{p \in \Spec \Z \setminus \{(0)\}} \Z_p \cong \R \x \hat{\Z}$$
+                        and of course, the ring of rational ad\`eles of $\Q$ is:
+                            $$\A_{\Q} \cong (\R \x \hat{\Z}) \tensor_{\Z} \Q$$
+                        Now, it is well-known that $\hat{\Z} \cong \underset{n \in \Z}{\lim} \Z/n$ and therefore, through some abstract nonsense, one can swap the product and tensor product to get:
+                            $$\A_{\Q} \cong \R \x \left(\hat{\Z} \tensor_{\Z} \Q\right)$$
+                    \end{example}
+            
+            \subsubsection{Unramified abelian global class field theory for function fields}
+            
+            \subsubsection{Ramified abelian global class field theory for function fields}
+    
+        \subsection{Unramified geometric abelian global class field theory}
+        
+        \subsection{Ramified geometric abelian global class field theory}
