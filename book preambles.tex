@@ -1,9 +1,18 @@
-\documentclass[a4paper, 12pt]{book}
+\documentclass[a4paper, 11pt]{book}
+
+%\usepackage[center]{titlesec}
+
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+
+\usepackage{pdfrender, xcolor}
+%\pdfrender{StrokeColor=black,LineWidth=.4pt,TextRenderingMode=2}
 
 \usepackage{minitoc}
 \setcounter{tocdepth}{5}
 \setcounter{minitocdepth}{5}
 \setcounter{secnumdepth}{5}
+
+\usepackage{graphicx}
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -27,7 +36,7 @@
 \usepackage{imakeidx}
 \makeindex
 
-\usepackage[dvipsnames]{xcolor}
+%\usepackage[dvipsnames]{xcolor}
 \usepackage{hyperref}
     \hypersetup{
         colorlinks=true,
@@ -49,15 +58,17 @@
 \usepackage{mathrsfs}
 \usepackage{mathtools} 
 \mathtoolsset{showonlyrefs} 
-\usepackage{amssymb}
-\usepackage{amsthm}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
 \renewcommand\qedsymbol{$\blacksquare$}
 \usepackage{tikz-cd}
+\tikzcdset{scale cd/.style={every label/.append style={scale=#1},
+    cells={nodes={scale=#1}}}}
 \usepackage{tikz}
 \usepackage{setspace}
 \usepackage[version=3]{mhchem}
 \parskip=0.1in
-\usepackage[margin=20mm]{geometry}
+\usepackage[margin=25mm]{geometry}
 
 \usepackage{listings, lstautogobble}
 \lstset{

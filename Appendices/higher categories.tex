@@ -28,6 +28,60 @@
             \end{definition}
         
         \subsection{Higher homotopy groups}
+            \subsubsection{Lifting properties}
+                \begin{definition}[Lifting problems] \label{def: lifting_problems}
+                    A \textbf{lifting problem} with solution $h: B' \to E$ is a commutative diagram in an arbitrary category $\C$ of the form:
+                        $$
+                            \begin{tikzcd}
+                            	{E'} & E \\
+                            	{B'} & B
+                            	\arrow["{p'}"', from=1-1, to=2-1]
+                            	\arrow["f", from=2-1, to=2-2]
+                            	\arrow["p", from=1-2, to=2-2]
+                            	\arrow["\varphi", from=1-1, to=1-2]
+                            	\arrow["{\tilde{f}}", dashed, from=2-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                \end{definition}
+                \begin{definition}[Left and right-lifting properties] \label{def: lifting_properties}
+                    \noindent
+                    \begin{itemize}
+                        \item \textbf{(Right-liftings):} Let $\calF$ be a (small) collection of arrows in some category $\C$. We say that a morphism $p: E \to B$ has the \textbf{right-lifting property} with repsect to $\calF$ if and only if for all $(p': E' \to B') \in \calF$, there will always exist a lifting solution:
+                            $$
+                                \begin{tikzcd}
+                                	{E'} & E \\
+                                	{B'} & B
+                                	\arrow["{p'}"', from=1-1, to=2-1]
+                                	\arrow["f", from=2-1, to=2-2]
+                                	\arrow["p", from=1-2, to=2-2]
+                                	\arrow["\varphi", from=1-1, to=1-2]
+                                	\arrow["{\tilde{f}}", dashed, from=2-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        for all arrows $f: B' \to B$ and $\tilde{f}: E' \to E$ making the outer square commute. 
+                        \item \textbf{(Left-liftings):} Conversely, we say that a morphism $p: E \to B$ has the \textbf{left-lifting property} with repsect to $\calF$ if and only if for all $(p'': E'' \to B'') \in \calF$, there will always exist a lifting solution:
+                            $$
+                                \begin{tikzcd}
+                                	{E} & {E''} \\
+                                	{B} & {B''}
+                                	\arrow["{p}"', from=1-1, to=2-1]
+                                	\arrow["g", from=2-1, to=2-2]
+                                	\arrow["{p''}", from=1-2, to=2-2]
+                                	\arrow["\psi", from=1-1, to=1-2]
+                                	\arrow["{\tilde{g}}", dashed, from=2-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        for all arrows $g: B \to B''$ and $\tilde{g}: E \to E''$ making the outer square commute.
+                    \end{itemize}
+                \end{definition}
+                \begin{example}[Lifting properties in the category of topological spaces] \label{example: liftings_of_topological_spaces}
+                    Within the category of topological spaces and contiunuous functions between them, so-called \textbf{homotopy liftings} are of particular interest, as they can help us study the relationship between homotopy groups between base spaces and their covering spaces.
+                    
+                    Let $X$ be an arbitrary topological space. A continuous map $p: E \to B$ has the \textbf{homotopy right-lifting property} (also known as the \textbf{homotopy lifting property}) with respect $X$ if it has the right-lifting property with respect to the singleton set of maps $\{\delta_0: X \to X \x [0, 1]\}$, where $\delta_0$ is given by $\delta_0(x) \mapsto (x, 0)$ for all $x \in X$. Likewise, a continuous map $p: E \to B$ has the \textbf{homotopy left-lifting property} (also known as the \textbf{homotopy extension property}) with respect $X$ if it has the left-lifting property with respect to the singleton set of maps $\{\delta_0: X \to X \x [0, 1]\}$, where $\delta_0$ is as above. Note that in both these situations, one is literally lifting homotopies $\eta: X \x [0, 1] \to B$ to homotopies $\tilde{\eta}: X \x [0, 1] \to E$ along the given map $p: E \to B$. One usually requires that the map $p: E \to B$ is surjective as well.
+                    
+                    Within a category of sufficiently convenient topological spaces (e.g. compactly generated topological spaces, $\Delta$-generated topological spaces and everything stronger such as path-connected spaces, etc.) - which is to say that such a category is a closed (symmetric) monoidal with repsect to products - every map $X \to X \x [0, 1]$ corresponds to a unique map $X^{[0, 1]} \to X$ (i.e. to a map from the space of continuous paths $\gamma: [0, 1] \to X$ to $X$ itself)\footnote{For this reason, homotopy extension properties are also known as path-lifting properties}. In particular, the map $\delta_0: X \to X \x [0, 1]$ as above corresponds to the path  
+                \end{example}
+        
             \subsubsection{Quasi-fibrations and long exact sequences of homotopy groups}
                 \begin{definition}[Homotopy groups] \label{def: homotopy_groups}
                     

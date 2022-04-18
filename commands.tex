@@ -11,6 +11,22 @@
 \renewcommand{\mapsto}{\leadsto}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\geq}{\geqslant}
+\renewcommand{\setminus}{\smallsetminus}
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  {\mathpalette\do@cev{#1}}%
+}
+\newcommand{\do@cev}[2]{%
+  \vbox{\offinterlineskip
+    \sbox\z@{$\m@th#1 x$}%
+    \ialign{##\cr
+      \hidewidth\reflectbox{$\m@th#1\vec{}\mkern4mu$}\hidewidth\cr
+      \noalign{\kern-\ht\z@}
+      $\m@th#1#2$\cr
+    }%
+  }%
+}
+\makeatother
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -29,6 +45,7 @@
     \IfValueT{#2}{^{#2}}
   }%
 }
+\newcommand{\supp}{\operatorname{supp}}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\coker}{\operatorname{coker}}
 \newcommand{\id}{\mathrm{id}}
@@ -54,6 +71,9 @@
 
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Sp}{\operatorname{Sp}}
+\newcommand{\GSp}{\operatorname{GSp}}
+\newcommand{\GSpin}{\operatorname{GSpin}}
 \newcommand{\opO}{\operatorname{O}}
 \newcommand{\SO}{\operatorname{SO}}
 \newcommand{\SU}{\operatorname{SU}}
@@ -71,11 +91,14 @@
 \newcommand{\Quot}{\mathrm{Quot}}
 \newcommand{\Hilb}{\mathrm{Hilb}}
 \newcommand{\Pic}{\mathrm{Pic}}
+\newcommand{\Div}{\mathrm{Div}}
 \newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\Alb}{\mathrm{Alb}} %albanese variety
 \newcommand{\Bun}{\mathrm{Bun}}
 \newcommand{\loopspace}{\mathbf{\Omega}}
 \newcommand{\suspension}{\mathbf{\Sigma}}
 \newcommand{\tangent}{\mathrm{T}} %tangent space
+\newcommand{\Eig}{\mathrm{Eig}}
 
 \newcommand{\Ring}{\mathrm{Ring}}
 \newcommand{\Cring}{\mathrm{CRing}}
@@ -120,6 +143,7 @@
 \newcommand{\Fin}{\mathrm{Fin}}
 \newcommand{\Assoc}{\mathrm{Assoc}}
 \newcommand{\Co}{\mathrm{Co}}
+\newcommand{\Loc}{\mathrm{Loc}}
 \newcommand{\Comp}{\mathrm{Comp}} %compact hausdorff spaces
 \newcommand{\Stone}{\mathrm{Stone}} %stone spaces
 \newcommand{\sfExt}{\mathrm{Ext}} %extremely disconnected spaces
@@ -134,6 +158,7 @@
 \newcommand{\Lie}{\mathrm{Lie}}
 \newcommand{\Env}{\mathrm{Env}}
 \newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\rmD}{\mathrm{D}}
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand{\Frames}{\mathrm{Frames}}
 \newcommand{\Locales}{\mathrm{Locales}}
@@ -157,6 +182,7 @@
 \newcommand{\Strict}{\mathrm{Strict}}
 \newcommand{\Opd}{\mathrm{Opd}} %operads
 \newcommand{\Shv}{\mathrm{Shv}}
+\newcommand{\Char}{\mathrm{Char}} %CharShv = character sheaves
 \newcommand{\Huber}{\mathrm{Huber}}
 \newcommand{\Tate}{\mathrm{Tate}}
 \newcommand{\Ad}{\mathrm{Ad}} %adic spaces
@@ -169,8 +195,13 @@
 \newcommand{\Ch}{\mathrm{Ch}} %chain complexes
 \newcommand{\Mot}{\mathrm{Mot}} %motives
 \newcommand{\KL}{\mathrm{KL}} %category of Kazhdan-Lusztig modules
+\newcommand{\Pres}{\mathrm{Pres}} %presentable categories
+\newcommand{\Noohi}{\mathrm{Noohi}} %category of Noohi groups
+\newcommand{\Inf}{\mathrm{Inf}}
 
 \newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Inn}{\mathrm{Inn}}
+\newcommand{\Out}{\mathrm{Out}}
 \newcommand{\frakgl}{\mathfrak{gl}}
 \newcommand{\der}{\mathfrak{der}} %derivations on Lie algebras
 \newcommand{\inn}{\mathfrak{inn}} %inner derivations
@@ -188,10 +219,15 @@
 \newcommand{\End}{\mathrm{End}}
 \newcommand{\Mat}{\mathrm{Mat}}
 \newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\Autom}{\mathrm{Autom}}
+\newcommand{\Artin}{\mathrm{Artin}} %artin maps
+\newcommand{\sk}{\mathrm{sk}} %skeleton of a category
+\newcommand{\eqv}{\mathrm{eqv}} %functor that maps groups $G$ to $G$-sets
 
 \newcommand{\colim}{\operatorname{colim} \:}
 \renewcommand{\lim}{\operatorname{lim} \:}
 \newcommand{\toto}{\rightrightarrows}
+%\newcommand{\tensor}{\otimes}
 \NewDocumentCommand{\tensor}{e{_^}}{%
   \mathbin{\mathop{\otimes}\displaylimits
     \IfValueT{#1}{_{#1}}
@@ -205,31 +241,37 @@
 \newcommand{\Tor}{\mathrm{Tor}}
 \newcommand{\Ext}{\mathrm{Ext}}
 \newcommand{\Isom}{\mathrm{Isom}}
-\newcommand{\lex}{\mathbf{lex}}
-\newcommand{\stalk}{\mathbf{stalk}}
+\newcommand{\stalk}{\mathrm{stalk}}
 \newcommand{\RKE}{\operatorname{RKE}}
 \newcommand{\LKE}{\operatorname{LKE}}
-\newcommand{\oblv}{\mathbf{oblv}}
-\newcommand{\const}{\mathbf{const}}
+\newcommand{\oblv}{\mathrm{oblv}}
+\newcommand{\const}{\mathrm{const}}
 %\newcommand{\forget}{\mathbf{forget}}
-\newcommand{\adrep}{\mathbf{ad}} %adjoint representation
-\newcommand{\NL}{\mathbf{NL}} %naive cotangent complex
-\newcommand{\bfL}{\mathbf{L}} %cotangent complex
+\newcommand{\adrep}{\mathrm{ad}} %adjoint representation
+\newcommand{\NL}{\mathrm{NL}} %naive cotangent complex
+\newcommand{\bfL}{\mathrm{L}} %cotangent complex
 \newcommand{\pr}{\operatorname{pr}}
 \newcommand{\Der}{\mathbf{Der}}
 \newcommand{\Frob}{\mathrm{Frob}} %Frobenius
+\newcommand{\frob}{\mathrm{f}} %trace of Frobenius
 \newcommand{\bfpt}{\mathbf{pt}}
 \newcommand{\bfloc}{\mathbf{loc}}
+\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
+\newcommand{\0}{\mymathbb{0}}
 \newcommand{\1}{\mathbbm{1}}
 \newcommand{\2}{\mathbbm{2}}
 \newcommand{\Jet}{\mathbf{Jet}}
-\newcommand{\Split}{\mathbf{Split}}
-\newcommand{\Sq}{\mathbf{Sq}}
+\newcommand{\Split}{\mathrm{Split}}
+\newcommand{\Sq}{\mathrm{Sq}}
 \newcommand{\Zero}{\mathbf{Z}}
 \newcommand{\SqZ}{\Sq\Zero}
 \newcommand{\frakLie}{\mathfrak{Lie}}
-\newcommand{\y}{\mathbf{y}} %yoneda
+\newcommand{\y}{\mathrm{y}} %yoneda
 \newcommand{\Sm}{\mathrm{Sm}}
+\newcommand{\AJ}{\phi} %abel-jacobi map
+\newcommand{\act}{\mathrm{act}}
+\newcommand{\ram}{\mathrm{ram}} %ramification index
+\newcommand{\inv}{\mathrm{inv}}
 
 \newcommand{\bbU}{\mathbb{U}}
 \newcommand{\V}{\mathbb{V}}
@@ -251,6 +293,9 @@
 \newcommand{\calX}{\mathcal{X}}
 \newcommand{\calY}{\mathcal{Y}}
 \newcommand{\calZ}{\mathcal{Z}}
+\newcommand{\scrX}{\mathscr{X}}
+\newcommand{\scrY}{\mathscr{Y}}
+\newcommand{\scrZ}{\mathscr{Z}}
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calB}{\mathcal{B}}
 \newcommand{\sfT}{\mathrm{T}}
@@ -271,6 +316,7 @@
 \newcommand{\del}{\partial}
 \newcommand{\bbE}{\mathbb{E}}
 \newcommand{\scrO}{\mathscr{O}}
+\newcommand{\bbO}{\mathbb{O}}
 \newcommand{\scrA}{\mathscr{A}}
 \newcommand{\scrB}{\mathscr{B}}
 \newcommand{\scrF}{\mathscr{F}}
@@ -294,6 +340,7 @@
 \newcommand{\rmZ}{\mathrm{Z}} %centre of algebra
 \newcommand{\bfGamma}{\mathbf{\Gamma}}
 \newcommand{\scrU}{\mathscr{U}}
+\newcommand{\rmW}{\mathrm{W}} %Weil group
 
 \newcommand{\aff}{\mathrm{aff}}
 \newcommand{\ft}{\mathrm{ft}} %finite type
@@ -318,6 +365,7 @@
 \newcommand{\cl}{\mathrm{cl}}
 \newcommand{\et}{\mathrm{\acute{e}t}}
 \newcommand{\fet}{\mathrm{f\acute{e}t}}
+\newcommand{\profet}{\mathrm{prof\acute{e}t}}
 \newcommand{\proet}{\mathrm{pro\acute{e}t}}
 \newcommand{\Zar}{\mathrm{Zar}}
 \newcommand{\fppf}{\mathrm{fppf}}
@@ -336,8 +384,12 @@
 %\newcommand{\add}{\mathrm{add}}
 %\newcommand{\lin}{\mathrm{lin}}
 \newcommand{\Krull}{\mathrm{Krull}}
-\newcommand{\qis}{\mathrm{qis}}
+\newcommand{\qis}{\mathrm{qis}} %quasi-isomorphism
+\newcommand{\ho}{\mathrm{ho}} %homotopy equivalence
 \newcommand{\sep}{\mathrm{sep}}
+\newcommand{\unr}{\mathrm{unr}}
+\newcommand{\tame}{\mathrm{tame}}
+\newcommand{\wild}{\mathrm{wild}}
 \newcommand{\nil}{\mathrm{nil}}
 \newcommand{\defm}{\mathrm{defm}}
 \newcommand{\Art}{\mathrm{Art}}
@@ -351,7 +403,7 @@
 \newcommand{\cont}{\mathrm{cont}}
 \newcommand{\dg}{\mathrm{dg}}
 \newcommand{\almost}{\mathrm{a}}
-\newcommand{\stab}{\mathrm{stab}}
+%\newcommand{\stab}{\mathrm{stab}}
 \newcommand{\heart}{\heartsuit}
 \newcommand{\proj}{\mathrm{proj}}
 \newcommand{\qproj}{\mathrm{qproj}}
@@ -385,6 +437,14 @@
 \newcommand{\topological}{\mathrm{top}}
 \newcommand{\convex}{\mathrm{cv}}
 \newcommand{\ab}{\mathrm{ab}} %abelian extensions
+\newcommand{\surj}{\mathrm{surj}} %coverage on sets generated by surjections
+\newcommand{\eff}{\mathrm{eff}} %effective Cartier divisors
+\newcommand{\Weil}{\mathrm{Weil}} %weil divisors
+\newcommand{\lex}{\mathrm{lex}}
+\newcommand{\rex}{\mathrm{rex}}
+\newcommand{\AR}{\mathrm{A\-R}}
+\newcommand{\cons}{\mathrm{c}} %constructible sheaves
+\newcommand{\tor}{\mathrm{tor}} %tor dimension
 
 %prism custom command
 \usepackage{relsize}

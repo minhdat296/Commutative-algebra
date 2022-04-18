@@ -1312,7 +1312,7 @@
                                 $$\eta_{X, x}^{\sharp}: \calO_{\Spec \Gamma(\calO_X), \eta_X(x)} \to \calO_{X, x}$$
                             at each point $x \in X$ would be a local homomorphism between local rings (those being the stalks $\calO_{\Spec \Gamma(\calO_X), \eta_X(x)}$ and $\calO_{X, x}$ in this case; the latter is local simply as a consequence of the assumption that $X$ is a \textit{locally} ringed space, and the former is local thanks to proposition \ref{coro: structure_sheaf_properties}), and let $\kappa_{\eta_X(x)}$ and $\kappa_x$ be the respective residue fields. There not being a local homomorphism between these stalks would imply that there would also not exist a ring homomorphism:
                                 $$\kappa_{\eta_X(x)} \to \kappa_x$$
-                            too, as the existence of such a map hinges entirely on whether or not the maximal ideal of $\calO_{\Spec \Gamma(\calO_X), \eta_X(x)}$ would be mapped to that of $\calO_{X, x}$ (residue fields are quotients of local rings by their unique maximal ideals, after all), i.e. on the locality of the stalk map $\eta_{X, x}^{\sharp}$. \todo{I'm not sure how to show this}
+                            too, as the existence of such a map hinges entirely on whether or not the maximal ideal of $\calO_{\Spec \Gamma(\calO_X), \eta_X(x)}$ would be mapped to that of $\calO_{X, x}$ (residue fields are quotients of local rings by their unique maximal ideals, after all), i.e. on the locality of the stalk map $\eta_{X, x}^{\sharp}$. \todo[inline]{I'm not sure how to show this}
                         \end{enumerate}
                     \end{proof}
                 
@@ -1522,7 +1522,7 @@
                     \paragraph{Internal locales and relative spectra} \index{Relative $\Spec$} \index{Schemes!relative affine}
                     \textit{This entry on relative affine schemes should be read after section \ref{section: schemes} on schemes, and section \ref{section: qcoh} on quasi-coherent modules. Readers who are familiar wit hthe materials therein may ignore this warning}
                     
-                    So far, we have been exploring the idea that affine schemes are actually little more than objects of a category that is formally dual to some category of commutative algebras (i.e. commutative monoids within a given closed symmetric monoidal category). This while being rather powerful as a geometric characterisation of the theory of commutative rings, is somewhat lacking: particularly, the theory of affine schemes as we have been building it up, is rather local in nature. \todo{Keep writing introduction}
+                    So far, we have been exploring the idea that affine schemes are actually little more than objects of a category that is formally dual to some category of commutative algebras (i.e. commutative monoids within a given closed symmetric monoidal category). This while being rather powerful as a geometric characterisation of the theory of commutative rings, is somewhat lacking: particularly, the theory of affine schemes as we have been building it up, is rather local in nature. \todo[inline]{Keep writing introduction}
                     
                     \begin{definition}[Relative affine schemes] \label{def: relative_affine_schemes}
                         Let $k$ be an arbitrary base commutative ring and let $\calY$ be a base prestack on ${}^{k/}\Comm\Alg^{\op}$ (i.e. a category internal to the presheaf topos $(\Spec \Z)$). Then, let us define the category of affine schemes over $\calY$, which we shall denote by $\Sch^{\aff}_{/\calY}$, to be \textit{dual} to the subcategory ${}^{\calY/}\Comm\Alg$ of quasi-coherent commutative monoids internal to the (closed) symmetric monoidal category $\QCoh^*(\calY)$ of quasi-coherent modules on $\calY$). In notations, this reads:
@@ -1749,7 +1749,7 @@
                                     $$F: C \to D$$
                                 is an essentially surjective internal functor, then one will be able to \textit{choose} objects $x \in C_0$ such that:
                                     $$Fx \cong y$$
-                                for every object $y \in D_0$. As the ramifications of the Axiom of Choice tend to be unfamiliar to those not actively involved in the logic community (including the author, who had to go read a few \textcolor{ForestGreen}{nLab} too), let us quickly explain why anafunctors are needed in place of the above \textit{na\"ive} notion of internal functors; particularly, we would like to know what mappings between internal categories might look like when our ambient category does not host the Axiom of Choice, such as when its size is an inaccessible cardinal ($\Top$ is one particular case). To that end, \todo{Write about why the Axiom of Choice breaks essentially surjective internal functors}
+                                for every object $y \in D_0$. As the ramifications of the Axiom of Choice tend to be unfamiliar to those not actively involved in the logic community (including the author, who had to consult a few nLab articles too), let us quickly explain why anafunctors are needed in place of the above \textit{na\"ive} notion of internal functors; particularly, we would like to know what mappings between internal categories might look like when our ambient category does not host the Axiom of Choice, such as when its size is an inaccessible cardinal ($\Top$ is one particular case). To that end, \todo[inline]{Write about why the Axiom of Choice breaks essentially surjective internal functors}
                                 
                                 Now, let us define an \textbf{anafunctor} $F$ between two internal categories $C$ and $D$ of a given category $\E$ - should such a mapping exist - to be a span (i.e. a $1$-morphism in $\Span^{\leq 2}(\E)$; cf. definition \ref{def: spans}) of internal categories:
                                     $$
@@ -2195,7 +2195,7 @@
                             	\arrow[shift right=2, from=1-1, to=1-2]
                             \end{tikzcd}
                         $$
-                    in $\C^{\gros}$ induces $2^{|\Mor(\C^{\gros})|}$ arrows from $c$ to the product $\prod_{\Mor(\C^{\gros})} d$. However, this is a contradiction, as there are only $|\Mor(\C^{\gros})|$ arrows in total in $\C^{\gros}$. Thus, there must exist only one arrow between each pair of objects, and hence $\C^{\gros}$ is a preorder by definition; this proof is due to M. Shulman \cite[Theorem 2.1]{shulman2008set}. \todo{Not done}
+                    in $\C^{\gros}$ induces $2^{|\Mor(\C^{\gros})|}$ arrows from $c$ to the product $\prod_{\Mor(\C^{\gros})} d$. However, this is a contradiction, as there are only $|\Mor(\C^{\gros})|$ arrows in total in $\C^{\gros}$. Thus, there must exist only one arrow between each pair of objects, and hence $\C^{\gros}$ is a preorder by definition; this proof is due to M. Shulman \cite[Theorem 2.1]{shulman2008set}. \todo[inline]{Not done}
                 \end{remark}
             
                 \paragraph{The size of \texorpdfstring{$\Top$}{} and sheaves thereon}

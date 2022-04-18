@@ -12,6 +12,100 @@
             For now, we refer the reader to \cite[Definition 4.1.1 and Remark 4.1.3]{bhatt_scholze_2014_pro_etale}.
         \end{remark}
         
+        \subsection{The pro-\'etale topology for schemes}
+        
+        \subsection{Infinite Galois categories and pro-\'etale fundamental groups}
+            \subsubsection{The abstract framework}
+                \begin{definition}[Infinite Galois categories] \label{def: infinite_galois_categories}
+                    \noindent
+                    \begin{itemize}
+                        \item \textbf{(Infinite Galois categories):} An \textbf{infinite Galois category} is defined via the data contained in a pair $(\calG, F)$ consisting of:
+                        \begin{itemize}
+                            \item a \textit{cocomplete and \textit{finitely} complete} small category $\calG$, wherein objects can all be written as a coproduct of connected objects, and
+                            \item a functor $F: \calG \to \Sets$, called the \textbf{fibre functor}, which we shall require to reflect and preserve all colimits and all finite limits\footnote{In \cite[Definition 7.2.1]{bhatt_scholze_2014_pro_etale}, it is furthermore required that the fibre functor would be faithful. However, because any functor that preserves and reflect monomorphisms must also be faithful, we need not make this requirement.}.
+                        \end{itemize}
+                        \item \textbf{(Galois objects):} An object $Y$ of an infinite Galois category $\calG$ is a \textbf{Galois object} if and only if $Y/\Aut(Y)$ is terminal as an object of $\calG$ (which exists as $\calG$ is finitely complete by definition).
+                        \item \textbf{(Galois functors):} A \textbf{Galois functor} is a functor $\Phi: \calG \to \calG'$ between infinite Galois categories $(\calG, F), (\calG', F')$ which preserves connected objects, colimits, finite limits, and commute with the fibre functors in the following manner:
+                            $$
+                                \begin{tikzcd}
+                                	\calG && {\calG'} \\
+                                	& \Sets
+                                	\arrow["F"', from=1-1, to=2-2]
+                                	\arrow["{F'}", from=1-3, to=2-2]
+                                	\arrow["\Phi", from=1-1, to=1-3]
+                                \end{tikzcd}
+                            $$
+                    \end{itemize}
+                \end{definition}    
+                \begin{definition}[Fundamental groups of infinite Galois categories] \label{def: fundamental_groups_of_infinite_galois_categories}
+                    The \textbf{fundamental group} of a given infinite Galois category $(\calG, F)$, denoted by $\pi_1(\calG, F)$, is defined to be the automorphism group $\Aut(F)$\footnote{Compare this to definition \ref{def: fundamental_groups_of_finite_galois_categories} and note the lack of profinite completion the current situation.}.
+                \end{definition}
+                Arbitrary infinite Galois categories turn out to be rather pathological, so we shall introduce a more refined notion, namely that of infinite Galois categories which are \textbf{tame}.  
+                \begin{definition}[Tame infinite Galois categories] \label{def: tame_infinite_galois_categories}
+                    \footnote{Note that this is slightly different from \cite[Definition 7.2.4]{bhatt_scholze_2014_pro_etale}, in that we require furthermore that the fibre functor preserves connectedness instead of merely that $\pi_1(\calG, F)$ acts transitively on $F(X)$ whenever $X$ is connected.} One says that an infinite Galois category $(\calG, F)$ is \textbf{tame}\footnote{The terminology comes from the fact given any Galois extension $L/K$, the corresponding Galois group $\Gal(L/K)$ acts transitively on $L$ (cf. \cite[Proposition I.9.1]{neukirch_2010_algebraic_number_theory}).} whenever the fibre functor $F: \calG \to \Sets$ preserves connectedness\footnote{Compare this to corollary \ref{coro: fundamental_groups_of_finite_galois_categories_act_transitively_on_connected_objects}.} and $\pi_1(\calG, F)$ acts transitively on $F(X)$ for all $X$ connected.
+                \end{definition}
+                
+                Let us now introduce the notion of Noohi groups, which shall serve in this new theory of infinite Galois categories as replacements for the more restrictive notion of profinite groups. The idea is that, similar to how fundamental groups of finite Galois categories, the fundamental group of a \textit{tame} infinite Galois category is Noohi. We shall also see that the notion of Noohi groups subsumes the notion of profinite groups and as such, so too does the notion of tame infinite Galois categories subsume that of finite Galois categories.
+                \begin{definition}[Noohi groups] \label{def: noohi_groups}
+                    \cite[Defintion 7.1.1]{bhatt_scholze_2014_pro_etale} A \textbf{Noohi group} is a Hausdorff topological group $G$ such that $G \cong \Aut(\oblv_G)$ \textit{as topological groups} (here, $\Aut(\oblv_G)$ carries the compact-open topology), with $\oblv_G: G\-\Sets \to \Sets$ being the forgetful functor from the category of sets with continuous $G$-actions into the category of sets. In addition, an (in)finite Galois category that is Galois-equivalent to $G\-\Sets$ for some Noohi group $G$ shall be called a \textbf{Noohi category}.
+                \end{definition}
+                \begin{remark}[Completions of topological groups] \label{remark: completions_of_topological_groups}
+                    If $X$ is a topological space then we shall denote its Cauchy completion by $X^+$ (i.e. $X^+$ is the minimal topological space containing $X$, in which all Cauchy filters converge). 
+                        \begin{itemize}
+                            \item By \cite[Theorem 3.6.10]{topological_groups_and_related_structures}, we know that such a completion exists and is unique for all topological groups; furthermore, every topological group is continuously isomorphic to a dense subgroup of its Cauchy completion. 
+                            \item \cite[Theorem 3.6.22]{topological_groups_and_related_structures} Any small product of complete topological groups is also a complete topological group.
+                            \item Any closed subgroup of a complete topological group is complete.
+                        \end{itemize}
+                \end{remark}
+                \begin{proposition}[Noohi groups are complete] \label{prop: noohi_groups_are_complete}
+                    \cite[Proposition 7.1.5]{bhatt_scholze_2014_pro_etale} Let $G$ be a Hausdorff topological group with a basis generated by open subsets. Then, there is an homeomorphic group isomorphism $\psi: \Aut(\oblv_G) \to G^+$. In fact, a Hausdorff topological group is a Noohi group if and only if it is complete and has a basis generated by open subgroups.
+                \end{proposition}
+                \begin{lemma}[Fundamental groups of infinite Galois categories are Noohi] \label{lemma: fundamental_groups_of_infinite_galois_categories_are_noohi}
+                    A topological group is Noohi if and only if it is the fundamental group of an infinite Galois category.
+                \end{lemma}
+                    \begin{proof}
+                        If $G$ is a Noohi group then by definition $\Aut(\oblv_G) \cong G$. Thus, it shall suffice to demonstrate that the pair $(G\-\Sets, \oblv_G)$ is an infinite Galois category; this is routine (cf. \cite[Section 3]{nlab:category_of_G_sets}), so we shall leave it up to our readers as an exercise.
+                    
+                        Conversely, if $(\calG, F)$ is an infinite Galois category then it shall suffice to show that $\pi_1(\calG, F)$ will be a closed subgroup of $\prod_{Y \in \Ob(\calG)} \Aut(F(Y))$ (which is a well-defined group since it is a small product of groups), as we can demonstrated this product group to be Noohi. For this, we use the fact that $\Aut(S)$ for any set $S$ is complete in the compact-open topology (cf. \cite[Lemma 7.1.4]{bhatt_scholze_2014_pro_etale}), and that $\Aut(S)$ admits a basis generated by open subgroups (cf. \cite[\href{https://stacks.math.columbia.edu/tag/0BMC}{Tag 0BMC}]{stacks}): by combining this with the fact that products of complete groups are complete (cf. remark \ref{remark: completions_of_topological_groups}), one infers that $\prod_{Y \in \Ob(\calG)} \Aut(F(Y))$ endowed with the product topology is complete and admits a basis generated by open subgroups, meaning that it is Noohi (cf. proposition \ref{prop: noohi_groups_are_complete}). Then, to show that $\pi_1(\calG, F)$ is a closed subgroup of $\prod_{Y \in \Ob(\calG)} \Aut(F(Y))$, we shall show that it is complete (see remark \ref{remark: completions_of_topological_groups}). For this, see \cite[\href{https://stacks.math.columbia.edu/tag/0BMR}{Tag 0BMR}]{stacks}.
+                    \end{proof}
+                \begin{corollary}[Noohi categories are tame] \label{coro: noohi_categories_are_tame}
+                    Noohi categories, as in definition \ref{def: noohi_groups}, are tame infinite Galois categories. 
+                \end{corollary}
+                    
+                \begin{remark}[Action of fundamental groups on fibres] \label{remark: action_of_fundamental_groups_on_fibres_infinite_galois_categories}
+                    By arguing as in remark \ref{remark: action_of_fundamental_groups_on_fibres_finite_galois_categories}, one sees that the fibre functor $F: \calG \to \Sets$ of any infinite Galois category $(\calG, F)$ must factor through $\pi_1(\calG, F)\-\Sets$ in the following manner:
+                        $$
+                            \begin{tikzcd}
+                            	\calG && {\pi_1(\calG, F)\-\Sets} \\
+                            	& \Sets
+                            	\arrow[dashed, from=1-1, to=1-3]
+                            	\arrow["F"', from=1-1, to=2-2]
+                            	\arrow["{\oblv_{\pi_1(\calG, F)}}", from=1-3, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    As a consequence, functions $F(X) \to F(Y)$ coming from morphisms $X \to Y$ in $\calG$ are automatically $\pi_1(\calG, F)$-equivariant. 
+                \end{remark}
+                \begin{theorem}[The Infinite Galois Correspondence] \label{theorem: infinite_categorical_galois_correspondence}
+                    \cite[Theorem 7.2.5(3)]{bhatt_scholze_2014_pro_etale} Any tame infinite Galois categories $(\calG, F)$, the functor $F: \calG \to \pi_1(\calG, F)\-\Sets$ is a Galois equivalence\footnote{As such, every tame infinite Galois category is Noohi.} (we equip $\pi_1(\calG, F)\-\Sets$ with the forgetful functor to $\Sets$ to make it a Noohi category; cf. corollary \ref{coro: noohi_categories_are_tame}).
+                \end{theorem}
+                    \begin{proof}
+                        Because $F$ reflects monomorphisms (or more generally, all finite limits, as it is an isomorphism-reflecting left-exact functor; cf. definition \ref{def: infinite_galois_categories}) and because any function $f: S \to T$ can be viewed as a unique monomorphism $\Gamma_f: S \to S \x T$ such that $\pr_1 \circ \Gamma_f = \id_S$, any morphism $p: X \to Y$ in $\calG$ can be viewed as a unique monomorphism $\Gamma_p: X \to X \x Y$ such that $\pr_1 \circ \Gamma_p = \id_X$, which comes from. By combining this with the fact that $F$ commutes with finite limits, and that functions $F(X) \to F(Y)$ coming from morphisms $X \to Y$ in $\calG$ are automatically $\pi_1(\calG, F)$-equivariant (cf. remark \ref{remark: action_of_fundamental_groups_on_fibres_infinite_galois_categories}), we obtain the following bijections, which proves that $F: \calG \to \pi_1(\calG, F)\-\Sets$ is fully faithful:
+                            $$
+                                \begin{aligned}
+                                    \calG(X, Y) & \cong \{\text{Monomorphisms $\Gamma_p: X \to X \x Y$ such that $\pr_1 \circ \Gamma_p = \id_X$}\}
+                                    \\
+                                    & \cong \{\text{Monomorphisms $\Gamma_f: F(X) \to F(X) \x F(Y)$ such that $\pr_1 \circ \Gamma_f = \id_{F(X)}$}\} 
+                                    \\
+                                    & \cong \pi_1(\calG, F)\-\Sets(F(X), F(Y))
+                                \end{aligned}
+                            $$
+                        As $\pi_1(\calG, F)\-\Sets$ is an infinite Galois category, every object $S \in \pi_1(\calG, F)\-\Sets$ admits a decomposition $S \cong \coprod_{i \in I_S} S_i$ into connected objects $S_i \in \pi_1(\calG, F)\-\Sets$. But the functor $F: \calG \to \pi_1(\calG, F)\-\Sets$ reflects colimits by definition, so such a coproduct gives rise to a corresponding coproduct $Y_S := \coprod_{i \in I_S} Y_i$ in $\calG$, and since $\calG$ has all colimits, $Y_S$ is an object thereof. As such, for any $S \in \pi_1(\calG, F)\-\Sets$, there exists a corresponding object $Y_S \in \calG$ such that $F(Y_S) \cong S$. This implies that the functor $F: \calG \to \pi_1(\calG, F)\-\Sets$ is essentially surjective, which when combined with the fact that it is fully faithful (as shown above), implies that this functor is an equivalence of categories. 
+                        
+                        It remains to show that this equivalence of categories between $\calG$ and $\pi_1(\calG, F)\-\Sets$ is a Galois equivalence between Noohi categories. For this, observe that because $\pi_1(\calG, F)$ is a Noohi group (cf. lemma \ref{lemma: fundamental_groups_of_infinite_galois_categories_are_noohi}), and because $G\-\Sets$ is a Noohi category for all Noohi groups $G$ (cf. corollary \ref{coro: noohi_categories_are_tame}), $F: \calG \to \pi_1(\calG, F)\-\Sets$ is a Galois functor, by virtue of being a functor between (tame) infinite Galois categories that preserves colimits, finite limits, and connected objects.
+                    \end{proof}
+                
+            \subsubsection{Pro-\'etale fundamental groups}
+        
     \section{Finiteness of \'etale cohomology for smooth proper rigid-analytic varieties}
     
     \section{Interlude: Condensed mathematics} \label{section: condensed_mathematics}
@@ -141,6 +235,8 @@
         \subsection{Analyticity}
     
     \section{\'Etale cohomology of diamonds}
+    
+    \section{Cohomology of solid pro-\'etale sheaves}
         
     \section{\texorpdfstring{$p$}{}-adic monodromy}
         \subsection{The Weight-Monodromy Conjecture}
