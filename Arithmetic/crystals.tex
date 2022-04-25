@@ -1,4 +1,4 @@
-\chapter{Arithmetic differential geometry} \label{chapter: crystals}
+\chapter{Crystals and arithmetic differential geometry} \label{chapter: crystals}
     \begin{abstract}
         In this chapter, we introduce firstly the notion of divided power algebras over general commutative rings (also know in French circles as pd-algebras, with \say{pd} standing for \say{puissances-divis\'ees}), which shall subsequently be employed in discussions regarding topics, notable among which is crystalline cohomology, a sort of analogue of the theory of vector bundles with flat connections in prime characteristics. These machineries play fundamental roles in the construction of crystalline cohomology, an arithmetic analogue of de Rham cohomology. 
     \end{abstract}
@@ -6,9 +6,12 @@
     \minitoc
     
     \section{Crystalline cohomology}
-        \subsection{pd-rings}
+        \subsection{pd-structures}
             \subsubsection{Divided powers}
-                \begin{definition}[Divided power (pd) structures]
+                \begin{remark}
+                    Before we begin, let us note that the notion of pd-structures is well-defined even for noncommutative rings, but we focus on the commutative case in order to be able to establish geometric properties in terms of schemes later on. 
+                \end{remark}
+                \begin{definition}[Divided power (pd) structures] \label{def: pd_structures}
                     Let $R$ be a commutative ring and fix some $R$-ideal $I$. Then, a pd-structure on $R$ is give by a family of maps $\{\gamma_n: I \to I\}_{n \in \N}$ satisfying the following properties, for all $m \in \N$, $x, y \in I$, and $a \in R$
                         \begin{enumerate}
                             \item \textbf{(Raising to the zeroth power):} $\gamma_0(x) = 1$.
@@ -18,7 +21,7 @@
                             \item \textbf{(Powers of multiples):} $\gamma_n(ax) = a^n\gamma_n(x)$.
                             \item \textbf{(Binomial expansion):} $\gamma_n(x + y) = \sum_{i=0}^n \gamma_i(x)\gamma_{n - i}(y)$
                         \end{enumerate}
-                    A ring $R$ equipped with pd-structure $\left(I, \gamma := \{\gamma_n\}_{n \in \N}\right)$ is called a pd-ring. 
+                    A ring $R$ equipped with pd-structure $\left(I, \gamma := \{\gamma_n\}_{n \in \N}\right)$ is called a \textbf{pd-ring}. 
                 \end{definition}
                 \begin{remark}[Well-definiteness of pd-structures]
                     Note that all of the expressions are well-defined, since the fractions $\frac{(m + n)!}{m!n!}$ and $\frac{(mn)!}{(m!)^n n!}$ are in fact integers: to show that they are indeed integers, note, respectively, that:
@@ -126,20 +129,16 @@
                         \end{enumerate}
                     \end{proof}
                     
-                \begin{proposition}[$p$-powers in pd-rings] \label{prop: p_powers_in_PD_rings}
+                \begin{proposition}[$p$-powers in pd-rings] \label{prop: p_powers_in_pd_rings}
                     Let $p$ be a prime and let $(R, I , \gamma)$ be a pd-ring. Also, assume that $p$ is nilpotent in $R/I$. Then, the ideal $I$ is locally nilpotent if and only if $p$ is nilpotent in $R$. 
                 \end{proposition}
                     \begin{proof}
-                        Before we start proving the proposition, let us remind ourselves with the fact that an element $x \in R$ is nilpotent in $R/I$ if and only if there exists a natural number $N$ such that $x^N \in I$. 
-                        \begin{enumerate}
-                            \item Suppose first of all, that the ideal $I$ is locally nilpotent, i.e. that for all elements $x \in I$, there exists a natural number $N_x$ such that $x^{N_x} = 0$. Then, we can use the fact that $\gamma$ is a pd-structure on $I$ if and only if $x^n = n!\gamma_n(x)$ for all $x \in I$ and all $n \in \N$; in combination with the local nilpotency hypothesis, this implies that for all $x \in I$, there exists $N_x \in \N$ such that:
-                                $$0 = x^{N_x} = N_x!\gamma_{N_x}(x)$$
-                            \item
-                        \end{enumerate}
+                        Suppose first of all, that the ideal $I$ is locally nilpotent, i.e. that for all elements $x \in I$, there exists a natural number $N_x$ such that $x^{N_x} = 0$. Then, we can use the fact that $\gamma$ is a pd-structure on $I$ if and only if $x^n = n!\gamma_n(x)$ for all $x \in I$ and all $n \in \N$; in combination with the local nilpotency hypothesis, this implies that for all $x \in I$, there exists $N_x \in \N$ such that:
+                            $$0 = x^{N_x} = N_x!\gamma_{N_x}(x)$$
                     \end{proof}
                     
-            \subsubsection{Categories of divided power algebras over a ring}
-                \begin{definition}[pd-homomorphisms] \label{def: PD_homomorphisms}
+            \subsubsection{pd-homomorphisms}
+                \begin{definition}[pd-homomorphisms] \label{def: pd_homomorphisms}
                     Let $(A, I , \gamma)$ and $(B, J, \delta)$ be two pd-rings and let $\phi: A \to B$ be a ring homomorphism. Then, $\phi$ is a homomorphism of pd-rings if and only if $\phi(I) \subseteq J$ and or all natural numbers $n$, one has the following commutative diagrams:
                         $$
                             \begin{tikzcd}
@@ -154,60 +153,49 @@
                     Often, given a pd-homomorphism $\phi: (A, I, \gamma) \to (B, J, \delta)$, one says that $B$ is a pd-algebra over $A$. 
                 \end{definition}
                 \begin{remark}[Categories pd-algebras]
-                    Via this definition of pd-homomorphism, for each $\Z_{(p)}$-algebra $A$ (we are consider $\Z_{(p)}$-algebras first because they have been shown to come equipped with canonical pd-sturctures), one gets directly the category of pd-algebras over $A$, denoted by ${}^{A/}\Comm\Alg^{\pd}$. It is a subcategory of ${}^{A/}\Comm\Alg$ that is \textbf{not full}, as not all homomorphisms of (commutative) $A$-algebras are pd-homomorphisms. Note that $\Q$-algebras are $\Z_{(p)}$-algebra (as $\Q \cong \Z_{(p)}[1/p]$), and so categories of pd-algebras over $\Q$-algebras exist in a similar fashion.
+                    Via this definition of pd-homomorphism, for each $\Z_{(p)}$-algebra $A$ (we are consider $\Z_{(p)}$-algebras first because they have been shown to come equipped with canonical pd-sturctures), one gets directly the category of pd-algebras over $A$, denoted by ${}^{A/}\pd\Comm\Alg$. It is a subcategory of ${}^{A/}\Comm\Alg$ that is \textbf{not full}, as not all homomorphisms of (commutative) $A$-algebras are pd-homomorphisms. Note that $\Q$-algebras are $\Z_{(p)}$-algebra (as $\Q \cong \Z_{(p)}[1/p]$), and so categories of pd-algebras over $\Q$-algebras exist in a similar fashion.
                     \\
                     Note that it is not the case that only pd-algebras over $\Z_{(p)}$ (for some prime $p$) form categories. However, if the base pd-ring is not a $\Z_{(p)}$-algebra, then there need not exist a terminal pd-ring (and as a consequence, no \say{absolute} category of pd-rings like ${}^{\Z_{(p)}/}\Comm\Alg$ or ${}^{\Q/}\Comm\Alg$), as there is no canonical way to associate pd-structures to ideals of general commutative rings.  
                 \end{remark}
                 
-                \begin{proposition}[(Co)completeness of pd-algebra categories]
-                    Let $p$ be a prime. For any $\Z_{(p)}$-algebra $A$, the category of pd-algebras over $A$ is both complete and cocomplete. Moreover, limits of pd-$A$-algebras agree with those of their underlying commutative $A$-algebras; the colimits, however, need not coincide with those of the same shape but taken in ${}^{A/}\Comm\Alg$. 
+                \begin{proposition}[Completeness of pd-algebra categories]
+                    Let $p$ be a prime. For any $\Z_{(p)}$-algebra $A$, the category of pd-algebras over $A$ is both complete and cocomplete. Moreover, limits of pd-$A$-algebras agree with those of their underlying commutative $A$-algebras.
                 \end{proposition}
                     \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item \textbf{(Completeness):} Because limits can be built out of products and equalisers (see \cite{maclane}, theorem V.2.1), it will suffice to show that ${}^{A/}\Comm\Alg^{\pd}$ has all products and all equalisers.
-                            \\
-                            First, let us show that ${}^{A/}\Comm\Alg^{\pd}$ has all products, and to that end, let:
-                                $$\left\{\left(B^{(i)}, \b^{(i)}, \gamma^{(i)}\right)\right\}_{i \in I}$$
-                            be a small discrete diagram of pd-algebras over $A$ (understood to be equipped with the canonical pd-structure on $\Z_{(p)}$-algebras). Now, consider the ideal $\prod_{i \in I} \b^{(i)}$ of the ring $\prod_{i \in I} B^{(i)}$, and note that because addition and multiplication on products of rings are determined component-wise, there is a natural pd-structure given by:
-                                $$\prod_{i \in I} \gamma^{(i)} = \left\{\prod_{i \in I} \gamma_n^{(i)}\right\}_{n \in \N}$$
-                            Thus, the category ${}^{A/}\Comm\Alg^{\pd}$ has arbitrary products. 
-                            \\
-                            Now, let us prove that ${}^{A/}\Comm\Alg^{\pd}$ has all equalisers, which we can do by checking if any diagram consisting of a pair of parallel pd-homomorphisms of pd-$A$-algebras $\phi, \psi: B \toto C$ has a limit that is also a pd-$A$-algebra.  
-                            \item \textbf{(Cocompleteness):}
-                        \end{enumerate}
+                        Because limits can be built out of products and equalisers (see \cite{maclane}, theorem V.2.1), it will suffice to show that ${}^{A/}\pd\Comm\Alg$ has all products and all equalisers.
+                        
+                        First, let us show that ${}^{A/}\pd\Comm\Alg$ has all products, and to that end, let:
+                            $$\left\{\left(B^{(i)}, \b^{(i)}, \gamma^{(i)}\right)\right\}_{i \in I}$$
+                        be a small discrete diagram of pd-algebras over $A$ (understood to be equipped with the canonical pd-structure on $\Z_{(p)}$-algebras). Now, consider the ideal $\prod_{i \in I} \b^{(i)}$ of the ring $\prod_{i \in I} B^{(i)}$, and note that because addition and multiplication on products of rings are determined component-wise, there is a natural pd-structure given by:
+                            $$\prod_{i \in I} \gamma^{(i)} = \left\{\prod_{i \in I} \gamma_n^{(i)}\right\}_{n \in \N}$$
+                        Thus, the category ${}^{A/}\pd\Comm\Alg$ has arbitrary products. 
+                        
+                        Now, let us prove that ${}^{A/}\pd\Comm\Alg$ has all equalisers, which we can do by checking if any diagram consisting of a pair of parallel pd-homomorphisms of pd-$A$-algebras $\phi, \psi: B \toto C$ has a limit that is also a pd-$A$-algebra.  
                     \end{proof}
-                \begin{corollary}[Free pd-algebras] \label{coro: free_PD_algebras}
-                    Let $p$ be a prime and let $A$ be any $\Z_{(p)}$-algebra. 
-                        \begin{enumerate}
-                            \item The forgetful functor:
-                                $$\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$$
-                            does not preserve colimits in general (finite or otherwise). 
-                            \item However, $\oblv$ does admit a left-adjoint.
-                        \end{enumerate}
+                \begin{corollary}[Free pd-algebras] \label{coro: free_pd_algebras}
+                    Let $p$ be a prime and let $A$ be any $\Z_{(p)}$-algebra. The forgetful functor:
+                        $$\oblv: {}^{A/}\pd\Comm\Alg \to {}^{A/}\Comm\Alg$$
+                    does not preserve colimits in general (finite or otherwise), but it does admit a left-adjoint.
                 \end{corollary}
                     \begin{proof}
-                        \noindent
-                        \begin{enumerate}
-                            \item Let $I$ be the shape of some diagram of pd-algebras over $A$ (again, understood to be equipped with the canonical pd-structure on $\Z_{(p)}$-algebras). As shown above, the colimit taken in ${}^{A/}\Comm\Alg^{\pd}$ over $I$ need not coincide with that taken in ${}^{A/}\Comm\Alg$, and thus the forgetful functor from ${}^{A/}\Comm\Alg^{\pd}$ to ${}^{A/}\Comm\Alg$ need not preserve colimits in general. The rest follows directly. 
-                            \item Because limits of pd-algebras are just limits of the underlying commutative algebras, the forgetful functor:
-                                $$\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$$
-                            must preserve limits, and because ${}^{A/}\Comm\Alg^{\pd}$ is locally small (by virtue of being a subcategory of the locally small category ${}^{A/}\Comm\Alg$), complete, and cocomplete (which implies that ${}^{A/}\Comm\Alg^{\pd}$ is presentable), it therefore admits a left-adjoint by the Special Adjoint Functor Theorem \cite[Theorem V.8.2]{maclane}: in essence, we have a well-defined notion of free pd-algebras over a given base commutative ring.   
-                        \end{enumerate}
+                        Let $I$ be the shape of some diagram of pd-algebras over $A$ (again, understood to be equipped with the canonical pd-structure on $\Z_{(p)}$-algebras). As shown above, the colimit taken in ${}^{A/}\pd\Comm\Alg$ over $I$ need not coincide with that taken in ${}^{A/}\Comm\Alg$, and thus the forgetful functor from ${}^{A/}\pd\Comm\Alg$ to ${}^{A/}\Comm\Alg$ need not preserve colimits in general. The rest follows directly. 
+                        
+                        Now, because limits of pd-algebras are just limits of the underlying commutative algebras, the forgetful functor:
+                            $$\oblv: {}^{A/}\pd\Comm\Alg \to {}^{A/}\Comm\Alg$$
+                        must preserve limits, and because ${}^{A/}\pd\Comm\Alg$ is locally small (by virtue of being a subcategory of the locally small category ${}^{A/}\Comm\Alg$), complete, and cocomplete (which implies that ${}^{A/}\pd\Comm\Alg$ is presentable), it therefore admits a left-adjoint by the Special Adjoint Functor Theorem \cite[Theorem V.8.2]{maclane}: in essence, we have a well-defined notion of free pd-algebras over a given base commutative ring.
                     \end{proof}
                     
-                \begin{definition}[pd-envelopes] \label{def: PD_envelopes}
-                    Let $p$ be a prime and fix a $\Z_{(p)}$-algebra. Then, the construction of free pd-$A$-algebras that is left-adjoint to the forgetful functor $\oblv: {}^{A/}\Comm\Alg^{\pd} \to {}^{A/}\Comm\Alg$ (cf. corollary \ref{coro: free_PD_algebras}) shall be called the \textbf{pd-enveloping functor} over $A$; we denote it by:
-                        $${}^{\pd}(-): {}^{A/}\Comm\Alg \to {}^{A/}\Comm\Alg^{\pd}$$
-                    or ${}^{\pd}(-)_A$ when the base ring $A$ needs emphasis.
+                \begin{definition}[pd-envelopes] \label{def: pd_envelopes}
+                    Let $p$ be a prime and fix a $\Z_{(p)}$-algebra. Then, the construction of free pd-$A$-algebras that is left-adjoint to the forgetful functor $\oblv: {}^{A/}\pd\Comm\Alg \to {}^{A/}\Comm\Alg$ (cf. corollary \ref{coro: free_pd_algebras}) shall be called the \textbf{pd-enveloping functor} over $A$; we denote it by:
+                        $$\pd: {}^{A/}\Comm\Alg \to {}^{A/}\pd\Comm\Alg$$
+                    or $\pd_A$ when the base ring $A$ needs emphasis.
                 \end{definition}
-            
-            \subsubsection{Induced divided power structures}
+                
                 \begin{definition}[Induced pd-structures]
                     Let $(A, I, \gamma)$ be a pd-ring and let $B$ be an $A$-algebra. Then, we say that the pd-structure $\gamma$ extends to a pd-structure $\overline{\gamma}$ on the ideal $IB$ of $B$ if there exists a homomorphism of pd-rings from $(A, I, \gamma)$ to $(B, IB, \overline{\gamma})$. Sometimes, we might refer to pd-structures such as $\overline{\gamma}$ above as induced pd-stuctures. 
                 \end{definition}
                 
-                \begin{proposition}[Existence and uniqueness of induced pd-structures] \label{prop: induced_PD_structures_existence_and_uniqueness}
+                \begin{proposition}[Existence and uniqueness of induced pd-structures] \label{prop: induced_pd_structures_existence_and_uniqueness}
                     Let $(A, I, \gamma)$ be a pd-ring and let $B$ be an $A$-algebra. Then, $\gamma$ extends to a pd-structure if at least one of the following conditions is satisfied:
                         \begin{enumerate}
                             \item $IB = 0$.
@@ -249,6 +237,11 @@
                             \item \textbf{(Uniqueness):} Assume that at least one of the conditions guaranteeing that an induced pd-structure $\overline{\gamma}$ exists is satisfied, and suppose to the contrary that there exist two distinct induced pd-structures on $IB$, say $\overline{\gamma}$ and $\tilde{\gamma}$.
                         \end{enumerate}
                     \end{proof}
+                    
+            \subsubsection{Quasi-coherent pd-structures}
+                \begin{definition}[Quasi-coherent pd-structures] \label{def: quasi_coherent_pd_structures}
+                    Let $(\calX, \calO)$ be a (small) ringed topos. A \textbf{(quasi-coherent) pd-structure} on a (quasi-coherent) ideal sheaf $\calI \subset \calO$ is thus a family of maps $\{\gamma_n: \calI \to \calI\}_{n \in \N}$ such that $(\calI(U), \gamma_n(U))$ is a pd-structure on $\calO(U)$ in the sense of definition \ref{def: pd_structures}. 
+                \end{definition}
                     
         \subsection{pd-thickenings}
             \subsubsection{Crystalline sites and topoi}

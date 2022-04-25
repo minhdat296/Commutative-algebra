@@ -6,42 +6,22 @@
     \minitoc
     
     \section{Motivic \texorpdfstring{$p$}{}-adic Hodge theory}
-        \subsection{The Ax-Tate-Sen Theorem}
+        \subsection{Introduction}
+            The subject that is nowadays known as \say{Hodge theory} is - as least as far as its motivic aspect is concerned - essentially the study of cohomology theories (\'etale, de Rham, crystalline, etc.) as topological invariants of (algebraic and analytic) varieties along with the various relationships between said cohomology theories. As it stands currently, Hodge theory consists of two parallel subfields, namely the theories over the complex numbers $\bbC$ and that over non-archimedean fields such as $\Q_p$, bot of which could be seen as probational steps towards a more grander all-unifying incarnation of Hodge theory over number fields, which for various technical reasons might be the key technical toolbox for tackling some of the deepest networks of conjectures in modern algebraic number theory, like the Global Langlands Correspondence over $\Q$. For algebraic varieties over the complex numbers $\bbC$ (or more precisely, their associated complex manifolds), the story is relatively simple: due to there being only two interesting Grothendieck topologies, namely the \'etale topology on smooth varieties and the complex-analytic topology on their corresponding complex manifolds, there exists only one fundamental comparison theorem, that being the Riemann-Hilbert Correspondence, which more-or-less relates \'etale cohomology of local systems and de Rham cohomology of their associated complex manifolds. Over non-archimedean local fields such as $\Q_p$ or $\F_p(\!(t)\!)$, however, the story is much more complicated; here, there is a plethora of cohomology theories, and since we would like for there to exist pairwise comparison theorems amongst them, we will have to look beyond attempting to simply compare the various Grothendieck topologies. Moreoever, due to $p$-adic Hodge theory being composed of two different facades, namely the theories over mixed characteristic fields such as $\Q_p$ and equicharacteristic fields such as $\F_p(\!(t)\!)$, we will also have to worry about how certain cohomology theories behave poorly over positive characteristics (e.g. de Rham cohomology) and as such require replacements (e.g. crystalline cohomology), which might be full of their own stock of shortcomings and technical difficulties. Luckily, geometry over non-archimedean fields (and particularly those of positive characteristics) is a much richer theory than its complex counterpart and as such, there are many intermediary objects that one might try to make use of in order to \say{interpolate} the various cohomoloy theories and thereby comparing them indirectly; this, incidentally, is an approach to $p$-adic Hodge theory that has now gained mainstream popularity.
+    
+    \section{Robba rings and \texorpdfstring{$\varphi$}{}-modules}
+        \subsection{Robba rings}
+        
+        \subsection{\texorpdfstring{$\varphi$}{}-modules}
+    
+        \subsection{\texorpdfstring{$(\varphi, \Gamma)$}{}-modules}
+            \subsubsection{Pseudo-coherent sheaves}
+            
+            \subsubsection{The homological algebra of \texorpdfstring{$(\varphi, \Gamma)$}{}-modules}
+            
+    \subsection{The Ax-Tate-Sen Theorem}
     
         \subsection{The Hodge-Tate Decomposition and the \'etale-de Rham comparison}
-            First, let us recall some relevant facts about Witt vectors.
-            \begin{convention}[Relative Witt vectors] \label{conv: relative_witt_vectors}
-                Let $p$ be a prime number. If $E/\Q_p$ is a finite $p$-adic number field with residue field $\F_q$ (for $q$ some power of $p$) and if $F$ is a perfectoid field of characteristic $p$ (which is \textit{a priori} perfect and therefore can contain $\F_q$; consider fields such as $\F_q(\!(t^{\frac{1}{p^{\infty}}})\!)$ or $\widehat{\overline{\F_q(\!(t)\!)}}$ for example), then let us write:
-                    $$\Witt_{E^{\circ}}(F) \cong \Witt(F) \tensor_{\Witt(\F_q)} E^{\circ}$$
-                for the base change along $E^{\circ} \to $ of the ring $\Witt(F)$ of (unramified) $p$-typical Witt vectors with coefficients in $F$ along the canonically induced arrow $\Witt(\F_q) \to E^{\circ}$. For instance, when $q = p$ we have:
-                    $$\Witt_{E^{\circ}}(\F_p(\!(t^{\frac{1}{p^{\infty}}})\!)) \cong \Z_p[p^{\frac{1}{p^{\infty}}}] \tensor_{\Z_p} \Z_p \cong \Z_p[p^{\frac{1}{p^{\infty}}}]$$
-                Slightly more generally, one can speak of a relative $p$-typical Witt vector functor from the category of perfect commutative $\F_q$-algebras to the category ${}^{E^{\circ}/}\Comm\Alg^{\wedge}$ of $p$-adically complete $E^{\circ}$-algebras:
-                    $$\Witt_{E^{\circ}}: {}^{\F_q/}\Comm\Alg^{\perf} \to {}^{E^{\circ}/}\Comm\Alg^{\wedge}$$
-                which in particular, gives us the following canonical arrow:
-                    $$\Witt_{E^{\circ}}(F^{\circ}) \to \Witt_{E^{\circ}}(F)$$
-            \end{convention}
-        
-            \begin{remark}[Witt vectors over perfect rings] \label{remark: witt_vectors_over_perfect_rings}
-                \noindent
-                \begin{enumerate}
-                    \item One somewhat non-trivial fact to keep in mind is that if $B$ is a \textit{perfect} $\F_q$-domain (for some power $q$ of a prime $p$) with field of fractions $K$, then we have the following natural characterisation of the ring of $p$-typical Witt vectors over $K$ (which we note to be trivially perfect as an $\F_q$-algebra):
-                    $$(\Witt(B)_{(p)})^{\wedge} \cong \Witt(K)$$
-                    In particular, $\Witt(B)_{(p)}$ is an unramified extension of $\Witt(\F_q)$. We refer the reader to \cite[Proposition 5.2]{shimomoto2014witt} for a proof.
-                    \item This result extends trivially to the relative setting, as relative Witt vectors are defined via a pushout (cf. convention \ref{conv: relative_witt_vectors}), which is in particular a finite limit, and since adic completions are filtered limits, the two procedures can be exchanged, which gives:
-                        $$(\Witt_{E^{\circ}}(B)_{(p)})^{\wedge} \cong \Witt_{E^{\circ}}(K)$$
-                    where now, $E$ is a finite $p$-adic number field with residue field $\F_q$ (note that its pseudo-uniformiser is actually just $p$, like $\Q_p$).
-                    \item Another notable property of rings (relative) Witt vectors is that if $B$ is a perfect $\F_q$-algebra (not necessarily a domain), then $\Witt_{E^{\circ}}(B)$ is $p$-torsion-free, and:
-                        $$\Witt_{E^{\circ}}(B)/p \cong B$$
-                \end{enumerate}
-            \end{remark}
-            \begin{example}
-                One might think of the following example:
-                    $$(\Witt_{E^{\circ}}(\F_q)_{(p)})^{\wedge} \cong \Witt_{E^{\circ}}(\F_q) \cong E^{\circ}$$
-                (note that $E^{\circ}$ is \textit{a priori} complete), or the following slightly subtler one:
-                    $$( \Witt_{E^{\circ}}( \F_q[\![t^{\frac{1}{p^{\infty}}}]\!] )_{(p)} )^{\wedge} \cong E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong \Witt_{E^{\circ}}( \F_q(\!(t^{\frac{1}{p^{\infty}}})\!) ) \cong E(p^{\frac{1}{p^{\infty}}})^{\wedge, \circ}$$
-                (indeed, $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge} \cong E^{\circ}[\![t]\!]/(t^{p^{\infty}} - p)$ and so $E^{\circ}[p^{\frac{1}{p^{\infty}}}]^{\wedge}/p \cong \F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$). In both cases, note that $\F_q$ and $\F_q[\![t^{\frac{1}{p^{\infty}}}]\!]$ are both perfect domains (the latter being the $p$-tilt of $\F_q[\![t]\!]$).
-            \end{example}
-        
             \subsubsection{The Hodge-Tate Decomposition via perfectoid spaces}
                 \paragraph{Scholze's de Rham period sheaf}
                     \begin{definition}[de Rham period sheaves] \label{def: de_rham_period_sheaves}
@@ -85,16 +65,6 @@
             \subsubsection{The \'etale-de Rham comparison}
         
         \subsection{The \'etale-crystalline comparison}
-    
-    \section{Robba rings and \texorpdfstring{$\varphi$}{}-modules}
-        \subsection{Robba rings}
-        
-        \subsection{\texorpdfstring{$\varphi$}{}-modules}
-    
-        \subsection{\texorpdfstring{$(\varphi, \Gamma)$}{}-modules}
-            \subsubsection{Pseudo-coherent sheaves}
-            
-            \subsubsection{The homological algebra of \texorpdfstring{$(\varphi, \Gamma)$}{}-modules}
     
     \section{Period sheaves and \texorpdfstring{$\varphi$}{}-modules over them}
         \subsection{Perfect period sheaves}

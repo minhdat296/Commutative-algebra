@@ -6,7 +6,7 @@
     \minitoc
 
     \section{Affine schemes}
-        \subsection{The logical approach}
+        \subsection{The Zariski topology}
             \subsubsection{The prime spectrum of a commutative ring} \index{$\Spec$}
                 \begin{definition}[Spectra of commutative rings]
                     To any commutative ring $R$, let us \textit{contravariantly functorially} associate, first of all, a set $\Spec R$ consisting of all prime ideals of $R$. This is called the spectrum, or the prime spectrum, of $R$. In other words, $\Spec$ is a functor from $\Cring^{\op}$ to $\Sets$.
@@ -39,7 +39,7 @@
                     \end{enumerate}
                 \end{example}
             
-            \subsubsection{The Zariski topology} \index{Topology!Zariski}
+            \subsubsection{The Zariski topology as a point-set topology} \index{Topology!Zariski}
                 \begin{definition}[Zariski-closed subsets] \label{def: zariski_closed}
                     Let $R$ be a commutative ring and let $\calF$ be an arbitrary subset of $R$. Then, let us declare that sets of the following form are closed in the to-be Zariski topology:
                         $$V(\calF) := \left\{\p \in \Spec R \mid \p \supset \calF \right\}$$
@@ -493,428 +493,427 @@
                         \end{enumerate}
                     \end{proof}
         
-        \subsection{The syntactic approach}
-            \subsubsection{The cartesian closed category of affine schemes} \index{Schemes!affine}
-                As opposed to the above very concrete and set-theoretic construction of affine schemes, let us now present a more categorical approach, which while more abstract, is advantageous as it allows us to later on view schemes as sheaves on $\Cring^{\op}$ satisfying certain conditions, rather than specific locally ringed spaces. Additionally, this approach helps us generalise our constructions to the derived world more easily and naturally.
+        \subsection{Functor of points of affine schemes} \index{Schemes!affine}
+            As opposed to the above very concrete and set-theoretic construction of affine schemes, let us now present a more categorical approach, which while more abstract, is advantageous as it allows us to later on view schemes as sheaves on $\Cring^{\op}$ satisfying certain conditions, rather than specific locally ringed spaces. Additionally, this approach helps us generalise our constructions to the derived world more easily and naturally.
                 
-                \begin{definition}[Spectra of commutative rings, revisited] \label{def: monoidal_spec}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Spectra):} In the monoidal-categorical approach to algebraic geometry, $\Spec$ is the functor from the category $\Cring$ of commutative rings to that of presheaves (of sets) on $\Cring^{\op}$ given by the following formula:
-                            $$\Spec: \Cring \to \Psh_{\Sets}\left(\Cring^{\op}\right): R \mapsto \Cring^{\op}\left(-, R\right)$$
-                        \item \textbf{(Affine schemes):} We \textit{define} the category $\Sch^{\aff}$ of affine schemes to be dual to that of commutative rings. 
-                    \end{enumerate}
-                \end{definition}
-                \begin{remark}[Are affine schemes still the same as ring spectra ?]
-                    Via Yoneda's lemma, one sees that affine schemes, by virtue of forming a category dual to that of commutative rings, are just representable presheaves on $\Cring^{\op}$. Coupling this with definition \ref{def: monoidal_spec}, one has that the essential image of $\Cring$ under $\Spec$ is the category of affine schemes (or equivalently, $\Cring^{\op}$). In notations, that is:
-                        $$\Spec(\Cring) \cong \Sch^{\aff} \cong \Cring^{\op}$$
-                    As a consequence, one may regard an affine scheme as being the same entity as the prime spectrum of a commutative ring.
-                \end{remark}
-                \begin{remark}
-                    Because $\Z$ is initial in $\Cring$, and because the category of affine schemes is defined to be dual to that of commutative rings, one can easily see, via abstract nonsense, that $\Spec \Z$ is a terminal object of $\Sch^{\aff}$.
-                \end{remark}
+            \begin{definition}[Spectra of commutative rings, revisited] \label{def: monoidal_spec}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Spectra):} In the monoidal-categorical approach to algebraic geometry, $\Spec$ is the functor from the category $\Cring$ of commutative rings to that of presheaves (of sets) on $\Cring^{\op}$ given by the following formula:
+                        $$\Spec: \Cring \to \Psh_{\Sets}\left(\Cring^{\op}\right): R \mapsto \Cring^{\op}\left(-, R\right)$$
+                    \item \textbf{(Affine schemes):} We \textit{define} the category $\Sch^{\aff}$ of affine schemes to be dual to that of commutative rings. 
+                \end{enumerate}
+            \end{definition}
+            \begin{remark}[Are affine schemes still the same as ring spectra ?]
+                Via Yoneda's lemma, one sees that affine schemes, by virtue of forming a category dual to that of commutative rings, are just representable presheaves on $\Cring^{\op}$. Coupling this with definition \ref{def: monoidal_spec}, one has that the essential image of $\Cring$ under $\Spec$ is the category of affine schemes (or equivalently, $\Cring^{\op}$). In notations, that is:
+                    $$\Spec(\Cring) \cong \Sch^{\aff} \cong \Cring^{\op}$$
+                As a consequence, one may regard an affine scheme as being the same entity as the prime spectrum of a commutative ring.
+            \end{remark}
+            \begin{remark}
+                Because $\Z$ is initial in $\Cring$, and because the category of affine schemes is defined to be dual to that of commutative rings, one can easily see, via abstract nonsense, that $\Spec \Z$ is a terminal object of $\Sch^{\aff}$.
+            \end{remark}
+            
+            \begin{remark}[But where are the tensor products ?] \label{remark: monoidal_structure_on_affine_schemes}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Affine schemes are cartesian closed):} Recall for a moment that $\Cring$ is a closed symmetric monoidal category whose symmetric monoidal structure is given by the bifunctor:
+                        $$\tensor_{\Z}: \Cring \x \Cring \to \Cring$$
+                    Furthermore, recall that the tensor product (over $\Z$) of any two commutative rings is actually their coproduct in $\Cring$, and that all such \textit{finite} coproducts of commutative rings exist in $\Cring$. Also, note that all the arrows involved in specifying a (symmetric) monoidal structure on a category are invertible; in particular, this means that the opposite of a (symmetric) monoidal category is (symmetric) monoidal too. Thus, the category $\Sch^{\aff}$, by virtue of being dual to $\Cring$ of affine schemes is also a closed symmetric monoidal category with its monoidal structure given by products. In other words, one has that $\Sch^{\aff}$ is \href{https://ncatlab.org/nlab/show/cartesian+closed+category}{\underline{cartesian closed}}.
+                    \item \textbf{(Relativisation):} Let $k$ be an arbitrary base commutative ring and let ${}^{k/}\Comm\Alg$ be the closed symmetric monoidal category of commutative $k$-algebras (i.e. the coslice category $\Cring_k$). Then, one can define the category of affine schemes over $\Spec k$ (or in other terminologies, affine schemes relative to $\Spec k$), denoted by $\Sch^{\aff}_{/\Spec k}$, as being equivalent to ${}^{k/}\Comm\Alg^{\op}$; the category $\Sch^{\aff}_{/\Spec \Z}$ of affine schemes over $\Spec \Z$ will henceforth be referred to as the category of \textbf{absolute} affine schemes. Similar to absolute affine schemes, affine schemes relative to $\Spec k$ also form a cartesian closed category whose monoidal structure is given by products. Note that the products in $\Sch^{\aff}_{/\Spec k}$ are products of arrows $\bullet \to \Spec k$, i.e. limits of diagrams of, say, the following form:
+                        $$
+                            \begin{tikzcd}
+                            	&& {\bullet} \\
+                            	{} & {\bullet} & {\Spec k}
+                            	\arrow[from=2-2, to=2-3]
+                            	\arrow[from=1-3, to=2-3]
+                            \end{tikzcd}
+                        $$
+                    In other words, products in $\Sch^{\aff}_{/\Spec k}$ are pullbacks in $\Sch^{\aff}$, and as a consequence, the categories $\Sch^{\aff}_{/\Spec k}$ are just slices of the category $\Sch^{\aff}$ of absolute affine schemes.
+                \end{enumerate}
+            \end{remark}
                 
-                \begin{remark}[But where are the tensor products ?] \label{remark: monoidal_structure_on_affine_schemes}
-                    \noindent
-                    \begin{enumerate}
-                        \item \textbf{(Affine schemes are cartesian closed):} Recall for a moment that $\Cring$ is a closed symmetric monoidal category whose symmetric monoidal structure is given by the bifunctor:
-                            $$\tensor_{\Z}: \Cring \x \Cring \to \Cring$$
-                        Furthermore, recall that the tensor product (over $\Z$) of any two commutative rings is actually their coproduct in $\Cring$, and that all such \textit{finite} coproducts of commutative rings exist in $\Cring$. Also, note that all the arrows involved in specifying a (symmetric) monoidal structure on a category are invertible; in particular, this means that the opposite of a (symmetric) monoidal category is (symmetric) monoidal too. Thus, the category $\Sch^{\aff}$, by virtue of being dual to $\Cring$ of affine schemes is also a closed symmetric monoidal category with its monoidal structure given by products. In other words, one has that $\Sch^{\aff}$ is \href{https://ncatlab.org/nlab/show/cartesian+closed+category}{\underline{cartesian closed}}.
-                        \item \textbf{(Relativisation):} Let $k$ be an arbitrary base commutative ring and let ${}^{k/}\Comm\Alg$ be the closed symmetric monoidal category of commutative $k$-algebras (i.e. the coslice category $\Cring_k$). Then, one can define the category of affine schemes over $\Spec k$ (or in other terminologies, affine schemes relative to $\Spec k$), denoted by $\Sch^{\aff}_{/\Spec k}$, as being equivalent to ${}^{k/}\Comm\Alg^{\op}$; the category $\Sch^{\aff}_{/\Spec \Z}$ of affine schemes over $\Spec \Z$ will henceforth be referred to as the category of \textbf{absolute} affine schemes. Similar to absolute affine schemes, affine schemes relative to $\Spec k$ also form a cartesian closed category whose monoidal structure is given by products. Note that the products in $\Sch^{\aff}_{/\Spec k}$ are products of arrows $\bullet \to \Spec k$, i.e. limits of diagrams of, say, the following form:
-                            $$
-                                \begin{tikzcd}
-                                	&& {\bullet} \\
-                                	{} & {\bullet} & {\Spec k}
-                                	\arrow[from=2-2, to=2-3]
-                                	\arrow[from=1-3, to=2-3]
-                                \end{tikzcd}
-                            $$
-                        In other words, products in $\Sch^{\aff}_{/\Spec k}$ are pullbacks in $\Sch^{\aff}$, and as a consequence, the categories $\Sch^{\aff}_{/\Spec k}$ are just slices of the category $\Sch^{\aff}$ of absolute affine schemes.
-                    \end{enumerate}
-                \end{remark}
-                
-            \subsubsection{Descent theory for affine schemes}
-                \paragraph{Zariski descent} \index{Topology!Zariski}
-                    \begin{lemma}[Localisation and Zariski-openness] \label{lemma: localisations_are_open}
-                        Let $f$ be an arbitrary element of a commutative ring $R$. Then :
-                            $$\Spec R_f \cong D_R(f)$$
-                    \end{lemma}
-                        \begin{proof}
-                            Because we have a canonical localisation homomorphism:
-                                $$\lambda_{f, R}: R \to R_f$$
-                            for every $f \in R$, we automatically get a continuous function between spectra as follows:
-                                $$\Spec \lambda_{f, R}: \Spec R_f \to \Spec R$$
-                            (see proposition \ref{prop: continuous_functions_between_spectra} for an explanation). 
-                                \begin{enumerate}
-                                    \item \textbf{(Injectivity):} First of all, let us show that $\Spec \lambda_{f, R}$ is injective, i.e. that the process of localisation indeed gives us subsets of a given ring spectrum. Suppose to the contrary that it is not injective, i.e. that there exist $\p, \q \in \Spec R_f$ such that:
-                                        $$\left( (\Spec \lambda_{f, R})(\p) = (\Spec \lambda_{f, R})(\q) \right) \implies \neg(\p = \q)$$
-                                    and at the same time, note that we have the following, thanks to the fact that the preimage under a ring homomorphism of a prime ideal is also a prime ideal:
-                                        $$\left( (\Spec \lambda_{f, R})(\p) = (\Spec \lambda_{f, R})(\q) \right) \iff \left(\lambda_{f, R}^{-1}(\p) = \lambda_{f, R}^{-1}(\q)\right)$$
-                                    Now, we know that:
-                                        $$\left(\lambda_{f, R}^{-1}(\p) = \lambda_{f, R}^{-1}(\q)\right) \iff (\p = \q)$$
-                                    because a function such as $\lambda_{f, R}$ must take an element in its domain to precisely one element in its codomain, and this gives us the following contradiction:
-                                        $$\left( (\p = \q) \implies \neg(\p = \q) \right) \dashv\vdash \bot$$
-                                    Thus, $\Spec \lambda_{f, R}$ must be injective.
-                                    \item \textbf{(Openness):} Now, to show that the image of the injection $\Spec \lambda_{f, R}$ is open inside $\Spec R$, it will suffice to demonstrate that there is a bijection between $\Spec R_f$ and the subset $D_R(f)$ of $\Spec R$, i.e. that:
-                                        $$(\q \in \Spec R_f) \iff \left( (\Spec \lambda_{f, R})(\q) \in D_R(f) \right) \iff \neg(\lambda_{f, R}^{-1}(\q) \ni f)$$
-                                    as the set $D_R(f)$ is open in the Zariski topology on $\Spec R$ by definition. Let $\p := \lambda_{f, R}^{-1}(\q)$ and suppose to the contrary that $f \in \p$. Then, by applying the localisation map $\lambda_{f, R}$ to $\p$, we would recover the prime ideal $\q$ of $R_f$, which would now contain the element $\lambda_{f, R}(f) = \frac{f}{f^0} = f$. Now, because ideals are closed under scalar multiplication, and because $\frac1f \in R_f$ by definition, we have that:
-                                        $$\left( \frac1f f \in \q \right) = (1 \in \q)$$
-                                    which is contradictory, as prime ideals such as $\q$ are defined to be proper, and thus can not contain $1$ (because in that case, they would just be equal to their ambient ring). Therefore, $f \not \in \lambda_{f, R}^{-1}(\q)$, and as stated above, this is equivalent to $\q \in \Spec R_f$, and consequently:
-                                        $$\Spec R_f \cong D_R(f)$$
-                                \end{enumerate}
-                        \end{proof}
-                        
-                    \begin{lemma}[Limits indexed by generators of rings] \label{lemma: limits_indexed_by_generators}
-                        Let $R$ be a commutative ring and let $\calF$ be a set of generators thereof. Then:
-                            $$R \cong \underset{f \in \calF}{\lim} R_f$$
-                    \end{lemma}
-                        \begin{proof}
-                            The first thing to note, and also the very observation that will help us formulate a proof strategy, is that the limit $\underset{f \in \calF}{\lim} R_f$ is a pullback in $\Cring$: particularly, it is the product indexed by the set $\calF$ of all the localisation maps $\lambda_{f, R}: R \to R_f$. With the help of lemma \ref{lemma: localisations_are_open}, we can subsequently infer from this, that it will suffice to show that the union $\bigcup_{f \in \calF} D_R(f)$ (in $\Sets$), coincides with $\Spec R$. To that end, consider the following, wherein $\p$ is an arbitrary prime ideal of $R$:
-                                $$
-                                    \begin{aligned}
-                                        & \p \in \bigcup_{f \in \calF} D_R(f)
-                                        \\
-                                        \iff & \bigvee_{f \in \calF} (\p \in D_R(f))
-                                        \\
-                                        \iff & \bigvee_{f \in \calF} \left(\p \in \Spec R \setminus V_R((f))\right) \: \text{(cf. remark \ref{remark: basic_opens_complements})}
-                                        \\
-                                        \iff & \bigvee_{f \in \calF} \neg(\p \in V_R((f)))
-                                        \\
-                                        \iff & \neg \bigwedge_{f \in \calF} (\p \in V_R((f)))
-                                        \\
-                                        \iff & \neg\left( \p \in V_R\left(R[\calF]\right) \right)
-                                        \\
-                                        \iff & \neg\left( \p \in V_R\left(R\right) \right) \: \text{(Because $\calF$ is a generating set of $\calF$)}
-                                        \\
-                                        \iff & \neg(\p \in \varnothing) \: \text{(As prime ideals are defined to be proper)}
-                                        \\
-                                        \iff & \neg \bot
-                                        \\
-                                        \iff & \top
-                                    \end{aligned}
-                                $$
-                            which tells us that every prime ideal $\p$ of $R$ is a point in the union $\bigcup_{f \in \calF} D_R(f)$, which in turn implies that this union is just the entirety of $\Spec R$, as $\Spec R$ is, by definition, the set of all prime ideals of $R$. As stated, this gives us the desired isomorphism of commutative rings:
-                                $$R \cong \underset{f \in \calF}{\lim} R_f$$
-                        \end{proof}
-                        
-                    \begin{convention}[Pullbacks and pushforwards of sieves] \label{conv: pullback_and_pushforward_sieves}
-                        Let $(\C, J)$ be a (locally small) site and let $\U_{/x}$ be a sieve on an object of $\C$. Also, let $f: x' \to x$ be an arrow.
+        \subsection{Descent along ring homomorphisms}
+            \subsubsection{Zariski descent} \index{Topology!Zariski}
+                \begin{lemma}[Localisation and Zariski-openness] \label{lemma: localisations_are_open}
+                    Let $f$ be an arbitrary element of a commutative ring $R$. Then :
+                        $$\Spec R_f \cong D_R(f)$$
+                \end{lemma}
+                    \begin{proof}
+                        Because we have a canonical localisation homomorphism:
+                            $$\lambda_{f, R}: R \to R_f$$
+                        for every $f \in R$, we automatically get a continuous function between spectra as follows:
+                            $$\Spec \lambda_{f, R}: \Spec R_f \to \Spec R$$
+                        (see proposition \ref{prop: continuous_functions_between_spectra} for an explanation). 
                             \begin{enumerate}
-                                \item \textbf{(Pullbacks):} The pullback $f^*\U_{/x}$ of $\U_{/x}$ along $f$ shall be defined to literally be the categorical pullback of the canonical inclusion $i_{\U_{/x}}$ of $\U_{/x}$ into $h_x$ along $f$ (or rather, the image under the Yoneda embedding thereof), i.e.:
-                                    $$f^*\U_{/x} \cong \U_{/x} \x_{i_{\U_{/x}}, h_x, f} h_{x'}$$
-                                \item \textbf{(Pushforwards):} Now, consider the prestack on $\C^{\op}$ (cf. convention \ref{conv: prestacks}) that assigns to each arrow $f^{\dagger}: x \to x'$ therein (corresponding to $f: x' \to x$ in $\C$) a functor:
-                                    $$f^*: \Psh_{\Sets}(\C_{/x}) \to \Psh_{\Sets}(\C_{/x'})$$
-                                defined via:
-                                    $$f^*(-) \cong - \x_{h_x} h_{x'}$$
-                                With a bit of observation, we will be able to see that this is actually just the functor via which one can pull back sieves in the manner presented above. It is thus tempting to see if the functors $f^*$ possess either left or right-adjoints, via which pushforward sieves can be defined; they in fact have left-adjoints, and this is because:
-                                    \begin{enumerate}
-                                        \item the fibres $\Psh_{\Sets}(\C_{/x})$ are Grothendieck topoi and therefore are locally presentable and
-                                        \item the functors $f^*$ clearly preserve small limits,
-                                        \item which together implies that the functors $f^*$ have left-adjoints \cite[Theorem 2.2]{nlab:adjoint_functor_theorem}, which we shall denote by $f_!$.
-                                    \end{enumerate}
-                                A bit of set theory will then help us show that the left-adjoints $f_!$ are given by:
-                                    $$f_!(-) \cong h_x \pushout_{h_{x'}} -$$
+                                \item \textbf{(Injectivity):} First of all, let us show that $\Spec \lambda_{f, R}$ is injective, i.e. that the process of localisation indeed gives us subsets of a given ring spectrum. Suppose to the contrary that it is not injective, i.e. that there exist $\p, \q \in \Spec R_f$ such that:
+                                    $$\left( (\Spec \lambda_{f, R})(\p) = (\Spec \lambda_{f, R})(\q) \right) \implies \neg(\p = \q)$$
+                                and at the same time, note that we have the following, thanks to the fact that the preimage under a ring homomorphism of a prime ideal is also a prime ideal:
+                                    $$\left( (\Spec \lambda_{f, R})(\p) = (\Spec \lambda_{f, R})(\q) \right) \iff \left(\lambda_{f, R}^{-1}(\p) = \lambda_{f, R}^{-1}(\q)\right)$$
+                                Now, we know that:
+                                    $$\left(\lambda_{f, R}^{-1}(\p) = \lambda_{f, R}^{-1}(\q)\right) \iff (\p = \q)$$
+                                because a function such as $\lambda_{f, R}$ must take an element in its domain to precisely one element in its codomain, and this gives us the following contradiction:
+                                    $$\left( (\p = \q) \implies \neg(\p = \q) \right) \dashv\vdash \bot$$
+                                Thus, $\Spec \lambda_{f, R}$ must be injective.
+                                \item \textbf{(Openness):} Now, to show that the image of the injection $\Spec \lambda_{f, R}$ is open inside $\Spec R$, it will suffice to demonstrate that there is a bijection between $\Spec R_f$ and the subset $D_R(f)$ of $\Spec R$, i.e. that:
+                                    $$(\q \in \Spec R_f) \iff \left( (\Spec \lambda_{f, R})(\q) \in D_R(f) \right) \iff \neg(\lambda_{f, R}^{-1}(\q) \ni f)$$
+                                as the set $D_R(f)$ is open in the Zariski topology on $\Spec R$ by definition. Let $\p := \lambda_{f, R}^{-1}(\q)$ and suppose to the contrary that $f \in \p$. Then, by applying the localisation map $\lambda_{f, R}$ to $\p$, we would recover the prime ideal $\q$ of $R_f$, which would now contain the element $\lambda_{f, R}(f) = \frac{f}{f^0} = f$. Now, because ideals are closed under scalar multiplication, and because $\frac1f \in R_f$ by definition, we have that:
+                                    $$\left( \frac1f f \in \q \right) = (1 \in \q)$$
+                                which is contradictory, as prime ideals such as $\q$ are defined to be proper, and thus can not contain $1$ (because in that case, they would just be equal to their ambient ring). Therefore, $f \not \in \lambda_{f, R}^{-1}(\q)$, and as stated above, this is equivalent to $\q \in \Spec R_f$, and consequently:
+                                    $$\Spec R_f \cong D_R(f)$$
                             \end{enumerate}
-                    \end{convention}
-                
-                    \begin{theorem}[Zariski sieves] \label{theorem: zariski_coverages}
+                    \end{proof}
+                    
+                \begin{lemma}[Limits indexed by generators of rings] \label{lemma: limits_indexed_by_generators}
+                    Let $R$ be a commutative ring and let $\calF$ be a set of generators thereof. Then:
+                        $$R \cong \underset{f \in \calF}{\lim} R_f$$
+                \end{lemma}
+                    \begin{proof}
+                        The first thing to note, and also the very observation that will help us formulate a proof strategy, is that the limit $\underset{f \in \calF}{\lim} R_f$ is a pullback in $\Cring$: particularly, it is the product indexed by the set $\calF$ of all the localisation maps $\lambda_{f, R}: R \to R_f$. With the help of lemma \ref{lemma: localisations_are_open}, we can subsequently infer from this, that it will suffice to show that the union $\bigcup_{f \in \calF} D_R(f)$ (in $\Sets$), coincides with $\Spec R$. To that end, consider the following, wherein $\p$ is an arbitrary prime ideal of $R$:
+                            $$
+                                \begin{aligned}
+                                    & \p \in \bigcup_{f \in \calF} D_R(f)
+                                    \\
+                                    \iff & \bigvee_{f \in \calF} (\p \in D_R(f))
+                                    \\
+                                    \iff & \bigvee_{f \in \calF} \left(\p \in \Spec R \setminus V_R((f))\right) \: \text{(cf. remark \ref{remark: basic_opens_complements})}
+                                    \\
+                                    \iff & \bigvee_{f \in \calF} \neg(\p \in V_R((f)))
+                                    \\
+                                    \iff & \neg \bigwedge_{f \in \calF} (\p \in V_R((f)))
+                                    \\
+                                    \iff & \neg\left( \p \in V_R\left(R[\calF]\right) \right)
+                                    \\
+                                    \iff & \neg\left( \p \in V_R\left(R\right) \right) \: \text{(Because $\calF$ is a generating set of $\calF$)}
+                                    \\
+                                    \iff & \neg(\p \in \varnothing) \: \text{(As prime ideals are defined to be proper)}
+                                    \\
+                                    \iff & \neg \bot
+                                    \\
+                                    \iff & \top
+                                \end{aligned}
+                            $$
+                        which tells us that every prime ideal $\p$ of $R$ is a point in the union $\bigcup_{f \in \calF} D_R(f)$, which in turn implies that this union is just the entirety of $\Spec R$, as $\Spec R$ is, by definition, the set of all prime ideals of $R$. As stated, this gives us the desired isomorphism of commutative rings:
+                            $$R \cong \underset{f \in \calF}{\lim} R_f$$
+                    \end{proof}
+                    
+                \begin{convention}[Pullbacks and pushforwards of sieves] \label{conv: pullback_and_pushforward_sieves}
+                    Let $(\C, J)$ be a (locally small) site and let $\calU_{/x}$ be a sieve on an object of $\C$. Also, let $f: x' \to x$ be an arrow.
+                        \begin{enumerate}
+                            \item \textbf{(Pullbacks):} The pullback $f^*\calU_{/x}$ of $\calU_{/x}$ along $f$ shall be defined to literally be the categorical pullback of the canonical inclusion $i_{\calU_{/x}}$ of $\calU_{/x}$ into $h_x$ along $f$ (or rather, the image under the Yoneda embedding thereof), i.e.:
+                                $$f^*\calU_{/x} \cong \calU_{/x} \x_{i_{\calU_{/x}}, h_x, f} h_{x'}$$
+                            \item \textbf{(Pushforwards):} Now, consider the prestack on $\C^{\op}$ (cf. convention \ref{conv: prestacks}) that assigns to each arrow $f^{\dagger}: x \to x'$ therein (corresponding to $f: x' \to x$ in $\C$) a functor:
+                                $$f^*: \Psh_{\Sets}(\C_{/x}) \to \Psh_{\Sets}(\C_{/x'})$$
+                            defined via:
+                                $$f^*(-) \cong - \x_{h_x} h_{x'}$$
+                            With a bit of observation, we will be able to see that this is actually just the functor via which one can pull back sieves in the manner presented above. It is thus tempting to see if the functors $f^*$ possess either left or right-adjoints, via which pushforward sieves can be defined; they in fact have left-adjoints, and this is because:
+                                \begin{enumerate}
+                                    \item the fibres $\Psh_{\Sets}(\C_{/x})$ are Grothendieck topoi and therefore are locally presentable and
+                                    \item the functors $f^*$ clearly preserve small limits,
+                                    \item which together implies that the functors $f^*$ have left-adjoints \cite[Theorem 2.2]{nlab:adjoint_functor_theorem}, which we shall denote by $f_!$.
+                                \end{enumerate}
+                            A bit of set theory will then help us show that the left-adjoints $f_!$ are given by:
+                                $$f_!(-) \cong h_x \pushout_{h_{x'}} -$$
+                        \end{enumerate}
+                \end{convention}
+            
+                \begin{theorem}[Zariski sieves] \label{theorem: zariski_coverages}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Zariski sieves):} Let $k$ be a base commutative ring, let $R$ be a commutative $k$-algebra, and let $\{f_{\alpha}\}_{\alpha \in A}$ be a set of elements of $R$. Then, the collection of arrows $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is a covering sieve on the object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$ if and only if the set $\{f_{\alpha}\}_{\alpha \in A}$ generates $R$ (i.e. there is a finitely supported $R$-linear combination on the set $\{f_{\alpha}\}_{\alpha \in A}$ that is identically $1$). 
+                        \item \textbf{(Zariski coverages):} The Zariski sieves as above define a \textit{subcanonical} coverage on ${}^{k/}\Comm\Alg^{\op}$.
+                    \end{enumerate}
+                \end{theorem}
+                    \begin{proof}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{(Zariski sieves):} Let $k$ be a base commutative ring, let $R$ be a commutative $k$-algebra, and let $\{f_{\alpha}\}_{\alpha \in A}$ be a set of elements of $R$. Then, the collection of arrows $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is a covering sieve on the object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$ if and only if the set $\{f_{\alpha}\}_{\alpha \in A}$ generates $R$ (i.e. there is a finitely supported $R$-linear combination on the set $\{f_{\alpha}\}_{\alpha \in A}$ that is identically $1$). 
-                            \item \textbf{(Zariski coverages):} The Zariski sieves as above define a \textit{subcanonical} coverage on ${}^{k/}\Comm\Alg^{\op}$.
-                        \end{enumerate}
-                    \end{theorem}
-                        \begin{proof}
-                            \noindent
-                            \begin{enumerate}
-                                \item \textbf{(Zariski sieves):} For clarity, let us prove the two assertions separately.
-                                    \begin{enumerate}
-                                        \item \textbf{(Zariski sieves):} Let $\calF$ be an arbitrary subset of $R$, and let $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ be the canonical set of arrows corresponding to the localisation maps $\lambda_{f, R}: R \to R_f$. If this set of arrows corresponds to a subpresheaf of ${}^{k/}\Comm\Alg^{\op}(-, \Spec R)$, then it will be a sieve by definition \cite[Definition 2.38]{vistoli_descent}; equivalently, we can demonstrate that the set of arrows $\{\lambda_{f, R}: R \to R_f\}_{f \in \calF}$ is a subcopresheaf of ${}^{k/}\Comm\Alg(R, -)$. To this end, let us begin by bringing the readers' attention to the fact that if $\C$ is an arbitrary category and if $x$ is any object thereof, then subpresheaves $S$ of $\C(-, x)$ are precisely sets of arrows $\{u_{\alpha} \to x\}_{\alpha \in A}$ such that $Su$ consists precisely of arrows from $u$ to $x$ that factor through some of the the objects $u_{\alpha}$, i.e.:
-                                            $$
-                                                \forall \varphi \in Su: \exists \alpha \in A: Su =
-                                                \left\{
-                                                    \begin{tikzcd}
-                                                    	{} \\
-                                                    	u && x \\
-                                                    	& {u_{\alpha}}
-                                                    	\arrow[dashed, from=2-1, to=3-2]
-                                                    	\arrow[from=3-2, to=2-3]
-                                                    	\arrow["\varphi", from=2-1, to=2-3]
-                                                    \end{tikzcd}
-                                                \right\}
-                                            $$
-                                        pictorially speaking. Thus, let us consider the following in ${}^{k/}\Comm\Alg$:
-                                            $$
+                            \item \textbf{(Zariski sieves):} For clarity, let us prove the two assertions separately.
+                                \begin{enumerate}
+                                    \item \textbf{(Zariski sieves):} Let $\calF$ be an arbitrary subset of $R$, and let $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ be the canonical set of arrows corresponding to the localisation maps $\lambda_{f, R}: R \to R_f$. If this set of arrows corresponds to a subpresheaf of ${}^{k/}\Comm\Alg^{\op}(-, \Spec R)$, then it will be a sieve by definition \cite[Definition 2.38]{vistoli_descent}; equivalently, we can demonstrate that the set of arrows $\{\lambda_{f, R}: R \to R_f\}_{f \in \calF}$ is a subcopresheaf of ${}^{k/}\Comm\Alg(R, -)$. To this end, let us begin by bringing the readers' attention to the fact that if $\C$ is an arbitrary category and if $x$ is any object thereof, then subpresheaves $S$ of $\C(-, x)$ are precisely sets of arrows $\{u_{\alpha} \to x\}_{\alpha \in A}$ such that $Su$ consists precisely of arrows from $u$ to $x$ that factor through some of the the objects $u_{\alpha}$, i.e.:
+                                        $$
+                                            \forall \varphi \in Su: \exists \alpha \in A: Su =
+                                            \left\{
                                                 \begin{tikzcd}
                                                 	{} \\
-                                                	{R'} && R \\
-                                                	& {R_f}
-                                                	\arrow["{\exists ? \psi}", dashed, from=3-2, to=2-1]
-                                                	\arrow["{\lambda_{f, R}}", from=2-3, to=3-2]
-                                                	\arrow["\varphi"', from=2-3, to=2-1]
+                                                	u && x \\
+                                                	& {u_{\alpha}}
+                                                	\arrow[dashed, from=2-1, to=3-2]
+                                                	\arrow[from=3-2, to=2-3]
+                                                	\arrow["\varphi", from=2-1, to=2-3]
                                                 \end{tikzcd}
-                                            $$
-                                        and because $\lambda_{f, R}$ is given by:
-                                            $$\lambda_{f, R}(r) = \frac{r}{f^0} = \frac{r}{1} = r$$
-                                        one could expect the dashed arrow $\psi$ to always exist, as:
-                                            $$
-                                                \begin{aligned}
-                                                    & \forall \varphi \in {}^{k/}\Comm\Alg(R, R'):
-                                                    \\
-                                                    & \exists \psi \in {}^{k/}\Comm\Alg(R_f, R'):
-                                                    \\
-                                                    & \bigg(\forall r \in R: \psi(\lambda_{f, R}(r)) = \psi\left(\frac{r}{1}\right) = \psi(r) = \varphi(r)\bigg) \vdash \bigg(\psi \circ \lambda_{f, R} = \varphi\bigg)
-                                                \end{aligned}
-                                            $$
-                                        In other words, we can pick $\psi$ so that it coincides with $\varphi$ on the subring of $R_f$ that is isomorphic to $R$ (note that $\lambda_{f, R}$ is trivially injective).  
-                                        \item \textbf{(Zariski sieves that cover):} Now that we have shown that for all subsets $\calF$ of $R$, the corresponding set of arrows $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ is a sieve, let us pass it through the Yoneda embedding to get the following diagram of presheaves:
-                                            $$\{h_{\Spec R_f} \to h_{\Spec R}\}_{f \in \calF}$$
-                                        and subsequently take the colimit thereof (which exists in the presheaf category!), which is just an arrow:
-                                            $$\underset{f \in \calF}{\colim} h_{\Spec R_f} \to h_{\Spec R}$$
-                                        What we shall now attempt is proving that the coequaliser of the \href{https://ncatlab.org/nlab/show/kernel+pair}{\underline{kernel pair}} (which exists because presheaf categories are cocomplete):
-                                            $$
-                                                \begin{tikzcd}
-                                                	{\underset{f \in \calF}{\colim} h_{\Spec R_f} \x_{h_{\Spec R}} \underset{f \in \calF}{\colim} h_{\Spec R_f}} & {\underset{f \in \calF}{\colim} h_{\Spec R_f}}
-                                                	\arrow["{\pr_2}"', shift right=2, from=1-1, to=1-2]
-                                                	\arrow["{\pr_1}", shift left=2, from=1-1, to=1-2]
-                                                \end{tikzcd}
-                                            $$
-                                        will coincide with $h_{\Spec R}$, \textit{only if} the elements of $\calF$ are generators of $R$. First of all, let us note that because sets are discrete categories, the colimit of presheaves $\underset{f \in \calF}{\colim} h_{\Spec R_f}$ is nothing but the coproduct $\coprod_{f \in \calF} h_{\Spec R}$; the above kernel pair can thus be rewritten as:
-                                            $$
+                                            \right\}
+                                        $$
+                                    pictorially speaking. Thus, let us consider the following in ${}^{k/}\Comm\Alg$:
+                                        $$
+                                            \begin{tikzcd}
+                                            	{} \\
+                                            	{R'} && R \\
+                                            	& {R_f}
+                                            	\arrow["{\exists ? \psi}", dashed, from=3-2, to=2-1]
+                                            	\arrow["{\lambda_{f, R}}", from=2-3, to=3-2]
+                                            	\arrow["\varphi"', from=2-3, to=2-1]
+                                            \end{tikzcd}
+                                        $$
+                                    and because $\lambda_{f, R}$ is given by:
+                                        $$\lambda_{f, R}(r) = \frac{r}{f^0} = \frac{r}{1} = r$$
+                                    one could expect the dashed arrow $\psi$ to always exist, as:
+                                        $$
+                                            \begin{aligned}
+                                                & \forall \varphi \in {}^{k/}\Comm\Alg(R, R'):
+                                                \\
+                                                & \exists \psi \in {}^{k/}\Comm\Alg(R_f, R'):
+                                                \\
+                                                & \bigg(\forall r \in R: \psi(\lambda_{f, R}(r)) = \psi\left(\frac{r}{1}\right) = \psi(r) = \varphi(r)\bigg) \vdash \bigg(\psi \circ \lambda_{f, R} = \varphi\bigg)
+                                            \end{aligned}
+                                        $$
+                                    In other words, we can pick $\psi$ so that it coincides with $\varphi$ on the subring of $R_f$ that is isomorphic to $R$ (note that $\lambda_{f, R}$ is trivially injective).  
+                                    \item \textbf{(Zariski sieves that cover):} Now that we have shown that for all subsets $\calF$ of $R$, the corresponding set of arrows $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ is a sieve, let us pass it through the Yoneda embedding to get the following diagram of presheaves:
+                                        $$\{h_{\Spec R_f} \to h_{\Spec R}\}_{f \in \calF}$$
+                                    and subsequently take the colimit thereof (which exists in the presheaf category!), which is just an arrow:
+                                        $$\underset{f \in \calF}{\colim} h_{\Spec R_f} \to h_{\Spec R}$$
+                                    What we shall now attempt is proving that the coequaliser of the \href{https://ncatlab.org/nlab/show/kernel+pair}{\underline{kernel pair}} (which exists because presheaf categories are cocomplete):
+                                        $$
+                                            \begin{tikzcd}
+                                            	{\underset{f \in \calF}{\colim} h_{\Spec R_f} \x_{h_{\Spec R}} \underset{f \in \calF}{\colim} h_{\Spec R_f}} & {\underset{f \in \calF}{\colim} h_{\Spec R_f}}
+                                            	\arrow["{\pr_2}"', shift right=2, from=1-1, to=1-2]
+                                            	\arrow["{\pr_1}", shift left=2, from=1-1, to=1-2]
+                                            \end{tikzcd}
+                                        $$
+                                    will coincide with $h_{\Spec R}$, \textit{only if} the elements of $\calF$ are generators of $R$. First of all, let us note that because sets are discrete categories, the colimit of presheaves $\underset{f \in \calF}{\colim} h_{\Spec R_f}$ is nothing but the coproduct $\coprod_{f \in \calF} h_{\Spec R}$; the above kernel pair can thus be rewritten as:
+                                        $$
+                                            \begin{tikzcd}
+                                            	{\coprod_{f \in \calF} h_{\Spec R_f} \x_{h_{\Spec R}} \coprod_{f \in \calF} h_{\Spec R_f}} & {\coprod_{f \in \calF} h_{\Spec R_f}}
+                                            	\arrow["{\pr_2}"', shift right=2, from=1-1, to=1-2]
+                                            	\arrow["{\pr_1}", shift left=2, from=1-1, to=1-2]
+                                            \end{tikzcd}
+                                        $$
+                                    Next, let us make the following two observations:
+                                        \begin{enumerate}
+                                            \item Notice that by the commutativity of pullback diagrams and of coequaliser diagrams \say{element} of $\coprod_{f \in \calF} h_{\Spec R_f} \x_{h_{\Spec R}} \coprod_{f \in \calF} h_{\Spec R_f}$ must be of the form $\left((\varphi_f)_{f \in \calF}, (\varphi_f)_{f \in \calF}\right)$, with the entries $\varphi_f$ being \say{elements} of the presheaves $h_{\Spec R}$, respectively.
+                                            \item Let us now suppose that $\calF$ generates $R$, which we know, via lemma \ref{lemma: limits_indexed_by_generators}, implies that:
+                                                $$h_{\Spec R} \cong h_{\underset{f \in \calF}{\colim} \Spec R_f}$$
+                                            wherein the colimit is to be interpreted as the coproduct of the canonical arrows $\Spec R_f \to \Spec R$. This tells us, via the commutativity of pushout diagrams, that \say{elements} of $h_{\Spec R}$ are nothing but $\calF$-tuples of \say{elements} of $h_{\Spec R}$.
+                                        \end{enumerate}
+                                     Putting these two observation together, and we shall see that \say{elements} of the coequaliser:
+                                        $$
+                                            \coeq
+                                            \left(
                                                 \begin{tikzcd}
                                                 	{\coprod_{f \in \calF} h_{\Spec R_f} \x_{h_{\Spec R}} \coprod_{f \in \calF} h_{\Spec R_f}} & {\coprod_{f \in \calF} h_{\Spec R_f}}
                                                 	\arrow["{\pr_2}"', shift right=2, from=1-1, to=1-2]
                                                 	\arrow["{\pr_1}", shift left=2, from=1-1, to=1-2]
                                                 \end{tikzcd}
-                                            $$
-                                        Next, let us make the following two observations:
-                                            \begin{enumerate}
-                                                \item Notice that by the commutativity of pullback diagrams and of coequaliser diagrams \say{element} of $\coprod_{f \in \calF} h_{\Spec R_f} \x_{h_{\Spec R}} \coprod_{f \in \calF} h_{\Spec R_f}$ must be of the form $\left((\varphi_f)_{f \in \calF}, (\varphi_f)_{f \in \calF}\right)$, with the entries $\varphi_f$ being \say{elements} of the presheaves $h_{\Spec R}$, respectively.
-                                                \item Let us now suppose that $\calF$ generates $R$, which we know, via lemma \ref{lemma: limits_indexed_by_generators}, implies that:
-                                                    $$h_{\Spec R} \cong h_{\underset{f \in \calF}{\colim} \Spec R_f}$$
-                                                wherein the colimit is to be interpreted as the coproduct of the canonical arrows $\Spec R_f \to \Spec R$. This tells us, via the commutativity of pushout diagrams, that \say{elements} of $h_{\Spec R}$ are nothing but $\calF$-tuples of \say{elements} of $h_{\Spec R}$.
-                                            \end{enumerate}
-                                         Putting these two observation together, and we shall see that \say{elements} of the coequaliser:
-                                            $$
-                                                \coeq
-                                                \left(
-                                                    \begin{tikzcd}
-                                                    	{\coprod_{f \in \calF} h_{\Spec R_f} \x_{h_{\Spec R}} \coprod_{f \in \calF} h_{\Spec R_f}} & {\coprod_{f \in \calF} h_{\Spec R_f}}
-                                                    	\arrow["{\pr_2}"', shift right=2, from=1-1, to=1-2]
-                                                    	\arrow["{\pr_1}", shift left=2, from=1-1, to=1-2]
-                                                    \end{tikzcd}
-                                                \right)
-                                            $$
-                                        coincide with those of $h_{\Spec R}$, which means $h_{\Spec R}$ is the desired coequaliser. As stated above, this shows that the sieve $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ covers $\Spec R$ precisely when $\calF$ generates $R$. 
-                                    \end{enumerate}
-                                \item \textbf{(Well-definiteness of Zariski coverages):} 
-                                    \begin{enumerate}
-                                        \item \textbf{(Stability under pullbacks):} Let $\U_{/\Spec R}$ a covering sieve on an object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$, viewed as a certain subfunctor:
-                                            $$\pi: \U_{/\Spec R} \hookrightarrow h_{\Spec R}$$
-                                        of $h_{\Spec R}$. Consider, then, the pullback $\varphi^* \U_{/\Spec R}$ of $\U_{/\Spec R}$ along an arrow $\varphi: \Spec R' \to \Spec R$, which to us shall be the literal pullback, but in the presheaf category, i.e.:
-                                            $$\varphi^* \U_{/\Spec R} \cong \U_{/\Spec R} \x_{\pi, h_{\Spec R}, \varphi} h_{\Spec R'}$$
-                                        (cf. convention \ref{conv: pullback_and_pushforward_sieves}). $\varphi^* \U_{/\Spec R}$ is certainly a sieve on $h_{\Spec R'}$, thanks to the fact that limits commute, but does it cover $h_{\Spec R'}$ ? Well actually, yes, and this is precisely thanks to the fact that ring homomorphisms are linear and multiplicative maps that respect the multiplicative identity: should $\{f_{\alpha}\}_{\alpha \in A}$ be a generating set of $R$, its image under $\varphi: R \to R'$ should also be a set of generators, because:
-                                            $$1_{R'} = \varphi(1_R) = \varphi\left(\sum_{\alpha \in A} r_{\alpha} f_{\alpha}\right) = \sum_{\alpha \in A} \varphi(r_{\alpha}) \varphi(f_{\alpha})$$
-                                        and then, we can just take $\U_{/\Spec R'}$ to be the set of arrows:
-                                            $$\{\Spec R'_{\varphi(f_{\alpha})} \to \Spec R'\}_{\alpha \in A}$$
-                                        \item \textbf{(Stability under pushforwards):} Let $\U_{/\Spec R'}$ be a sieve covering an object $\Spec R'$ of ${}^{k/}\Comm\Alg^{\op}$ and $\varphi: \Spec R' \to \Spec R$ be some arrow. By applying the pushforward functor $\varphi_!$ to the kernel pair of $\U_{/\Spec R'}$:
-                                            $$
-                                                \begin{tikzcd}
-                                                	{\colim \U_{/\Spec R'} \x_{h_{\Spec R'}} \colim \U_{/\Spec R'}} & {\colim \U_{/\Spec R'}} & {h_{\Spec R'}}
-                                                	\arrow["\pr_2"', shift right=2, from=1-1, to=1-2]
-                                                	\arrow["\pr_1", shift left=2, from=1-1, to=1-2]
-                                                	\arrow[dashed, from=1-2, to=1-3]
-                                                \end{tikzcd}
-                                            $$
-                                        one gets the following diagram:
-                                            $$
-                                                \begin{tikzcd}
-                                                	{\varphi_!\left(\colim \U_{/\Spec R'} \x_{h_{\Spec R'}} \colim \U_{/\Spec R'}\right)} & {\varphi_!\left(\colim \U_{/\Spec R'}\right)} & {h_{\Spec R}}
-                                                	\arrow["\varphi_!\pr_2"', shift right=2, from=1-1, to=1-2]
-                                                	\arrow["\varphi_!\pr_1", shift left=2, from=1-1, to=1-2]
-                                                	\arrow[dashed, from=1-2, to=1-3]
-                                                \end{tikzcd}
-                                            $$
-                                        which is also a coequaliser diagram, thanks to the fact that the left-adjoint $\varphi_!$ preserves colimits (also, note that we have $\varphi_!(h_{\Spec R'}) \cong h_{\Spec R}$ thanks to the formula for pushforwards given in convention \ref{conv: pullback_and_pushforward_sieves}). It then remains to show that the second diagram, like the first one, is the coequaliser of a kernel pair.  
-                                    \end{enumerate}
-                                \item \textbf{(Subcanonicity):} We refer the reader to definition \ref{def: C_valued_sheaves}, so as to have a single notion of sheaves that might be agreed upon for the sake of this discussion.
-                                
-                                A coverage $J$ on a site $(\C, J)$ (that may or may not be small!) is said to be subcanonical if and only if all representable presheaves on the underlying category of that site are sheaves on $(\C, J)$, and so let us verify that this is indeed the case for Zariski sites. To that end, let us begin by fixing a representable presheaf $h_{\Spec A}$ along with an object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$ and an associated \textit{covering} Zariski sieve:
-                                    $$\U_{/\Spec R} := \{\Spec R_f \to \Spec R\}_{f \in \calF}$$
-                                which shall be where we will be evaluating $h_{\Spec A}$. Then, let us apply definition \ref{def: C_valued_sheaves} directly and consider the following:
-                                    $$
-                                        \begin{aligned}
-                                            h_{\Spec A}\left(\underset{f \in \calF}{\colim} h_{\Spec R_f}\right) & \cong \underset{f \in \calF}{\lim} h_{\Spec A}(h_{\Spec R_f})
-                                            \\
-                                            & \cong \underset{f \in \calF}{\lim} {}^{k/}\Comm\Alg_k^{\op}(\Spec R_f, \Spec A)
-                                            \\
-                                            & \cong \underset{f \in \calF}{\lim} {}^{k/}\Comm\Alg(A, R_f)
-                                            \\
-                                            & \cong {}^{k/}\Comm\Alg\left(A, \underset{f \in \calF}{\lim} R_f\right) \: \text{(cf. lemma \ref{lemma: limits_indexed_by_generators})}
-                                        \end{aligned}
-                                    $$
-                                (for an explanation of why we have been able to exchange homs and (co)limits in the above manner, we refer the reader to \cite{nlab:hom-functor_preserves_limits}). Then, we can use the assumption that $\U_{/\Spec R}$ covers $\Spec R$ - which is the case if and only if the set $\calF$ generates $R$ - to obtain one last isomorphism:
-                                    $${}^{k/}\Comm\Alg\left(A, \underset{f \in \calF}{\lim} R_f\right) \cong {}^{k/}\Comm\Alg(A, R)$$
-                                which tells us that:
-                                    $$h_{\Spec A}\left(\underset{f \in \calF}{\colim} h_{\Spec R_f}\right) \cong h_{\Spec A}(\Spec R)$$
-                                By definition \ref{def: C_valued_sheaves}, this implies that $h_{\Spec A}$ is a sheaf with respect to the Zariski coverage on ${}^{k/}\Comm\Alg^{\op}$, and because $A$ was chosen arbitrarily, we have managed to show that ${}^{k/}\Comm\Alg^{\op}_{\Zar}$ is a subcanonical site. 
-                            \end{enumerate}
-                        \end{proof}
-                        
-                    \begin{corollary}[Zariski-open frames and small Zariski sites] \label{coro: zariski_frames_and_sites}
-                        Thanks to lemma \ref{lemma: localisations_are_open} and lemma \ref{lemma: localisations_are_open}, we know that a Zariski sieve such as $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is actually no different from a covering of the topological space $\Spec R$ by the Zariski-open subsets $D_R(f_{\alpha})$. In particular, this implies that the coverage on the frame $\Ouv(\Spec R)$ of Zariski-open subsets of $\Spec R$ (as defined in definition \ref{def: zariski_open}) is the same as that on the Zariski site ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ associated to $\Spec R$. Note that even though every frame is a site, we can \textit{not} simply just claim that there is the following equivalence of categories for all commutative rings $R$:
-                            $$\Ouv(\Spec R) \cong {}^{R/}\Comm\Alg^{\op}$$
-                        As a matter of fact, these two categories are \textit{not} equivalent, seeing how objects of $\Ouv(\Spec R)$ are necessarily of the form $\bigcup_{f \in \calF} D_R(f)$ (with $\calF$ some subset of $R$), whereas objects of ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ are only in bijection with prime spectra of commutative $R$-algebras (one might also point out that $\Ouv(\Spec R)$ is small, while ${}^{R/}\Comm\Alg^{\op}$ is not), which may or may not be open subsets of $\Spec R$. 
-                        
-                        As a consequence of this equivalence of coverages, Zariski sheaves can be thought of as simply sheaves on certain topological spaces. See remark \ref{remark: big_and_small_zariski_sites} for more.
-                    \end{corollary}
-                    \begin{remark}[Big and small Zariski sites] \label{remark: big_and_small_zariski_sites}
-                        The notion of Zariski sites as proven to exist in theorem \ref{theorem: zariski_coverages}, while perfectly reasonable, also comes hand-in-hand with a bit of a technical difficulty: sheaf topoi - such as the Zariski topoi that we will eventually define in defintion \ref{def: zariski_topoi} - are only well-defined over small sites, while the category of commutative rings (and slices thereof) is only locally small, not small. Thus, we need to somehow tweak $\Cring$ in a manner such that the outcome is a small category - which shall be suggestively denoted by $\Cring^{\petit}$ - from which we can build a small site $\Cring^{\petit, \op}_{\Zar}$ whose coverage is the Zariski coverage (cf. theorem \ref{theorem: zariski_coverages}).
-                        
-                        The claim is as follows: \textit{the desired small category $\Cring^{\petit}$ is the full subcategory of $\Cring$ spanned by finitely presented objects}. First of all, notice that to each finitely presented object $P$ of $\Cring$, there is an associated coequaliser diagram of \textit{finitely} generated free objects $E$ and $F$ as below:
-                            $$
-                                \begin{tikzcd}
-                                	E & F & P
-                                	\arrow[shift right=2, from=1-1, to=1-2]
-                                	\arrow[shift left=2, from=1-1, to=1-2]
-                                	\arrow[dashed, from=1-2, to=1-3]
-                                \end{tikzcd}
-                            $$
-                        and thus the cardinality of the collection of finitely presented objects of $\Cring$ is \textit{at most} that of $\N \x \N$, which we note to be a set. As a consequence of this, the cardinality of the collection of morphisms between finitely presented objects of $\Cring$ can be at most that of, $(\N \x \N) \x (\N \x \N)$, which is also a set. Lastly, note that morphisms between finitely presented objects of $\Cring$ are just ring homomorphisms. Thus, finitely presented objects of $\Cring$ form a small full subcategory thereof, which as stated, shall be denoted by $\Cring^{\petit}$. 
-                        
-                        Now, does $\Cring^{\petit, \op}$ admit a Zariski coverage as in theorem \ref{theorem: zariski_coverages} ? Well, obviously yes, because Zariski covering sieves are collections of arrows $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ such that the set $\{f_{\alpha}\}_{\alpha \in A}$ generates $R$, and clearly, the algebras $R_{f_{\alpha}}$ are finitely generated over $R$ (i.e. they are objects of $\Cring^{\petit}$). And thus we have constructed the desired small Zariski site $\Cring^{\petit, \op}_{\Zar}$. 
-                        
-                        One thing to note about the small Zariski site $\Cring^{\petit, \op}_{\Zar}$ is that sheaves thereon are exactly sheaves on $\Ouv(\Spec \Z)$, thanks to the equivalence of coverages elaborated on in corollary \ref{coro: zariski_frames_and_sites} and thanks to the fact that the coverage on $\Cring^{\petit, \op}_{\Zar}$ is the same as that on $\Cring^{\op}_{\Zar}$. In other words, one has the following equivalence of sheaf topoi:
-                            $$(\Spec \Z)_{\Zar} \cong \Sh_{\Sets}\left(\Ouv(\Spec \Z)\right)$$
-                        (refer to definition \ref{def: zariski_topoi} for the establishment of the notation $(\Spec \Z)_{\Zar}$). However, the underlying sites are certainly \textit{not} equivalent, as it was the case with the big Zariski site. This is because there are finitely presented commutative rings that can not be obtained via localisations of $\Z$ (consider $\Z[x]$, with $x$ a formal variable, for example). 
-                    \end{remark}
-                    \begin{example}[A Zariski-open subset of the complex affine plane]
-                        Consider the localisation $\bbC[x, y]_{(x, y)}$, wherein we note that $(x, y)$ is a prime ideal of $\bbC[x,y]$. 
-                            \begin{figure}[H]
-                                \centering
-                                \includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{Figures/localisation.png}
-                                \caption{Localisation produces Zariski-open subsets (\cite{risingsea}, figure 3.5)}
-                                \label{fig: zariski_open_via_localisation}
-                            \end{figure}
-                    \end{example}
-                    
-                    \begin{remark}[A reminder about limits of sheaves and of presheaves] \label{remark: sheaf_limits}
-                        A Grothendieck topos $\E$ (i.e. a sheaf topos) is, \href{https://ncatlab.org/nlab/show/Grothendieck+topos#definition}{\underline{by definition}}, one equipped with a \href{https://ncatlab.org/nlab/show/geometric+embedding}{\underline{geometric embedding}} into a presheaf topos:
-                            $$
-                                \begin{tikzcd}
-                                	\E & {\Psh_{\Sets}(\C)}
-                                	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, hook, from=1-1, to=1-2]
-                                	\arrow[""{name=1, anchor=center, inner sep=0}, "{}^{\sh}(-)"', shift right=2, from=1-2, to=1-1]
-                                	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
-                                \end{tikzcd}
-                            $$
-                        and due to this definition, or more precisely, because of the fact that the left-adjoint component of a geometric morphism (the sheafification functor ${}^{\sh}(-)$ in this situation) is left-exact by definition, and that \href{https://ncatlab.org/nlab/show/adjoints+preserve+\%28co-\%29limits}{\underline{right-adjoints \textit{a priori} preserve limits}}, one can show that limits of sheaves and of their \say{underlying presheaves} coincide. Particularly, in the event that \say{the} underlying site of $\E$ - say $(\C, J)$ - is \textit{subcanonical} and \textit{complete}, this would force the full subcategory of $\E$ consisting representable sheaves on $(\C, J)$ to be complete as well, thanks to the fact that \href{https://ncatlab.org/nlab/show/hom-functor+preserves+limits}{\underline{the Yoneda embedding preserves limits}}. 
-                    \end{remark}
-                    \begin{lemma}[On the completeness of affine scheme categories] \label{lemma: affine_scheme_limits} \index{Limits! of affine schemes}
-                        Fix a base commutative ring $k$. Then, the category $\Sch^{\aff}_{/\Spec k}$ of affine schemes over $\Spec k$ is complete.
-                    \end{lemma}
-                        \begin{proof}
-                            This comes directly from the discussion in remark \ref{remark: sheaf_limits}, since the Zariski site ${}^{k/}\Comm\Alg^{\op}_{\Zar}$ is subcanonical (cf. corollary \ref{theorem: zariski_coverages}) and since the category ${}^{k/}\Comm\Alg$ of commutative $k$-algebras is cocomplete (and hence the opposite category ${}^{k/}\Comm\Alg^{\op}$ is complete).
-                        \end{proof}
-                        
-                \paragraph{\'Etale and smooth descent} \label{paragraph: etale_descent} \index{Topology!\'etale} \index{Topology!smooth}
-                    \begin{remark}[Smooth sieves and \'etale sieves] \label{remark: smooth_and_etale_sieves}
-                        For now extrapolate from proposition \ref{prop: compositions_and_base_changes_of_smooth_morphisms} and corollary \ref{coro: compositions_and_base_changes_of_etale_morphisms}.
-                    \end{remark}
-                
-                \paragraph{Fppf descent} \index{Topology!fppf}
-                
-                \paragraph{Fpqc descent} \index{Topology!fpqc}
-                    Before we discuss the so-called fpqc topology, let us first define the term \say{fpqc}, as well as investigate some basic properties of fpqc morphisms.
-                    
-                    \begin{definition}[Fpqc morphisms] \label{def: fpqc_morphisms} 
-                        Fix a base commutative ring $k$. An affine-schematic morphism:
-                            $$f: \calY \to \calX$$
-                        of prestacks in $\Pre\Stk_{/\Spec k}$ is said to be \textbf{fpqc} (which stands for \textit{fid\`element plat et quasi-compacte} and translate into \say{faithfully flat and quasi-compact}) if and only if the corresponding $k$-algebra map is (surprise!) faithfully flat and quasi-compact in the Zariski topology.
-                    \end{definition}
-                    
-                    \begin{remark}[Quasi-compact affine-schematic morphisms] \label{remark: quasi_compact_affine_schematic_morphisms} 
-                        Let $k$ be a base commutative ring and let $R$ be a $k$-algebra defined by the ring homomorphism:
-                            $$\varphi: k \to R$$
-                        Now, recall that a scheme (or rather, its structural morphism) is \textbf{quasi-compact} if and only if any Zariski covering thereof can be refined by a finite one. Then, following theorem \ref{theorem: zariski_coverages}, a ring map such as $\varphi: k \to R$ is quasi-compact (or rather, the corresponding morphism of affine schemes is) if and only if any Zariski covering of $\Spec R$ can be decomposed into a finite cover of the following form:
-                            $$\coprod_{i = 1}^n \Spec R_{x_i} \to \Spec R$$
-                        and thus $R$ must be finitely generated by $n$ generators $x_1, ..., x_n$ as a $k$-algebra. By definition, this means that there exists a surjective ring homomorphism:
-                            $$\pi: k[x_1, ..., x_n] \twoheadrightarrow R$$
-                        which is equivalent to saying $R$ is isomorphic to $\frac{k[x_1, ..., x_n]}{\ker \pi}$, thanks to the First Isomorphism Theorem. 
-                    \end{remark}
-                    \begin{lemma}[Compositions and base changes of fpqc morphisms] \label{lemma: fpqc_compositions_and_base_changes}
-                        Since fpqc morphisms are first and foremost affine-schematic, let us restrict our attention to fpqc morphisms between affine scheme (or actually, to fpqc ring maps).
-                        \begin{enumerate}
-                            \item \textbf{(Compositions):} Compositions of fpqc ring maps, such as:
+                                            \right)
+                                        $$
+                                    coincide with those of $h_{\Spec R}$, which means $h_{\Spec R}$ is the desired coequaliser. As stated above, this shows that the sieve $\{\Spec R_f \to \Spec R\}_{f \in \calF}$ covers $\Spec R$ precisely when $\calF$ generates $R$. 
+                                \end{enumerate}
+                            \item \textbf{(Well-definiteness of Zariski coverages):} 
+                                \begin{enumerate}
+                                    \item \textbf{(Stability under pullbacks):} Let $\calU_{/\Spec R}$ a covering sieve on an object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$, viewed as a certain subfunctor:
+                                        $$\pi: \calU_{/\Spec R} \hookrightarrow h_{\Spec R}$$
+                                    of $h_{\Spec R}$. Consider, then, the pullback $\varphi^* \calU_{/\Spec R}$ of $\calU_{/\Spec R}$ along an arrow $\varphi: \Spec R' \to \Spec R$, which to us shall be the literal pullback, but in the presheaf category, i.e.:
+                                        $$\varphi^* \calU_{/\Spec R} \cong \calU_{/\Spec R} \x_{\pi, h_{\Spec R}, \varphi} h_{\Spec R'}$$
+                                    (cf. convention \ref{conv: pullback_and_pushforward_sieves}). $\varphi^* \calU_{/\Spec R}$ is certainly a sieve on $h_{\Spec R'}$, thanks to the fact that limits commute, but does it cover $h_{\Spec R'}$ ? Well actually, yes, and this is precisely thanks to the fact that ring homomorphisms are linear and multiplicative maps that respect the multiplicative identity: should $\{f_{\alpha}\}_{\alpha \in A}$ be a generating set of $R$, its image under $\varphi: R \to R'$ should also be a set of generators, because:
+                                        $$1_{R'} = \varphi(1_R) = \varphi\left(\sum_{\alpha \in A} r_{\alpha} f_{\alpha}\right) = \sum_{\alpha \in A} \varphi(r_{\alpha}) \varphi(f_{\alpha})$$
+                                    and then, we can just take $\calU_{/\Spec R'}$ to be the set of arrows:
+                                        $$\{\Spec R'_{\varphi(f_{\alpha})} \to \Spec R'\}_{\alpha \in A}$$
+                                    \item \textbf{(Stability under pushforwards):} Let $\calU_{/\Spec R'}$ be a sieve covering an object $\Spec R'$ of ${}^{k/}\Comm\Alg^{\op}$ and $\varphi: \Spec R' \to \Spec R$ be some arrow. By applying the pushforward functor $\varphi_!$ to the kernel pair of $\calU_{/\Spec R'}$:
+                                        $$
+                                            \begin{tikzcd}
+                                            	{\colim \calU_{/\Spec R'} \x_{h_{\Spec R'}} \colim \calU_{/\Spec R'}} & {\colim \calU_{/\Spec R'}} & {h_{\Spec R'}}
+                                            	\arrow["\pr_2"', shift right=2, from=1-1, to=1-2]
+                                            	\arrow["\pr_1", shift left=2, from=1-1, to=1-2]
+                                            	\arrow[dashed, from=1-2, to=1-3]
+                                            \end{tikzcd}
+                                        $$
+                                    one gets the following diagram:
+                                        $$
+                                            \begin{tikzcd}
+                                            	{\varphi_!\left(\colim \calU_{/\Spec R'} \x_{h_{\Spec R'}} \colim \calU_{/\Spec R'}\right)} & {\varphi_!\left(\colim \calU_{/\Spec R'}\right)} & {h_{\Spec R}}
+                                            	\arrow["\varphi_!\pr_2"', shift right=2, from=1-1, to=1-2]
+                                            	\arrow["\varphi_!\pr_1", shift left=2, from=1-1, to=1-2]
+                                            	\arrow[dashed, from=1-2, to=1-3]
+                                            \end{tikzcd}
+                                        $$
+                                    which is also a coequaliser diagram, thanks to the fact that the left-adjoint $\varphi_!$ preserves colimits (also, note that we have $\varphi_!(h_{\Spec R'}) \cong h_{\Spec R}$ thanks to the formula for pushforwards given in convention \ref{conv: pullback_and_pushforward_sieves}). It then remains to show that the second diagram, like the first one, is the coequaliser of a kernel pair.  
+                                \end{enumerate}
+                            \item \textbf{(Subcanonicity):} We refer the reader to definition \ref{def: C_valued_sheaves}, so as to have a single notion of sheaves that might be agreed upon for the sake of this discussion.
+                            
+                            A coverage $J$ on a site $(\C, J)$ (that may or may not be small!) is said to be subcanonical if and only if all representable presheaves on the underlying category of that site are sheaves on $(\C, J)$, and so let us verify that this is indeed the case for Zariski sites. To that end, let us begin by fixing a representable presheaf $h_{\Spec A}$ along with an object $\Spec R$ of ${}^{k/}\Comm\Alg^{\op}$ and an associated \textit{covering} Zariski sieve:
+                                $$\calU_{/\Spec R} := \{\Spec R_f \to \Spec R\}_{f \in \calF}$$
+                            which shall be where we will be evaluating $h_{\Spec A}$. Then, let us apply definition \ref{def: C_valued_sheaves} directly and consider the following:
                                 $$
-                                    \begin{tikzcd}
-                                    	A & B & C
-                                    	\arrow["\varphi", from=1-1, to=1-2]
-                                    	\arrow["\psi", from=1-2, to=1-3]
-                                    \end{tikzcd}
+                                    \begin{aligned}
+                                        h_{\Spec A}\left(\underset{f \in \calF}{\colim} h_{\Spec R_f}\right) & \cong \underset{f \in \calF}{\lim} h_{\Spec A}(h_{\Spec R_f})
+                                        \\
+                                        & \cong \underset{f \in \calF}{\lim} {}^{k/}\Comm\Alg_k^{\op}(\Spec R_f, \Spec A)
+                                        \\
+                                        & \cong \underset{f \in \calF}{\lim} {}^{k/}\Comm\Alg(A, R_f)
+                                        \\
+                                        & \cong {}^{k/}\Comm\Alg\left(A, \underset{f \in \calF}{\lim} R_f\right) \: \text{(cf. lemma \ref{lemma: limits_indexed_by_generators})}
+                                    \end{aligned}
                                 $$
-                            are fpqc themselves too.
-                            \item \textbf{(Base changes):} Let $\varphi: A \to B$ be an fpqc ring map and let $\psi: A \to A'$ be an arbitrary homomorphism between commutative rings. Then, the pushout $B \tensor_{\varphi, A, \psi} A'$ is fpqc over $A'$.  
+                            (for an explanation of why we have been able to exchange homs and (co)limits in the above manner, we refer the reader to \cite{nlab:hom-functor_preserves_limits}). Then, we can use the assumption that $\calU_{/\Spec R}$ covers $\Spec R$ - which is the case if and only if the set $\calF$ generates $R$ - to obtain one last isomorphism:
+                                $${}^{k/}\Comm\Alg\left(A, \underset{f \in \calF}{\lim} R_f\right) \cong {}^{k/}\Comm\Alg(A, R)$$
+                            which tells us that:
+                                $$h_{\Spec A}\left(\underset{f \in \calF}{\colim} h_{\Spec R_f}\right) \cong h_{\Spec A}(\Spec R)$$
+                            By definition \ref{def: C_valued_sheaves}, this implies that $h_{\Spec A}$ is a sheaf with respect to the Zariski coverage on ${}^{k/}\Comm\Alg^{\op}$, and because $A$ was chosen arbitrarily, we have managed to show that ${}^{k/}\Comm\Alg^{\op}_{\Zar}$ is a subcanonical site. 
                         \end{enumerate}
-                    \end{lemma}
-                        \begin{proof}
-                            \noindent
-                            \begin{enumerate}
-                                \item \textbf{(Compositions):}  
-                                    \begin{enumerate}
-                                        \item \textbf{(Faithful flatness):} First of all, because a ring map:
-                                            $$\varphi: A \to B$$
-                                        is faithfully flat if and only if the functor $- \tensor_A B_0$ is faithful and left-exact, where $B_0 \cong \frac{B}{\ker \varphi}$, and because compositions of faithful (respectively left-exact) functors are also faithful (respectively left-exact), compositions of faithfully flat ring maps (or more generally, faithfully flat module homomorphisms for that matter) need to also be faithfully flat.
-                                        \item \textbf{(Quasi-compactness):} Since $B$ is quasi-compact over $A$ and $C$ is quasi-compact over $B$, by assumption, we get via an application of remark \ref{remark: quasi_compact_affine_schematic_morphisms} that:
-                                            $$B \cong \frac{A[x_1, ..., x_n]}{\ker \alpha}$$
-                                        where $\alpha: A[x_1, ..., x_n] \to B$ is some surjective ring homomorphism, and subsequently, that:
-                                            $$C \cong \frac{B[y_1, ..., y_m]}{\ker \beta} \cong \frac{\frac{A[x_1, ..., x_n, y_1, ..., y_m]}{\ker \alpha}}{\ker \beta} \cong \frac{A[x_1, ..., x_n, y_1, ..., y_m]}{\ker \alpha + \ker \beta}$$
-                                        Then clearly, $C$ is finitely generated as an $A$-algebra, and therefore the composition:
-                                            $$\psi \circ \varphi: A \to C$$
-                                        is quasi-compact.
-                                    \end{enumerate}
-                                By putting everything together, we get that compositions of fpqc morphisms are necessarily fpqc themselves.
-                                \item \textbf{(Base changes):} From above, we know there exists a natural integer $n$ along with a surjective $A$-algebra homomorphism:
-                                    $$\alpha: A[x_1, ..., x_n] \to B$$
-                                Then, let us make use of the fact that the functor $- \tensor_A A'$, by virtue of being a left-adjoint, preserves colimits to see that pushing out along $\psi: A \to A'$ preserves the surjectiveness of $\alpha$ into the following surjective $A'$-algebra homomorphism:
-                                    $$\alpha': A'_0[x_1, ..., x_n] \to B \tensor_{\varphi, A, \psi} A'$$
-                                wherein $A'_0 \cong \frac{A'}{\ker \psi}$. It thus remains to show that $\frac{A'_0[x_1, ..., x_n]}{\ker \alpha}$ is faithfully flat over $A'$. For that, consider firstly the following:
-                                    $$
-                                        \begin{aligned}
-                                            \frac{A'_0[x_1, ..., x_n]}{\ker \alpha} & \cong \frac{\frac{A'[x_1, ..., x_n]}{\ker \psi}}{\ker \alpha}
-                                            \\
-                                            & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi + \ker \alpha}
-                                            \\
-                                            & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi} \tensor_A \frac{A'[x_1, ..., x_n]}{\ker \alpha}
-                                            \\
-                                            & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi} \tensor_A \left(\frac{A[x_1, ..., x_n]}{\ker \alpha} \tensor_A \frac{A'}{\ker \psi}\right)
-                                            \\
-                                            & \cong \frac{A[x_1, ..., x_n]}{\ker \alpha} \tensor_A \frac{A'}{\ker \psi}
-                                            \\
-                                            & \cong B \tensor_A \frac{A'}{\ker \psi}
-                                        \end{aligned}
-                                    $$
-                                
-                            \end{enumerate}
-                        \end{proof}
+                    \end{proof}
+                    
+                \begin{corollary}[Zariski-open frames and small Zariski sites] \label{coro: zariski_frames_and_sites}
+                    Thanks to lemma \ref{lemma: localisations_are_open} and lemma \ref{lemma: localisations_are_open}, we know that a Zariski sieve such as $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ is actually no different from a covering of the topological space $\Spec R$ by the Zariski-open subsets $D_R(f_{\alpha})$. In particular, this implies that the coverage on the frame $\Ouv(\Spec R)$ of Zariski-open subsets of $\Spec R$ (as defined in definition \ref{def: zariski_open}) is the same as that on the Zariski site ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ associated to $\Spec R$. Note that even though every frame is a site, we can \textit{not} simply just claim that there is the following equivalence of categories for all commutative rings $R$:
+                        $$\Ouv(\Spec R) \cong {}^{R/}\Comm\Alg^{\op}$$
+                    As a matter of fact, these two categories are \textit{not} equivalent, seeing how objects of $\Ouv(\Spec R)$ are necessarily of the form $\bigcup_{f \in \calF} D_R(f)$ (with $\calF$ some subset of $R$), whereas objects of ${}^{R/}\Comm\Alg_{\Zar}^{\op}$ are only in bijection with prime spectra of commutative $R$-algebras (one might also point out that $\Ouv(\Spec R)$ is small, while ${}^{R/}\Comm\Alg^{\op}$ is not), which may or may not be open subsets of $\Spec R$. 
+                    
+                    As a consequence of this equivalence of coverages, Zariski sheaves can be thought of as simply sheaves on certain topological spaces. See remark \ref{remark: big_and_small_zariski_sites} for more.
+                \end{corollary}
+                \begin{remark}[Big and small Zariski sites] \label{remark: big_and_small_zariski_sites}
+                    The notion of Zariski sites as proven to exist in theorem \ref{theorem: zariski_coverages}, while perfectly reasonable, also comes hand-in-hand with a bit of a technical difficulty: sheaf topoi - such as the Zariski topoi that we will eventually define in defintion \ref{def: zariski_topoi} - are only well-defined over small sites, while the category of commutative rings (and slices thereof) is only locally small, not small. Thus, we need to somehow tweak $\Cring$ in a manner such that the outcome is a small category - which shall be suggestively denoted by $\Cring^{\petit}$ - from which we can build a small site $\Cring^{\petit, \op}_{\Zar}$ whose coverage is the Zariski coverage (cf. theorem \ref{theorem: zariski_coverages}).
+                    
+                    The claim is as follows: \textit{the desired small category $\Cring^{\petit}$ is the full subcategory of $\Cring$ spanned by finitely presented objects}. First of all, notice that to each finitely presented object $P$ of $\Cring$, there is an associated coequaliser diagram of \textit{finitely} generated free objects $E$ and $F$ as below:
+                        $$
+                            \begin{tikzcd}
+                            	E & F & P
+                            	\arrow[shift right=2, from=1-1, to=1-2]
+                            	\arrow[shift left=2, from=1-1, to=1-2]
+                            	\arrow[dashed, from=1-2, to=1-3]
+                            \end{tikzcd}
+                        $$
+                    and thus the cardinality of the collection of finitely presented objects of $\Cring$ is \textit{at most} that of $\N \x \N$, which we note to be a set. As a consequence of this, the cardinality of the collection of morphisms between finitely presented objects of $\Cring$ can be at most that of, $(\N \x \N) \x (\N \x \N)$, which is also a set. Lastly, note that morphisms between finitely presented objects of $\Cring$ are just ring homomorphisms. Thus, finitely presented objects of $\Cring$ form a small full subcategory thereof, which as stated, shall be denoted by $\Cring^{\petit}$. 
+                    
+                    Now, does $\Cring^{\petit, \op}$ admit a Zariski coverage as in theorem \ref{theorem: zariski_coverages} ? Well, obviously yes, because Zariski covering sieves are collections of arrows $\{\Spec R_{f_{\alpha}} \to \Spec R\}_{\alpha \in A}$ such that the set $\{f_{\alpha}\}_{\alpha \in A}$ generates $R$, and clearly, the algebras $R_{f_{\alpha}}$ are finitely generated over $R$ (i.e. they are objects of $\Cring^{\petit}$). And thus we have constructed the desired small Zariski site $\Cring^{\petit, \op}_{\Zar}$. 
+                    
+                    One thing to note about the small Zariski site $\Cring^{\petit, \op}_{\Zar}$ is that sheaves thereon are exactly sheaves on $\Ouv(\Spec \Z)$, thanks to the equivalence of coverages elaborated on in corollary \ref{coro: zariski_frames_and_sites} and thanks to the fact that the coverage on $\Cring^{\petit, \op}_{\Zar}$ is the same as that on $\Cring^{\op}_{\Zar}$. In other words, one has the following equivalence of sheaf topoi:
+                        $$(\Spec \Z)_{\Zar} \cong \Sh_{\Sets}\left(\Ouv(\Spec \Z)\right)$$
+                    (refer to definition \ref{def: zariski_topoi} for the establishment of the notation $(\Spec \Z)_{\Zar}$). However, the underlying sites are certainly \textit{not} equivalent, as it was the case with the big Zariski site. This is because there are finitely presented commutative rings that can not be obtained via localisations of $\Z$ (consider $\Z[x]$, with $x$ a formal variable, for example). 
+                \end{remark}
+                \begin{example}[A Zariski-open subset of the complex affine plane]
+                    Consider the localisation $\bbC[x, y]_{(x, y)}$, wherein we note that $(x, y)$ is a prime ideal of $\bbC[x,y]$. 
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{Figures/localisation.png}
+                            \caption{Localisation produces Zariski-open subsets (\cite{risingsea}, figure 3.5)}
+                            \label{fig: zariski_open_via_localisation}
+                        \end{figure}
+                \end{example}
                 
-                    There are certain set-theoretic issues related to the fpqc topology, stemming from the fact that fpqc coverings are not locally finitely presented (smooth, \'etale, and fppf coverings are locally finitely presented for more or less trivial reasons; for an explanation of why Zariski coverings are locally finitely presented, see theorem \ref{theorem: zariski_coverages}). But to address and subsequently mitigate them, we will first need some notions from set theory, as well as a demonstration of how this topology is not very well-behaved.
+                \begin{remark}[A reminder about limits of sheaves and of presheaves] \label{remark: sheaf_limits}
+                    A Grothendieck topos $\E$ (i.e. a sheaf topos) is, \href{https://ncatlab.org/nlab/show/Grothendieck+topos#definition}{\underline{by definition}}, one equipped with a \href{https://ncatlab.org/nlab/show/geometric+embedding}{\underline{geometric embedding}} into a presheaf topos:
+                        $$
+                            \begin{tikzcd}
+                            	\E & {\Psh_{\Sets}(\C)}
+                            	\arrow[""{name=0, anchor=center, inner sep=0}, shift right=2, hook, from=1-1, to=1-2]
+                            	\arrow[""{name=1, anchor=center, inner sep=0}, "{}^{\sh}(-)"', shift right=2, from=1-2, to=1-1]
+                            	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                            \end{tikzcd}
+                        $$
+                    and due to this definition, or more precisely, because of the fact that the left-adjoint component of a geometric morphism (the sheafification functor ${}^{\sh}(-)$ in this situation) is left-exact by definition, and that \href{https://ncatlab.org/nlab/show/adjoints+preserve+\%28co-\%29limits}{\underline{right-adjoints \textit{a priori} preserve limits}}, one can show that limits of sheaves and of their \say{underlying presheaves} coincide. Particularly, in the event that \say{the} underlying site of $\E$ - say $(\C, J)$ - is \textit{subcanonical} and \textit{complete}, this would force the full subcategory of $\E$ consisting representable sheaves on $(\C, J)$ to be complete as well, thanks to the fact that \href{https://ncatlab.org/nlab/show/hom-functor+preserves+limits}{\underline{the Yoneda embedding preserves limits}}. 
+                \end{remark}
+                \begin{lemma}[On the completeness of affine scheme categories] \label{lemma: affine_scheme_limits} \index{Limits! of affine schemes}
+                    Fix a base commutative ring $k$. Then, the category $\Sch^{\aff}_{/\Spec k}$ of affine schemes over $\Spec k$ is complete.
+                \end{lemma}
+                    \begin{proof}
+                        This comes directly from the discussion in remark \ref{remark: sheaf_limits}, since the Zariski site ${}^{k/}\Comm\Alg^{\op}_{\Zar}$ is subcanonical (cf. corollary \ref{theorem: zariski_coverages}) and since the category ${}^{k/}\Comm\Alg$ of commutative $k$-algebras is cocomplete (and hence the opposite category ${}^{k/}\Comm\Alg^{\op}$ is complete).
+                    \end{proof}
                     
-                    \begin{example}[An fpqc pathology]
-                        
-                    \end{example}
-                    
-                    \begin{definition}[Weak multi-limits and WISC] \label{def: weak_multilimits}
+            \subsubsection{\'Etale and smooth descent} \label{paragraph: etale_descent} \index{Topology!\'etale} \index{Topology!smooth}
+                \begin{remark}[Smooth sieves and \'etale sieves] \label{remark: smooth_and_etale_sieves}
+                    For now extrapolate from proposition \ref{prop: compositions_and_base_changes_of_smooth_morphisms} and corollary \ref{coro: compositions_and_base_changes_of_etale_morphisms}.
+                \end{remark}
+            
+            \subsubsection{Fppf descent} \index{Topology!fppf}
+            
+            \subsubsection{Fpqc descent} \index{Topology!fpqc}
+                Before we discuss the so-called fpqc topology, let us first define the term \say{fpqc}, as well as investigate some basic properties of fpqc morphisms.
+                
+                \begin{definition}[Fpqc morphisms] \label{def: fpqc_morphisms} 
+                    Fix a base commutative ring $k$. An affine-schematic morphism:
+                        $$f: \calY \to \calX$$
+                    of prestacks in $\Pre\Stk_{/\Spec k}$ is said to be \textbf{fpqc} (which stands for \textit{fid\`element plat et quasi-compacte} and translate into \say{faithfully flat and quasi-compact}) if and only if the corresponding $k$-algebra map is (surprise!) faithfully flat and quasi-compact in the Zariski topology.
+                \end{definition}
+                
+                \begin{remark}[Quasi-compact affine-schematic morphisms] \label{remark: quasi_compact_affine_schematic_morphisms} 
+                    Let $k$ be a base commutative ring and let $R$ be a $k$-algebra defined by the ring homomorphism:
+                        $$\varphi: k \to R$$
+                    Now, recall that a scheme (or rather, its structural morphism) is \textbf{quasi-compact} if and only if any Zariski covering thereof can be refined by a finite one. Then, following theorem \ref{theorem: zariski_coverages}, a ring map such as $\varphi: k \to R$ is quasi-compact (or rather, the corresponding morphism of affine schemes is) if and only if any Zariski covering of $\Spec R$ can be decomposed into a finite cover of the following form:
+                        $$\coprod_{i = 1}^n \Spec R_{x_i} \to \Spec R$$
+                    and thus $R$ must be finitely generated by $n$ generators $x_1, ..., x_n$ as a $k$-algebra. By definition, this means that there exists a surjective ring homomorphism:
+                        $$\pi: k[x_1, ..., x_n] \twoheadrightarrow R$$
+                    which is equivalent to saying $R$ is isomorphic to $\frac{k[x_1, ..., x_n]}{\ker \pi}$, thanks to the First Isomorphism Theorem. 
+                \end{remark}
+                \begin{lemma}[Compositions and base changes of fpqc morphisms] \label{lemma: fpqc_compositions_and_base_changes}
+                    Since fpqc morphisms are first and foremost affine-schematic, let us restrict our attention to fpqc morphisms between affine scheme (or actually, to fpqc ring maps).
+                    \begin{enumerate}
+                        \item \textbf{(Compositions):} Compositions of fpqc ring maps, such as:
+                            $$
+                                \begin{tikzcd}
+                                	A & B & C
+                                	\arrow["\varphi", from=1-1, to=1-2]
+                                	\arrow["\psi", from=1-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        are fpqc themselves too.
+                        \item \textbf{(Base changes):} Let $\varphi: A \to B$ be an fpqc ring map and let $\psi: A \to A'$ be an arbitrary homomorphism between commutative rings. Then, the pushout $B \tensor_{\varphi, A, \psi} A'$ is fpqc over $A'$.  
+                    \end{enumerate}
+                \end{lemma}
+                    \begin{proof}
                         \noindent
                         \begin{enumerate}
-                            \item \textbf{(Weak multi-limits):} Let:
-                                $$F: \D \to \C$$
-                            be a diagram in some arbitrary category $\C$. Then, its \textbf{weak multi-limit} is a small set $W$ of cones over $F$ (i.e. functors $\pt \to \C_{/F}$) such that any arbitrary cone $C$ factors through some element of $W$; neither the element of $W$ nor the factorisation itself is required to be unique. 
+                            \item \textbf{(Compositions):}  
+                                \begin{enumerate}
+                                    \item \textbf{(Faithful flatness):} First of all, because a ring map:
+                                        $$\varphi: A \to B$$
+                                    is faithfully flat if and only if the functor $- \tensor_A B_0$ is faithful and left-exact, where $B_0 \cong \frac{B}{\ker \varphi}$, and because compositions of faithful (respectively left-exact) functors are also faithful (respectively left-exact), compositions of faithfully flat ring maps (or more generally, faithfully flat module homomorphisms for that matter) need to also be faithfully flat.
+                                    \item \textbf{(Quasi-compactness):} Since $B$ is quasi-compact over $A$ and $C$ is quasi-compact over $B$, by assumption, we get via an application of remark \ref{remark: quasi_compact_affine_schematic_morphisms} that:
+                                        $$B \cong \frac{A[x_1, ..., x_n]}{\ker \alpha}$$
+                                    where $\alpha: A[x_1, ..., x_n] \to B$ is some surjective ring homomorphism, and subsequently, that:
+                                        $$C \cong \frac{B[y_1, ..., y_m]}{\ker \beta} \cong \frac{\frac{A[x_1, ..., x_n, y_1, ..., y_m]}{\ker \alpha}}{\ker \beta} \cong \frac{A[x_1, ..., x_n, y_1, ..., y_m]}{\ker \alpha + \ker \beta}$$
+                                    Then clearly, $C$ is finitely generated as an $A$-algebra, and therefore the composition:
+                                        $$\psi \circ \varphi: A \to C$$
+                                    is quasi-compact.
+                                \end{enumerate}
+                            By putting everything together, we get that compositions of fpqc morphisms are necessarily fpqc themselves.
+                            \item \textbf{(Base changes):} From above, we know there exists a natural integer $n$ along with a surjective $A$-algebra homomorphism:
+                                $$\alpha: A[x_1, ..., x_n] \to B$$
+                            Then, let us make use of the fact that the functor $- \tensor_A A'$, by virtue of being a left-adjoint, preserves colimits to see that pushing out along $\psi: A \to A'$ preserves the surjectiveness of $\alpha$ into the following surjective $A'$-algebra homomorphism:
+                                $$\alpha': A'_0[x_1, ..., x_n] \to B \tensor_{\varphi, A, \psi} A'$$
+                            wherein $A'_0 \cong \frac{A'}{\ker \psi}$. It thus remains to show that $\frac{A'_0[x_1, ..., x_n]}{\ker \alpha}$ is faithfully flat over $A'$. For that, consider firstly the following:
+                                $$
+                                    \begin{aligned}
+                                        \frac{A'_0[x_1, ..., x_n]}{\ker \alpha} & \cong \frac{\frac{A'[x_1, ..., x_n]}{\ker \psi}}{\ker \alpha}
+                                        \\
+                                        & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi + \ker \alpha}
+                                        \\
+                                        & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi} \tensor_A \frac{A'[x_1, ..., x_n]}{\ker \alpha}
+                                        \\
+                                        & \cong \frac{A'[x_1, ..., x_n]}{\ker \psi} \tensor_A \left(\frac{A[x_1, ..., x_n]}{\ker \alpha} \tensor_A \frac{A'}{\ker \psi}\right)
+                                        \\
+                                        & \cong \frac{A[x_1, ..., x_n]}{\ker \alpha} \tensor_A \frac{A'}{\ker \psi}
+                                        \\
+                                        & \cong B \tensor_A \frac{A'}{\ker \psi}
+                                    \end{aligned}
+                                $$
                             
-                            Every diagram in a small category admits a weak multilimit.
-                            \item \textbf{(Weakly Initial Set of Covers (WISC)):} Weak multi-colimits of empty diagrams (should they exist) are known as \textbf{weakly initial objects}.   
                         \end{enumerate}
-                    \end{definition}
+                    \end{proof}
+            
+                There are certain set-theoretic issues related to the fpqc topology, stemming from the fact that fpqc coverings are not locally finitely presented (smooth, \'etale, and fppf coverings are locally finitely presented for more or less trivial reasons; for an explanation of why Zariski coverings are locally finitely presented, see theorem \ref{theorem: zariski_coverages}). But to address and subsequently mitigate them, we will first need some notions from set theory, as well as a demonstration of how this topology is not very well-behaved.
+                
+                \begin{example}[An fpqc pathology]
+                    
+                \end{example}
+                
+                \begin{definition}[Weak multi-limits and WISC] \label{def: weak_multilimits}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Weak multi-limits):} Let:
+                            $$F: \D \to \C$$
+                        be a diagram in some arbitrary category $\C$. Then, its \textbf{weak multi-limit} is a small set $W$ of cones over $F$ (i.e. functors $\pt \to \C_{/F}$) such that any arbitrary cone $C$ factors through some element of $W$; neither the element of $W$ nor the factorisation itself is required to be unique. 
+                        
+                        Every diagram in a small category admits a weak multilimit.
+                        \item \textbf{(Weakly Initial Set of Covers (WISC)):} Weak multi-colimits of empty diagrams (should they exist) are known as \textbf{weakly initial objects}.   
+                    \end{enumerate}
+                \end{definition}
             
         \subsection{Reconciling the two approaches}
             \subsubsection{Structure sheaves}
@@ -922,12 +921,12 @@
                 \begin{definition}[$\C$-valued sheaves] \label{def: C_valued_sheaves}
                     This definition is an adaptation of definition 2.6 in \cite{nlab:sheaf} so that our sheaves might take values in categories other than $\Sets$.
                     \begin{enumerate}
-                        \item \textbf{($\C$-valued sheaves):} Let $(\S, J)$ be a site (that is not necessarily small, as cases such as $\S \cong \Top$ and $\S \cong \Mfd^{\smooth}_{/\R}$ are interesting in their own rights) and let $\C$ be a category with \textit{enough small limits} and \textit{enough filtered colimits} (the purpose of the second hypothesis is to ensure that stalks, should they exist, are well-defined); note that $\C$ need not be small. Additionally, fix an \textit{arbitrary} object $x$ of $\S$ along with a covering sieve $\U_{/x} \in J$ thereon. Also, let:
+                        \item \textbf{($\C$-valued sheaves):} Let $(\S, J)$ be a site (that is not necessarily small, as cases such as $\S \cong \Top$ and $\S \cong \Mfd^{\smooth}_{/\R}$ are interesting in their own rights) and let $\C$ be a category with \textit{enough small limits} and \textit{enough filtered colimits} (the purpose of the second hypothesis is to ensure that stalks, should they exist, are well-defined); note that $\C$ need not be small. Additionally, fix an \textit{arbitrary} object $x$ of $\S$ along with a covering sieve $\calU_{/x} \in J$ thereon. Also, let:
                             $$j: \S \to \Psh_{\C}(\S)$$
                         be the Yoneda embedding. Then, a \textbf{$\C$-valued sheaf} on $(\S, J)$ is a functor:
                             $$\calF: \S^{\op} \to \C$$
                         such that:
-                            $$\calF x \cong \calF \underset{u \in \U_{/x}}{\colim} ju$$
+                            $$\calF x \cong \calF \underset{u \in \calU_{/x}}{\colim} ju$$
                         \item \textbf{($\C$-topoi):} $\C$-valued sheaves on a given site $(\S, J)$ form a category in the obvious manner. We shall be writing $\Sh_{\C}(\S, J)$ for this category, and such categories will be called \textbf{$\C$-topoi}, even though this is an abuse of terminology.
                     \end{enumerate}
                 \end{definition}
@@ -948,7 +947,7 @@
                     for all element $f \in R$. Any presheaf on $\Ouv(\Spec R)$ that are defined this way is a Zariski sheaf (i.e. a sheaf on the site $\Ouv(\Spec R)$ of Zariski-open subsets of $\Spec R$), and is called \textit{a} \textbf{structure sheaf} on $\Spec R$.
                 \end{proposition}
                     \begin{proof}
-                        Let $\U_{/\Spec R}$ be a sieve on $\Ouv(\Spec R)$ that covers $U$, which is necessarily a set $\{D_R(f_{\alpha}) \hookrightarrow \Spec R\}_{\alpha \in A}$ of open subsets of $\Spec R$ indexed some set $\{f_{\alpha}\}_{\alpha \in A}$ of generators of $R$ (see lemma \ref{lemma: limits_indexed_by_generators} for an explanation of why this is the case). Then, consider the following:
+                        Let $\calU_{/\Spec R}$ be a sieve on $\Ouv(\Spec R)$ that covers $U$, which is necessarily a set $\{D_R(f_{\alpha}) \hookrightarrow \Spec R\}_{\alpha \in A}$ of open subsets of $\Spec R$ indexed some set $\{f_{\alpha}\}_{\alpha \in A}$ of generators of $R$ (see lemma \ref{lemma: limits_indexed_by_generators} for an explanation of why this is the case). Then, consider the following:
                             $$
                                 \begin{aligned}
                                     \calO_{\Spec R}(\Spec R) & \cong \calO_{\Spec R}(D_R(1))
@@ -1057,14 +1056,14 @@
                                 & \cong \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} \Cring^{\petit, \op}(-, P)
                             \end{aligned}
                         $$
-                    (the last isomorphism holds because $\Cring^{\petit}$ is a \textit{full} subcategory of $\Cring$; cf. remark \ref{remark: big_and_small_zariski_sites}), and then, by applying this limit of representables to the colimit of a covering sieve $\U_{/S}$ on an object $S$ of $\Cring^{\petit, \op}_{\Zar}$, we will get:
+                    (the last isomorphism holds because $\Cring^{\petit}$ is a \textit{full} subcategory of $\Cring$; cf. remark \ref{remark: big_and_small_zariski_sites}), and then, by applying this limit of representables to the colimit of a covering sieve $\calU_{/S}$ on an object $S$ of $\Cring^{\petit, \op}_{\Zar}$, we will get:
                         $$
                             \begin{aligned}
-                                \Cring^{\op}(\colim \U_{/S}, R) & \cong \Cring^{\op}\left(-, \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} P\right)
+                                \Cring^{\op}(\colim \calU_{/S}, R) & \cong \Cring^{\op}\left(-, \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} P\right)
                                 \\
-                                & \cong \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} \Cring^{\petit, \op}(\colim \U_{/S}, P)
+                                & \cong \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} \Cring^{\petit, \op}(\colim \calU_{/S}, P)
                                 \\
-                                & = \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} \underset{U \in \U_{/S}}{\lim} \Cring^{\petit, \op}(U, P)
+                                & = \underset{P \in {}^{R/}\Comm\Alg^{\petit, \op}}{\lim} \underset{U \in \calU_{/S}}{\lim} \Cring^{\petit, \op}(U, P)
                             \end{aligned}
                         $$
                     which tells us that the affine scheme $\Cring^{\op}(-, R)$ is a sheaf on $\Cring^{\petit, \op}_{\Zar}$, since the Zariski coverage is subcanonical (cf. theorem \ref{theorem: zariski_coverages}) - which implies that the functors $\Cring^{\petit, \op}(-, P)$ are sheaves on $\Cring^{\petit, \op}_{\Zar}$ - and because limits of sheaves are still sheaves. 
@@ -1508,63 +1507,19 @@
                         By reasoning as above, it is not hard to see why the fibres over $\Spec \Z$ of $\A^n_{\Z}$ are the affine $n$-spaces $\A^n_{\kappa_{\p}}$, with $\p = (0), (p)$, as shown in the figure.
                     \end{enumerate}
                 \end{example}
-            
-        \subsection{A zoo of topoi on \texorpdfstring{$\Cring^{\op}$}{}}
-            \subsubsection{Zariski topoi} \index{Topoi!Zariski}
-                \paragraph{Big and small Zariski topoi}
-                    \begin{theorem}[Small Zariski topoi classify local rings]
-                        Let $k$ be an arbitrary base commutativer ring. Then, the small Zariski topos $(\Spec k)^{\petit}_{\Zar}$ (cf. definition \ref{def: zariski_topoi}) is the \href{https://ncatlab.org/nlab/show/classifying+topos}{\underline{classifying topos}} for the theory of local rings.
-                    \end{theorem}
-                        \begin{proof}
-                            
-                        \end{proof}
-                    
-                    \paragraph{Internal locales and relative spectra} \index{Relative $\Spec$} \index{Schemes!relative affine}
-                    \textit{This entry on relative affine schemes should be read after section \ref{section: schemes} on schemes, and section \ref{section: qcoh} on quasi-coherent modules. Readers who are familiar wit hthe materials therein may ignore this warning}
-                    
-                    So far, we have been exploring the idea that affine schemes are actually little more than objects of a category that is formally dual to some category of commutative algebras (i.e. commutative monoids within a given closed symmetric monoidal category). This while being rather powerful as a geometric characterisation of the theory of commutative rings, is somewhat lacking: particularly, the theory of affine schemes as we have been building it up, is rather local in nature. \todo[inline]{Keep writing introduction}
-                    
-                    \begin{definition}[Relative affine schemes] \label{def: relative_affine_schemes}
-                        Let $k$ be an arbitrary base commutative ring and let $\calY$ be a base prestack on ${}^{k/}\Comm\Alg^{\op}$ (i.e. a category internal to the presheaf topos $(\Spec \Z)$). Then, let us define the category of affine schemes over $\calY$, which we shall denote by $\Sch^{\aff}_{/\calY}$, to be \textit{dual} to the subcategory ${}^{\calY/}\Comm\Alg$ of quasi-coherent commutative monoids internal to the (closed) symmetric monoidal category $\QCoh^*(\calY)$ of quasi-coherent modules on $\calY$). In notations, this reads:
-                            $$\Sch^{\aff}_{/\calY} \cong {}^{\calY/}\Comm\Alg^{\op}$$
-                    \end{definition}
-                    \begin{remark}[Compatibility with the Yoneda-esque approach]
-                        \noindent
-                        \begin{enumerate}
-                            \item \textbf{(Well-definiteness):} In remark \ref{remark: weak_2_yoneda}, we gave an alternate definition of what it means for a prestack on $\Cring^{\op}$ to be an affine scheme over other given base prestack: they are just objects of a certain slice category. But does this formulation agree with that of definition \ref{def: relative_affine_schemes} ? 
-                        
-                            Suppose that we are working over a base prestack $\calY$. First of all, note that objects of $\Sch^{\aff}_{/\calY}$, i.e. affine schemes over $\calY$, are presheaves on $\Cring^{\op}$ themselves, as the category ${}^{\calY/}\Comm\Alg$ of quasi-coherent commutative monoids internal to the symmetric monoidal category of quasi-coherent modules on $\calY$
-                            \item \textbf{(These all seem awfully abstract ...):} Relative affine schemes should best (at least in the opinion of the author) be thought of as objects of categories that are fibres parametrised by the $1$-category $\Pre\Stk$ of prestacks over $\Cring^{\op}$: that is, one should think of categories of relative affine schemes as coming from a prestack:
-                                $$\Sch^{\aff}_{/(-)}: \Pre\Stk^{\op} \to 1-1-1-\Cat$$
-                            This might seem like a rather pointless abstraction, or to put it even more critically, just an abstraction for the sake of abstraction. However, its virtue lies in how the fibres over objects of $\Pre\Stk$ that happen to be affine schemes $\Spec k$ (in the sense of definition \ref{def: zariski_topoi}) would just be the categories $\Sch^{\aff}_{/\Spec k}$, which we have a rather solid handle on. This, incidentally, suggests a remarkable idea: there is a more-or-less functorial way to realise the idea that prestacks are locally affine. In fact, we shall return to this abstraction and analyse it in more details in proposition \ref{prop: relative_Spec_on_schemes}, where we will see how the domain restriction $\Sch^{\aff}_{/(-)}|_{\Sch}$ of the prestack $\Sch^{\aff}_{/(-)}$ to $\Sch$ instead of $\Pre\Stk$ is actually stack on $\Sch_{\Zar}$.
-                        \end{enumerate}
-                    \end{remark}
-                    
-                    \begin{proposition}[Relative $\Spec$ on schemes] \label{prop: relative_Spec_on_schemes}
-                        Let $S$ be a base scheme. Then, the prestack of relative affine schemes:
-                            $$\Sch^{\aff}_{/(-)}|_{\Sch_{/S}}: \Sch_{/S}^{\op} \to 1-1-1-\Cat$$
-                        is a stack on $\Sch_{/S, \Zar}$ (which should be intuitively true, since schemes are covered by affines after all).
-                    \end{proposition}
-                        \begin{proof}
-                            
-                        \end{proof}
-                
-            \subsubsection{\'Etale topoi} \index{Topoi!\'etale}
-            
-            \subsubsection{Fppf topoi} \index{Topoi!fppf}
         
     \section{Schemes} \label{section: schemes}
         \begin{convention}[\textcolor{red}{\underline{\textbf{IMPORTANT}}} Prestacks and stacks] \label{conv: prestacks} \index{Prestacks} \index{Stacks}
             \noindent
             \begin{enumerate}
                 \item \textbf{(The descent-theoretic perspective):} \begin{enumerate}
-                    \item \textbf{(Prestacks):} To us, a \textbf{prestack} on a $1$-category $\C$ will always be a \textit{weak} $2$-functor (i.e. a $2$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological weak $2$-category) into the \href{https://ncatlab.org/nlab/show/bicategory}{\underline{weak $2$-category}} ${}^11-1-1-\Cat$ of small $1$-categories, (ana)functors between them, and (ana-)natural transformations between these (ana-)functors (see definition \ref{def: internal_functors} for the definition of anafunctors, along with an explanation of why this is our chosen definition of ${}^11-1-1-\Cat$). In other terminologies, a prestack is a \href{https://ncatlab.org/nlab/show/pseudofunctor}{\underline{pseudo-functor}} with values in ${}^11-1-1-\Cat$. Prestacks over a given category $\C$ form a $1$-category in an obvious manner; we shall denote it by $\Pre\Stk(\C)$. Actually, for all base categories $\C$, the $1$-category $\Pre\Stk(\C)$ can also be endowed with the structure of a weak $2$-category, determined on the $2$-categorical level by $2$-morphisms which are \href{https://ncatlab.org/nlab/show/strict+2-natural+transformation}{\underline{\textit{strict} $2$-natural transformations}}.
+                    \item \textbf{(Prestacks):} To us, a \textbf{prestack} on a $1$-category $\C$ will always be a \textit{weak} $2$-functor (i.e. a $2$-functor that respects compositions only up to natural isomorphisms) from $\C^{\op}$ (viewed as a tautological weak $2$-category) into the \href{https://ncatlab.org/nlab/show/bicategory}{\underline{weak $2$-category}} ${}^11\-\Cat$ of small $1$-categories, (ana)functors between them, and (ana-)natural transformations between these (ana-)functors (see definition \ref{def: internal_functors} for the definition of anafunctors, along with an explanation of why this is our chosen definition of ${}^11\-\Cat$). In other terminologies, a prestack is a \href{https://ncatlab.org/nlab/show/pseudofunctor}{\underline{pseudo-functor}} with values in ${}^11\-\Cat$. Prestacks over a given category $\C$ form a $1$-category in an obvious manner; we shall denote it by $\Pre\Stk(\C)$. Actually, for all base categories $\C$, the $1$-category $\Pre\Stk(\C)$ can also be endowed with the structure of a weak $2$-category, determined on the $2$-categorical level by $2$-morphisms which are \href{https://ncatlab.org/nlab/show/strict+2-natural+transformation}{\underline{\textit{strict} $2$-natural transformations}}.
                     
                     Additionally, we shall assume the Axiom of Choice (which incidentally, forces us to adopt definition \ref{def: internal_categories}). The advantage in this is that for all base categories $\C$, we will automatically be given a \textit{weak} $2$-equivalence of \textit{weak} $2$-categories:
                         $$\Pre\Stk(\C) \cong \Fib(\C)$$
                     between the weak $2$-category of prestacks on $\C$ and that of fibred categories on $\C$ (see subsection 3.1.3 of \cite{vistoli_descent} for a proof). Logicians might scoff at such a practice, but since choosing cleavages in algebraic geometry is mostly just asking for trouble, we shall try to bear the shame of having Choice.
-                    \item \textbf{(Stacks):} Let us build upon the above notion of prestacks and declare that throughout this book, the term \say{\textbf{stack}} shall mean \say{sheaf of categories}, i.e. a stack is a fibred category which satisfies descent; concretely, a stack $\calX$ over a site $(\C, J)$ is a prestack such that for all objects $X$ of $\C$ and all covering $J$-sieves $\U_{/X}$ thereon, one has the following equivalence of categories:
-                        $$\calX(X) \cong \calX\left(\underset{U \in \U_{/X}}{\colim} h_U\right)$$
+                    \item \textbf{(Stacks):} Let us build upon the above notion of prestacks and declare that throughout this book, the term \say{\textbf{stack}} shall mean \say{sheaf of categories}, i.e. a stack is a fibred category which satisfies descent; concretely, a stack $\calX$ over a site $(\C, J)$ is a prestack such that for all objects $X$ of $\C$ and all covering $J$-sieves $\calU_{/X}$ thereon, one has the following equivalence of categories:
+                        $$\calX(X) \cong \calX\left(\underset{U \in \calU_{/X}}{\colim} h_U\right)$$
                     Stacks on $(\C, J)$ form a full weak $2$-subcategory of the weak $2$-category $\Pre\Stk(\C)$ of prestacks on $\C$, which shall be denoted by $\Stk(\C, J)$. Furthermore, stacks of groupoids (i.e. categories fibred in groupoids that satisfy descent) on small sites $(\C, J)$ form a \href{https://ncatlab.org/nlab/show/(n,1)-topos}{\underline{$(2, 1)$-topos}} which is written $\Sh_{(2,1)}(\C, J)$; occasionally, we might refer to these as sheaves of groupoids; naturally, $\Sh_{(2,1)}(\C, J)$ comes equipped with a \href{https://ncatlab.org/nlab/show/adjoint+\%28infinity\%2C1\%29-functor}{\underline{$(2, 1)$-geometric embedding}} into the weak $2$-category $\Psh_{(2, 1)}(\C)$ of prestacks of groupoids on $\C$.
                 \end{enumerate}
                 We refer the reader to \cite{vistoli_descent} for an exposition to prestacks and stacks (in the above senses) that can hardly improved upon. \cite{riehl_loregian_fibration} may also be used as a supplementary reference for the topics of \href{https://ncatlab.org/nlab/show/Grothendieck+fibration#definition}{\underline{fibration}} and \href{https://ncatlab.org/nlab/show/Grothendieck+construction}{\underline{the Grothendieck construction}}. Finally, we have our own appendix on fibred categories; cf. section \ref{section: moduli_problems}.
@@ -1789,10 +1744,10 @@
                     \end{definition}
                     \begin{remark}[Categories of internal categories] \label{remark: categories_of_internal_categories}
                         Via the above notion of anafunctors and the idea presented in remark \ref{remark: internal_categories_alt_def} that internal categories and monads in span categories are the same thing, one can rather easily show that categories internal to a given ambient category $\E$ (with pullbacks) form a weak $2$-category, which is precisely equivalent to the category of monads in $\Span^{\leq 2}(\E)$. In notations, one writes:
-                            $$1-1-1-\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
+                            $$1\-\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
                     \end{remark}
                     \begin{remark}[Categories as monoids] \label{remark: categories_as_monoids}
-                        Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $1-1-1-\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
+                        Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $1\-\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
                             $$
                                 \begin{tikzcd}
                                 	{C_1 \x_{s, C_0, t} C_1} \\
@@ -1827,7 +1782,7 @@
                                 	\arrow["{\id_{C_0}}", from=1-1, to=2-3]
                                 \end{tikzcd}
                             $$
-                        Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $1-1-1-\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
+                        Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $1\-\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
                     \end{remark}
                     
                     \begin{example}[Examples of internal categories] \label{example: internal_categories}
@@ -1887,7 +1842,7 @@
                                 	\arrow["e", from=2-1, to=2-3]
                                 \end{tikzcd}
                             $$
-                        In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $1-1-1-\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
+                        In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $1\-\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
                     \end{definition}
                     \begin{remark}[On the inverse maps of internal groupoids]
                         Definition \ref{def: internal_groupoids}, while standard, suffers from a few issues. For one, it is not very clear how internal groupoids should be thought of as groups in categories of internal categories. Also, the inverse map defining the structure of each internal groupoid, at least according to definition \ref{def: internal_groupoids}, is rather non-functorial. Luckily, these two problems can be easily resolved. 
@@ -1905,7 +1860,7 @@
                     \end{remark}
                 
                     \begin{definition}[Equivalence relations] \label{def: equivalence_relations}
-                        Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $1-1-1-\Cat$, for instance)
+                        Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $1\-\Cat$, for instance)
                             \begin{enumerate}
                                 \item \textbf{(Binary relations):} A \textbf{binary relation} $R$ from an object $X$ to another object $Y$ of $\E$ is a $1$-span:
                                     $$
@@ -1943,9 +1898,9 @@
                                     	\arrow["t", from=1-1, to=1-2]
                                     \end{tikzcd}
                                 $$
-                            and recall from definition \ref{def: internal_groupoids} that groupoids are nothing but group objects in the category $1-1-1-\Cat(\E)$ that has all finite products. Therefore, it is natural to consider actions of $\scrG$ on other objects $X$ of $\E$, which are just morphisms:
+                            and recall from definition \ref{def: internal_groupoids} that groupoids are nothing but group objects in the category $1\-\Cat(\E)$ that has all finite products. Therefore, it is natural to consider actions of $\scrG$ on other objects $X$ of $\E$, which are just morphisms:
                                 $$\pi: \scrG \x X \to X$$
-                            Given such a morphism, one naturally obtains an internal category of $1-1-1-\Cat(\E)$ - which we shall denote by $[X/G]$ - defined by the following data:
+                            Given such a morphism, one naturally obtains an internal category of $1\-\Cat(\E)$ - which we shall denote by $[X/G]$ - defined by the following data:
                                 $$
                                     \begin{tikzcd}
                                     	\scrG \x X & X \\
@@ -1980,7 +1935,7 @@
              \subsubsection{Geometric stacks}   
                 \paragraph{Quotient stacks}
                     \begin{definition}[Quotient stacks] \label{def: quotient_stacks} \index{Stacks! quotient}
-                        Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $1-1-1-\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
+                        Let $(\C, J)$ be a base site (that is not necessarily small, as sites such as $\Top$ or $\Mfd^{\smooth}$ are very much worth paying attention to when dealing with quotients). Because the category $\Stk(\C, J)$ of $1\-\Cat$-valued stacks on $(\C, J)$ is both complete and cocomplete, we can treat equivalence relations internal to it as though they were their quotients (as coequalisers are universal anyway). Subsequently define the quotient stack $[\calX/R]$ with respect to an equivalence relation:
                             $$
                                 \begin{tikzcd}
                                 	R & \calX \\
@@ -2059,7 +2014,7 @@
                         \begin{proof}
                             Let us divide the proof into two sections, one for each of the two embedding of categories above.
                             \begin{enumerate}
-                                \item Recall that stacks fibred in groupoids are just sheaves of groupoids. Therefore, the category spanned by these objects, namely $\Sh_{(2,1)}(\C, J)$, is a full subcategory of $\Stk(\C, J)$, as $\Grpd$ is a full subcategory of $1-1-1-\Cat$ (since functors preserve invertible arrows), and furthermore, because $\Grpd$ is a complete and cocomplete category, the embedding:
+                                \item Recall that stacks fibred in groupoids are just sheaves of groupoids. Therefore, the category spanned by these objects, namely $\Sh_{(2,1)}(\C, J)$, is a full subcategory of $\Stk(\C, J)$, as $\Grpd$ is a full subcategory of $1\-\Cat$ (since functors preserve invertible arrows), and furthermore, because $\Grpd$ is a complete and cocomplete category, the embedding:
                                     $$
                                         \begin{tikzcd}
                                         	{\Stk(\C, J)} \\
@@ -2095,7 +2050,7 @@
                         \end{proof}
                     
                     \begin{theorem}[$(2, 1)$-sheafification of geometric prestacks] \label{theorem: (2,1)_sheafification_of_geometric_prestacks}
-                        Let $(\C, J)$ be a small site. Then, every weak $2$-geometric embedding of the $(2, 1)$-topos $\Sh_{(2, 1)}(\C, J)$ into the $(2, 1)$-presheaf topos $\Psh_{(2, 1)}(\C, J)$ can be restricted down to a weak $2$-geometric embedding of the weak $2$-category of geometric stacks $\Stk^{\geom}(\C, J)$ into the weak $2$-category of geometric prestacks $\Pre\Stk^{\geom}(\C)$ (i.e. geometric stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $2$-category ${}^21-1-1-\Cat$ of weak $2$-categories: 
+                        Let $(\C, J)$ be a small site. Then, every weak $2$-geometric embedding of the $(2, 1)$-topos $\Sh_{(2, 1)}(\C, J)$ into the $(2, 1)$-presheaf topos $\Psh_{(2, 1)}(\C, J)$ can be restricted down to a weak $2$-geometric embedding of the weak $2$-category of geometric stacks $\Stk^{\geom}(\C, J)$ into the weak $2$-category of geometric prestacks $\Pre\Stk^{\geom}(\C)$ (i.e. geometric stacks on $\C$ equipped with the chaotic topology); pictorially, one might think of this statement as the following diagram being commutative in the weak $2$-category ${}^21\-\Cat$ of weak $2$-categories: 
                             $$
                                 \begin{tikzcd}
                                 	{\Sh_{(2, 1)}(\C, J)} & {\Psh_{(2, 1)}(\C)} \\
@@ -2204,8 +2159,8 @@
                     Now, why would we have to dedicate entire paragraphs to discussing sheaves on $\Top$ ? That is because the theory of Grothendieck topoi takes as input only categories of sheaves over small sites, which means that taking colimits of ringed spaces is not as simple as taking colimits of commutative ring objects internal to $\Sh_{\Sets}(\Top)$ (which we shall henceforth denote by $\Top^{\gros}$ so as to not give the impression that this category is a Grothendieck topos). This is not to say that sheaves can not be defined over big sites: if $(\S, J)$ is a site and if $\C$ is a category that is not necessarily small but has enough \textit{small} limits and enough filtered limits (such as $\Sets$), then a $\C$-valued sheaf on an object $x \in \S$ is a functor:
                         $$F: \S^{\op} \to \C$$
                     such that:
-                        $$Fx \cong \underset{u \in \U_{/x}}{\lim} Fu$$
-                    for all covering $J$-sieves $\U_{/x}$ on $x$ (cf. definition \ref{def: C_valued_sheaves}); the category $\Top^{\gros}$, in particular, is thus well-defined. More importantly, though, how are we going to go about rectifying this issue ? Well, one strategy that might succeed involves us considering not the entirety of the category $\Top$ of topological spaces, but rather, full subcategories thereof whose sizes are bounded by (possibly \href{https://ncatlab.org/nlab/show/inaccessible+cardinal}{\underline{inaccessible}}) cardinals $\kappa$; these full subcategories are hence small. If that is the route that we shall be taking, said full subcategories are going to be denoted by $\Top^{\leq \kappa}$, and because they are small, we can write $\Sh_{\Sets}(\Top^{\leq \kappa})$ without fearing confusions that may arise. But do such small full subcategories actually exist within $\Top$ ? In fact they do, but some topology is required to understand why.
+                        $$Fx \cong \underset{u \in \calU_{/x}}{\lim} Fu$$
+                    for all covering $J$-sieves $\calU_{/x}$ on $x$ (cf. definition \ref{def: C_valued_sheaves}); the category $\Top^{\gros}$, in particular, is thus well-defined. More importantly, though, how are we going to go about rectifying this issue ? Well, one strategy that might succeed involves us considering not the entirety of the category $\Top$ of topological spaces, but rather, full subcategories thereof whose sizes are bounded by (possibly \href{https://ncatlab.org/nlab/show/inaccessible+cardinal}{\underline{inaccessible}}) cardinals $\kappa$; these full subcategories are hence small. If that is the route that we shall be taking, said full subcategories are going to be denoted by $\Top^{\leq \kappa}$, and because they are small, we can write $\Sh_{\Sets}(\Top^{\leq \kappa})$ without fearing confusions that may arise. But do such small full subcategories actually exist within $\Top$ ? In fact they do, but some topology is required to understand why.
                     
                     \begin{definition}[Closure] \label{def: closure}
                         This is essentially \cite[Definition 2.1]{nlab:closure_operator}, but let us state the definition anyway for the sake of having a reference conveniently by.
@@ -2244,7 +2199,7 @@
                                             	\arrow[no head, from=3-2, to=2-2]
                                             \end{tikzcd}
                                         $$
-                                    wherein the elements $\alpha_1, \alpha_2, ...$ are algebraic over $\F_{\p}$, and wherein $x$ is a formal variable (so that $\F_{\p}(x)$ would represent transcendental extensions). The fact that $\Fld$ can be written as such a coproduct is a natural consequence of the pre-established fact that arrows in $\Fld$ are all monic, and the observation that the procedure of forming field extensions respects whatever characteristic one might be working in - the proof is just a routine construction of a coproduct (although this time, in the category ${}_{\bbU}1-1-1-\Cat^{\gros}$ of $\bbU$-large categories) and we shall thus leave it as an exercise for the reader. 
+                                    wherein the elements $\alpha_1, \alpha_2, ...$ are algebraic over $\F_{\p}$, and wherein $x$ is a formal variable (so that $\F_{\p}(x)$ would represent transcendental extensions). The fact that $\Fld$ can be written as such a coproduct is a natural consequence of the pre-established fact that arrows in $\Fld$ are all monic, and the observation that the procedure of forming field extensions respects whatever characteristic one might be working in - the proof is just a routine construction of a coproduct (although this time, in the category ${}_{\bbU}1\-\Cat^{\gros}$ of $\bbU$-large categories) and we shall thus leave it as an exercise for the reader. 
                                 \end{enumerate}
                             Even more interesting are the ramifications of these two observations. For instance, one can seek to understand the category of fields via understanding the individual towers of extensions inside the posets $\Fld_{\F_{\p}}$ (or coslices thereof). Particularly, when one tries to do so, one thing will become abundantly obvious: these posets of towers of field extensions behave very similarly to posets of open subsets of a give topological space. In fact, they are frames (firstly by virtue of already being posets) whose meet operation is given by intersections of fields extensions and whose join operation is given by tensor products of field extensions, both over some fixed common base field. 
                                 
