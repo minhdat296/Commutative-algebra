@@ -1,0 +1,71 @@
+\section{The trace formula}
+    \subsection{The functional equation via Frobenii}
+        \subsubsection{L-functions}
+            Let us start the discussion by defining so-called $L$-functions  and examine some of the relevant properties that they exhibit. 
+                
+            \begin{definition}[Selberg $L$-functions] \label{def: selberg_L_functions} \index{L-functions}
+                A \textbf{Selberg $L$-function} or simply, an \textbf{$L$-function} is a \textit{\href{https://en.wikipedia.org/wiki/Analytic_continuation}{\underline{meromorphic continuation}}} $F(s)$ to the entire complex plane (minus poles, of course) of a complex series of the form:
+                    $$l(s) = \sum_{n = 1}^{+\infty} \frac{a_n}{s^n}$$
+                which is \textit{absolutely convergent} on the half-plane $\{s \in \bbC \mid \Re(s) > 1 \}$ and satisfies the following list of properties:
+                    \begin{enumerate}
+                        \item \textbf{(Meromorphy):} $F(s)$ should have at most one pole, and in the event that it does, the only pole should be $s = 1$. In other words, $F(s)$ should admit analytic continuations to $\bbC \setminus \{1\}$.
+                        \item \textbf{(Ramanujan conjecture):} For all $\e > 0$, it should (conjecturally) be the case that:
+                            $$a_1 = 1$$
+                        and:
+                            $$a_n \ll n^{\e}$$
+                        for all $n > 1$. 
+                        \item \textbf{(Functional equation):} Let $\Gamma(z)$ be the \href{https://en.wikipedia.org/wiki/Gamma_function}{\underline{Gamma function}} and let us require that every $L$-function $F(s)$ admit a so-called \textbf{gamma factor} $\gamma(s)$:
+                            $$\gamma(s) := Q^s \prod_{j = 1}^N \Gamma(\omega_j s + \mu_j)$$
+                        wherein $Q, \omega_j > 0$ and $\mu_j \in \{z \in \bbC \mid \Re(z) \geq 0\}$, along with a so-called \textbf{root number} $\alpha$ on the unit circle (i.e. a rotational factor) such that there exists a functional $\Phi \in \Func\left(\calM^1(\bbC, \{1\}), \bbC\right)$ (with $\calM^1(\bbC, \{1\})$ the set of all meromorphic functions with the only \textit{possible} pole at $1$) satisfying the following equation for all $s \in \bbC \setminus \{1\}$:
+                            $$\Phi[F](s) = \alpha \overline{\Phi[F](1 - \overline{s})}$$
+                        This can be thought of as a sort of symmetry/harmonicity condition imposed upon $L$-function.
+                        \item \textbf{(Euler factorisation):} Over the half-plane $\{s \in \bbC \mid \Re(s) > 1 \}$, the $L$-function $F(s)$ (now simply the series $l(s)$) should also be factorisable into the following factors indexed by a certain set of prime numbers:
+                            $$l(s) = \prod_{\text{$p$ prime}} l_p(s) = \prod_{\text{$p$ prime}} \exp\left( \sum_{n = 1}^{+\infty} \frac{b_{p^n}}{p^{n s}} \right)$$
+                        wherein $b_{p^n} = O(p^{n\theta})$ for some $\theta < \frac12$. This factorisation is known as the \textbf{Euler factorisation}, and is the crucial bridge between complex analysis and number theory.
+                    \end{enumerate}
+            \end{definition}
+            \begin{example}
+                Let $\h_{> 1}$ denote the half-place $\{s \in \bbC \mid \Re(s) > 1\}$. Also, a warning: \textit{$L$-functions are in no way, shape, or form simple creatures!}
+                \begin{enumerate}
+                    \item \textbf{(Dirichlet series):} \index{L-functions! Dirichlet series} Every partial $L$-function, or in other words, every \href{https://en.wikipedia.org/wiki/Dirichlet_series}{\underline{Dirichlet series}} that is absolutely convergent on the half plane $\h_{> 1}$, is tautologically an $L$-function. 
+                    \item \textbf{(The Riemann zeta functions):} \index{L-functions! Zeta functions} The (in)famous Riemann zeta function, which is the analytic continuation of the Dirichlet series:
+                        $$\zeta(s) := \sum_{n = 1}^{+\infty} \frac{1}{n^s}$$
+                    The perceptive reader might have noticed that we have not specified the domain of analytic continuation, and they should have. The only reason that we have not done as we ought to, is because we would like to give our dear readers a chance to attempt the famous exercise commonly referred to as \say{The Riemann Hypothesis}, which ask whether or not the only poles of the Riemann zeta function are the negative even integers and complex numbers with real part $\frac12$. Also, unlike most homework problems which would only earn the student a measly grade, this one actually has a rather sweet small prize of $1$ million dollars attached to it. That's \textit{the} way to earn enough money to buy a house doing maths research if you ask me.
+                    
+                    Let us actually try to show that the meromorphic continuation of the infinite series $\zeta(s)$ is in fact, an $L$-function.
+                        \begin{enumerate}
+                            \item \textbf{(Absolute convergence on $\h_{> 1}$):} Set $s = x + iy$ and consider the following:
+                                $$\sum_{n = 1}^{+\infty} \left|\frac{1}{n^s}\right| = \sum_{n = 1}^{+\infty} |e^{- \log(n) s}| = \sum_{n = 1}^{+\infty} |e^{- \log(n) (x + iy)}|  = \sum_{n = 1}^{+\infty} \left|\frac{1}{n^x} e^{- i \log(n) y}\right| = \sum_{n = 1}^{+\infty} \frac{1}{n^x}$$
+                            Clearly, the series $\sum_{n = 1}^{+\infty} \frac{1}{n^x}$ converges if and only if $x > 1$, i.e. if and only if $\Re(s) > 1$. This proves that $\zeta(s)$ converges absolutely on $\h_{> 1}$.
+                            \item \textbf{(Meromorphy):}
+                                \begin{enumerate}
+                                    \item \textbf{(Holomorphy on $\h_{> 1}$):}
+                                    \item \textbf{(Poles):} Let $\e > 0$ be arbitrary and let $s_0$ be a complex number such that:
+                                        $$\Re(s_0) = 1 + \e$$
+                                    At such a point in the half-plane $\h_{> 1}$ (which we note to be open in $\bbC$), we can evaluate the holomorphic function $\zeta(s)$ by evaluating Cauchy's integral formula around a contour $\gamma(\theta) = s_0 + \delta e^{i\theta}$ where $\delta > 0$:
+                                        $$
+                                            \begin{aligned}
+                                                \zeta(s_0) & = \frac{1}{2\pi i} \oint_{\gamma} \frac{\zeta(s)}{s - s_0} ds
+                                                \\
+                                                & = \frac{1}{2\pi i} \oint_{\gamma} \frac{\sum_{n = 1}^{+\infty} \frac{1}{n^s}}{s - s_0} ds
+                                                \\
+                                                & = \frac{1}{2\pi i} \sum_{n = 1}^{+\infty} \oint_{\gamma} \frac{e^{- \log(n) s}}{s - s_0} ds
+                                                \\
+                                                & = \frac{1}{2\pi i} \sum_{n = 1}^{+\infty} \int_0^{2\pi} \frac{e^{-\log(n) (s_0 + \delta e^{i\theta})}}{(s_0 + \delta e^{i\theta}) - s_0} ie^{i\theta} d\theta 
+                                                \\
+                                                & = \frac{1}{2\pi i} \sum_{n = 1}^{+\infty} \int_0^{2\pi} \frac{e^{-\log(n) (s_0 + \delta e^{i\theta})}}{\delta e^{i\theta}} ie^{i\theta} d\theta
+                                                \\
+                                                & = \frac{1}{2\pi \delta} \sum_{n = 1}^{+\infty} \int_0^{2\pi} e^{-\log(n) (s_0 + \delta e^{i\theta})} d\theta
+                                            \end{aligned}
+                                        $$
+                                \end{enumerate}
+                            \item \textbf{(Ramanujan conjecture):}
+                            \item \textbf{(Functional equation):}
+                            \item \textbf{(Euler factorisation):}
+                        \end{enumerate}
+                \end{enumerate} 
+            \end{example}
+
+\section{Rationality of the zeta functions}
+    
+\section{The Riemann Hypothesis over finite fields}

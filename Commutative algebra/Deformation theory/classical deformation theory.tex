@@ -1,0 +1,87 @@
+\section{Classical deformation theory}
+    \subsection{Deformation of schemes}
+        \subsubsection{An obesity epidemic among Artinian rings}
+            Since the notion is somewhat less popular than that of being Noetherian, let us first recall what it means for a commutative ring to be Artinian, and what the topological consequences of this condition are.
+            
+            \begin{definition}[Artinian rings] \label{def: artinian_rings} \index{Artinian rings}
+                A commutative ring $\Lambda$ is said to be \textbf{Artinian} if and only if there exist no non-terminating descending chain of ideals (up to bijections, of course). Alternatively, since ideals of commutative rings corespond to Zariski-closed sets, one can define Artinian rings $\Lambda$ as those whose prime spectra $|\Spec \Lambda|$ are topological spaces with no non-terminating \textit{ascending} chains of closed subsets. 
+                \\
+                It is not hard to see that for every given base commutative ring $R$ there is a category whose objects are local Artinian $R$-algebras and whose morphisms are local homomorphisms between them. We shall denote this category by ${}^{R/}\Comm\Alg^{\loc, \Art}$. Furthermore, for each $R$-algebra $k$ that is a field, there is a corresponding full subcategory of ${}^{R/}\Comm\Alg^{\loc, \Art}$, which we shall denote by ${}^{R/}\Comm\Alg_{/k}^{\loc, \Art}$ spanned by local Artinian $R$-algebras whose residue field is $k$. 
+            \end{definition}
+            
+            \begin{proposition}[Basic properties of local Artinian rings] \label{prop: artinian_rings_properties}
+                In deformation theory, we are greatly interested in local Artinian rings, for reasons that we shall divulge later (in remark \ref{remark: why_local_artinian_rings}), so let us try to establish some elementary and (hopefully) geometrically intuitive properties of theirs.
+                    \begin{enumerate}
+                        \item Quotients and localisations of Artinian rings are also Artinian.
+                        \item \cite[\href{https://stacks.math.columbia.edu/tag/00J6}{Tag 00J6}]{stacks} Finitely generated algebras over fields are Artinian.
+                        \item A local Artinian ring $(\Lambda, \m)$ with residue field $\kappa$ is a finitely generated $\kappa$-algebra and admits the splitting:
+                            $$\Lambda \cong \kappa \oplus \m$$
+                        \item \cite[\href{https://stacks.math.columbia.edu/tag/00J7}{Tag 00J7}]{stacks} Artinian rings only have finitely many maximal ideals.
+                        \item \cite[\href{https://stacks.math.columbia.edu/tag/00J8}{Tag 00J8}]{stacks} Let $A$ be an Artinian ring. Then, its Jacobson radical is nilpotent. In fact, its Jacobson radical shall be the same as its nilradical.
+                        \item \cite[\href{https://stacks.math.columbia.edu/tag/00JA}{Tag 00JA}]{stacks} Any commutative ring with finitely many maximal ideals and locally nilpotent Jacobson radical (such as Artinian rings) can be decomposed into the direct sum of its localisations at the maximal ideals. Furthermore, any prime ideal in such a ring is automatically maximal.
+                        \item \cite[\href{https://stacks.math.columbia.edu/tag/00JB}{Tag 00JB}]{stacks} A commutative ring $A$ is simultaneously Artinian and Noetherian if and only if $A$ has finite length as a module over itself. 
+                    \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item Let $A$ be an Artinian ring, which we shall view as the Artinian toplogical space $|\Spec A|$. If we would recall that localisations and quotients of $A$ correspond to Zariski-open and Zariski-closed subsets of $|\Spec A|$ respectively, then we would see how localisations and quotients of Artinian rings being Artinian themselves is entirely evident as a topological phenomenon. 
+                        \item Let $k$ be a field and let $A$ be a finitely generated $k$-algebra. Such an algebra is, first and foremost, a finite-dimensional $k$-vector space, and ideals of which are (necessarily finite-dimensional) vector subspaces. This tells us that all descending chains of $A$-ideals are just certains chains of finite-dimensional vector subspaces of the finite-dimensional vector space $A$; they therefore must all be finite length, and they thus all terminate. This means that $A$ is Artinian by definition.
+                        \item First of all, we need to show that $\Lambda$ is an algebra over its residue field $\kappa$, i.e. that there exists a homomorphism of commutative rings:
+                            $$\kappa \to \Lambda$$
+                        
+                        \item Suppose to the contrary that there is an Artinian ring $A$ with infinitely many distinct maximal ideal, and without loss of generality, let us also assume that it has \textit{countably} many maximal ideals; let us organise them into a sequence $\{\m_n\}_{n \in \N}$. From such a sequence, we can construct the following descending chain of $A$-ideals:
+                            $$\m_0 \supseteq \m_0 \cap \m_1 \supseteq ... \supseteq \bigcap_{n \in \N} \m_n$$
+                        But this is manifestly an \textit{infinite} chain of ideals (note that intersections of ideals are still ideals), which means that its existence violates the Artinian assumption on $A$. Thus, $A$ can have only finitely many maximal ideals.
+                        
+                        One thing to note is that this proof does not imply that every Artinian rings only have finitely many proper ideals. 
+                        \item Recall firstly, that the Jacobson radical of a commutative ring $A$ is defined to be the intersection of all its maximal ideals (which we note to still be an ideal, as intersections of ideals are ideals):
+                            $$\J(A) = \bigcap_{\m \in |\Spm A|} \m$$
+                        and also, that the nilradical of a commutative ring is the same as the intersection of all its prime ideals:
+                            $$\Nil(A) = \bigcap_{\p \in |\Spec A|} \p$$
+                        Then, consider the following (for which we shall assume that the Law of Excluded Middle holds):
+                            $$
+                                \begin{aligned}
+                                    & x \in \Nil(A)
+                                    \\
+                                    \iff & x \in \bigcap_{\p \in |\Spec A|} \p
+                                    \\
+                                    \iff & \bigwedge_{\p \in |\Spec A|} (\p \ni x)
+                                    \\
+                                    \iff & \neg \neg \bigwedge_{\p \in |\Spec A|} (\p \ni x)
+                                    \\
+                                    \iff & \neg \bigvee_{\p \in |\Spec A|} \neg (\p \ni x)
+                                    \\
+                                    \iff & \bigwedge_{\p \in |\Spec A|} \neg \left(\p \in D_A(x)\right)
+                                    \\
+                                    \iff & \bigwedge_{\p \in |\Spec A|} \left(\p \in V_A(x)\right)
+                                \end{aligned}
+                            $$
+                        We can also obtain the following through reasoning similarly:
+                            $$x \in \J(A) \iff \bigwedge_{\m \in |\Spm A|} \left(\m \in V_A(x)\right)$$
+                        and because maximal ideals are prime (which in particular means that $|\Spm A|$ is a subset of $|\Spec A|$), these tell us that:
+                            $$\left(x \in \Nil(A)\right) \implies \left(x \in \J(A)\right)$$
+                        i.e.:
+                            $$\Nil(A) \subseteq \J(A)$$
+                        Now, suppose to the contrary that the complement $\J(A) \setminus \Nil(A)$ is non-empty, and from the above analysis, we know that this would imply the existence of non-maximal primes in $V_A(x)$ for all $x \in \Nil(A)$.  
+                        \item
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+            \begin{corollary}
+                \cite[\href{https://stacks.math.columbia.edu/tag/00JB}{Tag 00JB}]{stacks} Let $A$ be a commutative ring that is simultaneously Artinian and Noetherian. Then, all primes of $A$ are maximal ideals and there are only finitely many of them. As a consequence, $|\Spec A|$ is a totally disconnected set in the Zariski topology consisting merely of finitely many closed points.
+            \end{corollary}
+                \begin{proof}
+                    
+                \end{proof}
+            
+            \begin{definition}[Deformation categories] \label{def: deformation_categories}
+                 
+            \end{definition}
+            \begin{remark}[Why local Artinian rings] \label{remark: why_local_artinian_rings}
+                
+            \end{remark}
+    
+        \subsubsection{Thickenings and deformation functors}
+    
+    \subsection{Deformations of algebraic spaces and algebraic stacks}

@@ -1,0 +1,150 @@
+\section{Logarithmic geometry}
+    \subsection{Log-schemes}
+        \subsubsection{What do we mean by "logarithmic" ?}
+        
+        \subsubsection{Monoided topoi; immersions}
+            \begin{definition}[Ideals] \label{def: ideals_in_symmetric_monoidal_categories}
+                Suppose that $\O$ is a symmetric monoidal category and denote its category of internal monoids by $\Mon(\O)$. An \textbf{ideal} of an object $A \in \Mon(\O)$, should it exist, shall then be nothing but a subobject of $A$ that is \textit{distinct} from $A$ and such that the canonical composite map $I \tensor A \to A \tensor A \to A$ (wherein the last factor map $A \tensor A \to A$ is the multiplication on $A$) admits an epi-mono factorisation:
+                    $$
+                        \begin{tikzcd}
+                        	{I \tensor A} & A \\
+                        	I
+                        	\arrow[two heads, from=1-1, to=2-1]
+                        	\arrow[tail, from=2-1, to=1-2]
+                        	\arrow[from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$    
+            \end{definition}
+            \begin{remark}
+                As usual, there exists a natural partial order of ideals within any commutative monoid.
+            \end{remark}
+            
+            \begin{definition}[Sums and products of ideals with other objects] \label{def: products_and_sums_of_ideals}
+                Let $(\O, \tensor, \1)$ be a symmetric monoidal category and let $I$ be an ideal of some commutative monoid $A \in \Comm\Mon(\O)$. 
+                    \begin{itemize}
+                        \item \textbf{(Products):} Its product with another element $M \in \O$ - henceforth denoted by $IM$ - shall thus be defined as the coequaliser of the kernel pair $I \tensor M \toto A \tensor M$ (of course, should the pullback and pushout, respectively, exist) induced by the inclusion $I \hookrightarrow A$.
+                        \item \textbf{(Sums):} Let $\{M_s\}_{s \in S}$ be a family of objects of $\O$, and suppose that the coproduct $\coprod_{s \in S} M_s$ and product $\prod_{s \in S} M_s$ exist as objects of $\O$. Then, the sum $\sum_{s \in S} M_s$ shall be the coequaliser of the canonical kernel pair $\prod_{s \in S} M_s \toto \coprod_{s \in S} M_s$.  
+                    \end{itemize}
+            \end{definition}
+            \begin{remark}
+                In the event that $(\O, \tensor, \1)$ is furthermore monoidally closed (i.e. it is enriched over itself and any tensoring functor $M \tensor -$ admits the internal hom $[M,- ]$ as its right-adjoint) and that $I$ is flat (i.e. the functor $I \tensor -$ is faithful), one has:
+                    $$IM \cong I \tensor M$$
+                for all $M \in \O$.
+            \end{remark}
+            
+            \begin{proposition}[Sums and products of ideals are ideals] \label{prop: products_and_sums_of_ideals_are_ideals}
+                Sums and products of ideals of a commutative monoid internal to any symmetric monoidal category (in the sense of definition \ref{def: products_and_sums_of_ideals}) are ideals of the same monoid.
+            \end{proposition}
+                \begin{proof}
+                                
+                \end{proof}
+            
+            \begin{definition}[Prime ideals] \label{def: prime_ideals_in_symmetric_monoidal_categories}
+                Suppose that $\O$ is a symmetric monoidal category and denote its category of internal commutative monoids by $\Comm\Mon(\O)$. Then, an ideal $\p$ of some $A \in \Comm\Mon(\O)$ is said to be \textbf{prime} if and only if:
+                    $$IJ \in \Ideals(\p) \implies J \in \Ideals(\p) \vee I \in \Ideals(\p)$$
+                where $\Ideals(-): \O \to \Sets$ is the functor assigning to objects $\O$ their (po)set of equivalence classes of subobjects. The set of prime ideals of a give commutative monoid $A$ is denoted by $\Spec A$.
+            \end{definition}
+            \begin{remark}[Maximal ideals are prime]
+                It is not hard to show that any maximal ideal of a commutative monoid is necessarily prime.
+            \end{remark}
+            
+            For the next proposition, recall that for \textit{any} symmetric monoidal category $\O$, the subcategory $\Comm\Mon(\O)$ of commutative monoids internal to $\O$ is complete and cocomplete.
+            \begin{proposition}[The Zariski topology] \label{prop: zariski_topology_on_symmetric_monoidal_categories}
+                Suppose that $\O$ is a symmetric monoidal category, and fix an object $A \in \Comm\Mon(\O)$. Then, there exists a topology on $\Spec A$ wherein sets given by:
+                    $$V(I) := \{\p \in \Spec A \mid I \in \Ideals(\p)\}$$
+            \end{proposition}
+            \begin{corollary}[Small Zariski sites] \label{coro: small_zariski_sites_in_symmetric_monoidal_categories}
+                We can argue in a manner similar to remark \ref{remark: big_and_small_zariski_sites} to show that should $\O$ be a symmetric monoidal category then the full subcategory $\O^{\fp}$ of finitely presented objects would be small. Therefore, by proposition \ref{prop: zariski_topology_on_symmetric_monoidal_categories}, there naturally exists a small Zariski site $\Comm\Mon(\O)_{\Zar}^{\petit} := \Comm\Mon(\O^{\fp})_{\Zar}$. 
+            \end{corollary}
+            \begin{convention}[Spectral spaces]
+                Any topological space that is locally homeomorphic to the spectrum of a commutative monoid is said to be \textbf{spectral}. The Zariski sheaf topos over a spectral space $X$ shall be denoted by $\Sh(X_{\Zar})$. 
+            \end{convention}
+            
+            \begin{definition}[Localisation of commutative monoids] \label{def: commutative_monoid_localisation}
+                Let $\O$ be a symmetric monoidal category with finite pullbacks and let $A$ be a commutative monoid, which we shall view as a symmetric monoidal category with one object (namely $A$) that is internal to $\O$. \say{Elements} of $A$ are thus simply endomorphisms on $A$, and thanks to the commutativity of the multiplication on $A$ (which means that the order in which one composes these endomorphisms does not matter), one can \textbf{localise} $A$ \textit{away} from some submonoid $S$ by formally inverting these arrows; the \textbf{localisation of $A$ away from $S$} is denoted by $A[S^{-1}]$. 
+            \end{definition}
+            \begin{remark}[Localisations are Zariski-open] \label{remark: localisations_of_monoids_are_open}
+                It is not hard to see that localisations are colimits that, while taken in the ambient symmetric monoidal categories, are legitimate colimits of monoids. From here, we can deduce that the prime spectrum of a localisation of a commutative monoid is necessarily open in the Zariski topology on said spectrum.
+            \end{remark}
+            
+            \begin{definition}[Local monoids] \label{def: local_monoids}
+                A commutative monoid $A$ internal to a symmetric monoidal category $\O$ is said to be \textbf{local} if and only if it is isomorphic to every one of its localisation, i.e. for all submonoids $S$ of $A$, one has:
+                    $$A[S^{-1}] \cong A$$
+            \end{definition}
+            \begin{remark}[Local monoids have unique maximal ideals]
+                It is not hard to show that any local commutative monoid must have one and only one unique maximal ideal.
+            \end{remark}
+            \begin{convention}[Localising monoids at prime ideal] \label{conv: localising_commutative_monoids_at_primes}
+                Let $\O$ be a symmetric monoidal category and let $\p \in \Spec A$ be a prime ideal of a commutative monoid $A$. Then, the localisation of $A$ \textbf{at} the prime ideal $\p$ (at the point $\p \in \Spec A$), denoted by $A_{\p}$, shall be the simultaneous localisation of $A$ at every submonoid that does \textit{not} contain $\p$. 
+            \end{convention}
+            \begin{lemma}[Localisations at primes are local] \label{lemma: localisations_at_primes_are_local}
+                Let $\O$ be a symmetric monoidal category and let $A$ be a commutative monoid therein. Then, any localisation $A_{\p}$ of $A$ at a prime ideal $\p$ shall be a local monoid.
+            \end{lemma}
+                
+            \begin{lemma}[Monoids in topoi are local] \label{lemma: monoids_in_topoi_are_local}
+                Let $\E$ be a sheaf topos. Then, every commutative monoid internal to $\O$ is necessarily local.
+            \end{lemma}
+                \begin{proof}
+                First of all fix a commutative monoid $A$ internal to $\E$. Next, note that because localisations are colimits (cf. remark \ref{remark: localisations_of_monoids_are_open}), and because the stalk of an object of a sheaf topos $\E$ is given by the left-adjoint component $x^*: \E \to \Sets$ of the geometric point:
+                    $$
+                        \begin{tikzcd}
+                        	\Sets & \E
+                        	\arrow[""{name=0, anchor=center, inner sep=0}, "{x_*}"', shift right=2, from=1-1, to=1-2]
+                        	\arrow[""{name=1, anchor=center, inner sep=0}, "{x^*}"', shift right=2, from=1-2, to=1-1]
+                        	\arrow["\dashv"{anchor=center, rotate=-90}, draw=none, from=1, to=0]
+                        \end{tikzcd}
+                    $$
+                we can simply work locally within the topos $\Sets$. Let us then break the proof down into two steps:
+                    \begin{enumerate}
+                        \item \textbf{(Non-units form a prime ideal):} Denote the subset of non-units of $A$ by $\m_A$ and consider $x, y \in A$ such that $xy \in \m_A$. Suppose then to the contrary that $\m_A$ is not prime, i.e. that neither $x$ nor $y$ are elements of $\m_A$. However, this would imply that $x$ and $y$ are both units (since $A^{\x} = A \setminus \m_A$ by construction), which means that $xy$ can not be an element of $\m_A$. This is a contradiction, which means that our assumption that neither $x$ nor $y$ are elements of $\m_A$ was wrong. We have thus shown that $\m_A$ is a prime ideal of $A$.  
+                        \item \textbf{(The prime ideal of non-units is uniquely maximal):} Showing that $\m_A$ is maximal is easy: were it not maximal, there would exist a non-unit that would also not be an element of $\m_A$, which does not make sense because $\m_A$ contains all non-units. It now remains to show that $\m_A$ is the only maximal ideal of $A$. For this, suppose that there exist another maximal ideal $\n$ of $A$ which does not coincide with $\m_A$. Such an ideal can not contain any unit, of course, but this means that by virtue of containing only non-units, $\n$ is necessarily a subset of $\m_A$, and hence not maximal. $\m_A$ is therefore unique as a maximal ideal of $A$. 
+                    \end{enumerate}
+                \end{proof}
+            \begin{remark}[Local monoids and local rings] \label{remark: linearity_gives_rise_to_many_maximal_ideals}
+                One might ask: \say{But hold on, are commutative rings not internal commutative monoids too ? How can there be non-local rings then ?} and to that, we say: \say{It's because rings are monoids internal to linear symmetric monoidal categories, and more often than not, abelian symmetric monoidal categories. Topoi are neither of these things.} Vaguely speaking, the absence of linearity disallows monoids from having more than one maximal ideal. Explicitly,  
+            \end{remark}
+            \begin{example}
+                \noindent
+                \begin{itemize}
+                    \item The only unit of $\N$ (viewed as an additive monoid internal to $\Sets$) is the element $0$, and so its unique maximal ideal is $\N^{\geq 1} := \N \setminus \{0\}$. This, however, is not its only prime ideal, since every monoid in $\Sets$ admits the empty set $\varnothing$ as the \say{zero} ideal. The space $\Spec \N$ thus has a generic point and a closed point, and nothing else.
+                    \item Let $S^{-1}$ any additive subset (i.e. submonoid) of $\N$ and consider the additive monoid $\N[S^{-1}]$. It is clear that $\N[S^{-1}]^{\x} = \{0\} \cup S$, and hence the unique maximal ideal of $\N[S^{-1}]$ is $\N \setminus (\{0\} \cup S)$. 
+                \end{itemize}
+            \end{example}
+            \begin{definition}[Monoided topoi] \label{def: monoided_topoi}
+                A so-called \textbf{monoided topos} is the data of a pair $(\calX, \calM_{\calX})$ of:
+                    \begin{itemize}
+                        \item a topos $\calX$ (which we shall always take to be a sheaf topos, never an elementary topos) and
+                        \item a distinguished commutative monoid object $\calM_{\calX}$ (which is guaranteed to be well-defined because sheaf topoi are symmetric-monoidal), called the \textbf{structure sheaf}.
+                    \end{itemize}
+                Morphisms of monoided topoi are just the geometric morphisms between the underlying topoi. Additionally, note that because every commutative monoid internal to a topos is local, monoided topoi are tautologically locally monoided; however, there still exists a subcategory $\Spc^{\mon, \loc}$ spanned by geometric morphisms between monoided topoi whose stalks are local homomorphisms of concrete commutative monoids (i.e. commutative monoids internal to $\Sets$).
+            \end{definition}
+            
+            \begin{definition}[Immersions] \label{def: immersions_of_monoided_spaces}
+                Let $(\Sh(Z), \calM_Z), (\Sh(X), \calM_X)$ be the monoided topos associated to topological spaces $Z$ and $X$ and let $j: Z \to X$ be a continuous function. Said continuous function will induce an \textbf{immersion} if and only if:
+                    \begin{itemize}
+                        \item it is injective, and 
+                        \item the induced comorphism of structure sheaves:
+                            $$j^{\sharp}: \calM_X \to j_*\calM_Z$$
+                        is surjective.
+                    \end{itemize}
+            \end{definition}
+            \begin{proposition}[Closed immersions are set-theoretically bijective] \label{prop: closed_immersions_of_monoided_spaces_are_bijective}
+                The continuous map that induces a given closed immersion of monoided spaces is necessarily a homeomorphism.  
+            \end{proposition}
+                \begin{proof}
+                                
+                \end{proof}
+            \begin{corollary}
+                Not every surjective monoid homomorphism induces a closed immersion.
+            \end{corollary}
+            
+        \subsubsection{Log-structures}
+            \begin{definition}[Logarithmic structures on ringed topoi] \label{def: log_structures}
+                Let $(\calX, \calO_{\calX})$ be a ringed topos.
+                \begin{enumerate}
+                    \item \textbf{(Prelog-structures):}
+                    \item \textbf{(Log-structures):}
+                \end{enumerate}
+            \end{definition}
+    
+    \subsection{Deformations of log schemes}
