@@ -1,0 +1,720 @@
+\section{Fibred categories}
+    \subsection{Generalities on \texorpdfstring{$2$}{}-categories}
+        \subsubsection{\textit{Pr\'elude}: Internal categories}
+            \begin{definition}[Spans] \label{def: spans} \index{Spans}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Spans):} A \textbf{span} (also known as a \textbf{correspondence}) from an object $x$ to another object $y$ via an object $s$ inside a given category $\C$ is a diagram therein that is of the following form:
+                        $$
+                            \begin{tikzcd}
+                            	s & y \\
+                            	x
+                            	\arrow["f"', from=1-1, to=2-1]
+                            	\arrow["g", from=1-1, to=1-2]
+                            \end{tikzcd}
+                        $$
+                    wherein the tip $s$ is some \textit{choice} of object of $\C$. As any span with either or both arrow therein being an identity is just a normal morphism, the notion of spans can be thought of as a generalisation of morphisms.  
+                    \item \textbf{(Categories of spans):} Within a category $\C$ with pullbacks, one can compose, say, a span from $x$ to $y$ via $s$ with another from $y$ to $z$ via $s'$ via taking the pullback of the \say{inner} arrows in the manner depicted by the following diagram:
+                        $$
+                            \begin{tikzcd}
+                            	{s \x_{g, y, f'} s'} & {s'} & z \\
+                            	s & y \\
+                            	x
+                            	\arrow["f"', from=2-1, to=3-1]
+                            	\arrow["g"', from=2-1, to=2-2]
+                            	\arrow["{f'}", from=1-2, to=2-2]
+                            	\arrow["{g'}", from=1-2, to=1-3]
+                            	\arrow[from=1-1, to=2-1]
+                            	\arrow[from=1-1, to=1-2]
+                            	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                            \end{tikzcd}
+                        $$
+                    to obtain a so-called \say{composite} span from $x$ to $z$ via $s \x_{g, y, f'} s'$ (which visually, can be thought of either as the upper \say{roof} or the big \say{roof} covering the two smaller ones - that being the previously specified spans from $x$ to $y$ via $s$ and the span from $y$ to $z$ via $s'$ - in the above diagram); alternatively, one might visualise this composition via the following commutative diagram of spans:
+                        $$
+                            \begin{tikzcd}
+                            	x & y & z
+                            	\arrow["{(f,g)}", "\shortmid"{marking}, from=1-1, to=1-2]
+                            	\arrow["{(f' g')}", "\shortmid"{marking}, from=1-2, to=1-3]
+                            \end{tikzcd}
+                        $$
+                    With the use of this style of composition, one obtains, for every category $\C$ with pullbacks in tandem with a choice of natural number $n \geq 1$, a (lax) \textbf{$n$-category of spans} $\Span^{\leq n}(\C)$ that is defined via:
+                        \begin{enumerate}
+                            \item objects being those of $\C$ itself,
+                            \item $1$-morphisms being spans between objects, which shall henceforth be known as $1$-spans,
+                            \item and for all $2 \leq k \leq n$, $k$-morphisms, which shall henceforth be called $k$-spans, being $k$-cells between $(k-1)$-morphisms; for instance, a $2$-span between two $1$-spans is a commutative diagram of the following form:
+                                $$
+                                    \begin{tikzcd}
+                                        \bullet \arrow[rd] \arrow[rdd, bend right] \arrow[rrd, bend left] &                             &         \\
+                                                                                                          & \bullet \arrow[d] \arrow[r] & \bullet \\
+                                                                                                          & \bullet                     &        
+                                    \end{tikzcd}
+                                $$
+                        \end{enumerate}
+                \end{enumerate}
+            \end{definition}
+            \begin{convention}[Regarding notations] \label{conv: span_notations}
+                Obviously, writing out spans explicitly takes up a lot of effort and frankly, these diagrams can get confusing rather quickly. However, a quick observation tells us that because composites of spans are given by pullbacks, they actually satisfy the universal property of products taken in the arrow category of some given span category. That is to say, given an ambient category $\C$ with all pullbacks and two composable spans:
+                    $$
+                        \begin{tikzcd}
+                        	& \bullet & \bullet \\
+                        	\bullet & \bullet \\
+                        	\bullet
+                        	\arrow["f"', from=2-1, to=3-1]
+                        	\arrow["g", from=2-1, to=2-2]
+                        	\arrow["{f'}", from=1-2, to=2-2]
+                        	\arrow["{g'}", from=1-2, to=1-3]
+                        \end{tikzcd}
+                    $$
+                therein, their composite:
+                    $$
+                        \begin{tikzcd}
+                        	\bullet & \bullet & \bullet \\
+                        	\bullet & \bullet \\
+                        	\bullet
+                        	\arrow["f"', from=2-1, to=3-1]
+                        	\arrow["g"', from=2-1, to=2-2]
+                        	\arrow["{f'}", from=1-2, to=2-2]
+                        	\arrow["{g'}", from=1-2, to=1-3]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                is nothing but the product:
+                    $$
+                        \begin{tikzcd}
+                        	{(f, g) \x (f', g')} & {(f', g')} \\
+                        	{(f, g)}
+                        	\arrow[dashed, from=1-1, to=2-1]
+                        	\arrow[dashed, from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                in $\Mor\left(\Span^{\leq 1}(\C)\right)$ (which will probably be commonly written as $\Span^{\leq 1}(\C)_1$ from now on, so as to make the notion of spans fit snuggly into the language of internal categories, and also to cut back on parentheses) Therefore, our proposition of an alternative notation is as follows: the composition of two spans $(f, g)$ and $(f', g')$ shall instead be denoted by $(f, g) \x (f', g')$.
+            \end{convention}
+            \begin{convention}[Associators]
+                Fix a \textit{weak} $n$-category $\C$, with $n \geq 1$. Now, for all $1 \leq k \leq n$ and all triples of \textit{composable} $(k - 1)$-morphisms $f, g, h$ of $\C$, let us call the $k$-cell:
+                    $$(fg)h \to f(gh)$$
+                (which we note to be invertible thanks to the weakness assumption on $\C$) a \textbf{$k$-associator}. An associator is called \textbf{trivial} if and only if it is an identity. See \href{https://ncatlab.org/nlab/show/associator}{\underline{here}} for more details. 
+            \end{convention}
+            \begin{remark}[Associators in span categories]
+                Since pullbacks are merely unique up to unique isomorphisms, $k$-associators in the $n$-category $\Span^{\leq n}(\C)$ of spans of a given category $\C$ with pullbacks are generally non-trivial, but they are invertible. This implies that $n$-categories of spans are \textit{weak} $n$-categories, as opposed to simply being lax $n$-categories, but generally they are not strict $n$-categories. 
+            \end{remark}
+            
+            \begin{proposition}[Limits and colimits of spans]
+                
+            \end{proposition}
+        
+            \begin{definition}[Internal categories] \label{def: internal_categories}
+                Let $\E$ be a category with \textit{enough pullbacks}. A category \textbf{internal} to $\E$ is then a pair $(C_0, C_1)$ of objects of $\E$ defined via the following data:
+                    \begin{enumerate}
+                        \item \textbf{(Objects and morphisms):} An object of \textbf{objects} $C_0 \in \E$ and an object of \textbf{arrows} $C_1 \in \E$, both are to be viewed as internal analogues of the collections of objects and arrows in the definition of categories.
+                        \item \textbf{(Composition):} 
+                            \begin{enumerate}
+                                \item \textbf{(Sources and targets):} From the object of arrows $C_1$ to the object of objects $C_0$, there are two morphisms $s, t$ as follows, known as the \textbf{source} and \textbf{target} maps:
+                                    $$
+                                        \begin{tikzcd}
+                                        	{C_1} & {C_0}
+                                        	\arrow["s", shift left=2, from=1-1, to=1-2]
+                                        	\arrow["t"', shift right=2, from=1-1, to=1-2]
+                                        \end{tikzcd}
+                                    $$
+                                which, respectively, assign to each arrow $f \in C_1$ (which, along with similar instances, shall be viewed as a \href{https://ncatlab.org/nlab/show/generalized+element}{\underline{generalised elements}} for the sake of linguistic convenience) its domain and codomain objects in $C_0$.
+                                \item \textbf{(Units):} From the object of objects $C_0$ to the object of arrows $C_1$, there is a distinguished morphism:
+                                    $$e: C_0 \to C_1$$
+                                called the \textbf{unit map} which assigns to each object $x \in C_0$ (again, viewed as a generalised element) the identity $\id_x: x \to x$ thereon, which we note to be an a generalised element of the object of arrows $C_1$ (hence the codomain of $e$ is $C_1$).
+                                \item \textbf{(Composition of arrows):} There is a monoidal composition operation (in the sense of monoidal categories):
+                                    $$\mu: C_1 \x_{s, C_0, t} C_1 \to C_1$$
+                                satisfying the following conditions specified by commutative diagrams in $\E$:
+                                    \begin{enumerate}
+                                        \item \textbf{(Identities do not alter domains and codomains):}
+                                            $$
+                                                \begin{tikzcd}
+                                                	{C_0} & {C_1} && {C_0} & {C_1} \\
+                                                	& {C_0} &&& {C_0}
+                                                	\arrow["e", from=1-1, to=1-2]
+                                                	\arrow["{\id_{C_0}}"', from=1-1, to=2-2]
+                                                	\arrow["s", from=1-2, to=2-2]
+                                                	\arrow["{\id_{C_0}}"', from=1-4, to=2-5]
+                                                	\arrow["t", from=1-5, to=2-5]
+                                                	\arrow["e", from=1-4, to=1-5]
+                                                \end{tikzcd}
+                                            $$
+                                        \item \textbf{(Sources and targets of compositions):} The source of a composition $g \mu f \in C_1$ should be that of $f$ (the former), wheareas its target should be that of $g$ (the latter): 
+                                            $$
+                                                \begin{tikzcd}
+                                                	& {C_1 \x_{s, C_0, t} C_1} & {C_1} && {C_1 \x_{s, C_0, t} C_1} & {C_1} \\
+                                                	{} & {C_1} & {C_0} && {C_1} & {C_0}
+                                                	\arrow["s", from=1-3, to=2-3]
+                                                	\arrow["s", from=2-2, to=2-3]
+                                                	\arrow["{\pr_2}"', from=1-2, to=2-2]
+                                                	\arrow["{\pr_1}", from=1-2, to=1-3]
+                                                	\arrow["t", from=1-6, to=2-6]
+                                                	\arrow["t", from=2-5, to=2-6]
+                                                	\arrow["{\pr_1}"', from=1-5, to=2-5]
+                                                	\arrow["{\pr_1}", from=1-5, to=1-6]
+                                                \end{tikzcd}
+                                            $$
+                                        \item \textbf{(Associativity):} 
+                                            $$
+                                                \begin{tikzcd}
+                                                	& {C_1 \x_{s, C_0, t} C_1 \x_{s, C_0, t} C_1} & {C_1 \x_{s, C_0, t} C_1} \\
+                                                	{} & {C_1 \x_{s, C_0, t} C_1} & {C_1}
+                                                	\arrow["\mu", from=1-3, to=2-3]
+                                                	\arrow["\mu", from=2-2, to=2-3]
+                                                	\arrow["{\id_{C_1} \x_{s, C_0, t} \mu}"', from=1-2, to=2-2]
+                                                	\arrow["{\mu \x_{s, C_0, t} \id_{C_1}}", from=1-2, to=1-3]
+                                                \end{tikzcd}
+                                            $$
+                                        \item \textbf{(Left and right-unitarity):} 
+                                    \end{enumerate}
+                                        $$
+                                            \begin{tikzcd}
+                                            	{C_0 \x_{C_0} C_1} & {C_1 \x_{s, C_0, t} C_1} & {C_1 \x_{C_0} C_0} \\
+                                            	& {C_1}
+                                            	\arrow["\mu", from=1-2, to=2-2]
+                                            	\arrow["{\pr_2}"', from=1-1, to=2-2]
+                                            	\arrow["{\pr_1}", from=1-3, to=2-2]
+                                            	\arrow["{\e \x_{C_0} \id_{C_1}}", from=1-1, to=1-2]
+                                            	\arrow["{\id_{C_1} \x_{C_0} e}"', from=1-3, to=1-2]
+                                            \end{tikzcd}
+                                        $$
+                                with the latter three specifying the monoidality of the composition operation $\mu$.
+                            \end{enumerate}
+                    \end{enumerate}
+            \end{definition}
+            
+            \begin{remark}[Internal categories vs. subcategories]
+                    
+            \end{remark}
+            
+            \begin{remark}[Another formulation: Internal categories as monads on spans] \label{remark: internal_categories_alt_def}
+                Definition \ref{def: internal_categories} gives us a perfectly fine idea of what one might mean by \say{internal categories}. However, it is manifestly rather clunky. Therefore, the author has taken the liberty to provide one alternative formulation of the notion of internal categories.
+                
+                We refer the reader to definition \ref{def: spans} and the discussion that follows for necessary information on the paradigm of spans; in particular, let us recall that spans are only well-defined inside categories with pullbacks (which is a slightly stronger condition than the assumption in definition \ref{def: internal_categories} that the ambient category as merely \textit{enough} pullbacks). 
+                    
+                Now, let $\E$ be an ambient category with all pullbacks, and subsequently, let us define a category $C$ internal to $\E$ as being the same as a monad in the weak $2$-category $\Span^{\leq 2}(\E)$ of spans on $\E$. Why would this even resemble a reasonable definition of categories internal to a given category $\E$ ? For starters, recall that a monad is an endomorphism satisfying so-called \say{monoidal multiplication}. Therefore, an internal category $C$ inside a given ambient category $\E$ is first and foremost an endomorphism on a choice of object, and because the weak $2$-category in which we are trying to build monads is one of spans, our endomorphism should be a \say{roof} diagram whose two \say{lower} vertices are the same. By consulting definition \ref{def: internal_categories}, one sees that an obvious choice is the source-target span:
+                    $$
+                        \begin{tikzcd}
+                        	{C_1} & {C_0} \\
+                        	{C_0}
+                        	\arrow["s"', from=1-1, to=2-1]
+                        	\arrow["t", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                (recall that objects in span categories are those of the underlying category and morphisms are span themselves; cf. definition \ref{def: spans}); let us denote this span by the \textit{unordered} pair $(s, t)$. Now, is this endomorphism indeed a monad in $\Span^{\leq 2}(\E)$ ? First of all, one can certainly compose $(s, t)$ with itself thanks to the assumption that $\E$ has all pullbacks: said composition is nothing but the composite span $(s, t) \x (s, t)$ (see remark \ref{conv: span_notations} for an explanation of this notation); let us denote this composition by $\mu$, and note that it is precisely a $2$-cell from $(s, t) \x (s, t)$ to $(s, t)$, a fact that can be proven via consideration of the following universal diagram:
+                    $$
+                        \begin{tikzcd}
+                        	{(s, t) \x (s, t)} & {(s, t)} \\
+                        	{(s, t)} & {(s, t)}
+                        	\arrow[dashed, from=1-1, to=2-1]
+                        	\arrow[dashed, from=1-1, to=1-2]
+                        	\arrow[Rightarrow, no head, from=1-2, to=2-2]
+                        	\arrow[Rightarrow, no head, from=2-1, to=2-2]
+                        	\arrow["\mu", from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                and thanks to the universal property of products, this composition is trivially asociative. There is also a unit $e := (\id_{C_0}, \id_{C_0}) \x (s, t)$ which satisfies the following commutative diagram:
+                    $$
+                        \begin{tikzcd}
+                        	{(\id_{C_0}, \id_{C_0}) \x (s, t)} & {(s, t) \x (s, t)} & {(s, t) \x (\id_{C_0}, \id_{C_0})} \\
+                        	& {(s, t)}
+                        	\arrow["\mu", from=1-2, to=2-2]
+                        	\arrow["{\pr_2}"', from=1-1, to=2-2]
+                        	\arrow["{\pr_1}", from=1-3, to=2-2]
+                        	\arrow["{e \x \id_{(s, t)}}", from=1-1, to=1-2]
+                        	\arrow["{\id_{(s, t)} \x e}"', from=1-3, to=1-2]
+                        \end{tikzcd}
+                    $$
+                This proves that the composition $\mu$ is also unital, and hence all the monad axioms have been shown to hold. Incidentally, we have also managed to show via this discussion, that monads in the category of spans in a category with pullbacks are nothing but internal categories.
+            \end{remark}
+            
+            \begin{definition}[Internal functors] \label{def: internal_functors}
+                Let $\E$ be an ambient category with \textit{enough pullbacks} and let $C, D$ be two categories that are internal to $\E$.
+                    \begin{enumerate}
+                        \item \textbf{(Internal functors):} Internal functors between categories that are internal to a given ambient category (with enough pullbacks) are defined in the exact same way as the internal definition of functors between ordinary categories. See \href{https://ncatlab.org/nlab/show/functor#InternalDefinition}{\underline{here}} for a reminder.
+                        \item \textbf{(Anafunctors):} (Ah yes, the Axiom of Choice. Making lives miserable as always) While the general definition of internal functors might not have lit any bulbs in the deparment of choice, one should definitely keep in mind that the notion of essential surjectivity definitely does depend on choice: if:
+                            $$F: C \to D$$
+                        is an essentially surjective internal functor, then one will be able to \textit{choose} objects $x \in C_0$ such that:
+                            $$Fx \cong y$$
+                        for every object $y \in D_0$. As the ramifications of the Axiom of Choice tend to be unfamiliar to those not actively involved in the logic community (including the author, who had to consult a few nLab articles too), let us quickly explain why anafunctors are needed in place of the above \textit{na\"ive} notion of internal functors; particularly, we would like to know what mappings between internal categories might look like when our ambient category does not host the Axiom of Choice, such as when its size is an inaccessible cardinal ($\Top$ is one particular case). To that end, \todo[inline]{Write about why the Axiom of Choice breaks essentially surjective internal functors}
+                        
+                        Now, let us define an \textbf{anafunctor} $F$ between two internal categories $C$ and $D$ of a given category $\E$ - should such a mapping exist - to be a span (i.e. a $1$-morphism in $\Span^{\leq 2}(\E)$; cf. definition \ref{def: spans}) of internal categories:
+                            $$
+                                \begin{tikzcd}
+                                	{F} & {D} \\
+                                	{C}
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        which shall be interpreted as the following composition of spans in $\E$:
+                            $$
+                                \begin{tikzcd}
+                                	\bullet & \bullet & {D_1} & {D_0} \\
+                                	\bullet & {F_0} & {D_0} \\
+                                	{C_1} & {C_0} \\
+                                	{C_0}
+                                	\arrow[from=3-1, to=4-1]
+                                	\arrow[from=3-1, to=3-2]
+                                	\arrow[from=2-2, to=3-2]
+                                	\arrow[from=2-2, to=2-3]
+                                	\arrow[from=1-3, to=2-3]
+                                	\arrow[from=1-3, to=1-4]
+                                	\arrow[from=2-1, to=3-1]
+                                	\arrow[from=2-1, to=2-2]
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                	\arrow[from=1-2, to=2-2]
+                                	\arrow[from=1-2, to=1-3]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-1, to=3-2]
+                                \end{tikzcd}
+                            $$
+                        (see remark \ref{remark: internal_categories_alt_def} for a description of internal categories as spans - or to be more precise, monads in span categories). Note that in the event that $\E$ also has products (or equivalently, terminal objects), anafunctors between any given pair of internal categories $C$ and $D$ always exist: one can simply take $F_0$ to be $C_0 \x D_0$. Also, let us draw attention to the fact that this definition is logically independent of the notion of internal functors, and therefore we have not committed circular reasoning.
+                    \end{enumerate}
+            \end{definition}
+            \begin{remark}[Categories of internal categories] \label{remark: categories_of_internal_categories}
+                Via the above notion of anafunctors and the idea presented in remark \ref{remark: internal_categories_alt_def} that internal categories and monads in span categories are the same thing, one can rather easily show that categories internal to a given ambient category $\E$ (with pullbacks) form a weak $2$-category, which is precisely equivalent to the category of monads in $\Span^{\leq 2}(\E)$. In notations, one writes:
+                    $$1\-\Cat(\E) \cong \Monad\left(\Span^{\leq 2}(\E)\right)$$
+            \end{remark}
+            \begin{remark}[Categories as monoids] \label{remark: categories_as_monoids}
+                Remark \ref{remark: internal_categories_alt_def}, definition \ref{def: internal_functors}, remark \ref{remark: categories_of_internal_categories}, and remark \ref{conv: span_notations} in tandem tell us that internal to every ambient category $\E$ with pullbacks, there is a symmetric monoidal category $1\-\Cat(\E)$ of categories internal to $\E$ whose monoidal multiplication is given by $2$-spans from squares:
+                    $$
+                        \begin{tikzcd}
+                        	{C_1 \x_{s, C_0, t} C_1} \\
+                        	& {C_1} & {C_0} \\
+                        	& {C_0}
+                        	\arrow["s", from=2-2, to=3-2]
+                        	\arrow["t"', from=2-2, to=2-3]
+                        	\arrow[from=1-1, to=3-2]
+                        	\arrow[from=1-1, to=2-3]
+                        	\arrow["\mu"{description}, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                and whose monoidal unit is given pointwise on each internal category:
+                    $$
+                        \begin{tikzcd}
+                        	{C_1} & {C_0} \\
+                        	{C_0}
+                        	\arrow["s"', from=1-1, to=2-1]
+                        	\arrow["t", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                by a $2$-span from $(\id_{C_0}, \id_{C_0}) \to (s,t)$:
+                    $$
+                        \begin{tikzcd}
+                        	{C_0} \\
+                        	& {C_1} & {C_0} \\
+                        	& {C_0}
+                        	\arrow["s", from=2-2, to=3-2]
+                        	\arrow["t"', from=2-2, to=2-3]
+                        	\arrow["e"{description}, from=1-1, to=2-2]
+                        	\arrow["{\id_{C_0}}"', from=1-1, to=3-2]
+                        	\arrow["{\id_{C_0}}", from=1-1, to=2-3]
+                        \end{tikzcd}
+                    $$
+                Both of which (together) are subjected to the usual monoidal axioms (cf. definition \ref{def: internal_categories}). In other words, internal categories inside a given ambient category $\E$ are nothing but monoids in $1\-\Cat(\E)$. This is a rather neat observation, as it allows us to view morphisms between internal categories not too differently from monoid homomorphism. 
+            \end{remark}
+            
+            \begin{definition}[Internal groupoids] \label{def: internal_groupoids}
+                Let $\E$ be a category with pullbacks and let:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrG_1} & {\scrG_0} \\
+                        	{\scrG_0}
+                        	\arrow["s"', from=1-1, to=2-1]
+                        	\arrow["t", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                be the data of a category internal to $\E$. Such an internal category is an \textbf{internal groupoid} if in addition, there exists an arrow:
+                    $$i: \scrG_1 \to \scrG_1$$
+                called the \textbf{inverse map}, that renders the following diagram in $\E$ commutative:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrG_1} \\
+                        	& {\scrG_1} & {\scrG_0} \\
+                        	& {\scrG_0}
+                        	\arrow["i"{description}, from=1-1, to=2-2]
+                        	\arrow["t"', from=1-1, to=3-2]
+                        	\arrow["s", from=2-2, to=3-2]
+                        	\arrow["t"', from=2-2, to=2-3]
+                        	\arrow["s", from=1-1, to=2-3]
+                        \end{tikzcd}
+                    $$
+                (i.e. the inverse map switches the source and target of a given internal morphism), and such that the following diagrams of spans - telling us that multiplication with inverses returns the identity regardless of whether the process is carried out from the left and from the right - commute:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} \\
+                        	{\scrG_0} && {\scrG_1}
+                        	\arrow["{\mu_{\scrG}}", from=1-3, to=2-3]
+                        	\arrow["{i \x_{s, \scrG_0, t} \id_{\scrG_1}}", from=1-2, to=1-3]
+                        	\arrow["{\Delta_{\scrG_1/\scrG_0}}", from=1-1, to=1-2]
+                        	\arrow["t"', from=1-1, to=2-1]
+                        	\arrow["e", from=2-1, to=2-3]
+                        \end{tikzcd}
+                    $$
+                    $$
+                        \begin{tikzcd}
+                        	{\scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} & {\scrG_1 \x_{s, \scrG_0, t} \scrG_1} \\
+                        	{\scrG_0} && {\scrG_1}
+                        	\arrow["{\mu_{\scrG}}", from=1-3, to=2-3]
+                        	\arrow["{\id_{\scrG_1} \x_{s, \scrG_0, t} i}", from=1-2, to=1-3]
+                        	\arrow["{\Delta_{\scrG_1/\scrG_0}}", from=1-1, to=1-2]
+                        	\arrow["s"', from=1-1, to=2-1]
+                        	\arrow["e", from=2-1, to=2-3]
+                        \end{tikzcd}
+                    $$
+                In other words, groupoids internal to a category with pullbacks $\E$ are group objects in the category $1\-\Cat(\E)$ of categories internal to $\E$ (which we note to have all finite products; cf. remark \ref{conv: span_notations}).
+            \end{definition}
+            \begin{remark}[On the inverse maps of internal groupoids]
+                Definition \ref{def: internal_groupoids}, while standard, suffers from a few issues. For one, it is not very clear how internal groupoids should be thought of as groups in categories of internal categories. Also, the inverse map defining the structure of each internal groupoid, at least according to definition \ref{def: internal_groupoids}, is rather non-functorial. Luckily, these two problems can be easily resolved. 
+                
+                Firstly, let us note that the inverse map $i_{\scrG}: \scrG_1 \to \scrG_1$ associated to an internal groupoid:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrG_1} & {\scrG_0} \\
+                        	{\scrG_0}
+                        	\arrow["s"', from=1-1, to=2-1]
+                        	\arrow["t", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                is not just a morphism in the ambient category satisfying certain conditions, but actually a $2$-span: it is a $2$-span from the $1$-span $(s,t): \scrG_1 \toto \scrG_0$ to the $1$-span $(t,s): \scrG_1 \toto \scrG_0$. Thus, one can meaningfully think of the inverse map on $\scrG$ as an anafunctor from $\scrG$ to itself. Second of all, recall that in remark \ref{remark: categories_as_monoids}, we have seen how internal categories are actually monoid objects, which in particular, means that composition of arrows therein behaves in a manner similar to multiplication. So actually, all that we need to do is to somehow configure inverse maps so that they would act like multiplicative inverses, which would in turn help us formally recognise internal groupoids as group objects; we shall leave the drawing of the relevant commutative diagrams to the reader, as they can be rather easily inferred from the ones in definition \ref{def: internal_groupoids}. 
+            \end{remark}
+        
+            \begin{definition}[Equivalence relations] \label{def: equivalence_relations}
+                Let $\E$ be a \textit{finitely complete} category ($\Sets$ or general topoi, or $1\-\Cat$, for instance)
+                    \begin{enumerate}
+                        \item \textbf{(Binary relations):} A \textbf{binary relation} $R$ from an object $X$ to another object $Y$ of $\E$ is a $1$-span:
+                            $$
+                                \begin{tikzcd}
+                                	R & Y \\
+                                	X
+                                	\arrow[from=1-1, to=2-1]
+                                	\arrow[from=1-1, to=1-2]
+                                \end{tikzcd}
+                            $$
+                        such that $R$ is a subobject of $X \x Y$. 
+                        \item \textbf{(Equivalence relations):} An \textbf{equivalence relation} (also known as a congruence) $R$ on an object $X$ of $\E$ is a binary relation from $X$ to itself which also happens to be an internal groupoid. 
+                        \item \textbf{(Quotients):} The coequaliser of an (internal) equivalence relation is known as a \textbf{quotient object}. That is, the quotient $Q$ of an object $X$ by an equivalence relation $R$ is the following coequaliser in $\E$:
+                            $$
+                                \begin{tikzcd}
+                                	R & X & Q
+                                	\arrow["s", shift left=2, from=1-1, to=1-2]
+                                	\arrow["t"', shift right=2, from=1-1, to=1-2]
+                                	\arrow[dashed, from=1-2, to=1-3]
+                                \end{tikzcd}
+                            $$
+                        Of course, quotients are only guaranteed to exist if and only if $\E$ has enough coequalisers. 
+                    \end{enumerate}
+            \end{definition}
+        
+        \subsubsection{\texorpdfstring{$2$}{}-categorical constructions}
+            \begin{definition}[$2$-categories and $2$-functors] \label{def: 2_categories_and_2_functors}
+                
+            \end{definition}
+            \begin{definition}[$(2, k)$-categories] \label{def: (2, k)_categories} 
+                A $(2, k)$-category (for $0 \leq k \leq 2$) is a $2$-category wherein all $(k + 1)$-morphisms are invertible.
+            \end{definition}
+            \begin{definition}[$2$-natural transformations] \label{def: 2_natural_transformations}
+                
+            \end{definition}
+            \begin{definition}[Natural modifications] \label{def: natural_modifications}
+                
+            \end{definition}
+            \begin{remark}[$2$-categories of $2$-functors] \label{remark: 2_categories_of_2_functors}
+                
+            \end{remark}
+            
+            \begin{definition}[$2$-commutative diagrams] \label{def: 2_commutative_diagrams}
+                Let $\scrK$ be a $2$-category. A $2$-commutative diagram therein is thus a square as follows, wherein there exists a $2$-isomorphism $\eta: p'f \Rightarrow pg$:
+                    $$
+                        \begin{tikzcd}
+                        	{y'} & y \\
+                        	{x'} & x
+                        	\arrow["{p'}"', from=1-1, to=2-1]
+                        	\arrow["f", from=2-1, to=2-2]
+                        	\arrow["g", from=1-1, to=1-2]
+                        	\arrow["p", from=1-2, to=2-2]
+                        	\arrow["\exists \eta", shorten <=8pt, shorten >=8pt, Rightarrow, from=2-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            
+            \begin{definition}[Strict and weak $2$-categories and $2$-functors] \label{def: strict_and_weak_2_categoriesand_2_functors}
+                \noindent
+                \begin{enumerate}
+                    \item \textbf{(Strict and weak $2$-categories):} Let $\scrK$ be a $2$-category. One says that it is \textbf{strict} if compositions of (pairs of) $1$-morphisms are unique up to (necessarily unique) $2$-equalities, and \textbf{weak} if compositions of (pairs of) $1$-morphisms are unique only up to $2$-isomorphisms.
+                    \item \textbf{(Strict and weak $2$-functors):}
+                \end{enumerate}
+            \end{definition}
+            \begin{example}
+                
+            \end{example}
+            
+            Strictly speaking, the following notion ought to be known as that of $(2, 1)$-pullbacks, but since we shall not be encountering so-called \say{\textit{lax} $2$-pullbacks} (or any lax $2$-(co)limits for that matter), we shall be lazy and simply write \say{$2$-pullbacks} to mean \say{$(2, 1)$-pullbacks}.
+            \begin{definition}[$2$-pullbacks] \label{def: 2_pullbacks}
+                
+            \end{definition}
+            \begin{example}[$2$-pullbacks in $1\-\Cat_2$] \label{example: 2_pullbacks_in_the_2_category_of_categories}
+                The $2$-category $1\-\Cat_2$ whose objects are $1$-categories, whose $1$-morphisms are functors, and whose $2$-morphisms are natural transformations, has all $2$-pullbacks.
+            \end{example}
+    
+    \subsection{(Co)fibred categories}
+        \subsubsection{Slice \texorpdfstring{$2$}{}-categories and prefibrations}
+            \begin{definition}[Slice $2$-categories] \label{def: slice_2_categories}
+                Let $\scrK$ be a $2$-category and let $x \in \Ob(\scrK)$ be an object therein. Then, we define the \textbf{slice} $2$-category $\scrK_{/x}$ to be the $2$-category wherein:
+                    \begin{itemize}
+                        \item the objects are $1$-morphisms $(f: y \to x) \in 1\-\Mor(\scrK)$,
+                        \item the $1$-morphisms $\varphi: (y', f') \to (y, f)$ are $1$-commutative triangles of $1$-morphisms $(f': y' \to x), (f: y \to x) \in 1\-\Mor(\scrK)$ in $\scrK$ of the following form:
+                            $$
+                                \begin{tikzcd}
+                                	{y'} && y \\
+                                	& x
+                                	\arrow["\varphi", from=1-1, to=1-3]
+                                	\arrow["{f'}"', from=1-1, to=2-2]
+                                	\arrow["f", from=1-3, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        \item and the $2$-morphisms between $1$-morphisms $\varphi, \psi: (y', f') \to (y, f)$ are $2$-morphisms $(\eta: \psi \Rightarrow \varphi) \in 2\-\Mor(\scrK)$ such that the following diagram is $2$-commutative:
+                            $$
+                                \begin{tikzcd}
+                                	{y'} && y \\
+                                	& x
+                                	\arrow["{f'}"', from=1-1, to=2-2]
+                                	\arrow["f", from=1-3, to=2-2]
+                                	\arrow[""{name=0, anchor=center, inner sep=0}, "\varphi"', bend right, from=1-1, to=1-3]
+                                	\arrow[""{name=1, anchor=center, inner sep=0}, "\psi", bend left, from=1-1, to=1-3]
+                                	\arrow["\eta"', shorten <=3pt, shorten >=3pt, Rightarrow, from=1, to=0]
+                                \end{tikzcd}
+                            $$
+                    \end{itemize}
+            \end{definition}
+            \begin{example}[Over-categories] \label{example: over_categories}
+                Let $\C$ be a category and let $1\-\Cat_2$ be the $2$-category with $1$-categories, functors, and natural transformations as objects, $1$-morphisms, and $2$-morphisms respectively. Then, there is a natural slice $2$-category $(1\-\Cat_2)_{/\C}$ wherein the objects are functors $p: \scrS \to \C$, $1$-morphisms are the evident $1$-commutative triangles of functors, and $2$-morphisms between $1$-morphisms $F, G: (\scrS', p') \to (\scrS, p)$ are natural transformations $\eta \in \Nat(F, G)$ such that $p(\eta_y) \cong \id_{p'(y)}$ for all $y \in \Ob(\scrS')$, i.e. such that the following square is $2$-commutative:
+                    $$
+                        \begin{tikzcd}
+                        	{p'(y)} & {p(F(y))} \\
+                        	{p'(y)} & {p(G(y))}
+                        	\arrow["{p(\eta_y)}", from=1-2, to=2-2]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["{\id_{p'(y)}}"', from=1-1, to=2-1]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow[shorten <=8pt, shorten >=8pt, Rightarrow, from=2-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{example}
+            \begin{proposition}[$2$-pullbacks in slice $2$-categories] \label{prop: 2_pullbacks_in_slice_2_categories}
+                Let $\scrK$ be a $2$-category with $2$-pullbacks. Then for any $x \in \Ob(\scrK)$, the slice $2$-category $\scrK_{/x}$ shall also possess all $2$-pullbacks.
+            \end{proposition}
+                \begin{proof}
+                            
+                \end{proof}
+            \begin{corollary}[$2$-pullbacks of over-categories] \label{coro: 2_pullbacks_of_over_categories}
+                If $\C$ is any $1$-category then the $2$-category $(1\-\Cat_2)_{/\C}$ will have all $2$-pullbacks.
+            \end{corollary}
+            
+            \begin{definition}[Prefibrations] \label{def: prefibrations}
+                Consider a $1$-functor $p: \scrS \to \C$ between $1$-categories $\scrS$ and $\C$ is a \textbf{prefibration} if and only if it is surjective on the level of both objects and ($1$-)morphisms. 
+            \end{definition}
+            \begin{remark}[Op-prefibrations] \label{remark: op_prefibrations}
+                It is easy to see that every prefibration $p: \scrS \to \C$ defines a so-called \textbf{op-prefibration} $p^{\op}: \scrS^{\op} \to \C^{\op}$, which is nothing but the functor $p^{\op}$ viewed as a prefibration of $\scrS^{\op}$ over $\C^{\op}$.
+            \end{remark}
+            \begin{remark}[Fibres of prefibrations] \label{remark: fibres_of_prefibrations}
+                Consider a prefibration $p: \scrS \to \C$, viewed as a $1$-morphism of $1\-\Cat_2$, and recall that $1\-\Cat_2$ admits $1$-terminal objects, namely categories that are equivalent to the singleton category $\pt$, as well as $2$-pullbacks. By viewing objects $U \in \Ob(\C)$ as functors $U: \pt \to \C$, one can define \textbf{fibres} of the prefibration $p: \scrS \to \C$ as $2$-pullbacks of the following kind:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrS_U} & \scrS \\
+                        	\pt & \C
+                        	\arrow["U", from=2-1, to=2-2]
+                        	\arrow["p", from=1-2, to=2-2]
+                        	\arrow["{p_U}"', from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["2"{description}, "\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                It is then easy to see that $\scrS_U$ is the category wherein the objects are objects $x \in \scrS$ such that $p(x) = U$ and the morphisms are morphisms $(\varphi: y \to x) \in \Mor(\scrS)$ such that $p(\varphi) = \id_U$, and as such one ought to view $p_U: \scrS_U \to \pt$ as the unique functor from $\scrS_U$ to the singleton category whose only object is $U$ and whose only morphism is $\id_U$. Therefore, one can instead define prefibrations as functors $p: \scrS \to \C$ with non-empty fibres in the sense above and identify them by the families of $2$-pullbacks $\{\scrS \x^2_{p, \C, U} \pt\}_{U \in \Ob(\C)}$.
+            \end{remark}
+            \begin{remark}[The $2$-category of prefibrations]
+                By definition, prefibrations $p: \scrS \to \C$ are objects of the $2$-category $(1\-\Cat_2)_{/\C}$, and so we might be tempted to declare that there is a $2$-full subcategory $\Pre\Fib(\C) \overset{2}{\subset} (1\-\Cat_2)_{/\C}$ spanned by prefibrations over $\C$, and indeed there is. To check that this is the case, one can verify that given any $1$-morphism $(F: (\scrS', p') \to (\scrS, p)) \in 1\-\Mor((1\-\Cat_2)_{/\C})$ and any object $U \in \C$, there exists a functor $F_U: \scrS'_U \to \scrS_U$ making the following diagram $2$-commutative in $1\-\Cat_2$:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrS'_U} &&&& {\scrS_U} \\
+                        	{\scrS'} &&&& \scrS \\
+                        	&& \pt \\
+                        	&& \C
+                        	\arrow["{p'}"', from=2-1, to=4-3]
+                        	\arrow["U", from=3-3, to=4-3]
+                        	\arrow["{p'_U}"', from=1-1, to=3-3]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=4-3, "2"{description}]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow["{p_U}", from=1-5, to=3-3]
+                        	\arrow[from=1-5, to=2-5]
+                        	\arrow["p", from=2-5, to=4-3]
+                        	\arrow["F", from=2-1, to=2-5]
+                        	\arrow["{F_U}", from=1-1, to=1-5, dashed]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-90}, draw=none, from=1-5, to=4-3, "2"{description}]
+                        \end{tikzcd}
+                    $$
+                and similarly for $2$-morphisms in $\Pre\Fib(\C)$. We leave this as an exercise for the reader, for which they may make use of proposition \ref{prop: 2_pullbacks_in_slice_2_categories}. Via the Pasting Lemma for $2$-pullbacks, we also see that:
+                    $$\scrS'_U \cong \scrS' \x^2_{F, \scrS} \scrS_U$$
+                from which it is easy to deduce that $\Pre\Fib(\C)$ has all $2$-pullbacks.
+            \end{remark}
+        
+        \subsubsection{(Co)cartesian arrows and (co)fibrations of categories; prestacks}
+            \begin{definition}[(Co)cartesian arrows] \label{def: (co)cartesian_arrows}
+                Consider a prefibration $p: \scrS \to \C$. Then, an arrow $(\varphi: y \to x) \in \Mor(\scrS)$ is said to be \textbf{$p$-cartesian} if and only if for all objects $z \in \Ob(\scrS)$, one has a ($1$-)pullback square of the following form:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrS(z, y)} & {\C(p(z), p(y))} \\
+                        	{\scrS(z, x)} & {\C(p(z), p(x))}
+                        	\arrow["{\scrS(z, \varphi)}"', from=1-1, to=2-1]
+                        	\arrow[from=2-1, to=2-2]
+                        	\arrow["{\C(p(z), p(\varphi))}", from=1-2, to=2-2]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+                Dually, the given arrow $\varphi: y \to x$ is \textbf{$p$-cocartesian} if and only if it is $p^{\op}$-cartesian.
+            \end{definition}
+            \begin{remark}[Weakly (co)cartesian arrows ?] \label{remark: weak_(co)cartesian_arrows}
+                
+            \end{remark}
+            \begin{proposition}[Properties of (co)cartesian arrows in a prefibration] \label{prop: properties_of_(co)cartesian_arrows_in_a_prefibration}
+                Let $p: \scrS \to \C$ be a prefibration. Then:
+                    \begin{enumerate}
+                        \item compositions of $p$-(co)cartesian arrows are also $p$-(co)cartesian,
+                        \item isomorphisms in $\scrS$ are $p$-(co)cartesian, 
+                        \item if a $p$-(co)cartesian arrow $(\varphi: y \to x) \in \Mor(\scrS)$ is such that $p(\varphi)$ is an isomorphism in $\C$, then $\varphi$ itself will be an isomorphism, and
+                        \item if we have a diagram in $\scrS$ as follows, wherein $\varphi: y \to x$ is $p$-(co)cartesian:
+                            $$
+                                \begin{tikzcd}
+                                	& y \\
+                                	{x'} & x
+                                	\arrow["\varphi", from=1-2, to=2-2]
+                                	\arrow["f", from=2-1, to=2-2]
+                                \end{tikzcd}
+                            $$
+                        such that the pullback $p(y) \x_{p(\varphi), p(x), p(f)} p(x')$ exists in $\C$, then the pullback $y \x_{\varphi, x, f} x'$ exists in $\scrS$, and moreover, the canonical projection $\pr_1: y \x_{\varphi, x, f} x' \to x'$ is also $p$-(co)cartesian.
+                    \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+            \begin{proposition}[(Co)cartesian arrows under $1$-morphisms of prefibrations] \label{prop: (co)cartesian_arrows_under_1_morphisms_of_prefibrations}
+                Let $\C$ be a base category and consider a $1$-morphism in $\Pre\Fib(\C)$ as follows:
+                    $$
+                        \begin{tikzcd}
+                        	{\scrS'} && \scrS \\
+                        	& \C
+                        	\arrow["{p'}"', from=1-1, to=2-2]
+                        	\arrow["p", from=1-3, to=2-2]
+                        	\arrow["F", from=1-1, to=1-3]
+                        \end{tikzcd}
+                    $$
+                If $(\psi: z \to t) \in \Mor(\scrS')$ is a $p'$-(co)cartesian arrow such that $F(\psi)$ is $p$-(co)cartesian, then $\psi$ will be $(F \circ p)$-(co)cartesian. 
+            \end{proposition}
+                \begin{proof}
+                    Immediate from definition \ref{def: (co)cartesian_arrows}.
+                \end{proof}
+            
+            \begin{definition}[(Op)fibrations] \label{def: (op)fibrations}
+                A \textbf{fibration}\footnote{Also called a \textbf{fibred category} or \textbf{cartesian fibration}.} is a prefibration $p: \scrS \to \C$ such that for all arrows $(f: V \to U) \in \Mor(\C)$, there exists a corresponding cartesian arrow $(\varphi: f^*x \to x) \in \Mor(\scrS)$ (which may or may not be uniquely determined) such that $p(\varphi) = f$; we refer to the cartesian arrow $\varphi: f^*x \to x$ lying over $f: V \to U$ as a \textbf{choice of pullback} along $f$. Dually, an \textbf{op-fibration}\footnote{Also called a \textbf{cofibred category, cocartesian fibration}, or \textbf{cartesian op-fibration}.} is a prefibration $p: \scrS \to \C$ such that the corresponding op-prefibration $p^{\op}: \scrS^{\op} \to \C^{\op}$ is a fibration\footnote{For op-fibrations, it is customary to refer to the cocartesian arrows $(\psi: y \to f_*y) \in \Mor(\scrS)$ lying over arrows $(f: V \to U) \in \Mor(\C)$ as \textbf{choices of pushforwards}.} of $\scrS^{\op}$ over $\C^{\op}$ via the functor $p^{\op}$.
+            \end{definition}
+            \begin{remark}[On choosing pullbacks]
+                Usually, one says that \say{choices of pullbacks are given} with respect to some fibration $p: \scrS \to \C$ to mean that for all arrows $(f: V \to U) \in \Mor(\C)$, one has implicitly chosen some domain $f^*x$ such that $p(f^*x) = V$ along with a morphism $(\varphi: f^*x \to x) \in \Mor(\scrS)$ such that $p(\varphi) = f$. Usually, it is also implicitly assumed that pullbacks along identities are identities, i.e. for all objects $U \in \Ob(\C)$, one assumes that $\id_U^*x = x$ for all objects $x \in \scrS$ such that $p(x) = U$.
+                
+                Now, it should be noted that in choosing pulbacks along arrows $(f: V \to U) \in \Mor(\C)$, one is in fact choosing assignments:
+                    $$f^*: \scrS_U \to \scrS_V$$
+                    $$x \mapsto f^*x$$
+                between the corresponding fibres over the codomain and domain of $f$ ($U$ and $V$ respectively) of the (pre)fibration $p: \scrS \to \C$ (cf. remark \ref{remark: fibres_of_prefibrations}). As it turns out, these assignments are functorial in weak sense (cf. proposition \ref{prop: 2_functoriality_of_fibrations}), but to show that they are, we shall need to show that 
+            \end{remark}
+            \begin{proposition}[$2$-functoriality of fibrations] \label{prop: 2_functoriality_of_fibrations}
+                Suppose that $p: \scrS \to \C$ is a fibration and that:
+                    $$
+                        \begin{tikzcd}
+                        	W & V & U
+                        	\arrow["g", from=1-1, to=1-2]
+                        	\arrow["f", from=1-2, to=1-3]
+                        \end{tikzcd}
+                    $$
+                is a pair of composable arrows in $\C$. Then, there exists a $2$-isomorphism $(\alpha_{g, f}: (fg)^* \Rightarrow f^*g^*) \in 2\-\Mor(1\-\Cat_2)$ (i.e. a natural isomorphism of functors) such that given any triple of composable arrows in $\C$ as follows:
+                    $$
+                        \begin{tikzcd}
+                        	Q & W & V & U
+                        	\arrow["g", from=1-2, to=1-3]
+                        	\arrow["f", from=1-3, to=1-4]
+                        	\arrow["h", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+                one has the following $1$-commutative coherence diagram of functors and natural isomorphisms:
+                    $$
+                        \begin{tikzcd}
+                        	{(fgh)^*} & {(fg)^*h^*} \\
+                        	{f^*(gh)^*} & {f^*g^*h^*}
+                        	\arrow["{\alpha_{gh, f}}"', from=1-1, to=2-1]
+                        	\arrow["{\id_{f^*} \circ \alpha_{h, g}}"', from=2-2, to=2-1]
+                        	\arrow["{\alpha_{g, f} \circ \id_{h^*}}", from=1-2, to=2-2]
+                        	\arrow["{\alpha_{h, fg}}", from=1-1, to=1-2]
+                        \end{tikzcd}
+                    $$
+            \end{proposition}
+                \begin{proof}
+                            
+                \end{proof}
+            \begin{corollary}[$2$-categories of fibrations] \label{coro: 2_categories_of_fibrations}
+                From propositions \ref{prop: 2_functoriality_of_fibrations} and \ref{prop: (co)cartesian_arrows_under_1_morphisms_of_prefibrations}, one sees that for each fixed base ($1$-)category $\C$, there exists a corresponding full $2$-subcategory $\Fib(\C) \overset{2}{\subset} \Pre\Fib(\C)$ of fibrations over $\C$. This $2$-category has $2$-pullbacks, thanks to a combination of proposition \ref{prop: properties_of_(co)cartesian_arrows_in_a_prefibration}(4) and the fact that $\Pre\Fib(\C)$ has all $2$-pullbacks.
+            \end{corollary}
+            
+            \begin{convention}
+                Sometimes, we might wish to put emphasis on the fact that objects of $\Pre\Fib(\C)$ and $\Fib(\C)$ (for some fixed $1$-category $\C$) are fibred in generic categories, and denote them instead by $\Pre\Fib_{1\-\Cat_2}(\C)$ and $\Fib_{1\-\Cat_2}(\C)$ respectively.
+            \end{convention}
+            \begin{definition}[Categories fibred in groupoids] \label{def: categories_fibred_in_groupoids}
+                A \textbf{category fibred in groupoids} is a fibration $p: \scrS \to \C$ such that all the fibres $\scrS_U$ over objects $U \in \Ob(\C)$ are groupoids. 
+            \end{definition}
+            \begin{remark}[$2$-categories of categories fibred in groupoids]
+                Since the $2$-category $1\-\Grpd_2$ of groupoids, functors between them, and natural transformations between said functors is a full $2$-subcategory of $1\-\Cat_2$ that is closed under all $2$-pullbacks, there is a natural full $2$-subcategory $\Fib_{1\-\Grpd_2}(\C) \overset{2}{\subset} \Fib_{1\-\Cat_2}(\C)$ of categories fibred in groupoids which is closed under $2$-pullbacks taken inside $\Fib_{1\-\Cat_2}(\C)$ (or for that matter, $(1\-\Cat_2)_{/\C}$).
+                
+                A similar argument applies to categories fibred in sets over $\C$, which happens to be a degenerate case of a $2$-category, as it is $1$-equivalent to the $1$-category $\Psh(\C)$ of presheaves of sets over $\C$. More on this later. 
+            \end{remark}
+            
+            \begin{convention}[$1$-opposite and $2$-opposite categories] \label{conv: 1_opposite_and_2_opposite_categories}
+                Let $\scrK$ be a $2$-category. Then, we define its $1$-opposite, denoted by $\scrK^{1\-\op}$ or simply $\scrK^{\op}$, to be the $2$-category with the same objects and $2$-morphisms as those of $\scrK$, but with $1$-morphisms in the opposite direction. The $2$-opposite category $\scrK^{2\-\op}$ is defined similarly. There is also the $(1, 2)$-opposite $\scrK^{(1, 2)\-\op}$, which is the $2$-category with the same objects as $\scrK$, but with opposite $1$-morphisms and $2$-morphisms.
+            \end{convention}
+            \begin{definition}[Prestacks] \label{def: prestacks}
+                A \textbf{prestack}\footnote{Also known as \textbf{pseudo-functors}.} on a weak $2$-category $\scrK$ is a weak $2$-functor:
+                    $$F: \scrK^{1\-\op} \to 1\-\Cat_{(2, 1)}$$
+                There is an evident weak $2$-category $\Pre\Stk(\scrK)$ of prestacks on any given weak $2$-category $\scrK$, wherein the objects are prestacks on $\scrK$, the $1$-morphisms are weak $2$-natural transformations, and the $2$-morphisms are $2$-natural modifications between them.
+            \end{definition}
+            \begin{theorem}[The Grothendieck Construction] \label{theorem: grothendieck_construction}
+                Fix a $1$-category $\C$. There is a strict $2$-equivalence of $2$-categories
+            \end{theorem}
+            
+            \begin{example}[Abstract examples of fibrations] \label{exmaple: abstract_fibrations}
+                \noindent
+                \begin{itemize}
+                    \item \textbf{(Arrow categories):}
+                    \item \textbf{(The $2$-category of topoi):}
+                \end{itemize}
+            \end{example}
+            \begin{example}[Slice categories and representable fibrations] \label{example: slice_categories_and_representable_fibrations}
+                Let $\C$ be a $1$-category and suppose that $U \in \Ob(\C)$ is some object thereof. It can then be rather easily checked that the forgetful functor:
+                    $$p_U: \C_{/U} \to \C$$
+                    $$(X \to U) \mapsto X$$
+                is a fibration over $\C$, commonly called the \textbf{domain fibration}; in particular, $\C_{/U}$ is fibred in sets over $\C$ via the forgetful functor $p_U$. Furthermore, it is easy to see that its corresponding prestack is nothing but the representable presheaf:
+                    $$\C(-, U): \C^{\op} \to \Sets$$
+                    $$X \mapsto \{\text{Arrows in $\C$ with domain $X$ and codomain $U$}\}$$
+                As such, any fibration $p: \scrS \to \C$ that is $1$-isomorphic\footnote{Technically, it is not necessaary to specify that the isomorphism at play here is a $1$-isomorphism, since domain fibrations are fibred in sets.} to a domain fibration $p_U: \C_{/U} \to \C$ is said to be \textbf{representable}.
+            \end{example}
+            \begin{example}[Fibred categories of quasi-coherent sheaves] \label{example: fibred_categories_of_quasi_coherent_sheaves}
+                
+            \end{example}
+            \begin{example}[Fibred categories of finite \'etale morphisms] \label{example: fibred_categories_of_finite_etale_morphisms}
+                
+            \end{example}

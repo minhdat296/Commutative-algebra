@@ -333,7 +333,7 @@
         \subsubsection{Affine schemes}
             Next, we will be discussing the idea of so-call \textbf{structure sheaves}, but in order to make sense of these entities, we will need to know what $\C$-valued sheaves are for categories $\C$ more general than $\Sets$:
             \begin{definition}[$\C$-valued sheaves] \label{def: C_valued_sheaves}
-                This definition is an adaptation of definition 2.6 in \cite{nlab:sheaf} so that our sheaves might take values in categories other than $\Sets$.
+                \noindent
                 \begin{enumerate}
                     \item \textbf{($\C$-valued sheaves):} Let $(\S, J)$ be a site\footnote{... which is not necessarily small, as cases such as $\S \cong \Top$ and $\S \cong \Mfd^{\smooth}_{/\R}$ are interesting in their own rights.} and let $\C$ be a category with \textit{enough small limits} and \textit{enough filtered colimits} (the purpose of the second hypothesis is to ensure that stalks, should they exist, are well-defined); note that $\C$ need not be small. Additionally, fix an \textit{arbitrary} object $x$ of $\S$ along with a covering sieve $\calU_{/x} \in J$ thereon. Also, let $j: \S \to \Psh_{\C}(\S)$ be the Yoneda embedding. Then, a \textbf{$\C$-valued sheaf} on $(\S, J)$ is a functor $\calF: \S^{\op} \to \C$ such that $\calF(x) \cong \calF\left( \underset{u \in \calU_{/x}}{\colim} ju \right)$.
                     \item \textbf{($\C$-topoi):} $\C$-valued sheaves on a given site $(\S, J)$ form a category in the obvious manner. We shall be writing $\Sh_{\C}(\S, J)$ for this category, and such categories will be called \textbf{$\C$-topoi}, even though this is an abuse of terminology.
@@ -457,7 +457,7 @@
     
         \subsubsection{Properties of schemes and their morphisms}
         
-        \subsubsection{Topologies on schemes}
+        \subsubsection{Topologies on schemes; descent-theoretic results}
     
     \subsection{Varieties}
 

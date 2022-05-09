@@ -1,0 +1,60 @@
+\section{Descent theory and topos theory}
+    \subsection{Coverages and sites}
+        \begin{definition}[Coverages and sites] \label{def: coverages_and_sites}
+            A \textbf{coverage} on a category $\C$ is a function $J: \Ob(\C) \to \Cov(\C)$ which maps each object $U \in \Ob(\C)$ to a so-called \textbf{covering family} $\{f_i: U_i \to U\}_{i \in I}$ which are sets of arrows in $\C$ with codomain $U$. These covering families are required to satisfy the following property: for all covering families $\{f_i: U_i \to U\}_{i \in I}$ and all arrows $\varphi: V \to U$ in $\C$, there must exists a covering family $\{g_j: V_j \to V\}_{j \in J}$ in $\C$ such that there exist arrows $\varphi_{ij}: V_j \to U_i$ making diagrams of the following form commute for all indices $i \in I$ and $j \in J$:
+                $$
+                    \begin{tikzcd}
+                    	{V_j} & {U_i} \\
+                    	V & U
+                    	\arrow["{f_i}", from=1-2, to=2-2]
+                    	\arrow["\varphi", from=2-1, to=2-2]
+                    	\arrow["{g_j}"', from=1-1, to=2-1]
+                    	\arrow["{\varphi_{ij}}", dashed, from=1-1, to=1-2]
+                    \end{tikzcd}
+                $$
+            A category $\C$ equipped with a coverage $J$ is a \textbf{site}, and is typically written as a pair $(\C, J)$.
+        \end{definition}
+        \begin{remark}
+            While it is certainly that one can put a coverage on any category regardless of the set-theoretic size thereof, sites are commonly assumed to be small. This is done to avoid certain issues later down the line, such as the existence of sheafifications or whether or not the sheaf topos over the site at play is a Grothendieck topos.
+        \end{remark}
+        
+        \begin{definition}[Sieves] \label{def: sieves}
+            Let $\C$ be a category and let $U \in \Ob(\C)$ be some object thereof. A \textbf{sieve} on an object $U$ is a covering family $\{f_i: U_i \to U\}_{i \in I}$ such that  
+        \end{definition}
+    
+    \subsection{Descent data, sheaves, and stacks}
+        \subsubsection{Descent data}
+            \begin{convention}
+                Suppose that $\C$ is a category with enough pullbacks, and that $\{f_i: U_i \to U\}_{i \in I}$ is a family of arrows therein. Henceforth, we shall be denoting projections from pullbacks in the following manner:
+                    $$
+                        \begin{tikzcd}
+                        	& {U_i \x_{f_i, U, f_j} U_j \x_{f_j, U, f_k} U_k} & {U_j \x_{f_j, U, f_k} U_k} & {U_k} \\
+                        	{} & {U_i \x_{f_i, U, f_j} U_j} & {U_j} & U \\
+                        	& {U_i} & U
+                        	\arrow["{f_i}", from=3-2, to=3-3]
+                        	\arrow["{f_j}", from=2-3, to=3-3]
+                        	\arrow["{f_j}", from=2-3, to=2-4]
+                        	\arrow["{f_k}", from=1-4, to=2-4]
+                        	\arrow["{\pr_{ij \to i}}"', from=2-2, to=3-2]
+                        	\arrow["{\pr_{ij \to j}}", from=2-2, to=2-3]
+                        	\arrow["{\pr_{jk \to j}}"', from=1-3, to=2-3]
+                        	\arrow["{\pr_{jk \to k}}", from=1-3, to=1-4]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-3, to=2-4]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+                        	\arrow["{\pr_{ijk \to ij}}"', from=1-2, to=2-2]
+                        	\arrow["{\pr_{ijk \to jk}}", from=1-2, to=1-3]
+                        	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-3]
+                        \end{tikzcd}
+                    $$
+            \end{convention}
+            \begin{definition}[Descent data] \label{def: descent_data}
+                Let $p: \scrS \to \C$ be a fibration over a category $\C$ with enough pullbacks, and choose a choice of pullbacks with respect to $p$; in addition, suppose that $\calU := \{f_i: U_i \to U\}_{i \in I}$ is a family of arrows in $\C$, which we denote by $\Desc(\calU)$, can then be defined to be the category wherein:
+                    \begin{itemize}
+                        \item objects are families of isomorphisms $\{\varphi: \pr_1^*X_i \to \pr_2^*X_j\}_{(i, j) \in I^2}$ in $\scrS_{U_i \x_{f_i, U, f_j} U_j}$, wherein $X_i, X_j$ are objects of $\scrS_{U_i}$ and $\scrS_{U_j}$ respectively, such that they satisfy the so-called \textbf{cocycle condition}, under which commutative triangles of the following form commute in $\scrS_{U_i \x_{f_i, U, f_j} U_j \x_{f_j, U, f_k} U_k}$ for all $(i, j, k) \in I^3$:
+                        \item and morphisms are commutative diagrams 
+                    \end{itemize}
+            \end{definition}
+            
+        \subsubsection{Sheaves and stacks}
+    
+    \subsection{Topoi}

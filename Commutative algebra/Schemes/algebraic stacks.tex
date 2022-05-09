@@ -1,1 +1,115 @@
 \section{Algebraic stacks}
+    \subsection{The \texorpdfstring{$2$}{}-category of algebraic stacks}
+        \subsubsection{Algebraic stacks and their formal properties}
+    
+        \subsubsection{Properties of algebraic stacks and their morphisms}
+        
+        \subsubsection{Topologies on algebraic stacks; descent-theoretic results}
+    
+    \subsection{Moduli spaces of algebraic stacks}
+        \subsubsection{Coarse moduli spaces and the Keel-Mori Theorem}
+            In this subsubsection, we attempt to state and prove the Keel-Mori Theorem, which establishes a criterion for certain kinds of algebraic stacks to admit coarse moduli spaces. From there, we will discuss certain applications thereof: in particular, we will be touching on Chow's Lemma for algebraic stacks, as well as a valuative criterion for properness for algebraic stacks.
+            
+            Before we begin, however, we shall need to actually introduce the notion of a \say{moduli space}, which are of a certain kind of morphism from algebraic stacks to algebraic spaces. The extra conditions are imposed so that they would behave well with respect to various geometric constructions, but essentially, moduli spaces exist to exemplify the idea that algebraic stacks are geometric objects with \say{automorphisms at each point}.
+            \begin{definition}[Coarse moduli spaces] \label{def: coarse_moduli_spaces}
+                \cite[Section 1, pp. 1]{conrad_keel_mori_theorem_via_stacks} Let $\scrX$ be an algebraic stack over a given scheme $S$ and suppose that $\pi: \scrX \to \calX$ is a morphism to some algebraic space $\calX$ over $S$. We say that $\calX$ is a \textbf{coarse moduli space} for $\scrX$ via $\pi$ (or rather, that the morphism of algebraic stacks $\pi: \scrX \to \calX$ is a coarse moduli space for $\scrX$) if $\pi$ is initial among all morphisms from $\scrX$ to algebraic spaces over $S$ and if for all algebraically closed fields $k$ (i.e. geometric points), the canonically induced function $[\pi(k)]: [\scrX(k)] \to \calX(k)$ is a bijection.  
+            \end{definition}
+            \begin{remark}[On the (non)representability of coarse moduli spaces] \label{remark: (non)representability_of_coarse_moduli_spaces}
+                Clearly, every algebraic space when viewed as a tautological algebraic stack is its own coarse moduli space and conversely, should a Deligne-Mumford stack admit a coarse moduli space then that modui space would be an algebraic space. The converse situation need not be true, stemming from the fact that general algebraic stacks \textit{a priori} admit only smooth atlases. 
+            \end{remark}
+            \begin{definition}[Fine moduli spaces] \label{def: fine_moduli_spaces}
+                A \textbf{fine moduli space} over a scheme $S$ is nothing but a representable presheaf on $\Sch_{/S}$.
+            \end{definition}
+            \begin{remark}[On the sheafiness of moduli spaces] \label{remark: sheafiness_of_moduli_spaces}
+                Many of the common Grothendieck topologies on the category of schemes (e.g. Zariski, \'etale, fppf, fpqc, etc.) are subcanonical and as such fine moduli spaces are automaticallly sheaves with respect to these topologies. 
+                
+                For coarse moduli spaces, the situation is a bit more subtle. By definition, algebraic spaces satisfy fppf descent and therefore, they must also satisfy \'etale and Zariski descent; a result by Gabber (cf. \cite[\href{https://stacks.math.columbia.edu/tag/0APL}{Tag 0APL}]{stacks}) tells us that algebraic spaces also satisfy fpqc descent, but this is not at all trivial. As such, coarse moduli spaces of Deligne-Mumford stacks (which are algebraic spacess) satisfy Zariski, \'etale, fppf, and fpqc descent. 
+            \end{remark}
+            \begin{definition}[Stability of coarse moduli spaces] \label{def: stability_of_coarse_moduli_spaces}
+                \footnote{Note that this definition also makes sense for fine moduli spaces as fine moduli spaces are coarse moduli spaces by definition (as schemes are instances of algebraic spaces), but because those are nothing but schemes (which form a category with all finite pullbacks, the question of whether or not the formation of a fine moduli space is stable under base-change along representable morphisms is tautological.)}Suppose that $\pi: \scrX \to \calX$ is a coarse moduli space for some algebraic stack $\scrX$ over a given scheme $S$. We say that the formation of this coarse moduli spaces is compatible with flat (respectively, smooth, \'etale, etc.) base-changes if and only if for all flat (respectively, smooth, \'etale, etc.) morphisms $f: \calX' \to \calX$ of algebraic spaces, the canonically induced morphism $\scrX \x^2_{\pi, \calX, f} \calX' \to \calX'$ is also a coarse moduli space.   
+            \end{definition}
+            \begin{remark}[The importance of flat base-changes] \label{remark: flat_base_changes_of_coarse_moduli_spaces}
+                Aside from encompassing the many important cases of base-change, such as smooth and \'etale base-changes, flat morphisms also arise naturally in algebraic geometry: Zariski localisations, for instance, are flat morphisms due to localisations and tensor products commuting. As such, we pay extra attention to whether or not the formation of coarse moduli spaces is preserved by flat base-changes. 
+            \end{remark}
+            
+            \begin{definition}[Well-nigh affine algebraic stacks] \label{def: well_nigh_affine_algebraic_stacks}
+                \cite[\href{https://stacks.math.columbia.edu/tag/0DUL}{Tag 0DUL}]{stacks} An algebraic stack $\scrX$ is said to be \textbf{well-nigh affine-schematic}\footnote{... or simply \textbf{well-nigh affine}.} (respecitvely, well-nigh schematic) over a given scheme $S$ if and only if there exists an affine $S$-scheme $U$ along with an atlas $U \to \scrX$ that is flat, finite (respecitvely, quasi-finite), and of finite presentation (respectively, Zariski-locally of finite-presentation) over $S$. 
+            \end{definition}
+            \begin{remark}
+                It is clear from the definition that being well-nigh affine implies being well-nigh schematic.
+            \end{remark}
+            \begin{remark}[Well-nigh schematicity is fppf local] \label{remark: well_nigh_schematicity_is_fppf_local}
+                Flatness, (quasi-)finiteness, and being (Zariski-locally) of finite presentation are all fppf local properties which are fppf-local and stable under base-changes along representable morphisms (cf. \cite[\href{https://stacks.math.columbia.edu/tag/02WE}{Tag 02WE}]{stacks}). Therefore, for an algebraic stack to be well-nigh affine (respectively, well-nigh schematic) is a property that is fppf-local, and hence \'etale and Zariski-local, as well as stable under base-changes along representable morphisms.
+                
+                Note also that because being well-nigh affine (respectively, well-nigh schematic) is Zariski-local, one can check whether or not an algebraic stack is well-nigh schematic via checking whether or not it is well-nigh affine. The notion of well-nigh schematicity is therefore redundant in practice.
+            \end{remark}
+            \begin{proposition}[Well-nigh affine algebraic spaces] \label{prop: well_nigh_affine_algebraic_spaces}
+                A well-nigh affine algebraic space is nothing but an affine scheme. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Criteria for well-nigh affineness] \label{prop: well_nigh_affineness_criteria_for_algebraic_stacks}
+                \noindent
+                \begin{enumerate}
+                    \item Let $f: \scrX' \to \scrX$ be an affine morphism of algebraic stacks. Then $\scrX'$ will be well-nigh affine.
+                    \item Suppose that $\scrX$ is an algebraic stack over a given scheme $S$. Then, $\scrX$ is well-nigh affine over $S$ if and only if there exists a finite locally free groupoid in $S$-schemes $s, t: R \toto U$ such that $\scrX \cong [U/R]$. 
+                \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[Existence of coarse moduli spaces of well-nigh affine algebraic stacks] \label{lemma: existence_of_coarse_moduli_spaces_of_well_nigh_affine_algebraic_stacks}
+                Any well-nigh affine algebraic stack $\scrX$ over a given scheme $S$ admits a coarse moduli space $\pi: \scrX \to \calX$ whose formation is stable under flat base-changes. Moreover, the morphism $\pi$ is separated, quasi-compact, and universally homeomorphic over $S$.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{lemma}[A reduction step] \label{lemma: keel_mori_reduction_step}
+                Let $\scrX$ be an algebraic stack Zariski-locally of finite presentation, whose diagonal $\Delta_{\scrX/S}$ is quasi-compact and separated, both over some given scheme $S$. Suppose furthermore that the diagonal $\Delta_{\scrX/S}$ is quasi-finite over $S$. In such a setting, there exists a covering of $\scrX$ by a set $\{\scrX_i\}_{i \in I}$ of open algebraic substacks such that each $\scrX_i$ admits a quasi-finite, flat, and finitely presented scheme atlas $U_i \to \scrX_i$.
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+                
+            \begin{definition}[Inertia stacks] \label{def: inertia_stacks}
+                Let $f: \scrY \to \scrX$ be a morphism of algebraic stacks over a given scheme $S$. Its associated \textbf{inertia stack} $\Inert(\scrY/\scrX)$ is given by the $2$-pullback of the diagonal $\Delta_{\scrY/\scrX}: \scrY \to \scrY \x_{\scrX} \scrY$ along itself, i.e. it fits into the following $2$-pullback square:
+                    $$
+                        \begin{tikzcd}
+                        	{\Inert(\scrY/\scrX)} & \scrY \\
+                        	\scrX & {\scrY \x_{\scrX} \scrY}
+                        	\arrow["{\Delta_{\scrY/\scrX}}", from=2-1, to=2-2]
+                        	\arrow["{\Delta_{\scrY/\scrX}}", from=1-2, to=2-2]
+                        	\arrow[from=1-1, to=2-1]
+                        	\arrow[from=1-1, to=1-2]
+                        	\arrow["2"{description}, "\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{proposition}[Properties of inertia stacks] \label{prop: properties_of_inertia_stacks}
+                Let $f: \scrY \to \scrX$ be a morphism of algebraic stacks over a given scheme $S$. Then, not only is the inertia stack $\Inert(\scrY/\scrX)$ an algebraic stack over $S$ as well, but also, the canonical projections $\pr_1, \pr_2: \Inert(\scrY/\scrX) \toto \scrY$ are both representable by morphisms locally of finite type between algebraic space over $S$. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{remark}[Inertia and automorphisms] \label{remark: inertia_and_automorphisms}
+                Fix an algebraic stack $\scrX$ over a given base scheme $S$ and consider the evident full $2$-category\footnote{Defined in the manner of definition \ref{def: slice_2_categories}.} $\Alg\Spc_{/\scrX} \overset{2}{\subset} \Alg\Stk_{/\scrX}$ of algebraic spaces over $\scrX$. Observe that this category is $2$-equivalent to the $2$-category 
+            \end{remark}
+            \begin{lemma}
+                Suppose that $f: \scrX' \to \scrX$ is an \'etale morphism of between well-nigh affine algebraic stacks over a fixed base scheme $S$, such that 
+            \end{lemma}
+                \begin{proof}
+                    
+                \end{proof}
+                
+            \begin{theorem}[The Keel-Mori Theorem on the existence of coarse moduli spaces] \label{theorem: keel_mori_theorem_on_the_existence_of_coarse_moduli_spaces}
+                
+            \end{theorem}
+                \begin{proof}
+                    
+                \end{proof}
+        
+        \subsubsection{Tame algebraic stacks}
+            One of the issues with the notion of (coarse) moduli spaces of algebraic stacks is that it is not very stable. For instance, it is not always the case that the formation of coarse moduli spaces - especially in positive characteristics - commutes with base-changes. As such, it is worthwhile to single out a class of algebraic stacks (so-called \say{tame algebraic stacks}) for which the formation of coarse moduli spaces is actually stable under base-changes; these algebraic stacks also behave well in other ways, but these are rather technical properties, so we thought it best to discuss them later on, once we have had all the definitions in place. 
+
+    \subsection{Cohomology of algebraic stacks and derived categories of coherent sheaves}

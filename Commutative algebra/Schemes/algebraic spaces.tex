@@ -1,1 +1,181 @@
 \section{Algebraic spaces}
+    \subsection{The category of algebraic spaces}
+        \subsubsection{Algebraic spaces and their formal properties}
+            \begin{convention}[Big sites of schemes] \label{conv: big_sites_of_schemes}
+                From this point onwards, we shall be writing $(\Sch_{/S})_{\fppf}$ for the \textit{big} fppf site of a given scheme $S$. In the presence of small sites, which we denote by $(\Sch_{/S})_{\fppf}^{\petit}$, we might write $(\Sch_{/S})_{\fppf}^{\gros}$ for the sake of distinction. Likewise for the \'etale topology.
+            \end{convention}
+            \begin{convention}[Diagonals] \label{conv: algebraic_spaces_diagonals}
+                Let $S$ be a scheme and $F$ be a presheaf of sets on $(\Sch_{/S})_{\fppf}$. We shall be denoting its \textbf{diagonal} by $\Delta_{F/S}: F \to F \x_S F$. This is the morphism of sheaves which is as follows, for all $T \in \Ob((\Sch_{/S})_{\fppf})$:
+                    $$\Delta_{F/S}(T): F(T) \to F(T) \x_{S(T)} F(T)$$
+                    $$t \mapsto (t, t)$$
+            \end{convention}
+            
+            \begin{lemma}[Permanence of properties of representable morphisms] \label{lemma: permanence_of_properties_of_representable_morphisms}
+                Consider sheaves on a site $(\C, J)$, which may or may not be small.
+                    \begin{enumerate}
+                        \item Representability of morphisms of sheaves is preserved by compositions.
+                        \item Representability of morphisms of sheaves is preserved by pullbacks. Also, the diagonal of a representable morphism of sheaves is also representable.
+                        \item Let $\varphi: F \to G$ be a representable morphisms of presheaves on $\C$. If $G$ satisfies $J$-descent, then so does $F$.
+                    \end{enumerate}
+            \end{lemma}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+            \begin{definition}[Properties of representable morphisms] \label{def: properties_of_representable_morphisms_of_fppf_sheaves}
+                Denote by $\calP$ an fppf-local\footnote{Cf. \cite[\href{https://stacks.math.columbia.edu/tag/02KO}{Tag 02KO}]{stacks}.} property of morphisms of schemes that is stable under base-changes\footnote{See \cite[\href{https://stacks.math.columbia.edu/tag/02WE}{Tag 02WE}]{stacks} for a list of such properties.}. Then, one says that a representable morphism of presheaves $\varphi: F \to G$ on $(\Sch_{/S})_{\fppf}$ (for some base scheme $S$) has property $\calP$ if and only if for all schemes $U \in \Ob(\Sch_{/S})$, the canonical projection $\pr_2: F \x_G U \to U$ has property $\calP$ (note that by representability, the pullback $F \x_G U$ is an object of $\Sch_{/S}$).
+            \end{definition}
+            \begin{proposition}[A representability criterion for diagonals] \label{prop: representability_criterion_for_diagonals}
+                Let $S$ be a scheme and let $F$ be a presheaf of sets on $(\Sch_{/S})_{\fppf}$. In addition, suppose that $U, V \in \Ob(\Sch_{/S})$ are two arbitrary $S$-schemes equipped with morphisms $u: U \to F$ and $v: V \to F$, and that the pullback $U_{u, F, v} V$ is representable by some $S$-scheme $T \in \Ob(\Sch_{/S})$. If the canonical morphism $T \to U \x_S V$ has a property $\calP$ that is fppf-local and stable under base-changes, then the diagonal $\Delta_{F/S}: F \to F \x_S F$ must be representable and have property $\calP$.
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+                
+            \begin{definition}[Atlases] \label{def: atlases}
+                Let $S$ be a scheme and let $F$ be a presheaf of sets on $(\Sch_{/S})_{\fppf}$. An fppf (respectively, \'etale) \textbf{atlas} of $F$ is thus an \'etale surjection $U \to F$ from some scheme $U \in \Ob(\Sch_{/S})$.
+            \end{definition}
+            \begin{definition}[Algebraic spaces] \label{def: algebraic_spaces}
+                An \textbf{algebraic space} over a scheme $S$ is a sheaf of sets on $(\Sch_{/S})_{\fppf}$ with an \'etale atlas and representable diagonal.
+            \end{definition}
+            \begin{remark}[Algebraic spaces are algebraic stacks]
+                Later on, we shall see that algebraic spaces are the same as so-called \textbf{$0$-algebraic stacks}. More on this later, once we have discussed algebraic stacks.
+            \end{remark}
+            \begin{proposition}[The category of algebraic spaces] \label{prop: the_category_of_algebraic_spaces}
+                For any given scheme $S$, there is a category of algebraic spaces over $S$, denoted by $\Alg\Spc_{/S}$, which is a full subcategory of $\Sh(\Sch_{S, \fppf})$. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+                
+            \begin{proposition}[(Co)limits of algebraic spaces] \label{prop: (co)limits_of_algebraic_spaces}
+                For any given scheme $S$, the category $\Alg\Spc_{/S}$ of algebraic spaces over $S$ has the following (co)limits:
+                    \begin{enumerate}
+                        \item \textbf{(Limits):} terminal objects and finite pullbacks (and hence finite products),
+                        \item \textbf{(Colimits):} arbitrary small coproducts.
+                    \end{enumerate}
+            \end{proposition}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(Limits):} 
+                        \item \textbf{(Colimits):} 
+                    \end{enumerate}
+                \end{proof}
+            \begin{corollary}[Schemes are algebraic spaces] \label{coro: schemes_are_algebraic_spaces}
+                For any given scheme $S$, the category $\Sch_{/S}$ of $S$-schemes is a full subcategory of $\Alg\Spc_{/S}$ which is closed under finite pullbacks.
+            \end{corollary}
+            \begin{remark}[A sheaf-theoretic definition of schemes] \label{remark: sheaf_theoretic_definition_of_schemes}
+                In fact, it is easy to see - using the fact that the fppf topology is subcanonical - that \textit{schemes are fppf sheaves $X$ on the category of affine schemes such that their diagonals $\Delta_X$ are representable and such that they admit so-called Zariski atlases, i.e. a jointly surjective family of open immersions $U_i \hookrightarrow X$ from affine schemes $U_i$}. Note that this definition is not circular since one can define schemes either as objects of $\Cring^{\op}$ or as certain kinds of locally ringed spaces, which is a definition that makes use of only the Zariski topology on prime spectra of commutative rings and the notion of structure sheaves.
+            \end{remark}
+            \begin{definition}[Clopen immersions of ringed spaces] \label{def: clopen_immersions_of_ringed_spaces}
+                An immersion of ringed spaces is said to be \textbf{clopen} whenever it is simultaneously closed and open.
+            \end{definition}
+            \begin{remark}[Clopen immersions of fppf sheaves] \label{remark: clopen_immersions_of_fppf_sheaves}
+                Given definition \ref{def: clopen_immersions_of_ringed_spaces}, we can define a \textbf{clopen immersion of sheaves} on $(\Sch_{/S})_{\fppf}$ (with $S$ being some scheme) as a morphism that is representable by clopen immersions of schemes. Note that this is a well-defined notion, as open immersions and closed immersions are stable under base change (since tensor products commute with localisations and quotients) and are fppf-local (cf. \cite[\href{https://stacks.math.columbia.edu/tag/01JY}{Tag 01JY}]{stacks}).
+            \end{remark}
+            \begin{lemma}[Representability by schemes and algebraic spaces of disjoint summands] \label{lemma: representability_by_schemes_and_algebraic_spaces_of_disjoint_summands}
+                Throughout, we work over a base scheme $S$.
+                \begin{enumerate}
+                    \item Let $F, G$ be sheaves of sets on $(\Sch_{/S})_{\fppf}$. Then, the cannical morphism of sheaves $\iota_1: F \to F \sqcup G$ (or equivalently, $\iota_2: G \to F \sqcup G$) is a clopen immersion.
+                    \item Let $X$ be a $S$-scheme (respectively, an algebraic space over $S$) and suppose that there exists a disjoint set $\{F_i\}_{i \in I}$ of sheaves on $(\Sch_{/S})_{\fppf}$ such that $X \cong \coprod_{i \in I} F_i$. Then, each of the disjoint summand $F_i$ will be a clopen subscheme of $X$ (respectively, an algebraic space over $S$ such that the canonical morphism of sheaves $\iota_i: F_i \to X$ is a clopen immersion).
+                    \item Let $F$ be a sheaf on $(\Sch_{/S})_{\fppf}$ such that there exists a set $\{F_i\}_{i \in I}$ of open\footnote{In the sense that the inclusions $F_i \hookrightarrow F$ are open immersions. Note that open immersions are fppf-local by virtue of being \'etale, and the reader is invited to check that indeed, open immersions are stable under base change (this is simple consequence of the fact that tensor products and localisations commute).} algebraic subspaces of $F$ such that $\coprod_{i \in I} F_i$ is an algebraic space over $S$ and that the canonically induced morphism of sheaves $\coprod_{i \in I} F_i \to F$ is surjective. In such a situation, $F$ will also be an algebraic space over $S$.
+                \end{enumerate}
+            \end{lemma}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item 
+                        \item 
+                        \item 
+                    \end{enumerate}
+                \end{proof}
+                
+            \begin{definition}[\'Etale equivalence relations] \label{def: etale_equivalence_relations}
+                Let $S$ be a scheme. An \textbf{\'etale equivalence relation} internal to the category $\Sch_{/S}$ of $S$-schemes (respectively, the category $\Alg\Spc_{/S}$ of algebraic spaces over $S$)\footnote{Note that both categories have all finite pullbacks.} is thus an internal equivalence relation (in the sense of definition \ref{def: equivalence_relations}) whose source and target morphisms are both \'etale.
+            \end{definition}
+            \begin{lemma}[Base-changing \'etale and flat equivalence relations in schemes] \label{lemma: base_changing_etale_and_flat_equivalence_relations_in_schemes}
+                Let $S$ be a scheme, let $U$ be an $S$-scheme, and let $s, t: R \toto U$ be an \'etale equivalence relation on $U$ over $S$.
+                    \begin{enumerate}
+                        \item \textbf{(\'Etale base-changes):} Suppose that $f: U' \to U$ is an \'etale morphism of $S$-schemes and that $s', t': R' \toto U'$ is the pullback of $s, t: R \toto U$ along $f$. Then, $s', t': R' \toto U'$ will be an \'etale equivalence relation\footnote{Recall that pullbacks of internal equivalence relations are also internal equivalence relations, so $s', t': R' \toto U'$ is \textit{a priori} an equivalence relation on $U'$ over $S$ (cf. \cite[\href{https://stacks.math.columbia.edu/tag/02V8}{Tag 02V8}]{stacks}). Out task here is simply to establish geometric properties of the pullback $s', t': R' \toto U'$, such as whether or not it is \'etale.} on $U'$ over $S$.
+                        \item \textbf{(Flat base-changes):} Suppose that the source and target morphisms $s, t: R \toto U$ are surjective, flat, and locally of finite presentation and that $f: U' \to U$ is a morphism of $S$-schemes that is flat and locally of finite presentation; in addition, denote by $s', t': R' \toto U'$ the pullback\footnote{We leave the verification of the fact that being surjective, flat, and locally of finite presentation are properties of morphisms of ($S$-)schemes which are stable under base-changes and are fppf-local up to our readers. } along $f$ of $s, t: R \toto U$. Then, the canonically induced morphism of sheaves $U'R/' \to U/R$ will be an open immersion. 
+                    \end{enumerate}
+            \end{lemma}
+                \begin{proof}
+                    \noindent
+                    \begin{enumerate}
+                        \item \textbf{(\'Etale base-changes):} Consider the following pullback diagrams in $\Sch_{/S}$:
+                            $$
+                                \begin{tikzcd}
+                                	{R'} & {U'} \\
+                                	R & U
+                                	\arrow["{t'}"', shift right=2, from=1-1, to=1-2]
+                                	\arrow["t"', shift right=2, from=2-1, to=2-2]
+                                	\arrow["{f_s}"', shift right=2, from=1-1, to=2-1]
+                                	\arrow["f", from=1-2, to=2-2]
+                                	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+                                	\arrow["s", shift left=2, from=2-1, to=2-2]
+                                	\arrow["{s'}", shift left=2, from=1-1, to=1-2]
+                                	\arrow["{f_t}", shift left=2, from=1-1, to=2-1]
+                                \end{tikzcd}
+                            $$
+                        \'Etale morphisms are stable under base-changes so the canonical projections $f_s, f_t: R' \to\to R$ must be \'etale as a consequence of $f: U' \to U$ being \'etale by assumption. Compositions of \'etale morphisms are also \'etale themselves, and since $s, t: R \toto U$ are \'etale morphisms by assumption, the compositions $s \circ f_s$ and $t \circ f_t$ must also be \'etale. As such, the equivalence relation $s', t': R' \toto U'$ is \'etale. 
+                        \item \textbf{(Flat base-changes):} By arguing as above and using the fact that surjectivity, flatness, and being locally of finite presentation are properties of morphisms of schemes which are stable under base-changes
+                    \end{enumerate}
+                \end{proof}
+            \begin{proposition}[Base-chaning \'etale and flat equivalence relations in algebraic spaces] \label{prop: base_changing_etale_and_flat_equivalence_relations_in_algebraic_spaces}
+                Let $S$ be a scheme, let $\calX$ be an algebraic space over $S$, and let $s, t: R \toto \calX$ be an \'etale equivalence relation on $\calX$ over $S$.
+                    \begin{enumerate}
+                        \item \textbf{(\'Etale base-changes):} Suppose that $f: \calX' \to \calX$ is an \'etale morphism of algebraic spaces over $\calX$ and that $s', t': R' \toto \calX'$ is the pullback of $s, t: R \toto \calX$ along $f$. Then, $s', t': R' \toto \calX'$ will be an \'etale equivalence relation on $\calX'$ over $S$.
+                        \item \textbf{(Flat base-changes):} Suppose that the source and target morphisms $s, t: R \toto \calX$ are surjective, flat, and locally of finite presentation and that $f: \calX' \to \calX$ is a morphism of algebraic spaces over $S$ that is flat and locally of finite presentation; in addition, denote by $s', t': R' \toto \calX'$ the pullback along $f$ of $s, t: R \toto \calX$. Then, the canonically induced morphism of sheaves $\calX'/R' \to \calX/R$ will be an open immersion. 
+                    \end{enumerate}
+            \end{proposition}
+            \begin{definition}[\'Etale presentations of algebraic spaces] \label{def: etale_presentations_of_algebraic_spaces}
+                An \textbf{\'etale presentation} of an algebraic space $\calX$ over some scheme $S$, should it exist, is the quotient of an $S$-scheme $U$ by an \'etale equivalence relation $R$ on $U$ such that we have an isomorphism $\calX \cong U/R$ of sheaves on $(\Sch_{/S})_{\fppf}$. Phrased differently, an \'etale presentation of an algebraic space $\calX$ over some scheme $S$ is a coequaliser in $\Sh((\Sch_{/S})_{\fppf})$ of the following form, wherein $U$ and $R$ are as above:
+                    $$
+                        \begin{tikzcd}
+                        	R & U & \calX
+                        	\arrow[shift right=2, from=1-1, to=1-2]
+                        	\arrow[shift left=2, from=1-1, to=1-2]
+                        	\arrow["\coeq", two heads, from=1-2, to=1-3]
+                        \end{tikzcd}
+                    $$
+            \end{definition}
+            \begin{proposition}[Existence of \'etale presentation of algebraic spaces] \label{prop: existence_of_etale_presentations_of_algebraic_spaces}
+                Let $S$ be a scheme, let $\calX$ be an algebraic space over $S$, and suppose that $\calX$ admits an \'etale atlas $u: U \to \calX$ by an $S$-scheme $U$ (cf. definition \ref{def: algebraic_spaces}). Then, we have the following \'etale presentation for $\calX$, wherein the two arrows $U \x_{u, \calX, u} U \toto U$ come from the canonical morphism $U \x_{u, \calX, u} U \to U \x_S U$:
+                    $$
+                        \begin{tikzcd}
+                        	{U \x_{u, \calX, u} U} & U & \calX
+                        	\arrow[shift right=2, from=1-1, to=1-2]
+                        	\arrow[shift left=2, from=1-1, to=1-2]
+                        	\arrow["{\coeq(u, u)}", two heads, from=1-2, to=1-3]
+                        \end{tikzcd}
+                    $$ 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+            \begin{proposition}[Quotients of schemes by \'etale equivalence relations are algebraic spaces] \label{prop: quotients_of_schemes_by_etale_equivalence_relations_are_algebraic_spaces}
+                If $U$ is an $S$-scheme and $R$ is an \'etale equivalence relation on $U$, then not only will the sheaf $U/R$ be an algebraic space, but furthermore, the quotient morphism $U \to U/R$ will be \'etale\footnote{Because the quotient morphism $U \to U/R$ is \'etale, the \'etale presentation $R \toto U$ determines an \'etale atlas $U \to U/R$ of the algebraic space $U/R$.} surjection of sheaves on $(\Sch_{/S})_{\fppf}$. 
+            \end{proposition}
+                \begin{proof}
+                    
+                \end{proof}
+                
+            \begin{proposition}[Pushouts of algebraic spaces] \label{prop: puhsouts_of_algebraic_spaces}
+                
+            \end{proposition}
+    
+        \subsubsection{Properties of algebraic spaces and their morphisms}
+        
+        \subsubsection{Topologies on algebraic spaces; descent-theoretic results}
+        
+        \subsubsection{Criteria for sheaves being algebraic spaces}
+    
+    \subsection{Algebraic spaces over fields}
+
+    \subsection{Cohomology of algebraic spaces and derived categories of coherent sheaves}

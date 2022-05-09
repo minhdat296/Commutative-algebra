@@ -1,87 +1,22 @@
 \section{Deformations in derived algebraic geometry}
-    \begin{convention}[Everything is derived!] \label{conv: deformation_theory_everything_is_derived}
-        \noindent
-        \begin{itemize}
-            \item From now on until the end of the chapter, everything will be assumed to be derived. 
-            \item By $1\-\Cat_1$, or simply $1\-\Cat$, we shall actually mean $(\infty, 1)\-1\-\Cat_1$, i.e. the $(\infty, 1)$-category of $(\infty, 1)$-categories and functors between them, and by $1\-\Cat_2$ we will be referring to the $(\infty, 2)$-category of $(\infty, 1)$-categories, functors between them, and natural transformations between these functors. 
-            
-            Similarly, by $\Grpd^1$, or simply $\Grpd$, we will actually mean the $(\infty, 1)$-category of $\infty$-groupoids and functors between them, and by $\Grpd^2$, we shall mean the $(\infty, 2)$-category of $\infty$-groupoids, functors between them, and natural transformations between these functors.
-            \item A subcategory of $1\-\Cat$ this is of particular interest is $\dg\Cat^{\cont}$, the $(\infty, 2)$-category of stable linear (i.e. differential-graded) $(\infty, 1)$-categories. Of course, we can also view $\dg\Cat^{\cont}$ as a mere $(\infty, 1)$-category.
-        \end{itemize}
-    \end{convention}
-    
     \subsection{Admittance of deformations}
+        \subsubsection{Cotangent complexes via square-zero extensions}
+    
         \subsubsection{Differential cohesiveness}
     
         \subsubsection{Spaces admitting deformations}
-            \begin{definition}[Prestacks admitting deformations] \label{def: prestacks_admitting_deformations}
-                Let $k$ be an arbitrary base commutative ring. A prestack $\calX$ on ${}^{k/}\Comm\Alg^{\op}$ is said to \textbf{admit deformations} if it satisfies the following conditions:
-                    \begin{itemize}
-                        \item \textbf{(Convergence):} $\calX$ is convergent, i.e. for all affine schemes $S$ over $\Spec k$, one has:
-                            $$\calX(S) \cong \underset{n \in \N}{\lim} \calX({}^{\leq n}S)$$
-                        \item \textbf{(Admittance of a cotangent complex):} $\calX$ must admit a pro-cotangent complex. Should said pro-cotangetn complex be an actual cotangent complex, then we will say that $\calX$ \textbf{admits corepresentable deformations}.
-                        \item \textbf{(Cohesiveness):} $\calX$ has to be differentially cohesive.
-                    \end{itemize}
-            \end{definition}
         
         \subsubsection{Consequences of admitting deformations}
         
-    \subsection{Derived formal schemes}
-        \subsubsection{The geometry of derived formal schemes}
-            This subsubsection will, for the most part, rather straightforward and formal, owing to the fact that ind-schemes are defined rather simply.
+    \subsection{Ind-schemes}
+        \subsubsection{The geometry of ind-schemes}
             
-            We start first of all with that simple definition of ind-schemes.
-            \begin{definition}[Ind-schemes] \label{def: ind-schemes}
-                Let $k$ be an arbitrary base commutative ring and let $\kappa$ be a regular cardinal\footnote{Which we will never mention again beyond this definition}. The category of ind-schemes over $\Spec k$ is thus the $\kappa$-ind-completion $\Ind_{\kappa}({}^{< \infty}\Sch_{/\Spec k}^{\closed})$ of the category ${}^{< \infty}\Sch_{/\Spec k}^{\closed}$ of convergent schemes over $\Spec k$ and closed immersions. This category shall be denoted by $\Ind\Sch_{/\Spec k}$.
-            \end{definition}
-            \begin{remark}[Ind-schemes vs. formal schemes] \label{remark: ind_schemes_vs_formal_schemes}
-                It should be noted while formal schemes are trivially ind-schemes, the converse statement is not necessarily true. This is because formal schemes are (small) filtered colimits of \textit{quasi-compact} schemes taken along \textit{closed immersions}. This use of terminologies is slightly contradictory to that of \cite[Definition I.2.1.1.2]{GR2}, wherein the authors define ind-schemes as what we refer to here as formal schemes. We have chosen to make this modification both to keep to a more traditional and popular etymological convention, but also, to put emphasis on the fact that unlike general ind-schemes, formal schemes are not \textit{just} filtered colimits of schemes, but rather certain special filtered colimits.
-                
-                For topological reasons (cf. proposition \ref{prop: topologically_complete_adic_modules}), we usually would want to work with Noetherian formal schemes. Note that because Noetherian topological spaces are \textit{a priori} quasi-compact, but there exist quasi-compact spaces that are not Noetherian (e.g. finite disjoint unions of non-Noetherian spaces), the category $(\Sch^{\wedge})^{\Noeth}$ of \textit{Noetherian} formal schemes are not quite the same as the \textit{sub}category of the category $\Ind\Sch^{\qc, \closed}$ of filtered colimits of closed immersions of quasi-compact schemes. The category spanned by closed immersions of \textit{locally} Notherian quasi-compact ind-schemes, however, is precisely equivalent to that of formal schemes. In short, one has the following chain of containment of categories:
-                    $$\Ind\Sch^{\qc, \closed, \loc\Noeth} \cong (\Sch^{\wedge})^{\Noeth} \subset \Sch^{\wedge} \cong \Ind\Sch^{\qc, \closed} \subset \Ind\Sch^{\qc} \subset \Ind\Sch$$
-            \end{remark}
-            \begin{remark}[Morphisms of formal schemes] \label{remark: morphisms_of_formal_schemes}
-                Due to the fact that filtered colimits commute with finite limits, the category $\Ind\Sch^{\qc, \closed}$ spanned by filtered colimits of closed immersions of quasi-compact schemes (which is the same as the category $\Sch^{\wedge}$ of formal schemes), as well as any subcategories thereof, has only monomorphisms as arrows (recall that closed immersions are monomorphic). One can then also rather easily show that these monomorphisms of ind-schemes are actually closed immersions themselves. This, first of all, justifies the isomorphism:
-                    $$\Sch^{\wedge} \cong \Ind\Sch^{\qc, \closed}$$
-                and second of all, tells us that the \href{https://ncatlab.org/nlab/show/skeleton}{\underline{skeleton}} of the category $\Sch^{\wedge}$ is a partial order, wherein the ordering is given by the canonical closed immersions. 
-            \end{remark}
-            
-            \begin{definition}[Descriptors for formal scheme] \label{def: formal_schemes_descriptors}
-                There are many descriptors that one can use to describe formal schemes. Notable examples are:
-                    \begin{itemize}
-                        \item $n$-coconnective (for some natural number $n$),
-                        \item affine,
-                        \item (locally) almost of finite type,
-                        \item classical,
-                        \item reduced.
-                    \end{itemize}
-                and so on. Let $\scrP$ be any one of these properties, or properties which imply any one of the above (e.g. smoothness, as it implies being of finite type). Then, the subcategory $(\Sch^{\wedge})^{\scrP}$ of formal schemes with property $\scrP$ shall be nothing but the ind-completion of $\Sch^{\qc, \closed, \scrP}$, the category of quasi-compact schemes with the same property $\scrP$ and closed immersions between them, i.e.:
-                    $$(\Sch^{\wedge})^{\scrP} \cong \Ind(\Sch^{\qc, \closed, \scrP})$$
-            \end{definition}
-            \begin{remark}
-                Let $\scrP$ be a property as elaborated on above. Then, one can also characterise the category $(\Sch^{\wedge})^{\scrP}$ via:
-                    $$(\Sch^{\wedge})^{\scrP} \cong \Sch^{\wedge} \cap (\Spec \Z)^{\scrP}$$
-                wherein the \say{intersection} is taken at both the level of objects and of (higher) morphisms.
-            \end{remark}
-            
-            \begin{remark}[Other geometric facts about formal schemes] \label{remark: geometric_facts_about_formal_schemes}
-                \noindent
-                \begin{itemize}
-                    \item \textbf{(Formal schemes are sheaves):} As schemes satisfy Zariski, \'etale, fppf, and fpqc descent, so do formal schemes (or more generally, ind-schemes). This is due to the fact that sheaf topoi are cocomplete.
-                    \item \textbf{(Formal schemes preserve coconnectivity of quasi-compact schemes):} Let $\calX$ be a formal scheme and let $S \in {}^{\leq n}\Sch^{\qc}$ be an $n$-coconnective quasi-compact scheme. Then, the space $\calX(S)$ of $S$-points of $\calX$ will be $n$-truncated. To see why this ought to be true, note first of all that the truncation level of $\calX(S)$ has to be finite, as $\calX$ is convergent by definition. Second of all, 
-                    
-                    As a corollary, one sees that should $\calX$ be isomorphic to say, $\underset{i \in I}{\colim} X_i$, where $\{X_i\}_{i \in I}$ is small filtered diagram of closed immersions of quasi-compact schemes, then:
-                        $$\calX(S) \cong \underset{i \in I}{\colim} X_i(S)$$
-                    wherein $S$ is as above.
-                \end{itemize}
-            \end{remark}
-            
-        \subsubsection{Deformations of formal schemes}
+        \subsubsection{Deformations of ind-schemes}
     
     \subsection{(Ind)-inf-schemes}
     
     \subsection{Ind-coherent sheaves on ind-(inf)-schemes}
-        \subsubsection{Ind-coherent sheaves on formal schemes}
+        \subsubsection{Ind-coherent sheaves on ind-schemes}
         
         \subsubsection{Ind-coherent sheaves on ind-(inf)-schemes}
     
