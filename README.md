@@ -1,5 +1,5 @@
 # Foundations of geometric representation theory
 
-In this project, we attempt to reformulate various notions from classical commutative algebra (such as flatness, regularity, smoothness, etc.) in an entirely categorical manner, so as to be able to later write down their analogues in derived algebraic geometry without having to develop extra theory. We will also be presenting certain applications, such as deformation theory, the role of D-modules in geometric representation theory, and certain motivic/geometric aspects of p-adic Hodge theory.
+In this project, we attempt to collect the background algebraic and geometric materials needed for modern geometric representation theory (e.g. the geometric Langlands programmes), such as (derived) algebraic geometry, rigid-analytic geometry and p-adic Hodge theory, and D-modules and representations of algebraic groups, etc. The project has grown to quite a large size and as such is being slowly split into smaller sub-projects for manageability and better quality-control, which later on will be compiled back together into a book.
 
-Should you have comments and feedbacks, feel free to let me know at haminhdat2906@gmail.com
+Comments and feedback are appreciated. You can contact me at haminhdat2906@gmail.com
